@@ -407,8 +407,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#daily-plan" id="toc-daily-plan" class="nav-link active" data-scroll-target="#daily-plan">Daily plan</a></li>
-  <li><a href="#readings-due-this-week" id="toc-readings-due-this-week" class="nav-link" data-scroll-target="#readings-due-this-week">Readings due this week</a></li>
-  <li><a href="#assignments-due-this-week" id="toc-assignments-due-this-week" class="nav-link" data-scroll-target="#assignments-due-this-week">Assignments due this week</a></li>
+  <li><a href="#due-this-week" id="toc-due-this-week" class="nav-link" data-scroll-target="#due-this-week">Due this week</a></li>
   <li><a href="#heads-up-for-next-week" id="toc-heads-up-for-next-week" class="nav-link" data-scroll-target="#heads-up-for-next-week">Heads up for next week</a></li>
   </ul>
 </nav>
@@ -477,29 +476,28 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 </section>
-<section id="readings-due-this-week" class="level2">
-<h2 class="anchored" data-anchor-id="readings-due-this-week">Readings due this week</h2>
+<section id="due-this-week" class="level2">
+<h2 class="anchored" data-anchor-id="due-this-week">Due this week</h2>
+<p><strong>Readings (due at 9:35 a.m. on Perusall)</strong></p>
 <ul>
-<li>Before Mon: <em>Data Computing</em> Ch 1 (§1.1–1.5) — what tidy data is (conceptual)</li>
-<li>Before Tue: <em>Data Computing</em> Ch 2 (§2.1–2.8) — R, RStudio, vectors, objects</li>
-<li>Before Wed: <em>Data Computing</em> Ch 3 (§3.1–3.5) — basic R commands</li>
-<li>Before Thu: <em>Data Computing</em> Ch 4 (§4.1–4.7) — files and Quarto/Rmd documents</li>
-<li>Before Fri: <em>Data Computing</em> §3.6 — chaining syntax (the pipe)</li>
+<li><em>(Optional)</em> <strong>Monday:</strong> <em>Data Computing</em> Ch 1 (§1.1–1.5) — what tidy data is</li>
+<li><strong>Tuesday:</strong> <em>Data Computing</em> Ch 2 (§2.1–2.8) — R, RStudio, vectors, objects</li>
+<li><strong>Wednesday:</strong> <em>Data Computing</em> Ch 3 (§3.1–3.5) — basic R commands</li>
+<li><strong>Thursday:</strong> <em>Data Computing</em> Ch 4 (§4.1–4.7) — files and Quarto/Rmd documents</li>
+<li><strong>Friday:</strong> <em>Data Computing</em> §3.6 — chaining syntax (the pipe)</li>
 </ul>
-</section>
-<section id="assignments-due-this-week" class="level2">
-<h2 class="anchored" data-anchor-id="assignments-due-this-week">Assignments due this week</h2>
+<p><strong>Assignments (Canvas &amp; In-class)</strong></p>
 <ul>
-<li><strong>Reading Quiz 1</strong> — due before Tuesday’s class (Canvas)</li>
-<li><strong>HW 0</strong> (setup confirmation) — due Thursday May 21, 11:59 p.m.</li>
-<li><strong>Quiz 1</strong> — in class Friday May 22</li>
+<li><strong>Wednesday May 20:</strong> HW 0 (setup confirmation) — due 11:59 p.m. on Canvas</li>
+<li><strong>Friday May 22:</strong> HW 1 — due 11:59 p.m. on Canvas</li>
+<li><strong>Friday May 22:</strong> <strong>Quiz 1</strong> — in class</li>
 </ul>
 </section>
 <section id="heads-up-for-next-week" class="level2">
 <h2 class="anchored" data-anchor-id="heads-up-for-next-week">Heads up for next week</h2>
 <ul>
 <li><em>Data Computing</em> Ch 5 (§5.1–5.6) for Tuesday May 26 — graphics intro.</li>
-<li>No class Monday May 25 (Memorial Day).</li>
+<li><strong>No class Monday May 25</strong> (Memorial Day).</li>
 </ul>
 
 
@@ -592,7 +590,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/cgcostanzo\.github\.io\/stat184-summer2026\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

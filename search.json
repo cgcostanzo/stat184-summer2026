@@ -4,7 +4,7 @@
     "href": "schedule.html",
     "title": "Course Schedule",
     "section": "",
-    "text": "Note\n\n\n\nThis schedule is tentative and subject to change. Substantive changes will be announced in class and on Canvas. Dates listed below assume class meets Monday through Friday, 9:35 - 10:50 a.m., May 18 - June 26, 2026.\nNo class: Monday May 25 (Memorial Day) · Friday June 19 (Juneteenth)."
+    "text": "Note\n\n\n\nThis schedule is tentative and subject to change. Substantive changes will be announced in class and on Canvas. Class meets Monday through Friday, 9:35 - 10:50 a.m., May 18 - June 26, 2026.\nNo class: Monday May 25 (Memorial Day) · Friday June 19 (Juneteenth)."
   },
   {
     "objectID": "schedule.html#week-1---foundations-may-18---22",
@@ -796,7 +796,7 @@
     "href": "weeks/week1/day1-intro.html#course-info-introductions",
     "title": "Day 1 — Course intro & what is R?",
     "section": "1. Course Info & Introductions",
-    "text": "1. Course Info & Introductions\nSummer Session 1: May 18, 2026 – June 26, 2026\n\nClass time: M/T/W/Th/F, 9:35 a.m. to 10:50 a.m.\nClass location: Huck Life Sciences Building 007\nInstructor: Charles Costanzo\n\nEmail: cgc5478@psu.edu\nOffice: Thomas 301 (Office Hours TBD)\n\nTeaching Assistant (TA): Xinyue Wang\n\nEmail: xpw5228@psu.edu\n\n\n\n\n\n\n\n\n\n\nIcebreaker: name, major, your favorite song right now.",
+    "text": "1. Course Info & Introductions\nSummer Session 1: May 18, 2026 – June 26, 2026\n\nClass time: M/T/W/Th/F, 9:35 a.m. to 10:50 a.m.\nClass location: Huck Life Sciences Building 007\nInstructor: Charles Costanzo\n\nEmail: cgc5478@psu.edu\nOffice Hours: M/W/Th/F: 10:50-11:50 a.m. in Huck 005 (or on Zoom by appt)\n\nTeaching Assistant (TA): Xinyue Wang\n\nEmail: xpw5228@psu.edu\n\n\n\n\n\n\n\n\n\n\nIcebreaker: name, major, your favorite song right now.",
     "crumbs": [
       "Day 1 — Course intro & what is R?"
     ]
@@ -826,7 +826,17 @@
     "href": "weeks/week1/day1-intro.html#ai-policy",
     "title": "Day 1 — Course intro & what is R?",
     "section": "AI policy",
-    "text": "AI policy\n\nAI is allowed on homework, take-home exam, project with disclosure. Not allowed on in-class work.\nDisclosure is graded on homework, but it is not an integrity issue if you skip it (you will just lose points.)\nLying about AI use is an integrity issue.\nOral project checkpoints are how I verify you understand your own work.\nPractical implication: AI is a study aid, not a substitute. The course is designed so that students who lean on it too heavily will struggle on the in-class portions.\n\n\n\n\n\n\nDiscussion Questions\n\n\n\nHow have you used AI in past courses?\nWhat are your initial thoughts on the policy?",
+    "text": "AI policy\n\nOpen assessments (Homework & Project): AI tools are permitted with mandatory disclosure.\nClosed-book, in-person work (Quizzes, Exam, Activities, Oral Checkpoints): AI tools are strictly prohibited.\nDisclosure is graded (1-2 points). Omitting the disclosure loses points; lying on the disclosure is an academic integrity violation.\nYou own the output. You must be able to explain any code you submit, which I will verify during in-class oral project checkpoints.\nPractical implication: AI is a study aid, not a substitute. Roughly 60% of your grade comes from verified in-person work where AI cannot be used.",
+    "crumbs": [
+      "Day 1 — Course intro & what is R?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro.html#course-readings-perusall",
+    "href": "weeks/week1/day1-intro.html#course-readings-perusall",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Course Readings (Perusall)",
+    "text": "Course Readings (Perusall)\n\nAll assigned textbook readings are hosted on Perusall, a collaborative e-reading platform.\nHow grading works: You earn credit through holistic engagement (reading the entire text, spending active time, leaving high-quality comments, and replying to classmates).\nNo access code needed! You must access readings directly through Canvas links to automatically authenticate your Penn State account.\n\n\n\n\n\n\n\n\n\nLet’s try it together right now:\n\n\n\nLog into our Canvas course.\nNavigate to the Week 1 Module.\nClick the link for Data Computing Chapter 1 (§1.1–1.5).",
     "crumbs": [
       "Day 1 — Course intro & what is R?"
     ]
@@ -892,11 +902,11 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day1-intro.html#setup-checklist-due-by-tuesday",
-    "href": "weeks/week1/day1-intro.html#setup-checklist-due-by-tuesday",
+    "objectID": "weeks/week1/day1-intro.html#setup-checklist-due-by-wednesday",
+    "href": "weeks/week1/day1-intro.html#setup-checklist-due-by-wednesday",
     "title": "Day 1 — Course intro & what is R?",
-    "section": "Setup checklist — due by Tuesday",
-    "text": "Setup checklist — due by Tuesday\nInstall R and RStudio\n\nR: https://cloud.r-project.org\nRStudio: https://posit.co/download/rstudio-desktop\n\n\n\n\n\n\n\nMac users\n\n\nInstall XQuartz too — some packages we’ll use later in the course need it.\n\n\n\nConfigure RStudio\n\nTools &gt; Global Options... &gt; General\nRestore .RData into workspace at startup: Unchecked\nSave workspace to .RData on exit: Never\n\nAssignments due Tuesday\n\nHW 0: Setup confirmation \nReading Quiz 1 on Data Computing §2.1–2.3\nRead Data Computing §2.1–2.3 before class",
+    "section": "Setup checklist — due by Wednesday",
+    "text": "Setup checklist — due by Wednesday\nInstall R and RStudio\n\nR: https://cloud.r-project.org\nRStudio: https://posit.co/download/rstudio-desktop\n\n\n\n\n\n\n\nMac users\n\n\nInstall XQuartz too — some packages we’ll use later in the course need it.\n\n\n\nConfigure RStudio\n\nTools &gt; Global Options... &gt; General\nRestore .RData into workspace at startup: Unchecked\nSave workspace to .RData on exit: Never\n\nAssignments due Wednesday 5/20\n\nHW 0: Setup confirmation",
     "crumbs": [
       "Day 1 — Course intro & what is R?"
     ]
@@ -906,7 +916,7 @@
     "href": "weeks/week1/day1-intro.html#wrap-up-looking-ahead",
     "title": "Day 1 — Course intro & what is R?",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\nTomorrow: Real R syntax (variables, functions, vectors)\nDue Tuesday before class:\n\nHW 0: Setup confirmation\nReading Quiz 1 on Canvas\nRead Data Computing §2.1–2.3\n\nReference links\n\nSyllabus · AI policy · Schedule · Data Computing\n\n\n\n\nReach out\n\n\nStuck on setup? Email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu) before Tuesday — don’t wait until class.",
+    "text": "Wrap-up & looking ahead\nTomorrow: Real R syntax (variables, functions, vectors)\nDue Tuesday before class:\n\nRead Data Computing §2.1–2.8 on Perusall.\n\nReference links\n\nSyllabus · AI policy · Schedule · Data Computing\n\n\n\n\nReach out\n\n\nStuck on setup? Come to office hours or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu) before Wednesday — don’t wait until class.",
     "crumbs": [
       "Day 1 — Course intro & what is R?"
     ]
@@ -932,21 +942,11 @@
     ]
   },
   {
-    "objectID": "weeks/week1/index.html#readings-due-this-week",
-    "href": "weeks/week1/index.html#readings-due-this-week",
+    "objectID": "weeks/week1/index.html#due-this-week",
+    "href": "weeks/week1/index.html#due-this-week",
     "title": "Week 1 — Foundations",
-    "section": "Readings due this week",
-    "text": "Readings due this week\n\nBefore Mon: Data Computing Ch 1 (§1.1–1.5) — what tidy data is (conceptual)\nBefore Tue: Data Computing Ch 2 (§2.1–2.8) — R, RStudio, vectors, objects\nBefore Wed: Data Computing Ch 3 (§3.1–3.5) — basic R commands\nBefore Thu: Data Computing Ch 4 (§4.1–4.7) — files and Quarto/Rmd documents\nBefore Fri: Data Computing §3.6 — chaining syntax (the pipe)",
-    "crumbs": [
-      "Week 1 — Foundations"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/index.html#assignments-due-this-week",
-    "href": "weeks/week1/index.html#assignments-due-this-week",
-    "title": "Week 1 — Foundations",
-    "section": "Assignments due this week",
-    "text": "Assignments due this week\n\nReading Quiz 1 — due before Tuesday’s class (Canvas)\nHW 0 (setup confirmation) — due Thursday May 21, 11:59 p.m.\nQuiz 1 — in class Friday May 22",
+    "section": "Due this week",
+    "text": "Due this week\nReadings (due at 9:35 a.m. on Perusall)\n\n(Optional) Monday: Data Computing Ch 1 (§1.1–1.5) — what tidy data is\nTuesday: Data Computing Ch 2 (§2.1–2.8) — R, RStudio, vectors, objects\nWednesday: Data Computing Ch 3 (§3.1–3.5) — basic R commands\nThursday: Data Computing Ch 4 (§4.1–4.7) — files and Quarto/Rmd documents\nFriday: Data Computing §3.6 — chaining syntax (the pipe)\n\nAssignments (Canvas & In-class)\n\nWednesday May 20: HW 0 (setup confirmation) — due 11:59 p.m. on Canvas\nFriday May 22: HW 1 — due 11:59 p.m. on Canvas\nFriday May 22: Quiz 1 — in class",
     "crumbs": [
       "Week 1 — Foundations"
     ]
