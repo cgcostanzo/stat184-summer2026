@@ -1,0 +1,85 @@
+project:
+  type: website
+  output-dir: _site
+
+profile:
+  default: student
+  group: [student, instructor]
+  
+website:
+  title: "STAT 184 — Summer 2026"
+  description: "Introduction to R — Penn State, Summer 2026"
+  sidebar:
+    - title: "Week 1"
+      style: docked
+      contents:
+        - weeks/week1/index.qmd
+        - weeks/week1/day1-intro.qmd
+        - weeks/week1/day2-r-basics.qmd
+        - weeks/week1/day3-functions-packages.qmd
+        - weeks/week1/day4-quarto.qmd
+        - weeks/week1/day5-git.qmd
+    - title: "Week 2"
+      style: docked
+      contents:
+        - weeks/week2/index.qmd
+        - weeks/week2/day1-data-frames.qmd
+        - weeks/week2/day2-ggplot-basics.qmd
+        - weeks/week2/day3-multivariable.qmd
+        - weeks/week2/day4-critique.qmd
+        
+  navbar:
+    background: primary
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Syllabus"
+        href: syllabus/syllabus.qmd
+      - text: "Schedule"
+        href: schedule.qmd
+      - text: "Weeks"
+        menu:
+          - text: "Week 1 — Foundations"
+            href: weeks/week1/index.qmd
+          - text: "Week 2 — Tidy Data & ggplot"
+            href: weeks/week2/index.qmd
+          - text: "Week 3 — Data Wrangling"
+            href: weeks/week3/index.qmd
+          - text: "Week 4 — Joins, Import, Exam"
+            href: weeks/week4/index.qmd
+          - text: "Week 5 — Functions & Strings"
+            href: weeks/week5/index.qmd
+          - text: "Week 6 — Special Topics & Project"
+            href: weeks/week6/index.qmd
+      - text: "Assignments"
+        menu:
+          - text: "Homework"
+            href: assignments/homework/index.qmd
+          - text: "Quizzes"
+            href: assignments/quizzes/index.qmd
+          - text: "In-class Activities"
+            href: assignments/activities/index.qmd
+          - text: "Exam"
+            href: assignments/exam/index.qmd
+      - text: "Project"
+        href: project/index.qmd
+      - text: "Policies"
+        menu:
+          - text: "Academic Integrity & AI Policy"
+            href: syllabus/academic-integrity-and-ai-policy.qmd
+
+  page-footer:
+    left: "STAT 184 — Summer 2026 — Penn State"
+
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+    css: assets/styles.css
+    toc: true
+    code-copy: true
+    code-fold: false
+    code-overflow: wrap
+
+editor: source

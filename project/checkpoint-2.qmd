@@ -1,0 +1,83 @@
+---
+title: "Project Checkpoint 2 — Partial Draft"
+subtitle: "Due Wednesday, June 24, 11:59 p.m."
+format:
+  html:
+    toc: true
+  pdf: default
+editor: source
+---
+
+# What to submit
+
+A partial draft of your final report — Quarto rendered to PDF — submitted to Canvas. One submission per team. Push the QMD source to your team's GitHub repo as well.
+
+This is not the final product. It is meant to show that you have made substantial progress, that your data is wrangled, and that the analytical direction is taking shape. Rough edges are expected.
+
+# Required content
+
+## 1. Introduction (1–2 paragraphs)
+
+- What is your topic?
+- What questions are you answering?
+- Why does anyone care?
+
+## 2. Data
+
+- Clear description of data provenance (who, when, why, what's a case).
+- A summary of variables you'll focus on — what they are, what type, what units.
+- At least one **data summary table** showing key features of the data (counts, ranges, missingness, etc.). This is *not* a print-out of raw rows; it should be summarized.
+
+## 3. Exploratory analysis — at least two visualizations
+
+Include **at least two figures** in the body of the report (more is fine). At least one figure must show **3 or more variables** (color, facet, size, shape, etc.).
+
+For each figure:
+
+- Render it in the report body (not in the appendix).
+- Give it a caption.
+- Reference it in narrative text (e.g., "Figure 1 shows…").
+- Explain what the figure tells you about the data.
+
+## 4. What's next
+
+A short section (a paragraph or bullet list) describing:
+
+- What you still need to do before the final report.
+- Any analytical questions you're still working through.
+- Anything you'd like instructor feedback on.
+
+## 5. Code appendix
+
+All R code at the end of the document. Use the standard appendix chunk:
+
+````
+```{{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}}
+```
+````
+
+## 6. AI use note
+
+A short paragraph describing AI tool use by the team for this checkpoint.
+
+# Rubric
+
+| Component | Points |
+|---|---|
+| Introduction clearly motivates the analysis | 4 |
+| Data provenance and variable description | 5 |
+| Summary table (non-trivial) | 5 |
+| Figure 1 (well-captioned, referenced, discussed) | 5 |
+| Figure 2 with 3+ variables (well-captioned, referenced, discussed) | 7 |
+| "What's next" section is substantive | 3 |
+| Code appendix present and rendering | 4 |
+| AI use note included | 2 |
+| GitHub repo updated with current code | 3 |
+| Submitted on time, PDF formatting | 2 |
+| **Total** | **40** |
+
+# Tips
+
+- Don't try to polish everything; focus on getting two real visualizations and a working pipeline. Polish in the final week.
+- If a visualization isn't telling you anything, try a different geometry or different variables — that's the iterative part of EDA.
+- Push to GitHub frequently. If your laptop dies the night before, your group still has the code.

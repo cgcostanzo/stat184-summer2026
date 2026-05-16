@@ -1,0 +1,35 @@
+---
+title: "Week 6 — Special Topics & Project"
+subtitle: "June 22 – 26, 2026"
+---
+
+The last week. Some special topics (clustering, decision trees — instructor's choice), the second oral checkpoint, and project wrap-up. Final report and video due Friday night.
+
+## Daily plan
+
+| Date | Topic | Files |
+|---|---|---|
+| Mon Jun 22 | [**Quiz 5 (rescheduled)** · intro to clustering](day1-clustering.qmd) | quiz, slides |
+| Tue Jun 23 | [Decision trees / CART (or alternative)](day2-trees.qmd) | slides, in-class code |
+| Wed Jun 24 | **Project work day** · oral check-in #1 makeups | — |
+| Thu Jun 25 | **Project work day** · oral check-in #2 (final walkthrough) | — |
+| Fri Jun 26 | [**Quiz 6** · short project presentations · wrap-up](day5-presentations.qmd) | quiz |
+
+## Readings due this week
+
+- Before Mon: *Data Computing* Ch 18 (§18.2) — unsupervised learning, clustering
+- Before Tue: *Data Computing* Ch 18 (§18.3) — trees from data
+
+## Assignments due this week
+
+- **Quiz 5** — Monday Jun 22 in class
+- **HW 5** — due Tue Jun 23, 11:59 p.m.
+- **Project Checkpoint 2** — due Wed Jun 24, 11:59 p.m.
+- **Project Oral Check-in #2** — Thursday Jun 25 in class (signup on Canvas)
+- **Quiz 6** — Friday Jun 26 in class
+- **Final project report + video URL** — due Friday Jun 26, 11:59 p.m.
+
+## After the course
+
+- Final grades posted by [date TBD].
+- Course evaluations: please complete them. They are read.

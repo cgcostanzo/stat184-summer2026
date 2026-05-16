@@ -1,0 +1,32 @@
+---
+title: "Quizzes"
+subtitle: "STAT 184 — Summer 2026"
+---
+
+Six weekly quizzes on Fridays (one rescheduled to Monday June 22 because of Juneteenth). **In class, on paper, closed book, no AI tools.** Lowest score is dropped.
+
+| # | Date | Covers |
+|---|---|---|
+| 1 | Fri May 22 | R basics, vectors, types |
+| 2 | Fri May 29 | Data frames, basic ggplot |
+| 3 | Fri Jun 5 | dplyr wrangling |
+| 4 | Fri Jun 12 | (no quiz — exam was Thursday) |
+| 5 | **Mon Jun 22** (rescheduled) | Functions, iteration, strings |
+| 6 | Fri Jun 26 | Comprehensive light review + special topics |
+
+Note: depending on calendar there may only be 5 quizzes total. Adjust the drop policy accordingly.
+
+## Format
+
+- 25–30 minutes during class.
+- Mix of short answer, "predict the output", and "write a small chunk of code".
+- All paper-based. Bring a pen.
+- Closed book. No phones, no laptops, no AI.
+
+## Solutions
+
+Solutions posted to Canvas after grading. Each quiz returns to you with comments.
+
+## Make-ups
+
+Make-ups are possible but not guaranteed. If you know in advance you'll miss a Friday, email me at least 24 hours before. If you miss for illness or emergency, email me as soon as you can.

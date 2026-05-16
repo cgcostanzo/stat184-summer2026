@@ -1,0 +1,33 @@
+---
+title: "Week 4 — Joins, Import & Exam"
+subtitle: "June 8 – 12, 2026"
+---
+
+::: callout-important
+**Exam is Thursday, June 11.** In-class portion in the morning (closed book, no AI); take-home portion released after class and due 11:59 p.m. that evening.
+:::
+
+We cover the last major data-handling tools — joining multiple tables and importing data from various sources — and then sit the exam. Friday is a light day with Project Checkpoint 1 due that night.
+
+## Daily plan
+
+| Date | Topic | Files |
+|---|---|---|
+| Mon Jun 8 | [Joining tables: `inner_join`, `left_join`, etc.](day1-joins.qmd) | slides, in-class code |
+| Tue Jun 9 | [Importing data: CSV, Excel, web URLs](day2-import.qmd) | slides, in-class code |
+| Wed Jun 10 | [**Exam review** · practice problems](day3-exam-review.qmd) | review packet |
+| Thu Jun 11 | [**EXAM**](day4-exam.qmd) | exam |
+| Fri Jun 12 | [Intro to web scraping (light day)](day5-scraping.qmd) | slides, in-class code |
+
+## Readings due this week
+
+- Before Mon: *Data Computing* Ch 11 (§11.1–11.3) — joining two data frames
+- Before Tue: *Data Computing* Ch 16 (§16.1–16.2, 16.4–16.5) — data formats, CSV, cleaning, factors
+- Before Fri: *Data Computing* Ch 16 (§16.3) — HTML tables and web scraping
+
+## Assignments due this week
+
+- **Reading Quiz 4** — due before Monday's class (Canvas)
+- **HW 3** — due Tue Jun 9, 11:59 p.m.
+- **Exam (in-class + take-home)** — Thursday Jun 11
+- **Project Checkpoint 1** — due Friday Jun 12, 11:59 p.m.

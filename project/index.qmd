@@ -1,0 +1,126 @@
+---
+title: "Course Project"
+subtitle: "STAT 184 — Summer 2026"
+format:
+  html:
+    toc: true
+  pdf: default
+editor: source
+---
+
+# Purpose
+
+The purpose of this project is to provide you with an opportunity to put into practice everything that you have learned over the course of the semester and to push yourselves. To this end, you’ll work in teams to conduct your own Exploratory Data Analysis, posing and answering your own research question(s).
+
+## Past examples
+
+These are from past sections --- their requirements were slightly different, but they give you a sense of scope and quality:
+
+- [IPL Batting Performance Analysis (Rohan & Pratham)](https://github.com/Stat184-Fall2024/Sec1_FP_Rohan_Pratham/blob/main/FinalProjectReport.pdf)
+- [Customer Shopping Trends (Ava, Sydney & Kacie)](https://github.com/Stat184-Fall2024/Sec4_FP_KacieRohn_SydneyHolt_AvaCascario/blob/main/Quarto-Stat-184-Final-Project.pdf)
+- [IMDB Movie Data Analysis (Sanjana, Nishita & Jess)](https://github.com/Stat184-Fall2024/Sec4_FP_SanjanaBandaru_NishitaBhanushali_JesaBurleson/blob/main/Final-Project--Real-.pdf)
+
+# Deadlines at a glance
+
+| Milestone | Due | Weight (of project grade) |
+|---|---|---|
+| Team formation | Thu Jun 4, 11:59 p.m. | — (required) |
+| **Checkpoint 1** — topic, question, data sources | Fri Jun 12, 11:59 p.m. | 15% |
+| **Oral check-in #1** (mid-project) | Thu Jun 18 in class | 15% |
+| **Checkpoint 2** — partial draft with visualizations | Wed Jun 24, 11:59 p.m. | 20% |
+| **Oral check-in #2** (final walkthrough) | Thu Jun 25 in class | 20% |
+| **Final report + video presentation** | Fri Jun 26, 11:59 p.m. | 30% |
+
+# Teams
+
+- Teams of **2–3 students**. Solo projects allowed only with explicit permission.
+- Form teams by the deadline above. If you don't have a team by then, I will assign one.
+- All team members are individually responsible for understanding the entire project. The oral checkpoints assess each team member individually.
+
+# Project guidelines
+
+::: callout-tip
+Treat this as a checklist. Check items off as you go and before you submit.
+:::
+
+## Topic and questions
+
+- [ ] Pick a topic your team is genuinely interested in. Sports, music, video games, food, news, science, civics — anything is fair game as long as the data exists.
+- [ ] Come up with 1–3 clear, answerable research questions.
+- [ ] Make a work plan early. Six weeks is short.
+
+## Data
+
+- [ ] **Your primary data source may *not* be a dataset we used in class.**
+- [ ] **Your primary data source may *not* come from an R package.** Supplementary sources are fine from anywhere.
+- [ ] Read in your data and perform necessary tidying, wrangling, and cleaning.
+- [ ] Describe data provenance: where did it come from, who collected it, why, what are the cases.
+
+Good sources of real data:
+
+- <https://data.gov> — US government open data
+- <https://github.com/fivethirtyeight/data> — FiveThirtyEight datasets
+- <https://github.com/nytimes> — NYT data
+- <https://github.com/rfordatascience/tidytuesday> — Tidy Tuesday (you may use these CSVs as primary data, just not the R package itself)
+- <https://scorenetwork.org/> — Sports data
+- <https://www.kaggle.com/datasets> — Kaggle (caution: not all data is real)
+
+## Analysis and report
+
+- [ ] Conduct an Exploratory Data Analysis.
+- [ ] Produce a reproducible report in Quarto, output as **PDF**.
+- [ ] Code in a Code Appendix at the end. Use this snippet:
+
+````
+```{{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}}
+```
+````
+
+- [ ] Body of the report should be **narrative + figures + tables**, not code.
+- [ ] At least one figure (plot) and at least one non-trivial table (not just raw data).
+- [ ] At least one visualization with **3+ variables** (use color, facets, size, etc.).
+- [ ] Figures and tables should have captions and be cross-referenced from the text.
+- [ ] Pick a style guide ([tidyverse](https://style.tidyverse.org/), [Google](https://google.github.io/styleguide/Rguide.html), or [BOAST](https://educationshinyappteam.github.io/Style_Guide/coding.html)) and follow it. List your choice in a comment at the top of the code appendix.
+- [ ] Cite your data sources and any code you adapted from outside (APA, MLA, or footnotes — pick one).
+
+## Reproducibility
+
+- [ ] Use a GitHub repository to manage the project. Everyone commits.
+- [ ] Include a README explaining how to reproduce the analysis.
+- [ ] The final report must render cleanly from your repo on someone else's machine.
+
+## Video presentation
+
+- [ ] Plan and record a **5–7 minute video** walking through your analysis (each team member should speak).
+- [ ] Submit a URL (YouTube/Drive/Box, set to viewable) to the Canvas assignment.
+
+# AI policy for the project
+
+AI tools (ChatGPT, Claude, Copilot, etc.) are permitted on all project work. Per the course AI policy:
+
+1. Include an **AI use note** in your final report (1–2 sentences per team member or a paragraph for the team).
+2. You own everything you submit. Read it before submitting.
+3. **You will be asked to walk through your own code at oral checkpoints.** This is the verification.
+
+If a team member can't explain code submitted under their name, that affects their individual project grade regardless of the team's overall result.
+
+# Checkpoints
+
+- [Checkpoint 1 — topic and data plan](checkpoint-1.qmd)
+- [Checkpoint 2 — partial draft](checkpoint-2.qmd)
+- [Oral check-in rubric](oral-checkpoint-rubric.qmd)
+- [Final report rubric](final-rubric.qmd)
+
+# FAQs
+
+**Can we use a past project from another course?** No. That is a violation of academic integrity.
+
+**Can we use a project from another *current* course for this one?** No.
+
+**Can we use data from a research lab one of us works in?** Yes, with permission from the lab's PI.
+
+**Can we use data from another course's project?** Tentatively, yes — disclose it as part of provenance and check with me early. You may not reuse the same analysis.
+
+**Can I use Python?** STAT 184 is an R course, and your analysis must be self-contained in a single QMD. If you want to include a small Python chunk for something we haven't covered in R, that's fine.
+
+**We're stuck on a topic.** Come to office hours. We'll talk through what your team is interested in. Shared hobbies are usually the best starting point.

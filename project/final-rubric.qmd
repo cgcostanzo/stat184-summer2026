@@ -1,0 +1,80 @@
+---
+title: "Final Report Rubric"
+subtitle: "STAT 184 — Summer 2026 Project"
+format:
+  html:
+    toc: true
+  pdf: default
+editor: source
+---
+
+# Submission
+
+- One PDF per team to Canvas, rendered from a Quarto document in your team's GitHub repo.
+- A URL to your 5–7 minute team video presentation.
+- Final commit pushed to GitHub repo by the deadline.
+
+**Due:** Friday, June 26, 11:59 p.m.
+
+# Rubric (100 points)
+
+## Report content (60)
+
+| Component | Points |
+|---|---|
+| Clear introduction and motivation | 5 |
+| Research question(s) explicitly stated | 5 |
+| Data provenance fully documented | 5 |
+| Variables described and justified | 5 |
+| Data wrangling explained in narrative (not just code) | 5 |
+| Summary table (non-trivial) | 5 |
+| Figure 1 with caption, reference, and discussion | 5 |
+| Figure 2 with caption, reference, and discussion | 5 |
+| At least one figure shows 3+ variables effectively | 5 |
+| Findings clearly stated and tied to question(s) | 7 |
+| Limitations and "what we'd do next" discussion | 4 |
+| Citations of data and sources | 4 |
+
+## Code quality (15)
+
+| Component | Points |
+|---|---|
+| Code runs cleanly (renders from scratch) | 5 |
+| Follows a named style guide | 3 |
+| Meaningfully commented | 3 |
+| Code in appendix, not body | 2 |
+| Reproducible from GitHub repo | 2 |
+
+## Reproducibility (10)
+
+| Component | Points |
+|---|---|
+| GitHub repo well-organized with README | 4 |
+| All team members have commits | 3 |
+| Data accessible (in repo or via working URL) | 3 |
+
+## Video presentation (10)
+
+| Component | Points |
+|---|---|
+| Within time limit (5–7 min) | 2 |
+| Each team member speaks | 3 |
+| Covers question, data, key findings | 3 |
+| Coherent, well-paced, audible | 2 |
+
+## AI use & integrity (5)
+
+| Component | Points |
+|---|---|
+| AI use note included in report | 2 |
+| Honest attribution of external sources | 3 |
+
+**Total: 100**
+
+# Individual adjustments
+
+Project grades may be adjusted up or down by up to 10 points per individual based on the oral checkpoints and observable team contribution. A student who could not engage with the project at the oral checkpoints will receive a lower individual grade than their team's collective work would suggest.
+
+# Late policy
+
+Late work for the final project requires a request to the instructor **at least 24 hours before the deadline**, with evidence of progress and a proposed new deadline. Without prior arrangement, late final reports lose 10 points per 24 hours.

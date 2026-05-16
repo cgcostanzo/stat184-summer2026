@@ -1,0 +1,64 @@
+---
+title: "[Day] — [Topic]"
+subtitle: "[Date]"
+format:
+  html:
+    toc: true
+    code-fold: false
+editor: source
+---
+
+::: callout-note
+## Today's plan
+- [ ] [Goal 1]
+- [ ] [Goal 2]
+- [ ] [Goal 3]
+:::
+
+## Before class
+
+- Read: [textbook section]
+- Have ready: [data file URL, etc.]
+
+## Outline
+
+### 1. [Section heading] (~15 min)
+
+[Concept exposition or motivating example.]
+
+```{r}
+#| eval: false
+# Live-coded example
+```
+
+### 2. [Section heading] (~25 min)
+
+[Hands-on practice — students follow along.]
+
+```{r}
+#| eval: false
+# Example to walk through
+```
+
+### 3. In-class activity (~20 min)
+
+[Brief description. If a separate handout, link it.]
+
+[Activity link or inline problems]
+
+### 4. Wrap-up (~5 min)
+
+- [Key takeaway 1]
+- [Key takeaway 2]
+- Preview tomorrow
+
+## Resources
+
+- [Slides PDF]
+- [In-class code .R file]
+- [Activity handout]
+
+## After class
+
+- Due tomorrow: [reading, assignment]
+- Optional: [supplementary reading or practice]

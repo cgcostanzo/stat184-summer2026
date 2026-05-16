@@ -1,0 +1,5 @@
+project:
+  output-dir: _site-instructor
+
+website:
+  title: "STAT 184 — Summer 2026 (Instructor View)"

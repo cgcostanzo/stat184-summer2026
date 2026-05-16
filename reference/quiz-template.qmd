@@ -1,0 +1,51 @@
+---
+title: "STAT 184 — Quiz [N]"
+subtitle: "[Date]"
+format:
+  pdf:
+    geometry:
+      - margin=1in
+    include-in-header:
+      - text: |
+          \usepackage{enumitem}
+editor: source
+---
+
+::: {.callout-note appearance="simple"}
+**Name (printed):** \hspace{4in}
+
+**This quiz is closed book. No phones, laptops, AI tools, or notes.** You have 25 minutes.
+
+Show your work. Partial credit is available.
+:::
+
+\vspace{0.5em}
+
+# Question 1 (X pts)
+
+TODO: question text.
+
+\vspace{1.5in}
+
+# Question 2 (X pts)
+
+TODO: question text.
+
+\vspace{1.5in}
+
+# Question 3 (X pts)
+
+Predict the output of the following code (or explain why it errors):
+
+```{r}
+#| eval: false
+# TODO: code snippet
+```
+
+\vspace{1.5in}
+
+# Question 4 (X pts)
+
+TODO: write-some-code question. Leave space.
+
+\vspace{2in}

@@ -1,0 +1,55 @@
+---
+title: "STAT 184 — Homework [N]"
+author: "Your Name Here"
+date: today
+format:
+  pdf:
+    toc: false
+    code-line-numbers: true
+  html:
+    toc: true
+    code-fold: false
+editor: source
+---
+
+```{r setup}
+#| message: false
+#| warning: false
+library(tidyverse)
+# Style guide followed: [Tidyverse / Google / BOAST — pick one]
+```
+
+# Question 1
+
+## Part (a)
+
+Write your prose answer here.
+
+```{r q1a}
+# Your code here
+```
+
+## Part (b)
+
+```{r q1b}
+# Your code here
+```
+
+# Question 2
+
+```{r q2}
+# Your code here
+```
+
+# AI Use Note
+
+*One or two sentences. Examples:*
+
+- *"Did not use AI on this assignment."*
+- *"Used Claude to help debug a `pivot_wider` call in Question 3. Did not use AI elsewhere."*
+- *"Used Copilot autocomplete while writing the dplyr chain in Question 2."*
+
+# Code Appendix
+
+```{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}
+```

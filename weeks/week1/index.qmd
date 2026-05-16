@@ -1,0 +1,35 @@
+---
+title: "Week 1 — Foundations"
+subtitle: "May 18 – 22, 2026"
+---
+
+This week we get everyone set up with R, RStudio, and Quarto, and cover the absolute basics of the R language. By Friday you'll have written your first reproducible document and learned the pipe — the core glue of tidyverse-style R.
+
+## Daily plan
+
+| Date | Topic | Files |
+|---|---|---|
+| Mon May 18 | [Course intro & what is R?](day1-intro.qmd) | [View Slides](day1-intro.html) · [Download HTML](day1-intro.html){download=""} · [PDF](day1-intro.pdf), in-class code |
+| Tue May 19 | [R, RStudio, console · vectors · types](day2-r-basics.qmd) | slides, in-class code |
+| Wed May 20 | [Functions, packages · tidyverse](day3-functions-packages.qmd) | slides, in-class code |
+| Thu May 21 | [Quarto basics](day4-quarto.qmd) | slides, in-class code |
+| Fri May 22 | [**Quiz 1** · pipe and chaining syntax](day5-quiz-pipe.qmd) | quiz, in-class code |
+
+## Readings due this week
+
+- Before Mon: *Data Computing* Ch 1 (§1.1–1.5) — what tidy data is (conceptual)
+- Before Tue: *Data Computing* Ch 2 (§2.1–2.8) — R, RStudio, vectors, objects
+- Before Wed: *Data Computing* Ch 3 (§3.1–3.5) — basic R commands
+- Before Thu: *Data Computing* Ch 4 (§4.1–4.7) — files and Quarto/Rmd documents
+- Before Fri: *Data Computing* §3.6 — chaining syntax (the pipe)
+
+## Assignments due this week
+
+- **Reading Quiz 1** — due before Tuesday's class (Canvas)
+- **HW 0** (setup confirmation) — due Thursday May 21, 11:59 p.m.
+- **Quiz 1** — in class Friday May 22
+
+## Heads up for next week
+
+- *Data Computing* Ch 5 (§5.1–5.6) for Tuesday May 26 — graphics intro.
+- No class Monday May 25 (Memorial Day).

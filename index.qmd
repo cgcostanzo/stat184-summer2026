@@ -1,0 +1,33 @@
+---
+title: "STAT 184 — Introduction to R"
+subtitle: "Section 101 · Summer 2026 · Penn State"
+---
+
+Welcome to STAT 184. This is the public course site for Section 101, Summer 2026.
+
+## Quick links
+
+- [Syllabus](syllabus/syllabus.qmd)
+- [Schedule](schedule.qmd)
+- [Project overview](project/index.qmd)
+- [Academic Integrity & AI Policy](syllabus/academic-integrity-and-ai-policy.qmd)
+
+## Course at a glance
+
+| Detail | Info |
+|---|---|
+| Term | Summer Session 1 (May 18 — June 26, 2026) |
+| Meets | M/T/W/Th/F, 9:35 — 10:50 a.m. |
+| Location | Huck Life Sciences Building 007 |
+| Instructor | Charles Costanzo ([cgc5478@psu.edu](mailto:cgc5478@psu.edu)) |
+| TA | Xinyue Wang ([xpw5228@psu.edu](mailto:xpw5228@psu.edu)) |
+
+## What this course is about
+
+R is the working language of statistics and data science. Over six weeks you'll learn to import, clean, wrangle, and visualize real data using R and the tidyverse, write reproducible analyses in Quarto, and use Git/GitHub to manage your work. The course emphasizes *descriptive and graphical* analysis over inferential statistics.
+
+By the end of the course you will have completed an independent data analysis project of your own design.
+
+## About AI in this course
+
+You may use generative AI tools (ChatGPT, Claude, Copilot, etc.) **with disclosure** on out-of-class work. In-class work is closed-book. You'll be expected to walk through your project code in person at two oral checkpoints. See the [AI policy](syllabus/academic-integrity-and-ai-policy.qmd) for the full version - it's worth reading carefully on day one.

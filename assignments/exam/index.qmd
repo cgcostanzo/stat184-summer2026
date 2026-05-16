@@ -1,0 +1,30 @@
+---
+title: "Exam"
+subtitle: "Thursday, June 11, 2026"
+---
+
+There is one exam, given on **Thursday, June 11**. It has two parts, each worth half of the exam grade.
+
+## In-class (20% of course grade)
+
+- During class time (9:35–10:50 a.m.).
+- **On paper, closed book, no AI tools.**
+- Covers material through end of Week 3 plus Week 4 days 1–2 (joins, importing).
+- Mix of: short answer; "predict the output"; "write a small chunk of code"; "find the bug"; reading a plot or summary table.
+
+## What to study
+
+Probably the single best preparation is to **redo old homework, activities, and quizzes from scratch without looking at your prior answers**.
+
+- All `dplyr` verbs we've covered.
+- Reading and writing `ggplot2` code.
+- Identifying common bugs (`==` vs `=`, factor vs character, missing argument names).
+- Reading provenance and structure of a tibble from a `glimpse()` printout.
+- Joins: who keeps which rows, what NAs mean in the output.
+
+## Materials
+
+- TODO: practice problems
+- TODO: in-class exam paper version
+- TODO: take-home QMD with starter data
+- TODO: solutions (post-exam)

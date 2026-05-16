@@ -1,0 +1,95 @@
+---
+title: "Course Schedule"
+subtitle: "STAT 184 - Summer 2026"
+---
+
+::: callout-note
+This schedule is tentative and subject to change. Substantive changes will be announced in class and on Canvas. Dates listed below assume class meets Monday through Friday, 9:35 - 10:50 a.m., May 18 - June 26, 2026.
+
+**No class:** Monday May 25 (Memorial Day) · Friday June 19 (Juneteenth).
+:::
+
+::: callout-tip
+**Reading the table:** DC = *Data Computing* (Kaplan & Beckman). R4DS = *R for Data Science* (Wickham, Çetinkaya-Rundel, Grolemund), free at <https://r4ds.hadley.nz>. Reading the relevant chapter *before* class on Perusall is required; in-class activities assume you've done the reading.
+:::
+
+## Week 1 - Foundations (May 18 - 22)
+
+| Date | Topic | Read before class | Due |
+|---|---|---|---|
+| Mon May 18 | Course intro · what tidy data is · RStudio tour | DC Ch 1 (§1.1–1.5) | - |
+| Tue May 19 | R, RStudio, and the console · vectors · data types | DC Ch 2 (§2.1–2.8) | - |
+| Wed May 20 | Functions, packages, the tidyverse · objects | DC Ch 3 (§3.1–3.5) | HW 0 (setup) |
+| Thu May 21 | Quarto basics · writing reproducible documents | DC Ch 4 (§4.1–4.7) | - |
+| Fri May 22 | **Quiz 1** · the pipe and chaining syntax | DC §3.6 | HW 1 · Quiz 1 (in class) |
+
+## Week 2 - Tidy Data & ggplot (May 25 - 29)
+
+| Date | Topic | Read before class | Due |
+|---|---|---|---|
+| Mon May 25 | **No class - Memorial Day** | - | - |
+| Tue May 26 | Data frames · intro to data graphics | DC Ch 5 (§5.1–5.6) | - |
+| Wed May 27 | ggplot2 basics · frames, glyphs, scales, facets | DC Ch 6 (§6.1–6.5) | HW 2 |
+| Thu May 28 | Multivariable graphics · specifying graphs · axes & labels | DC Ch 8 (§8.1–8.3) | - |
+| Fri May 29 | **Quiz 2** · graphics critique activity | - | Quiz 2 (in class) |
+
+## Week 3 - Data Wrangling (June 1 - 5)
+
+| Date | Topic | Read before class | Due |
+|---|---|---|---|
+| Mon Jun 1 | Wrangling concepts · reduction & transformation · `group_by` | DC Ch 7 (§7.1–7.7) | - |
+| Tue Jun 2 | The data verbs: `select`, `filter`, `mutate`, `arrange` | DC Ch 10 (§10.1–10.6) | HW 3 |
+| Wed Jun 3 | Deeper practice with `group_by` and `summarize` | (Review Ch 7, 10) | - |
+| Thu Jun 4 | Reshaping: `pivot_longer`, `pivot_wider` | DC Ch 12 (§12.1) | **Project: Team formation** |
+| Fri Jun 5 | **Quiz 3** · Git/GitHub for collaboration | DC Ch 9 (§9.1–9.2) | Quiz 3 (in class) |
+
+**Weekend:** Install GitHub Desktop or configure Git locally. By Monday Jun 8, your team should have a working repo with all members able to push.
+
+## Week 4 - Joins, Import, **Exam** (June 8 - 12)
+
+| Date | Topic | Read before class | Due |
+|---|---|---|---|
+| Mon Jun 8 | Joining tables: `inner_join`, `left_join`, anti-joins | DC Ch 11 (§11.1–11.3) | Reading Quiz 4 |
+| Tue Jun 9 | Importing data: CSV, Excel, factors vs strings, cleaning | DC Ch 16 (§16.1–16.2, 16.4–16.5) | HW 4 |
+| Wed Jun 10 | **Exam review** · practice problems in class | - | - |
+| **Thu Jun 11** | **EXAM (in-class, on paper, closed book)** | - | - |
+| Fri Jun 12 | Light day · web scraping & HTML tables | DC Ch 16 (§16.3) | **Project Checkpoint 1** |
+
+## Week 5 - Functions, Iteration, & Strings (June 15 - 19)
+
+::: callout-note
+Week 5 covers material that *Data Computing* doesn't address in depth. Readings for Mon–Wed come from **R for Data Science** (free online).
+:::
+
+| Date | Topic | Read before class | Due |
+|---|---|---|---|
+| Mon Jun 15 | Writing functions in R | R4DS Ch 25 (Functions) | - |
+| Tue Jun 16 | Control flow · `if/else`, `for`, `while` | R4DS Ch 26 (Iteration) §26.1–26.3 | HW 4 |
+| Wed Jun 17 | Vectorized operations · `purrr::map` | R4DS Ch 26 (§26.4–26.5) | - |
+| Thu Jun 18 | Strings, dates, and regex | DC Ch 17 (§17.1–17.2) | **Project oral check-in #1** (during class) |
+| Fri Jun 19 | **No class - Juneteenth** · Quiz 5 rescheduled to Mon Jun 22 | - | - |
+
+## Week 6 - Special Topics & Project (June 22 - 26)
+
+| Date | Topic | Read before class | Due |
+|---|---|---|---|
+| Mon Jun 22 | **Quiz 5 (rescheduled)** · unsupervised learning, clustering | DC Ch 18 (§18.2) | Quiz 5 (in class) |
+| Tue Jun 23 | Decision trees / CART | DC Ch 18 (§18.3) | HW 5 |
+| Wed Jun 24 | **Project work day** · oral check-in #1 makeups | - | **Project Checkpoint 2** |
+| Thu Jun 25 | **Project work day** · oral check-in #2 (final walkthrough) | - | - |
+| Fri Jun 26 | **Quiz 6** · short project presentations · course wrap-up | - | Quiz 6 (in class) · **Final project report due 11:59 p.m.** |
+
+## Submission cheat-sheet
+
+| Item | Format | Where |
+|---|---|---|
+| Readings | Reading/Discussion | Perusall (Linked on Canvas) |
+| Homework | Quarto rendered to PDF or HTML | Canvas |
+| Quizzes / Exam | Paper | In class |
+| In-class activities | Paper or Canvas | In class or end-of-day Canvas |
+| Project | Quarto rendered to PDF + GitHub repo | Canvas |
+
+## Sources
+
+- **DC** = Kaplan, D. & Beckman, M. (2021). *Data Computing* (2nd ed.). <https://dtkaplan.github.io/DataComputingEbook/>
+- **R4DS** = Wickham, H., Çetinkaya-Rundel, M., & Grolemund, G. (2023). *R for Data Science* (2nd ed.). <https://r4ds.hadley.nz>

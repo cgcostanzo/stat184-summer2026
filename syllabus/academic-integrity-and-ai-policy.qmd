@@ -1,0 +1,136 @@
+---
+title: "Academic Integrity & AI Policy"
+subtitle: "STAT 184 — Summer 2026"
+format:
+  html:
+    toc: true
+  pdf: default
+editor: source
+---
+
+# Why academic integrity matters
+
+A central aspect of education is that you build your knowledge and develop ways of thinking that will support you in your life and career. Part of my role is to assess your learning so that I can help you build the most productive ways of thinking. For me to do that, I need accurate and reliable signals about your thinking and learning. Academic integrity is what makes those signals trustworthy.
+
+A person demonstrates academic integrity when they engage in any scholarly or educational activity in an open, honest, and responsible manner.
+
+# What violates academic integrity?
+
+Several broad categories of action lead to academic integrity violations. Whether the action is intentional or accidental, the result is the same. **When in doubt, ask before you submit.**
+
+**Plagiarism.** Presenting someone else's work as your own — from forgetting to cite a source to copying someone's work without their knowledge. Cite your sources (figures, images, code, ideas).
+
+**Self-plagiarism.** Submitting work you have already submitted elsewhere (e.g., a paper from another class) without authorization. If you want to extend prior work, ask first.
+
+**Collusion.** Working together in ways that have not been authorized. One student giving another the answers — or one writing the code and passing it along — is collusion, regardless of who submits it. This can happen between students in different sections or even different courses. Authorized group work is fine; unauthorized collusion is not. The line is what the instructor explicitly allowed.
+
+**Ghost writing.** Someone else (or some*thing* else) doing your work and submitting it as if it were yours.
+
+**Improper technology use.** Using technology in ways that aren't allowed — banned devices on assessments, posting questions or answers to sites like Chegg or CourseHero, or unauthorized use of AI tools on closed-book work.
+
+The common thread across all of these: a person presents someone else's work (or thinking) as their own.
+
+# Working together vs. collusion vs. group work
+
+These get conflated, so:
+
+- **Group work** is when the instructor assigns a task to be completed as a team with a single submission. The team is meant to work together; that's the point.
+- **Working together** is when students help each other learn — sharing ideas, comparing approaches, debugging each other's code — and each student submits their own work in their own words. I encourage this.
+- **Collusion** is when one person does the work and another submits it (or something close to it). This is never allowed.
+
+The test: when you submit work, the differences in *how you think and write* should be visible. If two submissions are essentially the same, that's not "working together," it's collusion.
+
+# Generative AI Policy
+
+## Stance
+
+Generative AI tools (e.g., ChatGPT, Claude, Gemini, Copilot, Cursor) are now a standard part of how people write and reason about code in industry and research. Rather than ban these tools and ask you to pretend they do not exist, this course takes the position that **you are free to use any AI tool you like on any assignment outside the classroom**, including homework and the course project.
+
+This freedom comes with a corresponding obligation: **you must acknowledge AI use, you are responsible for everything you submit, and you must be able to explain it.** Assessments fall into two categories:
+
+1. **Closed-book, in-person assessments** (quizzes, exams, in-class activities, and oral project checkpoints) where AI tools cannot be used and your individual skill is verified.
+2. **Open assessments** (readings, homework, project) where you may use any resource, including AI, subject to the disclosure expectations below.
+
+The grading weights are deliberately set so that roughly 60% of your grade comes from verified in-person work.
+
+## Rules for AI use on open assessments
+
+### 1. **Disclose AI use (1-2 points per assignment).**
+
+Transparency is a core part of reproducible data science. Therefore, every open assessment includes a mandatory AI disclosure as a graded rubric item.
+
+At the top of your Quarto document, you must include the following checklist (which will be included in the provided open assessment templates). Check off all boxes that apply to your usage and provide a single sentence describing how the tool was utilized.
+
+**AI Disclosure**
+
+- [ ] No AI used
+- [ ] Syntax / Debugging (e.g., finding a missing comma, fixing an error code)
+- [ ] Conceptual explanation (e.g., asking how a `left_join` works)
+- [ ] Code Generation (e.g., asking AI to write a function from scratch)
+
+*Briefly describe your use (1-2 sentences):* 
+Used ChatGPT to explain why my ggplot axes were flipped and to generate the code to fix the labels.
+
+### 2. **Be able to explain submitted work.** 
+
+You own the output. If you submit AI-generated code, you must understand how it works. "The AI told me to" is not a defense for hallucinated functions, broken code, or wrong analyses. Read everything before you submit.
+
+### 3. **Cite outside sources.** 
+
+If AI generates code based on a specific package, blog post, or paper that you use substantively, cite that source.
+
+### 4. **Respect copyright.** 
+
+Don't share copyrighted course materials with AI services. Pasting entire textbook chapters into a chatbot is not permitted (separate from academic integrity).
+
+### 5. **Be prepared to explain code during oral checkpoints.** 
+
+Expect to be asked about any part of your submitted project code.
+
+## What counts as a violation
+
+### Acceptable Uses of AI:
+
+- Pasting an error message from RStudio into ChatGPT to understand why your code broke.
+- Asking AI to explain a complex function (e.g., "Explain how `left_join()` works in `dplyr` like I am 5").
+- Using AI to generate ideas for how to visualize a specific type of dataset. 
+- Asking AI to help you clean up the formatting or styling of your code.
+
+### Academic Integrity Violations:
+
+- Bypassing the prompt by copy-pasting an entire homework question into AI, copying the resulting code directly into your assignment, and submitting it without reading or understanding it.
+- "Black box" submissions where you submit code that uses advanced packages or functions we haven't covered, which you cannot explain or defend during an oral checkpoint or if asked in class. 
+- **Using AI on closed-book, in-person work** like quizzes, in-class exam, in-class activities, oral checkpoints.
+- **Lying about AI use** (writing "Did not use AI" when you did).
+
+# Where to get help
+
+Part of learning involves running into problems where you don't immediately have a solution. You don't have to struggle alone. Productive places to get help:
+
+1. **Your course notes and textbook.**
+2. **R's built-in documentation.** `?function_name` will save you more time than any search.
+3. **Your classmates** (working together, not collusion).
+4. **Student Hours** — come to office hours. This is the highest-bandwidth way to get help.
+5. **Canvas discussion boards.**
+6. **The instructor and TA, by email or message.**
+7. **The wider internet** (Stack Overflow, blog posts, AI tools, etc.) — useful, but with caution.
+
+For #7: online resources may show solutions that are out of date, rely on packages we don't use, employ techniques beyond what we've covered, or introduce new problems when you adapt them. AI tools may hallucinate functions or give code that *looks* right but isn't. Always read, run, and verify code before you trust it.
+
+# Consequences
+
+Violations are pursued under University and Eberly College of Science policies. When an academic integrity violation is suspected, I submit an Academic Integrity Form to the college. My standard recommendations for sanctions within this course are outlined below. 
+
+| Severity | First violation (in this course) | Second violation (in this course) |
+| :--- | :--- | :--- |
+| **Minor** (e.g., unintentional poor citation) | Redo the assignment for partial credit (max 50%) | Zero on the assignment |
+| **Moderate** (e.g., copying a block of code, unauthorized AI use) | Zero on the assignment | Course grade of F |
+| **Major** (e.g., cheating on an exam, submitting an entirely fabricated/AI-generated project)| Course grade of F | Course grade of XF |
+
+: {tbl-colwidths="[40, 30, 30]"}
+
+Note: The Eberly Committee on Academic Integrity and the Office of Student Accountability and Conflict Response (OSACR) review all reports. They track university-wide repeat offenses and may alter or increase these consequences, including suspension or expulsion for repeat offenders.
+
+**Misuse of Course Materials:**
+
+Recording class, sharing assessments, or posting course materials (assignments, quizzes, exams, code templates) to sites like Chegg, CourseHero, or GitHub without permission is a violation of intellectual property. Per university policy, this will result in an immediate referral to OSACR for administrative disciplinary action.

@@ -1,0 +1,293 @@
+---
+title: "STAT 184 — Section 101"
+subtitle: "Introduction to R · Summer 2026"
+format:
+  html:
+    toc: true
+  pdf:
+    include-in-header:
+      - text: |
+          \usepackage{float}
+editor: source
+---
+
+# Course Overview
+
+R is a powerful, open-source programming language used widely for applications in statistics and data science. It is easily extendable, and thousands of user-created packages are publicly available to extend its capabilities. This course will introduce students to data computing fundamentals and a reproducible workflow using the R programming language and related tools. Students will be expected to access, join, wrangle, clean, and visualize real data from various sources (e.g., CSV, HTML scraping, web URL, R packages). The course will emphasize the use of "tidyverse" R packages (e.g., dplyr, ggplot2), although students will also be exposed to Base R and other packages. In addition, students will be exposed to one or more integrated development environments (e.g., RStudio) and will be expected to write well-documented code using a reproducible workflow (e.g., Quarto, Git/GitHub). The course focuses on descriptive and graphical summary techniques rather than inferential statistical techniques.[^1]
+
+[^1]: <https://bulletins.psu.edu/university-course-descriptions/undergraduate/stat/>
+
+# Course Information
+
+Summer Session 1: May 18, 2026 --- June 26, 2026
+
+Class time: M/T/W/Th/F, 9:35 a.m. to 10:50 a.m.
+
+Class location: Huck Life Sciences Building 007
+
+Instructor: Charles Costanzo [[cgc5478@psu.edu]](mailto:cgc5478@psu.edu); Office: Thomas 301
+
+TA: Xinyue Wang [[xpw5228@psu.edu]](mailto:xpw5228@psu.edu)
+
+::: {tbl-colwidths="[30, 30, 40]"}
+| Team Member | Contact Method | Office Hours & Location |
+| :--- | :--- | :--- |
+| **Charles** (Instructor) | Email or Canvas | M/W/Th/F: 10:50-11:50 a.m. in Huck 005 (or on Zoom by appt) |
+| **Xinyue** (TA) | Canvas | By appointment only |
+:::
+
+## Textbooks
+
+There is no need to purchase any book for this class. All required and recommended materials are available to use online for free with your Penn State access.
+
+### Required texts
+
+*Data Computing* (2nd edition). Daniel Kaplan & Matthew Beckman. 2021. <https://dtkaplan.github.io/DataComputingEbook/>
+
+*R for Data Science* (2nd edition). Hadley Wickham, Mine Çetinkaya-Rundel, & Garrett Grolemund. 2023. <https://r4ds.hadley.nz>
+
+- Note: R for Data Science (R4DS) will be the assigned reading for parts of Week 5 (functions, iteration, and strings), where Data Computing (DC) does not cover the material in depth. It is also an excellent general reference for tidyverse-style R programming throughout the course.
+
+### Optional texts
+
+*An Introduction to Data Analysis in R: Hands-on Coding, Data Mining, Visualization and Statistics from Scratch*. Saiz, González, Gil, Ruiz. 2020. <https://ezaccess.libraries.psu.edu/login?url=https://doi.org/10.1007/978-3-030-48997-7>
+
+*Introduction to Probability, Statistics & R: Foundations for Data-Based Sciences*. Sujit K. Sahu. 2024. <https://ezaccess.libraries.psu.edu/login?url=https://doi.org/10.1007/978-3-031-37865-2>
+
+## Attendance
+
+Per department policy, **attendance is required** for this course. Attendance will be taken in each class session. Students who regularly attend class and participate tend to do well in this class. Attending each class session is an important part of becoming a professional member of our community. Therefore, you will need to attend each class session barring illness, participation in a University-sanctioned event, religious observance/practice, or other legitimate circumstances. If you need to miss class, please let me know by sending me an email or message via Canvas. **Proactive communication** is essential: notifying me in advance (whenever possible) is a prerequisite for excusing an absence or granting an extension on in-class work.
+
+## Technology and software requirements
+
+- You will need access to at least one of the following: (1) a personal computer running Windows, Mac OS, or Linux (i.e., not a Chromebook), or (2) any of the Penn State computer labs [located around campus](https://labs.psu.edu/locations/).
+- R and RStudio are installed on classroom/university computers. If you use a personal computer, you will need to install the `R` language (The R Project for Statistical Computing; <http://www.r-project.org/>) and `RStudio Desktop` on your computer.[^3]
+  - You can download R for Windows, Mac, and Linus from the CRAN archive at <https://cran.r-project.org>
+  - RStudio can be downloaded for free at <https://posit.co/download/rstudio-desktop>. Before downloading RStudio, you must download and install R first. 
+  - You can find an in-depth introduction to R here: <http://cran.r-project.org/doc/manuals/R-intro.pdf>
+  - You can find hands-on tutorials in the Swirl system at <http://swirlstats.com>. "R Programming: The basics of programming in R" is a helpful tutorial to start with if you have never used R. 
+
+[^3]: We will install these as part of a class assignment.
+
+# Assignments and Grading
+
+[Readings]{.underline}
+
+- Readings are assigned via Perusall, a collaborative e-reading platform. Your reading grade is automatically generated by Perusall based on a holistic measure of your engagement. You earn credit through a combination of: reading the entire text, spending active time in the assignment, leaving high-quality comments, and interacting constructively with your classmates.
+
+Note: No late work is accepted for reading assignments.
+
+[Quizzes]{.underline}
+
+- Quizzes will be held weekly on Fridays in-class, on paper, closed book, with no AI tools permitted.
+- You must be in class to take the quiz. Make-ups may be given but are not guaranteed.
+- Your graded quiz will be returned to you via Canvas, where you can see solutions.
+- **Your lowest quiz score will be dropped.**
+
+[In-class activites]{.underline}
+
+Class time is heavily focused on hands-on practice. Activities fall into two categories, both of which are closed-book and prohibit AI tools:
+
+- **Coding Practice (Group/Individual)**: Short coding exercises designed to help you apply what we learn each day in class. These are graded in **genuine effort and completion**, not strict accuracy. The goal is to try, make mistakes, and learn.
+- **Concept Checks (Individual)**: Short, 2-to-3-minute check-ins (roughly five questions) to help me assess your critical thinking and ensure you understand the core concepts before we move on to the next topic.
+- *Logistics*: These may occur any day of the week, multiple times per week. You must be present in class to complete them (barring illness, emergency, etc.). **The lowest activity score will be automatically dropped**. 
+
+[Homework]{.underline}
+
+- Submitted to Canvas. Solutions posted to Canvas after all students have submitted.
+- AI tools are permitted on homework **with disclosure** (see *Generative AI Policy* below).
+- Each homework rubric includes a small **AI use note** worth 1-2 points.
+- **Late policy:** Email the instructor if you need an extension. Extensions are generally limited to 24-48 hours, except in extenuating circumstances.
+- **Lowest homework score will be dropped.**
+
+[Exam]{.underline}
+
+One exam during Week 4 on **Thursday, June 11, 2026.** In-class, on paper, closed book, no AI tools. Further information will be provided closer to the exam date.
+
+[Course project]{.underline}
+
+The course project is the central synthesis assignment. You will work in small teams on a real data analysis throughout the semester, with several checkpoint deliverables.
+
+- Completed incrementally throughout the semester with several due dates.
+- AI tools are permitted on all project work (see *Generative AI Policy* below).
+- **Oral checkpoints (required).** Two short one-on-one meetings with the instructor are part of the project grade:
+    1. **Mid-project check-in** (~5 minutes).
+    2. **Final walkthrough** (~10 minutes).
+    
+*These will take place during designated in-class work sessions in the latter half of the course (roughly Weeks 4 and 6).* In these meetings you will walk through your code and explain your analytical choices. These conversations are a chance for you to demonstrate understanding and get individualized feedback.
+
+- Due dates are generally flexible. To request an extension:
+    1. Email the instructor a minimum of 24 hours before the posted due date.
+    2. Show you have made progress (attach your work).
+    3. Explain the reason you need additional time.
+    4. Propose a new due date.
+
+See the [Project page](../project/index.qmd) for the full project guidelines, checkpoints, and rubrics.
+
+## Grading scheme
+
+## Grading scheme
+
+| Category | Weight |
+| :--- | :--- |
+| **Readings** | 10% |
+| **Quizzes** | 15% |
+| **In-class activities** | 25% |
+| **Homework** | 10% |
+| **Exam** | 20% |
+| **Course project** | 20% |
+
+Final grades will be assigned as follows:
+
+| Grade | Score Range |
+| :--- | :--- |
+| **A**  | 93 - 100% |
+| **A-** | 90 - 93% |
+| **B+** | 87 - 90% |
+| **B**  | 83 - 87% |
+| **B-** | 80 - 83% |
+| **C+** | 77 - 80% |
+| **C**  | 70 - 77% |
+| **D**  | 60 - 70% |
+| **F**  | 0 - 60% |
+
+# Course Goals and Objectives
+
+1. Become proficient with R programming tools (R, RStudio, Quarto, Git).
+2. Apply data wrangling operations to data using `tidyverse` R packages (inspect, clean, transform).
+3. Create effective data visualizations for multiple (3 or more) variables.
+4. Import, export, and join a variety of data sources.
+5. Demonstrate good programming practices (style conventions, commenting, naming).
+6. Evaluate, debug, and explain code — whether you wrote it yourself, found it online, or generated it with an AI tool — and articulate the reasoning behind analytical choices.
+
+## Topics
+
+- Data visualization (including 3 or more variables)
+- Data wrangling operations
+- Programming tools (R, RStudio, Quarto, Git/GitHub)
+- Tidy data principles
+- Importing data (CSV, API, web scraping, basic SQL)
+- Programming style conventions
+- Basic loops, control flow, vectorized operations
+- User-defined functions
+- Text, dates, and regular expressions
+- Special topics as time permits (basic clustering, CART)
+
+## Course calendar
+
+See the [Schedule](../schedule.qmd) page for the day-by-day plan. Substantive changes will be announced in class and on Canvas.
+
+\newpage
+
+# Generative AI Policy
+
+## Stance
+
+Generative AI tools (e.g., ChatGPT, Claude, Gemini, Copilot, Cursor) are now a standard part of how people write and reason about code in industry and research. Rather than ban these tools and ask you to pretend they do not exist, this course takes the position that **you are free to use any AI tool you like on any assignment outside the classroom**, including homework and the course project.
+
+This freedom comes with a corresponding obligation: **you must acknowledge AI use, you are responsible for everything you submit, and you must be able to explain it.** Assessments fall into two categories:
+
+1. **Closed-book, in-person assessments** (quizzes, exams, in-class activities, and oral project checkpoints) where AI tools cannot be used and your individual skill is verified.
+2. **Open assessments** (readings, homework, project) where you may use any resource, including AI, subject to the disclosure expectations below.
+
+The grading weights are deliberately set so that roughly 60% of your grade comes from verified in-person work.
+
+## Rules for AI use on open assessments
+
+### 1. **Disclose AI use (1-2 points per assignment).**
+
+Transparency is a core part of reproducible data science. Therefore, every open assessment includes a mandatory AI disclosure as a graded rubric item.
+
+At the top of your Quarto document, you must include the following checklist (which will be included in the provided open assessment templates). Check off all boxes that apply to your usage and provide a single sentence describing how the tool was utilized.
+
+**AI Disclosure**
+
+- [ ] No AI used
+- [ ] Syntax / Debugging (e.g., finding a missing comma, fixing an error code)
+- [ ] Conceptual explanation (e.g., asking how a `left_join` works)
+- [ ] Code Generation (e.g., asking AI to write a function from scratch)
+
+*Briefly describe your use (1-2 sentences):* 
+Used ChatGPT to explain why my ggplot axes were flipped and to generate the code to fix the labels.
+
+### 2. **Be able to explain submitted work.** 
+
+You own the output. If you submit AI-generated code, you must understand how it works. "The AI told me to" is not a defense for hallucinated functions, broken code, or wrong analyses. Read everything before you submit.
+
+### 3. **Cite outside sources.** 
+
+If AI generates code based on a specific package, blog post, or paper that you use substantively, cite that source.
+
+### 4. **Respect copyright.** 
+
+Don't share copyrighted course materials with AI services. Pasting entire textbook chapters into a chatbot is not permitted (separate from academic integrity).
+
+### 5. **Be prepared to explain code during oral checkpoints.** 
+
+Expect to be asked about any part of your submitted project code.
+
+## What counts as a violation
+
+### Acceptable Uses of AI:
+
+- Pasting an error message from RStudio into ChatGPT to understand why your code broke.
+- Asking AI to explain a complex function (e.g., "Explain how `left_join()` works in `dplyr` like I am 5").
+- Using AI to generate ideas for how to visualize a specific type of dataset. 
+- Asking AI to help you clean up the formatting or styling of your code.
+
+### Academic Integrity Violations:
+
+- Bypassing the prompt by copy-pasting an entire homework question into AI, copying the resulting code directly into your assignment, and submitting it without reading or understanding it.
+- "Black box" submissions where you submit code that uses advanced packages or functions we haven't covered, which you cannot explain or defend during an oral checkpoint or if asked in class. 
+- **Using AI on closed-book, in-person work** like quizzes, in-class exam, in-class activities, oral checkpoints.
+- **Lying about AI use** (writing "Did not use AI" when you did).
+
+Consequences follow the standard Eberly College of Science sanction table (see the [Academic Integrity & AI Policy](academic-integrity-and-ai-policy.qmd) document).
+
+\newpage
+
+# University Policies and Resources
+
+## Deferred grades
+
+If you are prevented from completing this course within the prescribed amount of time for reasons that are beyond your control, it is possible to have the grade deferred with the concurrence of the instructor, following [Penn State Deferred Grade Policy 48-40](http://senate.psu.edu/policies-and-rules-for-undergraduate-students/47-00-48-00-and-49-00-grades/#48-40). To seek a deferred grade, you must submit a written request (by e-mail or U.S. post) to the instructor describing the reason(s) for the request. Non-emergency permission must be requested before the beginning of the final examination period. If permission is granted, you will work with the instructor to establish a communication plan and a clear schedule for completion within policy. If, for any reason, the coursework is not complete by the assigned time, a grade of "F" will be automatically entered on your transcript.
+
+## Academic integrity statement
+
+Academic integrity is the pursuit of scholarly activity in an open, honest, and responsible manner. Academic integrity is a basic guiding principle for all academic activity at The Pennsylvania State University, and all members of the University community are expected to act in accordance with this principle.
+
+According to Penn State policy [G-9: Academic Integrity](https://undergrad.psu.edu/aappm/G-9-academic-integrity.html), an academic integrity violation is "an intentional, unintentional, or attempted violation of course or assessment policies to gain an academic advantage or to advantage or disadvantage another student academically." Unless your instructor tells you otherwise, you must complete all course work entirely on your own, using only sources that have been permitted by your instructor, and you may not assist other students with papers, quizzes, exams, or other assessments. If your instructor allows you to use ideas, images, or word phrases created by another person or by generative technology, you must identify their source. You may not submit false or fabricated information, use the same academic work for credit in multiple courses, or share instructional content. Students with questions about academic integrity should ask their instructor **before submitting work.**
+
+**Students facing allegations of academic misconduct may not drop/withdraw from the affected course** unless they are cleared of wrongdoing.
+
+See also the [Academic Integrity & AI Policy](academic-integrity-and-ai-policy.qmd) document for course-specific guidance.
+
+## ECoS Code of Mutual Respect
+
+The [Eberly College of Science Code of Mutual Respect and Cooperation](https://science.psu.edu/diversity-equity-inclusion-belonging/code-mutual-respect-and-cooperation) embodies the values that we hope our faculty, staff, and students possess and will endorse to make the Eberly College of Science a place where every individual feels respected and valued, as well as challenged and rewarded.
+
+## Educational equity / Report bias
+
+Penn State takes great pride to foster a diverse and inclusive environment for students, faculty, and staff. Acts of intolerance, discrimination, or harassment due to age, ancestry, color, disability, gender, gender identity, national origin, race, religious belief, sexual orientation, or veteran status are not tolerated and can be reported through Educational Equity via the [Report Bias webpage](https://equity.psu.edu/report-bias).
+
+## Disability accommodations
+
+Penn State welcomes students with disabilities into the University's educational programs. [Student Disability Resources (SDR)](https://equity.psu.edu/offices/student-disability-resources) provides contact information for every Penn State campus.
+
+To receive consideration for reasonable accommodations, contact the appropriate disability services office at the campus where you are officially enrolled, participate in an intake interview, and provide [documentation](https://equity.psu.edu/offices/student-disability-resources/documentation). Share the accommodation letter with your instructors and discuss accommodations as early as possible.
+
+If oral checkpoints present an accessibility concern (e.g., anxiety-related accommodations, speech-related disabilities), please reach out early so we can arrange an equivalent alternative format (such as a short written walkthrough).
+
+## Counseling and Psychological Services
+
+Many students at Penn State face personal challenges or psychological needs that may interfere with academic progress, social development, or emotional wellbeing. The university offers a variety of confidential services to help, including individual and group counseling, crisis intervention, consultations, online chats, and mental health screenings.
+
+[Counseling and Psychological Services at University Park](http://studentaffairs.psu.edu/counseling/) (CAPS): 814-863-0395
+
+Penn State Crisis Line (24/7): 877-229-6400
+
+Crisis Text Line (24/7): Text LIONS to 741741
+
+## Syllabus changes
+
+This syllabus is subject to change. Substantive changes will be announced in class or via Canvas. Refer to Canvas (and this site) for the most up-to-date version.

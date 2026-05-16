@@ -1,0 +1,76 @@
+---
+title: "Project Checkpoint 1 — Topic & Data Plan"
+subtitle: "Due Friday, June 12, 11:59 p.m."
+format:
+  html:
+    toc: true
+  pdf: default
+editor: source
+---
+
+# What to submit
+
+A short (1–2 page) Quarto document, rendered to PDF, containing the following sections. Submit one document per team to Canvas; list all team member names.
+
+## 1. Team and topic
+
+- Team member names.
+- A 2–3 sentence description of your topic. Why is it interesting to your team?
+
+## 2. Research questions
+
+Write **2–3 specific, answerable questions** your analysis will address. Good questions:
+
+- Reference variables you actually have in your data (or can derive).
+- Are specific enough to know when you've answered them.
+- Are not yes/no.
+
+**Bad:** "We want to study NBA basketball."
+**Better:** "How has 3-point shooting volume changed across NBA seasons since 2000, and does it differ by player position?"
+
+## 3. Data source(s)
+
+For your **primary** data source:
+
+- Where is it from? (URL)
+- Who collected it? When? For what purpose?
+- What is a case (a row) in the data?
+- How many cases and variables are there?
+- Are there any obvious data quality concerns?
+
+For **any supplementary** sources, briefly describe each.
+
+::: callout-warning
+**Reminder:** Your primary data may not be one used in class, and may not come from an R package. Tidy Tuesday CSVs are okay; the `nycflights13` package is not.
+:::
+
+## 4. Initial wrangling plan
+
+A bulleted list of what you anticipate needing to do to get from raw data to analyzable data. (e.g., "filter to only 2010–2024", "join salary data on player ID", "convert date strings to dates", "pivot scoring categories to long format").
+
+This is a *plan*, not a finished product. It will change. That's fine.
+
+## 5. Project repository
+
+- A link to your team's GitHub repository (private or public — your call).
+- Confirm all team members have push access.
+
+## 6. AI use note
+
+One short paragraph: did your team use AI tools in preparing this checkpoint? If so, what for? "Did not use AI" is a valid response.
+
+# Rubric
+
+| Component | Points |
+|---|---|
+| Topic clearly described | 3 |
+| 2–3 specific research questions | 5 |
+| Primary data source documented (provenance + structure) | 5 |
+| Supplementary sources noted (if any) | 2 |
+| Initial wrangling plan | 3 |
+| GitHub repo set up with all team members | 2 |
+| AI use note included | 2 |
+| Submitted on time, single PDF, proper formatting | 3 |
+| **Total** | **25** |
+
+Lateness handled per the project late policy (extension by request, 24h before deadline).

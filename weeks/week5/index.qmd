@@ -1,0 +1,37 @@
+---
+title: "Week 5 — Functions, Iteration, Strings"
+subtitle: "June 15 – 19, 2026"
+---
+
+::: callout-note
+**Friday June 19 is Juneteenth — no class.** Quiz 5 will be rescheduled to Monday Jun 22.
+:::
+
+We move beyond tidyverse verbs into more general programming territory: writing your own functions, iteration, and working with text and dates. Thursday is the first oral checkpoint during a project work session.
+
+## Daily plan
+
+| Date | Topic | Files |
+|---|---|---|
+| Mon Jun 15 | [Writing functions in R](day1-functions.qmd) | slides, in-class code |
+| Tue Jun 16 | [Control flow: `if/else`, `for`, `while`](day2-control-flow.qmd) | slides, in-class code |
+| Wed Jun 17 | [Vectorized ops · `purrr::map`](day3-iteration.qmd) | slides, in-class code |
+| Thu Jun 18 | [Strings, dates, intro to regex](day4-strings-dates.qmd) + **Project oral check-in #1** | slides, in-class code |
+| Fri Jun 19 | **No class — Juneteenth** | — |
+
+## Readings due this week
+
+::: callout-note
+Mon–Wed readings come from *R for Data Science* (R4DS) — *Data Computing* doesn't cover functions and iteration in depth. R4DS is free at <https://r4ds.hadley.nz>.
+:::
+
+- Before Mon: *R for Data Science* Ch 25 — Functions
+- Before Tue: *R for Data Science* Ch 26 (§26.1–26.3) — Iteration basics
+- Before Wed: *R for Data Science* Ch 26 (§26.4–26.5) — `purrr::map`
+- Before Thu: *Data Computing* Ch 17 (§17.1–17.2) — regular expressions
+
+## Assignments due this week
+
+- **Reading Quiz 5** — due before Monday's class (Canvas)
+- **HW 4** — due Tue Jun 16, 11:59 p.m.
+- **Project Oral Check-in #1** — Thursday Jun 18 in class (signup on Canvas)

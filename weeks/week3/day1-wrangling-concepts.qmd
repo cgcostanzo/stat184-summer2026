@@ -1,0 +1,65 @@
+---
+title: "Wrangling concepts · reduction & transformation · group_by"
+subtitle: "Monday, June 1, 2026"
+format:
+  html:
+    toc: true
+    code-fold: false
+editor: source
+---
+
+::: callout-note
+## Today's plan
+- [ ] TODO: list 2-4 concrete goals for the class
+:::
+
+## Before class
+
+- Read: Data Computing Ch 7 (§7.1–7.7)
+- TODO: any prep materials, data files, etc.
+
+## Outline
+
+### 1. TODO: opening segment (~15 min)
+
+TODO: concept exposition or motivating example.
+
+```{r}
+#| eval: false
+# TODO: live-coded example
+```
+
+### 2. TODO: main segment (~25 min)
+
+TODO: hands-on practice — students follow along.
+
+```{r}
+#| eval: false
+# TODO: example to walk through
+```
+
+### 3. In-class activity (~20 min)
+
+TODO: brief description, or link to a separate handout.
+
+### 4. Wrap-up (~5 min)
+
+- TODO: key takeaway
+- TODO: preview next class
+
+## Resources
+
+- TODO: slides PDF
+- TODO: in-class code .R file
+- TODO: activity handout
+
+## After class
+
+- TODO: due tomorrow
+- TODO: optional supplementary reading
+
+::: {.callout-tip collapse="true"}
+## Instructor notes
+
+TODO: notes to self — pacing, common student questions, things to watch for.
+:::

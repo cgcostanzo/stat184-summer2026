@@ -1,0 +1,46 @@
+---
+title: "Homework"
+subtitle: "STAT 184 — Summer 2026"
+---
+
+There are 6 homework assignments over the course. The lowest score is dropped.
+
+| # | Topic | Out | Due |
+|---|---|---|---|
+| 0 | Setup confirmation (R, RStudio, Quarto installed; Posit Cloud) | Mon May 18 | Thu May 21 |
+| 1 | First Quarto document, basic R, simple plots | Thu May 21 | Wed May 27 |
+| 2 | ggplot2 — make 3 plots from a given dataset | Wed May 27 | Tue Jun 2 |
+| 3 | dplyr wrangling on a real dataset | Tue Jun 2 | Tue Jun 9 |
+| 4 | Joins and importing data | Tue Jun 9 | Tue Jun 16 |
+| 5 | Functions, iteration, strings | Tue Jun 16 | Tue Jun 23 |
+
+## How to submit
+
+1. Work in Quarto, render to PDF or HTML.
+2. Include a code appendix at the end (for HW 2+).
+3. Include the **AI use note** (rubric line, 1–2 points).
+4. Submit the rendered file to Canvas. *Also* push the .qmd to your personal GitHub repo for the course.
+
+## AI policy
+
+You may use AI tools (ChatGPT, Claude, Copilot, etc.) on homework. You must:
+
+- Read everything you submit. You own the output.
+- Include an AI use note (one sentence is fine).
+- Be prepared to answer questions about your code if I ask.
+
+See the [Academic Integrity & AI Policy](../../syllabus/academic-integrity-and-ai-policy.qmd) for the full version.
+
+## Late policy
+
+Email me for an extension if you need one. Extensions are generally 24–48 hours. Submissions more than 48 hours late without prior arrangement may not be accepted. Lowest score is dropped.
+
+## Standard AI use note rubric line
+
+Every homework rubric includes the following (1–2 points):
+
+> **AI use note (2 pts).** A short note (1–2 sentences) describing whether you used AI tools on this homework and, if so, what for. "Did not use AI" is a valid answer. Leaving this blank costs the points but is not an integrity issue. Falsely claiming you didn't use AI when you did *is* an integrity issue.
+
+## Template
+
+A starter Quarto template is in the [reference materials](../../reference/hw-template.qmd).

@@ -1,0 +1,35 @@
+---
+title: "Week 3 — Data Wrangling"
+subtitle: "June 1 – 5, 2026"
+---
+
+The core week. We cover the dplyr verbs you'll use on nearly every project — `filter`, `select`, `mutate`, `arrange`, `group_by`, `summarize`, plus `pivot_longer` and `pivot_wider`. By Friday you should be able to take a messy CSV and produce useful summaries. Friday also introduces Git/GitHub, in time to use it for your project teamwork.
+
+## Daily plan
+
+| Date | Topic | Files |
+|---|---|---|
+| Mon Jun 1 | [Wrangling concepts · `group_by`](day1-wrangling-concepts.qmd) | slides, in-class code |
+| Tue Jun 2 | [The data verbs: select, filter, mutate, arrange](day2-data-verbs.qmd) | slides, in-class code |
+| Wed Jun 3 | [Deeper practice with `group_by` and `summarize`](day3-group-summarize.qmd) | slides, in-class code |
+| Thu Jun 4 | [Reshaping: `pivot_longer`, `pivot_wider`](day4-pivot.qmd) | slides, in-class code |
+| Fri Jun 5 | [**Quiz 3** · Git/GitHub for collaboration](day5-quiz-git.qmd) | quiz, slides |
+
+## Readings due this week
+
+- Before Mon: *Data Computing* Ch 7 (§7.1–7.7) — wrangling concepts, `group_by`
+- Before Tue: *Data Computing* Ch 10 (§10.1–10.6) — the data verbs
+- Before Thu: *Data Computing* Ch 12 (§12.1) — reshaping
+- Before Fri: *Data Computing* Ch 9 (§9.1–9.2) — Git, GitHub, RStudio integration
+
+## Assignments due this week
+
+- **Reading Quiz 3** — due before Monday's class (Canvas)
+- **HW 2** — due Tuesday Jun 2, 11:59 p.m.
+- **Project: Team formation** — due Thursday Jun 4, 11:59 p.m.
+- **Quiz 3** — in class Friday Jun 5
+
+## Heads up for the weekend
+
+- Install GitHub Desktop or configure Git locally over the weekend.
+- By Monday Jun 8, your project team should have a working GitHub repo with all members able to push.

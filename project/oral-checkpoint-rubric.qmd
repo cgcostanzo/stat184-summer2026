@@ -1,0 +1,85 @@
+---
+title: "Oral Checkpoint Rubric & Logistics"
+subtitle: "STAT 184 — Summer 2026 Project"
+format:
+  html:
+    toc: true
+  pdf: default
+editor: source
+---
+
+# Why oral checkpoints
+
+A short conversation about your code does two things that a written submission can't:
+
+1. It verifies that you understand what you submitted.
+2. It gives you fast, personalized feedback on your analytical choices.
+
+These conversations are **not interrogations.** They are a chance to show me your thinking and get help. Students who can explain their own work do well; students who cannot do not — regardless of what's on the page.
+
+# When and how
+
+| Checkpoint | When | Length | What to bring |
+|---|---|---|---|
+| **#1 — Mid-project** | Thursday, June 18 (during class work session) | ~5 minutes | Laptop with current project code |
+| **#2 — Final walkthrough** | Thursday, June 25 (during class work session) | ~10 minutes | Laptop with near-final report and code |
+
+Sign-up slots will go up on Canvas the week before each checkpoint. During your slot you'll meet with me at the front of the room (or in the hallway) while the rest of the class works on their projects.
+
+If you have a documented conflict or accommodation, contact me in advance — we can arrange a written walkthrough or schedule a separate time.
+
+# What I'll ask
+
+For each checkpoint I have a small set of standard questions plus a couple specific to your submitted code.
+
+## Checkpoint #1 (mid-project)
+
+1. **In one sentence, what is your project about?**
+2. **Walk me through this chunk** (I'll point to one — usually a wrangling step).
+3. **Why did you choose this visualization** (I'll point to one)? What would you do differently?
+4. **What's the next thing you're going to work on?**
+5. **What are you stuck on?**
+
+## Checkpoint #2 (final walkthrough)
+
+1. **What question are you answering, and what is your answer?**
+2. **Walk me through your data wrangling.** Why this approach?
+3. **Walk me through your most important visualization.** What does it show?
+4. **Show me a piece of code you struggled with.** What did you try? What worked?
+5. **What would you do differently if you had another week?**
+
+# Rubric
+
+Each checkpoint is graded on the same scale, totaling 10 points. The Oral Check-in #1 grade contributes 15% of your project grade; #2 contributes 20%.
+
+| Criterion | Excellent (full points) | Adequate (partial) | Inadequate (0) |
+|---|---|---|---|
+| **Explains code clearly** (3 pts) | Walks through code accurately, knows what each line does | Some hesitation; needs prompting | Cannot explain what their own code does |
+| **Justifies analytical choices** (3 pts) | Can articulate why this verb / geometry / approach was used | Can describe what but not why | Gives no reasoning beyond "it worked" |
+| **Engages with follow-up questions** (2 pts) | Responds thoughtfully; willing to say "I don't know, but here's what I'd try" | Reasonable engagement | Defensive, disengaged, or non-responsive |
+| **Demonstrates ownership of project** (2 pts) | Speaks fluently about the whole project, not just one part | Familiar with their own piece | Clear that they did not contribute or do not understand the team's work |
+| **Total** | **10** | | |
+
+# What if I bomb a checkpoint?
+
+You won't fail the project from a single shaky checkpoint. Things that help:
+
+- **Prepare beforehand.** Read your own code and write a 1-sentence description of each chunk. If you didn't write a chunk, ask your teammates to explain it before the checkpoint.
+- **Run your code recently.** If it's been a week, things may not work anymore.
+- **It's okay to say "I'm not sure."** What's not okay is making something up.
+
+# What if I used AI heavily?
+
+That's allowed. What matters is whether you can explain what the AI produced. If you used Claude to write a `pivot_wider` call and you understand what it's doing and why, that's fine — you can explain it. If you used Claude to write a `pivot_wider` call and you have no idea what it does, that's a problem regardless of whether AI was involved.
+
+The honest answer "I had AI write that and I don't fully understand it" at checkpoint #1 is fine — it tells me what to help you with before checkpoint #2. The same answer at checkpoint #2, when the work is being graded, will cost you points.
+
+# Accommodations
+
+If oral assessment is a barrier for you — speech-related disability, severe social anxiety, ESL concerns, etc. — please reach out as early as you can. Reasonable alternatives include:
+
+- A short written walkthrough submitted by the checkpoint deadline (similar questions, written answers).
+- A pre-recorded video walkthrough.
+- A meeting in a private office instead of the classroom.
+
+Work with SDR if you have a documented disability; reach out to me directly otherwise. I'd rather hear from you early than improvise the day of.
