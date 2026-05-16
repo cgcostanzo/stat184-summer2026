@@ -319,7 +319,7 @@
     "href": "index.html#about-ai-in-this-course",
     "title": "STAT 184 — Introduction to R",
     "section": "About AI in this course",
-    "text": "About AI in this course\nYou may use generative AI tools (ChatGPT, Claude, Copilot, etc.) with disclosure on out-of-class work. In-class work is closed-book. You’ll be expected to walk through your project code in person at two oral checkpoints. See the AI policy for the full version - it’s worth reading carefully on day one."
+    "text": "About AI in this course\nYou may use generative AI tools (ChatGPT, Claude, Copilot, etc.) with disclosure on out-of-class work. In-class work is closed-book. You’ll be expected to walk through your project code in person at two oral checkpoints. See the AI policy for the full details."
   },
   {
     "objectID": "weeks/week3/day2-data-verbs.html",
@@ -836,7 +836,7 @@
     "href": "weeks/week1/day1-intro.html#course-readings-perusall",
     "title": "Day 1 — Course intro & what is R?",
     "section": "Course Readings (Perusall)",
-    "text": "Course Readings (Perusall)\n\nAll assigned textbook readings are hosted on Perusall, a collaborative e-reading platform.\nHow grading works: You earn credit through holistic engagement (reading the entire text, spending active time, leaving high-quality comments, and replying to classmates).\nNo access code needed! You must access readings directly through Canvas links to automatically authenticate your Penn State account.\n\n\n\n\n\n\n\n\n\nLet’s try it together right now:\n\n\n\nLog into our Canvas course.\nNavigate to the Week 1 Module.\nClick the link for Data Computing Chapter 1 (§1.1–1.5).",
+    "text": "Course Readings (Perusall)\n\nAll assigned textbook readings are hosted on Perusall, a collaborative e-reading platform.\nHow grading works: You earn credit through holistic engagement (reading the entire text, spending active time, leaving high-quality comments, and replying to classmates).\nNo access code needed! You must access readings directly through Canvas links to automatically authenticate your Penn State account.\n\n\n\n\n\n\n\n\n\nLet’s try it together right now:\n\n\n\nLog into our Canvas course.\nClick the “Perusall” tab on the left.\nClick the link for DC Section 1 (§1.1–1.5).",
     "crumbs": [
       "Day 1 — Course intro & what is R?"
     ]
@@ -926,7 +926,7 @@
     "href": "weeks/week1/index.html",
     "title": "Week 1 — Foundations",
     "section": "",
-    "text": "This week we get everyone set up with R, RStudio, and Quarto, and cover the absolute basics of the R language. By Friday you’ll have written your first reproducible document and learned the pipe — the core glue of tidyverse-style R.",
+    "text": "This week we get everyone set up with R, RStudio, and Quarto, and cover the absolute basics of the R language. By Friday you’ll have written your first reproducible document and learned the pipe.",
     "crumbs": [
       "Week 1 — Foundations"
     ]
