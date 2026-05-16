@@ -4,13 +4,13 @@ subtitle: "STAT 184 - Summer 2026"
 ---
 
 ::: callout-note
-This schedule is tentative and subject to change. Substantive changes will be announced in class and on Canvas. Dates listed below assume class meets Monday through Friday, 9:35 - 10:50 a.m., May 18 - June 26, 2026.
+This schedule is tentative and subject to change. Substantive changes will be announced in class and on Canvas. Class meets Monday through Friday, 9:35 - 10:50 a.m., May 18 - June 26, 2026.
 
 **No class:** Monday May 25 (Memorial Day) · Friday June 19 (Juneteenth).
 :::
 
 ::: callout-tip
-**Reading the table:** DC = *Data Computing* (Kaplan & Beckman). R4DS = *R for Data Science* (Wickham, Çetinkaya-Rundel, Grolemund), free at <https://r4ds.hadley.nz>. Reading the relevant chapter *before* class on Perusall is required; in-class activities assume you've done the reading.
+**Reading the table:** DC = *Data Computing* (Kaplan & Beckman), free at <https://dtkaplan.github.io/DataComputingEbook/>. R4DS = *R for Data Science* (Wickham, Çetinkaya-Rundel, Grolemund), free at <https://r4ds.hadley.nz>. Reading the relevant chapter *before* class on Perusall is required; in-class activities assume you've done the reading.
 :::
 
 ## Week 1 - Foundations (May 18 - 22)

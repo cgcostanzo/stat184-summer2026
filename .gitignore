@@ -8,3 +8,7 @@ _site/
 *_files/
 .cache/
 "site_libs 2"/
+
+/.quarto/
+**/*.quarto_ipynb
+.positai

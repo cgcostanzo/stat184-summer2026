@@ -23,7 +23,7 @@ library(tidyverse)
 **Before class**
 
 - Read the syllabus (linked from Canvas).
-- Read *Data Computing* §1.
+- (Optional): Read *Data Computing* §1.
 
 **Plan for today**
 
@@ -47,7 +47,7 @@ library(tidyverse)
 
 - **Instructor:** Charles Costanzo 
   - Email: [cgc5478@psu.edu](mailto:cgc5478@psu.edu)
-  - Office: Thomas 301 (Office Hours TBD)
+  - Office Hours: M/W/Th/F: 10:50-11:50 a.m. in Huck 005 (or on Zoom by appt)
 
 - **Teaching Assistant (TA):** Xinyue Wang
   - Email: [xpw5228@psu.edu](mailto:xpw5228@psu.edu)
@@ -112,17 +112,24 @@ This course will teach you how to:
 
 ## AI policy
 
-- AI is allowed on homework, take-home exam, project **with disclosure**. *Not* allowed on in-class work.
-- Disclosure is graded on homework, but it is **not** an integrity issue if you skip it (you will just lose points.)
-- Lying about AI use *is* an integrity issue.
-- Oral project checkpoints are how I verify you understand your own work.
-- Practical implication: AI is a study aid, not a substitute. The course is designed so that students who lean on it too heavily will struggle on the in-class portions.
+- **Open assessments (Homework & Project):** AI tools are permitted **with mandatory disclosure**. 
+- **Closed-book, in-person work (Quizzes, Exam, Activities, Oral Checkpoints):** AI tools are **strictly prohibited**.
+- **Disclosure is graded (1-2 points).** Omitting the disclosure loses points; lying on the disclosure is an academic integrity violation.
+- **You own the output.** You must be able to explain any code you submit, which I will verify during in-class oral project checkpoints.
+- **Practical implication:** AI is a study aid, not a substitute. Roughly 60% of your grade comes from verified in-person work where AI cannot be used.
+
+## Course Readings (Perusall)
+
+- All assigned textbook readings are hosted on **Perusall**, a collaborative e-reading platform.
+- **How grading works:** You earn credit through holistic engagement (reading the entire text, spending active time, leaving high-quality comments, and replying to classmates).
+- **No access code needed!** You must access readings *directly through Canvas links* to automatically authenticate your Penn State account. 
 
 ::: {.fragment .fade-in}
-::: {.callout-note icon=false style="font-size:1.4em"}
-## Discussion Questions
-- How have you used AI in past courses? 
-- What are your initial thoughts on the policy?
+::: {.callout-important style="font-size:1.3em"}
+## Let's try it together right now:
+1. Log into our Canvas course.
+2. Navigate to the Week 1 Module.
+3. Click the link for **Data Computing Chapter 1 (§1.1–1.5)**.
 :::
 :::
 
@@ -263,7 +270,7 @@ penguins |>
 ```
 :::
 
-## Setup checklist — due by Tuesday {.scrollable}
+## Setup checklist — due by Wednesday {.scrollable}
 
 **Install R and RStudio**
 
@@ -281,11 +288,9 @@ Install [**XQuartz**](https://www.xquartz.org) too — some packages we'll use l
 - Restore .RData into workspace at startup: **Unchecked**
 - Save workspace to .RData on exit: **Never**
 
-**Assignments due Tuesday**
+**Assignments due Wednesday 5/20**
 
 - [HW 0: Setup confirmation](#) <!-- replace # with Canvas link -->
-- [Reading Quiz 1](#) on *Data Computing* §2.1–2.3
-- Read *Data Computing* §2.1–2.3 before class
 
 ## Wrap-up & looking ahead
 
@@ -293,9 +298,7 @@ Install [**XQuartz**](https://www.xquartz.org) too — some packages we'll use l
 
 **Due Tuesday before class:**
 
-- [HW 0: Setup confirmation](#)
-- [Reading Quiz 1](#) on Canvas
-- Read *Data Computing* §2.1–2.3
+- Read *Data Computing* §2.1–2.8 on Perusall. 
 
 **Reference links**
 
@@ -303,6 +306,6 @@ Install [**XQuartz**](https://www.xquartz.org) too — some packages we'll use l
 
 ::: {.callout-note icon=false}
 ## Reach out
-Stuck on setup? Email me ([cgc5478@psu.edu](mailto:cgc5478@psu.edu)) or Xinyue ([xpw5228@psu.edu](mailto:xpw5228@psu.edu)) before Tuesday — don't wait until class.
+Stuck on setup? Come to office hours or email me ([cgc5478@psu.edu](mailto:cgc5478@psu.edu)) or Xinyue ([xpw5228@psu.edu](mailto:xpw5228@psu.edu)) before Wednesday — don't wait until class.
 :::
 

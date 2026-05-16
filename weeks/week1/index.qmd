@@ -15,21 +15,23 @@ This week we get everyone set up with R, RStudio, and Quarto, and cover the abso
 | Thu May 21 | [Quarto basics](day4-quarto.qmd) | slides, in-class code |
 | Fri May 22 | [**Quiz 1** · pipe and chaining syntax](day5-quiz-pipe.qmd) | quiz, in-class code |
 
-## Readings due this week
+## Due this week
 
-- Before Mon: *Data Computing* Ch 1 (§1.1–1.5) — what tidy data is (conceptual)
-- Before Tue: *Data Computing* Ch 2 (§2.1–2.8) — R, RStudio, vectors, objects
-- Before Wed: *Data Computing* Ch 3 (§3.1–3.5) — basic R commands
-- Before Thu: *Data Computing* Ch 4 (§4.1–4.7) — files and Quarto/Rmd documents
-- Before Fri: *Data Computing* §3.6 — chaining syntax (the pipe)
+**Readings (due at 9:35 a.m. on Perusall)**
 
-## Assignments due this week
+- *(Optional)* **Monday:** *Data Computing* Ch 1 (§1.1–1.5) — what tidy data is
+- **Tuesday:** *Data Computing* Ch 2 (§2.1–2.8) — R, RStudio, vectors, objects
+- **Wednesday:** *Data Computing* Ch 3 (§3.1–3.5) — basic R commands
+- **Thursday:** *Data Computing* Ch 4 (§4.1–4.7) — files and Quarto/Rmd documents
+- **Friday:** *Data Computing* §3.6 — chaining syntax (the pipe)
 
-- **Reading Quiz 1** — due before Tuesday's class (Canvas)
-- **HW 0** (setup confirmation) — due Thursday May 21, 11:59 p.m.
-- **Quiz 1** — in class Friday May 22
+**Assignments (Canvas & In-class)**
+
+- **Wednesday May 20:** HW 0 (setup confirmation) — due 11:59 p.m. on Canvas
+- **Friday May 22:** HW 1 — due 11:59 p.m. on Canvas
+- **Friday May 22:** **Quiz 1** — in class
 
 ## Heads up for next week
 
 - *Data Computing* Ch 5 (§5.1–5.6) for Tuesday May 26 — graphics intro.
-- No class Monday May 25 (Memorial Day).
+- **No class Monday May 25** (Memorial Day).
