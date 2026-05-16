@@ -1,0 +1,1941 @@
+[
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "Course Schedule",
+    "section": "",
+    "text": "Note\n\n\n\nThis schedule is tentative and subject to change. Substantive changes will be announced in class and on Canvas. Dates listed below assume class meets Monday through Friday, 9:35 - 10:50 a.m., May 18 - June 26, 2026.\nNo class: Monday May 25 (Memorial Day) · Friday June 19 (Juneteenth)."
+  },
+  {
+    "objectID": "schedule.html#week-1---foundations-may-18---22",
+    "href": "schedule.html#week-1---foundations-may-18---22",
+    "title": "Course Schedule",
+    "section": "Week 1 - Foundations (May 18 - 22)",
+    "text": "Week 1 - Foundations (May 18 - 22)\n\n\n\n\n\n\n\n\n\nDate\nTopic\nRead before class\nDue\n\n\n\n\nMon May 18\nCourse intro · what tidy data is · RStudio tour\nDC Ch 1 (§1.1–1.5)\n-\n\n\nTue May 19\nR, RStudio, and the console · vectors · data types\nDC Ch 2 (§2.1–2.8)\n-\n\n\nWed May 20\nFunctions, packages, the tidyverse · objects\nDC Ch 3 (§3.1–3.5)\nHW 0 (setup)\n\n\nThu May 21\nQuarto basics · writing reproducible documents\nDC Ch 4 (§4.1–4.7)\n-\n\n\nFri May 22\nQuiz 1 · the pipe and chaining syntax\nDC §3.6\nHW 1 · Quiz 1 (in class)"
+  },
+  {
+    "objectID": "schedule.html#week-2---tidy-data-ggplot-may-25---29",
+    "href": "schedule.html#week-2---tidy-data-ggplot-may-25---29",
+    "title": "Course Schedule",
+    "section": "Week 2 - Tidy Data & ggplot (May 25 - 29)",
+    "text": "Week 2 - Tidy Data & ggplot (May 25 - 29)\n\n\n\n\n\n\n\n\n\nDate\nTopic\nRead before class\nDue\n\n\n\n\nMon May 25\nNo class - Memorial Day\n-\n-\n\n\nTue May 26\nData frames · intro to data graphics\nDC Ch 5 (§5.1–5.6)\n-\n\n\nWed May 27\nggplot2 basics · frames, glyphs, scales, facets\nDC Ch 6 (§6.1–6.5)\nHW 2\n\n\nThu May 28\nMultivariable graphics · specifying graphs · axes & labels\nDC Ch 8 (§8.1–8.3)\n-\n\n\nFri May 29\nQuiz 2 · graphics critique activity\n-\nQuiz 2 (in class)"
+  },
+  {
+    "objectID": "schedule.html#week-3---data-wrangling-june-1---5",
+    "href": "schedule.html#week-3---data-wrangling-june-1---5",
+    "title": "Course Schedule",
+    "section": "Week 3 - Data Wrangling (June 1 - 5)",
+    "text": "Week 3 - Data Wrangling (June 1 - 5)\n\n\n\n\n\n\n\n\n\nDate\nTopic\nRead before class\nDue\n\n\n\n\nMon Jun 1\nWrangling concepts · reduction & transformation · group_by\nDC Ch 7 (§7.1–7.7)\n-\n\n\nTue Jun 2\nThe data verbs: select, filter, mutate, arrange\nDC Ch 10 (§10.1–10.6)\nHW 3\n\n\nWed Jun 3\nDeeper practice with group_by and summarize\n(Review Ch 7, 10)\n-\n\n\nThu Jun 4\nReshaping: pivot_longer, pivot_wider\nDC Ch 12 (§12.1)\nProject: Team formation\n\n\nFri Jun 5\nQuiz 3 · Git/GitHub for collaboration\nDC Ch 9 (§9.1–9.2)\nQuiz 3 (in class)\n\n\n\nWeekend: Install GitHub Desktop or configure Git locally. By Monday Jun 8, your team should have a working repo with all members able to push."
+  },
+  {
+    "objectID": "schedule.html#week-4---joins-import-exam-june-8---12",
+    "href": "schedule.html#week-4---joins-import-exam-june-8---12",
+    "title": "Course Schedule",
+    "section": "Week 4 - Joins, Import, Exam (June 8 - 12)",
+    "text": "Week 4 - Joins, Import, Exam (June 8 - 12)\n\n\n\n\n\n\n\n\n\nDate\nTopic\nRead before class\nDue\n\n\n\n\nMon Jun 8\nJoining tables: inner_join, left_join, anti-joins\nDC Ch 11 (§11.1–11.3)\nReading Quiz 4\n\n\nTue Jun 9\nImporting data: CSV, Excel, factors vs strings, cleaning\nDC Ch 16 (§16.1–16.2, 16.4–16.5)\nHW 4\n\n\nWed Jun 10\nExam review · practice problems in class\n-\n-\n\n\nThu Jun 11\nEXAM (in-class, on paper, closed book)\n-\n-\n\n\nFri Jun 12\nLight day · web scraping & HTML tables\nDC Ch 16 (§16.3)\nProject Checkpoint 1"
+  },
+  {
+    "objectID": "schedule.html#week-5---functions-iteration-strings-june-15---19",
+    "href": "schedule.html#week-5---functions-iteration-strings-june-15---19",
+    "title": "Course Schedule",
+    "section": "Week 5 - Functions, Iteration, & Strings (June 15 - 19)",
+    "text": "Week 5 - Functions, Iteration, & Strings (June 15 - 19)\n\n\n\n\n\n\nNote\n\n\n\nWeek 5 covers material that Data Computing doesn’t address in depth. Readings for Mon–Wed come from R for Data Science (free online).\n\n\n\n\n\n\n\n\n\n\n\nDate\nTopic\nRead before class\nDue\n\n\n\n\nMon Jun 15\nWriting functions in R\nR4DS Ch 25 (Functions)\n-\n\n\nTue Jun 16\nControl flow · if/else, for, while\nR4DS Ch 26 (Iteration) §26.1–26.3\nHW 4\n\n\nWed Jun 17\nVectorized operations · purrr::map\nR4DS Ch 26 (§26.4–26.5)\n-\n\n\nThu Jun 18\nStrings, dates, and regex\nDC Ch 17 (§17.1–17.2)\nProject oral check-in #1 (during class)\n\n\nFri Jun 19\nNo class - Juneteenth · Quiz 5 rescheduled to Mon Jun 22\n-\n-"
+  },
+  {
+    "objectID": "schedule.html#week-6---special-topics-project-june-22---26",
+    "href": "schedule.html#week-6---special-topics-project-june-22---26",
+    "title": "Course Schedule",
+    "section": "Week 6 - Special Topics & Project (June 22 - 26)",
+    "text": "Week 6 - Special Topics & Project (June 22 - 26)\n\n\n\n\n\n\n\n\n\nDate\nTopic\nRead before class\nDue\n\n\n\n\nMon Jun 22\nQuiz 5 (rescheduled) · unsupervised learning, clustering\nDC Ch 18 (§18.2)\nQuiz 5 (in class)\n\n\nTue Jun 23\nDecision trees / CART\nDC Ch 18 (§18.3)\nHW 5\n\n\nWed Jun 24\nProject work day · oral check-in #1 makeups\n-\nProject Checkpoint 2\n\n\nThu Jun 25\nProject work day · oral check-in #2 (final walkthrough)\n-\n-\n\n\nFri Jun 26\nQuiz 6 · short project presentations · course wrap-up\n-\nQuiz 6 (in class) · Final project report due 11:59 p.m."
+  },
+  {
+    "objectID": "schedule.html#submission-cheat-sheet",
+    "href": "schedule.html#submission-cheat-sheet",
+    "title": "Course Schedule",
+    "section": "Submission cheat-sheet",
+    "text": "Submission cheat-sheet\n\n\n\n\n\n\n\n\nItem\nFormat\nWhere\n\n\n\n\nReadings\nReading/Discussion\nPerusall (Linked on Canvas)\n\n\nHomework\nQuarto rendered to PDF or HTML\nCanvas\n\n\nQuizzes / Exam\nPaper\nIn class\n\n\nIn-class activities\nPaper or Canvas\nIn class or end-of-day Canvas\n\n\nProject\nQuarto rendered to PDF + GitHub repo\nCanvas"
+  },
+  {
+    "objectID": "schedule.html#sources",
+    "href": "schedule.html#sources",
+    "title": "Course Schedule",
+    "section": "Sources",
+    "text": "Sources\n\nDC = Kaplan, D. & Beckman, M. (2021). Data Computing (2nd ed.). https://dtkaplan.github.io/DataComputingEbook/\nR4DS = Wickham, H., Çetinkaya-Rundel, M., & Grolemund, G. (2023). R for Data Science (2nd ed.). https://r4ds.hadley.nz"
+  },
+  {
+    "objectID": "reference/hw-template.html",
+    "href": "reference/hw-template.html",
+    "title": "STAT 184 — Homework [N]",
+    "section": "",
+    "text": "library(tidyverse)\n# Style guide followed: [Tidyverse / Google / BOAST — pick one]"
+  },
+  {
+    "objectID": "reference/hw-template.html#part-a",
+    "href": "reference/hw-template.html#part-a",
+    "title": "STAT 184 — Homework [N]",
+    "section": "Part (a)",
+    "text": "Part (a)\nWrite your prose answer here.\n\n# Your code here"
+  },
+  {
+    "objectID": "reference/hw-template.html#part-b",
+    "href": "reference/hw-template.html#part-b",
+    "title": "STAT 184 — Homework [N]",
+    "section": "Part (b)",
+    "text": "Part (b)\n\n# Your code here"
+  },
+  {
+    "objectID": "project/checkpoint-2.html",
+    "href": "project/checkpoint-2.html",
+    "title": "Project Checkpoint 2 — Partial Draft",
+    "section": "",
+    "text": "A partial draft of your final report — Quarto rendered to PDF — submitted to Canvas. One submission per team. Push the QMD source to your team’s GitHub repo as well.\nThis is not the final product. It is meant to show that you have made substantial progress, that your data is wrangled, and that the analytical direction is taking shape. Rough edges are expected."
+  },
+  {
+    "objectID": "project/checkpoint-2.html#introduction-12-paragraphs",
+    "href": "project/checkpoint-2.html#introduction-12-paragraphs",
+    "title": "Project Checkpoint 2 — Partial Draft",
+    "section": "1. Introduction (1–2 paragraphs)",
+    "text": "1. Introduction (1–2 paragraphs)\n\nWhat is your topic?\nWhat questions are you answering?\nWhy does anyone care?"
+  },
+  {
+    "objectID": "project/checkpoint-2.html#data",
+    "href": "project/checkpoint-2.html#data",
+    "title": "Project Checkpoint 2 — Partial Draft",
+    "section": "2. Data",
+    "text": "2. Data\n\nClear description of data provenance (who, when, why, what’s a case).\nA summary of variables you’ll focus on — what they are, what type, what units.\nAt least one data summary table showing key features of the data (counts, ranges, missingness, etc.). This is not a print-out of raw rows; it should be summarized."
+  },
+  {
+    "objectID": "project/checkpoint-2.html#exploratory-analysis-at-least-two-visualizations",
+    "href": "project/checkpoint-2.html#exploratory-analysis-at-least-two-visualizations",
+    "title": "Project Checkpoint 2 — Partial Draft",
+    "section": "3. Exploratory analysis — at least two visualizations",
+    "text": "3. Exploratory analysis — at least two visualizations\nInclude at least two figures in the body of the report (more is fine). At least one figure must show 3 or more variables (color, facet, size, shape, etc.).\nFor each figure:\n\nRender it in the report body (not in the appendix).\nGive it a caption.\nReference it in narrative text (e.g., “Figure 1 shows…”).\nExplain what the figure tells you about the data."
+  },
+  {
+    "objectID": "project/checkpoint-2.html#whats-next",
+    "href": "project/checkpoint-2.html#whats-next",
+    "title": "Project Checkpoint 2 — Partial Draft",
+    "section": "4. What’s next",
+    "text": "4. What’s next\nA short section (a paragraph or bullet list) describing:\n\nWhat you still need to do before the final report.\nAny analytical questions you’re still working through.\nAnything you’d like instructor feedback on."
+  },
+  {
+    "objectID": "project/checkpoint-2.html#code-appendix",
+    "href": "project/checkpoint-2.html#code-appendix",
+    "title": "Project Checkpoint 2 — Partial Draft",
+    "section": "5. Code appendix",
+    "text": "5. Code appendix\nAll R code at the end of the document. Use the standard appendix chunk:\n```{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}\n```"
+  },
+  {
+    "objectID": "project/checkpoint-2.html#ai-use-note",
+    "href": "project/checkpoint-2.html#ai-use-note",
+    "title": "Project Checkpoint 2 — Partial Draft",
+    "section": "6. AI use note",
+    "text": "6. AI use note\nA short paragraph describing AI tool use by the team for this checkpoint."
+  },
+  {
+    "objectID": "project/oral-checkpoint-rubric.html",
+    "href": "project/oral-checkpoint-rubric.html",
+    "title": "Oral Checkpoint Rubric & Logistics",
+    "section": "",
+    "text": "A short conversation about your code does two things that a written submission can’t:\n\nIt verifies that you understand what you submitted.\nIt gives you fast, personalized feedback on your analytical choices.\n\nThese conversations are not interrogations. They are a chance to show me your thinking and get help. Students who can explain their own work do well; students who cannot do not — regardless of what’s on the page."
+  },
+  {
+    "objectID": "project/oral-checkpoint-rubric.html#checkpoint-1-mid-project",
+    "href": "project/oral-checkpoint-rubric.html#checkpoint-1-mid-project",
+    "title": "Oral Checkpoint Rubric & Logistics",
+    "section": "Checkpoint #1 (mid-project)",
+    "text": "Checkpoint #1 (mid-project)\n\nIn one sentence, what is your project about?\nWalk me through this chunk (I’ll point to one — usually a wrangling step).\nWhy did you choose this visualization (I’ll point to one)? What would you do differently?\nWhat’s the next thing you’re going to work on?\nWhat are you stuck on?"
+  },
+  {
+    "objectID": "project/oral-checkpoint-rubric.html#checkpoint-2-final-walkthrough",
+    "href": "project/oral-checkpoint-rubric.html#checkpoint-2-final-walkthrough",
+    "title": "Oral Checkpoint Rubric & Logistics",
+    "section": "Checkpoint #2 (final walkthrough)",
+    "text": "Checkpoint #2 (final walkthrough)\n\nWhat question are you answering, and what is your answer?\nWalk me through your data wrangling. Why this approach?\nWalk me through your most important visualization. What does it show?\nShow me a piece of code you struggled with. What did you try? What worked?\nWhat would you do differently if you had another week?"
+  },
+  {
+    "objectID": "syllabus/syllabus.html",
+    "href": "syllabus/syllabus.html",
+    "title": "STAT 184 — Section 101",
+    "section": "",
+    "text": "R is a powerful, open-source programming language used widely for applications in statistics and data science. It is easily extendable, and thousands of user-created packages are publicly available to extend its capabilities. This course will introduce students to data computing fundamentals and a reproducible workflow using the R programming language and related tools. Students will be expected to access, join, wrangle, clean, and visualize real data from various sources (e.g., CSV, HTML scraping, web URL, R packages). The course will emphasize the use of “tidyverse” R packages (e.g., dplyr, ggplot2), although students will also be exposed to Base R and other packages. In addition, students will be exposed to one or more integrated development environments (e.g., RStudio) and will be expected to write well-documented code using a reproducible workflow (e.g., Quarto, Git/GitHub). The course focuses on descriptive and graphical summary techniques rather than inferential statistical techniques.1"
+  },
+  {
+    "objectID": "syllabus/syllabus.html#textbooks",
+    "href": "syllabus/syllabus.html#textbooks",
+    "title": "STAT 184 — Section 101",
+    "section": "Textbooks",
+    "text": "Textbooks\nThere is no need to purchase any book for this class. All required and recommended materials are available to use online for free with your Penn State access.\n\nRequired texts\nData Computing (2nd edition). Daniel Kaplan & Matthew Beckman. 2021. https://dtkaplan.github.io/DataComputingEbook/\nR for Data Science (2nd edition). Hadley Wickham, Mine Çetinkaya-Rundel, & Garrett Grolemund. 2023. https://r4ds.hadley.nz\n\nNote: R for Data Science (R4DS) will be the assigned reading for parts of Week 5 (functions, iteration, and strings), where Data Computing (DC) does not cover the material in depth. It is also an excellent general reference for tidyverse-style R programming throughout the course.\n\n\n\nOptional texts\nAn Introduction to Data Analysis in R: Hands-on Coding, Data Mining, Visualization and Statistics from Scratch. Saiz, González, Gil, Ruiz. 2020. https://ezaccess.libraries.psu.edu/login?url=https://doi.org/10.1007/978-3-030-48997-7\nIntroduction to Probability, Statistics & R: Foundations for Data-Based Sciences. Sujit K. Sahu. 2024. https://ezaccess.libraries.psu.edu/login?url=https://doi.org/10.1007/978-3-031-37865-2"
+  },
+  {
+    "objectID": "syllabus/syllabus.html#attendance",
+    "href": "syllabus/syllabus.html#attendance",
+    "title": "STAT 184 — Section 101",
+    "section": "Attendance",
+    "text": "Attendance\nPer department policy, attendance is required for this course. Attendance will be taken in each class session. Students who regularly attend class and participate tend to do well in this class. Attending each class session is an important part of becoming a professional member of our community. Therefore, you will need to attend each class session barring illness, participation in a University-sanctioned event, religious observance/practice, or other legitimate circumstances. If you need to miss class, please let me know by sending me an email or message via Canvas. Proactive communication is essential: notifying me in advance (whenever possible) is a prerequisite for excusing an absence or granting an extension on in-class work."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#technology-and-software-requirements",
+    "href": "syllabus/syllabus.html#technology-and-software-requirements",
+    "title": "STAT 184 — Section 101",
+    "section": "Technology and software requirements",
+    "text": "Technology and software requirements\n\nYou will need access to at least one of the following: (1) a personal computer running Windows, Mac OS, or Linux (i.e., not a Chromebook), or (2) any of the Penn State computer labs located around campus.\nR and RStudio are installed on classroom/university computers. If you use a personal computer, you will need to install the R language (The R Project for Statistical Computing; http://www.r-project.org/) and RStudio Desktop on your computer.2\n\nYou can download R for Windows, Mac, and Linus from the CRAN archive at https://cran.r-project.org\nRStudio can be downloaded for free at https://posit.co/download/rstudio-desktop. Before downloading RStudio, you must download and install R first.\nYou can find an in-depth introduction to R here: http://cran.r-project.org/doc/manuals/R-intro.pdf\nYou can find hands-on tutorials in the Swirl system at http://swirlstats.com. “R Programming: The basics of programming in R” is a helpful tutorial to start with if you have never used R."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#grading-scheme",
+    "href": "syllabus/syllabus.html#grading-scheme",
+    "title": "STAT 184 — Section 101",
+    "section": "Grading scheme",
+    "text": "Grading scheme"
+  },
+  {
+    "objectID": "syllabus/syllabus.html#grading-scheme-1",
+    "href": "syllabus/syllabus.html#grading-scheme-1",
+    "title": "STAT 184 — Section 101",
+    "section": "Grading scheme",
+    "text": "Grading scheme\n\n\n\nCategory\nWeight\n\n\n\n\nReadings\n10%\n\n\nQuizzes\n15%\n\n\nIn-class activities\n25%\n\n\nHomework\n10%\n\n\nExam\n20%\n\n\nCourse project\n20%\n\n\n\nFinal grades will be assigned as follows:\n\n\n\nGrade\nScore Range\n\n\n\n\nA\n93 - 100%\n\n\nA-\n90 - 93%\n\n\nB+\n87 - 90%\n\n\nB\n83 - 87%\n\n\nB-\n80 - 83%\n\n\nC+\n77 - 80%\n\n\nC\n70 - 77%\n\n\nD\n60 - 70%\n\n\nF\n0 - 60%"
+  },
+  {
+    "objectID": "syllabus/syllabus.html#topics",
+    "href": "syllabus/syllabus.html#topics",
+    "title": "STAT 184 — Section 101",
+    "section": "Topics",
+    "text": "Topics\n\nData visualization (including 3 or more variables)\nData wrangling operations\nProgramming tools (R, RStudio, Quarto, Git/GitHub)\nTidy data principles\nImporting data (CSV, API, web scraping, basic SQL)\nProgramming style conventions\nBasic loops, control flow, vectorized operations\nUser-defined functions\nText, dates, and regular expressions\nSpecial topics as time permits (basic clustering, CART)"
+  },
+  {
+    "objectID": "syllabus/syllabus.html#course-calendar",
+    "href": "syllabus/syllabus.html#course-calendar",
+    "title": "STAT 184 — Section 101",
+    "section": "Course calendar",
+    "text": "Course calendar\nSee the Schedule page for the day-by-day plan. Substantive changes will be announced in class and on Canvas."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#stance",
+    "href": "syllabus/syllabus.html#stance",
+    "title": "STAT 184 — Section 101",
+    "section": "Stance",
+    "text": "Stance\nGenerative AI tools (e.g., ChatGPT, Claude, Gemini, Copilot, Cursor) are now a standard part of how people write and reason about code in industry and research. Rather than ban these tools and ask you to pretend they do not exist, this course takes the position that you are free to use any AI tool you like on any assignment outside the classroom, including homework and the course project.\nThis freedom comes with a corresponding obligation: you must acknowledge AI use, you are responsible for everything you submit, and you must be able to explain it. Assessments fall into two categories:\n\nClosed-book, in-person assessments (quizzes, exams, in-class activities, and oral project checkpoints) where AI tools cannot be used and your individual skill is verified.\nOpen assessments (readings, homework, project) where you may use any resource, including AI, subject to the disclosure expectations below.\n\nThe grading weights are deliberately set so that roughly 60% of your grade comes from verified in-person work."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#rules-for-ai-use-on-open-assessments",
+    "href": "syllabus/syllabus.html#rules-for-ai-use-on-open-assessments",
+    "title": "STAT 184 — Section 101",
+    "section": "Rules for AI use on open assessments",
+    "text": "Rules for AI use on open assessments\n\n1. Disclose AI use (1-2 points per assignment).\nTransparency is a core part of reproducible data science. Therefore, every open assessment includes a mandatory AI disclosure as a graded rubric item.\nAt the top of your Quarto document, you must include the following checklist (which will be included in the provided open assessment templates). Check off all boxes that apply to your usage and provide a single sentence describing how the tool was utilized.\nAI Disclosure\n\nNo AI used\nSyntax / Debugging (e.g., finding a missing comma, fixing an error code)\nConceptual explanation (e.g., asking how a left_join works)\nCode Generation (e.g., asking AI to write a function from scratch)\n\nBriefly describe your use (1-2 sentences): Used ChatGPT to explain why my ggplot axes were flipped and to generate the code to fix the labels.\n\n\n2. Be able to explain submitted work.\nYou own the output. If you submit AI-generated code, you must understand how it works. “The AI told me to” is not a defense for hallucinated functions, broken code, or wrong analyses. Read everything before you submit.\n\n\n3. Cite outside sources.\nIf AI generates code based on a specific package, blog post, or paper that you use substantively, cite that source.\n\n\n4. Respect copyright.\nDon’t share copyrighted course materials with AI services. Pasting entire textbook chapters into a chatbot is not permitted (separate from academic integrity).\n\n\n5. Be prepared to explain code during oral checkpoints.\nExpect to be asked about any part of your submitted project code."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#what-counts-as-a-violation",
+    "href": "syllabus/syllabus.html#what-counts-as-a-violation",
+    "title": "STAT 184 — Section 101",
+    "section": "What counts as a violation",
+    "text": "What counts as a violation\n\nAcceptable Uses of AI:\n\nPasting an error message from RStudio into ChatGPT to understand why your code broke.\nAsking AI to explain a complex function (e.g., “Explain how left_join() works in dplyr like I am 5”).\nUsing AI to generate ideas for how to visualize a specific type of dataset.\nAsking AI to help you clean up the formatting or styling of your code.\n\n\n\nAcademic Integrity Violations:\n\nBypassing the prompt by copy-pasting an entire homework question into AI, copying the resulting code directly into your assignment, and submitting it without reading or understanding it.\n“Black box” submissions where you submit code that uses advanced packages or functions we haven’t covered, which you cannot explain or defend during an oral checkpoint or if asked in class.\nUsing AI on closed-book, in-person work like quizzes, in-class exam, in-class activities, oral checkpoints.\nLying about AI use (writing “Did not use AI” when you did).\n\nConsequences follow the standard Eberly College of Science sanction table (see the Academic Integrity & AI Policy document)."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#deferred-grades",
+    "href": "syllabus/syllabus.html#deferred-grades",
+    "title": "STAT 184 — Section 101",
+    "section": "Deferred grades",
+    "text": "Deferred grades\nIf you are prevented from completing this course within the prescribed amount of time for reasons that are beyond your control, it is possible to have the grade deferred with the concurrence of the instructor, following Penn State Deferred Grade Policy 48-40. To seek a deferred grade, you must submit a written request (by e-mail or U.S. post) to the instructor describing the reason(s) for the request. Non-emergency permission must be requested before the beginning of the final examination period. If permission is granted, you will work with the instructor to establish a communication plan and a clear schedule for completion within policy. If, for any reason, the coursework is not complete by the assigned time, a grade of “F” will be automatically entered on your transcript."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#academic-integrity-statement",
+    "href": "syllabus/syllabus.html#academic-integrity-statement",
+    "title": "STAT 184 — Section 101",
+    "section": "Academic integrity statement",
+    "text": "Academic integrity statement\nAcademic integrity is the pursuit of scholarly activity in an open, honest, and responsible manner. Academic integrity is a basic guiding principle for all academic activity at The Pennsylvania State University, and all members of the University community are expected to act in accordance with this principle.\nAccording to Penn State policy G-9: Academic Integrity, an academic integrity violation is “an intentional, unintentional, or attempted violation of course or assessment policies to gain an academic advantage or to advantage or disadvantage another student academically.” Unless your instructor tells you otherwise, you must complete all course work entirely on your own, using only sources that have been permitted by your instructor, and you may not assist other students with papers, quizzes, exams, or other assessments. If your instructor allows you to use ideas, images, or word phrases created by another person or by generative technology, you must identify their source. You may not submit false or fabricated information, use the same academic work for credit in multiple courses, or share instructional content. Students with questions about academic integrity should ask their instructor before submitting work.\nStudents facing allegations of academic misconduct may not drop/withdraw from the affected course unless they are cleared of wrongdoing.\nSee also the Academic Integrity & AI Policy document for course-specific guidance."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#ecos-code-of-mutual-respect",
+    "href": "syllabus/syllabus.html#ecos-code-of-mutual-respect",
+    "title": "STAT 184 — Section 101",
+    "section": "ECoS Code of Mutual Respect",
+    "text": "ECoS Code of Mutual Respect\nThe Eberly College of Science Code of Mutual Respect and Cooperation embodies the values that we hope our faculty, staff, and students possess and will endorse to make the Eberly College of Science a place where every individual feels respected and valued, as well as challenged and rewarded."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#educational-equity-report-bias",
+    "href": "syllabus/syllabus.html#educational-equity-report-bias",
+    "title": "STAT 184 — Section 101",
+    "section": "Educational equity / Report bias",
+    "text": "Educational equity / Report bias\nPenn State takes great pride to foster a diverse and inclusive environment for students, faculty, and staff. Acts of intolerance, discrimination, or harassment due to age, ancestry, color, disability, gender, gender identity, national origin, race, religious belief, sexual orientation, or veteran status are not tolerated and can be reported through Educational Equity via the Report Bias webpage."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#disability-accommodations",
+    "href": "syllabus/syllabus.html#disability-accommodations",
+    "title": "STAT 184 — Section 101",
+    "section": "Disability accommodations",
+    "text": "Disability accommodations\nPenn State welcomes students with disabilities into the University’s educational programs. Student Disability Resources (SDR) provides contact information for every Penn State campus.\nTo receive consideration for reasonable accommodations, contact the appropriate disability services office at the campus where you are officially enrolled, participate in an intake interview, and provide documentation. Share the accommodation letter with your instructors and discuss accommodations as early as possible.\nIf oral checkpoints present an accessibility concern (e.g., anxiety-related accommodations, speech-related disabilities), please reach out early so we can arrange an equivalent alternative format (such as a short written walkthrough)."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#counseling-and-psychological-services",
+    "href": "syllabus/syllabus.html#counseling-and-psychological-services",
+    "title": "STAT 184 — Section 101",
+    "section": "Counseling and Psychological Services",
+    "text": "Counseling and Psychological Services\nMany students at Penn State face personal challenges or psychological needs that may interfere with academic progress, social development, or emotional wellbeing. The university offers a variety of confidential services to help, including individual and group counseling, crisis intervention, consultations, online chats, and mental health screenings.\nCounseling and Psychological Services at University Park (CAPS): 814-863-0395\nPenn State Crisis Line (24/7): 877-229-6400\nCrisis Text Line (24/7): Text LIONS to 741741"
+  },
+  {
+    "objectID": "syllabus/syllabus.html#syllabus-changes",
+    "href": "syllabus/syllabus.html#syllabus-changes",
+    "title": "STAT 184 — Section 101",
+    "section": "Syllabus changes",
+    "text": "Syllabus changes\nThis syllabus is subject to change. Substantive changes will be announced in class or via Canvas. Refer to Canvas (and this site) for the most up-to-date version."
+  },
+  {
+    "objectID": "syllabus/syllabus.html#footnotes",
+    "href": "syllabus/syllabus.html#footnotes",
+    "title": "STAT 184 — Section 101",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nhttps://bulletins.psu.edu/university-course-descriptions/undergraduate/stat/↩︎\nWe will install these as part of a class assignment.↩︎"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "STAT 184 — Introduction to R",
+    "section": "",
+    "text": "Welcome to STAT 184. This is the public course site for Section 101, Summer 2026."
+  },
+  {
+    "objectID": "index.html#quick-links",
+    "href": "index.html#quick-links",
+    "title": "STAT 184 — Introduction to R",
+    "section": "Quick links",
+    "text": "Quick links\n\nSyllabus\nSchedule\nProject overview\nAcademic Integrity & AI Policy"
+  },
+  {
+    "objectID": "index.html#course-at-a-glance",
+    "href": "index.html#course-at-a-glance",
+    "title": "STAT 184 — Introduction to R",
+    "section": "Course at a glance",
+    "text": "Course at a glance\n\n\n\nDetail\nInfo\n\n\n\n\nTerm\nSummer Session 1 (May 18 — June 26, 2026)\n\n\nMeets\nM/T/W/Th/F, 9:35 — 10:50 a.m.\n\n\nLocation\nHuck Life Sciences Building 007\n\n\nInstructor\nCharles Costanzo (cgc5478@psu.edu)\n\n\nTA\nXinyue Wang (xpw5228@psu.edu)"
+  },
+  {
+    "objectID": "index.html#what-this-course-is-about",
+    "href": "index.html#what-this-course-is-about",
+    "title": "STAT 184 — Introduction to R",
+    "section": "What this course is about",
+    "text": "What this course is about\nR is the working language of statistics and data science. Over six weeks you’ll learn to import, clean, wrangle, and visualize real data using R and the tidyverse, write reproducible analyses in Quarto, and use Git/GitHub to manage your work. The course emphasizes descriptive and graphical analysis over inferential statistics.\nBy the end of the course you will have completed an independent data analysis project of your own design."
+  },
+  {
+    "objectID": "index.html#about-ai-in-this-course",
+    "href": "index.html#about-ai-in-this-course",
+    "title": "STAT 184 — Introduction to R",
+    "section": "About AI in this course",
+    "text": "About AI in this course\nYou may use generative AI tools (ChatGPT, Claude, Copilot, etc.) with disclosure on out-of-class work. In-class work is closed-book. You’ll be expected to walk through your project code in person at two oral checkpoints. See the AI policy for the full version - it’s worth reading carefully on day one."
+  },
+  {
+    "objectID": "weeks/week3/day2-data-verbs.html",
+    "href": "weeks/week3/day2-data-verbs.html",
+    "title": "The data verbs: select, filter, mutate, arrange",
+    "section": "",
+    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
+  },
+  {
+    "objectID": "weeks/week3/day2-data-verbs.html#before-class",
+    "href": "weeks/week3/day2-data-verbs.html#before-class",
+    "title": "The data verbs: select, filter, mutate, arrange",
+    "section": "Before class",
+    "text": "Before class\n\nRead: Data Computing Ch 10 (§10.1–10.6)\nTODO: any prep materials, data files, etc."
+  },
+  {
+    "objectID": "weeks/week3/day2-data-verbs.html#outline",
+    "href": "weeks/week3/day2-data-verbs.html#outline",
+    "title": "The data verbs: select, filter, mutate, arrange",
+    "section": "Outline",
+    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
+  },
+  {
+    "objectID": "weeks/week3/day2-data-verbs.html#resources",
+    "href": "weeks/week3/day2-data-verbs.html#resources",
+    "title": "The data verbs: select, filter, mutate, arrange",
+    "section": "Resources",
+    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+  },
+  {
+    "objectID": "weeks/week3/day2-data-verbs.html#after-class",
+    "href": "weeks/week3/day2-data-verbs.html#after-class",
+    "title": "The data verbs: select, filter, mutate, arrange",
+    "section": "After class",
+    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
+  },
+  {
+    "objectID": "weeks/week3/index.html",
+    "href": "weeks/week3/index.html",
+    "title": "Week 3 — Data Wrangling",
+    "section": "",
+    "text": "The core week. We cover the dplyr verbs you’ll use on nearly every project — filter, select, mutate, arrange, group_by, summarize, plus pivot_longer and pivot_wider. By Friday you should be able to take a messy CSV and produce useful summaries. Friday also introduces Git/GitHub, in time to use it for your project teamwork."
+  },
+  {
+    "objectID": "weeks/week3/index.html#daily-plan",
+    "href": "weeks/week3/index.html#daily-plan",
+    "title": "Week 3 — Data Wrangling",
+    "section": "Daily plan",
+    "text": "Daily plan\n\n\n\nDate\nTopic\nFiles\n\n\n\n\nMon Jun 1\nWrangling concepts · group_by\nslides, in-class code\n\n\nTue Jun 2\nThe data verbs: select, filter, mutate, arrange\nslides, in-class code\n\n\nWed Jun 3\nDeeper practice with group_by and summarize\nslides, in-class code\n\n\nThu Jun 4\nReshaping: pivot_longer, pivot_wider\nslides, in-class code\n\n\nFri Jun 5\nQuiz 3 · Git/GitHub for collaboration\nquiz, slides"
+  },
+  {
+    "objectID": "weeks/week3/index.html#readings-due-this-week",
+    "href": "weeks/week3/index.html#readings-due-this-week",
+    "title": "Week 3 — Data Wrangling",
+    "section": "Readings due this week",
+    "text": "Readings due this week\n\nBefore Mon: Data Computing Ch 7 (§7.1–7.7) — wrangling concepts, group_by\nBefore Tue: Data Computing Ch 10 (§10.1–10.6) — the data verbs\nBefore Thu: Data Computing Ch 12 (§12.1) — reshaping\nBefore Fri: Data Computing Ch 9 (§9.1–9.2) — Git, GitHub, RStudio integration"
+  },
+  {
+    "objectID": "weeks/week3/index.html#assignments-due-this-week",
+    "href": "weeks/week3/index.html#assignments-due-this-week",
+    "title": "Week 3 — Data Wrangling",
+    "section": "Assignments due this week",
+    "text": "Assignments due this week\n\nReading Quiz 3 — due before Monday’s class (Canvas)\nHW 2 — due Tuesday Jun 2, 11:59 p.m.\nProject: Team formation — due Thursday Jun 4, 11:59 p.m.\nQuiz 3 — in class Friday Jun 5"
+  },
+  {
+    "objectID": "weeks/week3/index.html#heads-up-for-the-weekend",
+    "href": "weeks/week3/index.html#heads-up-for-the-weekend",
+    "title": "Week 3 — Data Wrangling",
+    "section": "Heads up for the weekend",
+    "text": "Heads up for the weekend\n\nInstall GitHub Desktop or configure Git locally over the weekend.\nBy Monday Jun 8, your project team should have a working GitHub repo with all members able to push."
+  },
+  {
+    "objectID": "weeks/week3/day4-pivot.html",
+    "href": "weeks/week3/day4-pivot.html",
+    "title": "Reshaping: pivot_longer, pivot_wider",
+    "section": "",
+    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
+  },
+  {
+    "objectID": "weeks/week3/day4-pivot.html#before-class",
+    "href": "weeks/week3/day4-pivot.html#before-class",
+    "title": "Reshaping: pivot_longer, pivot_wider",
+    "section": "Before class",
+    "text": "Before class\n\nRead: Data Computing Ch 12 (§12.1)\nTODO: any prep materials, data files, etc."
+  },
+  {
+    "objectID": "weeks/week3/day4-pivot.html#outline",
+    "href": "weeks/week3/day4-pivot.html#outline",
+    "title": "Reshaping: pivot_longer, pivot_wider",
+    "section": "Outline",
+    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
+  },
+  {
+    "objectID": "weeks/week3/day4-pivot.html#resources",
+    "href": "weeks/week3/day4-pivot.html#resources",
+    "title": "Reshaping: pivot_longer, pivot_wider",
+    "section": "Resources",
+    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+  },
+  {
+    "objectID": "weeks/week3/day4-pivot.html#after-class",
+    "href": "weeks/week3/day4-pivot.html#after-class",
+    "title": "Reshaping: pivot_longer, pivot_wider",
+    "section": "After class",
+    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
+  },
+  {
+    "objectID": "weeks/week4/day3-exam-review.html",
+    "href": "weeks/week4/day3-exam-review.html",
+    "title": "Exam review · practice problems in class",
+    "section": "",
+    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
+  },
+  {
+    "objectID": "weeks/week4/day3-exam-review.html#before-class",
+    "href": "weeks/week4/day3-exam-review.html#before-class",
+    "title": "Exam review · practice problems in class",
+    "section": "Before class",
+    "text": "Before class\n\nTODO: any prep materials, data files, etc.\n(No new reading)"
+  },
+  {
+    "objectID": "weeks/week4/day3-exam-review.html#outline",
+    "href": "weeks/week4/day3-exam-review.html#outline",
+    "title": "Exam review · practice problems in class",
+    "section": "Outline",
+    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
+  },
+  {
+    "objectID": "weeks/week4/day3-exam-review.html#resources",
+    "href": "weeks/week4/day3-exam-review.html#resources",
+    "title": "Exam review · practice problems in class",
+    "section": "Resources",
+    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+  },
+  {
+    "objectID": "weeks/week4/day3-exam-review.html#after-class",
+    "href": "weeks/week4/day3-exam-review.html#after-class",
+    "title": "Exam review · practice problems in class",
+    "section": "After class",
+    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
+  },
+  {
+    "objectID": "weeks/week4/day1-joins.html",
+    "href": "weeks/week4/day1-joins.html",
+    "title": "Joining tables: inner_join, left_join, anti-joins",
+    "section": "",
+    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
+  },
+  {
+    "objectID": "weeks/week4/day1-joins.html#before-class",
+    "href": "weeks/week4/day1-joins.html#before-class",
+    "title": "Joining tables: inner_join, left_join, anti-joins",
+    "section": "Before class",
+    "text": "Before class\n\nRead: Data Computing Ch 11 (§11.1–11.3)\nTODO: any prep materials, data files, etc."
+  },
+  {
+    "objectID": "weeks/week4/day1-joins.html#outline",
+    "href": "weeks/week4/day1-joins.html#outline",
+    "title": "Joining tables: inner_join, left_join, anti-joins",
+    "section": "Outline",
+    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
+  },
+  {
+    "objectID": "weeks/week4/day1-joins.html#resources",
+    "href": "weeks/week4/day1-joins.html#resources",
+    "title": "Joining tables: inner_join, left_join, anti-joins",
+    "section": "Resources",
+    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+  },
+  {
+    "objectID": "weeks/week4/day1-joins.html#after-class",
+    "href": "weeks/week4/day1-joins.html#after-class",
+    "title": "Joining tables: inner_join, left_join, anti-joins",
+    "section": "After class",
+    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
+  },
+  {
+    "objectID": "weeks/week4/day4-exam.html",
+    "href": "weeks/week4/day4-exam.html",
+    "title": "EXAM (in-class portion)",
+    "section": "",
+    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
+  },
+  {
+    "objectID": "weeks/week4/day4-exam.html#before-class",
+    "href": "weeks/week4/day4-exam.html#before-class",
+    "title": "EXAM (in-class portion)",
+    "section": "Before class",
+    "text": "Before class\n\nTODO: any prep materials, data files, etc.\n(No new reading)"
+  },
+  {
+    "objectID": "weeks/week4/day4-exam.html#outline",
+    "href": "weeks/week4/day4-exam.html#outline",
+    "title": "EXAM (in-class portion)",
+    "section": "Outline",
+    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
+  },
+  {
+    "objectID": "weeks/week4/day4-exam.html#resources",
+    "href": "weeks/week4/day4-exam.html#resources",
+    "title": "EXAM (in-class portion)",
+    "section": "Resources",
+    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+  },
+  {
+    "objectID": "weeks/week4/day4-exam.html#after-class",
+    "href": "weeks/week4/day4-exam.html#after-class",
+    "title": "EXAM (in-class portion)",
+    "section": "After class",
+    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
+  },
+  {
+    "objectID": "weeks/week5/day1-functions.html",
+    "href": "weeks/week5/day1-functions.html",
+    "title": "Writing functions in R",
+    "section": "",
+    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
+  },
+  {
+    "objectID": "weeks/week5/day1-functions.html#before-class",
+    "href": "weeks/week5/day1-functions.html#before-class",
+    "title": "Writing functions in R",
+    "section": "Before class",
+    "text": "Before class\n\nRead: R for Data Science Ch 25 (Functions)\nTODO: any prep materials, data files, etc."
+  },
+  {
+    "objectID": "weeks/week5/day1-functions.html#outline",
+    "href": "weeks/week5/day1-functions.html#outline",
+    "title": "Writing functions in R",
+    "section": "Outline",
+    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
+  },
+  {
+    "objectID": "weeks/week5/day1-functions.html#resources",
+    "href": "weeks/week5/day1-functions.html#resources",
+    "title": "Writing functions in R",
+    "section": "Resources",
+    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+  },
+  {
+    "objectID": "weeks/week5/day1-functions.html#after-class",
+    "href": "weeks/week5/day1-functions.html#after-class",
+    "title": "Writing functions in R",
+    "section": "After class",
+    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
+  },
+  {
+    "objectID": "weeks/week5/day4-strings-dates.html",
+    "href": "weeks/week5/day4-strings-dates.html",
+    "title": "Strings, dates, and regex + oral check-in #1",
+    "section": "",
+    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
+  },
+  {
+    "objectID": "weeks/week5/day4-strings-dates.html#before-class",
+    "href": "weeks/week5/day4-strings-dates.html#before-class",
+    "title": "Strings, dates, and regex + oral check-in #1",
+    "section": "Before class",
+    "text": "Before class\n\nRead: Data Computing Ch 17 (§17.1–17.2)\nTODO: any prep materials, data files, etc."
+  },
+  {
+    "objectID": "weeks/week5/day4-strings-dates.html#outline",
+    "href": "weeks/week5/day4-strings-dates.html#outline",
+    "title": "Strings, dates, and regex + oral check-in #1",
+    "section": "Outline",
+    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
+  },
+  {
+    "objectID": "weeks/week5/day4-strings-dates.html#resources",
+    "href": "weeks/week5/day4-strings-dates.html#resources",
+    "title": "Strings, dates, and regex + oral check-in #1",
+    "section": "Resources",
+    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+  },
+  {
+    "objectID": "weeks/week5/day4-strings-dates.html#after-class",
+    "href": "weeks/week5/day4-strings-dates.html#after-class",
+    "title": "Strings, dates, and regex + oral check-in #1",
+    "section": "After class",
+    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
+  },
+  {
+    "objectID": "weeks/week2/day3-multivariable.html",
+    "href": "weeks/week2/day3-multivariable.html",
+    "title": "Multivariable graphics · specifying graphs · axes & labels",
+    "section": "",
+    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class",
+    "crumbs": [
+      "Multivariable graphics · specifying graphs · axes & labels"
+    ]
+  },
+  {
+    "objectID": "weeks/week2/day3-multivariable.html#before-class",
+    "href": "weeks/week2/day3-multivariable.html#before-class",
+    "title": "Multivariable graphics · specifying graphs · axes & labels",
+    "section": "Before class",
+    "text": "Before class\n\nRead: Data Computing Ch 8 (§8.1–8.3)\nTODO: any prep materials, data files, etc.",
+    "crumbs": [
+      "Multivariable graphics · specifying graphs · axes & labels"
+    ]
+  },
+  {
+    "objectID": "weeks/week2/day3-multivariable.html#outline",
+    "href": "weeks/week2/day3-multivariable.html#outline",
+    "title": "Multivariable graphics · specifying graphs · axes & labels",
+    "section": "Outline",
+    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class",
+    "crumbs": [
+      "Multivariable graphics · specifying graphs · axes & labels"
+    ]
+  },
+  {
+    "objectID": "weeks/week2/day3-multivariable.html#resources",
+    "href": "weeks/week2/day3-multivariable.html#resources",
+    "title": "Multivariable graphics · specifying graphs · axes & labels",
+    "section": "Resources",
+    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout",
+    "crumbs": [
+      "Multivariable graphics · specifying graphs · axes & labels"
+    ]
+  },
+  {
+    "objectID": "weeks/week2/day3-multivariable.html#after-class",
+    "href": "weeks/week2/day3-multivariable.html#after-class",
+    "title": "Multivariable graphics · specifying graphs · axes & labels",
+    "section": "After class",
+    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for.",
+    "crumbs": [
+      "Multivariable graphics · specifying graphs · axes & labels"
+    ]
+  },
+  {
+    "objectID": "weeks/week2/day2-ggplot-basics.html",
+    "href": "weeks/week2/day2-ggplot-basics.html",
+    "title": "ggplot2 basics · frames, glyphs, scales, facets",
+    "section": "",
+    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class",
+    "crumbs": [
+      "ggplot2 basics · frames, glyphs, scales, facets"
+    ]
+  },
+  {
+    "objectID": "weeks/week2/day2-ggplot-basics.html#before-class",
+    "href": "weeks/week2/day2-ggplot-basics.html#before-class",
+    "title": "ggplot2 basics · frames, glyphs, scales, facets",
+    "section": "Before class",
+    "text": "Before class\n\nRead: Data Computing Ch 6 (§6.1–6.5)\nTODO: any prep materials, data files, etc.",
+    "crumbs": [
+      "ggplot2 basics · frames, glyphs, scales, facets"
+    ]
+  },
+  {
+    "objectID": "weeks/week2/day2-ggplot-basics.html#outline",
+    "href": "weeks/week2/day2-ggplot-basics.html#outline",
+    "title": "ggplot2 basics · frames, glyphs, scales, facets",
+    "section": "Outline",
+    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class",
+    "crumbs": [
+      "ggplot2 basics · frames, glyphs, scales, facets"
+    ]
+  },
+  {
+    "objectID": "weeks/week2/day2-ggplot-basics.html#resources",
+    "href": "weeks/week2/day2-ggplot-basics.html#resources",
+    "title": "ggplot2 basics · frames, glyphs, scales, facets",
+    "section": "Resources",
+    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout",
+    "crumbs": [
+      "ggplot2 basics · frames, glyphs, scales, facets"
+    ]
+  },
+  {
+    "objectID": "weeks/week2/day2-ggplot-basics.html#after-class",
+    "href": "weeks/week2/day2-ggplot-basics.html#after-class",
+    "title": "ggplot2 basics · frames, glyphs, scales, facets",
+    "section": "After class",
+    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for.",
+    "crumbs": [
+      "ggplot2 basics · frames, glyphs, scales, facets"
+    ]
+  },
+  {
+    "objectID": "weeks/week2/index.html",
+    "href": "weeks/week2/index.html",
+    "title": "Week 2 — Tidy Data & ggplot",
+    "section": "",
+    "text": "Note\n\n\n\nMonday is Memorial Day — no class. Week starts Tuesday.\nWe introduce data frames and the grammar of graphics. By Friday you’ll be making layered plots from real data and critiquing other people’s visualizations.",
+    "crumbs": [
+      "Week 2 — Tidy Data & ggplot"
+    ]
+  },
+  {
+    "objectID": "weeks/week2/index.html#daily-plan",
+    "href": "weeks/week2/index.html#daily-plan",
+    "title": "Week 2 — Tidy Data & ggplot",
+    "section": "Daily plan",
+    "text": "Daily plan\n\n\n\nDate\nTopic\nFiles\n\n\n\n\nMon May 25\nNo class — Memorial Day\n—\n\n\nTue May 26\nData frames · tibbles · grammar of graphics\nslides, in-class code\n\n\nWed May 27\nggplot2 basics · aesthetics · geoms\nslides, in-class code\n\n\nThu May 28\nMultivariable graphics · facets · scales\nslides, in-class code\n\n\nFri May 29\nQuiz 2 · graphics critique activity\nquiz, activity",
+    "crumbs": [
+      "Week 2 — Tidy Data & ggplot"
+    ]
+  },
+  {
+    "objectID": "weeks/week2/index.html#readings-due-this-week",
+    "href": "weeks/week2/index.html#readings-due-this-week",
+    "title": "Week 2 — Tidy Data & ggplot",
+    "section": "Readings due this week",
+    "text": "Readings due this week\n\nBefore Tue: Data Computing Ch 5 (§5.1–5.6) — introduction to data graphics\nBefore Wed: Data Computing Ch 6 (§6.1–6.5) — frames, glyphs, scales, facets, layers\nBefore Thu: Data Computing Ch 8 (§8.1–8.3) — specifying graphs, axes, labels",
+    "crumbs": [
+      "Week 2 — Tidy Data & ggplot"
+    ]
+  },
+  {
+    "objectID": "weeks/week2/index.html#assignments-due-this-week",
+    "href": "weeks/week2/index.html#assignments-due-this-week",
+    "title": "Week 2 — Tidy Data & ggplot",
+    "section": "Assignments due this week",
+    "text": "Assignments due this week\n\nReading Quiz 2 — due before Tuesday’s class (Canvas)\nHW 1 — due Wed May 27, 11:59 p.m.\nQuiz 2 — in class Friday May 29",
+    "crumbs": [
+      "Week 2 — Tidy Data & ggplot"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day3-functions-packages.html",
+    "href": "weeks/week1/day3-functions-packages.html",
+    "title": "Functions, packages, and the tidyverse",
+    "section": "",
+    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class",
+    "crumbs": [
+      "Functions, packages, and the tidyverse"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day3-functions-packages.html#before-class",
+    "href": "weeks/week1/day3-functions-packages.html#before-class",
+    "title": "Functions, packages, and the tidyverse",
+    "section": "Before class",
+    "text": "Before class\n\nRead: Data Computing Ch 3 (§3.1–3.5)\nTODO: any prep materials, data files, etc.",
+    "crumbs": [
+      "Functions, packages, and the tidyverse"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day3-functions-packages.html#outline",
+    "href": "weeks/week1/day3-functions-packages.html#outline",
+    "title": "Functions, packages, and the tidyverse",
+    "section": "Outline",
+    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class",
+    "crumbs": [
+      "Functions, packages, and the tidyverse"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day3-functions-packages.html#resources",
+    "href": "weeks/week1/day3-functions-packages.html#resources",
+    "title": "Functions, packages, and the tidyverse",
+    "section": "Resources",
+    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout",
+    "crumbs": [
+      "Functions, packages, and the tidyverse"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day3-functions-packages.html#after-class",
+    "href": "weeks/week1/day3-functions-packages.html#after-class",
+    "title": "Functions, packages, and the tidyverse",
+    "section": "After class",
+    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for.",
+    "crumbs": [
+      "Functions, packages, and the tidyverse"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro.html#course-info-introductions",
+    "href": "weeks/week1/day1-intro.html#course-info-introductions",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "1. Course Info & Introductions",
+    "text": "1. Course Info & Introductions\nSummer Session 1: May 18, 2026 – June 26, 2026\n\nClass time: M/T/W/Th/F, 9:35 a.m. to 10:50 a.m.\nClass location: Huck Life Sciences Building 007\nInstructor: Charles Costanzo\n\nEmail: cgc5478@psu.edu\nOffice: Thomas 301 (Office Hours TBD)\n\nTeaching Assistant (TA): Xinyue Wang\n\nEmail: xpw5228@psu.edu\n\n\n\n\n\n\n\n\n\n\nIcebreaker: name, major, your favorite song right now.",
+    "crumbs": [
+      "Day 1 — Course intro & what is R?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro.html#learning-goals",
+    "href": "weeks/week1/day1-intro.html#learning-goals",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Learning Goals",
+    "text": "Learning Goals\nThis course will teach you how to:\n\n\nUse R: Program in the R language effectively and use the R software environment to efficiently compute with data.\n\n\n\n\nWrangle Real Data: Access, clean, join, and format data from various sources.\n\n\n\n\nVisualize Information: Create graphical and descriptive summaries of data.\n\n\n\n\nBuild Reproducible Workflows: Write well-documented code using tools like RStudio, RMarkdown, and Git/GitHub.\n\n\n\n\n\n\n\n\n\n\nNo previous programming background is required for this course.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis is not a course on general purpose programming.",
+    "crumbs": [
+      "Day 1 — Course intro & what is R?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro.html#course-logistics",
+    "href": "weeks/week1/day1-intro.html#course-logistics",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Course logistics",
+    "text": "Course logistics\n\nSix weeks is short. Daily pace is faster than a 15-week course. Falling a week—or even a day—behind is more serious than spring/fall courses.\nAttendance matters. Lots of in-class graded work (activities, quizzes, oral checkpoints).\nTimely communication is critical. Reach out to me as soon as possible if something comes up that necessitates you missing class, having a deadline extended, etc.\nAssignment Weights:\n\n\n\n\n\n\n\n\n\n\n\nReadings\nQuizzes\nIn-class activities\nHomework\nExam\nCourse project\n\n\n\n\n10%\n15%\n25%\n10%\n20%\n20%\n\n\n\nGrading Scheme:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA\nA-\nB+\nB\nB-\nC+\nC\nD\nF\n\n\n\n\n93%+\n90%\n87%\n83%\n80%\n77%\n70%\n60%\n&lt; 60%",
+    "crumbs": [
+      "Day 1 — Course intro & what is R?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro.html#ai-policy",
+    "href": "weeks/week1/day1-intro.html#ai-policy",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "AI policy",
+    "text": "AI policy\n\nAI is allowed on homework, take-home exam, project with disclosure. Not allowed on in-class work.\nDisclosure is graded on homework, but it is not an integrity issue if you skip it (you will just lose points.)\nLying about AI use is an integrity issue.\nOral project checkpoints are how I verify you understand your own work.\nPractical implication: AI is a study aid, not a substitute. The course is designed so that students who lean on it too heavily will struggle on the in-class portions.\n\n\n\n\n\n\nDiscussion Questions\n\n\n\nHow have you used AI in past courses?\nWhat are your initial thoughts on the policy?",
+    "crumbs": [
+      "Day 1 — Course intro & what is R?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro.html#what-is-r",
+    "href": "weeks/week1/day1-intro.html#what-is-r",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "What is R?",
+    "text": "What is R?\nR is a programming language and a software environment for statistical computing and graphics.\n\nDesigned by statisticians for the purpose of data analysis.\nFirst version created in August 1993 (almost 33 years ago).\nHas grown rapidly in popularity and is widely used in academia and industry by statisticians, data analysts, and data scientists alike.\nEnormous number of user-contributed packages, which are add-ons that extend the functionality of R.\n\nCurrently the Comprehensive R Archive Network (CRAN) package repository features 23,670 available packages.1\n\n\nAs of May 15, 2026.",
+    "crumbs": [
+      "Day 1 — Course intro & what is R?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro.html#some-examples-of-said-r-packages",
+    "href": "weeks/week1/day1-intro.html#some-examples-of-said-r-packages",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Some Examples of Said R Packages",
+    "text": "Some Examples of Said R Packages\n\n\n\n\n\n\n\n\n\n\nFigure 1: Hex stickers from the rstudio/hex-stickers repository.",
+    "crumbs": [
+      "Day 1 — Course intro & what is R?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro.html#r-vs.-rstudio",
+    "href": "weeks/week1/day1-intro.html#r-vs.-rstudio",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "R vs. RStudio",
+    "text": "R vs. RStudio\n\nR is a computer language that performs computations based on human-written instructions.\nRStudio is an integrated development environment (IDE) for R programming. It combines the R console with supplementary tools for more efficient R programming.\n\n\n\n\n\n\n\n\n\n\n\n\n(a) R: Do not open this\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n(b) RStudio: Open this\n\n\n\n\n\n\n\nFigure 2: R and RStudio logos.",
+    "crumbs": [
+      "Day 1 — Course intro & what is R?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro.html#tidy-data-neq-neat-data",
+    "href": "weeks/week1/day1-intro.html#tidy-data-neq-neat-data",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Tidy Data \\(\\neq\\) Neat Data",
+    "text": "Tidy Data \\(\\neq\\) Neat Data\n\n\n\n\n\n\n\nThis table is easy for humans to read. What might make it tricky for a computer to read?\n\n\n\n\n\n\n\n\n\nFigure 3: A spreadsheet showing party change applications in PA. Source: PA Dept. of State (May 4–11, 2026).\n\nTwo simple rules for Tidy Data:\n\n\n\nConsistent Cases (Rows): Every row represents the same underlying attribute\nUniform Variables (Columns): Every column contains the same type of value.",
+    "crumbs": [
+      "Day 1 — Course intro & what is R?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro.html#pa-voter-table---tidied-up",
+    "href": "weeks/week1/day1-intro.html#pa-voter-table---tidied-up",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "PA Voter Table - Tidied Up",
+    "text": "PA Voter Table - Tidied Up\n\n\n\nShow the R code.\n# 1. Load data and provide clean column names to handle the nested headers\nraw_data &lt;- readxl::read_excel(\"data/currentvotestats.xlsx\", \n                       sheet = \"Party-to-Party(2026)\", \n                       skip = 3, # Skip the human-readable headers\n                       col_names = c(\"county\", \n                                     \"week_dem_R\", \"week_dem_OTH\", \n                                     \"week_rep_D\", \"week_rep_OTH\",\n                                     \"year_dem_R\", \"year_dem_OTH\", \n                                     \"year_rep_D\", \"year_rep_OTH\"))\n\n# 2. Clean and Pivot\ntidy_voter_data &lt;- raw_data %&gt;%\n  filter(!is.na(county), county != \"Totals:\") %&gt;% # Rule 1: Consistent Cases\n  pivot_longer(\n    cols = -county, \n    names_to = c(\"period\", \"target_party\", \"origin_party\"),\n    names_sep = \"_\",\n    values_to = \"count\"\n  )\n\nknitr::kable(head(tidy_voter_data %&gt;% filter(county == \"CENTRE\")))\n\n\n\n\n\ncounty\nperiod\ntarget_party\norigin_party\ncount\n\n\n\n\nCENTRE\nweek\ndem\nR\n2\n\n\nCENTRE\nweek\ndem\nOTH\n14\n\n\nCENTRE\nweek\nrep\nD\n3\n\n\nCENTRE\nweek\nrep\nOTH\n4\n\n\nCENTRE\nyear\ndem\nR\n88\n\n\nCENTRE\nyear\ndem\nOTH\n130",
+    "crumbs": [
+      "Day 1 — Course intro & what is R?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro.html#demo-what-r-can-do",
+    "href": "weeks/week1/day1-intro.html#demo-what-r-can-do",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Demo: what R can do",
+    "text": "Demo: what R can do\n\nLive demo — students just watch, no need to follow along.\nGoals: - Show R is a real programming environment, not a calculator. - Walk through a complete small analysis: load, clean, visualize, summarize. - Make it look easy.\nNarrate at a high level — don’t get into syntax, they’ll learn that.\nCandidate datasets: - palmerpenguins::penguins — clean and visually striking (current pick) - Tidy Tuesday “horror movies” or similar topical - NYC airbnb pricing\n\n\n\n\nShow the R code.\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\n# What does the data look like?\nglimpse(penguins)\n\n\nRows: 344\nColumns: 8\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\nShow the R code.\n# Quick summary by species\npenguins |&gt;\n  group_by(species) |&gt;\n  summarize(\n    n            = n(),\n    mean_mass_g  = mean(body_mass_g,    na.rm = TRUE),\n    mean_bill_mm = mean(bill_length_mm, na.rm = TRUE)\n  )\n\n\n# A tibble: 3 × 4\n  species       n mean_mass_g mean_bill_mm\n  &lt;fct&gt;     &lt;int&gt;       &lt;dbl&gt;        &lt;dbl&gt;\n1 Adelie      152       3701.         38.8\n2 Chinstrap    68       3733.         48.8\n3 Gentoo      124       5076.         47.5\n\n\nShow the R code.\n# A nice plot\npenguins |&gt;\n  ggplot(aes(x = bill_length_mm, y = body_mass_g, color = species)) +\n  geom_point(alpha = 0.7) +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  labs(\n    title = \"Bill length vs body mass, by species\",\n    x = \"Bill length (mm)\",\n    y = \"Body mass (g)\"\n  ) +\n  theme_minimal()",
+    "crumbs": [
+      "Day 1 — Course intro & what is R?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro.html#setup-checklist-due-by-tuesday",
+    "href": "weeks/week1/day1-intro.html#setup-checklist-due-by-tuesday",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Setup checklist — due by Tuesday",
+    "text": "Setup checklist — due by Tuesday\nInstall R and RStudio\n\nR: https://cloud.r-project.org\nRStudio: https://posit.co/download/rstudio-desktop\n\n\n\n\n\n\n\nMac users\n\n\nInstall XQuartz too — some packages we’ll use later in the course need it.\n\n\n\nConfigure RStudio\n\nTools &gt; Global Options... &gt; General\nRestore .RData into workspace at startup: Unchecked\nSave workspace to .RData on exit: Never\n\nAssignments due Tuesday\n\nHW 0: Setup confirmation \nReading Quiz 1 on Data Computing §2.1–2.3\nRead Data Computing §2.1–2.3 before class",
+    "crumbs": [
+      "Day 1 — Course intro & what is R?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro.html#wrap-up-looking-ahead",
+    "href": "weeks/week1/day1-intro.html#wrap-up-looking-ahead",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Wrap-up & looking ahead",
+    "text": "Wrap-up & looking ahead\nTomorrow: Real R syntax (variables, functions, vectors)\nDue Tuesday before class:\n\nHW 0: Setup confirmation\nReading Quiz 1 on Canvas\nRead Data Computing §2.1–2.3\n\nReference links\n\nSyllabus · AI policy · Schedule · Data Computing\n\n\n\n\nReach out\n\n\nStuck on setup? Email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu) before Tuesday — don’t wait until class.",
+    "crumbs": [
+      "Day 1 — Course intro & what is R?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/index.html",
+    "href": "weeks/week1/index.html",
+    "title": "Week 1 — Foundations",
+    "section": "",
+    "text": "This week we get everyone set up with R, RStudio, and Quarto, and cover the absolute basics of the R language. By Friday you’ll have written your first reproducible document and learned the pipe — the core glue of tidyverse-style R.",
+    "crumbs": [
+      "Week 1 — Foundations"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/index.html#daily-plan",
+    "href": "weeks/week1/index.html#daily-plan",
+    "title": "Week 1 — Foundations",
+    "section": "Daily plan",
+    "text": "Daily plan\n\n\n\nDate\nTopic\nFiles\n\n\n\n\nMon May 18\nCourse intro & what is R?\nView Slides · Download HTML · PDF, in-class code\n\n\nTue May 19\nR, RStudio, console · vectors · types\nslides, in-class code\n\n\nWed May 20\nFunctions, packages · tidyverse\nslides, in-class code\n\n\nThu May 21\nQuarto basics\nslides, in-class code\n\n\nFri May 22\nQuiz 1 · pipe and chaining syntax\nquiz, in-class code",
+    "crumbs": [
+      "Week 1 — Foundations"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/index.html#readings-due-this-week",
+    "href": "weeks/week1/index.html#readings-due-this-week",
+    "title": "Week 1 — Foundations",
+    "section": "Readings due this week",
+    "text": "Readings due this week\n\nBefore Mon: Data Computing Ch 1 (§1.1–1.5) — what tidy data is (conceptual)\nBefore Tue: Data Computing Ch 2 (§2.1–2.8) — R, RStudio, vectors, objects\nBefore Wed: Data Computing Ch 3 (§3.1–3.5) — basic R commands\nBefore Thu: Data Computing Ch 4 (§4.1–4.7) — files and Quarto/Rmd documents\nBefore Fri: Data Computing §3.6 — chaining syntax (the pipe)",
+    "crumbs": [
+      "Week 1 — Foundations"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/index.html#assignments-due-this-week",
+    "href": "weeks/week1/index.html#assignments-due-this-week",
+    "title": "Week 1 — Foundations",
+    "section": "Assignments due this week",
+    "text": "Assignments due this week\n\nReading Quiz 1 — due before Tuesday’s class (Canvas)\nHW 0 (setup confirmation) — due Thursday May 21, 11:59 p.m.\nQuiz 1 — in class Friday May 22",
+    "crumbs": [
+      "Week 1 — Foundations"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/index.html#heads-up-for-next-week",
+    "href": "weeks/week1/index.html#heads-up-for-next-week",
+    "title": "Week 1 — Foundations",
+    "section": "Heads up for next week",
+    "text": "Heads up for next week\n\nData Computing Ch 5 (§5.1–5.6) for Tuesday May 26 — graphics intro.\nNo class Monday May 25 (Memorial Day).",
+    "crumbs": [
+      "Week 1 — Foundations"
+    ]
+  },
+  {
+    "objectID": "weeks/week6/day1-clustering.html",
+    "href": "weeks/week6/day1-clustering.html",
+    "title": "Quiz 5 (rescheduled) · unsupervised learning, clustering",
+    "section": "",
+    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
+  },
+  {
+    "objectID": "weeks/week6/day1-clustering.html#before-class",
+    "href": "weeks/week6/day1-clustering.html#before-class",
+    "title": "Quiz 5 (rescheduled) · unsupervised learning, clustering",
+    "section": "Before class",
+    "text": "Before class\n\nRead: Data Computing Ch 18 (§18.2)\nTODO: any prep materials, data files, etc."
+  },
+  {
+    "objectID": "weeks/week6/day1-clustering.html#outline",
+    "href": "weeks/week6/day1-clustering.html#outline",
+    "title": "Quiz 5 (rescheduled) · unsupervised learning, clustering",
+    "section": "Outline",
+    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
+  },
+  {
+    "objectID": "weeks/week6/day1-clustering.html#resources",
+    "href": "weeks/week6/day1-clustering.html#resources",
+    "title": "Quiz 5 (rescheduled) · unsupervised learning, clustering",
+    "section": "Resources",
+    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+  },
+  {
+    "objectID": "weeks/week6/day1-clustering.html#after-class",
+    "href": "weeks/week6/day1-clustering.html#after-class",
+    "title": "Quiz 5 (rescheduled) · unsupervised learning, clustering",
+    "section": "After class",
+    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
+  },
+  {
+    "objectID": "weeks/week6/day5-presentations.html",
+    "href": "weeks/week6/day5-presentations.html",
+    "title": "Quiz 6 · short project presentations · course wrap-up",
+    "section": "",
+    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
+  },
+  {
+    "objectID": "weeks/week6/day5-presentations.html#before-class",
+    "href": "weeks/week6/day5-presentations.html#before-class",
+    "title": "Quiz 6 · short project presentations · course wrap-up",
+    "section": "Before class",
+    "text": "Before class\n\nTODO: any prep materials, data files, etc.\n(No new reading)"
+  },
+  {
+    "objectID": "weeks/week6/day5-presentations.html#outline",
+    "href": "weeks/week6/day5-presentations.html#outline",
+    "title": "Quiz 6 · short project presentations · course wrap-up",
+    "section": "Outline",
+    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
+  },
+  {
+    "objectID": "weeks/week6/day5-presentations.html#resources",
+    "href": "weeks/week6/day5-presentations.html#resources",
+    "title": "Quiz 6 · short project presentations · course wrap-up",
+    "section": "Resources",
+    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+  },
+  {
+    "objectID": "weeks/week6/day5-presentations.html#after-class",
+    "href": "weeks/week6/day5-presentations.html#after-class",
+    "title": "Quiz 6 · short project presentations · course wrap-up",
+    "section": "After class",
+    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
+  },
+  {
+    "objectID": "assignments/exam/index.html",
+    "href": "assignments/exam/index.html",
+    "title": "Exam",
+    "section": "",
+    "text": "There is one exam, given on Thursday, June 11. It has two parts, each worth half of the exam grade."
+  },
+  {
+    "objectID": "assignments/exam/index.html#in-class-20-of-course-grade",
+    "href": "assignments/exam/index.html#in-class-20-of-course-grade",
+    "title": "Exam",
+    "section": "In-class (20% of course grade)",
+    "text": "In-class (20% of course grade)\n\nDuring class time (9:35–10:50 a.m.).\nOn paper, closed book, no AI tools.\nCovers material through end of Week 3 plus Week 4 days 1–2 (joins, importing).\nMix of: short answer; “predict the output”; “write a small chunk of code”; “find the bug”; reading a plot or summary table."
+  },
+  {
+    "objectID": "assignments/exam/index.html#what-to-study",
+    "href": "assignments/exam/index.html#what-to-study",
+    "title": "Exam",
+    "section": "What to study",
+    "text": "What to study\nProbably the single best preparation is to redo old homework, activities, and quizzes from scratch without looking at your prior answers.\n\nAll dplyr verbs we’ve covered.\nReading and writing ggplot2 code.\nIdentifying common bugs (== vs =, factor vs character, missing argument names).\nReading provenance and structure of a tibble from a glimpse() printout.\nJoins: who keeps which rows, what NAs mean in the output."
+  },
+  {
+    "objectID": "assignments/exam/index.html#materials",
+    "href": "assignments/exam/index.html#materials",
+    "title": "Exam",
+    "section": "Materials",
+    "text": "Materials\n\nTODO: practice problems\nTODO: in-class exam paper version\nTODO: take-home QMD with starter data\nTODO: solutions (post-exam)"
+  },
+  {
+    "objectID": "assignments/homework/index.html",
+    "href": "assignments/homework/index.html",
+    "title": "Homework",
+    "section": "",
+    "text": "There are 6 homework assignments over the course. The lowest score is dropped."
+  },
+  {
+    "objectID": "assignments/homework/index.html#how-to-submit",
+    "href": "assignments/homework/index.html#how-to-submit",
+    "title": "Homework",
+    "section": "How to submit",
+    "text": "How to submit\n\nWork in Quarto, render to PDF or HTML.\nInclude a code appendix at the end (for HW 2+).\nInclude the AI use note (rubric line, 1–2 points).\nSubmit the rendered file to Canvas. Also push the .qmd to your personal GitHub repo for the course."
+  },
+  {
+    "objectID": "assignments/homework/index.html#ai-policy",
+    "href": "assignments/homework/index.html#ai-policy",
+    "title": "Homework",
+    "section": "AI policy",
+    "text": "AI policy\nYou may use AI tools (ChatGPT, Claude, Copilot, etc.) on homework. You must:\n\nRead everything you submit. You own the output.\nInclude an AI use note (one sentence is fine).\nBe prepared to answer questions about your code if I ask.\n\nSee the Academic Integrity & AI Policy for the full version."
+  },
+  {
+    "objectID": "assignments/homework/index.html#late-policy",
+    "href": "assignments/homework/index.html#late-policy",
+    "title": "Homework",
+    "section": "Late policy",
+    "text": "Late policy\nEmail me for an extension if you need one. Extensions are generally 24–48 hours. Submissions more than 48 hours late without prior arrangement may not be accepted. Lowest score is dropped."
+  },
+  {
+    "objectID": "assignments/homework/index.html#standard-ai-use-note-rubric-line",
+    "href": "assignments/homework/index.html#standard-ai-use-note-rubric-line",
+    "title": "Homework",
+    "section": "Standard AI use note rubric line",
+    "text": "Standard AI use note rubric line\nEvery homework rubric includes the following (1–2 points):\n\nAI use note (2 pts). A short note (1–2 sentences) describing whether you used AI tools on this homework and, if so, what for. “Did not use AI” is a valid answer. Leaving this blank costs the points but is not an integrity issue. Falsely claiming you didn’t use AI when you did is an integrity issue."
+  },
+  {
+    "objectID": "assignments/homework/index.html#template",
+    "href": "assignments/homework/index.html#template",
+    "title": "Homework",
+    "section": "Template",
+    "text": "Template\nA starter Quarto template is in the reference materials."
+  },
+  {
+    "objectID": "assignments/activities/index.html",
+    "href": "assignments/activities/index.html",
+    "title": "In-class Activities",
+    "section": "",
+    "text": "In-class activities are short individual or group exercises done during class. Lowest activity score is dropped."
+  },
+  {
+    "objectID": "assignments/activities/index.html#format",
+    "href": "assignments/activities/index.html#format",
+    "title": "In-class Activities",
+    "section": "Format",
+    "text": "Format\n\nAssigned during class. Sometimes due at end of class, sometimes by 11:59 p.m. that night.\nClosed-book during class. (When taken home for end-of-day submission, AI policy follows the regular open-assessment rules.)\nMix of individual and small-group."
+  },
+  {
+    "objectID": "assignments/activities/index.html#roughly-how-many",
+    "href": "assignments/activities/index.html#roughly-how-many",
+    "title": "In-class Activities",
+    "section": "Roughly how many",
+    "text": "Roughly how many\nWe will have ~15–20 activities across the six weeks. Specifics depend on day-to-day pacing."
+  },
+  {
+    "objectID": "assignments/activities/index.html#ai-policy",
+    "href": "assignments/activities/index.html#ai-policy",
+    "title": "In-class Activities",
+    "section": "AI policy",
+    "text": "AI policy\nIn-class activities: no AI tools. Activities that are released to be completed at home (end-of-day) follow the regular open-assessment AI policy."
+  },
+  {
+    "objectID": "assignments/activities/index.html#make-ups",
+    "href": "assignments/activities/index.html#make-ups",
+    "title": "In-class Activities",
+    "section": "Make-ups",
+    "text": "Make-ups\nActivities require in-class attendance. Make-ups possible but not guaranteed."
+  },
+  {
+    "objectID": "assignments/quizzes/index.html",
+    "href": "assignments/quizzes/index.html",
+    "title": "Quizzes",
+    "section": "",
+    "text": "Six weekly quizzes on Fridays (one rescheduled to Monday June 22 because of Juneteenth). In class, on paper, closed book, no AI tools. Lowest score is dropped.\nNote: depending on calendar there may only be 5 quizzes total. Adjust the drop policy accordingly."
+  },
+  {
+    "objectID": "assignments/quizzes/index.html#format",
+    "href": "assignments/quizzes/index.html#format",
+    "title": "Quizzes",
+    "section": "Format",
+    "text": "Format\n\n25–30 minutes during class.\nMix of short answer, “predict the output”, and “write a small chunk of code”.\nAll paper-based. Bring a pen.\nClosed book. No phones, no laptops, no AI."
+  },
+  {
+    "objectID": "assignments/quizzes/index.html#solutions",
+    "href": "assignments/quizzes/index.html#solutions",
+    "title": "Quizzes",
+    "section": "Solutions",
+    "text": "Solutions\nSolutions posted to Canvas after grading. Each quiz returns to you with comments."
+  },
+  {
+    "objectID": "assignments/quizzes/index.html#make-ups",
+    "href": "assignments/quizzes/index.html#make-ups",
+    "title": "Quizzes",
+    "section": "Make-ups",
+    "text": "Make-ups\nMake-ups are possible but not guaranteed. If you know in advance you’ll miss a Friday, email me at least 24 hours before. If you miss for illness or emergency, email me as soon as you can."
+  },
+  {
+    "objectID": "weeks/week6/index.html",
+    "href": "weeks/week6/index.html",
+    "title": "Week 6 — Special Topics & Project",
+    "section": "",
+    "text": "The last week. Some special topics (clustering, decision trees — instructor’s choice), the second oral checkpoint, and project wrap-up. Final report and video due Friday night."
+  },
+  {
+    "objectID": "weeks/week6/index.html#daily-plan",
+    "href": "weeks/week6/index.html#daily-plan",
+    "title": "Week 6 — Special Topics & Project",
+    "section": "Daily plan",
+    "text": "Daily plan\n\n\n\nDate\nTopic\nFiles\n\n\n\n\nMon Jun 22\nQuiz 5 (rescheduled) · intro to clustering\nquiz, slides\n\n\nTue Jun 23\nDecision trees / CART (or alternative)\nslides, in-class code\n\n\nWed Jun 24\nProject work day · oral check-in #1 makeups\n—\n\n\nThu Jun 25\nProject work day · oral check-in #2 (final walkthrough)\n—\n\n\nFri Jun 26\nQuiz 6 · short project presentations · wrap-up\nquiz"
+  },
+  {
+    "objectID": "weeks/week6/index.html#readings-due-this-week",
+    "href": "weeks/week6/index.html#readings-due-this-week",
+    "title": "Week 6 — Special Topics & Project",
+    "section": "Readings due this week",
+    "text": "Readings due this week\n\nBefore Mon: Data Computing Ch 18 (§18.2) — unsupervised learning, clustering\nBefore Tue: Data Computing Ch 18 (§18.3) — trees from data"
+  },
+  {
+    "objectID": "weeks/week6/index.html#assignments-due-this-week",
+    "href": "weeks/week6/index.html#assignments-due-this-week",
+    "title": "Week 6 — Special Topics & Project",
+    "section": "Assignments due this week",
+    "text": "Assignments due this week\n\nQuiz 5 — Monday Jun 22 in class\nHW 5 — due Tue Jun 23, 11:59 p.m.\nProject Checkpoint 2 — due Wed Jun 24, 11:59 p.m.\nProject Oral Check-in #2 — Thursday Jun 25 in class (signup on Canvas)\nQuiz 6 — Friday Jun 26 in class\nFinal project report + video URL — due Friday Jun 26, 11:59 p.m."
+  },
+  {
+    "objectID": "weeks/week6/index.html#after-the-course",
+    "href": "weeks/week6/index.html#after-the-course",
+    "title": "Week 6 — Special Topics & Project",
+    "section": "After the course",
+    "text": "After the course\n\nFinal grades posted by [date TBD].\nCourse evaluations: please complete them. They are read."
+  },
+  {
+    "objectID": "weeks/week6/day2-trees.html",
+    "href": "weeks/week6/day2-trees.html",
+    "title": "Decision trees / CART",
+    "section": "",
+    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
+  },
+  {
+    "objectID": "weeks/week6/day2-trees.html#before-class",
+    "href": "weeks/week6/day2-trees.html#before-class",
+    "title": "Decision trees / CART",
+    "section": "Before class",
+    "text": "Before class\n\nRead: Data Computing Ch 18 (§18.3)\nTODO: any prep materials, data files, etc."
+  },
+  {
+    "objectID": "weeks/week6/day2-trees.html#outline",
+    "href": "weeks/week6/day2-trees.html#outline",
+    "title": "Decision trees / CART",
+    "section": "Outline",
+    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
+  },
+  {
+    "objectID": "weeks/week6/day2-trees.html#resources",
+    "href": "weeks/week6/day2-trees.html#resources",
+    "title": "Decision trees / CART",
+    "section": "Resources",
+    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+  },
+  {
+    "objectID": "weeks/week6/day2-trees.html#after-class",
+    "href": "weeks/week6/day2-trees.html#after-class",
+    "title": "Decision trees / CART",
+    "section": "After class",
+    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
+  },
+  {
+    "objectID": "weeks/week1/day5-quiz-pipe.html",
+    "href": "weeks/week1/day5-quiz-pipe.html",
+    "title": "Quiz 1 · the pipe and chaining syntax",
+    "section": "",
+    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
+  },
+  {
+    "objectID": "weeks/week1/day5-quiz-pipe.html#before-class",
+    "href": "weeks/week1/day5-quiz-pipe.html#before-class",
+    "title": "Quiz 1 · the pipe and chaining syntax",
+    "section": "Before class",
+    "text": "Before class\n\nRead: Data Computing §3.6\nTODO: any prep materials, data files, etc."
+  },
+  {
+    "objectID": "weeks/week1/day5-quiz-pipe.html#outline",
+    "href": "weeks/week1/day5-quiz-pipe.html#outline",
+    "title": "Quiz 1 · the pipe and chaining syntax",
+    "section": "Outline",
+    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
+  },
+  {
+    "objectID": "weeks/week1/day5-quiz-pipe.html#resources",
+    "href": "weeks/week1/day5-quiz-pipe.html#resources",
+    "title": "Quiz 1 · the pipe and chaining syntax",
+    "section": "Resources",
+    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+  },
+  {
+    "objectID": "weeks/week1/day5-quiz-pipe.html#after-class",
+    "href": "weeks/week1/day5-quiz-pipe.html#after-class",
+    "title": "Quiz 1 · the pipe and chaining syntax",
+    "section": "After class",
+    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics.html",
+    "href": "weeks/week1/day2-r-basics.html",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "",
+    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class",
+    "crumbs": [
+      "R, RStudio, and the console · vectors · types"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics.html#before-class",
+    "href": "weeks/week1/day2-r-basics.html#before-class",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Before class",
+    "text": "Before class\n\nRead: Data Computing Ch 2 (§2.1–2.8)\nTODO: any prep materials, data files, etc.",
+    "crumbs": [
+      "R, RStudio, and the console · vectors · types"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics.html#outline",
+    "href": "weeks/week1/day2-r-basics.html#outline",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Outline",
+    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class",
+    "crumbs": [
+      "R, RStudio, and the console · vectors · types"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics.html#resources",
+    "href": "weeks/week1/day2-r-basics.html#resources",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Resources",
+    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout",
+    "crumbs": [
+      "R, RStudio, and the console · vectors · types"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics.html#after-class",
+    "href": "weeks/week1/day2-r-basics.html#after-class",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "After class",
+    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for.",
+    "crumbs": [
+      "R, RStudio, and the console · vectors · types"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day4-quarto.html",
+    "href": "weeks/week1/day4-quarto.html",
+    "title": "Quarto basics · reproducible documents",
+    "section": "",
+    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class",
+    "crumbs": [
+      "Quarto basics · reproducible documents"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day4-quarto.html#before-class",
+    "href": "weeks/week1/day4-quarto.html#before-class",
+    "title": "Quarto basics · reproducible documents",
+    "section": "Before class",
+    "text": "Before class\n\nRead: Data Computing Ch 4 (§4.1–4.7)\nTODO: any prep materials, data files, etc.",
+    "crumbs": [
+      "Quarto basics · reproducible documents"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day4-quarto.html#outline",
+    "href": "weeks/week1/day4-quarto.html#outline",
+    "title": "Quarto basics · reproducible documents",
+    "section": "Outline",
+    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class",
+    "crumbs": [
+      "Quarto basics · reproducible documents"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day4-quarto.html#resources",
+    "href": "weeks/week1/day4-quarto.html#resources",
+    "title": "Quarto basics · reproducible documents",
+    "section": "Resources",
+    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout",
+    "crumbs": [
+      "Quarto basics · reproducible documents"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day4-quarto.html#after-class",
+    "href": "weeks/week1/day4-quarto.html#after-class",
+    "title": "Quarto basics · reproducible documents",
+    "section": "After class",
+    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for.",
+    "crumbs": [
+      "Quarto basics · reproducible documents"
+    ]
+  },
+  {
+    "objectID": "weeks/week2/day4-critique.html",
+    "href": "weeks/week2/day4-critique.html",
+    "title": "Quiz 2 · graphics critique activity",
+    "section": "",
+    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class",
+    "crumbs": [
+      "Quiz 2 · graphics critique activity"
+    ]
+  },
+  {
+    "objectID": "weeks/week2/day4-critique.html#before-class",
+    "href": "weeks/week2/day4-critique.html#before-class",
+    "title": "Quiz 2 · graphics critique activity",
+    "section": "Before class",
+    "text": "Before class\n\nTODO: any prep materials, data files, etc.\n(No new reading)",
+    "crumbs": [
+      "Quiz 2 · graphics critique activity"
+    ]
+  },
+  {
+    "objectID": "weeks/week2/day4-critique.html#outline",
+    "href": "weeks/week2/day4-critique.html#outline",
+    "title": "Quiz 2 · graphics critique activity",
+    "section": "Outline",
+    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class",
+    "crumbs": [
+      "Quiz 2 · graphics critique activity"
+    ]
+  },
+  {
+    "objectID": "weeks/week2/day4-critique.html#resources",
+    "href": "weeks/week2/day4-critique.html#resources",
+    "title": "Quiz 2 · graphics critique activity",
+    "section": "Resources",
+    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout",
+    "crumbs": [
+      "Quiz 2 · graphics critique activity"
+    ]
+  },
+  {
+    "objectID": "weeks/week2/day4-critique.html#after-class",
+    "href": "weeks/week2/day4-critique.html#after-class",
+    "title": "Quiz 2 · graphics critique activity",
+    "section": "After class",
+    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for.",
+    "crumbs": [
+      "Quiz 2 · graphics critique activity"
+    ]
+  },
+  {
+    "objectID": "weeks/week2/day1-data-frames.html",
+    "href": "weeks/week2/day1-data-frames.html",
+    "title": "Data frames · intro to data graphics",
+    "section": "",
+    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class",
+    "crumbs": [
+      "Data frames · intro to data graphics"
+    ]
+  },
+  {
+    "objectID": "weeks/week2/day1-data-frames.html#before-class",
+    "href": "weeks/week2/day1-data-frames.html#before-class",
+    "title": "Data frames · intro to data graphics",
+    "section": "Before class",
+    "text": "Before class\n\nRead: Data Computing Ch 5 (§5.1–5.6)\nTODO: any prep materials, data files, etc.",
+    "crumbs": [
+      "Data frames · intro to data graphics"
+    ]
+  },
+  {
+    "objectID": "weeks/week2/day1-data-frames.html#outline",
+    "href": "weeks/week2/day1-data-frames.html#outline",
+    "title": "Data frames · intro to data graphics",
+    "section": "Outline",
+    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class",
+    "crumbs": [
+      "Data frames · intro to data graphics"
+    ]
+  },
+  {
+    "objectID": "weeks/week2/day1-data-frames.html#resources",
+    "href": "weeks/week2/day1-data-frames.html#resources",
+    "title": "Data frames · intro to data graphics",
+    "section": "Resources",
+    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout",
+    "crumbs": [
+      "Data frames · intro to data graphics"
+    ]
+  },
+  {
+    "objectID": "weeks/week2/day1-data-frames.html#after-class",
+    "href": "weeks/week2/day1-data-frames.html#after-class",
+    "title": "Data frames · intro to data graphics",
+    "section": "After class",
+    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for.",
+    "crumbs": [
+      "Data frames · intro to data graphics"
+    ]
+  },
+  {
+    "objectID": "weeks/week5/day3-iteration.html",
+    "href": "weeks/week5/day3-iteration.html",
+    "title": "Vectorized operations · purrr::map",
+    "section": "",
+    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
+  },
+  {
+    "objectID": "weeks/week5/day3-iteration.html#before-class",
+    "href": "weeks/week5/day3-iteration.html#before-class",
+    "title": "Vectorized operations · purrr::map",
+    "section": "Before class",
+    "text": "Before class\n\nRead: R for Data Science Ch 26 (§26.4–26.5)\nTODO: any prep materials, data files, etc."
+  },
+  {
+    "objectID": "weeks/week5/day3-iteration.html#outline",
+    "href": "weeks/week5/day3-iteration.html#outline",
+    "title": "Vectorized operations · purrr::map",
+    "section": "Outline",
+    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
+  },
+  {
+    "objectID": "weeks/week5/day3-iteration.html#resources",
+    "href": "weeks/week5/day3-iteration.html#resources",
+    "title": "Vectorized operations · purrr::map",
+    "section": "Resources",
+    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+  },
+  {
+    "objectID": "weeks/week5/day3-iteration.html#after-class",
+    "href": "weeks/week5/day3-iteration.html#after-class",
+    "title": "Vectorized operations · purrr::map",
+    "section": "After class",
+    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
+  },
+  {
+    "objectID": "weeks/week5/index.html",
+    "href": "weeks/week5/index.html",
+    "title": "Week 5 — Functions, Iteration, Strings",
+    "section": "",
+    "text": "Note\n\n\n\nFriday June 19 is Juneteenth — no class. Quiz 5 will be rescheduled to Monday Jun 22.\nWe move beyond tidyverse verbs into more general programming territory: writing your own functions, iteration, and working with text and dates. Thursday is the first oral checkpoint during a project work session."
+  },
+  {
+    "objectID": "weeks/week5/index.html#daily-plan",
+    "href": "weeks/week5/index.html#daily-plan",
+    "title": "Week 5 — Functions, Iteration, Strings",
+    "section": "Daily plan",
+    "text": "Daily plan\n\n\n\nDate\nTopic\nFiles\n\n\n\n\nMon Jun 15\nWriting functions in R\nslides, in-class code\n\n\nTue Jun 16\nControl flow: if/else, for, while\nslides, in-class code\n\n\nWed Jun 17\nVectorized ops · purrr::map\nslides, in-class code\n\n\nThu Jun 18\nStrings, dates, intro to regex + Project oral check-in #1\nslides, in-class code\n\n\nFri Jun 19\nNo class — Juneteenth\n—"
+  },
+  {
+    "objectID": "weeks/week5/index.html#readings-due-this-week",
+    "href": "weeks/week5/index.html#readings-due-this-week",
+    "title": "Week 5 — Functions, Iteration, Strings",
+    "section": "Readings due this week",
+    "text": "Readings due this week\n\n\n\n\n\n\nNote\n\n\n\nMon–Wed readings come from R for Data Science (R4DS) — Data Computing doesn’t cover functions and iteration in depth. R4DS is free at https://r4ds.hadley.nz.\n\n\n\nBefore Mon: R for Data Science Ch 25 — Functions\nBefore Tue: R for Data Science Ch 26 (§26.1–26.3) — Iteration basics\nBefore Wed: R for Data Science Ch 26 (§26.4–26.5) — purrr::map\nBefore Thu: Data Computing Ch 17 (§17.1–17.2) — regular expressions"
+  },
+  {
+    "objectID": "weeks/week5/index.html#assignments-due-this-week",
+    "href": "weeks/week5/index.html#assignments-due-this-week",
+    "title": "Week 5 — Functions, Iteration, Strings",
+    "section": "Assignments due this week",
+    "text": "Assignments due this week\n\nReading Quiz 5 — due before Monday’s class (Canvas)\nHW 4 — due Tue Jun 16, 11:59 p.m.\nProject Oral Check-in #1 — Thursday Jun 18 in class (signup on Canvas)"
+  },
+  {
+    "objectID": "weeks/week5/day2-control-flow.html",
+    "href": "weeks/week5/day2-control-flow.html",
+    "title": "Control flow: if/else, for, while",
+    "section": "",
+    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
+  },
+  {
+    "objectID": "weeks/week5/day2-control-flow.html#before-class",
+    "href": "weeks/week5/day2-control-flow.html#before-class",
+    "title": "Control flow: if/else, for, while",
+    "section": "Before class",
+    "text": "Before class\n\nRead: R for Data Science Ch 26 (Iteration) §26.1–26.3\nTODO: any prep materials, data files, etc."
+  },
+  {
+    "objectID": "weeks/week5/day2-control-flow.html#outline",
+    "href": "weeks/week5/day2-control-flow.html#outline",
+    "title": "Control flow: if/else, for, while",
+    "section": "Outline",
+    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
+  },
+  {
+    "objectID": "weeks/week5/day2-control-flow.html#resources",
+    "href": "weeks/week5/day2-control-flow.html#resources",
+    "title": "Control flow: if/else, for, while",
+    "section": "Resources",
+    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+  },
+  {
+    "objectID": "weeks/week5/day2-control-flow.html#after-class",
+    "href": "weeks/week5/day2-control-flow.html#after-class",
+    "title": "Control flow: if/else, for, while",
+    "section": "After class",
+    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
+  },
+  {
+    "objectID": "weeks/week4/day5-scraping.html",
+    "href": "weeks/week4/day5-scraping.html",
+    "title": "Web scraping & HTML tables",
+    "section": "",
+    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
+  },
+  {
+    "objectID": "weeks/week4/day5-scraping.html#before-class",
+    "href": "weeks/week4/day5-scraping.html#before-class",
+    "title": "Web scraping & HTML tables",
+    "section": "Before class",
+    "text": "Before class\n\nRead: Data Computing Ch 16 (§16.3)\nTODO: any prep materials, data files, etc."
+  },
+  {
+    "objectID": "weeks/week4/day5-scraping.html#outline",
+    "href": "weeks/week4/day5-scraping.html#outline",
+    "title": "Web scraping & HTML tables",
+    "section": "Outline",
+    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
+  },
+  {
+    "objectID": "weeks/week4/day5-scraping.html#resources",
+    "href": "weeks/week4/day5-scraping.html#resources",
+    "title": "Web scraping & HTML tables",
+    "section": "Resources",
+    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+  },
+  {
+    "objectID": "weeks/week4/day5-scraping.html#after-class",
+    "href": "weeks/week4/day5-scraping.html#after-class",
+    "title": "Web scraping & HTML tables",
+    "section": "After class",
+    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
+  },
+  {
+    "objectID": "weeks/week4/index.html",
+    "href": "weeks/week4/index.html",
+    "title": "Week 4 — Joins, Import & Exam",
+    "section": "",
+    "text": "Important\n\n\n\nExam is Thursday, June 11. In-class portion in the morning (closed book, no AI); take-home portion released after class and due 11:59 p.m. that evening.\nWe cover the last major data-handling tools — joining multiple tables and importing data from various sources — and then sit the exam. Friday is a light day with Project Checkpoint 1 due that night."
+  },
+  {
+    "objectID": "weeks/week4/index.html#daily-plan",
+    "href": "weeks/week4/index.html#daily-plan",
+    "title": "Week 4 — Joins, Import & Exam",
+    "section": "Daily plan",
+    "text": "Daily plan\n\n\n\nDate\nTopic\nFiles\n\n\n\n\nMon Jun 8\nJoining tables: inner_join, left_join, etc.\nslides, in-class code\n\n\nTue Jun 9\nImporting data: CSV, Excel, web URLs\nslides, in-class code\n\n\nWed Jun 10\nExam review · practice problems\nreview packet\n\n\nThu Jun 11\nEXAM\nexam\n\n\nFri Jun 12\nIntro to web scraping (light day)\nslides, in-class code"
+  },
+  {
+    "objectID": "weeks/week4/index.html#readings-due-this-week",
+    "href": "weeks/week4/index.html#readings-due-this-week",
+    "title": "Week 4 — Joins, Import & Exam",
+    "section": "Readings due this week",
+    "text": "Readings due this week\n\nBefore Mon: Data Computing Ch 11 (§11.1–11.3) — joining two data frames\nBefore Tue: Data Computing Ch 16 (§16.1–16.2, 16.4–16.5) — data formats, CSV, cleaning, factors\nBefore Fri: Data Computing Ch 16 (§16.3) — HTML tables and web scraping"
+  },
+  {
+    "objectID": "weeks/week4/index.html#assignments-due-this-week",
+    "href": "weeks/week4/index.html#assignments-due-this-week",
+    "title": "Week 4 — Joins, Import & Exam",
+    "section": "Assignments due this week",
+    "text": "Assignments due this week\n\nReading Quiz 4 — due before Monday’s class (Canvas)\nHW 3 — due Tue Jun 9, 11:59 p.m.\nExam (in-class + take-home) — Thursday Jun 11\nProject Checkpoint 1 — due Friday Jun 12, 11:59 p.m."
+  },
+  {
+    "objectID": "weeks/week4/day2-import.html",
+    "href": "weeks/week4/day2-import.html",
+    "title": "Importing data: CSV, Excel, factors vs strings, cleaning",
+    "section": "",
+    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
+  },
+  {
+    "objectID": "weeks/week4/day2-import.html#before-class",
+    "href": "weeks/week4/day2-import.html#before-class",
+    "title": "Importing data: CSV, Excel, factors vs strings, cleaning",
+    "section": "Before class",
+    "text": "Before class\n\nRead: Data Computing Ch 16 (§16.1–16.2, 16.4–16.5)\nTODO: any prep materials, data files, etc."
+  },
+  {
+    "objectID": "weeks/week4/day2-import.html#outline",
+    "href": "weeks/week4/day2-import.html#outline",
+    "title": "Importing data: CSV, Excel, factors vs strings, cleaning",
+    "section": "Outline",
+    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
+  },
+  {
+    "objectID": "weeks/week4/day2-import.html#resources",
+    "href": "weeks/week4/day2-import.html#resources",
+    "title": "Importing data: CSV, Excel, factors vs strings, cleaning",
+    "section": "Resources",
+    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+  },
+  {
+    "objectID": "weeks/week4/day2-import.html#after-class",
+    "href": "weeks/week4/day2-import.html#after-class",
+    "title": "Importing data: CSV, Excel, factors vs strings, cleaning",
+    "section": "After class",
+    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
+  },
+  {
+    "objectID": "weeks/week3/day1-wrangling-concepts.html",
+    "href": "weeks/week3/day1-wrangling-concepts.html",
+    "title": "Wrangling concepts · reduction & transformation · group_by",
+    "section": "",
+    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
+  },
+  {
+    "objectID": "weeks/week3/day1-wrangling-concepts.html#before-class",
+    "href": "weeks/week3/day1-wrangling-concepts.html#before-class",
+    "title": "Wrangling concepts · reduction & transformation · group_by",
+    "section": "Before class",
+    "text": "Before class\n\nRead: Data Computing Ch 7 (§7.1–7.7)\nTODO: any prep materials, data files, etc."
+  },
+  {
+    "objectID": "weeks/week3/day1-wrangling-concepts.html#outline",
+    "href": "weeks/week3/day1-wrangling-concepts.html#outline",
+    "title": "Wrangling concepts · reduction & transformation · group_by",
+    "section": "Outline",
+    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
+  },
+  {
+    "objectID": "weeks/week3/day1-wrangling-concepts.html#resources",
+    "href": "weeks/week3/day1-wrangling-concepts.html#resources",
+    "title": "Wrangling concepts · reduction & transformation · group_by",
+    "section": "Resources",
+    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+  },
+  {
+    "objectID": "weeks/week3/day1-wrangling-concepts.html#after-class",
+    "href": "weeks/week3/day1-wrangling-concepts.html#after-class",
+    "title": "Wrangling concepts · reduction & transformation · group_by",
+    "section": "After class",
+    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
+  },
+  {
+    "objectID": "weeks/week3/day3-group-summarize.html",
+    "href": "weeks/week3/day3-group-summarize.html",
+    "title": "Deeper practice with group_by and summarize",
+    "section": "",
+    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
+  },
+  {
+    "objectID": "weeks/week3/day3-group-summarize.html#before-class",
+    "href": "weeks/week3/day3-group-summarize.html#before-class",
+    "title": "Deeper practice with group_by and summarize",
+    "section": "Before class",
+    "text": "Before class\n\nRead: (Review Ch 7, Ch 10)\nTODO: any prep materials, data files, etc."
+  },
+  {
+    "objectID": "weeks/week3/day3-group-summarize.html#outline",
+    "href": "weeks/week3/day3-group-summarize.html#outline",
+    "title": "Deeper practice with group_by and summarize",
+    "section": "Outline",
+    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
+  },
+  {
+    "objectID": "weeks/week3/day3-group-summarize.html#resources",
+    "href": "weeks/week3/day3-group-summarize.html#resources",
+    "title": "Deeper practice with group_by and summarize",
+    "section": "Resources",
+    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+  },
+  {
+    "objectID": "weeks/week3/day3-group-summarize.html#after-class",
+    "href": "weeks/week3/day3-group-summarize.html#after-class",
+    "title": "Deeper practice with group_by and summarize",
+    "section": "After class",
+    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
+  },
+  {
+    "objectID": "weeks/week3/day5-quiz-git.html",
+    "href": "weeks/week3/day5-quiz-git.html",
+    "title": "Quiz 3 · Git/GitHub for collaboration",
+    "section": "",
+    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
+  },
+  {
+    "objectID": "weeks/week3/day5-quiz-git.html#before-class",
+    "href": "weeks/week3/day5-quiz-git.html#before-class",
+    "title": "Quiz 3 · Git/GitHub for collaboration",
+    "section": "Before class",
+    "text": "Before class\n\nRead: Data Computing Ch 9 (§9.1–9.2)\nTODO: any prep materials, data files, etc."
+  },
+  {
+    "objectID": "weeks/week3/day5-quiz-git.html#outline",
+    "href": "weeks/week3/day5-quiz-git.html#outline",
+    "title": "Quiz 3 · Git/GitHub for collaboration",
+    "section": "Outline",
+    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
+  },
+  {
+    "objectID": "weeks/week3/day5-quiz-git.html#resources",
+    "href": "weeks/week3/day5-quiz-git.html#resources",
+    "title": "Quiz 3 · Git/GitHub for collaboration",
+    "section": "Resources",
+    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+  },
+  {
+    "objectID": "weeks/week3/day5-quiz-git.html#after-class",
+    "href": "weeks/week3/day5-quiz-git.html#after-class",
+    "title": "Quiz 3 · Git/GitHub for collaboration",
+    "section": "After class",
+    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
+  },
+  {
+    "objectID": "syllabus/academic-integrity-and-ai-policy.html",
+    "href": "syllabus/academic-integrity-and-ai-policy.html",
+    "title": "Academic Integrity & AI Policy",
+    "section": "",
+    "text": "A central aspect of education is that you build your knowledge and develop ways of thinking that will support you in your life and career. Part of my role is to assess your learning so that I can help you build the most productive ways of thinking. For me to do that, I need accurate and reliable signals about your thinking and learning. Academic integrity is what makes those signals trustworthy.\nA person demonstrates academic integrity when they engage in any scholarly or educational activity in an open, honest, and responsible manner."
+  },
+  {
+    "objectID": "syllabus/academic-integrity-and-ai-policy.html#stance",
+    "href": "syllabus/academic-integrity-and-ai-policy.html#stance",
+    "title": "Academic Integrity & AI Policy",
+    "section": "Stance",
+    "text": "Stance\nGenerative AI tools (e.g., ChatGPT, Claude, Gemini, Copilot, Cursor) are now a standard part of how people write and reason about code in industry and research. Rather than ban these tools and ask you to pretend they do not exist, this course takes the position that you are free to use any AI tool you like on any assignment outside the classroom, including homework and the course project.\nThis freedom comes with a corresponding obligation: you must acknowledge AI use, you are responsible for everything you submit, and you must be able to explain it. Assessments fall into two categories:\n\nClosed-book, in-person assessments (quizzes, exams, in-class activities, and oral project checkpoints) where AI tools cannot be used and your individual skill is verified.\nOpen assessments (readings, homework, project) where you may use any resource, including AI, subject to the disclosure expectations below.\n\nThe grading weights are deliberately set so that roughly 60% of your grade comes from verified in-person work."
+  },
+  {
+    "objectID": "syllabus/academic-integrity-and-ai-policy.html#rules-for-ai-use-on-open-assessments",
+    "href": "syllabus/academic-integrity-and-ai-policy.html#rules-for-ai-use-on-open-assessments",
+    "title": "Academic Integrity & AI Policy",
+    "section": "Rules for AI use on open assessments",
+    "text": "Rules for AI use on open assessments\n\n1. Disclose AI use (1-2 points per assignment).\nTransparency is a core part of reproducible data science. Therefore, every open assessment includes a mandatory AI disclosure as a graded rubric item.\nAt the top of your Quarto document, you must include the following checklist (which will be included in the provided open assessment templates). Check off all boxes that apply to your usage and provide a single sentence describing how the tool was utilized.\nAI Disclosure\n\nNo AI used\nSyntax / Debugging (e.g., finding a missing comma, fixing an error code)\nConceptual explanation (e.g., asking how a left_join works)\nCode Generation (e.g., asking AI to write a function from scratch)\n\nBriefly describe your use (1-2 sentences): Used ChatGPT to explain why my ggplot axes were flipped and to generate the code to fix the labels.\n\n\n2. Be able to explain submitted work.\nYou own the output. If you submit AI-generated code, you must understand how it works. “The AI told me to” is not a defense for hallucinated functions, broken code, or wrong analyses. Read everything before you submit.\n\n\n3. Cite outside sources.\nIf AI generates code based on a specific package, blog post, or paper that you use substantively, cite that source.\n\n\n4. Respect copyright.\nDon’t share copyrighted course materials with AI services. Pasting entire textbook chapters into a chatbot is not permitted (separate from academic integrity).\n\n\n5. Be prepared to explain code during oral checkpoints.\nExpect to be asked about any part of your submitted project code."
+  },
+  {
+    "objectID": "syllabus/academic-integrity-and-ai-policy.html#what-counts-as-a-violation",
+    "href": "syllabus/academic-integrity-and-ai-policy.html#what-counts-as-a-violation",
+    "title": "Academic Integrity & AI Policy",
+    "section": "What counts as a violation",
+    "text": "What counts as a violation\n\nAcceptable Uses of AI:\n\nPasting an error message from RStudio into ChatGPT to understand why your code broke.\nAsking AI to explain a complex function (e.g., “Explain how left_join() works in dplyr like I am 5”).\nUsing AI to generate ideas for how to visualize a specific type of dataset.\nAsking AI to help you clean up the formatting or styling of your code.\n\n\n\nAcademic Integrity Violations:\n\nBypassing the prompt by copy-pasting an entire homework question into AI, copying the resulting code directly into your assignment, and submitting it without reading or understanding it.\n“Black box” submissions where you submit code that uses advanced packages or functions we haven’t covered, which you cannot explain or defend during an oral checkpoint or if asked in class.\nUsing AI on closed-book, in-person work like quizzes, in-class exam, in-class activities, oral checkpoints.\nLying about AI use (writing “Did not use AI” when you did)."
+  },
+  {
+    "objectID": "project/final-rubric.html",
+    "href": "project/final-rubric.html",
+    "title": "Final Report Rubric",
+    "section": "",
+    "text": "One PDF per team to Canvas, rendered from a Quarto document in your team’s GitHub repo.\nA URL to your 5–7 minute team video presentation.\nFinal commit pushed to GitHub repo by the deadline.\n\nDue: Friday, June 26, 11:59 p.m."
+  },
+  {
+    "objectID": "project/final-rubric.html#report-content-60",
+    "href": "project/final-rubric.html#report-content-60",
+    "title": "Final Report Rubric",
+    "section": "Report content (60)",
+    "text": "Report content (60)\n\n\n\nComponent\nPoints\n\n\n\n\nClear introduction and motivation\n5\n\n\nResearch question(s) explicitly stated\n5\n\n\nData provenance fully documented\n5\n\n\nVariables described and justified\n5\n\n\nData wrangling explained in narrative (not just code)\n5\n\n\nSummary table (non-trivial)\n5\n\n\nFigure 1 with caption, reference, and discussion\n5\n\n\nFigure 2 with caption, reference, and discussion\n5\n\n\nAt least one figure shows 3+ variables effectively\n5\n\n\nFindings clearly stated and tied to question(s)\n7\n\n\nLimitations and “what we’d do next” discussion\n4\n\n\nCitations of data and sources\n4"
+  },
+  {
+    "objectID": "project/final-rubric.html#code-quality-15",
+    "href": "project/final-rubric.html#code-quality-15",
+    "title": "Final Report Rubric",
+    "section": "Code quality (15)",
+    "text": "Code quality (15)\n\n\n\nComponent\nPoints\n\n\n\n\nCode runs cleanly (renders from scratch)\n5\n\n\nFollows a named style guide\n3\n\n\nMeaningfully commented\n3\n\n\nCode in appendix, not body\n2\n\n\nReproducible from GitHub repo\n2"
+  },
+  {
+    "objectID": "project/final-rubric.html#reproducibility-10",
+    "href": "project/final-rubric.html#reproducibility-10",
+    "title": "Final Report Rubric",
+    "section": "Reproducibility (10)",
+    "text": "Reproducibility (10)\n\n\n\nComponent\nPoints\n\n\n\n\nGitHub repo well-organized with README\n4\n\n\nAll team members have commits\n3\n\n\nData accessible (in repo or via working URL)\n3"
+  },
+  {
+    "objectID": "project/final-rubric.html#video-presentation-10",
+    "href": "project/final-rubric.html#video-presentation-10",
+    "title": "Final Report Rubric",
+    "section": "Video presentation (10)",
+    "text": "Video presentation (10)\n\n\n\nComponent\nPoints\n\n\n\n\nWithin time limit (5–7 min)\n2\n\n\nEach team member speaks\n3\n\n\nCovers question, data, key findings\n3\n\n\nCoherent, well-paced, audible\n2"
+  },
+  {
+    "objectID": "project/final-rubric.html#ai-use-integrity-5",
+    "href": "project/final-rubric.html#ai-use-integrity-5",
+    "title": "Final Report Rubric",
+    "section": "AI use & integrity (5)",
+    "text": "AI use & integrity (5)\n\n\n\nComponent\nPoints\n\n\n\n\nAI use note included in report\n2\n\n\nHonest attribution of external sources\n3\n\n\n\nTotal: 100"
+  },
+  {
+    "objectID": "project/index.html",
+    "href": "project/index.html",
+    "title": "Course Project",
+    "section": "",
+    "text": "The purpose of this project is to provide you with an opportunity to put into practice everything that you have learned over the course of the semester and to push yourselves. To this end, you’ll work in teams to conduct your own Exploratory Data Analysis, posing and answering your own research question(s).\n\n\nThese are from past sections — their requirements were slightly different, but they give you a sense of scope and quality:\n\nIPL Batting Performance Analysis (Rohan & Pratham)\nCustomer Shopping Trends (Ava, Sydney & Kacie)\nIMDB Movie Data Analysis (Sanjana, Nishita & Jess)"
+  },
+  {
+    "objectID": "project/index.html#past-examples",
+    "href": "project/index.html#past-examples",
+    "title": "Course Project",
+    "section": "",
+    "text": "These are from past sections — their requirements were slightly different, but they give you a sense of scope and quality:\n\nIPL Batting Performance Analysis (Rohan & Pratham)\nCustomer Shopping Trends (Ava, Sydney & Kacie)\nIMDB Movie Data Analysis (Sanjana, Nishita & Jess)"
+  },
+  {
+    "objectID": "project/index.html#topic-and-questions",
+    "href": "project/index.html#topic-and-questions",
+    "title": "Course Project",
+    "section": "Topic and questions",
+    "text": "Topic and questions\n\nPick a topic your team is genuinely interested in. Sports, music, video games, food, news, science, civics — anything is fair game as long as the data exists.\nCome up with 1–3 clear, answerable research questions.\nMake a work plan early. Six weeks is short."
+  },
+  {
+    "objectID": "project/index.html#data",
+    "href": "project/index.html#data",
+    "title": "Course Project",
+    "section": "Data",
+    "text": "Data\n\nYour primary data source may not be a dataset we used in class.\nYour primary data source may not come from an R package. Supplementary sources are fine from anywhere.\nRead in your data and perform necessary tidying, wrangling, and cleaning.\nDescribe data provenance: where did it come from, who collected it, why, what are the cases.\n\nGood sources of real data:\n\nhttps://data.gov — US government open data\nhttps://github.com/fivethirtyeight/data — FiveThirtyEight datasets\nhttps://github.com/nytimes — NYT data\nhttps://github.com/rfordatascience/tidytuesday — Tidy Tuesday (you may use these CSVs as primary data, just not the R package itself)\nhttps://scorenetwork.org/ — Sports data\nhttps://www.kaggle.com/datasets — Kaggle (caution: not all data is real)"
+  },
+  {
+    "objectID": "project/index.html#analysis-and-report",
+    "href": "project/index.html#analysis-and-report",
+    "title": "Course Project",
+    "section": "Analysis and report",
+    "text": "Analysis and report\n\nConduct an Exploratory Data Analysis.\nProduce a reproducible report in Quarto, output as PDF.\nCode in a Code Appendix at the end. Use this snippet:\n\n```{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}\n```\n\nBody of the report should be narrative + figures + tables, not code.\nAt least one figure (plot) and at least one non-trivial table (not just raw data).\nAt least one visualization with 3+ variables (use color, facets, size, etc.).\nFigures and tables should have captions and be cross-referenced from the text.\nPick a style guide (tidyverse, Google, or BOAST) and follow it. List your choice in a comment at the top of the code appendix.\nCite your data sources and any code you adapted from outside (APA, MLA, or footnotes — pick one)."
+  },
+  {
+    "objectID": "project/index.html#reproducibility",
+    "href": "project/index.html#reproducibility",
+    "title": "Course Project",
+    "section": "Reproducibility",
+    "text": "Reproducibility\n\nUse a GitHub repository to manage the project. Everyone commits.\nInclude a README explaining how to reproduce the analysis.\nThe final report must render cleanly from your repo on someone else’s machine."
+  },
+  {
+    "objectID": "project/index.html#video-presentation",
+    "href": "project/index.html#video-presentation",
+    "title": "Course Project",
+    "section": "Video presentation",
+    "text": "Video presentation\n\nPlan and record a 5–7 minute video walking through your analysis (each team member should speak).\nSubmit a URL (YouTube/Drive/Box, set to viewable) to the Canvas assignment."
+  },
+  {
+    "objectID": "project/checkpoint-1.html",
+    "href": "project/checkpoint-1.html",
+    "title": "Project Checkpoint 1 — Topic & Data Plan",
+    "section": "",
+    "text": "A short (1–2 page) Quarto document, rendered to PDF, containing the following sections. Submit one document per team to Canvas; list all team member names.\n\n\n\nTeam member names.\nA 2–3 sentence description of your topic. Why is it interesting to your team?\n\n\n\n\nWrite 2–3 specific, answerable questions your analysis will address. Good questions:\n\nReference variables you actually have in your data (or can derive).\nAre specific enough to know when you’ve answered them.\nAre not yes/no.\n\nBad: “We want to study NBA basketball.” Better: “How has 3-point shooting volume changed across NBA seasons since 2000, and does it differ by player position?”\n\n\n\nFor your primary data source:\n\nWhere is it from? (URL)\nWho collected it? When? For what purpose?\nWhat is a case (a row) in the data?\nHow many cases and variables are there?\nAre there any obvious data quality concerns?\n\nFor any supplementary sources, briefly describe each.\n\n\n\n\n\n\nWarning\n\n\n\nReminder: Your primary data may not be one used in class, and may not come from an R package. Tidy Tuesday CSVs are okay; the nycflights13 package is not.\n\n\n\n\n\nA bulleted list of what you anticipate needing to do to get from raw data to analyzable data. (e.g., “filter to only 2010–2024”, “join salary data on player ID”, “convert date strings to dates”, “pivot scoring categories to long format”).\nThis is a plan, not a finished product. It will change. That’s fine.\n\n\n\n\nA link to your team’s GitHub repository (private or public — your call).\nConfirm all team members have push access.\n\n\n\n\nOne short paragraph: did your team use AI tools in preparing this checkpoint? If so, what for? “Did not use AI” is a valid response."
+  },
+  {
+    "objectID": "project/checkpoint-1.html#team-and-topic",
+    "href": "project/checkpoint-1.html#team-and-topic",
+    "title": "Project Checkpoint 1 — Topic & Data Plan",
+    "section": "",
+    "text": "Team member names.\nA 2–3 sentence description of your topic. Why is it interesting to your team?"
+  },
+  {
+    "objectID": "project/checkpoint-1.html#research-questions",
+    "href": "project/checkpoint-1.html#research-questions",
+    "title": "Project Checkpoint 1 — Topic & Data Plan",
+    "section": "",
+    "text": "Write 2–3 specific, answerable questions your analysis will address. Good questions:\n\nReference variables you actually have in your data (or can derive).\nAre specific enough to know when you’ve answered them.\nAre not yes/no.\n\nBad: “We want to study NBA basketball.” Better: “How has 3-point shooting volume changed across NBA seasons since 2000, and does it differ by player position?”"
+  },
+  {
+    "objectID": "project/checkpoint-1.html#data-sources",
+    "href": "project/checkpoint-1.html#data-sources",
+    "title": "Project Checkpoint 1 — Topic & Data Plan",
+    "section": "",
+    "text": "For your primary data source:\n\nWhere is it from? (URL)\nWho collected it? When? For what purpose?\nWhat is a case (a row) in the data?\nHow many cases and variables are there?\nAre there any obvious data quality concerns?\n\nFor any supplementary sources, briefly describe each.\n\n\n\n\n\n\nWarning\n\n\n\nReminder: Your primary data may not be one used in class, and may not come from an R package. Tidy Tuesday CSVs are okay; the nycflights13 package is not."
+  },
+  {
+    "objectID": "project/checkpoint-1.html#initial-wrangling-plan",
+    "href": "project/checkpoint-1.html#initial-wrangling-plan",
+    "title": "Project Checkpoint 1 — Topic & Data Plan",
+    "section": "",
+    "text": "A bulleted list of what you anticipate needing to do to get from raw data to analyzable data. (e.g., “filter to only 2010–2024”, “join salary data on player ID”, “convert date strings to dates”, “pivot scoring categories to long format”).\nThis is a plan, not a finished product. It will change. That’s fine."
+  },
+  {
+    "objectID": "project/checkpoint-1.html#project-repository",
+    "href": "project/checkpoint-1.html#project-repository",
+    "title": "Project Checkpoint 1 — Topic & Data Plan",
+    "section": "",
+    "text": "A link to your team’s GitHub repository (private or public — your call).\nConfirm all team members have push access."
+  },
+  {
+    "objectID": "project/checkpoint-1.html#ai-use-note",
+    "href": "project/checkpoint-1.html#ai-use-note",
+    "title": "Project Checkpoint 1 — Topic & Data Plan",
+    "section": "",
+    "text": "One short paragraph: did your team use AI tools in preparing this checkpoint? If so, what for? “Did not use AI” is a valid response."
+  }
+]

@@ -1,0 +1,64 @@
+/* STAT 184 Summer 2026 — styling */
+
+/* Penn State colors */
+:root {
+  --bs-primary: #1E407C;
+  --bs-link-color: #1E407C;
+  --bs-link-hover-color: #001E44;
+}
+
+/* More readable body */
+body {
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+/* Inline code */
+:not(pre) > code {
+  background-color: var(--bs-secondary-bg);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 0.92em;
+}
+
+/* Tables */
+table.table > thead > tr > th {
+  padding: 0.5rem 0.75rem;
+  font-weight: 600;
+}
+
+table.table > tbody > tr > td {
+  padding: 0.5rem 0.75rem;
+}
+
+table td:first-child {
+  white-space: nowrap;
+}
+
+/* Callouts */
+.callout {
+  border-radius: 8px;
+}
+
+.callout-important {
+  border-left-width: 6px;
+}
+
+/* Navbar shadow */
+.navbar {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+/* Title block */
+.quarto-title-block {
+  margin-bottom: 1.5rem;
+}
+
+/* Lighter PSU blue for dark mode */
+[data-bs-theme="dark"] {
+  --bs-primary: #4A77BC;
+  --bs-link-color: #7BA7D6;
+  --bs-link-hover-color: #A8C5E5;
+  --bs-tertiary-bg: #2d3338;   /* explicit dark-mode value */
+  --bs-secondary-bg: #343a40;
+}

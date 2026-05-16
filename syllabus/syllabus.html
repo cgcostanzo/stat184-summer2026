@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>STAT 184 — Section 101 – STAT 184 — Summer 2026</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-0e6139898bc333d8d362a68e1e84c4d8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-5d4c2f462ffa217fc73399f9052c53e0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-0e6139898bc333d8d362a68e1e84c4d8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">STAT 184 — Summer 2026</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../syllabus/syllabus.html" aria-current="page"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-weeks" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Weeks</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-weeks">    
+        <li>
+    <a class="dropdown-item" href="../weeks/week1/index.html">
+ <span class="dropdown-text">Week 1 — Foundations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../weeks/week2/index.html">
+ <span class="dropdown-text">Week 2 — Tidy Data &amp; ggplot</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../weeks/week3/index.html">
+ <span class="dropdown-text">Week 3 — Data Wrangling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../weeks/week4/index.html">
+ <span class="dropdown-text">Week 4 — Joins, Import, Exam</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../weeks/week5/index.html">
+ <span class="dropdown-text">Week 5 — Functions &amp; Strings</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../weeks/week6/index.html">
+ <span class="dropdown-text">Week 6 — Special Topics &amp; Project</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-assignments" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Assignments</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-assignments">    
+        <li>
+    <a class="dropdown-item" href="../assignments/homework/index.html">
+ <span class="dropdown-text">Homework</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/quizzes/index.html">
+ <span class="dropdown-text">Quizzes</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/activities/index.html">
+ <span class="dropdown-text">In-class Activities</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../assignments/exam/index.html">
+ <span class="dropdown-text">Exam</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../project/index.html"> 
+<span class="menu-text">Project</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-policies" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Policies</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-policies">    
+        <li>
+    <a class="dropdown-item" href="../syllabus/academic-integrity-and-ai-policy.html">
+ <span class="dropdown-text">Academic Integrity &amp; AI Policy</span></a>
+  </li>  
+    </ul>
+  </li>
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#course-overview" id="toc-course-overview" class="nav-link active" data-scroll-target="#course-overview">Course Overview</a></li>
+  <li><a href="#course-information" id="toc-course-information" class="nav-link" data-scroll-target="#course-information">Course Information</a>
+  <ul class="collapse">
+  <li><a href="#textbooks" id="toc-textbooks" class="nav-link" data-scroll-target="#textbooks">Textbooks</a>
+  <ul class="collapse">
+  <li><a href="#required-texts" id="toc-required-texts" class="nav-link" data-scroll-target="#required-texts">Required texts</a></li>
+  <li><a href="#optional-texts" id="toc-optional-texts" class="nav-link" data-scroll-target="#optional-texts">Optional texts</a></li>
+  </ul></li>
+  <li><a href="#attendance" id="toc-attendance" class="nav-link" data-scroll-target="#attendance">Attendance</a></li>
+  <li><a href="#technology-and-software-requirements" id="toc-technology-and-software-requirements" class="nav-link" data-scroll-target="#technology-and-software-requirements">Technology and software requirements</a></li>
+  </ul></li>
+  <li><a href="#assignments-and-grading" id="toc-assignments-and-grading" class="nav-link" data-scroll-target="#assignments-and-grading">Assignments and Grading</a>
+  <ul class="collapse">
+  <li><a href="#grading-scheme" id="toc-grading-scheme" class="nav-link" data-scroll-target="#grading-scheme">Grading scheme</a></li>
+  <li><a href="#grading-scheme-1" id="toc-grading-scheme-1" class="nav-link" data-scroll-target="#grading-scheme-1">Grading scheme</a></li>
+  </ul></li>
+  <li><a href="#course-goals-and-objectives" id="toc-course-goals-and-objectives" class="nav-link" data-scroll-target="#course-goals-and-objectives">Course Goals and Objectives</a>
+  <ul class="collapse">
+  <li><a href="#topics" id="toc-topics" class="nav-link" data-scroll-target="#topics">Topics</a></li>
+  <li><a href="#course-calendar" id="toc-course-calendar" class="nav-link" data-scroll-target="#course-calendar">Course calendar</a></li>
+  </ul></li>
+  <li><a href="#generative-ai-policy" id="toc-generative-ai-policy" class="nav-link" data-scroll-target="#generative-ai-policy">Generative AI Policy</a>
+  <ul class="collapse">
+  <li><a href="#stance" id="toc-stance" class="nav-link" data-scroll-target="#stance">Stance</a></li>
+  <li><a href="#rules-for-ai-use-on-open-assessments" id="toc-rules-for-ai-use-on-open-assessments" class="nav-link" data-scroll-target="#rules-for-ai-use-on-open-assessments">Rules for AI use on open assessments</a>
+  <ul class="collapse">
+  <li><a href="#disclose-ai-use-1-2-points-per-assignment." id="toc-disclose-ai-use-1-2-points-per-assignment." class="nav-link" data-scroll-target="#disclose-ai-use-1-2-points-per-assignment.">1. <strong>Disclose AI use (1-2 points per assignment).</strong></a></li>
+  <li><a href="#be-able-to-explain-submitted-work." id="toc-be-able-to-explain-submitted-work." class="nav-link" data-scroll-target="#be-able-to-explain-submitted-work.">2. <strong>Be able to explain submitted work.</strong></a></li>
+  <li><a href="#cite-outside-sources." id="toc-cite-outside-sources." class="nav-link" data-scroll-target="#cite-outside-sources.">3. <strong>Cite outside sources.</strong></a></li>
+  <li><a href="#respect-copyright." id="toc-respect-copyright." class="nav-link" data-scroll-target="#respect-copyright.">4. <strong>Respect copyright.</strong></a></li>
+  <li><a href="#be-prepared-to-explain-code-during-oral-checkpoints." id="toc-be-prepared-to-explain-code-during-oral-checkpoints." class="nav-link" data-scroll-target="#be-prepared-to-explain-code-during-oral-checkpoints.">5. <strong>Be prepared to explain code during oral checkpoints.</strong></a></li>
+  </ul></li>
+  <li><a href="#what-counts-as-a-violation" id="toc-what-counts-as-a-violation" class="nav-link" data-scroll-target="#what-counts-as-a-violation">What counts as a violation</a>
+  <ul class="collapse">
+  <li><a href="#acceptable-uses-of-ai" id="toc-acceptable-uses-of-ai" class="nav-link" data-scroll-target="#acceptable-uses-of-ai">Acceptable Uses of AI:</a></li>
+  <li><a href="#academic-integrity-violations" id="toc-academic-integrity-violations" class="nav-link" data-scroll-target="#academic-integrity-violations">Academic Integrity Violations:</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#university-policies-and-resources" id="toc-university-policies-and-resources" class="nav-link" data-scroll-target="#university-policies-and-resources">University Policies and Resources</a>
+  <ul class="collapse">
+  <li><a href="#deferred-grades" id="toc-deferred-grades" class="nav-link" data-scroll-target="#deferred-grades">Deferred grades</a></li>
+  <li><a href="#academic-integrity-statement" id="toc-academic-integrity-statement" class="nav-link" data-scroll-target="#academic-integrity-statement">Academic integrity statement</a></li>
+  <li><a href="#ecos-code-of-mutual-respect" id="toc-ecos-code-of-mutual-respect" class="nav-link" data-scroll-target="#ecos-code-of-mutual-respect">ECoS Code of Mutual Respect</a></li>
+  <li><a href="#educational-equity-report-bias" id="toc-educational-equity-report-bias" class="nav-link" data-scroll-target="#educational-equity-report-bias">Educational equity / Report bias</a></li>
+  <li><a href="#disability-accommodations" id="toc-disability-accommodations" class="nav-link" data-scroll-target="#disability-accommodations">Disability accommodations</a></li>
+  <li><a href="#counseling-and-psychological-services" id="toc-counseling-and-psychological-services" class="nav-link" data-scroll-target="#counseling-and-psychological-services">Counseling and Psychological Services</a></li>
+  <li><a href="#syllabus-changes" id="toc-syllabus-changes" class="nav-link" data-scroll-target="#syllabus-changes">Syllabus changes</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="syllabus.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">STAT 184 — Section 101</h1>
+<p class="subtitle lead">Introduction to R · Summer 2026</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="course-overview" class="level1">
+<h1>Course Overview</h1>
+<p>R is a powerful, open-source programming language used widely for applications in statistics and data science. It is easily extendable, and thousands of user-created packages are publicly available to extend its capabilities. This course will introduce students to data computing fundamentals and a reproducible workflow using the R programming language and related tools. Students will be expected to access, join, wrangle, clean, and visualize real data from various sources (e.g., CSV, HTML scraping, web URL, R packages). The course will emphasize the use of “tidyverse” R packages (e.g., dplyr, ggplot2), although students will also be exposed to Base R and other packages. In addition, students will be exposed to one or more integrated development environments (e.g., RStudio) and will be expected to write well-documented code using a reproducible workflow (e.g., Quarto, Git/GitHub). The course focuses on descriptive and graphical summary techniques rather than inferential statistical techniques.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+</section>
+<section id="course-information" class="level1">
+<h1>Course Information</h1>
+<p>Summer Session 1: May 18, 2026 — June 26, 2026</p>
+<p>Class time: M/T/W/Th/F, 9:35 a.m. to 10:50 a.m.</p>
+<p>Class location: Huck Life Sciences Building 007</p>
+<p>Instructor: Charles Costanzo <a href="mailto:cgc5478@psu.edu">[cgc5478@psu.edu]</a>; Office: Thomas 301</p>
+<p>TA: Xinyue Wang <a href="mailto:xpw5228@psu.edu">[xpw5228@psu.edu]</a></p>
+<div data-tbl-colwidths="[30, 30, 40]">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 30%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Team Member</th>
+<th style="text-align: left;">Contact Method</th>
+<th style="text-align: left;">Office Hours &amp; Location</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Charles</strong> (Instructor)</td>
+<td style="text-align: left;">Email or Canvas</td>
+<td style="text-align: left;">M/W/Th/F: 10:50-11:50 a.m. in Huck 005 (or on Zoom by appt)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Xinyue</strong> (TA)</td>
+<td style="text-align: left;">Canvas</td>
+<td style="text-align: left;">By appointment only</td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="textbooks" class="level2">
+<h2 class="anchored" data-anchor-id="textbooks">Textbooks</h2>
+<p>There is no need to purchase any book for this class. All required and recommended materials are available to use online for free with your Penn State access.</p>
+<section id="required-texts" class="level3">
+<h3 class="anchored" data-anchor-id="required-texts">Required texts</h3>
+<p><em>Data Computing</em> (2nd edition). Daniel Kaplan &amp; Matthew Beckman. 2021. <a href="https://dtkaplan.github.io/DataComputingEbook/" class="uri">https://dtkaplan.github.io/DataComputingEbook/</a></p>
+<p><em>R for Data Science</em> (2nd edition). Hadley Wickham, Mine Çetinkaya-Rundel, &amp; Garrett Grolemund. 2023. <a href="https://r4ds.hadley.nz" class="uri">https://r4ds.hadley.nz</a></p>
+<ul>
+<li>Note: R for Data Science (R4DS) will be the assigned reading for parts of Week 5 (functions, iteration, and strings), where Data Computing (DC) does not cover the material in depth. It is also an excellent general reference for tidyverse-style R programming throughout the course.</li>
+</ul>
+</section>
+<section id="optional-texts" class="level3">
+<h3 class="anchored" data-anchor-id="optional-texts">Optional texts</h3>
+<p><em>An Introduction to Data Analysis in R: Hands-on Coding, Data Mining, Visualization and Statistics from Scratch</em>. Saiz, González, Gil, Ruiz. 2020. <a href="https://ezaccess.libraries.psu.edu/login?url=https://doi.org/10.1007/978-3-030-48997-7" class="uri">https://ezaccess.libraries.psu.edu/login?url=https://doi.org/10.1007/978-3-030-48997-7</a></p>
+<p><em>Introduction to Probability, Statistics &amp; R: Foundations for Data-Based Sciences</em>. Sujit K. Sahu. 2024. <a href="https://ezaccess.libraries.psu.edu/login?url=https://doi.org/10.1007/978-3-031-37865-2" class="uri">https://ezaccess.libraries.psu.edu/login?url=https://doi.org/10.1007/978-3-031-37865-2</a></p>
+</section>
+</section>
+<section id="attendance" class="level2">
+<h2 class="anchored" data-anchor-id="attendance">Attendance</h2>
+<p>Per department policy, <strong>attendance is required</strong> for this course. Attendance will be taken in each class session. Students who regularly attend class and participate tend to do well in this class. Attending each class session is an important part of becoming a professional member of our community. Therefore, you will need to attend each class session barring illness, participation in a University-sanctioned event, religious observance/practice, or other legitimate circumstances. If you need to miss class, please let me know by sending me an email or message via Canvas. <strong>Proactive communication</strong> is essential: notifying me in advance (whenever possible) is a prerequisite for excusing an absence or granting an extension on in-class work.</p>
+</section>
+<section id="technology-and-software-requirements" class="level2">
+<h2 class="anchored" data-anchor-id="technology-and-software-requirements">Technology and software requirements</h2>
+<ul>
+<li>You will need access to at least one of the following: (1) a personal computer running Windows, Mac OS, or Linux (i.e., not a Chromebook), or (2) any of the Penn State computer labs <a href="https://labs.psu.edu/locations/">located around campus</a>.</li>
+<li>R and RStudio are installed on classroom/university computers. If you use a personal computer, you will need to install the <code>R</code> language (The R Project for Statistical Computing; <a href="http://www.r-project.org/" class="uri">http://www.r-project.org/</a>) and <code>RStudio Desktop</code> on your computer.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>
+<ul>
+<li>You can download R for Windows, Mac, and Linus from the CRAN archive at <a href="https://cran.r-project.org" class="uri">https://cran.r-project.org</a></li>
+<li>RStudio can be downloaded for free at <a href="https://posit.co/download/rstudio-desktop" class="uri">https://posit.co/download/rstudio-desktop</a>. Before downloading RStudio, you must download and install R first.</li>
+<li>You can find an in-depth introduction to R here: <a href="http://cran.r-project.org/doc/manuals/R-intro.pdf" class="uri">http://cran.r-project.org/doc/manuals/R-intro.pdf</a></li>
+<li>You can find hands-on tutorials in the Swirl system at <a href="http://swirlstats.com" class="uri">http://swirlstats.com</a>. “R Programming: The basics of programming in R” is a helpful tutorial to start with if you have never used R.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="assignments-and-grading" class="level1">
+<h1>Assignments and Grading</h1>
+<p><u>Readings</u></p>
+<ul>
+<li>Readings are assigned via Perusall, a collaborative e-reading platform. Your reading grade is automatically generated by Perusall based on a holistic measure of your engagement. You earn credit through a combination of: reading the entire text, spending active time in the assignment, leaving high-quality comments, and interacting constructively with your classmates.</li>
+</ul>
+<p>Note: No late work is accepted for reading assignments.</p>
+<p><u>Quizzes</u></p>
+<ul>
+<li>Quizzes will be held weekly on Fridays in-class, on paper, closed book, with no AI tools permitted.</li>
+<li>You must be in class to take the quiz. Make-ups may be given but are not guaranteed.</li>
+<li>Your graded quiz will be returned to you via Canvas, where you can see solutions.</li>
+<li><strong>Your lowest quiz score will be dropped.</strong></li>
+</ul>
+<p><u>In-class activites</u></p>
+<p>Class time is heavily focused on hands-on practice. Activities fall into two categories, both of which are closed-book and prohibit AI tools:</p>
+<ul>
+<li><strong>Coding Practice (Group/Individual)</strong>: Short coding exercises designed to help you apply what we learn each day in class. These are graded in <strong>genuine effort and completion</strong>, not strict accuracy. The goal is to try, make mistakes, and learn.</li>
+<li><strong>Concept Checks (Individual)</strong>: Short, 2-to-3-minute check-ins (roughly five questions) to help me assess your critical thinking and ensure you understand the core concepts before we move on to the next topic.</li>
+<li><em>Logistics</em>: These may occur any day of the week, multiple times per week. You must be present in class to complete them (barring illness, emergency, etc.). <strong>The lowest activity score will be automatically dropped</strong>.</li>
+</ul>
+<p><u>Homework</u></p>
+<ul>
+<li>Submitted to Canvas. Solutions posted to Canvas after all students have submitted.</li>
+<li>AI tools are permitted on homework <strong>with disclosure</strong> (see <em>Generative AI Policy</em> below).</li>
+<li>Each homework rubric includes a small <strong>AI use note</strong> worth 1-2 points.</li>
+<li><strong>Late policy:</strong> Email the instructor if you need an extension. Extensions are generally limited to 24-48 hours, except in extenuating circumstances.</li>
+<li><strong>Lowest homework score will be dropped.</strong></li>
+</ul>
+<p><u>Exam</u></p>
+<p>One exam during Week 4 on <strong>Thursday, June 11, 2026.</strong> In-class, on paper, closed book, no AI tools. Further information will be provided closer to the exam date.</p>
+<p><u>Course project</u></p>
+<p>The course project is the central synthesis assignment. You will work in small teams on a real data analysis throughout the semester, with several checkpoint deliverables.</p>
+<ul>
+<li>Completed incrementally throughout the semester with several due dates.</li>
+<li>AI tools are permitted on all project work (see <em>Generative AI Policy</em> below).</li>
+<li><strong>Oral checkpoints (required).</strong> Two short one-on-one meetings with the instructor are part of the project grade:
+<ol type="1">
+<li><strong>Mid-project check-in</strong> (~5 minutes).</li>
+<li><strong>Final walkthrough</strong> (~10 minutes).</li>
+</ol></li>
+</ul>
+<p><em>These will take place during designated in-class work sessions in the latter half of the course (roughly Weeks 4 and 6).</em> In these meetings you will walk through your code and explain your analytical choices. These conversations are a chance for you to demonstrate understanding and get individualized feedback.</p>
+<ul>
+<li>Due dates are generally flexible. To request an extension:
+<ol type="1">
+<li>Email the instructor a minimum of 24 hours before the posted due date.</li>
+<li>Show you have made progress (attach your work).</li>
+<li>Explain the reason you need additional time.</li>
+<li>Propose a new due date.</li>
+</ol></li>
+</ul>
+<p>See the <a href="../project/index.html">Project page</a> for the full project guidelines, checkpoints, and rubrics.</p>
+<section id="grading-scheme" class="level2">
+<h2 class="anchored" data-anchor-id="grading-scheme">Grading scheme</h2>
+</section>
+<section id="grading-scheme-1" class="level2">
+<h2 class="anchored" data-anchor-id="grading-scheme-1">Grading scheme</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Category</th>
+<th style="text-align: left;">Weight</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Readings</strong></td>
+<td style="text-align: left;">10%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Quizzes</strong></td>
+<td style="text-align: left;">15%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>In-class activities</strong></td>
+<td style="text-align: left;">25%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Homework</strong></td>
+<td style="text-align: left;">10%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Exam</strong></td>
+<td style="text-align: left;">20%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Course project</strong></td>
+<td style="text-align: left;">20%</td>
+</tr>
+</tbody>
+</table>
+<p>Final grades will be assigned as follows:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Grade</th>
+<th style="text-align: left;">Score Range</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>A</strong></td>
+<td style="text-align: left;">93 - 100%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>A-</strong></td>
+<td style="text-align: left;">90 - 93%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>B+</strong></td>
+<td style="text-align: left;">87 - 90%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>B</strong></td>
+<td style="text-align: left;">83 - 87%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>B-</strong></td>
+<td style="text-align: left;">80 - 83%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>C+</strong></td>
+<td style="text-align: left;">77 - 80%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>C</strong></td>
+<td style="text-align: left;">70 - 77%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>D</strong></td>
+<td style="text-align: left;">60 - 70%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>F</strong></td>
+<td style="text-align: left;">0 - 60%</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="course-goals-and-objectives" class="level1">
+<h1>Course Goals and Objectives</h1>
+<ol type="1">
+<li>Become proficient with R programming tools (R, RStudio, Quarto, Git).</li>
+<li>Apply data wrangling operations to data using <code>tidyverse</code> R packages (inspect, clean, transform).</li>
+<li>Create effective data visualizations for multiple (3 or more) variables.</li>
+<li>Import, export, and join a variety of data sources.</li>
+<li>Demonstrate good programming practices (style conventions, commenting, naming).</li>
+<li>Evaluate, debug, and explain code — whether you wrote it yourself, found it online, or generated it with an AI tool — and articulate the reasoning behind analytical choices.</li>
+</ol>
+<section id="topics" class="level2">
+<h2 class="anchored" data-anchor-id="topics">Topics</h2>
+<ul>
+<li>Data visualization (including 3 or more variables)</li>
+<li>Data wrangling operations</li>
+<li>Programming tools (R, RStudio, Quarto, Git/GitHub)</li>
+<li>Tidy data principles</li>
+<li>Importing data (CSV, API, web scraping, basic SQL)</li>
+<li>Programming style conventions</li>
+<li>Basic loops, control flow, vectorized operations</li>
+<li>User-defined functions</li>
+<li>Text, dates, and regular expressions</li>
+<li>Special topics as time permits (basic clustering, CART)</li>
+</ul>
+</section>
+<section id="course-calendar" class="level2">
+<h2 class="anchored" data-anchor-id="course-calendar">Course calendar</h2>
+<p>See the <a href="../schedule.html">Schedule</a> page for the day-by-day plan. Substantive changes will be announced in class and on Canvas.</p>
+</section>
+</section>
+<section id="generative-ai-policy" class="level1">
+<h1>Generative AI Policy</h1>
+<section id="stance" class="level2">
+<h2 class="anchored" data-anchor-id="stance">Stance</h2>
+<p>Generative AI tools (e.g., ChatGPT, Claude, Gemini, Copilot, Cursor) are now a standard part of how people write and reason about code in industry and research. Rather than ban these tools and ask you to pretend they do not exist, this course takes the position that <strong>you are free to use any AI tool you like on any assignment outside the classroom</strong>, including homework and the course project.</p>
+<p>This freedom comes with a corresponding obligation: <strong>you must acknowledge AI use, you are responsible for everything you submit, and you must be able to explain it.</strong> Assessments fall into two categories:</p>
+<ol type="1">
+<li><strong>Closed-book, in-person assessments</strong> (quizzes, exams, in-class activities, and oral project checkpoints) where AI tools cannot be used and your individual skill is verified.</li>
+<li><strong>Open assessments</strong> (readings, homework, project) where you may use any resource, including AI, subject to the disclosure expectations below.</li>
+</ol>
+<p>The grading weights are deliberately set so that roughly 60% of your grade comes from verified in-person work.</p>
+</section>
+<section id="rules-for-ai-use-on-open-assessments" class="level2">
+<h2 class="anchored" data-anchor-id="rules-for-ai-use-on-open-assessments">Rules for AI use on open assessments</h2>
+<section id="disclose-ai-use-1-2-points-per-assignment." class="level3">
+<h3 class="anchored" data-anchor-id="disclose-ai-use-1-2-points-per-assignment.">1. <strong>Disclose AI use (1-2 points per assignment).</strong></h3>
+<p>Transparency is a core part of reproducible data science. Therefore, every open assessment includes a mandatory AI disclosure as a graded rubric item.</p>
+<p>At the top of your Quarto document, you must include the following checklist (which will be included in the provided open assessment templates). Check off all boxes that apply to your usage and provide a single sentence describing how the tool was utilized.</p>
+<p><strong>AI Disclosure</strong></p>
+<ul class="task-list">
+<li><label><input type="checkbox">No AI used</label></li>
+<li><label><input type="checkbox">Syntax / Debugging (e.g., finding a missing comma, fixing an error code)</label></li>
+<li><label><input type="checkbox">Conceptual explanation (e.g., asking how a <code>left_join</code> works)</label></li>
+<li><label><input type="checkbox">Code Generation (e.g., asking AI to write a function from scratch)</label></li>
+</ul>
+<p><em>Briefly describe your use (1-2 sentences):</em> Used ChatGPT to explain why my ggplot axes were flipped and to generate the code to fix the labels.</p>
+</section>
+<section id="be-able-to-explain-submitted-work." class="level3">
+<h3 class="anchored" data-anchor-id="be-able-to-explain-submitted-work.">2. <strong>Be able to explain submitted work.</strong></h3>
+<p>You own the output. If you submit AI-generated code, you must understand how it works. “The AI told me to” is not a defense for hallucinated functions, broken code, or wrong analyses. Read everything before you submit.</p>
+</section>
+<section id="cite-outside-sources." class="level3">
+<h3 class="anchored" data-anchor-id="cite-outside-sources.">3. <strong>Cite outside sources.</strong></h3>
+<p>If AI generates code based on a specific package, blog post, or paper that you use substantively, cite that source.</p>
+</section>
+<section id="respect-copyright." class="level3">
+<h3 class="anchored" data-anchor-id="respect-copyright.">4. <strong>Respect copyright.</strong></h3>
+<p>Don’t share copyrighted course materials with AI services. Pasting entire textbook chapters into a chatbot is not permitted (separate from academic integrity).</p>
+</section>
+<section id="be-prepared-to-explain-code-during-oral-checkpoints." class="level3">
+<h3 class="anchored" data-anchor-id="be-prepared-to-explain-code-during-oral-checkpoints.">5. <strong>Be prepared to explain code during oral checkpoints.</strong></h3>
+<p>Expect to be asked about any part of your submitted project code.</p>
+</section>
+</section>
+<section id="what-counts-as-a-violation" class="level2">
+<h2 class="anchored" data-anchor-id="what-counts-as-a-violation">What counts as a violation</h2>
+<section id="acceptable-uses-of-ai" class="level3">
+<h3 class="anchored" data-anchor-id="acceptable-uses-of-ai">Acceptable Uses of AI:</h3>
+<ul>
+<li>Pasting an error message from RStudio into ChatGPT to understand why your code broke.</li>
+<li>Asking AI to explain a complex function (e.g., “Explain how <code>left_join()</code> works in <code>dplyr</code> like I am 5”).</li>
+<li>Using AI to generate ideas for how to visualize a specific type of dataset.</li>
+<li>Asking AI to help you clean up the formatting or styling of your code.</li>
+</ul>
+</section>
+<section id="academic-integrity-violations" class="level3">
+<h3 class="anchored" data-anchor-id="academic-integrity-violations">Academic Integrity Violations:</h3>
+<ul>
+<li>Bypassing the prompt by copy-pasting an entire homework question into AI, copying the resulting code directly into your assignment, and submitting it without reading or understanding it.</li>
+<li>“Black box” submissions where you submit code that uses advanced packages or functions we haven’t covered, which you cannot explain or defend during an oral checkpoint or if asked in class.</li>
+<li><strong>Using AI on closed-book, in-person work</strong> like quizzes, in-class exam, in-class activities, oral checkpoints.</li>
+<li><strong>Lying about AI use</strong> (writing “Did not use AI” when you did).</li>
+</ul>
+<p>Consequences follow the standard Eberly College of Science sanction table (see the <a href="../syllabus/academic-integrity-and-ai-policy.html">Academic Integrity &amp; AI Policy</a> document).</p>
+</section>
+</section>
+</section>
+<section id="university-policies-and-resources" class="level1">
+<h1>University Policies and Resources</h1>
+<section id="deferred-grades" class="level2">
+<h2 class="anchored" data-anchor-id="deferred-grades">Deferred grades</h2>
+<p>If you are prevented from completing this course within the prescribed amount of time for reasons that are beyond your control, it is possible to have the grade deferred with the concurrence of the instructor, following <a href="http://senate.psu.edu/policies-and-rules-for-undergraduate-students/47-00-48-00-and-49-00-grades/#48-40">Penn State Deferred Grade Policy 48-40</a>. To seek a deferred grade, you must submit a written request (by e-mail or U.S. post) to the instructor describing the reason(s) for the request. Non-emergency permission must be requested before the beginning of the final examination period. If permission is granted, you will work with the instructor to establish a communication plan and a clear schedule for completion within policy. If, for any reason, the coursework is not complete by the assigned time, a grade of “F” will be automatically entered on your transcript.</p>
+</section>
+<section id="academic-integrity-statement" class="level2">
+<h2 class="anchored" data-anchor-id="academic-integrity-statement">Academic integrity statement</h2>
+<p>Academic integrity is the pursuit of scholarly activity in an open, honest, and responsible manner. Academic integrity is a basic guiding principle for all academic activity at The Pennsylvania State University, and all members of the University community are expected to act in accordance with this principle.</p>
+<p>According to Penn State policy <a href="https://undergrad.psu.edu/aappm/G-9-academic-integrity.html">G-9: Academic Integrity</a>, an academic integrity violation is “an intentional, unintentional, or attempted violation of course or assessment policies to gain an academic advantage or to advantage or disadvantage another student academically.” Unless your instructor tells you otherwise, you must complete all course work entirely on your own, using only sources that have been permitted by your instructor, and you may not assist other students with papers, quizzes, exams, or other assessments. If your instructor allows you to use ideas, images, or word phrases created by another person or by generative technology, you must identify their source. You may not submit false or fabricated information, use the same academic work for credit in multiple courses, or share instructional content. Students with questions about academic integrity should ask their instructor <strong>before submitting work.</strong></p>
+<p><strong>Students facing allegations of academic misconduct may not drop/withdraw from the affected course</strong> unless they are cleared of wrongdoing.</p>
+<p>See also the <a href="../syllabus/academic-integrity-and-ai-policy.html">Academic Integrity &amp; AI Policy</a> document for course-specific guidance.</p>
+</section>
+<section id="ecos-code-of-mutual-respect" class="level2">
+<h2 class="anchored" data-anchor-id="ecos-code-of-mutual-respect">ECoS Code of Mutual Respect</h2>
+<p>The <a href="https://science.psu.edu/diversity-equity-inclusion-belonging/code-mutual-respect-and-cooperation">Eberly College of Science Code of Mutual Respect and Cooperation</a> embodies the values that we hope our faculty, staff, and students possess and will endorse to make the Eberly College of Science a place where every individual feels respected and valued, as well as challenged and rewarded.</p>
+</section>
+<section id="educational-equity-report-bias" class="level2">
+<h2 class="anchored" data-anchor-id="educational-equity-report-bias">Educational equity / Report bias</h2>
+<p>Penn State takes great pride to foster a diverse and inclusive environment for students, faculty, and staff. Acts of intolerance, discrimination, or harassment due to age, ancestry, color, disability, gender, gender identity, national origin, race, religious belief, sexual orientation, or veteran status are not tolerated and can be reported through Educational Equity via the <a href="https://equity.psu.edu/report-bias">Report Bias webpage</a>.</p>
+</section>
+<section id="disability-accommodations" class="level2">
+<h2 class="anchored" data-anchor-id="disability-accommodations">Disability accommodations</h2>
+<p>Penn State welcomes students with disabilities into the University’s educational programs. <a href="https://equity.psu.edu/offices/student-disability-resources">Student Disability Resources (SDR)</a> provides contact information for every Penn State campus.</p>
+<p>To receive consideration for reasonable accommodations, contact the appropriate disability services office at the campus where you are officially enrolled, participate in an intake interview, and provide <a href="https://equity.psu.edu/offices/student-disability-resources/documentation">documentation</a>. Share the accommodation letter with your instructors and discuss accommodations as early as possible.</p>
+<p>If oral checkpoints present an accessibility concern (e.g., anxiety-related accommodations, speech-related disabilities), please reach out early so we can arrange an equivalent alternative format (such as a short written walkthrough).</p>
+</section>
+<section id="counseling-and-psychological-services" class="level2">
+<h2 class="anchored" data-anchor-id="counseling-and-psychological-services">Counseling and Psychological Services</h2>
+<p>Many students at Penn State face personal challenges or psychological needs that may interfere with academic progress, social development, or emotional wellbeing. The university offers a variety of confidential services to help, including individual and group counseling, crisis intervention, consultations, online chats, and mental health screenings.</p>
+<p><a href="http://studentaffairs.psu.edu/counseling/">Counseling and Psychological Services at University Park</a> (CAPS): 814-863-0395</p>
+<p>Penn State Crisis Line (24/7): 877-229-6400</p>
+<p>Crisis Text Line (24/7): Text LIONS to 741741</p>
+</section>
+<section id="syllabus-changes" class="level2">
+<h2 class="anchored" data-anchor-id="syllabus-changes">Syllabus changes</h2>
+<p>This syllabus is subject to change. Substantive changes will be announced in class or via Canvas. Refer to Canvas (and this site) for the most up-to-date version.</p>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p><a href="https://bulletins.psu.edu/university-course-descriptions/undergraduate/stat/" class="uri">https://bulletins.psu.edu/university-course-descriptions/undergraduate/stat/</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>We will install these as part of a class assignment.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>STAT 184 — Summer 2026 — Penn State</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
