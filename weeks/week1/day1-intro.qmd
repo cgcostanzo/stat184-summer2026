@@ -128,8 +128,8 @@ This course will teach you how to:
 ::: {.callout-important style="font-size:1.3em"}
 ## Let's try it together right now:
 1. Log into our Canvas course.
-2. Navigate to the Week 1 Module.
-3. Click the link for **Data Computing Chapter 1 (§1.1–1.5)**.
+2. Click the "Perusall" tab on the left.
+3. Click the link for **DC Section 1 (§1.1–1.5)**.
 :::
 :::
 

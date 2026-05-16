@@ -3,7 +3,7 @@ title: "Week 1 — Foundations"
 subtitle: "May 18 – 22, 2026"
 ---
 
-This week we get everyone set up with R, RStudio, and Quarto, and cover the absolute basics of the R language. By Friday you'll have written your first reproducible document and learned the pipe — the core glue of tidyverse-style R.
+This week we get everyone set up with R, RStudio, and Quarto, and cover the absolute basics of the R language. By Friday you'll have written your first reproducible document and learned the pipe.
 
 ## Daily plan
 

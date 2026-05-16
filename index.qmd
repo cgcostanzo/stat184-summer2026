@@ -30,4 +30,4 @@ By the end of the course you will have completed an independent data analysis pr
 
 ## About AI in this course
 
-You may use generative AI tools (ChatGPT, Claude, Copilot, etc.) **with disclosure** on out-of-class work. In-class work is closed-book. You'll be expected to walk through your project code in person at two oral checkpoints. See the [AI policy](syllabus/academic-integrity-and-ai-policy.qmd) for the full version - it's worth reading carefully on day one.
+You may use generative AI tools (ChatGPT, Claude, Copilot, etc.) **with disclosure** on out-of-class work. In-class work is closed-book. You'll be expected to walk through your project code in person at two oral checkpoints. See the [AI policy](syllabus/academic-integrity-and-ai-policy.qmd) for the full details.
