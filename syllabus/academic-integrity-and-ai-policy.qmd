@@ -22,29 +22,17 @@ Several broad categories of action lead to academic integrity violations. Whethe
 
 **Self-plagiarism.** Submitting work you have already submitted elsewhere (e.g., a paper from another class) without authorization. If you want to extend prior work, ask first.
 
-**Collusion.** Working together in ways that have not been authorized. One student giving another the answers — or one writing the code and passing it along — is collusion, regardless of who submits it. This can happen between students in different sections or even different courses. Authorized group work is fine; unauthorized collusion is not. The line is what the instructor explicitly allowed.
+**Collusion.** Working together in ways that have not been authorized. One student giving another the answers — or one writing the code and passing it along — is collusion, regardless of who submits it. This can happen between students in different sections or even different courses. Authorized group work is fine; unauthorized collusion is not.
 
 **Ghost writing.** Someone else (or some*thing* else) doing your work and submitting it as if it were yours.
 
 **Improper technology use.** Using technology in ways that aren't allowed — banned devices on assessments, posting questions or answers to sites like Chegg or CourseHero, or unauthorized use of AI tools on closed-book work.
 
-The common thread across all of these: a person presents someone else's work (or thinking) as their own.
-
-# Working together vs. collusion vs. group work
-
-These get conflated, so:
-
-- **Group work** is when the instructor assigns a task to be completed as a team with a single submission. The team is meant to work together; that's the point.
-- **Working together** is when students help each other learn — sharing ideas, comparing approaches, debugging each other's code — and each student submits their own work in their own words. I encourage this.
-- **Collusion** is when one person does the work and another submits it (or something close to it). This is never allowed.
-
-The test: when you submit work, the differences in *how you think and write* should be visible. If two submissions are essentially the same, that's not "working together," it's collusion.
-
 # Generative AI Policy
 
 ## Stance
 
-Generative AI tools (e.g., ChatGPT, Claude, Gemini, Copilot, Cursor) are now a standard part of how people write and reason about code in industry and research. Rather than ban these tools and ask you to pretend they do not exist, this course takes the position that **you are free to use any AI tool you like on any assignment outside the classroom**, including homework and the course project.
+Generative AI tools (e.g., ChatGPT, Claude, Gemini, Copilot, Cursor) are now a standard part of how people write and reason about code in industry and research. Rather than ban these tools and ask you to pretend they do not exist, this course takes the position that **you are free to use any AI tool you like on any assignment outside the classroom**, including homework and the course project, **with disclosure of use**.
 
 This freedom comes with a corresponding obligation: **you must acknowledge AI use, you are responsible for everything you submit, and you must be able to explain it.** Assessments fall into two categories:
 
@@ -59,7 +47,7 @@ The grading weights are deliberately set so that roughly 60% of your grade comes
 
 Transparency is a core part of reproducible data science. Therefore, every open assessment includes a mandatory AI disclosure as a graded rubric item.
 
-At the top of your Quarto document, you must include the following checklist (which will be included in the provided open assessment templates). Check off all boxes that apply to your usage and provide a single sentence describing how the tool was utilized.
+At the top of your Quarto document, you must include the following checklist (which will be included in the provided open assessment templates). Check off all boxes that apply to your usage and provide a sentence or two describing how the tool was utilized.
 
 **AI Disclosure**
 
@@ -110,7 +98,7 @@ Part of learning involves running into problems where you don't immediately have
 1. **Your course notes and textbook.**
 2. **R's built-in documentation.** `?function_name` will save you more time than any search.
 3. **Your classmates** (working together, not collusion).
-4. **Student Hours** — come to office hours. This is the highest-bandwidth way to get help.
+4. **Office Hours** — come to office hours. This is the highest-bandwidth way to get help.
 5. **Canvas discussion boards.**
 6. **The instructor and TA, by email or message.**
 7. **The wider internet** (Stack Overflow, blog posts, AI tools, etc.) — useful, but with caution.
@@ -123,11 +111,10 @@ Violations are pursued under University and Eberly College of Science policies. 
 
 | Severity | First violation (in this course) | Second violation (in this course) |
 | :--- | :--- | :--- |
-| **Minor** (e.g., unintentional poor citation) | Redo the assignment for partial credit (max 50%) | Zero on the assignment |
-| **Moderate** (e.g., copying a block of code, unauthorized AI use) | Zero on the assignment | Course grade of F |
-| **Major** (e.g., cheating on an exam, submitting an entirely fabricated/AI-generated project)| Course grade of F | Course grade of XF |
-
-: {tbl-colwidths="[40, 30, 30]"}
+| **Minor** | Redo the assignment for partial credit (max 50%) | Zero on the assignment |
+| **Moderate** | Zero on the assignment | Course grade of F |
+| **Major** | Course grade of F | Course grade of XF |
+: Recommended Sanctions {tbl-colwidths="[25,35,40]"}
 
 Note: The Eberly Committee on Academic Integrity and the Office of Student Accountability and Conflict Response (OSACR) review all reports. They track university-wide repeat offenses and may alter or increase these consequences, including suspension or expulsion for repeat offenders.
 
