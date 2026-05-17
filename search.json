@@ -67,7 +67,7 @@
     "href": "reference/hw-template.html",
     "title": "STAT 184 — Homework [N]",
     "section": "",
-    "text": "Check off all boxes that apply to your usage and provide a single sentence describing how the tool was utilized.\n\nNo AI used\nSyntax / Debugging (e.g., finding a missing comma, fixing an error code)\nConceptual explanation (e.g., asking how a left_join works)\nCode Generation (e.g., asking AI to write a function from scratch)\n\nBriefly describe your use (1-2 sentences): [Type your explanation here]\n\n\nlibrary(tidyverse)\n# Style guide followed: [Tidyverse / Google / BOAST — pick one]"
+    "text": "Check off all boxes that apply to your usage and provide a brief description of how the tool was utilized.\n\nNo AI used\nSyntax / Debugging (e.g., finding a missing comma, fixing an error code)\nConceptual explanation (e.g., asking how a left_join works)\nCode Generation (e.g., asking AI to write a function from scratch)\n\nBriefly describe your use (1-2 sentences): [Type your explanation here]\n\n\nlibrary(tidyverse)\n# Style guide followed: [Tidyverse / Google / BOAST — pick one]"
   },
   {
     "objectID": "reference/hw-template.html#part-a",
@@ -1046,7 +1046,7 @@
     "href": "assignments/exam/index.html",
     "title": "Exam",
     "section": "",
-    "text": "There is one exam, given on Thursday, June 11. It has two parts, each worth half of the exam grade."
+    "text": "There is one exam, given on Thursday, June 11."
   },
   {
     "objectID": "assignments/exam/index.html#in-class-20-of-course-grade",
@@ -1060,14 +1060,7 @@
     "href": "assignments/exam/index.html#what-to-study",
     "title": "Exam",
     "section": "What to study",
-    "text": "What to study\nProbably the single best preparation is to redo old homework, activities, and quizzes from scratch without looking at your prior answers.\n\nAll dplyr verbs we’ve covered.\nReading and writing ggplot2 code.\nIdentifying common bugs (== vs =, factor vs character, missing argument names).\nReading provenance and structure of a tibble from a glimpse() printout.\nJoins: who keeps which rows, what NAs mean in the output."
-  },
-  {
-    "objectID": "assignments/exam/index.html#materials",
-    "href": "assignments/exam/index.html#materials",
-    "title": "Exam",
-    "section": "Materials",
-    "text": "Materials\n\nTODO: practice problems\nTODO: in-class exam paper version\nTODO: take-home QMD with starter data\nTODO: solutions (post-exam)"
+    "text": "What to study\nTBD"
   },
   {
     "objectID": "assignments/homework/index.html",
@@ -1102,7 +1095,7 @@
     "href": "assignments/homework/index.html#standard-ai-use-note",
     "title": "Homework",
     "section": "Standard AI Use Note",
-    "text": "Standard AI Use Note\nEvery homework rubric includes the following (1–2 points):\n\nAI Disclosure\n\nNo AI used\nSyntax / Debugging (e.g., finding a missing comma, fixing an error code)\nConceptual explanation (e.g., asking how a left_join works)\nCode Generation (e.g., asking AI to write a function from scratch)\n\nBriefly describe your use (1-2 sentences):"
+    "text": "Standard AI Use Note\nEvery homework rubric includes the following (1–2 points):\n\nAI Disclosure\nCheck off all boxes that apply to your usage and provide a brief description of how the tool was utilized.\n\nNo AI used\nSyntax / Debugging (e.g., finding a missing comma, fixing an error code)\nConceptual explanation (e.g., asking how a left_join works)\nCode Generation (e.g., asking AI to write a function from scratch)\n\nBriefly describe your use (1-2 sentences): [Type your explanation here]"
   },
   {
     "objectID": "assignments/homework/index.html#template",
@@ -1144,7 +1137,7 @@
     "href": "assignments/quizzes/index.html",
     "title": "Quizzes",
     "section": "",
-    "text": "Six weekly quizzes on Fridays (one rescheduled to Monday June 22 because of Juneteenth). In class, on paper, closed book, no AI tools. Lowest score is dropped.\nNote: depending on calendar there may only be 5 quizzes total. Adjust the drop policy accordingly."
+    "text": "Five weekly quizzes on Fridays (one rescheduled to Monday June 22 because of Juneteenth). In class, on paper, closed book, no AI tools. Lowest score is dropped."
   },
   {
     "objectID": "assignments/quizzes/index.html#format",
