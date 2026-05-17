@@ -826,7 +826,7 @@
     "href": "weeks/week1/day1-intro.html#ai-policy",
     "title": "Day 1 — Course intro & what is R?",
     "section": "AI policy",
-    "text": "AI policy\n\nOpen assessments (Homework & Project): AI tools are permitted with mandatory disclosure.\nClosed-book, in-person work (Quizzes, Exam, Activities, Oral Checkpoints): AI tools are strictly prohibited.\nDisclosure is graded (1-2 points). Omitting the disclosure loses points; lying on the disclosure is an academic integrity violation.\nYou own the output. You must be able to explain any code you submit, which I will verify during in-class oral project checkpoints.\nPractical implication: AI is a study aid, not a substitute. Roughly 60% of your grade comes from verified in-person work where AI cannot be used.",
+    "text": "AI policy\n\nOpen assessments (Homework & Project): AI tools are permitted with mandatory disclosure.\nClosed-book, in-person work (Quizzes, Exam, Activities, Oral Checkpoints): AI tools are strictly prohibited.\nDisclosure is graded (1-2 points).\nYou must be able to explain any code you submit, which I will verify during in-class oral project checkpoints.\nRoughly 60% of your grade comes from verified in-person work where AI cannot be used.",
     "crumbs": [
       "Day 1 — Course intro & what is R?"
     ]
