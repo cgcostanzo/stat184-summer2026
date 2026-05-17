@@ -936,7 +936,7 @@
     "href": "weeks/week1/index.html#daily-plan",
     "title": "Week 1 — Foundations",
     "section": "Daily plan",
-    "text": "Daily plan\n\n\n\nDate\nTopic\nFiles\n\n\n\n\nMon May 18\nCourse intro & what is R?\nView Slides · Download HTML · PDF, in-class code\n\n\nTue May 19\nR, RStudio, console · vectors · types\nslides, in-class code\n\n\nWed May 20\nFunctions, packages · tidyverse\nslides, in-class code\n\n\nThu May 21\nQuarto basics\nslides, in-class code\n\n\nFri May 22\nQuiz 1 · pipe and chaining syntax\nquiz, in-class code",
+    "text": "Daily plan\n\n\n\nDate\nTopic\nFiles\n\n\n\n\nMon May 18\nCourse intro & what is R?\nView Slides · Download HTML · PDF\n\n\nTue May 19\nR, RStudio, console · vectors · data types\nView Slides · Download HTML · PDF\n\n\nWed May 20\nFunctions, packages · tidyverse\nslides\n\n\nThu May 21\nQuarto basics\nslides\n\n\nFri May 22\nQuiz 1 · pipe and chaining syntax\nquiz",
     "crumbs": [
       "Week 1 — Foundations"
     ]
@@ -1270,51 +1270,181 @@
     "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
   },
   {
-    "objectID": "weeks/week1/day2-r-basics.html",
-    "href": "weeks/week1/day2-r-basics.html",
+    "objectID": "weeks/week1/day2-r-basics.html#what-is-computing",
+    "href": "weeks/week1/day2-r-basics.html#what-is-computing",
     "title": "R, RStudio, and the console · vectors · types",
-    "section": "",
-    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class",
+    "section": "What is Computing?",
+    "text": "What is Computing?\nComputing is about turning human ideas into reproducible instructions that a computer can carry out\nIn this course, we will learn how to:\n\norganize data\nautomate calculations\nvisualize information\nbuild reproducible analyses\ncommunicate results\n\nR is the tool we will use to do that.",
     "crumbs": [
       "R, RStudio, and the console · vectors · types"
     ]
   },
   {
-    "objectID": "weeks/week1/day2-r-basics.html#before-class",
-    "href": "weeks/week1/day2-r-basics.html#before-class",
+    "objectID": "weeks/week1/day2-r-basics.html#another-introduction-to-r",
+    "href": "weeks/week1/day2-r-basics.html#another-introduction-to-r",
     "title": "R, RStudio, and the console · vectors · types",
-    "section": "Before class",
-    "text": "Before class\n\nRead: Data Computing Ch 2 (§2.1–2.8)\nTODO: any prep materials, data files, etc.",
+    "section": "Another Introduction to R",
+    "text": "Another Introduction to R\n\nR is a programming language designed for data analysis, statistics, and visualization.\nWe use R to tell the computer exactly what computations we want to perform.\nR is widely used in:\n\nstatistics\ndata science\nresearch\nindustry analytics\n\nR is, free, open-source, and highly extensible through thousands of packages that contain additional tools and functions.",
     "crumbs": [
       "R, RStudio, and the console · vectors · types"
     ]
   },
   {
-    "objectID": "weeks/week1/day2-r-basics.html#outline",
-    "href": "weeks/week1/day2-r-basics.html#outline",
+    "objectID": "weeks/week1/day2-r-basics.html#rstudio-desktop-rstudio",
+    "href": "weeks/week1/day2-r-basics.html#rstudio-desktop-rstudio",
     "title": "R, RStudio, and the console · vectors · types",
-    "section": "Outline",
-    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class",
+    "section": "RStudio Desktop (RStudio)",
+    "text": "RStudio Desktop (RStudio)\n\nFirst version released in 2011.\nIntegrated development environment (IDE) provides additional tools and window management to R to help coders, statisticians, and data scientists use R more effectively.\nWhile R is required to run RStudio, you do not need to have RStudio to use R.",
     "crumbs": [
       "R, RStudio, and the console · vectors · types"
     ]
   },
   {
-    "objectID": "weeks/week1/day2-r-basics.html#resources",
-    "href": "weeks/week1/day2-r-basics.html#resources",
+    "objectID": "weeks/week1/day2-r-basics.html#r-vs.-rstudio",
+    "href": "weeks/week1/day2-r-basics.html#r-vs.-rstudio",
     "title": "R, RStudio, and the console · vectors · types",
-    "section": "Resources",
-    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout",
+    "section": "R vs. RStudio",
+    "text": "R vs. RStudio\n\nR is the programming language.\nRStudio is the environment/interface we use to work with R more comfortably.",
     "crumbs": [
       "R, RStudio, and the console · vectors · types"
     ]
   },
   {
-    "objectID": "weeks/week1/day2-r-basics.html#after-class",
-    "href": "weeks/week1/day2-r-basics.html#after-class",
+    "objectID": "weeks/week1/day2-r-basics.html#rstudios-four-pane-layout",
+    "href": "weeks/week1/day2-r-basics.html#rstudios-four-pane-layout",
     "title": "R, RStudio, and the console · vectors · types",
-    "section": "After class",
-    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for.",
+    "section": "RStudio’s Four Pane Layout",
+    "text": "RStudio’s Four Pane Layout\n\n\n\n\n\n\n\n\n\n\nFigure 1: RStudio’s four pane layout, annotated.",
+    "crumbs": [
+      "R, RStudio, and the console · vectors · types"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics.html#source-pane",
+    "href": "weeks/week1/day2-r-basics.html#source-pane",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Source Pane",
+    "text": "Source Pane\n\n\n\n\n\n\n\n\n\n\nFigure 2: RStudio’s source pane, annotated.",
+    "crumbs": [
+      "R, RStudio, and the console · vectors · types"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics.html#console-pane",
+    "href": "weeks/week1/day2-r-basics.html#console-pane",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Console Pane",
+    "text": "Console Pane\n\n\n\n\n\n\n\n\n\n\nFigure 3: RStudio’s console, annotated.",
+    "crumbs": [
+      "R, RStudio, and the console · vectors · types"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics.html#environment-pane",
+    "href": "weeks/week1/day2-r-basics.html#environment-pane",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Environment Pane",
+    "text": "Environment Pane\n\n\n\n\n\n\n\n\n\n\nFigure 4: RStudio’s environment pane, annotated.",
+    "crumbs": [
+      "R, RStudio, and the console · vectors · types"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics.html#output-pane---files-tab",
+    "href": "weeks/week1/day2-r-basics.html#output-pane---files-tab",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Output Pane - Files Tab",
+    "text": "Output Pane - Files Tab\n\n\n\n\n\n\n\n\n\n\nFigure 5: RStudio’s output pane (files tab), annotated.",
+    "crumbs": [
+      "R, RStudio, and the console · vectors · types"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics.html#output-pane---plots-tab",
+    "href": "weeks/week1/day2-r-basics.html#output-pane---plots-tab",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Output Pane - Plots Tab",
+    "text": "Output Pane - Plots Tab\n\n\n\n\n\n\n\n\n\n\nFigure 6: RStudio’s output pane (plots tab), annotated, displaying a 2D density contour plot created with ggplot2. Darker regions indicate areas with higher concentrations of observations, while lighter regions represent lower densities. The plot combines filled density polygons with contour boundaries to visualize the distribution of simulated data.\n\n\n\n\n\nShow the R code.\n# Set Seed\nset.seed(184)\n\n# Library\nlibrary(tidyverse)\n\n# Data\na &lt;- data.frame( x=rnorm(20000, 12, 2), y=rnorm(20000, 10, 0.5) )\nb &lt;- data.frame( x=rnorm(20000, 15, 1.5), y=rnorm(20000, 11, 0.5) )\nc &lt;- data.frame( x=rnorm(20000, 10, 1.1), y=rnorm(20000, 11.5, 0.7) )\ndata &lt;- rbind(a,b,c)\n\n# Area + contour\nggplot(data, aes(x=x, y=y) ) +\n  stat_density_2d(aes(fill = ..level..), geom = \"polygon\", colour=\"white\") +\n  theme_light() +\n  scale_fill_viridis_c(option = \"magma\")",
+    "crumbs": [
+      "R, RStudio, and the console · vectors · types"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics.html#output-pane---packages-tab",
+    "href": "weeks/week1/day2-r-basics.html#output-pane---packages-tab",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Output Pane - Packages Tab",
+    "text": "Output Pane - Packages Tab\n\n\n\n\n\n\n\n\n\n\nFigure 7: RStudio’s output pane (packages tab), annotated.\n\n\n\n\nThe “Packages” tab will list all packages that you have currently installed on your machine. You can load a package by clicking the box to the left of the name.\nYou can also use the “Install” and “Update” buttons to help you get new packages and keep them current.",
+    "crumbs": [
+      "R, RStudio, and the console · vectors · types"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics.html#output-pane---help-tab",
+    "href": "weeks/week1/day2-r-basics.html#output-pane---help-tab",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Output Pane - Help Tab",
+    "text": "Output Pane - Help Tab\n\n\n\n\n\n\n\n\n\n\nFigure 8: RStudio’s output pane (help tab), annotated.\n\n\n\n\nThe “Help” tab displays help documentation that has been included with the packages for functions, data sets, and other objects.\nHelp Shortcuts: ?barplot, help(barplot), or ??barplot (broad sweep). You can also place your cursor in the object name and press fn + F1 (or just F1 if your function keys are active).",
+    "crumbs": [
+      "R, RStudio, and the console · vectors · types"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics.html#data-types",
+    "href": "weeks/week1/day2-r-basics.html#data-types",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Data Types",
+    "text": "Data Types\n\nData type refers to the nature of how we choose to record some value.\nCommon Data Types in R:\n\nNumeric (Double)\nInteger\nComplex\nCharacter\nLogical",
+    "crumbs": [
+      "R, RStudio, and the console · vectors · types"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics.html#data-structures",
+    "href": "weeks/week1/day2-r-basics.html#data-structures",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Data Structures",
+    "text": "Data Structures\n\nData structures are the most important type of base objects in R as they will form the basis for all manipulations we do.\nR’s data structures may be organized along two aspects:\n\nHow many dimensions we need for values.\nIf all values have to be the same data type.\n\n\n\n\n\n\n\n\n\n\n\nDimensions\n\n\nAll Values Same Data Type\n\n\nA Mix of Data Types\n\n\n\n\n\n\n1 Dimension\n\n\nAtomic Vectors\n[1] 1 3 5\n[1] \"apple\" \"grape\" \"peach\"\n\n\n\nList\n[[1]]\n[1] 1 3 5\n\n[[2]]\n[1] \"apple\" \"grape\" \"peach\"\n\n\n\n\n\n2 Dimensions\n\n\nMatrix\n     [,1] [,2]\n[1,]    1    5\n[2,]    3    7\n\n\n\nData Frame\n  id  fruit\n1  1  apple\n2  3  grape\n3  5  peach\n\n\n\n\n\nn Dimensions\n\n\nArray\n, , 1\n\n     [,1] [,2]\n[1,]    1    5\n[2,]    3    7\n\n, , 2\n\n     [,1] [,2]\n[1,]    2    6\n[2,]    4    8\n\n\n\nN/A",
+    "crumbs": [
+      "R, RStudio, and the console · vectors · types"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics.html#r-as-a-calculator",
+    "href": "weeks/week1/day2-r-basics.html#r-as-a-calculator",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "R as a Calculator",
+    "text": "R as a Calculator\nYou can use R as a calculator:\n\n184.101 * 9.35\n\n[1] 1721.344\n\n(8 + 4) / 9\n\n[1] 1.333333\n\nsqrt(8)\n\n[1] 2.828427\n\ncos(2*pi)\n\n[1] 1",
+    "crumbs": [
+      "R, RStudio, and the console · vectors · types"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics.html#vector-operations",
+    "href": "weeks/week1/day2-r-basics.html#vector-operations",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Vector Operations",
+    "text": "Vector Operations\n\nc(1, 8, 4) + c(9, 3, 5)\n\n[1] 10 11  9\n\nc(1, 8, 4) * c(9, 3, 5)\n\n[1]  9 24 20\n\n\n\nThe c functions concatenates multiple individual values into one single vector.",
+    "crumbs": [
+      "R, RStudio, and the console · vectors · types"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics.html#built-in-functions-and-constants",
+    "href": "weeks/week1/day2-r-basics.html#built-in-functions-and-constants",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Built-in Functions and Constants",
+    "text": "Built-in Functions and Constants\n\nexp(1)\n\n[1] 2.718282\n\nsqrt(pi)\n\n[1] 1.772454\n\ndnorm(0)\n\n[1] 0.3989423\n\n\n\nsqrt computes the square root.\nexp computes the function \\(e^x\\).\npi is the constant \\(\\pi\\).\ndnorm computes the standard normal density function.",
+    "crumbs": [
+      "R, RStudio, and the console · vectors · types"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics.html#creating-objects",
+    "href": "weeks/week1/day2-r-basics.html#creating-objects",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Creating objects",
+    "text": "Creating objects\nYou can create new objects with the assignment operator, &lt;-\n\nx &lt;- 3 * 5\n\nThe above is an example of an assignment statement. In general, assignment statements have the form:\n\nobject_name &lt;- value\n\nIn English, this is “object_name gets value.”\n\nEven though typing &lt;- for the many assignments you will make can be tedious, don’t use =; it will work, but will cause confusion later.\nYou can use the RStudio keyboard shortcut Alt + -, (or Option + - on a Mac).\nObject names must start with a letter, and can only contain letters, numbers, _, and .",
     "crumbs": [
       "R, RStudio, and the console · vectors · types"
     ]
