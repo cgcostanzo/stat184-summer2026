@@ -1074,14 +1074,14 @@
     "href": "assignments/homework/index.html",
     "title": "Homework",
     "section": "",
-    "text": "There are 6 homework assignments over the course. The lowest score is dropped."
+    "text": "There will be 1-2 homework assignments per week in the course. The lowest score is dropped. The following is an outline of the first two homeworks:"
   },
   {
     "objectID": "assignments/homework/index.html#how-to-submit",
     "href": "assignments/homework/index.html#how-to-submit",
     "title": "Homework",
     "section": "How to submit",
-    "text": "How to submit\n\nWork in Quarto, render to PDF or HTML.\nInclude a code appendix at the end (for HW 2+).\nInclude the AI use note (rubric line, 1–2 points).\nSubmit the rendered file to Canvas. Also push the .qmd to your personal GitHub repo for the course."
+    "text": "How to submit\n\nWork in Quarto, render to PDF or HTML.\nInclude a code appendix at the end (for HW 2+).\nInclude the AI use note (1–2 points).\nSubmit the rendered file to Canvas. Also push the .qmd to your personal GitHub repo for the course."
   },
   {
     "objectID": "assignments/homework/index.html#ai-policy",
@@ -1098,11 +1098,11 @@
     "text": "Late policy\nEmail me for an extension if you need one. Extensions are generally 24–48 hours. Submissions more than 48 hours late without prior arrangement may not be accepted. Lowest score is dropped."
   },
   {
-    "objectID": "assignments/homework/index.html#standard-ai-use-note-rubric-line",
-    "href": "assignments/homework/index.html#standard-ai-use-note-rubric-line",
+    "objectID": "assignments/homework/index.html#standard-ai-use-note",
+    "href": "assignments/homework/index.html#standard-ai-use-note",
     "title": "Homework",
-    "section": "Standard AI use note rubric line",
-    "text": "Standard AI use note rubric line\nEvery homework rubric includes the following (1–2 points):\n\nAI use note (2 pts). A short note (1–2 sentences) describing whether you used AI tools on this homework and, if so, what for. “Did not use AI” is a valid answer. Leaving this blank costs the points but is not an integrity issue. Falsely claiming you didn’t use AI when you did is an integrity issue."
+    "section": "Standard AI Use Note",
+    "text": "Standard AI Use Note\nEvery homework rubric includes the following (1–2 points):\n\nAI Disclosure\n\nNo AI used\nSyntax / Debugging (e.g., finding a missing comma, fixing an error code)\nConceptual explanation (e.g., asking how a left_join works)\nCode Generation (e.g., asking AI to write a function from scratch)\n\nBriefly describe your use (1-2 sentences):"
   },
   {
     "objectID": "assignments/homework/index.html#template",
