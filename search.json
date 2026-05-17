@@ -67,7 +67,7 @@
     "href": "reference/hw-template.html",
     "title": "STAT 184 — Homework [N]",
     "section": "",
-    "text": "library(tidyverse)\n# Style guide followed: [Tidyverse / Google / BOAST — pick one]"
+    "text": "Check off all boxes that apply to your usage and provide a single sentence describing how the tool was utilized.\n\nNo AI used\nSyntax / Debugging (e.g., finding a missing comma, fixing an error code)\nConceptual explanation (e.g., asking how a left_join works)\nCode Generation (e.g., asking AI to write a function from scratch)\n\nBriefly describe your use (1-2 sentences): [Type your explanation here]\n\n\nlibrary(tidyverse)\n# Style guide followed: [Tidyverse / Google / BOAST — pick one]"
   },
   {
     "objectID": "reference/hw-template.html#part-a",
@@ -1113,7 +1113,7 @@
     "href": "assignments/activities/index.html#format",
     "title": "In-class Activities",
     "section": "Format",
-    "text": "Format\n\nAssigned during class. Sometimes due at end of class, sometimes by 11:59 p.m. that night.\nClosed-book during class. (When taken home for end-of-day submission, AI policy follows the regular open-assessment rules.)\nMix of individual and small-group."
+    "text": "Format\nAssigned and due during class. No AI tools are permitted.\n\nMix of individual and small-group."
   },
   {
     "objectID": "assignments/activities/index.html#roughly-how-many",
@@ -1121,13 +1121,6 @@
     "title": "In-class Activities",
     "section": "Roughly how many",
     "text": "Roughly how many\nWe will have ~15–20 activities across the six weeks. Specifics depend on day-to-day pacing."
-  },
-  {
-    "objectID": "assignments/activities/index.html#ai-policy",
-    "href": "assignments/activities/index.html#ai-policy",
-    "title": "In-class Activities",
-    "section": "AI policy",
-    "text": "AI policy\nIn-class activities: no AI tools. Activities that are released to be completed at home (end-of-day) follow the regular open-assessment AI policy."
   },
   {
     "objectID": "assignments/activities/index.html#make-ups",
@@ -1404,7 +1397,7 @@
     "href": "weeks/week1/day2-r-basics.html#data-structures",
     "title": "R, RStudio, and the console · vectors · types",
     "section": "Data Structures",
-    "text": "Data Structures\n\nData structures are the most important type of base objects in R as they will form the basis for all manipulations we do.\nR’s data structures may be organized along two aspects:\n\nHow many dimensions we need for values.\nIf all values have to be the same data type.\n\n\n\n\n\n\n\n\n\n\n\nDimensions\n\n\nAll Values Same Data Type\n\n\nA Mix of Data Types\n\n\n\n\n\n\n1 Dimension\n\n\nAtomic Vectors\n[1] 1 3 5\n[1] \"apple\" \"grape\" \"peach\"\n\n\n\nList\n[[1]]\n[1] 1 3 5\n\n[[2]]\n[1] \"apple\" \"grape\" \"peach\"\n\n\n\n\n\n2 Dimensions\n\n\nMatrix\n     [,1] [,2]\n[1,]    1    5\n[2,]    3    7\n\n\n\nData Frame\n  id  fruit\n1  1  apple\n2  3  grape\n3  5  peach\n\n\n\n\n\nn Dimensions\n\n\nArray\n, , 1\n\n     [,1] [,2]\n[1,]    1    5\n[2,]    3    7\n\n, , 2\n\n     [,1] [,2]\n[1,]    2    6\n[2,]    4    8\n\n\n\nN/A",
+    "text": "Data Structures\n\nData structures are the most important type of base objects in R as they will form the basis for all manipulations we do.\nR’s data structures may be organized along two aspects:\n\nHow many dimensions we need for values.\nIf all values have to be the same data type.\n\n\n\n\n\n\n\n\n\n\nDimensions\nAll Values Same Data Type\nA Mix of Data Types\n\n\n\n\n1 Dimension\nAtomic Vectors\n[1] 1 3 5\n[1] \"apple\" \"grape\"\n\"peach\"\nList\n[[1]]\n[1] 1 3 5\n\n[[2]]\n[1] \"apple\" \"grape\"\n\"peach\"\n\n\n2 Dimensions\nMatrix\n     [,1] [,2]\n[1,]    1    5\n[2,]    3    7\nData Frame\n  id  fruit\n1  1  apple\n2  3  grape\n3  5  peach\n\n\nn Dimensions\nArray\n, , 1\n\n     [,1] [,2]\n[1,]    1    5\n[2,]    3    7\n\n, , 2\n\n     [,1] [,2]\n[1,]    2    6\n[2,]    4    8\nN/A",
     "crumbs": [
       "R, RStudio, and the console · vectors · types"
     ]
@@ -1445,6 +1438,26 @@
     "title": "R, RStudio, and the console · vectors · types",
     "section": "Creating objects",
     "text": "Creating objects\nYou can create new objects with the assignment operator, &lt;-\n\nx &lt;- 3 * 5\n\nThe above is an example of an assignment statement. In general, assignment statements have the form:\n\nobject_name &lt;- value\n\nIn English, this is “object_name gets value.”\n\nEven though typing &lt;- for the many assignments you will make can be tedious, don’t use =; it will work, but will cause confusion later.\nYou can use the RStudio keyboard shortcut Alt + -, (or Option + - on a Mac).\nObject names must start with a letter, and can only contain letters, numbers, _, and .",
+    "crumbs": [
+      "R, RStudio, and the console · vectors · types"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics.html#setup-checklist-due-by-wednesday",
+    "href": "weeks/week1/day2-r-basics.html#setup-checklist-due-by-wednesday",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Setup checklist — due by Wednesday",
+    "text": "Setup checklist — due by Wednesday\nInstall R and RStudio\n\nR: https://cloud.r-project.org\nRStudio: https://posit.co/download/rstudio-desktop\n\n\n\n\n\n\n\nMac users\n\n\nInstall XQuartz too — some packages we’ll use later in the course need it.\n\n\n\nConfigure RStudio\n\nTools &gt; Global Options... &gt; General\nRestore .RData into workspace at startup: Unchecked\nSave workspace to .RData on exit: Never\n\nAssignments due Wednesday 5/20\n\nHW 0: Setup confirmation",
+    "crumbs": [
+      "R, RStudio, and the console · vectors · types"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics.html#wrap-up-looking-ahead",
+    "href": "weeks/week1/day2-r-basics.html#wrap-up-looking-ahead",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Wrap-up & looking ahead",
+    "text": "Wrap-up & looking ahead\nTomorrow: Functions, packages, and the tidyverse.\nDue Wednesday before class:\n\nRead Data Computing §3.1–3.5 on Perusall.\n\nReference links\n\nSyllabus · AI policy · Schedule · Data Computing\n\n\n\n\nReach out\n\n\nStuck on setup? Come to office hours or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu) before Wednesday — don’t wait until class.",
     "crumbs": [
       "R, RStudio, and the console · vectors · types"
     ]
