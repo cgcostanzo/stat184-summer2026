@@ -866,7 +866,7 @@
     "href": "weeks/week1/day1-intro.html#r-vs.-rstudio",
     "title": "Day 1 — Course intro & what is R?",
     "section": "R vs. RStudio",
-    "text": "R vs. RStudio\n\nR is a computer language that performs computations based on human-written instructions.\nRStudio is an integrated development environment (IDE) for R programming. It combines the R console with supplementary tools for more efficient R programming.\n\n\n\n\n\n\n\n\n\n\n\n\n(a) R: Do not open this\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n(b) RStudio: Open this\n\n\n\n\n\n\n\nFigure 2: R and RStudio logos.",
+    "text": "R vs. RStudio\n\nR is a computer language that performs computations based on human-written instructions.\nRStudio is an integrated development environment (IDE) for R programming. It combines the R console with supplementary tools for more efficient R programming.\n\n\n\n\n\n\n\n\n\n\n\n\n(a) R: Do not open this\n\n\n\n\n\n \n\n\n\n\n\n\n\n\n(b) RStudio: Open this\n\n\n\n\n\n\n\nFigure 2: R and RStudio logos.",
     "crumbs": [
       "Day 1 — Course intro & what is R?"
     ]
@@ -896,7 +896,17 @@
     "href": "weeks/week1/day1-intro.html#demo-what-r-can-do",
     "title": "Day 1 — Course intro & what is R?",
     "section": "Demo: what R can do",
-    "text": "Demo: what R can do\n\nLive demo — students just watch, no need to follow along.\nGoals: - Show R is a real programming environment, not a calculator. - Walk through a complete small analysis: load, clean, visualize, summarize. - Make it look easy.\nNarrate at a high level — don’t get into syntax, they’ll learn that.\nCandidate datasets: - palmerpenguins::penguins — clean and visually striking (current pick) - Tidy Tuesday “horror movies” or similar topical - NYC airbnb pricing\n\n\n\n\nShow the R code.\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\n# What does the data look like?\nglimpse(penguins)\n\n\nRows: 344\nColumns: 8\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\nShow the R code.\n# Quick summary by species\npenguins |&gt;\n  group_by(species) |&gt;\n  summarize(\n    n            = n(),\n    mean_mass_g  = mean(body_mass_g,    na.rm = TRUE),\n    mean_bill_mm = mean(bill_length_mm, na.rm = TRUE)\n  )\n\n\n# A tibble: 3 × 4\n  species       n mean_mass_g mean_bill_mm\n  &lt;fct&gt;     &lt;int&gt;       &lt;dbl&gt;        &lt;dbl&gt;\n1 Adelie      152       3701.         38.8\n2 Chinstrap    68       3733.         48.8\n3 Gentoo      124       5076.         47.5\n\n\nShow the R code.\n# A nice plot\npenguins |&gt;\n  ggplot(aes(x = bill_length_mm, y = body_mass_g, color = species)) +\n  geom_point(alpha = 0.7) +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  labs(\n    title = \"Bill length vs body mass, by species\",\n    x = \"Bill length (mm)\",\n    y = \"Body mass (g)\"\n  ) +\n  theme_minimal()",
+    "text": "Demo: what R can do\n\n\n\nShow the R code.\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\n# What does the data look like?\nglimpse(penguins)\n\n\nRows: 344\nColumns: 8\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\nShow the R code.\n# Quick summary by species\npenguins |&gt;\n  group_by(species) |&gt;\n  summarize(\n    n            = n(),\n    mean_mass_g  = mean(body_mass_g,    na.rm = TRUE),\n    mean_bill_mm = mean(bill_length_mm, na.rm = TRUE)\n  )\n\n\n# A tibble: 3 × 4\n  species       n mean_mass_g mean_bill_mm\n  &lt;fct&gt;     &lt;int&gt;       &lt;dbl&gt;        &lt;dbl&gt;\n1 Adelie      152       3701.         38.8\n2 Chinstrap    68       3733.         48.8\n3 Gentoo      124       5076.         47.5\n\n\nShow the R code.\n# A nice plot\npenguins |&gt;\n  ggplot(aes(x = bill_length_mm, y = body_mass_g, color = species)) +\n  geom_point(alpha = 0.7) +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  labs(\n    title = \"Bill length vs body mass, by species\",\n    x = \"Bill length (mm)\",\n    y = \"Body mass (g)\"\n  ) +\n  theme_minimal()",
+    "crumbs": [
+      "Day 1 — Course intro & what is R?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro.html#demo-what-r-can-do-1",
+    "href": "weeks/week1/day1-intro.html#demo-what-r-can-do-1",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Demo: what R can do",
+    "text": "Demo: what R can do\n\n\n\nShow the interactive Leaflet code.\n# Load necessary libraries\nlibrary(tidyverse)\nlibrary(sf)\nlibrary(tigris)\nlibrary(leaflet)\n\n# 1. Get the boundary for Centre County, PA\noptions(tigris_use_cache = TRUE)\ncentre_county &lt;- counties(state = \"PA\", cb = TRUE, progress_bar = FALSE) |&gt; \n  filter(NAME == \"Centre\") |&gt; \n  # Leaflet strongly prefers coordinates in standard WGS84 (CRS 4326)\n  st_transform(4326) \n\n# 2. Define the exact coordinates for the Huck Life Sciences Building\nhuck_building &lt;- tibble(\n  lon = -77.86146, \n  lat = 40.80100, \n  name = \"Huck Life Sciences Building\"\n) |&gt; \n  st_as_sf(coords = c(\"lon\", \"lat\"), crs = 4326)\n\n# 3. Build the interactive map\nleaflet() |&gt; \n  # 1. Use a clean, minimalist, light-gray basemap\n  addProviderTiles(providers$Esri.WorldImagery) |&gt; \n  \n  # 2. Style the county boundary (Penn State Blue fill, thick dashed border)\n  addPolygons(\n    data = centre_county,\n    fillColor = \"#041E42\",     # PSU Dark Blue\n    fillOpacity = 0.1,         # Keep it mostly transparent\n    color = \"#FFF\",            # Border color\n    weight = 3,                # Thicker border\n    dashArray = \"5, 5\"         # Make the border dashed\n  ) |&gt; \n  \n  # 3. Style the building marker\n  addCircleMarkers(\n    data = huck_building,\n    color = \"#FFFFFF\",         # White border around the dot\n    weight = 1,                # Border thickness\n    fillColor = \"#0096FF\",     # Fill Bright Blue \n    radius = 8,                # Slightly larger dot\n    fillOpacity = 0.9,         # Mostly solid\n    \n    # Add a hover label with custom styling\n    label = ~name, \n    labelOptions = labelOptions(\n      style = list(\n        \"font-family\" = \"Arial, sans-serif\",\n        \"font-weight\" = \"bold\", \n        \"color\" = \"#041E42\",\n        \"padding\" = \"4px 8px\"\n      ),\n      direction = \"auto\"\n    ),\n    \n    # Add a click popup with a second line of text\n    popup = \"&lt;b&gt;Huck Life Sciences&lt;/b&gt;&lt;br&gt;Class meets in Room 007\"\n  )",
     "crumbs": [
       "Day 1 — Course intro & what is R?"
     ]
@@ -1307,7 +1317,7 @@
     "href": "weeks/week1/day2-r-basics.html#rstudios-four-pane-layout",
     "title": "R, RStudio, and the console · vectors · types",
     "section": "RStudio’s Four Pane Layout",
-    "text": "RStudio’s Four Pane Layout\n\n\n\n\n\n\n\n\n\n\nFigure 1: RStudio’s four pane layout, annotated.",
+    "text": "RStudio’s Four Pane Layout\n\n\n\n\n\n\n\n\n\n\nFigure 1: RStudio’s four pane layout.",
     "crumbs": [
       "R, RStudio, and the console · vectors · types"
     ]
@@ -1367,7 +1377,7 @@
     "href": "weeks/week1/day2-r-basics.html#output-pane---packages-tab",
     "title": "R, RStudio, and the console · vectors · types",
     "section": "Output Pane - Packages Tab",
-    "text": "Output Pane - Packages Tab\n\n\n\n\n\n\n\n\n\n\nFigure 7: RStudio’s output pane (packages tab), annotated.\n\n\n\n\nThe “Packages” tab will list all packages that you have currently installed on your machine. You can load a package by clicking the box to the left of the name.\nYou can also use the “Install” and “Update” buttons to help you get new packages and keep them current.",
+    "text": "Output Pane - Packages Tab\n\n\n\n\n\n\n\n\n\n\nFigure 7: RStudio’s output pane (packages tab).\n\n\n\n\nThe “Packages” tab will list all packages that you have currently installed on your machine. You can load a package by clicking the box to the left of the name.\nYou can also use the “Install” and “Update” buttons to help you get new packages and keep them current.",
     "crumbs": [
       "R, RStudio, and the console · vectors · types"
     ]
@@ -1377,7 +1387,7 @@
     "href": "weeks/week1/day2-r-basics.html#output-pane---help-tab",
     "title": "R, RStudio, and the console · vectors · types",
     "section": "Output Pane - Help Tab",
-    "text": "Output Pane - Help Tab\n\n\n\n\n\n\n\n\n\n\nFigure 8: RStudio’s output pane (help tab), annotated.\n\n\n\n\nThe “Help” tab displays help documentation that has been included with the packages for functions, data sets, and other objects.\nHelp Shortcuts: ?barplot, help(barplot), or ??barplot (broad sweep). You can also place your cursor in the object name and press fn + F1 (or just F1 if your function keys are active).",
+    "text": "Output Pane - Help Tab\n\n\n\n\n\n\n\n\n\n\nFigure 8: RStudio’s output pane (help tab).\n\n\n\n\nThe “Help” tab displays help documentation that has been included with the packages for functions, data sets, and other objects.\nHelp Shortcuts: ?barplot, help(barplot), or ??barplot (broad sweep). You can also place your cursor in the object name and press fn + F1 (or just F1 if your function keys are active).",
     "crumbs": [
       "R, RStudio, and the console · vectors · types"
     ]
