@@ -846,7 +846,7 @@
     "href": "weeks/week1/day1-intro.html#what-is-r",
     "title": "Day 1 — Course intro & what is R?",
     "section": "What is R?",
-    "text": "What is R?\nR is a programming language and a software environment for statistical computing and graphics.\n\nDesigned by statisticians for the purpose of data analysis.\nFirst version created in August 1993 (almost 33 years ago).\nHas grown rapidly in popularity and is widely used in academia and industry by statisticians, data analysts, and data scientists alike.\nEnormous number of user-contributed packages, which are add-ons that extend the functionality of R.\n\nCurrently the Comprehensive R Archive Network (CRAN) package repository features 23,670 available packages.1\n\n\nAs of May 15, 2026.",
+    "text": "What is R?\nR is a programming language and a software environment for statistical computing and graphics.\n\nDesigned by statisticians for the purpose of data analysis.\nFirst version created in August 1993 (almost 33 years ago).\nHas grown rapidly in popularity and is widely used in academia and industry by statisticians, data analysts, and data scientists alike.\nEnormous number of user-contributed packages, which are add-ons that extend the functionality of R.\n\nCurrently the Comprehensive R Archive Network (CRAN) package repository features 23,664 available packages.1\n\n\nAs of May 17, 2026.",
     "crumbs": [
       "Day 1 — Course intro & what is R?"
     ]
@@ -1103,6 +1103,48 @@
     "title": "Homework",
     "section": "Template",
     "text": "Template\nA starter Quarto template is in the reference materials."
+  },
+  {
+    "objectID": "assignments/homework/hw0_template.html",
+    "href": "assignments/homework/hw0_template.html",
+    "title": "STAT 184 — Homework 0: Setup Confirmation",
+    "section": "",
+    "text": "AI Disclosure\nBriefly describe your use (1-2 sentences):\n[Type your explanation here]"
+  },
+  {
+    "objectID": "assignments/homework/hw0_template.html#welcome-to-stat-184",
+    "href": "assignments/homework/hw0_template.html#welcome-to-stat-184",
+    "title": "STAT 184 — Homework 0: Setup Confirmation",
+    "section": "Welcome to STAT 184!",
+    "text": "Welcome to STAT 184!\nThe goal of this assignment is to ensure your RStudio environment is configured correctly, your core packages are installed, and you know how to render (knit) a Quarto document."
+  },
+  {
+    "objectID": "assignments/homework/hw0_template.html#question-1-setup",
+    "href": "assignments/homework/hw0_template.html#question-1-setup",
+    "title": "STAT 184 — Homework 0: Setup Confirmation",
+    "section": "Question 1: Setup",
+    "text": "Question 1: Setup\nUncomment and run the install.packages(tidyverse\") line ONCE by deleting the # to install the “tidyverse” package on your machine. Make sure to remove any leading whitespace. Then re-comment by adding back the #. It is important to re-comment the line (otherwise, your file won’t render).\n\n# install.packages(\"tidyverse\") \nlibrary(tidyverse)"
+  },
+  {
+    "objectID": "assignments/homework/hw0_template.html#question-2-global-options",
+    "href": "assignments/homework/hw0_template.html#question-2-global-options",
+    "title": "STAT 184 — Homework 0: Setup Confirmation",
+    "section": "Question 2: Global Options",
+    "text": "Question 2: Global Options\n\nPart (a): Why is it important to change these specific settings when working reproducibly in R?\n[Write your answer here.]\n\n\nPart (b): By typing your name below, you confirm that you have successfully changed these settings on the computer you will use for this course.\n[Type your name here to confirm.]"
+  },
+  {
+    "objectID": "assignments/homework/hw0_template.html#question-3-package-check",
+    "href": "assignments/homework/hw0_template.html#question-3-package-check",
+    "title": "STAT 184 — Homework 0: Setup Confirmation",
+    "section": "Question 3: Package Check",
+    "text": "Question 3: Package Check\nTo ensure that your R environment is working and the tidyverse package is loaded correctly in the setup chunk, run the code below to print out the first few rows of a built-in dataset called mpg.\n\n# Replace the comment below with the following code: head(mpg)\n# (DELETE this line and write your code here.)"
+  },
+  {
+    "objectID": "assignments/homework/hw0_template.html#question-4-rendering",
+    "href": "assignments/homework/hw0_template.html#question-4-rendering",
+    "title": "STAT 184 — Homework 0: Setup Confirmation",
+    "section": "Question 4: Rendering",
+    "text": "Question 4: Rendering\nNow that you have answered the questions, click the Render button at the top of your RStudio script window. It should generate a HTML or PDF file.\nSubmit that rendered file to Canvas."
   },
   {
     "objectID": "assignments/activities/index.html",
