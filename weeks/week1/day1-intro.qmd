@@ -152,16 +152,15 @@ R is a **programming language** *and* a **software environment** for statistical
 
 Hex stickers from the [rstudio/hex-stickers](https://github.com/rstudio/hex-stickers) repository.
 :::
+
 ## R vs. RStudio
 
   - **R** is a computer language that performs computations based on human-written instructions.
   - **RStudio** is an integrated development environment (**IDE**) for R programming. It combines the R console with supplementary tools for more efficient R programming. 
 
-::: {#fig-r-rstudio layout="[30, 15, 70]"}
+::: {#fig-r-rstudio layout="[30, -10, 60]"}
 
 ![**R:** Do not open this](images/Rlogo.svg){#fig-r}
-
-<div></div>
 
 ![**RStudio:** Open this](images/RStudio-Logo-flat.svg){#fig-rstudio}
 
@@ -219,22 +218,6 @@ knitr::kable(head(tidy_voter_data %>% filter(county == "CENTRE")))
 
 ## Demo: what R can do {.scrollable}
 
-::: notes
-Live demo — students just watch, no need to follow along.
-
-Goals:
-- Show R is a real programming environment, not a calculator.
-- Walk through a complete small analysis: load, clean, visualize, summarize.
-- Make it look easy.
-
-Narrate at a high level — don't get into syntax, they'll learn that.
-
-Candidate datasets:
-- `palmerpenguins::penguins` — clean and visually striking (current pick)
-- Tidy Tuesday "horror movies" or similar topical
-- NYC airbnb pricing
-:::
-
 ::: {style="display: flex; justify-content: left;"}
 ```{r}
 #| eval: true
@@ -270,6 +253,146 @@ penguins |>
 ```
 :::
 
+::: {.content-visible when-format="html"}
+## Demo: what R can do {.scrollable}
+
+::: {style="display: flex; justify-content: left;"}
+```{r}
+#| eval: !expr knitr::is_html_output()
+#| echo: true
+#| code-fold: true
+#| code-summary: "Show the interactive Leaflet code."
+
+# Load necessary libraries
+library(tidyverse)
+library(sf)
+library(tigris)
+library(leaflet)
+
+# 1. Get the boundary for Centre County, PA
+options(tigris_use_cache = TRUE)
+centre_county <- counties(state = "PA", cb = TRUE, progress_bar = FALSE) |> 
+  filter(NAME == "Centre") |> 
+  # Leaflet strongly prefers coordinates in standard WGS84 (CRS 4326)
+  st_transform(4326) 
+
+# 2. Define the exact coordinates for the Huck Life Sciences Building
+huck_building <- tibble(
+  lon = -77.86146, 
+  lat = 40.80100, 
+  name = "Huck Life Sciences Building"
+) |> 
+  st_as_sf(coords = c("lon", "lat"), crs = 4326)
+
+# 3. Build the interactive map
+leaflet() |> 
+  # 1. Use a clean, minimalist, light-gray basemap
+  addProviderTiles(providers$Esri.WorldImagery) |> 
+  
+  # 2. Style the county boundary (Penn State Blue fill, thick dashed border)
+  addPolygons(
+    data = centre_county,
+    fillColor = "#041E42",     # PSU Dark Blue
+    fillOpacity = 0.1,         # Keep it mostly transparent
+    color = "#FFF",            # Border color
+    weight = 3,                # Thicker border
+    dashArray = "5, 5"         # Make the border dashed
+  ) |> 
+  
+  # 3. Style the building marker
+  addCircleMarkers(
+    data = huck_building,
+    color = "#FFFFFF",         # White border around the dot
+    weight = 1,                # Border thickness
+    fillColor = "#0096FF",     # Fill Bright Blue 
+    radius = 8,                # Slightly larger dot
+    fillOpacity = 0.9,         # Mostly solid
+    
+    # Add a hover label with custom styling
+    label = ~name, 
+    labelOptions = labelOptions(
+      style = list(
+        "font-family" = "Arial, sans-serif",
+        "font-weight" = "bold", 
+        "color" = "#041E42",
+        "padding" = "4px 8px"
+      ),
+      direction = "auto"
+    ),
+    
+    # Add a click popup with a second line of text
+    popup = "<b>Huck Life Sciences</b><br>Class meets in Room 007"
+  )
+```
+
+:::
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+```{r}
+#| eval: !expr knitr::is_latex_output()
+#| echo: TRUE
+#| warning: FALSE
+#| message: FALSE
+#| code-fold: TRUE
+#| code-summary: "Show the static ggplot code."
+#| fig-align: "left"
+
+# Load necessary libraries
+library(tidyverse)
+library(sf)
+library(tigris)
+library(ggspatial)
+library(patchwork)
+
+# 1. Get the boundary for Centre County, PA
+options(tigris_use_cache = TRUE)
+centre_county <- counties(state = "PA", cb = TRUE, progress_bar = FALSE) |> 
+  filter(NAME == "Centre")
+
+# 2. Define the exact coordinates for the Huck Life Sciences Building
+huck_building <- tibble(
+  lon = -77.86146, 
+  lat = 40.80100, 
+  name = "Huck Life Sciences"
+) |> 
+  st_as_sf(coords = c("lon", "lat"), crs = 4326)
+
+# 3. Create the Main Map (Centre County overview)
+map_main <- ggplot() +
+  geom_sf(data = centre_county, fill = "gray90", color = "gray50", 
+          linewidth = 0.5) +
+  geom_sf(data = huck_building, color = "red", size = 3) +
+  theme_void() +
+  labs(title = "Centre County, Pennsylvania")
+
+# 4. Create the Inset Map (Zoomed in on campus)
+map_inset <- ggplot() +
+  annotation_map_tile(type = "osm", zoom = 15, progress = "none") +
+  geom_sf(data = huck_building, color = "red", size = 4) +
+  geom_sf_label(data = huck_building, aes(label = name), nudge_y = 0.0015) +
+  coord_sf(
+    xlim = c(-77.870, -77.850), 
+    ylim = c(40.795, 40.805),
+    expand = FALSE,
+    crs = 4326
+  ) +
+  theme_void() +
+  theme(panel.border = element_rect(color = "black", fill = NA, 
+                                    linewidth = 2))
+
+# 5. Combine them using Patchwork
+final_map <- map_main + 
+  inset_element(map_inset, left = 0.45, bottom = 0.05, 
+                right = 0.95, top = 0.45)
+
+final_map
+```
+
+:::
+  
 ## Setup checklist — due by Wednesday {.scrollable}
 
 **Install R and RStudio**

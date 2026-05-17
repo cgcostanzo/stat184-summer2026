@@ -9,11 +9,11 @@ This week we get everyone set up with R, RStudio, and Quarto, and cover the abso
 
 | Date | Topic | Files |
 |---|---|---|
-| Mon May 18 | [Course intro & what is R?](day1-intro.qmd) | [View Slides](day1-intro.html) · [Download HTML](day1-intro.html){download=""} · [PDF](day1-intro.pdf), in-class code |
-| Tue May 19 | [R, RStudio, console · vectors · types](day2-r-basics.qmd) | slides, in-class code |
-| Wed May 20 | [Functions, packages · tidyverse](day3-functions-packages.qmd) | slides, in-class code |
-| Thu May 21 | [Quarto basics](day4-quarto.qmd) | slides, in-class code |
-| Fri May 22 | [**Quiz 1** · pipe and chaining syntax](day5-quiz-pipe.qmd) | quiz, in-class code |
+| Mon May 18 | Course intro & what is R? | [View Slides](day1-intro.html) · [Download HTML](day1-intro.html){download=""} · [PDF](day1-intro.pdf) |
+| Tue May 19 | R, RStudio, console · vectors · data types | [View Slides](day2-r-basics.html) · [Download HTML](day1-basics.html){download=""} · [PDF](day2-r-basics.pdf) |
+| Wed May 20 | Functions, packages · tidyverse | slides |
+| Thu May 21 | Quarto basics | slides |
+| Fri May 22 | **Quiz 1** · pipe and chaining syntax | quiz |
 
 ## Due this week
 

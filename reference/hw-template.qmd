@@ -12,6 +12,19 @@ format:
 editor: source
 ---
 
+# AI Disclosure
+
+*Check off all boxes that apply to your usage and provide a brief description of how the tool was utilized.*
+
+- [ ] No AI used
+- [ ] Syntax / Debugging (e.g., finding a missing comma, fixing an error code)
+- [ ] Conceptual explanation (e.g., asking how a `left_join` works)
+- [ ] Code Generation (e.g., asking AI to write a function from scratch)
+
+*Briefly describe your use (1-2 sentences):* [Type your explanation here]
+
+---
+
 ```{r setup}
 #| message: false
 #| warning: false
@@ -40,14 +53,6 @@ Write your prose answer here.
 ```{r q2}
 # Your code here
 ```
-
-# AI Use Note
-
-*One or two sentences. Examples:*
-
-- *"Did not use AI on this assignment."*
-- *"Used Claude to help debug a `pivot_wider` call in Question 3. Did not use AI elsewhere."*
-- *"Used Copilot autocomplete while writing the dplyr chain in Question 2."*
 
 # Code Appendix
 

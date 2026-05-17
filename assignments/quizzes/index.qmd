@@ -3,7 +3,7 @@ title: "Quizzes"
 subtitle: "STAT 184 — Summer 2026"
 ---
 
-Six weekly quizzes on Fridays (one rescheduled to Monday June 22 because of Juneteenth). **In class, on paper, closed book, no AI tools.** Lowest score is dropped.
+Five weekly quizzes on Fridays (one rescheduled to Monday June 22 because of Juneteenth). **In class, on paper, closed book, no AI tools.** Lowest score is dropped.
 
 | # | Date | Covers |
 |---|---|---|
@@ -13,8 +13,6 @@ Six weekly quizzes on Fridays (one rescheduled to Monday June 22 because of June
 | 4 | Fri Jun 12 | (no quiz — exam was Thursday) |
 | 5 | **Mon Jun 22** (rescheduled) | Functions, iteration, strings |
 | 6 | Fri Jun 26 | Comprehensive light review + special topics |
-
-Note: depending on calendar there may only be 5 quizzes total. Adjust the drop policy accordingly.
 
 ## Format
 

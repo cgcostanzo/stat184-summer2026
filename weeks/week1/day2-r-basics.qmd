@@ -2,64 +2,326 @@
 title: "R, RStudio, and the console · vectors · types"
 subtitle: "Tuesday, May 19, 2026"
 format:
-  html:
-    toc: true
-    code-fold: false
+  revealjs:
+    slide-number: true
+    embed-resources: true
+    smaller: true
+  pdf: default
 editor: source
 ---
 
-::: callout-note
-## Today's plan
-- [ ] TODO: list 2-4 concrete goals for the class
+::: {.callout-note style="font-size: 1.3em;"}
+## [Today]{style="font-size: 1.3em;"}
+
+**Before class**
+
+- **First Perusall Assignment Due**: *Data Computing* §2.1-2.8.
+
+**Plan for today**
+
+- Tour of RStudio
+- Using R as a calculator
+- Data types and vectors
+- Creating objects
+
+**Helpful links**
+
+- [Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*Data Computing* §2](https://dtkaplan.github.io/DataComputingEbook/chap-computing-with-r.html#chap:computing-with-r)
 :::
 
-## Before class
+## What is Computing?
 
-- Read: Data Computing Ch 2 (§2.1–2.8)
-- TODO: any prep materials, data files, etc.
+Computing is about turning human ideas into reproducible instructions that a computer can carry out
 
-## Outline
+In this course, we will learn how to:
 
-### 1. TODO: opening segment (~15 min)
+- organize data
+- automate calculations
+- visualize information
+- build reproducible analyses
+- communicate results
 
-TODO: concept exposition or motivating example.
+R is the tool we will use to do that.
 
-```{r}
-#| eval: false
-# TODO: live-coded example
-```
+## Another Introduction to R
 
-### 2. TODO: main segment (~25 min)
+- R is a programming language designed for data analysis, statistics, and visualization.
+- We use R to tell the computer exactly what computations we want to perform.
+- R is widely used in:
+  - statistics
+  - data science
+  - research
+  - industry analytics
+- R is, free, open-source, and highly extensible through thousands of packages that contain additional tools and functions.
 
-TODO: hands-on practice — students follow along.
+## RStudio Desktop (RStudio)
 
-```{r}
-#| eval: false
-# TODO: example to walk through
-```
+- First version released in 2011.
+- *Integrated development environment (IDE)* provides additional tools and window management to R to help coders, statisticians, and data scientists use R more effectively.
 
-### 3. In-class activity (~20 min)
+- While R is required to run RStudio, you do not need to have RStudio to use R.
 
-TODO: brief description, or link to a separate handout.
+## R vs. RStudio
 
-### 4. Wrap-up (~5 min)
+- **R** is the programming language.
+- **RStudio** is the environment/interface we use to work with R more comfortably.
 
-- TODO: key takeaway
-- TODO: preview next class
+## RStudio's Four Pane Layout
 
-## Resources
+::: {#fig-packages}
+[![](images/four_pane_layout.png){fig-align="center" width="100%"}]()
 
-- TODO: slides PDF
-- TODO: in-class code .R file
-- TODO: activity handout
-
-## After class
-
-- TODO: due tomorrow
-- TODO: optional supplementary reading
-
-::: {.callout-tip collapse="true"}
-## Instructor notes
-
-TODO: notes to self — pacing, common student questions, things to watch for.
+RStudio's four pane layout.
 :::
+
+## Source Pane
+
+::: {#fig-packages}
+[![](images/source_pane.png){fig-align="center" width="100%"}]()
+
+RStudio's source pane, annotated.
+:::
+
+## Console Pane
+
+::: {#fig-packages}
+[![](images/console.png){fig-align="center" width="100%"}]()
+
+RStudio's console, annotated.
+:::
+
+## Environment Pane
+
+::: {#fig-packages}
+[![](images/environment.png){fig-align="center" width="100%"}]()
+
+RStudio's environment pane, annotated.
+:::
+
+## Output Pane - Files Tab
+
+::: {#fig-packages}
+[![](images/output_files.png){fig-align="center" width="80%"}]()
+
+RStudio's output pane (files tab), annotated.
+:::
+
+## Output Pane - Plots Tab {.scrollable}
+
+::: {#fig-packages}
+[![](images/output_plots.png){fig-align="center" width="80%"}]()
+
+RStudio's output pane (plots tab), annotated, displaying a 2D density contour plot created with `ggplot2`. Darker regions indicate areas with higher concentrations of observations, while lighter regions represent lower densities. The plot combines filled density polygons with contour boundaries to visualize the distribution of simulated data.
+:::
+
+```{r}
+#| echo: TRUE
+#| code-fold: true
+#| code-summary: "Show the R code."
+#| eval: FALSE
+
+# Set Seed
+set.seed(184)
+
+# Library
+library(tidyverse)
+
+# Data
+a <- data.frame( x=rnorm(20000, 12, 2), y=rnorm(20000, 10, 0.5) )
+b <- data.frame( x=rnorm(20000, 15, 1.5), y=rnorm(20000, 11, 0.5) )
+c <- data.frame( x=rnorm(20000, 10, 1.1), y=rnorm(20000, 11.5, 0.7) )
+data <- rbind(a,b,c)
+
+# Area + contour
+ggplot(data, aes(x=x, y=y) ) +
+  stat_density_2d(aes(fill = ..level..), geom = "polygon", colour="white") +
+  theme_light() +
+  scale_fill_viridis_c(option = "magma")
+
+```
+
+## Output Pane - Packages Tab
+
+::: {#fig-packages}
+[![](images/output_packages.png){fig-align="center" width="80%"}]()
+
+RStudio's output pane (packages tab).
+:::
+
+- The "Packages" tab will list all packages that you have currently installed
+on your machine. You can load a package by clicking the box to the left
+of the name.
+- You can also use the "Install" and "Update" buttons to help you get new
+packages and keep them current.
+
+## Output Pane - Help Tab
+
+::: {#fig-packages}
+[![](images/output_help.png){fig-align="center" width="75%"}]()
+
+RStudio's output pane (help tab).
+:::
+
+- The "Help" tab displays help documentation that has been included with the packages for functions, data sets, and other
+objects.
+- **Help Shortcuts:** ?barplot, help(barplot), or ??barplot (broad sweep). You can also place your cursor in the object name and press fn + F1 (or just F1 if your function keys are active).
+
+## Data Types
+
+- Data type refers to the nature of how we choose to record some value. 
+- **Common Data Types in R:**
+  - Numeric (Double)
+  - Integer
+  - Complex
+  - Character 
+  - Logical
+  
+## Data Structures {.scrollable}
+
+- Data structures are the most important type of base objects in R as they will form the basis for all manipulations we do.
+- R's data structures may be organized along two aspects:
+  1. How many dimensions we need for values.
+  2. If all values have to be the same data type.
+  
++------------------+-------------------------------+-------------------------------+
+| Dimensions       | All Values Same Data Type     | A Mix of Data Types           |
++==================+===============================+===============================+
+| **1 Dimension**  | **Atomic Vectors**            | **List**                      |
+|                  |                               |                               |
+|                  |     [1] 1 3 5                 |     [[1]]                     |
+|                  |     [1] "apple" "grape"       |     [1] 1 3 5                 |
+|                  |     "peach"                   |                               |
+|                  |                               |     [[2]]                     |
+|                  |                               |     [1] "apple" "grape"       |
+|                  |                               |     "peach"                   |
++------------------+-------------------------------+-------------------------------+
+| **2 Dimensions** | **Matrix**                    | **Data Frame**                |
+|                  |                               |                               |
+|                  |          [,1] [,2]            |       id  fruit               |
+|                  |     [1,]    1    5            |     1  1  apple               |
+|                  |     [2,]    3    7            |     2  3  grape               |
+|                  |                               |     3  5  peach               |
++------------------+-------------------------------+-------------------------------+
+| **n Dimensions** | **Array**                     | *N/A*                         |
+|                  |                               |                               |
+|                  |     , , 1                     |                               |
+|                  |                               |                               |
+|                  |          [,1] [,2]            |                               |
+|                  |     [1,]    1    5            |                               |
+|                  |     [2,]    3    7            |                               |
+|                  |                               |                               |
+|                  |     , , 2                     |                               |
+|                  |                               |                               |
+|                  |          [,1] [,2]            |                               |
+|                  |     [1,]    2    6            |                               |
+|                  |     [2,]    4    8            |                               |
++------------------+-------------------------------+-------------------------------+
+
+## R as a Calculator
+
+You can use R as a calculator:
+
+```{r}
+#| echo: TRUE
+184.101 * 9.35
+
+(8 + 4) / 9
+
+sqrt(8)
+
+cos(2*pi)
+```
+
+## Vector Operations
+```{r}
+#| echo: TRUE
+c(1, 8, 4) + c(9, 3, 5)
+
+c(1, 8, 4) * c(9, 3, 5)
+```
+
+- The `c` functions **concatenates** multiple individual values into one single vector.
+
+## Built-in Functions and Constants
+
+```{r}
+#| echo: TRUE
+exp(1)
+sqrt(pi)
+dnorm(0)
+```
+
+- `sqrt` computes the square root.
+- `exp` computes the function $e^x$. 
+- `pi` is the constant $\pi$.
+- `dnorm` computes the standard normal density function.
+
+## Creating objects
+
+You can create new objects with the **assignment operator**, `<-`
+
+```{r}
+#| eval: FALSE
+#| echo: TRUE
+x <- 3 * 5
+```
+
+The above is an example of an **assignment statement**. In general, assignment statements have the form:
+
+```{r echo=FALSE, results='asis'}
+#| results: 'asis'
+#| echo: FALSE
+if (knitr::is_html_output()) {
+  cat('<div style="text-align: center;"><code>object_name <- value</code></div>\n\n')
+} else if (knitr::is_latex_output()) {
+  cat('\\begin{center}\\texttt{object\\_name <- value}\\end{center}\n\n')
+}
+```
+
+In English, this is "object_name **gets** value."
+
+- Even though typing `<-` for the many assignments you will make can be tedious, **don't use `=`**; it will work, but will cause confusion later.
+- You can use the RStudio keyboard shortcut `Alt` + `-`, (or `Option` + `-` on a Mac).
+- Object names must start with a letter, and can only contain letters, numbers, `_`, and `.`
+
+## Setup checklist — due by Wednesday {.scrollable}
+
+**Install R and RStudio**
+
+- R: <https://cloud.r-project.org>
+- RStudio: <https://posit.co/download/rstudio-desktop>
+
+::: {.callout-warning}
+## Mac users
+Install [**XQuartz**](https://www.xquartz.org) too — some packages we'll use later in the course need it.
+:::
+
+**Configure RStudio**
+
+- `Tools > Global Options... > General`
+- Restore .RData into workspace at startup: **Unchecked**
+- Save workspace to .RData on exit: **Never**
+
+**Assignments due Wednesday 5/20**
+
+- [HW 0: Setup confirmation](#) <!-- replace # with Canvas link -->
+
+## Wrap-up & looking ahead
+
+**Tomorrow:** Functions, packages, and the tidyverse. 
+
+**Due Wednesday before class:**
+
+- Read *Data Computing* §3.1–3.5 on Perusall. 
+
+**Reference links**
+
+- [Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*Data Computing*](https://dtkaplan.github.io/DataComputingEbook/)
+
+::: {.callout-note icon=false}
+## Reach out
+Stuck on setup? Come to office hours or email me ([cgc5478@psu.edu](mailto:cgc5478@psu.edu)) or Xinyue ([xpw5228@psu.edu](mailto:xpw5228@psu.edu)) before Wednesday — don't wait until class.
+:::
+
+
+
