@@ -9,10 +9,10 @@ This week we get everyone set up with R, RStudio, and Quarto, and cover the abso
 
 | Date | Topic | Files |
 |---|---|---|
-| Mon May 18 | Course intro & what is R? | [View Slides](day1-intro-slides.html) · [View Page](day1-intro-page.html){download=""} · [View PDF](day1-intro.pdf) |
-| Tue May 19 | R, RStudio, console · vectors · data types | [View Slides](day2-r-basics-slides.html) · [View Page](day2-r-basics-page.html){download=""} · [View PDF](day2-r-basics.pdf) |
-| Wed May 20 | Functions, packages · tidyverse | [View Slides](day3-functions-packages-slides.html) · [View Page](day3-functions-packages-page.html){download=""} · [View PDF](day3-functions-packages.pdf) |
-| Thu May 21 | Quarto basics | [View Slides](day4-quarto-slides.html) · [View Page](day4-quarto-page.html){download=""} · [View PDF](day4-quarto.pdf) |
+| Mon May 18 | Course intro & what is R? | [View Slides](day1-intro-slides.html) · [View Page](day1-intro-page.html) · [View PDF](day1-intro.pdf) |
+| Tue May 19 | R, RStudio, console · vectors · data types | [View Slides](day2-r-basics-slides.html) · [View Page](day2-r-basics-page.html) · [View PDF](day2-r-basics.pdf) |
+| Wed May 20 | Functions, packages · tidyverse | [View Slides](day3-functions-packages-slides.html) · [View Page](day3-functions-packages-page.html) · [View PDF](day3-functions-packages.pdf) |
+| Thu May 21 | Quarto basics | [View Slides](day4-quarto-slides.html) · [View Page](day4-quarto-page.html) · [View PDF](day4-quarto.pdf) |
 | Fri May 22 | **Quiz 1** · pipe and chaining syntax | [View Slides](day5-quiz-pipe-slides.html) · [View Page](day5-quiz-pipe-page.html) · [View PDF](day5-quiz-pipe.pdf) |
 
 ## Due this week
