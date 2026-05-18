@@ -319,6 +319,11 @@ Install [**XQuartz**](https://www.xquartz.org) too — some packages we'll use l
 
 - HW 0: Setup confirmation ([Click here](https://psu.instructure.com/courses/2487468/assignments/18308171)).
 
+**Due 11:59 p.m. Friday May 22:**
+
+- HW 1:  ([Click here]()).
+
+
 **Quiz 1 in class on Friday May 22**
 
 **Reference links:**

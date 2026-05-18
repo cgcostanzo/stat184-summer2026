@@ -191,7 +191,7 @@ ggplot(us_map, aes(x = long, y = lat, group = group, fill = status)) +
         legend.text = element_text(size = 14))
 ```
 
-## Icebreaker: Share Your...
+## Icebreaker 🧊: Share Your...
 
 - Name
 - Major
@@ -355,7 +355,7 @@ R and RStudio logos.
 :::
 
 ::: {.fragment .fade-in}
-  1. **Consistent Cases (Rows)**: Every row represents the same underlying attribute
+  1. **Consistent Cases (Rows)**: Each row must represent a single, distinct instance of your unit of observation.
   2. **Uniform Variables (Columns)**: Every column contains the same type of value.
 :::
 

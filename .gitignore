@@ -8,6 +8,7 @@ _site/
 *_files/
 .cache/
 "site_libs 2"/
+assignments/homework/instructor_scripts/
 
 /.quarto/
 **/*.quarto_ipynb

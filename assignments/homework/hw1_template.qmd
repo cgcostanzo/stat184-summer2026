@@ -1,0 +1,150 @@
+---
+title: "STAT 184 — Homework 1: Basic R & Plots"
+subtitle: "Due Friday, May 22 at 11:59 PM on Canvas"
+author: "Your Name Here"
+format:
+  html:
+    toc: true
+    code-fold: false
+  pdf:
+    toc: false
+editor: source
+---
+
+**AI Disclosure**
+
+- [ ] No AI used
+- [ ] Syntax / Debugging (e.g., finding a missing comma, fixing an error code)
+- [ ] Conceptual explanation (e.g., asking how a `left_join` works)
+- [ ] Code Generation (e.g., asking AI to write a function from scratch)
+
+*Briefly describe your use (1-2 sentences):* 
+
+[Type your explanation here]
+
+---
+
+### Setup
+
+Run the chunk below to load the necessary packages for this assignment.
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+## Question 1:
+
+Starting with a standard rectangular US Letter size piece of paper (8.5 by 11 inches), we can create an open-top box. We do this by cutting out identical squares from the four corners and folding up the sides.
+
+Ultimately, we want to know the **side length** of the square cutouts that will lead to the box with the **largest volume**.
+
+The formula for the volume $V$ of the box, given a cutout side length of $x$, is
+
+$$V = x(8.5 - 2x)(11 - 2x)$$
+
+Instead of writing a complex optimization algorithm to solve this problem, we can use R's ability to do math on entire vectors at once.
+
+### Part (a): Create your inputs
+
+Using the `seq()` function, create a vector called `cutout_lengths` that goes from 0 to 4 inches, counting by increments of 0.1. Print the vector to the console.
+
+- *Hint: Try running `?seq` in the console to figure out what arguments you need to modify to adjust the starting and end values of the sequence, as well as the increments.*
+
+```{r}
+# Write your R code here
+```
+
+### Part (b): Calculate volumes
+
+Using the volume formula provided above, create a second vector called `volumes` by doing math directly on your `cutout_lengths` vector. Print the first 10 values of this new vector.
+
+- *Hint: use the `head()` function, and try running `?head` in the console to figure out what argument you need to change to print out 10 values as opposed to the default number, which is 6.*
+
+```{r}
+# Write your R code here
+```
+
+### Part (c): Build a data frame
+
+Combine your two vectors into a single data frame (or tibble) called `box_data`. Print the `head()` of this data frame.
+
+```{r}
+# Write your R code here
+```
+
+### Part (d): Find the maximum
+
+Find the maximum volume possible and the cutout length that creates it. Write your final answer in a complete sentence outside of your code chunk.
+
+```{r}
+# Write your R code here
+```
+
+[Write your final answer sentence here.]
+
+### Part (e): Visualize the relationship
+
+Create a plot showing how the volume changes as the cutout length increases. Briefly describe the overall shape of the relationship and explain why the volume eventually decreases. Make sure to label your axes and give the plot an appropriate title. 
+
+```{r}
+# Write your R code here
+```
+
+[Write your description and explanation here.]
+
+## Question 2 - The Collatz Conjecture Investigation
+
+The Collatz Conjecture is a famous unsolved math problem. It asks whether repeating two simple arithmetic operations will eventually transform every positive integer into 1. For this homework, we will skip the mathematical details.
+
+We care about the distribution of "stopping times" for the first 10,000 positive integers. We define a **"stopping time"** as *the number of steps it takes for a number to reach one.* 
+
+::: {.figure}
+
+![](collatz_plot.pdf)
+
+**Figure 1.** Numbers from 1 to 10,000 and their corresponding total stopping times.
+
+::: {.fig-note}
+*Source:* [Wikipedia contributors, *Collatz conjecture*, Wikipedia, The Free Encyclopedia](https://en.wikipedia.org/wiki/Collatz_conjecture).
+:::
+
+:::
+
+Because writing the algorithm to generate these numbers is a bit too advanced for our first week, I have already run the simulation for you and saved the results in a file called `collatz_stopping_times.csv`. 
+
+### Part (a): Loading the data
+
+Ensure the `collatz_stopping_times.csv` file is saved in the same directory as this Quarto document. Use the `read_csv()` function from the `tidyverse` package to load the data into an object called `collatz_df`.
+
+```{r}
+# Write your R code here
+```
+
+### Part (b): Inspecting the data
+
+Use the `str()` or `glimpse()` function to inspect your new data frame and answer the following questions:
+
+1. How many observations (rows) are there?
+2. What are the names of the variables (columns)?
+3. Are they formatted as character or numeric data?
+
+```{r}
+# Write your R code here
+```
+
+### Part (c): Finding specific values
+
+Using the tidyverse chaining syntax (`%>%` or `|>`) and the `filter()` function, find the stopping time for the starting number 334.
+
+```{r}
+# Write your R code here
+```
+
+### Part (d) Visualizing the distribution
+
+We want to see the overall shape of the stopping times. Using either the base R `hist()` or a basic `ggplot()`, create a histogram of the stopping times. Describe the distribution (shape); does it look symmetric, right-skewed, left-skewed, bimodal, etc.?
+
+```{r}
+# Write your R code here
+```
+

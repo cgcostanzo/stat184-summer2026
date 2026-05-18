@@ -41,6 +41,11 @@ library(tidyverse)
 
 ## Question 2: Global Options
 
+In lecture, we discussed changing your RStudio Global Options under `Tools > Global Options > General` to the following:
+
+- Restore .RData into workspace at startup: *Unchecked*
+- Save workspace to .RData on exit: *Never*
+
 ### Part (a): Why is it important to change these specific settings when working reproducibly in R?
 
 [Write your answer here.]

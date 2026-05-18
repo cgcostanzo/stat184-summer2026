@@ -29,7 +29,6 @@ editor: source
 #| message: false
 #| warning: false
 library(tidyverse)
-# Style guide followed: [Tidyverse / Google / BOAST — pick one]
 ```
 
 # Question 1

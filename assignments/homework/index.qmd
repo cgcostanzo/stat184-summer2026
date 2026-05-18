@@ -5,11 +5,11 @@ subtitle: "STAT 184 — Summer 2026"
 
 There will be 1-2 homework assignments per week in the course. The lowest score is dropped. The following is an outline of the first two homeworks:
 
-::: {tbl-colwidths="[5, 30, 20, 20, 25]"}
-| # | Topic | Out | Due | Files |
-|---|---|---|---|---|
-| [0](hw0_template.qmd) | Setup confirmation (R, RStudio, Quarto installed) | Mon May 18 | Wed May 20 | [Quarto](hw0_template.qmd){download=""} · [HTML](hw0_template.html) · [PDF](hw0_template.pdf) |
-| 1 | Basic R, simple plots | Mon May 18 | Fri May 22 | |
+::: {tbl-colwidths="[5, 25, 15, 15, 25, 15]"}
+| # | Topic | Out | Due | Files | Canvas Link |
+|---|---|---|---|---|---|
+| 0 | Setup Confirmation (R, RStudio, Quarto installed) | Mon May 18 | Wed May 20 | [Quarto](hw0_template.qmd){download=""} · [HTML](hw0_template.html) · [PDF](hw0_template.pdf) | [Click here](https://psu.instructure.com/courses/2487468/assignments/18308171) |
+| 1 | Basic R & Plots | Mon May 18 | Fri May 22 | [Quarto](hw1_template.qmd){download=""} · [HTML](hw1_template.html) · [PDF](hw1_template.pdf) | [Click here](https://psu.instructure.com/courses/2487468/assignments/18311694) |
 :::
 
 ## How to submit
