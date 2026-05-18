@@ -742,78 +742,163 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day3-functions-packages.html",
-    "href": "weeks/week1/day3-functions-packages.html",
+    "objectID": "weeks/week1/day3-functions-packages-slides.html#wrap-up-looking-ahead",
+    "href": "weeks/week1/day3-functions-packages-slides.html#wrap-up-looking-ahead",
+    "title": "Functions, packages, and the tidyverse",
+    "section": "Wrap-up & looking ahead",
+    "text": "Wrap-up & looking ahead\nTomorrow: Quarto basics, writing reproducible documents.\nDue Thursday May 21 (tomorrow) before class:\n\nRead Data Computing §4.1–4.7 on Perusall (Click here).\n\nDue 11:59 p.m. Friday May 22:\n\nHW 1: Basic R, simple plots (Click here).\n\nQuiz 1 in class on Friday May 22\nReference links:\n\nSyllabus · AI policy · Schedule · Data Computing"
+  },
+  {
+    "objectID": "weeks/week1/day3-functions-packages-page.html",
+    "href": "weeks/week1/day3-functions-packages-page.html",
     "title": "Functions, packages, and the tidyverse",
     "section": "",
-    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class",
+    "text": "NoteToday: Wednesday May 20\n\n\n\nBefore class\n\nPerusall Assignment: Data Computing §3.1–3.5 (Click here).\nHW 0: Setup confirmation (Click here).\n\nPlan for today\n\n\n\nHelpful links\n\nSyllabus · AI policy · Schedule · Data Computing §3",
     "crumbs": [
       "Functions, packages, and the tidyverse"
     ]
   },
   {
-    "objectID": "weeks/week1/day3-functions-packages.html#before-class",
-    "href": "weeks/week1/day3-functions-packages.html#before-class",
+    "objectID": "weeks/week1/day3-functions-packages-page.html#wrap-up-looking-ahead",
+    "href": "weeks/week1/day3-functions-packages-page.html#wrap-up-looking-ahead",
     "title": "Functions, packages, and the tidyverse",
-    "section": "Before class",
-    "text": "Before class\n\nRead: Data Computing Ch 3 (§3.1–3.5)\nTODO: any prep materials, data files, etc.",
+    "section": "Wrap-up & looking ahead",
+    "text": "Wrap-up & looking ahead\nTomorrow: Quarto basics, writing reproducible documents.\nDue Thursday May 21 (tomorrow) before class:\n\nRead Data Computing §4.1–4.7 on Perusall (Click here).\n\nDue 11:59 p.m. Friday May 22:\n\nHW 1: Basic R, simple plots (Click here).\n\nQuiz 1 in class on Friday May 22\nReference links:\n\nSyllabus · AI policy · Schedule · Data Computing",
     "crumbs": [
       "Functions, packages, and the tidyverse"
     ]
   },
   {
-    "objectID": "weeks/week1/day3-functions-packages.html#outline",
-    "href": "weeks/week1/day3-functions-packages.html#outline",
-    "title": "Functions, packages, and the tidyverse",
-    "section": "Outline",
-    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class",
-    "crumbs": [
-      "Functions, packages, and the tidyverse"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day3-functions-packages.html#resources",
-    "href": "weeks/week1/day3-functions-packages.html#resources",
-    "title": "Functions, packages, and the tidyverse",
-    "section": "Resources",
-    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout",
-    "crumbs": [
-      "Functions, packages, and the tidyverse"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day3-functions-packages.html#after-class",
-    "href": "weeks/week1/day3-functions-packages.html#after-class",
-    "title": "Functions, packages, and the tidyverse",
-    "section": "After class",
-    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for.",
-    "crumbs": [
-      "Functions, packages, and the tidyverse"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day1-intro.html#course-info-introductions",
-    "href": "weeks/week1/day1-intro.html#course-info-introductions",
+    "objectID": "weeks/week1/day1-intro-slides.html#course-info-introductions",
+    "href": "weeks/week1/day1-intro-slides.html#course-info-introductions",
     "title": "Day 1 — Course intro & what is R?",
     "section": "1. Course Info & Introductions",
-    "text": "1. Course Info & Introductions\nSummer Session 1: May 18, 2026 – June 26, 2026\n\nClass time: M/T/W/Th/F, 9:35 a.m. to 10:50 a.m.\nClass location: Huck Life Sciences Building 007\nInstructor: Charles Costanzo\n\nEmail: cgc5478@psu.edu\nOffice Hours: M/W/Th/F: 10:50-11:50 a.m. in Huck 005 (or on Zoom by appt)\n\nTeaching Assistant (TA): Xinyue Wang\n\nEmail: xpw5228@psu.edu\n\n\n\n\n\n\n\n\n\n\nIcebreaker: name, major, your favorite song right now.",
-    "crumbs": [
-      "Day 1 — Course intro & what is R?"
-    ]
+    "text": "1. Course Info & Introductions\nSummer Session 1: May 18, 2026 – June 26, 2026\n\nClass time: M/T/W/Th/F, 9:35 a.m. to 10:50 a.m.\nClass location: Huck Life Sciences Building 007\nInstructor: Charles Costanzo\n\nEmail: cgc5478@psu.edu\nOffice Hours: M/W/Th/F: 10:50-11:50 a.m. in Huck 005 (or on Zoom by appt)\n\nTeaching Assistant (TA): Xinyue Wang\n\nEmail: xpw5228@psu.edu\n\n\n\n\n\n\n\n\n\n\nIcebreaker: name, major, your favorite song right now."
   },
   {
-    "objectID": "weeks/week1/day1-intro.html#learning-goals",
-    "href": "weeks/week1/day1-intro.html#learning-goals",
+    "objectID": "weeks/week1/day1-intro-slides.html#learning-goals",
+    "href": "weeks/week1/day1-intro-slides.html#learning-goals",
     "title": "Day 1 — Course intro & what is R?",
     "section": "Learning Goals",
-    "text": "Learning Goals\nThis course will teach you how to:\n\n\nUse R: Program in the R language effectively and use the R software environment to efficiently compute with data.\n\n\n\n\nWrangle Real Data: Access, clean, join, and format data from various sources.\n\n\n\n\nVisualize Information: Create graphical and descriptive summaries of data.\n\n\n\n\nBuild Reproducible Workflows: Write well-documented code using tools like RStudio, RMarkdown, and Git/GitHub.\n\n\n\n\n\n\n\n\n\n\nNo previous programming background is required for this course.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis is not a course on general purpose programming.",
+    "text": "Learning Goals\nThis course will teach you how to:\n\n\nUse R: Program in the R language effectively and use the R software environment to efficiently compute with data.\n\n\n\n\nWrangle Real Data: Access, clean, join, and format data from various sources.\n\n\n\n\nVisualize Information: Create graphical and descriptive summaries of data.\n\n\n\n\nBuild Reproducible Workflows: Write well-documented code using tools like RStudio, RMarkdown, and Git/GitHub.\n\n\n\n\n\n\n\n\n\n\nNo previous programming background is required for this course.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis is not a course on general purpose programming."
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#course-logistics",
+    "href": "weeks/week1/day1-intro-slides.html#course-logistics",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Course logistics",
+    "text": "Course logistics\n\nSix weeks is short. Daily pace is faster than a 15-week course. Falling a week—or even a day—behind is more serious than spring/fall courses.\nAttendance matters. Lots of in-class graded work (activities, quizzes, oral checkpoints).\nTimely communication is critical. Reach out to me as soon as possible if something comes up that necessitates you missing class, having a deadline extended, etc.\nAssignment Weights:\n\n\n\n\n\n\n\n\n\n\n\nReadings\nQuizzes\nIn-class activities\nHomework\nExam\nCourse project\n\n\n\n\n10%\n15%\n25%\n10%\n20%\n20%\n\n\n\nGrading Scheme:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA\nA-\nB+\nB\nB-\nC+\nC\nD\nF\n\n\n\n\n93%+\n90%\n87%\n83%\n80%\n77%\n70%\n60%\n&lt; 60%"
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#ai-policy",
+    "href": "weeks/week1/day1-intro-slides.html#ai-policy",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "AI policy",
+    "text": "AI policy\n\nOpen assessments (Homework & Project): AI tools are permitted with mandatory disclosure.\nClosed-book, in-person work (Quizzes, Exam, Activities, Oral Checkpoints): AI tools are strictly prohibited.\nDisclosure is graded (1-2 points).\nYou must be able to explain any code you submit, which I will verify during in-class oral project checkpoints.\nRoughly 60% of your grade comes from verified in-person work where AI cannot be used."
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#course-readings-perusall",
+    "href": "weeks/week1/day1-intro-slides.html#course-readings-perusall",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Course Readings (Perusall)",
+    "text": "Course Readings (Perusall)\n\nAll assigned textbook readings are hosted on Perusall, a collaborative e-reading platform.\nHow grading works: You earn credit through holistic engagement (reading the entire text, spending active time, leaving high-quality comments, and replying to classmates).\nNo access code needed! You must access readings directly through Canvas links to automatically authenticate your Penn State account.\n\n\n\n\n\n\n\n\n\nLet’s try it together right now:\n\n\n\nLog into our Canvas course.\nClick the “Perusall” tab on the left.\nClick the link for DC Section 1 (§1.1–1.5)."
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#what-is-r",
+    "href": "weeks/week1/day1-intro-slides.html#what-is-r",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "What is R?",
+    "text": "What is R?\nR is a programming language and a software environment for statistical computing and graphics.\n\nDesigned by statisticians for the purpose of data analysis.\nFirst version created in August 1993 (almost 33 years ago).\nHas grown rapidly in popularity and is widely used in academia and industry by statisticians, data analysts, and data scientists alike.\nEnormous number of user-contributed packages, which are add-ons that extend the functionality of R.\n\nCurrently the Comprehensive R Archive Network (CRAN) package repository features 23,664 available packages.1\n\n\nAs of May 17, 2026."
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#some-examples-of-said-r-packages",
+    "href": "weeks/week1/day1-intro-slides.html#some-examples-of-said-r-packages",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Some Examples of Said R Packages",
+    "text": "Some Examples of Said R Packages\n\n\n\n\n\n\n\n\n\n\nFigure 1: Hex stickers from the rstudio/hex-stickers repository."
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#r-vs.-rstudio",
+    "href": "weeks/week1/day1-intro-slides.html#r-vs.-rstudio",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "R vs. RStudio",
+    "text": "R vs. RStudio\n\nR is a computer language that performs computations based on human-written instructions.\nRStudio is an integrated development environment (IDE) for R programming. It combines the R console with supplementary tools for more efficient R programming.\n\n\n\n\n\n\n\n\n\n\n\n\n(a) R: Do not open this\n\n\n\n\n\n \n\n\n\n\n\n\n\n\n(b) RStudio: Open this\n\n\n\n\n\n\n\nFigure 2: R and RStudio logos."
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#tidy-data-neq-neat-data",
+    "href": "weeks/week1/day1-intro-slides.html#tidy-data-neq-neat-data",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Tidy Data \\(\\neq\\) Neat Data",
+    "text": "Tidy Data \\(\\neq\\) Neat Data\n\n\n\n\n\n\n\nThis table is easy for humans to read. What might make it tricky for a computer to read?\n\n\n\n\n\n\n\n\n\nFigure 3: A spreadsheet showing party change applications in PA. Source: PA Dept. of State (May 4–11, 2026).\n\nTwo simple rules for Tidy Data:\n\n\n\nConsistent Cases (Rows): Every row represents the same underlying attribute\nUniform Variables (Columns): Every column contains the same type of value."
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#pa-voter-table---tidied-up",
+    "href": "weeks/week1/day1-intro-slides.html#pa-voter-table---tidied-up",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "PA Voter Table - Tidied Up",
+    "text": "PA Voter Table - Tidied Up\n\n\n\nShow the R code.\n# 1. Load data and provide clean column names to handle the nested headers\nraw_data &lt;- readxl::read_excel(\"data/currentvotestats.xlsx\", \n                       sheet = \"Party-to-Party(2026)\", \n                       skip = 3, # Skip the human-readable headers\n                       col_names = c(\"county\", \n                                     \"week_dem_R\", \"week_dem_OTH\", \n                                     \"week_rep_D\", \"week_rep_OTH\",\n                                     \"year_dem_R\", \"year_dem_OTH\", \n                                     \"year_rep_D\", \"year_rep_OTH\"))\n\n# 2. Clean and Pivot\ntidy_voter_data &lt;- raw_data %&gt;%\n  filter(!is.na(county), county != \"Totals:\") %&gt;% # Rule 1: Consistent Cases\n  pivot_longer(\n    cols = -county, \n    names_to = c(\"period\", \"target_party\", \"origin_party\"),\n    names_sep = \"_\",\n    values_to = \"count\"\n  )\n\nknitr::kable(head(tidy_voter_data %&gt;% filter(county == \"CENTRE\")))\n\n\n\n\n\ncounty\nperiod\ntarget_party\norigin_party\ncount\n\n\n\n\nCENTRE\nweek\ndem\nR\n2\n\n\nCENTRE\nweek\ndem\nOTH\n14\n\n\nCENTRE\nweek\nrep\nD\n3\n\n\nCENTRE\nweek\nrep\nOTH\n4\n\n\nCENTRE\nyear\ndem\nR\n88\n\n\nCENTRE\nyear\ndem\nOTH\n130"
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#demo-what-r-can-do",
+    "href": "weeks/week1/day1-intro-slides.html#demo-what-r-can-do",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Demo: what R can do",
+    "text": "Demo: what R can do\n\n\n\nShow the R code.\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\n# What does the data look like?\nglimpse(penguins)\n\n\nRows: 344\nColumns: 8\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\nShow the R code.\n# Quick summary by species\npenguins |&gt;\n  group_by(species) |&gt;\n  summarize(\n    n            = n(),\n    mean_mass_g  = mean(body_mass_g,    na.rm = TRUE),\n    mean_bill_mm = mean(bill_length_mm, na.rm = TRUE)\n  )\n\n\n# A tibble: 3 × 4\n  species       n mean_mass_g mean_bill_mm\n  &lt;fct&gt;     &lt;int&gt;       &lt;dbl&gt;        &lt;dbl&gt;\n1 Adelie      152       3701.         38.8\n2 Chinstrap    68       3733.         48.8\n3 Gentoo      124       5076.         47.5\n\n\nShow the R code.\n# A nice plot\npenguins |&gt;\n  ggplot(aes(x = bill_length_mm, y = body_mass_g, color = species)) +\n  geom_point(alpha = 0.7) +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  labs(\n    title = \"Bill length vs body mass, by species\",\n    x = \"Bill length (mm)\",\n    y = \"Body mass (g)\"\n  ) +\n  theme_minimal()"
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#demo-what-r-can-do-1",
+    "href": "weeks/week1/day1-intro-slides.html#demo-what-r-can-do-1",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Demo: what R can do",
+    "text": "Demo: what R can do\n\n\n\nShow the interactive Leaflet code.\n# Load necessary libraries\nlibrary(tidyverse)\nlibrary(sf)\nlibrary(tigris)\nlibrary(leaflet)\n\n# 1. Get the boundary for Centre County, PA\noptions(tigris_use_cache = TRUE)\ncentre_county &lt;- counties(state = \"PA\", cb = TRUE, progress_bar = FALSE) |&gt; \n  filter(NAME == \"Centre\") |&gt; \n  # Leaflet strongly prefers coordinates in standard WGS84 (CRS 4326)\n  st_transform(4326) \n\n# 2. Define the exact coordinates for the Huck Life Sciences Building\nhuck_building &lt;- tibble(\n  lon = -77.86146, \n  lat = 40.80100, \n  name = \"Huck Life Sciences Building\"\n) |&gt; \n  st_as_sf(coords = c(\"lon\", \"lat\"), crs = 4326)\n\n# 3. Build the interactive map\nleaflet() |&gt; \n  # 1. Use a clean, minimalist, light-gray basemap\n  addProviderTiles(providers$Esri.WorldImagery) |&gt; \n  \n  # 2. Style the county boundary (Penn State Blue fill, thick dashed border)\n  addPolygons(\n    data = centre_county,\n    fillColor = \"#041E42\",     # PSU Dark Blue\n    fillOpacity = 0.1,         # Keep it mostly transparent\n    color = \"#FFF\",            # Border color\n    weight = 3,                # Thicker border\n    dashArray = \"5, 5\"         # Make the border dashed\n  ) |&gt; \n  \n  # 3. Style the building marker\n  addCircleMarkers(\n    data = huck_building,\n    color = \"#FFFFFF\",         # White border around the dot\n    weight = 1,                # Border thickness\n    fillColor = \"#0096FF\",     # Fill Bright Blue \n    radius = 8,                # Slightly larger dot\n    fillOpacity = 0.9,         # Mostly solid\n    \n    # Add a hover label with custom styling\n    label = ~name, \n    labelOptions = labelOptions(\n      style = list(\n        \"font-family\" = \"Arial, sans-serif\",\n        \"font-weight\" = \"bold\", \n        \"color\" = \"#041E42\",\n        \"padding\" = \"4px 8px\"\n      ),\n      direction = \"auto\"\n    ),\n    \n    # Add a click popup with a second line of text\n    popup = \"&lt;b&gt;Huck Life Sciences&lt;/b&gt;&lt;br&gt;Class meets in Room 007\"\n  )"
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#setup-checklist-due-by-wednesday",
+    "href": "weeks/week1/day1-intro-slides.html#setup-checklist-due-by-wednesday",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Setup checklist — due by Wednesday",
+    "text": "Setup checklist — due by Wednesday\nInstall R and RStudio\n\nR: https://cloud.r-project.org\nRStudio: https://posit.co/download/rstudio-desktop\n\n\n\n\n\n\n\nMac users\n\n\nInstall XQuartz too — some packages we’ll use later in the course need it.\n\n\n\nConfigure RStudio\n\nTools &gt; Global Options... &gt; General\nRestore .RData into workspace at startup: Unchecked\nSave workspace to .RData on exit: Never\n\nAssignments due Wednesday 5/20\n\nHW 0: Setup confirmation"
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#wrap-up-looking-ahead",
+    "href": "weeks/week1/day1-intro-slides.html#wrap-up-looking-ahead",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Wrap-up & looking ahead",
+    "text": "Wrap-up & looking ahead\nTomorrow: Real R syntax (variables, functions, vectors)\nDue Tuesday May 19 (tomorrow) before class:\n\nRead Data Computing §2.1–2.8 on Perusall (Click here).\n\nDue 11:59 p.m. Wednesday May 20:\n\nHW 0: Setup confirmation (Click here).\n\nQuiz 1 in class on Friday May 22\nReference links\n\nSyllabus · AI policy · Schedule · Data Computing\n\n\n\n\nReach out\n\n\nStuck on setup? Come to office hours or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu) before Wednesday — don’t wait until class."
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html",
+    "href": "weeks/week1/day1-intro-page.html",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "",
+    "text": "NoteToday: Monday May 18\n\n\n\nBefore class\n\nRead the syllabus (Click here).\n(Optional): Read Data Computing §1.1–1.5 (Click here).\n\nPlan for today\n\nCourse logistics\nIntroduction to R and RStudio\nTidy data\nR Demo\n\nHelpful links\n\nSyllabus · AI policy · Schedule · Data Computing §1",
     "crumbs": [
       "Day 1 — Course intro & what is R?"
     ]
   },
   {
-    "objectID": "weeks/week1/day1-intro.html#course-logistics",
-    "href": "weeks/week1/day1-intro.html#course-logistics",
+    "objectID": "weeks/week1/day1-intro-page.html#course-info-introductions",
+    "href": "weeks/week1/day1-intro-page.html#course-info-introductions",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "1. Course Info & Introductions",
+    "text": "1. Course Info & Introductions\nSummer Session 1: May 18, 2026 – June 26, 2026\n\nClass time: M/T/W/Th/F, 9:35 a.m. to 10:50 a.m.\nClass location: Huck Life Sciences Building 007\nInstructor: Charles Costanzo\n\nEmail: cgc5478@psu.edu\nOffice Hours: M/W/Th/F: 10:50-11:50 a.m. in Huck 005 (or on Zoom by appt)\n\nTeaching Assistant (TA): Xinyue Wang\n\nEmail: xpw5228@psu.edu\n\n\n\n\n\n\n\n\n\nTipIcebreaker: name, major, your favorite song right now.",
+    "crumbs": [
+      "Day 1 — Course intro & what is R?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#learning-goals",
+    "href": "weeks/week1/day1-intro-page.html#learning-goals",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Learning Goals",
+    "text": "Learning Goals\nThis course will teach you how to:\n\n\nUse R: Program in the R language effectively and use the R software environment to efficiently compute with data.\n\n\n\n\nWrangle Real Data: Access, clean, join, and format data from various sources.\n\n\n\n\nVisualize Information: Create graphical and descriptive summaries of data.\n\n\n\n\nBuild Reproducible Workflows: Write well-documented code using tools like RStudio, RMarkdown, and Git/GitHub.\n\n\n\n\n\n\n\n\n\nTipNo previous programming background is required for this course.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportantThis is not a course on general purpose programming.",
+    "crumbs": [
+      "Day 1 — Course intro & what is R?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#course-logistics",
+    "href": "weeks/week1/day1-intro-page.html#course-logistics",
     "title": "Day 1 — Course intro & what is R?",
     "section": "Course logistics",
     "text": "Course logistics\n\nSix weeks is short. Daily pace is faster than a 15-week course. Falling a week—or even a day—behind is more serious than spring/fall courses.\nAttendance matters. Lots of in-class graded work (activities, quizzes, oral checkpoints).\nTimely communication is critical. Reach out to me as soon as possible if something comes up that necessitates you missing class, having a deadline extended, etc.\nAssignment Weights:\n\n\n\n\n\n\n\n\n\n\n\nReadings\nQuizzes\nIn-class activities\nHomework\nExam\nCourse project\n\n\n\n\n10%\n15%\n25%\n10%\n20%\n20%\n\n\n\nGrading Scheme:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA\nA-\nB+\nB\nB-\nC+\nC\nD\nF\n\n\n\n\n93%+\n90%\n87%\n83%\n80%\n77%\n70%\n60%\n&lt; 60%",
@@ -822,8 +907,8 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day1-intro.html#ai-policy",
-    "href": "weeks/week1/day1-intro.html#ai-policy",
+    "objectID": "weeks/week1/day1-intro-page.html#ai-policy",
+    "href": "weeks/week1/day1-intro-page.html#ai-policy",
     "title": "Day 1 — Course intro & what is R?",
     "section": "AI policy",
     "text": "AI policy\n\nOpen assessments (Homework & Project): AI tools are permitted with mandatory disclosure.\nClosed-book, in-person work (Quizzes, Exam, Activities, Oral Checkpoints): AI tools are strictly prohibited.\nDisclosure is graded (1-2 points).\nYou must be able to explain any code you submit, which I will verify during in-class oral project checkpoints.\nRoughly 60% of your grade comes from verified in-person work where AI cannot be used.",
@@ -832,28 +917,28 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day1-intro.html#course-readings-perusall",
-    "href": "weeks/week1/day1-intro.html#course-readings-perusall",
+    "objectID": "weeks/week1/day1-intro-page.html#course-readings-perusall",
+    "href": "weeks/week1/day1-intro-page.html#course-readings-perusall",
     "title": "Day 1 — Course intro & what is R?",
     "section": "Course Readings (Perusall)",
-    "text": "Course Readings (Perusall)\n\nAll assigned textbook readings are hosted on Perusall, a collaborative e-reading platform.\nHow grading works: You earn credit through holistic engagement (reading the entire text, spending active time, leaving high-quality comments, and replying to classmates).\nNo access code needed! You must access readings directly through Canvas links to automatically authenticate your Penn State account.\n\n\n\n\n\n\n\n\n\nLet’s try it together right now:\n\n\n\nLog into our Canvas course.\nClick the “Perusall” tab on the left.\nClick the link for DC Section 1 (§1.1–1.5).",
+    "text": "Course Readings (Perusall)\n\nAll assigned textbook readings are hosted on Perusall, a collaborative e-reading platform.\nHow grading works: You earn credit through holistic engagement (reading the entire text, spending active time, leaving high-quality comments, and replying to classmates).\nNo access code needed! You must access readings directly through Canvas links to automatically authenticate your Penn State account.\n\n\n\n\n\n\n\n\nImportantLet’s try it together right now:\n\n\n\n\nLog into our Canvas course.\nClick the “Perusall” tab on the left.\nClick the link for DC Section 1 (§1.1–1.5).",
     "crumbs": [
       "Day 1 — Course intro & what is R?"
     ]
   },
   {
-    "objectID": "weeks/week1/day1-intro.html#what-is-r",
-    "href": "weeks/week1/day1-intro.html#what-is-r",
+    "objectID": "weeks/week1/day1-intro-page.html#what-is-r",
+    "href": "weeks/week1/day1-intro-page.html#what-is-r",
     "title": "Day 1 — Course intro & what is R?",
     "section": "What is R?",
-    "text": "What is R?\nR is a programming language and a software environment for statistical computing and graphics.\n\nDesigned by statisticians for the purpose of data analysis.\nFirst version created in August 1993 (almost 33 years ago).\nHas grown rapidly in popularity and is widely used in academia and industry by statisticians, data analysts, and data scientists alike.\nEnormous number of user-contributed packages, which are add-ons that extend the functionality of R.\n\nCurrently the Comprehensive R Archive Network (CRAN) package repository features 23,664 available packages.1\n\n\nAs of May 17, 2026.",
+    "text": "What is R?\nR is a programming language and a software environment for statistical computing and graphics.\n\nDesigned by statisticians for the purpose of data analysis.\nFirst version created in August 1993 (almost 33 years ago).\nHas grown rapidly in popularity and is widely used in academia and industry by statisticians, data analysts, and data scientists alike.\nEnormous number of user-contributed packages, which are add-ons that extend the functionality of R.\n\nCurrently the Comprehensive R Archive Network (CRAN) package repository features 23,664 available packages.1",
     "crumbs": [
       "Day 1 — Course intro & what is R?"
     ]
   },
   {
-    "objectID": "weeks/week1/day1-intro.html#some-examples-of-said-r-packages",
-    "href": "weeks/week1/day1-intro.html#some-examples-of-said-r-packages",
+    "objectID": "weeks/week1/day1-intro-page.html#some-examples-of-said-r-packages",
+    "href": "weeks/week1/day1-intro-page.html#some-examples-of-said-r-packages",
     "title": "Day 1 — Course intro & what is R?",
     "section": "Some Examples of Said R Packages",
     "text": "Some Examples of Said R Packages\n\n\n\n\n\n\n\n\n\n\nFigure 1: Hex stickers from the rstudio/hex-stickers repository.",
@@ -862,8 +947,8 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day1-intro.html#r-vs.-rstudio",
-    "href": "weeks/week1/day1-intro.html#r-vs.-rstudio",
+    "objectID": "weeks/week1/day1-intro-page.html#r-vs.-rstudio",
+    "href": "weeks/week1/day1-intro-page.html#r-vs.-rstudio",
     "title": "Day 1 — Course intro & what is R?",
     "section": "R vs. RStudio",
     "text": "R vs. RStudio\n\nR is a computer language that performs computations based on human-written instructions.\nRStudio is an integrated development environment (IDE) for R programming. It combines the R console with supplementary tools for more efficient R programming.\n\n\n\n\n\n\n\n\n\n\n\n\n(a) R: Do not open this\n\n\n\n\n\n \n\n\n\n\n\n\n\n\n(b) RStudio: Open this\n\n\n\n\n\n\n\nFigure 2: R and RStudio logos.",
@@ -872,18 +957,18 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day1-intro.html#tidy-data-neq-neat-data",
-    "href": "weeks/week1/day1-intro.html#tidy-data-neq-neat-data",
+    "objectID": "weeks/week1/day1-intro-page.html#tidy-data-neq-neat-data",
+    "href": "weeks/week1/day1-intro-page.html#tidy-data-neq-neat-data",
     "title": "Day 1 — Course intro & what is R?",
     "section": "Tidy Data \\(\\neq\\) Neat Data",
-    "text": "Tidy Data \\(\\neq\\) Neat Data\n\n\n\n\n\n\n\nThis table is easy for humans to read. What might make it tricky for a computer to read?\n\n\n\n\n\n\n\n\n\nFigure 3: A spreadsheet showing party change applications in PA. Source: PA Dept. of State (May 4–11, 2026).\n\nTwo simple rules for Tidy Data:\n\n\n\nConsistent Cases (Rows): Every row represents the same underlying attribute\nUniform Variables (Columns): Every column contains the same type of value.",
+    "text": "Tidy Data \\(\\neq\\) Neat Data\n\n\n\n\n\n\nTipThis table is easy for humans to read. What might make it tricky for a computer to read?\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 3: A spreadsheet showing party change applications in PA. Source: PA Dept. of State (May 4–11, 2026).\n\n\n\n\nTwo simple rules for Tidy Data:\n\n\n\nConsistent Cases (Rows): Every row represents the same underlying attribute\nUniform Variables (Columns): Every column contains the same type of value.",
     "crumbs": [
       "Day 1 — Course intro & what is R?"
     ]
   },
   {
-    "objectID": "weeks/week1/day1-intro.html#pa-voter-table---tidied-up",
-    "href": "weeks/week1/day1-intro.html#pa-voter-table---tidied-up",
+    "objectID": "weeks/week1/day1-intro-page.html#pa-voter-table---tidied-up",
+    "href": "weeks/week1/day1-intro-page.html#pa-voter-table---tidied-up",
     "title": "Day 1 — Course intro & what is R?",
     "section": "PA Voter Table - Tidied Up",
     "text": "PA Voter Table - Tidied Up\n\n\n\nShow the R code.\n# 1. Load data and provide clean column names to handle the nested headers\nraw_data &lt;- readxl::read_excel(\"data/currentvotestats.xlsx\", \n                       sheet = \"Party-to-Party(2026)\", \n                       skip = 3, # Skip the human-readable headers\n                       col_names = c(\"county\", \n                                     \"week_dem_R\", \"week_dem_OTH\", \n                                     \"week_rep_D\", \"week_rep_OTH\",\n                                     \"year_dem_R\", \"year_dem_OTH\", \n                                     \"year_rep_D\", \"year_rep_OTH\"))\n\n# 2. Clean and Pivot\ntidy_voter_data &lt;- raw_data %&gt;%\n  filter(!is.na(county), county != \"Totals:\") %&gt;% # Rule 1: Consistent Cases\n  pivot_longer(\n    cols = -county, \n    names_to = c(\"period\", \"target_party\", \"origin_party\"),\n    names_sep = \"_\",\n    values_to = \"count\"\n  )\n\nknitr::kable(head(tidy_voter_data %&gt;% filter(county == \"CENTRE\")))\n\n\n\n\n\ncounty\nperiod\ntarget_party\norigin_party\ncount\n\n\n\n\nCENTRE\nweek\ndem\nR\n2\n\n\nCENTRE\nweek\ndem\nOTH\n14\n\n\nCENTRE\nweek\nrep\nD\n3\n\n\nCENTRE\nweek\nrep\nOTH\n4\n\n\nCENTRE\nyear\ndem\nR\n88\n\n\nCENTRE\nyear\ndem\nOTH\n130",
@@ -892,41 +977,51 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day1-intro.html#demo-what-r-can-do",
-    "href": "weeks/week1/day1-intro.html#demo-what-r-can-do",
+    "objectID": "weeks/week1/day1-intro-page.html#demo-what-r-can-do",
+    "href": "weeks/week1/day1-intro-page.html#demo-what-r-can-do",
     "title": "Day 1 — Course intro & what is R?",
     "section": "Demo: what R can do",
-    "text": "Demo: what R can do\n\n\n\nShow the R code.\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\n# What does the data look like?\nglimpse(penguins)\n\n\nRows: 344\nColumns: 8\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\nShow the R code.\n# Quick summary by species\npenguins |&gt;\n  group_by(species) |&gt;\n  summarize(\n    n            = n(),\n    mean_mass_g  = mean(body_mass_g,    na.rm = TRUE),\n    mean_bill_mm = mean(bill_length_mm, na.rm = TRUE)\n  )\n\n\n# A tibble: 3 × 4\n  species       n mean_mass_g mean_bill_mm\n  &lt;fct&gt;     &lt;int&gt;       &lt;dbl&gt;        &lt;dbl&gt;\n1 Adelie      152       3701.         38.8\n2 Chinstrap    68       3733.         48.8\n3 Gentoo      124       5076.         47.5\n\n\nShow the R code.\n# A nice plot\npenguins |&gt;\n  ggplot(aes(x = bill_length_mm, y = body_mass_g, color = species)) +\n  geom_point(alpha = 0.7) +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  labs(\n    title = \"Bill length vs body mass, by species\",\n    x = \"Bill length (mm)\",\n    y = \"Body mass (g)\"\n  ) +\n  theme_minimal()",
+    "text": "Demo: what R can do\n\n\n\nShow the R code.\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\n\n\nAttaching package: 'palmerpenguins'\n\n\nThe following objects are masked from 'package:datasets':\n\n    penguins, penguins_raw\n\n\nShow the R code.\n# What does the data look like?\nglimpse(penguins)\n\n\nRows: 344\nColumns: 8\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\nShow the R code.\n# Quick summary by species\npenguins |&gt;\n  group_by(species) |&gt;\n  summarize(\n    n            = n(),\n    mean_mass_g  = mean(body_mass_g,    na.rm = TRUE),\n    mean_bill_mm = mean(bill_length_mm, na.rm = TRUE)\n  )\n\n\n# A tibble: 3 × 4\n  species       n mean_mass_g mean_bill_mm\n  &lt;fct&gt;     &lt;int&gt;       &lt;dbl&gt;        &lt;dbl&gt;\n1 Adelie      152       3701.         38.8\n2 Chinstrap    68       3733.         48.8\n3 Gentoo      124       5076.         47.5\n\n\nShow the R code.\n# A nice plot\npenguins |&gt;\n  ggplot(aes(x = bill_length_mm, y = body_mass_g, color = species)) +\n  geom_point(alpha = 0.7) +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  labs(\n    title = \"Bill length vs body mass, by species\",\n    x = \"Bill length (mm)\",\n    y = \"Body mass (g)\"\n  ) +\n  theme_minimal()\n\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_smooth()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).",
     "crumbs": [
       "Day 1 — Course intro & what is R?"
     ]
   },
   {
-    "objectID": "weeks/week1/day1-intro.html#demo-what-r-can-do-1",
-    "href": "weeks/week1/day1-intro.html#demo-what-r-can-do-1",
+    "objectID": "weeks/week1/day1-intro-page.html#demo-what-r-can-do-1",
+    "href": "weeks/week1/day1-intro-page.html#demo-what-r-can-do-1",
     "title": "Day 1 — Course intro & what is R?",
     "section": "Demo: what R can do",
-    "text": "Demo: what R can do\n\n\n\nShow the interactive Leaflet code.\n# Load necessary libraries\nlibrary(tidyverse)\nlibrary(sf)\nlibrary(tigris)\nlibrary(leaflet)\n\n# 1. Get the boundary for Centre County, PA\noptions(tigris_use_cache = TRUE)\ncentre_county &lt;- counties(state = \"PA\", cb = TRUE, progress_bar = FALSE) |&gt; \n  filter(NAME == \"Centre\") |&gt; \n  # Leaflet strongly prefers coordinates in standard WGS84 (CRS 4326)\n  st_transform(4326) \n\n# 2. Define the exact coordinates for the Huck Life Sciences Building\nhuck_building &lt;- tibble(\n  lon = -77.86146, \n  lat = 40.80100, \n  name = \"Huck Life Sciences Building\"\n) |&gt; \n  st_as_sf(coords = c(\"lon\", \"lat\"), crs = 4326)\n\n# 3. Build the interactive map\nleaflet() |&gt; \n  # 1. Use a clean, minimalist, light-gray basemap\n  addProviderTiles(providers$Esri.WorldImagery) |&gt; \n  \n  # 2. Style the county boundary (Penn State Blue fill, thick dashed border)\n  addPolygons(\n    data = centre_county,\n    fillColor = \"#041E42\",     # PSU Dark Blue\n    fillOpacity = 0.1,         # Keep it mostly transparent\n    color = \"#FFF\",            # Border color\n    weight = 3,                # Thicker border\n    dashArray = \"5, 5\"         # Make the border dashed\n  ) |&gt; \n  \n  # 3. Style the building marker\n  addCircleMarkers(\n    data = huck_building,\n    color = \"#FFFFFF\",         # White border around the dot\n    weight = 1,                # Border thickness\n    fillColor = \"#0096FF\",     # Fill Bright Blue \n    radius = 8,                # Slightly larger dot\n    fillOpacity = 0.9,         # Mostly solid\n    \n    # Add a hover label with custom styling\n    label = ~name, \n    labelOptions = labelOptions(\n      style = list(\n        \"font-family\" = \"Arial, sans-serif\",\n        \"font-weight\" = \"bold\", \n        \"color\" = \"#041E42\",\n        \"padding\" = \"4px 8px\"\n      ),\n      direction = \"auto\"\n    ),\n    \n    # Add a click popup with a second line of text\n    popup = \"&lt;b&gt;Huck Life Sciences&lt;/b&gt;&lt;br&gt;Class meets in Room 007\"\n  )",
+    "text": "Demo: what R can do\n\n\n\nShow the interactive Leaflet code.\n# Load necessary libraries\nlibrary(tidyverse)\nlibrary(sf)\n\n\nLinking to GEOS 3.13.0, GDAL 3.8.5, PROJ 9.5.1; sf_use_s2() is TRUE\n\n\nShow the interactive Leaflet code.\nlibrary(tigris)\n\n\nTo enable caching of data, set `options(tigris_use_cache = TRUE)`\nin your R script or .Rprofile.\n\n\nShow the interactive Leaflet code.\nlibrary(leaflet)\n\n# 1. Get the boundary for Centre County, PA\noptions(tigris_use_cache = TRUE)\ncentre_county &lt;- counties(state = \"PA\", cb = TRUE, progress_bar = FALSE) |&gt; \n  filter(NAME == \"Centre\") |&gt; \n  # Leaflet strongly prefers coordinates in standard WGS84 (CRS 4326)\n  st_transform(4326) \n\n\nRetrieving data for the year 2024\n\n\nShow the interactive Leaflet code.\n# 2. Define the exact coordinates for the Huck Life Sciences Building\nhuck_building &lt;- tibble(\n  lon = -77.86146, \n  lat = 40.80100, \n  name = \"Huck Life Sciences Building\"\n) |&gt; \n  st_as_sf(coords = c(\"lon\", \"lat\"), crs = 4326)\n\n# 3. Build the interactive map\nleaflet() |&gt; \n  # 1. Use a clean, minimalist, light-gray basemap\n  addProviderTiles(providers$Esri.WorldImagery) |&gt; \n  \n  # 2. Style the county boundary (Penn State Blue fill, thick dashed border)\n  addPolygons(\n    data = centre_county,\n    fillColor = \"#041E42\",     # PSU Dark Blue\n    fillOpacity = 0.1,         # Keep it mostly transparent\n    color = \"#FFF\",            # Border color\n    weight = 3,                # Thicker border\n    dashArray = \"5, 5\"         # Make the border dashed\n  ) |&gt; \n  \n  # 3. Style the building marker\n  addCircleMarkers(\n    data = huck_building,\n    color = \"#FFFFFF\",         # White border around the dot\n    weight = 1,                # Border thickness\n    fillColor = \"#0096FF\",     # Fill Bright Blue \n    radius = 8,                # Slightly larger dot\n    fillOpacity = 0.9,         # Mostly solid\n    \n    # Add a hover label with custom styling\n    label = ~name, \n    labelOptions = labelOptions(\n      style = list(\n        \"font-family\" = \"Arial, sans-serif\",\n        \"font-weight\" = \"bold\", \n        \"color\" = \"#041E42\",\n        \"padding\" = \"4px 8px\"\n      ),\n      direction = \"auto\"\n    ),\n    \n    # Add a click popup with a second line of text\n    popup = \"&lt;b&gt;Huck Life Sciences&lt;/b&gt;&lt;br&gt;Class meets in Room 007\"\n  )",
     "crumbs": [
       "Day 1 — Course intro & what is R?"
     ]
   },
   {
-    "objectID": "weeks/week1/day1-intro.html#setup-checklist-due-by-wednesday",
-    "href": "weeks/week1/day1-intro.html#setup-checklist-due-by-wednesday",
+    "objectID": "weeks/week1/day1-intro-page.html#setup-checklist-due-by-wednesday",
+    "href": "weeks/week1/day1-intro-page.html#setup-checklist-due-by-wednesday",
     "title": "Day 1 — Course intro & what is R?",
     "section": "Setup checklist — due by Wednesday",
-    "text": "Setup checklist — due by Wednesday\nInstall R and RStudio\n\nR: https://cloud.r-project.org\nRStudio: https://posit.co/download/rstudio-desktop\n\n\n\n\n\n\n\nMac users\n\n\nInstall XQuartz too — some packages we’ll use later in the course need it.\n\n\n\nConfigure RStudio\n\nTools &gt; Global Options... &gt; General\nRestore .RData into workspace at startup: Unchecked\nSave workspace to .RData on exit: Never\n\nAssignments due Wednesday 5/20\n\nHW 0: Setup confirmation",
+    "text": "Setup checklist — due by Wednesday\nInstall R and RStudio\n\nR: https://cloud.r-project.org\nRStudio: https://posit.co/download/rstudio-desktop\n\n\n\n\n\n\n\nWarningMac users\n\n\n\nInstall XQuartz too — some packages we’ll use later in the course need it.\n\n\nConfigure RStudio\n\nTools &gt; Global Options... &gt; General\nRestore .RData into workspace at startup: Unchecked\nSave workspace to .RData on exit: Never\n\nAssignments due Wednesday 5/20\n\nHW 0: Setup confirmation",
     "crumbs": [
       "Day 1 — Course intro & what is R?"
     ]
   },
   {
-    "objectID": "weeks/week1/day1-intro.html#wrap-up-looking-ahead",
-    "href": "weeks/week1/day1-intro.html#wrap-up-looking-ahead",
+    "objectID": "weeks/week1/day1-intro-page.html#wrap-up-looking-ahead",
+    "href": "weeks/week1/day1-intro-page.html#wrap-up-looking-ahead",
     "title": "Day 1 — Course intro & what is R?",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\nTomorrow: Real R syntax (variables, functions, vectors)\nDue Tuesday before class:\n\nRead Data Computing §2.1–2.8 on Perusall.\n\nReference links\n\nSyllabus · AI policy · Schedule · Data Computing\n\n\n\n\nReach out\n\n\nStuck on setup? Come to office hours or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu) before Wednesday — don’t wait until class.",
+    "text": "Wrap-up & looking ahead\nTomorrow: Real R syntax (variables, functions, vectors)\nDue Tuesday May 19 (tomorrow) before class:\n\nRead Data Computing §2.1–2.8 on Perusall (Click here).\n\nDue 11:59 p.m. Wednesday May 20:\n\nHW 0: Setup confirmation (Click here).\n\nQuiz 1 in class on Friday May 22\nReference links\n\nSyllabus · AI policy · Schedule · Data Computing\n\n\n\n\n\n\n\nNoteReach out\n\n\n\nStuck on setup? Come to office hours or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu) before Wednesday — don’t wait until class.",
+    "crumbs": [
+      "Day 1 — Course intro & what is R?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#footnotes",
+    "href": "weeks/week1/day1-intro-page.html#footnotes",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nAs of May 17, 2026.↩︎",
     "crumbs": [
       "Day 1 — Course intro & what is R?"
     ]
@@ -946,7 +1041,7 @@
     "href": "weeks/week1/index.html#daily-plan",
     "title": "Week 1 — Foundations",
     "section": "Daily plan",
-    "text": "Daily plan\n\n\n\nDate\nTopic\nFiles\n\n\n\n\nMon May 18\nCourse intro & what is R?\nView Slides · Download HTML · PDF\n\n\nTue May 19\nR, RStudio, console · vectors · data types\nView Slides · Download HTML · PDF\n\n\nWed May 20\nFunctions, packages · tidyverse\nslides\n\n\nThu May 21\nQuarto basics\nslides\n\n\nFri May 22\nQuiz 1 · pipe and chaining syntax\nquiz",
+    "text": "Daily plan\n\n\n\nDate\nTopic\nFiles\n\n\n\n\nMon May 18\nCourse intro & what is R?\nView Slides · View Page · View PDF\n\n\nTue May 19\nR, RStudio, console · vectors · data types\nView Slides · View Page · View PDF\n\n\nWed May 20\nFunctions, packages · tidyverse\nView Slides · View Page · View PDF\n\n\nThu May 21\nQuarto basics\nView Slides · View Page · View PDF\n\n\nFri May 22\nQuiz 1 · pipe and chaining syntax\nView Slides · View Page · View PDF",
     "crumbs": [
       "Week 1 — Foundations"
     ]
@@ -1074,7 +1169,7 @@
     "href": "assignments/homework/index.html#how-to-submit",
     "title": "Homework",
     "section": "How to submit",
-    "text": "How to submit\n\nWork in Quarto, render to PDF or HTML.\nInclude a code appendix at the end (for HW 2+).\nInclude the AI use note (1–2 points).\nSubmit the rendered file to Canvas. Also push the .qmd to your personal GitHub repo for the course."
+    "text": "How to submit\n\nWork in Quarto, render to PDF or HTML.\nInclude a code appendix at the end (for HW 2+).\nInclude the AI use note (1–2 points).\nSubmit the rendered file to Canvas."
   },
   {
     "objectID": "assignments/homework/index.html#ai-policy",
@@ -1273,43 +1368,39 @@
     "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
   },
   {
-    "objectID": "weeks/week1/day5-quiz-pipe.html",
-    "href": "weeks/week1/day5-quiz-pipe.html",
+    "objectID": "weeks/week1/day5-quiz-pipe-page.html",
+    "href": "weeks/week1/day5-quiz-pipe-page.html",
     "title": "Quiz 1 · the pipe and chaining syntax",
     "section": "",
-    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
+    "text": "NoteToday: Thursday May 21\n\n\n\nBefore class\n\nPerusall Assignment: Data Computing §3.6 (Click here).\n\nPlan for today\n\n\n\nHelpful links\n\nSyllabus · AI policy · Schedule · Data Computing §3"
   },
   {
-    "objectID": "weeks/week1/day5-quiz-pipe.html#before-class",
-    "href": "weeks/week1/day5-quiz-pipe.html#before-class",
+    "objectID": "weeks/week1/day5-quiz-pipe-page.html#wrap-up-looking-ahead",
+    "href": "weeks/week1/day5-quiz-pipe-page.html#wrap-up-looking-ahead",
     "title": "Quiz 1 · the pipe and chaining syntax",
-    "section": "Before class",
-    "text": "Before class\n\nRead: Data Computing §3.6\nTODO: any prep materials, data files, etc."
+    "section": "Wrap-up & looking ahead",
+    "text": "Wrap-up & looking ahead\nNO CLASS MONDAY MAY 25 (MEMORIAL DAY)\nNext week: Data frames, intro to data graphics\nDue Tuesday May 26 before class:\n\nRead Data Computing §5.1–5.6 on Perusall (Click here).\n\nDue 11:59 p.m. Friday May 22 (tonight):\n\nHW 1: Basic R, simple plots (Click here).\n\nReference links:\n\nSyllabus · AI policy · Schedule · Data Computing"
   },
   {
-    "objectID": "weeks/week1/day5-quiz-pipe.html#outline",
-    "href": "weeks/week1/day5-quiz-pipe.html#outline",
+    "objectID": "weeks/week1/day5-quiz-pipe-slides.html#wrap-up-looking-ahead",
+    "href": "weeks/week1/day5-quiz-pipe-slides.html#wrap-up-looking-ahead",
     "title": "Quiz 1 · the pipe and chaining syntax",
-    "section": "Outline",
-    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
+    "section": "Wrap-up & looking ahead",
+    "text": "Wrap-up & looking ahead\nNO CLASS MONDAY MAY 25 (MEMORIAL DAY)\nNext week: Data frames, intro to data graphics\nDue Tuesday May 26 before class:\n\nRead Data Computing §5.1–5.6 on Perusall (Click here).\n\nDue 11:59 p.m. Friday May 22 (tonight):\n\nHW 1: Basic R, simple plots (Click here).\n\nReference links:\n\nSyllabus · AI policy · Schedule · Data Computing"
   },
   {
-    "objectID": "weeks/week1/day5-quiz-pipe.html#resources",
-    "href": "weeks/week1/day5-quiz-pipe.html#resources",
-    "title": "Quiz 1 · the pipe and chaining syntax",
-    "section": "Resources",
-    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+    "objectID": "weeks/week1/day2-r-basics-page.html",
+    "href": "weeks/week1/day2-r-basics-page.html",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "",
+    "text": "NoteToday: Tuesday May 19\n\n\n\nBefore class\n\nFirst Perusall Assignment: Data Computing §2.1-2.8 (Click here).\n\nPlan for today\n\nTour of RStudio\nUsing R as a calculator\nData types and vectors\nCreating objects\n\nHelpful links\n\nSyllabus · AI policy · Schedule · Data Computing §2",
+    "crumbs": [
+      "R, RStudio, and the console · vectors · types"
+    ]
   },
   {
-    "objectID": "weeks/week1/day5-quiz-pipe.html#after-class",
-    "href": "weeks/week1/day5-quiz-pipe.html#after-class",
-    "title": "Quiz 1 · the pipe and chaining syntax",
-    "section": "After class",
-    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
-  },
-  {
-    "objectID": "weeks/week1/day2-r-basics.html#what-is-computing",
-    "href": "weeks/week1/day2-r-basics.html#what-is-computing",
+    "objectID": "weeks/week1/day2-r-basics-page.html#what-is-computing",
+    "href": "weeks/week1/day2-r-basics-page.html#what-is-computing",
     "title": "R, RStudio, and the console · vectors · types",
     "section": "What is Computing?",
     "text": "What is Computing?\nComputing is about turning human ideas into reproducible instructions that a computer can carry out\nIn this course, we will learn how to:\n\norganize data\nautomate calculations\nvisualize information\nbuild reproducible analyses\ncommunicate results\n\nR is the tool we will use to do that.",
@@ -1318,8 +1409,8 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day2-r-basics.html#another-introduction-to-r",
-    "href": "weeks/week1/day2-r-basics.html#another-introduction-to-r",
+    "objectID": "weeks/week1/day2-r-basics-page.html#another-introduction-to-r",
+    "href": "weeks/week1/day2-r-basics-page.html#another-introduction-to-r",
     "title": "R, RStudio, and the console · vectors · types",
     "section": "Another Introduction to R",
     "text": "Another Introduction to R\n\nR is a programming language designed for data analysis, statistics, and visualization.\nWe use R to tell the computer exactly what computations we want to perform.\nR is widely used in:\n\nstatistics\ndata science\nresearch\nindustry analytics\n\nR is, free, open-source, and highly extensible through thousands of packages that contain additional tools and functions.",
@@ -1328,8 +1419,8 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day2-r-basics.html#rstudio-desktop-rstudio",
-    "href": "weeks/week1/day2-r-basics.html#rstudio-desktop-rstudio",
+    "objectID": "weeks/week1/day2-r-basics-page.html#rstudio-desktop-rstudio",
+    "href": "weeks/week1/day2-r-basics-page.html#rstudio-desktop-rstudio",
     "title": "R, RStudio, and the console · vectors · types",
     "section": "RStudio Desktop (RStudio)",
     "text": "RStudio Desktop (RStudio)\n\nFirst version released in 2011.\nIntegrated development environment (IDE) provides additional tools and window management to R to help coders, statisticians, and data scientists use R more effectively.\nWhile R is required to run RStudio, you do not need to have RStudio to use R.",
@@ -1338,8 +1429,8 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day2-r-basics.html#r-vs.-rstudio",
-    "href": "weeks/week1/day2-r-basics.html#r-vs.-rstudio",
+    "objectID": "weeks/week1/day2-r-basics-page.html#r-vs.-rstudio",
+    "href": "weeks/week1/day2-r-basics-page.html#r-vs.-rstudio",
     "title": "R, RStudio, and the console · vectors · types",
     "section": "R vs. RStudio",
     "text": "R vs. RStudio\n\nR is the programming language.\nRStudio is the environment/interface we use to work with R more comfortably.",
@@ -1348,8 +1439,8 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day2-r-basics.html#rstudios-four-pane-layout",
-    "href": "weeks/week1/day2-r-basics.html#rstudios-four-pane-layout",
+    "objectID": "weeks/week1/day2-r-basics-page.html#rstudios-four-pane-layout",
+    "href": "weeks/week1/day2-r-basics-page.html#rstudios-four-pane-layout",
     "title": "R, RStudio, and the console · vectors · types",
     "section": "RStudio’s Four Pane Layout",
     "text": "RStudio’s Four Pane Layout\n\n\n\n\n\n\n\n\n\n\nFigure 1: RStudio’s four pane layout.",
@@ -1358,8 +1449,8 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day2-r-basics.html#source-pane",
-    "href": "weeks/week1/day2-r-basics.html#source-pane",
+    "objectID": "weeks/week1/day2-r-basics-page.html#source-pane",
+    "href": "weeks/week1/day2-r-basics-page.html#source-pane",
     "title": "R, RStudio, and the console · vectors · types",
     "section": "Source Pane",
     "text": "Source Pane\n\n\n\n\n\n\n\n\n\n\nFigure 2: RStudio’s source pane, annotated.",
@@ -1368,8 +1459,8 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day2-r-basics.html#console-pane",
-    "href": "weeks/week1/day2-r-basics.html#console-pane",
+    "objectID": "weeks/week1/day2-r-basics-page.html#console-pane",
+    "href": "weeks/week1/day2-r-basics-page.html#console-pane",
     "title": "R, RStudio, and the console · vectors · types",
     "section": "Console Pane",
     "text": "Console Pane\n\n\n\n\n\n\n\n\n\n\nFigure 3: RStudio’s console, annotated.",
@@ -1378,8 +1469,8 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day2-r-basics.html#environment-pane",
-    "href": "weeks/week1/day2-r-basics.html#environment-pane",
+    "objectID": "weeks/week1/day2-r-basics-page.html#environment-pane",
+    "href": "weeks/week1/day2-r-basics-page.html#environment-pane",
     "title": "R, RStudio, and the console · vectors · types",
     "section": "Environment Pane",
     "text": "Environment Pane\n\n\n\n\n\n\n\n\n\n\nFigure 4: RStudio’s environment pane, annotated.",
@@ -1388,8 +1479,8 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day2-r-basics.html#output-pane---files-tab",
-    "href": "weeks/week1/day2-r-basics.html#output-pane---files-tab",
+    "objectID": "weeks/week1/day2-r-basics-page.html#output-pane---files-tab",
+    "href": "weeks/week1/day2-r-basics-page.html#output-pane---files-tab",
     "title": "R, RStudio, and the console · vectors · types",
     "section": "Output Pane - Files Tab",
     "text": "Output Pane - Files Tab\n\n\n\n\n\n\n\n\n\n\nFigure 5: RStudio’s output pane (files tab), annotated.",
@@ -1398,8 +1489,8 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day2-r-basics.html#output-pane---plots-tab",
-    "href": "weeks/week1/day2-r-basics.html#output-pane---plots-tab",
+    "objectID": "weeks/week1/day2-r-basics-page.html#output-pane---plots-tab",
+    "href": "weeks/week1/day2-r-basics-page.html#output-pane---plots-tab",
     "title": "R, RStudio, and the console · vectors · types",
     "section": "Output Pane - Plots Tab",
     "text": "Output Pane - Plots Tab\n\n\n\n\n\n\n\n\n\n\nFigure 6: RStudio’s output pane (plots tab), annotated, displaying a 2D density contour plot created with ggplot2. Darker regions indicate areas with higher concentrations of observations, while lighter regions represent lower densities. The plot combines filled density polygons with contour boundaries to visualize the distribution of simulated data.\n\n\n\n\n\nShow the R code.\n# Set Seed\nset.seed(184)\n\n# Library\nlibrary(tidyverse)\n\n# Data\na &lt;- data.frame( x=rnorm(20000, 12, 2), y=rnorm(20000, 10, 0.5) )\nb &lt;- data.frame( x=rnorm(20000, 15, 1.5), y=rnorm(20000, 11, 0.5) )\nc &lt;- data.frame( x=rnorm(20000, 10, 1.1), y=rnorm(20000, 11.5, 0.7) )\ndata &lt;- rbind(a,b,c)\n\n# Area + contour\nggplot(data, aes(x=x, y=y) ) +\n  stat_density_2d(aes(fill = ..level..), geom = \"polygon\", colour=\"white\") +\n  theme_light() +\n  scale_fill_viridis_c(option = \"magma\")",
@@ -1408,8 +1499,8 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day2-r-basics.html#output-pane---packages-tab",
-    "href": "weeks/week1/day2-r-basics.html#output-pane---packages-tab",
+    "objectID": "weeks/week1/day2-r-basics-page.html#output-pane---packages-tab",
+    "href": "weeks/week1/day2-r-basics-page.html#output-pane---packages-tab",
     "title": "R, RStudio, and the console · vectors · types",
     "section": "Output Pane - Packages Tab",
     "text": "Output Pane - Packages Tab\n\n\n\n\n\n\n\n\n\n\nFigure 7: RStudio’s output pane (packages tab).\n\n\n\n\nThe “Packages” tab will list all packages that you have currently installed on your machine. You can load a package by clicking the box to the left of the name.\nYou can also use the “Install” and “Update” buttons to help you get new packages and keep them current.",
@@ -1418,8 +1509,8 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day2-r-basics.html#output-pane---help-tab",
-    "href": "weeks/week1/day2-r-basics.html#output-pane---help-tab",
+    "objectID": "weeks/week1/day2-r-basics-page.html#output-pane---help-tab",
+    "href": "weeks/week1/day2-r-basics-page.html#output-pane---help-tab",
     "title": "R, RStudio, and the console · vectors · types",
     "section": "Output Pane - Help Tab",
     "text": "Output Pane - Help Tab\n\n\n\n\n\n\n\n\n\n\nFigure 8: RStudio’s output pane (help tab).\n\n\n\n\nThe “Help” tab displays help documentation that has been included with the packages for functions, data sets, and other objects.\nHelp Shortcuts: ?barplot, help(barplot), or ??barplot (broad sweep). You can also place your cursor in the object name and press fn + F1 (or just F1 if your function keys are active).",
@@ -1428,8 +1519,8 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day2-r-basics.html#data-types",
-    "href": "weeks/week1/day2-r-basics.html#data-types",
+    "objectID": "weeks/week1/day2-r-basics-page.html#data-types",
+    "href": "weeks/week1/day2-r-basics-page.html#data-types",
     "title": "R, RStudio, and the console · vectors · types",
     "section": "Data Types",
     "text": "Data Types\n\nData type refers to the nature of how we choose to record some value.\nCommon Data Types in R:\n\nNumeric (Double)\nInteger\nComplex\nCharacter\nLogical",
@@ -1438,8 +1529,8 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day2-r-basics.html#data-structures",
-    "href": "weeks/week1/day2-r-basics.html#data-structures",
+    "objectID": "weeks/week1/day2-r-basics-page.html#data-structures",
+    "href": "weeks/week1/day2-r-basics-page.html#data-structures",
     "title": "R, RStudio, and the console · vectors · types",
     "section": "Data Structures",
     "text": "Data Structures\n\nData structures are the most important type of base objects in R as they will form the basis for all manipulations we do.\nR’s data structures may be organized along two aspects:\n\nHow many dimensions we need for values.\nIf all values have to be the same data type.\n\n\n\n\n\n\n\n\n\n\nDimensions\nAll Values Same Data Type\nA Mix of Data Types\n\n\n\n\n1 Dimension\nAtomic Vectors\n[1] 1 3 5\n[1] \"apple\" \"grape\"\n\"peach\"\nList\n[[1]]\n[1] 1 3 5\n\n[[2]]\n[1] \"apple\" \"grape\"\n\"peach\"\n\n\n2 Dimensions\nMatrix\n     [,1] [,2]\n[1,]    1    5\n[2,]    3    7\nData Frame\n  id  fruit\n1  1  apple\n2  3  grape\n3  5  peach\n\n\nn Dimensions\nArray\n, , 1\n\n     [,1] [,2]\n[1,]    1    5\n[2,]    3    7\n\n, , 2\n\n     [,1] [,2]\n[1,]    2    6\n[2,]    4    8\nN/A",
@@ -1448,8 +1539,8 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day2-r-basics.html#r-as-a-calculator",
-    "href": "weeks/week1/day2-r-basics.html#r-as-a-calculator",
+    "objectID": "weeks/week1/day2-r-basics-page.html#r-as-a-calculator",
+    "href": "weeks/week1/day2-r-basics-page.html#r-as-a-calculator",
     "title": "R, RStudio, and the console · vectors · types",
     "section": "R as a Calculator",
     "text": "R as a Calculator\nYou can use R as a calculator:\n\n184.101 * 9.35\n\n[1] 1721.344\n\n(8 + 4) / 9\n\n[1] 1.333333\n\nsqrt(8)\n\n[1] 2.828427\n\ncos(2*pi)\n\n[1] 1",
@@ -1458,8 +1549,8 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day2-r-basics.html#vector-operations",
-    "href": "weeks/week1/day2-r-basics.html#vector-operations",
+    "objectID": "weeks/week1/day2-r-basics-page.html#vector-operations",
+    "href": "weeks/week1/day2-r-basics-page.html#vector-operations",
     "title": "R, RStudio, and the console · vectors · types",
     "section": "Vector Operations",
     "text": "Vector Operations\n\nc(1, 8, 4) + c(9, 3, 5)\n\n[1] 10 11  9\n\nc(1, 8, 4) * c(9, 3, 5)\n\n[1]  9 24 20\n\n\n\nThe c functions concatenates multiple individual values into one single vector.",
@@ -1468,8 +1559,8 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day2-r-basics.html#built-in-functions-and-constants",
-    "href": "weeks/week1/day2-r-basics.html#built-in-functions-and-constants",
+    "objectID": "weeks/week1/day2-r-basics-page.html#built-in-functions-and-constants",
+    "href": "weeks/week1/day2-r-basics-page.html#built-in-functions-and-constants",
     "title": "R, RStudio, and the console · vectors · types",
     "section": "Built-in Functions and Constants",
     "text": "Built-in Functions and Constants\n\nexp(1)\n\n[1] 2.718282\n\nsqrt(pi)\n\n[1] 1.772454\n\ndnorm(0)\n\n[1] 0.3989423\n\n\n\nsqrt computes the square root.\nexp computes the function \\(e^x\\).\npi is the constant \\(\\pi\\).\ndnorm computes the standard normal density function.",
@@ -1478,8 +1569,8 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day2-r-basics.html#creating-objects",
-    "href": "weeks/week1/day2-r-basics.html#creating-objects",
+    "objectID": "weeks/week1/day2-r-basics-page.html#creating-objects",
+    "href": "weeks/week1/day2-r-basics-page.html#creating-objects",
     "title": "R, RStudio, and the console · vectors · types",
     "section": "Creating objects",
     "text": "Creating objects\nYou can create new objects with the assignment operator, &lt;-\n\nx &lt;- 3 * 5\n\nThe above is an example of an assignment statement. In general, assignment statements have the form:\n\nobject_name &lt;- value\n\nIn English, this is “object_name gets value.”\n\nEven though typing &lt;- for the many assignments you will make can be tedious, don’t use =; it will work, but will cause confusion later.\nYou can use the RStudio keyboard shortcut Alt + -, (or Option + - on a Mac).\nObject names must start with a letter, and can only contain letters, numbers, _, and .",
@@ -1488,74 +1579,191 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day2-r-basics.html#setup-checklist-due-by-wednesday",
-    "href": "weeks/week1/day2-r-basics.html#setup-checklist-due-by-wednesday",
+    "objectID": "weeks/week1/day2-r-basics-page.html#setup-checklist-due-by-wednesday",
+    "href": "weeks/week1/day2-r-basics-page.html#setup-checklist-due-by-wednesday",
     "title": "R, RStudio, and the console · vectors · types",
     "section": "Setup checklist — due by Wednesday",
-    "text": "Setup checklist — due by Wednesday\nInstall R and RStudio\n\nR: https://cloud.r-project.org\nRStudio: https://posit.co/download/rstudio-desktop\n\n\n\n\n\n\n\nMac users\n\n\nInstall XQuartz too — some packages we’ll use later in the course need it.\n\n\n\nConfigure RStudio\n\nTools &gt; Global Options... &gt; General\nRestore .RData into workspace at startup: Unchecked\nSave workspace to .RData on exit: Never\n\nAssignments due Wednesday 5/20\n\nHW 0: Setup confirmation",
+    "text": "Setup checklist — due by Wednesday\nInstall R and RStudio\n\nR: https://cloud.r-project.org\nRStudio: https://posit.co/download/rstudio-desktop\n\n\n\n\n\n\n\nWarningMac users\n\n\n\nInstall XQuartz too — some packages we’ll use later in the course need it.\n\n\nConfigure RStudio\n\nTools &gt; Global Options... &gt; General\nRestore .RData into workspace at startup: Unchecked\nSave workspace to .RData on exit: Never",
     "crumbs": [
       "R, RStudio, and the console · vectors · types"
     ]
   },
   {
-    "objectID": "weeks/week1/day2-r-basics.html#wrap-up-looking-ahead",
-    "href": "weeks/week1/day2-r-basics.html#wrap-up-looking-ahead",
+    "objectID": "weeks/week1/day2-r-basics-page.html#wrap-up-looking-ahead",
+    "href": "weeks/week1/day2-r-basics-page.html#wrap-up-looking-ahead",
     "title": "R, RStudio, and the console · vectors · types",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\nTomorrow: Functions, packages, and the tidyverse.\nDue Wednesday before class:\n\nRead Data Computing §3.1–3.5 on Perusall.\n\nReference links\n\nSyllabus · AI policy · Schedule · Data Computing\n\n\n\n\nReach out\n\n\nStuck on setup? Come to office hours or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu) before Wednesday — don’t wait until class.",
+    "text": "Wrap-up & looking ahead\nTomorrow: Functions, packages, and the tidyverse.\nDue Wednesday May 20 (tomorrow) before class:\n\nRead Data Computing §3.1–3.5 on Perusall (Click here).\n\nDue 11:59 p.m. Wednesday May 20 (tomorrow):\n\nHW 0: Setup confirmation (Click here).\n\nQuiz 1 in class on Friday May 22\nReference links:\n\nSyllabus · AI policy · Schedule · Data Computing\n\n\n\n\n\n\n\nNoteReach out\n\n\n\nStuck on setup? Come to office hours or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu) before Wednesday — don’t wait until class.",
     "crumbs": [
       "R, RStudio, and the console · vectors · types"
     ]
   },
   {
-    "objectID": "weeks/week1/day4-quarto.html",
-    "href": "weeks/week1/day4-quarto.html",
+    "objectID": "weeks/week1/day2-r-basics-slides.html#what-is-computing",
+    "href": "weeks/week1/day2-r-basics-slides.html#what-is-computing",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "What is Computing?",
+    "text": "What is Computing?\nComputing is about turning human ideas into reproducible instructions that a computer can carry out\nIn this course, we will learn how to:\n\norganize data\nautomate calculations\nvisualize information\nbuild reproducible analyses\ncommunicate results\n\nR is the tool we will use to do that."
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics-slides.html#another-introduction-to-r",
+    "href": "weeks/week1/day2-r-basics-slides.html#another-introduction-to-r",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Another Introduction to R",
+    "text": "Another Introduction to R\n\nR is a programming language designed for data analysis, statistics, and visualization.\nWe use R to tell the computer exactly what computations we want to perform.\nR is widely used in:\n\nstatistics\ndata science\nresearch\nindustry analytics\n\nR is, free, open-source, and highly extensible through thousands of packages that contain additional tools and functions."
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics-slides.html#rstudio-desktop-rstudio",
+    "href": "weeks/week1/day2-r-basics-slides.html#rstudio-desktop-rstudio",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "RStudio Desktop (RStudio)",
+    "text": "RStudio Desktop (RStudio)\n\nFirst version released in 2011.\nIntegrated development environment (IDE) provides additional tools and window management to R to help coders, statisticians, and data scientists use R more effectively.\nWhile R is required to run RStudio, you do not need to have RStudio to use R."
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics-slides.html#r-vs.-rstudio",
+    "href": "weeks/week1/day2-r-basics-slides.html#r-vs.-rstudio",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "R vs. RStudio",
+    "text": "R vs. RStudio\n\nR is the programming language.\nRStudio is the environment/interface we use to work with R more comfortably."
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics-slides.html#rstudios-four-pane-layout",
+    "href": "weeks/week1/day2-r-basics-slides.html#rstudios-four-pane-layout",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "RStudio’s Four Pane Layout",
+    "text": "RStudio’s Four Pane Layout\n\n\n\n\n\n\n\n\n\n\nFigure 1: RStudio’s four pane layout."
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics-slides.html#source-pane",
+    "href": "weeks/week1/day2-r-basics-slides.html#source-pane",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Source Pane",
+    "text": "Source Pane\n\n\n\n\n\n\n\n\n\n\nFigure 2: RStudio’s source pane, annotated."
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics-slides.html#console-pane",
+    "href": "weeks/week1/day2-r-basics-slides.html#console-pane",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Console Pane",
+    "text": "Console Pane\n\n\n\n\n\n\n\n\n\n\nFigure 3: RStudio’s console, annotated."
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics-slides.html#environment-pane",
+    "href": "weeks/week1/day2-r-basics-slides.html#environment-pane",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Environment Pane",
+    "text": "Environment Pane\n\n\n\n\n\n\n\n\n\n\nFigure 4: RStudio’s environment pane, annotated."
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics-slides.html#output-pane---files-tab",
+    "href": "weeks/week1/day2-r-basics-slides.html#output-pane---files-tab",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Output Pane - Files Tab",
+    "text": "Output Pane - Files Tab\n\n\n\n\n\n\n\n\n\n\nFigure 5: RStudio’s output pane (files tab), annotated."
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics-slides.html#output-pane---plots-tab",
+    "href": "weeks/week1/day2-r-basics-slides.html#output-pane---plots-tab",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Output Pane - Plots Tab",
+    "text": "Output Pane - Plots Tab\n\n\n\n\n\n\n\n\n\n\nFigure 6: RStudio’s output pane (plots tab), annotated, displaying a 2D density contour plot created with ggplot2. Darker regions indicate areas with higher concentrations of observations, while lighter regions represent lower densities. The plot combines filled density polygons with contour boundaries to visualize the distribution of simulated data.\n\n\n\n\n\nShow the R code.\n# Set Seed\nset.seed(184)\n\n# Library\nlibrary(tidyverse)\n\n# Data\na &lt;- data.frame( x=rnorm(20000, 12, 2), y=rnorm(20000, 10, 0.5) )\nb &lt;- data.frame( x=rnorm(20000, 15, 1.5), y=rnorm(20000, 11, 0.5) )\nc &lt;- data.frame( x=rnorm(20000, 10, 1.1), y=rnorm(20000, 11.5, 0.7) )\ndata &lt;- rbind(a,b,c)\n\n# Area + contour\nggplot(data, aes(x=x, y=y) ) +\n  stat_density_2d(aes(fill = ..level..), geom = \"polygon\", colour=\"white\") +\n  theme_light() +\n  scale_fill_viridis_c(option = \"magma\")"
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics-slides.html#output-pane---packages-tab",
+    "href": "weeks/week1/day2-r-basics-slides.html#output-pane---packages-tab",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Output Pane - Packages Tab",
+    "text": "Output Pane - Packages Tab\n\n\n\n\n\n\n\n\n\n\nFigure 7: RStudio’s output pane (packages tab).\n\n\n\n\nThe “Packages” tab will list all packages that you have currently installed on your machine. You can load a package by clicking the box to the left of the name.\nYou can also use the “Install” and “Update” buttons to help you get new packages and keep them current."
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics-slides.html#output-pane---help-tab",
+    "href": "weeks/week1/day2-r-basics-slides.html#output-pane---help-tab",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Output Pane - Help Tab",
+    "text": "Output Pane - Help Tab\n\n\n\n\n\n\n\n\n\n\nFigure 8: RStudio’s output pane (help tab).\n\n\n\n\nThe “Help” tab displays help documentation that has been included with the packages for functions, data sets, and other objects.\nHelp Shortcuts: ?barplot, help(barplot), or ??barplot (broad sweep). You can also place your cursor in the object name and press fn + F1 (or just F1 if your function keys are active)."
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics-slides.html#data-types",
+    "href": "weeks/week1/day2-r-basics-slides.html#data-types",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Data Types",
+    "text": "Data Types\n\nData type refers to the nature of how we choose to record some value.\nCommon Data Types in R:\n\nNumeric (Double)\nInteger\nComplex\nCharacter\nLogical"
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics-slides.html#data-structures",
+    "href": "weeks/week1/day2-r-basics-slides.html#data-structures",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Data Structures",
+    "text": "Data Structures\n\nData structures are the most important type of base objects in R as they will form the basis for all manipulations we do.\nR’s data structures may be organized along two aspects:\n\nHow many dimensions we need for values.\nIf all values have to be the same data type.\n\n\n\n\n\n\n\n\n\n\nDimensions\nAll Values Same Data Type\nA Mix of Data Types\n\n\n\n\n1 Dimension\nAtomic Vectors\n[1] 1 3 5\n[1] \"apple\" \"grape\"\n\"peach\"\nList\n[[1]]\n[1] 1 3 5\n\n[[2]]\n[1] \"apple\" \"grape\"\n\"peach\"\n\n\n2 Dimensions\nMatrix\n     [,1] [,2]\n[1,]    1    5\n[2,]    3    7\nData Frame\n  id  fruit\n1  1  apple\n2  3  grape\n3  5  peach\n\n\nn Dimensions\nArray\n, , 1\n\n     [,1] [,2]\n[1,]    1    5\n[2,]    3    7\n\n, , 2\n\n     [,1] [,2]\n[1,]    2    6\n[2,]    4    8\nN/A"
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics-slides.html#r-as-a-calculator",
+    "href": "weeks/week1/day2-r-basics-slides.html#r-as-a-calculator",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "R as a Calculator",
+    "text": "R as a Calculator\nYou can use R as a calculator:\n\n184.101 * 9.35\n\n[1] 1721.344\n\n(8 + 4) / 9\n\n[1] 1.333333\n\nsqrt(8)\n\n[1] 2.828427\n\ncos(2*pi)\n\n[1] 1"
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics-slides.html#vector-operations",
+    "href": "weeks/week1/day2-r-basics-slides.html#vector-operations",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Vector Operations",
+    "text": "Vector Operations\n\nc(1, 8, 4) + c(9, 3, 5)\n\n[1] 10 11  9\n\nc(1, 8, 4) * c(9, 3, 5)\n\n[1]  9 24 20\n\n\n\nThe c functions concatenates multiple individual values into one single vector."
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics-slides.html#built-in-functions-and-constants",
+    "href": "weeks/week1/day2-r-basics-slides.html#built-in-functions-and-constants",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Built-in Functions and Constants",
+    "text": "Built-in Functions and Constants\n\nexp(1)\n\n[1] 2.718282\n\nsqrt(pi)\n\n[1] 1.772454\n\ndnorm(0)\n\n[1] 0.3989423\n\n\n\nsqrt computes the square root.\nexp computes the function \\(e^x\\).\npi is the constant \\(\\pi\\).\ndnorm computes the standard normal density function."
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics-slides.html#creating-objects",
+    "href": "weeks/week1/day2-r-basics-slides.html#creating-objects",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Creating objects",
+    "text": "Creating objects\nYou can create new objects with the assignment operator, &lt;-\n\nx &lt;- 3 * 5\n\nThe above is an example of an assignment statement. In general, assignment statements have the form:\n\nobject_name &lt;- value\n\nIn English, this is “object_name gets value.”\n\nEven though typing &lt;- for the many assignments you will make can be tedious, don’t use =; it will work, but will cause confusion later.\nYou can use the RStudio keyboard shortcut Alt + -, (or Option + - on a Mac).\nObject names must start with a letter, and can only contain letters, numbers, _, and ."
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics-slides.html#setup-checklist-due-by-wednesday",
+    "href": "weeks/week1/day2-r-basics-slides.html#setup-checklist-due-by-wednesday",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Setup checklist — due by Wednesday",
+    "text": "Setup checklist — due by Wednesday\nInstall R and RStudio\n\nR: https://cloud.r-project.org\nRStudio: https://posit.co/download/rstudio-desktop\n\n\n\n\n\n\n\nMac users\n\n\nInstall XQuartz too — some packages we’ll use later in the course need it.\n\n\n\nConfigure RStudio\n\nTools &gt; Global Options... &gt; General\nRestore .RData into workspace at startup: Unchecked\nSave workspace to .RData on exit: Never"
+  },
+  {
+    "objectID": "weeks/week1/day2-r-basics-slides.html#wrap-up-looking-ahead",
+    "href": "weeks/week1/day2-r-basics-slides.html#wrap-up-looking-ahead",
+    "title": "R, RStudio, and the console · vectors · types",
+    "section": "Wrap-up & looking ahead",
+    "text": "Wrap-up & looking ahead\nTomorrow: Functions, packages, and the tidyverse.\nDue Wednesday May 20 (tomorrow) before class:\n\nRead Data Computing §3.1–3.5 on Perusall (Click here).\n\nDue 11:59 p.m. Wednesday May 20 (tomorrow):\n\nHW 0: Setup confirmation (Click here).\n\nQuiz 1 in class on Friday May 22\nReference links:\n\nSyllabus · AI policy · Schedule · Data Computing\n\n\n\n\nReach out\n\n\nStuck on setup? Come to office hours or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu) before Wednesday — don’t wait until class."
+  },
+  {
+    "objectID": "weeks/week1/day4-quarto-page.html",
+    "href": "weeks/week1/day4-quarto-page.html",
     "title": "Quarto basics · reproducible documents",
     "section": "",
-    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class",
+    "text": "NoteToday: Thursday May 21\n\n\n\nBefore class\n\nPerusall Assignment: Data Computing §4.1–4.7 (Click here).\n\nPlan for today\n\n\n\nHelpful links\n\nSyllabus · AI policy · Schedule · Data Computing §4",
     "crumbs": [
       "Quarto basics · reproducible documents"
     ]
   },
   {
-    "objectID": "weeks/week1/day4-quarto.html#before-class",
-    "href": "weeks/week1/day4-quarto.html#before-class",
+    "objectID": "weeks/week1/day4-quarto-page.html#wrap-up-looking-ahead",
+    "href": "weeks/week1/day4-quarto-page.html#wrap-up-looking-ahead",
     "title": "Quarto basics · reproducible documents",
-    "section": "Before class",
-    "text": "Before class\n\nRead: Data Computing Ch 4 (§4.1–4.7)\nTODO: any prep materials, data files, etc.",
+    "section": "Wrap-up & looking ahead",
+    "text": "Wrap-up & looking ahead\nTomorrow: The pipe and chaining syntax\nDue Friday May 22 (tomorrow) before class:\n\nRead Data Computing §3.6 on Perusall (Click here).\n\nDue 11:59 p.m. Friday May 22 (tomorrow):\n\nHW 1: Basic R, simple plots (Click here).\n\nQuiz 1 in class on Friday May 22 (tomorrow)\nReference links:\n\nSyllabus · AI policy · Schedule · Data Computing",
     "crumbs": [
       "Quarto basics · reproducible documents"
     ]
   },
   {
-    "objectID": "weeks/week1/day4-quarto.html#outline",
-    "href": "weeks/week1/day4-quarto.html#outline",
+    "objectID": "weeks/week1/day4-quarto-slides.html#wrap-up-looking-ahead",
+    "href": "weeks/week1/day4-quarto-slides.html#wrap-up-looking-ahead",
     "title": "Quarto basics · reproducible documents",
-    "section": "Outline",
-    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class",
-    "crumbs": [
-      "Quarto basics · reproducible documents"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day4-quarto.html#resources",
-    "href": "weeks/week1/day4-quarto.html#resources",
-    "title": "Quarto basics · reproducible documents",
-    "section": "Resources",
-    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout",
-    "crumbs": [
-      "Quarto basics · reproducible documents"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day4-quarto.html#after-class",
-    "href": "weeks/week1/day4-quarto.html#after-class",
-    "title": "Quarto basics · reproducible documents",
-    "section": "After class",
-    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for.",
-    "crumbs": [
-      "Quarto basics · reproducible documents"
-    ]
+    "section": "Wrap-up & looking ahead",
+    "text": "Wrap-up & looking ahead\nTomorrow: The pipe and chaining syntax\nDue Friday May 22 (tomorrow) before class:\n\nRead Data Computing §3.6 on Perusall (Click here).\n\nDue 11:59 p.m. Friday May 22 (tomorrow):\n\nHW 1: Basic R, simple plots (Click here).\n\nQuiz 1 in class on Friday May 22 (tomorrow)\nReference links:\n\nSyllabus · AI policy · Schedule · Data Computing"
   },
   {
     "objectID": "weeks/week2/day4-critique.html",
