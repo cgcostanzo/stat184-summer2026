@@ -769,11 +769,67 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day1-intro-slides.html#course-info-introductions",
-    "href": "weeks/week1/day1-intro-slides.html#course-info-introductions",
+    "objectID": "weeks/week1/day1-intro-slides.html#introductions",
+    "href": "weeks/week1/day1-intro-slides.html#introductions",
     "title": "Day 1 — Course intro & what is R?",
-    "section": "1. Course Info & Introductions",
-    "text": "1. Course Info & Introductions\nSummer Session 1: May 18, 2026 – June 26, 2026\n\nClass time: M/T/W/Th/F, 9:35 a.m. to 10:50 a.m.\nClass location: Huck Life Sciences Building 007\nInstructor: Charles Costanzo\n\nEmail: cgc5478@psu.edu\nOffice Hours: M/W/Th/F: 10:50-11:50 a.m. in Huck 005 (or on Zoom by appt)\n\nTeaching Assistant (TA): Xinyue Wang\n\nEmail: xpw5228@psu.edu\n\n\n\n\n\n\n\n\n\n\nIcebreaker: name, major, your favorite song right now."
+    "section": "Introductions",
+    "text": "Introductions\nInstructor: Charles Costanzo\n\nStatistics Ph.D. student\nHometown: Solon, OH\nSome of my favorite things: cats, coffee, R (unironically)"
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#solon-ohio",
+    "href": "weeks/week1/day1-intro-slides.html#solon-ohio",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Solon, Ohio",
+    "text": "Solon, Ohio\n\n\nShow the R code.\n# Install these first if you don't have them: install.packages(c(\"sf\", \"tigris\"))\nlibrary(ggplot2)\nlibrary(sf)\nlibrary(tigris)\nlibrary(dplyr)\n\noptions(tigris_use_cache = TRUE)\n\n# Fetch spatial data\nohio_counties &lt;- counties(state = \"OH\", cb = TRUE, progress_bar = FALSE)\nohio_places &lt;- places(state = \"OH\", cb = TRUE, progress_bar = FALSE)\n\n# Isolate areas\ncuyahoga_county &lt;- ohio_counties %&gt;% filter(NAME == \"Cuyahoga\")\nsolon_city &lt;- ohio_places %&gt;% filter(NAME == \"Solon\")\n\n# Build the map\nggplot() +\n  # Counties\n  geom_sf(data = ohio_counties, fill = \"#f8f9fa\", color = \"grey\", linewidth = 0.3) +\n  # Cuyahoga\n  geom_sf(data = cuyahoga_county, fill = \"#D6EAF8\", color = \"#2980B9\", linewidth = 0.5) +\n  # Solon\n  geom_sf(data = solon_city, fill = \"dodgerblue\", color = \"darkblue\", linewidth = 0.5) +\n  \n  # NEW: Add the text label\n  geom_sf_text(data = solon_city, aes(label = NAME), \n               size = 5, \n               fontface = \"bold\", \n               color = \"dodgerblue\",\n               nudge_y = -0.05,  # Pushes the label North\n               nudge_x = 0.25) + # Pushes the label East\n  \n  theme_void()"
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#meet-my-cats",
+    "href": "weeks/week1/day1-intro-slides.html#meet-my-cats",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Meet My Cats!",
+    "text": "Meet My Cats!"
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#more-realistic-cat-photos",
+    "href": "weeks/week1/day1-intro-slides.html#more-realistic-cat-photos",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "More Realistic Cat Photos…",
+    "text": "More Realistic Cat Photos…"
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#countries-ive-been-to",
+    "href": "weeks/week1/day1-intro-slides.html#countries-ive-been-to",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Countries I’ve Been To",
+    "text": "Countries I’ve Been To\n\n\nShow the R code.\n# Load required packages \nlibrary(ggplot2)\nlibrary(maps)\nlibrary(dplyr)\n\n# Get world map data\nworld_map &lt;- map_data(\"world\")\n\n# Define countries\nvisited_countries &lt;- c(\"Canada\", \"USA\", \"Argentina\", \"Uruguay\", \n                       \"Switzerland\", \"Rwanda\", \"Spain\", \"France\", \"Turkey\")\n\n# Create a new column to categorize visited vs unvisited\nworld_map &lt;- world_map %&gt;%\n  mutate(visited = ifelse(region %in% visited_countries, \"Visited\", \"Not Visited\"))\n\n# Plot the map\nggplot(world_map, aes(x = long, y = lat, group = group, fill = visited)) +\n  geom_polygon(color = \"white\", linewidth = 0.2) +\n  scale_fill_manual(values = c(\"Not Visited\" = \"#e0e0e0\", \"Visited\" = \"#FF7F50\")) +\n  theme_void() +\n  theme(legend.position = \"none\")"
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#states-ive-lived-in-visited",
+    "href": "weeks/week1/day1-intro-slides.html#states-ive-lived-in-visited",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "States I’ve Lived In & Visited",
+    "text": "States I’ve Lived In & Visited\n\n\nShow the R code.\n# Load required packages \n# Note: You may need to run install.packages(\"mapproj\") in your console first\nlibrary(ggplot2)\nlibrary(maps)\nlibrary(dplyr)\nlibrary(mapproj)\n\n# Load US state map data\nus_map &lt;- map_data(\"state\")\n\n# Define states \nlived_in &lt;- tolower(c(\"Ohio\", \"Pennsylvania\", \"Texas\"))\n\n# Note: Swapped \"Washington DC\" to \"District of Columbia\" to match map data\nvisited &lt;- tolower(c(\"Washington\", \"Oregon\", \"California\", \"Nevada\", \"Idaho\", \n                     \"Montana\", \"Arizona\", \"New Mexico\", \"Colorado\", \"Wyoming\", \n                     \"North Dakota\", \"South Dakota\", \"Kansas\", \"Iowa\",\n                     \"Nebraska\", \"Minnesota\", \"Wisconsin\", \"Michigan\", \"Indiana\", \n                     \"Illinois\", \"Kentucky\", \"Tennessee\", \"Louisiana\", \"Florida\", \n                     \"Georgia\", \"North Carolina\", \"South Carolina\", \"Virginia\", \n                     \"District of Columbia\", \"Maryland\", \"Delaware\", \"New Jersey\", \n                     \"New York\", \"Missouri\", \"Utah\", \"West Virginia\"))\n\n# Categorize the states\nus_map &lt;- us_map %&gt;%\n  mutate(status = case_when(\n    region %in% lived_in ~ \"Lived\",\n    region %in% visited ~ \"Visited\",\n    TRUE ~ \"Not Visited\"\n  )) %&gt;%\n  # Order Legend\n  mutate(status = factor(status, levels = c(\"Lived\", \"Visited\", \"Not Visited\")))\n\n# Plot the map\nggplot(us_map, aes(x = long, y = lat, group = group, fill = status)) +\n  geom_polygon(color = \"white\", linewidth = 0.3) +\n  # Swap these hex codes out if you want different colors!\n  scale_fill_manual(values = c(\"Lived\" = \"#2C3E50\",       # Dark blue\n                               \"Visited\" = \"#3498DB\",     # Light blue\n                               \"Not Visited\" = \"#E0E0E0\")) + # Gray\n  coord_map(\"albers\", lat0 = 39, lat1 = 45) + \n  theme_void() +\n  theme(legend.position = \"bottom\", \n        legend.title = element_blank(),\n        legend.text = element_text(size = 14))"
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#icebreaker-share-your",
+    "href": "weeks/week1/day1-intro-slides.html#icebreaker-share-your",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Icebreaker: Share Your…",
+    "text": "Icebreaker: Share Your…\n\nName\nMajor\nProgramming Experience\nA Fun Fact (Favorite Song, Color, Food, etc.)"
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#section",
+    "href": "weeks/week1/day1-intro-slides.html#section",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "",
+    "text": "Today: Monday May 18\n\n\nBefore class\n\nRead the syllabus (Click here).\n(Optional): Read Data Computing §1.1–1.5 (Click here).\n\nPlan for today\n\nCourse logistics\nIntroduction to R and RStudio\nTidy data\nR Demo\n\nHelpful links\n\nSyllabus · AI policy · Schedule · Data Computing §1"
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#course-info",
+    "href": "weeks/week1/day1-intro-slides.html#course-info",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Course Info",
+    "text": "Course Info\nSummer Session 1: May 18, 2026 – June 26, 2026\n\nClass time: M/T/W/Th/F, 9:35 a.m. to 10:50 a.m.\nClass location: Huck Life Sciences Building 007\nInstructor: Charles Costanzo\n\nEmail: cgc5478@psu.edu\nOffice Hours: M/W/Th/F: 10:50-11:50 a.m. in Huck 005 (or on Zoom by appt)\n\nTeaching Assistant (TA): Xinyue Wang\n\nEmail: xpw5228@psu.edu"
   },
   {
     "objectID": "weeks/week1/day1-intro-slides.html#learning-goals",
@@ -871,17 +927,97 @@
     "href": "weeks/week1/day1-intro-page.html",
     "title": "Day 1 — Course intro & what is R?",
     "section": "",
+    "text": "Instructor: Charles Costanzo\n\nStatistics Ph.D. student\nHometown: Solon, OH\nSome of my favorite things: cats, coffee, R (unironically)",
+    "crumbs": [
+      "Day 1 — Course intro & what is R?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#introductions",
+    "href": "weeks/week1/day1-intro-page.html#introductions",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "",
+    "text": "Instructor: Charles Costanzo\n\nStatistics Ph.D. student\nHometown: Solon, OH\nSome of my favorite things: cats, coffee, R (unironically)",
+    "crumbs": [
+      "Day 1 — Course intro & what is R?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#solon-ohio",
+    "href": "weeks/week1/day1-intro-page.html#solon-ohio",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Solon, Ohio",
+    "text": "Solon, Ohio\n\n\nShow the R code.\n# Install these first if you don't have them: install.packages(c(\"sf\", \"tigris\"))\nlibrary(ggplot2)\nlibrary(sf)\nlibrary(tigris)\nlibrary(dplyr)\n\noptions(tigris_use_cache = TRUE)\n\n# Fetch spatial data\nohio_counties &lt;- counties(state = \"OH\", cb = TRUE, progress_bar = FALSE)\nohio_places &lt;- places(state = \"OH\", cb = TRUE, progress_bar = FALSE)\n\n# Isolate areas\ncuyahoga_county &lt;- ohio_counties %&gt;% filter(NAME == \"Cuyahoga\")\nsolon_city &lt;- ohio_places %&gt;% filter(NAME == \"Solon\")\n\n# Build the map\nggplot() +\n  # Counties\n  geom_sf(data = ohio_counties, fill = \"#f8f9fa\", color = \"grey\", linewidth = 0.3) +\n  # Cuyahoga\n  geom_sf(data = cuyahoga_county, fill = \"#D6EAF8\", color = \"#2980B9\", linewidth = 0.5) +\n  # Solon\n  geom_sf(data = solon_city, fill = \"dodgerblue\", color = \"darkblue\", linewidth = 0.5) +\n  \n  # NEW: Add the text label\n  geom_sf_text(data = solon_city, aes(label = NAME), \n               size = 5, \n               fontface = \"bold\", \n               color = \"dodgerblue\",\n               nudge_y = -0.05,  # Pushes the label North\n               nudge_x = 0.25) + # Pushes the label East\n  \n  theme_void()",
+    "crumbs": [
+      "Day 1 — Course intro & what is R?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#meet-my-cats",
+    "href": "weeks/week1/day1-intro-page.html#meet-my-cats",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Meet My Cats!",
+    "text": "Meet My Cats!",
+    "crumbs": [
+      "Day 1 — Course intro & what is R?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#more-realistic-cat-photos",
+    "href": "weeks/week1/day1-intro-page.html#more-realistic-cat-photos",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "More Realistic Cat Photos…",
+    "text": "More Realistic Cat Photos…",
+    "crumbs": [
+      "Day 1 — Course intro & what is R?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#countries-ive-been-to",
+    "href": "weeks/week1/day1-intro-page.html#countries-ive-been-to",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Countries I’ve Been To",
+    "text": "Countries I’ve Been To\n\n\nShow the R code.\n# Load required packages \nlibrary(ggplot2)\nlibrary(maps)\nlibrary(dplyr)\n\n# Get world map data\nworld_map &lt;- map_data(\"world\")\n\n# Define countries\nvisited_countries &lt;- c(\"Canada\", \"USA\", \"Argentina\", \"Uruguay\", \n                       \"Switzerland\", \"Rwanda\", \"Spain\", \"France\", \"Turkey\")\n\n# Create a new column to categorize visited vs unvisited\nworld_map &lt;- world_map %&gt;%\n  mutate(visited = ifelse(region %in% visited_countries, \"Visited\", \"Not Visited\"))\n\n# Plot the map\nggplot(world_map, aes(x = long, y = lat, group = group, fill = visited)) +\n  geom_polygon(color = \"white\", linewidth = 0.2) +\n  scale_fill_manual(values = c(\"Not Visited\" = \"#e0e0e0\", \"Visited\" = \"#FF7F50\")) +\n  theme_void() +\n  theme(legend.position = \"none\")",
+    "crumbs": [
+      "Day 1 — Course intro & what is R?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#states-ive-lived-in-visited",
+    "href": "weeks/week1/day1-intro-page.html#states-ive-lived-in-visited",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "States I’ve Lived In & Visited",
+    "text": "States I’ve Lived In & Visited\n\n\nShow the R code.\n# Load required packages \n# Note: You may need to run install.packages(\"mapproj\") in your console first\nlibrary(ggplot2)\nlibrary(maps)\nlibrary(dplyr)\nlibrary(mapproj)\n\n# Load US state map data\nus_map &lt;- map_data(\"state\")\n\n# Define states \nlived_in &lt;- tolower(c(\"Ohio\", \"Pennsylvania\", \"Texas\"))\n\n# Note: Swapped \"Washington DC\" to \"District of Columbia\" to match map data\nvisited &lt;- tolower(c(\"Washington\", \"Oregon\", \"California\", \"Nevada\", \"Idaho\", \n                     \"Montana\", \"Arizona\", \"New Mexico\", \"Colorado\", \"Wyoming\", \n                     \"North Dakota\", \"South Dakota\", \"Kansas\", \"Iowa\",\n                     \"Nebraska\", \"Minnesota\", \"Wisconsin\", \"Michigan\", \"Indiana\", \n                     \"Illinois\", \"Kentucky\", \"Tennessee\", \"Louisiana\", \"Florida\", \n                     \"Georgia\", \"North Carolina\", \"South Carolina\", \"Virginia\", \n                     \"District of Columbia\", \"Maryland\", \"Delaware\", \"New Jersey\", \n                     \"New York\", \"Missouri\", \"Utah\", \"West Virginia\"))\n\n# Categorize the states\nus_map &lt;- us_map %&gt;%\n  mutate(status = case_when(\n    region %in% lived_in ~ \"Lived\",\n    region %in% visited ~ \"Visited\",\n    TRUE ~ \"Not Visited\"\n  )) %&gt;%\n  # Order Legend\n  mutate(status = factor(status, levels = c(\"Lived\", \"Visited\", \"Not Visited\")))\n\n# Plot the map\nggplot(us_map, aes(x = long, y = lat, group = group, fill = status)) +\n  geom_polygon(color = \"white\", linewidth = 0.3) +\n  # Swap these hex codes out if you want different colors!\n  scale_fill_manual(values = c(\"Lived\" = \"#2C3E50\",       # Dark blue\n                               \"Visited\" = \"#3498DB\",     # Light blue\n                               \"Not Visited\" = \"#E0E0E0\")) + # Gray\n  coord_map(\"albers\", lat0 = 39, lat1 = 45) + \n  theme_void() +\n  theme(legend.position = \"bottom\", \n        legend.title = element_blank(),\n        legend.text = element_text(size = 14))",
+    "crumbs": [
+      "Day 1 — Course intro & what is R?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#icebreaker-share-your",
+    "href": "weeks/week1/day1-intro-page.html#icebreaker-share-your",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "Icebreaker: Share Your…",
+    "text": "Icebreaker: Share Your…\n\nName\nMajor\nProgramming Experience\nA Fun Fact (Favorite Song, Color, Food, etc.)",
+    "crumbs": [
+      "Day 1 — Course intro & what is R?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#section",
+    "href": "weeks/week1/day1-intro-page.html#section",
+    "title": "Day 1 — Course intro & what is R?",
+    "section": "",
     "text": "NoteToday: Monday May 18\n\n\n\nBefore class\n\nRead the syllabus (Click here).\n(Optional): Read Data Computing §1.1–1.5 (Click here).\n\nPlan for today\n\nCourse logistics\nIntroduction to R and RStudio\nTidy data\nR Demo\n\nHelpful links\n\nSyllabus · AI policy · Schedule · Data Computing §1",
     "crumbs": [
       "Day 1 — Course intro & what is R?"
     ]
   },
   {
-    "objectID": "weeks/week1/day1-intro-page.html#course-info-introductions",
-    "href": "weeks/week1/day1-intro-page.html#course-info-introductions",
+    "objectID": "weeks/week1/day1-intro-page.html#course-info",
+    "href": "weeks/week1/day1-intro-page.html#course-info",
     "title": "Day 1 — Course intro & what is R?",
-    "section": "1. Course Info & Introductions",
-    "text": "1. Course Info & Introductions\nSummer Session 1: May 18, 2026 – June 26, 2026\n\nClass time: M/T/W/Th/F, 9:35 a.m. to 10:50 a.m.\nClass location: Huck Life Sciences Building 007\nInstructor: Charles Costanzo\n\nEmail: cgc5478@psu.edu\nOffice Hours: M/W/Th/F: 10:50-11:50 a.m. in Huck 005 (or on Zoom by appt)\n\nTeaching Assistant (TA): Xinyue Wang\n\nEmail: xpw5228@psu.edu\n\n\n\n\n\n\n\n\n\nTipIcebreaker: name, major, your favorite song right now.",
+    "section": "Course Info",
+    "text": "Course Info\nSummer Session 1: May 18, 2026 – June 26, 2026\n\nClass time: M/T/W/Th/F, 9:35 a.m. to 10:50 a.m.\nClass location: Huck Life Sciences Building 007\nInstructor: Charles Costanzo\n\nEmail: cgc5478@psu.edu\nOffice Hours: M/W/Th/F: 10:50-11:50 a.m. in Huck 005 (or on Zoom by appt)\n\nTeaching Assistant (TA): Xinyue Wang\n\nEmail: xpw5228@psu.edu",
     "crumbs": [
       "Day 1 — Course intro & what is R?"
     ]
@@ -991,7 +1127,7 @@
     "href": "weeks/week1/day1-intro-page.html#demo-what-r-can-do-1",
     "title": "Day 1 — Course intro & what is R?",
     "section": "Demo: what R can do",
-    "text": "Demo: what R can do\n\n\n\nShow the interactive Leaflet code.\n# Load necessary libraries\nlibrary(tidyverse)\nlibrary(sf)\n\n\nLinking to GEOS 3.13.0, GDAL 3.8.5, PROJ 9.5.1; sf_use_s2() is TRUE\n\n\nShow the interactive Leaflet code.\nlibrary(tigris)\n\n\nTo enable caching of data, set `options(tigris_use_cache = TRUE)`\nin your R script or .Rprofile.\n\n\nShow the interactive Leaflet code.\nlibrary(leaflet)\n\n# 1. Get the boundary for Centre County, PA\noptions(tigris_use_cache = TRUE)\ncentre_county &lt;- counties(state = \"PA\", cb = TRUE, progress_bar = FALSE) |&gt; \n  filter(NAME == \"Centre\") |&gt; \n  # Leaflet strongly prefers coordinates in standard WGS84 (CRS 4326)\n  st_transform(4326) \n\n\nRetrieving data for the year 2024\n\n\nShow the interactive Leaflet code.\n# 2. Define the exact coordinates for the Huck Life Sciences Building\nhuck_building &lt;- tibble(\n  lon = -77.86146, \n  lat = 40.80100, \n  name = \"Huck Life Sciences Building\"\n) |&gt; \n  st_as_sf(coords = c(\"lon\", \"lat\"), crs = 4326)\n\n# 3. Build the interactive map\nleaflet() |&gt; \n  # 1. Use a clean, minimalist, light-gray basemap\n  addProviderTiles(providers$Esri.WorldImagery) |&gt; \n  \n  # 2. Style the county boundary (Penn State Blue fill, thick dashed border)\n  addPolygons(\n    data = centre_county,\n    fillColor = \"#041E42\",     # PSU Dark Blue\n    fillOpacity = 0.1,         # Keep it mostly transparent\n    color = \"#FFF\",            # Border color\n    weight = 3,                # Thicker border\n    dashArray = \"5, 5\"         # Make the border dashed\n  ) |&gt; \n  \n  # 3. Style the building marker\n  addCircleMarkers(\n    data = huck_building,\n    color = \"#FFFFFF\",         # White border around the dot\n    weight = 1,                # Border thickness\n    fillColor = \"#0096FF\",     # Fill Bright Blue \n    radius = 8,                # Slightly larger dot\n    fillOpacity = 0.9,         # Mostly solid\n    \n    # Add a hover label with custom styling\n    label = ~name, \n    labelOptions = labelOptions(\n      style = list(\n        \"font-family\" = \"Arial, sans-serif\",\n        \"font-weight\" = \"bold\", \n        \"color\" = \"#041E42\",\n        \"padding\" = \"4px 8px\"\n      ),\n      direction = \"auto\"\n    ),\n    \n    # Add a click popup with a second line of text\n    popup = \"&lt;b&gt;Huck Life Sciences&lt;/b&gt;&lt;br&gt;Class meets in Room 007\"\n  )",
+    "text": "Demo: what R can do\n\n\n\nShow the interactive Leaflet code.\n# Load necessary libraries\nlibrary(tidyverse)\nlibrary(sf)\nlibrary(tigris)\nlibrary(leaflet)\n\n# 1. Get the boundary for Centre County, PA\noptions(tigris_use_cache = TRUE)\ncentre_county &lt;- counties(state = \"PA\", cb = TRUE, progress_bar = FALSE) |&gt; \n  filter(NAME == \"Centre\") |&gt; \n  # Leaflet strongly prefers coordinates in standard WGS84 (CRS 4326)\n  st_transform(4326) \n\n\nRetrieving data for the year 2024\n\n\nShow the interactive Leaflet code.\n# 2. Define the exact coordinates for the Huck Life Sciences Building\nhuck_building &lt;- tibble(\n  lon = -77.86146, \n  lat = 40.80100, \n  name = \"Huck Life Sciences Building\"\n) |&gt; \n  st_as_sf(coords = c(\"lon\", \"lat\"), crs = 4326)\n\n# 3. Build the interactive map\nleaflet() |&gt; \n  # 1. Use a clean, minimalist, light-gray basemap\n  addProviderTiles(providers$Esri.WorldImagery) |&gt; \n  \n  # 2. Style the county boundary (Penn State Blue fill, thick dashed border)\n  addPolygons(\n    data = centre_county,\n    fillColor = \"#041E42\",     # PSU Dark Blue\n    fillOpacity = 0.1,         # Keep it mostly transparent\n    color = \"#FFF\",            # Border color\n    weight = 3,                # Thicker border\n    dashArray = \"5, 5\"         # Make the border dashed\n  ) |&gt; \n  \n  # 3. Style the building marker\n  addCircleMarkers(\n    data = huck_building,\n    color = \"#FFFFFF\",         # White border around the dot\n    weight = 1,                # Border thickness\n    fillColor = \"#0096FF\",     # Fill Bright Blue \n    radius = 8,                # Slightly larger dot\n    fillOpacity = 0.9,         # Mostly solid\n    \n    # Add a hover label with custom styling\n    label = ~name, \n    labelOptions = labelOptions(\n      style = list(\n        \"font-family\" = \"Arial, sans-serif\",\n        \"font-weight\" = \"bold\", \n        \"color\" = \"#041E42\",\n        \"padding\" = \"4px 8px\"\n      ),\n      direction = \"auto\"\n    ),\n    \n    # Add a click popup with a second line of text\n    popup = \"&lt;b&gt;Huck Life Sciences&lt;/b&gt;&lt;br&gt;Class meets in Room 007\"\n  )",
     "crumbs": [
       "Day 1 — Course intro & what is R?"
     ]
