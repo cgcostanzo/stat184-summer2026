@@ -32,7 +32,7 @@ Run the chunk below to load the necessary packages for this assignment.
 library(tidyverse)
 ```
 
-## Question 1:
+## Question 1 - Box Side Length Optimization
 
 Starting with a standard rectangular US Letter size piece of paper (8.5 by 11 inches), we can create an open-top box. We do this by cutting out identical squares from the four corners and folding up the sides.
 
@@ -92,7 +92,7 @@ Create a plot showing how the volume changes as the cutout length increases. Bri
 
 [Write your description and explanation here.]
 
-## Question 2 - The Collatz Conjecture Investigation
+## Question 2 - Collatz Conjecture Investigation
 
 The Collatz Conjecture is a famous unsolved math problem. It asks whether repeating two simple arithmetic operations will eventually transform every positive integer into 1. For this homework, we will skip the mathematical details.
 
