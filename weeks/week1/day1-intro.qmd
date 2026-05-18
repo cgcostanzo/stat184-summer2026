@@ -22,6 +22,184 @@ editor: source
 library(tidyverse)
 ```
 
+## Introductions
+
+**Instructor**: Charles Costanzo
+
+- Statistics Ph.D. student 
+- Hometown: Solon, OH
+- Some of my favorite things: cats, coffee, R (unironically)
+
+## Solon, Ohio
+
+```{r}
+#| echo: TRUE
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Show the R code."
+#| fig-align: center
+#| fig-width: 8
+#| fig-height: 8
+
+# Install these first if you don't have them: install.packages(c("sf", "tigris"))
+library(ggplot2)
+library(sf)
+library(tigris)
+library(dplyr)
+
+options(tigris_use_cache = TRUE)
+
+# Fetch spatial data
+ohio_counties <- counties(state = "OH", cb = TRUE, progress_bar = FALSE)
+ohio_places <- places(state = "OH", cb = TRUE, progress_bar = FALSE)
+
+# Isolate areas
+cuyahoga_county <- ohio_counties %>% filter(NAME == "Cuyahoga")
+solon_city <- ohio_places %>% filter(NAME == "Solon")
+
+# Build the map
+ggplot() +
+  # Counties
+  geom_sf(data = ohio_counties, fill = "#f8f9fa", color = "grey", linewidth = 0.3) +
+  # Cuyahoga
+  geom_sf(data = cuyahoga_county, fill = "#D6EAF8", color = "#2980B9", linewidth = 0.5) +
+  # Solon
+  geom_sf(data = solon_city, fill = "dodgerblue", color = "darkblue", linewidth = 0.5) +
+  
+  # NEW: Add the text label
+  geom_sf_text(data = solon_city, aes(label = NAME), 
+               size = 5, 
+               fontface = "bold", 
+               color = "dodgerblue",
+               nudge_y = -0.05,  # Pushes the label North
+               nudge_x = 0.25) + # Pushes the label East
+  
+  theme_void()
+```
+
+## Meet My Cats!
+
+::: {layout-ncol=2}
+![](images/babuh_nice.jpg)
+
+![](images/tartar_nice.jpg)
+:::
+
+## More Realistic Cat Photos...
+
+::: {layout-ncol=3}
+![](images/babuh_bath1.jpg){.fragment}
+
+![](images/babuh_bath2.jpg){.fragment}
+
+![](images/babuh_bath3.jpg){.fragment}
+:::
+
+## Countries I've Been To
+
+```{r}
+#| echo: TRUE
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Show the R code."
+#| fig-align: center
+#| fig-width: 10
+#| fig-height: 5
+
+# Load required packages 
+library(ggplot2)
+library(maps)
+library(dplyr)
+
+# Get world map data
+world_map <- map_data("world")
+
+# Define countries
+visited_countries <- c("Canada", "USA", "Argentina", "Uruguay", 
+                       "Switzerland", "Rwanda", "Spain", "France", "Turkey")
+
+# Create a new column to categorize visited vs unvisited
+world_map <- world_map %>%
+  mutate(visited = ifelse(region %in% visited_countries, "Visited", "Not Visited"))
+
+# Plot the map
+ggplot(world_map, aes(x = long, y = lat, group = group, fill = visited)) +
+  geom_polygon(color = "white", linewidth = 0.2) +
+  scale_fill_manual(values = c("Not Visited" = "#e0e0e0", "Visited" = "#FF7F50")) +
+  theme_void() +
+  theme(legend.position = "none")
+```
+
+## States I've Lived In & Visited
+
+```{r}
+#| echo: TRUE
+#| message: FALSE
+#| warning: FALSE
+#| code-fold: TRUE
+#| code-summary: "Show the R code."
+#| fig-align: center
+#| fig-width: 10
+#| fig-height: 6
+
+# Load required packages 
+# Note: You may need to run install.packages("mapproj") in your console first
+library(ggplot2)
+library(maps)
+library(dplyr)
+library(mapproj)
+
+# Load US state map data
+us_map <- map_data("state")
+
+# Define states 
+lived_in <- tolower(c("Ohio", "Pennsylvania", "Texas"))
+
+# Note: Swapped "Washington DC" to "District of Columbia" to match map data
+visited <- tolower(c("Washington", "Oregon", "California", "Nevada", "Idaho", 
+                     "Montana", "Arizona", "New Mexico", "Colorado", "Wyoming", 
+                     "North Dakota", "South Dakota", "Kansas", "Iowa",
+                     "Nebraska", "Minnesota", "Wisconsin", "Michigan", "Indiana", 
+                     "Illinois", "Kentucky", "Tennessee", "Louisiana", "Florida", 
+                     "Georgia", "North Carolina", "South Carolina", "Virginia", 
+                     "District of Columbia", "Maryland", "Delaware", "New Jersey", 
+                     "New York", "Missouri", "Utah", "West Virginia"))
+
+# Categorize the states
+us_map <- us_map %>%
+  mutate(status = case_when(
+    region %in% lived_in ~ "Lived",
+    region %in% visited ~ "Visited",
+    TRUE ~ "Not Visited"
+  )) %>%
+  # Order Legend
+  mutate(status = factor(status, levels = c("Lived", "Visited", "Not Visited")))
+
+# Plot the map
+ggplot(us_map, aes(x = long, y = lat, group = group, fill = status)) +
+  geom_polygon(color = "white", linewidth = 0.3) +
+  # Swap these hex codes out if you want different colors!
+  scale_fill_manual(values = c("Lived" = "#2C3E50",       # Dark blue
+                               "Visited" = "#3498DB",     # Light blue
+                               "Not Visited" = "#E0E0E0")) + # Gray
+  coord_map("albers", lat0 = 39, lat1 = 45) + 
+  theme_void() +
+  theme(legend.position = "bottom", 
+        legend.title = element_blank(),
+        legend.text = element_text(size = 14))
+```
+
+## Icebreaker: Share Your...
+
+- Name
+- Major
+- Programming Experience
+- A Fun Fact (Favorite Song, Color, Food, etc.)
+
+## 
+
 ::: {.callout-note style="font-size: 1.3em;"}
 ## [Today: Monday May 18]{style="font-size: 1.3em;"}
 
@@ -42,7 +220,7 @@ library(tidyverse)
 - [Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*Data Computing* §1](https://dtkaplan.github.io/DataComputingEbook/)
 :::
 
-## 1. Course Info & Introductions
+## Course Info
 
 **Summer Session 1: May 18, 2026 – June 26, 2026**
 
@@ -56,14 +234,6 @@ library(tidyverse)
 
 - **Teaching Assistant (TA):** Xinyue Wang
   - Email: [xpw5228@psu.edu](mailto:xpw5228@psu.edu)
-
-
-
-::: {.fragment .fade-in}
-::: {.callout-tip style="font-size:1.4em"}
-## Icebreaker: name, major, your favorite song right now.
-:::
-:::
 
 ## Learning Goals
 
