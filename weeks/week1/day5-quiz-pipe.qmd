@@ -2,64 +2,49 @@
 title: "Quiz 1 · the pipe and chaining syntax"
 subtitle: "Friday, May 22, 2026"
 format:
+  revealjs:
+    slide-number: true
+    embed-resources: true
+    smaller: true
+    output-file: "day5-quiz-pipe-slides.html"
   html:
     toc: true
-    code-fold: false
+    output-file: "day5-quiz-pipe-page.html"
+  pdf: 
+    output-file: "day5-quiz-pipe.pdf"
 editor: source
 ---
 
-::: callout-note
-## Today's plan
-- [ ] TODO: list 2-4 concrete goals for the class
+::: {.callout-note style="font-size: 1.3em;"}
+## [Today: Thursday May 21]{style="font-size: 1.3em;"}
+
+**Before class**
+
+- **Perusall Assignment**: *Data Computing* §3.6 ([Click here](https://psu.instructure.com/courses/2487468/assignments/18307712)).
+
+**Plan for today**
+
+- 
+
+**Helpful links**
+
+- [Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*Data Computing* §3](https://dtkaplan.github.io/DataComputingEbook/chap-basic-r-commands.html#chap:basic-r-commands)
 :::
 
-## Before class
+## Wrap-up & looking ahead
 
-- Read: Data Computing §3.6
-- TODO: any prep materials, data files, etc.
+**NO CLASS MONDAY MAY 25 (MEMORIAL DAY)**
 
-## Outline
+**Next week:** Data frames, intro to data graphics
 
-### 1. TODO: opening segment (~15 min)
+**Due Tuesday May 26 before class:**
 
-TODO: concept exposition or motivating example.
+- Read *Data Computing* §5.1–5.6 on Perusall ([Click here]()).
 
-```{r}
-#| eval: false
-# TODO: live-coded example
-```
+**Due 11:59 p.m. Friday May 22 (tonight):**
 
-### 2. TODO: main segment (~25 min)
+- HW 1: Basic R, simple plots ([Click here]()).
 
-TODO: hands-on practice — students follow along.
+**Reference links:**
 
-```{r}
-#| eval: false
-# TODO: example to walk through
-```
-
-### 3. In-class activity (~20 min)
-
-TODO: brief description, or link to a separate handout.
-
-### 4. Wrap-up (~5 min)
-
-- TODO: key takeaway
-- TODO: preview next class
-
-## Resources
-
-- TODO: slides PDF
-- TODO: in-class code .R file
-- TODO: activity handout
-
-## After class
-
-- TODO: due tomorrow
-- TODO: optional supplementary reading
-
-::: {.callout-tip collapse="true"}
-## Instructor notes
-
-TODO: notes to self — pacing, common student questions, things to watch for.
-:::
+- [Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*Data Computing*](https://dtkaplan.github.io/DataComputingEbook/)

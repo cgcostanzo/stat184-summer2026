@@ -6,7 +6,12 @@ format:
     slide-number: true
     embed-resources: true
     smaller: true
-  pdf: default
+    output-file: "day1-intro-slides.html"
+  html:
+    toc: true
+    output-file: "day1-intro-page.html"
+  pdf:
+    output-file: "day1-intro.pdf"
 editor: source
 ---
 
@@ -18,12 +23,12 @@ library(tidyverse)
 ```
 
 ::: {.callout-note style="font-size: 1.3em;"}
-## [Today]{style="font-size: 1.3em;"}
+## [Today: Monday May 18]{style="font-size: 1.3em;"}
 
 **Before class**
 
-- Read the syllabus (linked from Canvas).
-- (Optional): Read *Data Computing* §1.
+- Read the syllabus ([Click here](../../syllabus/syllabus.qmd)).
+- (Optional): Read *Data Computing* §1.1–1.5 ([Click here](https://psu.instructure.com/courses/2487468/assignments/18298036)).
 
 **Plan for today**
 
@@ -114,9 +119,9 @@ This course will teach you how to:
 
 - **Open assessments (Homework & Project):** AI tools are permitted **with mandatory disclosure**. 
 - **Closed-book, in-person work (Quizzes, Exam, Activities, Oral Checkpoints):** AI tools are **strictly prohibited**.
-- **Disclosure is graded (1-2 points).** Omitting the disclosure loses points; lying on the disclosure is an academic integrity violation.
-- **You own the output.** You must be able to explain any code you submit, which I will verify during in-class oral project checkpoints.
-- **Practical implication:** AI is a study aid, not a substitute. Roughly 60% of your grade comes from verified in-person work where AI cannot be used.
+- **Disclosure is graded (1-2 points).**
+- You must be able to explain any code you submit, which I will verify during in-class oral project checkpoints.
+- Roughly 60% of your grade comes from verified in-person work where AI cannot be used.
 
 ## Course Readings (Perusall)
 
@@ -141,9 +146,9 @@ R is a **programming language** *and* a **software environment** for statistical
 - First version created in August 1993 (almost 33 years ago).
 - Has grown rapidly in popularity and is widely used in academia and industry by statisticians, data analysts, and data scientists alike.
 - Enormous number of user-contributed **packages**, which are add-ons that extend the functionality of R. 
-  - Currently the Comprehensive R Archive Network (CRAN) package repository features 23,670 available packages.[^1] 
+  - Currently the Comprehensive R Archive Network (CRAN) package repository features 23,664 available packages.[^1] 
 
-[^1]: [As of May 15, 2026.](https://cran.r-project.org/web/packages/)
+[^1]: [As of May 17, 2026.](https://cran.r-project.org/web/packages/)
 
 ## Some Examples of Said R Packages
 
@@ -419,9 +424,15 @@ Install [**XQuartz**](https://www.xquartz.org) too — some packages we'll use l
 
 **Tomorrow:** Real R syntax (variables, functions, vectors)
 
-**Due Tuesday before class:**
+**Due Tuesday May 19 (tomorrow) before class:**
 
-- Read *Data Computing* §2.1–2.8 on Perusall. 
+- Read *Data Computing* §2.1–2.8 on Perusall ([Click here](https://psu.instructure.com/courses/2487468/assignments/18307706)). 
+
+**Due 11:59 p.m. Wednesday May 20:**
+
+- HW 0: Setup confirmation ([Click here](https://psu.instructure.com/courses/2487468/assignments/18308171)).
+
+**Quiz 1 in class on Friday May 22**
 
 **Reference links**
 

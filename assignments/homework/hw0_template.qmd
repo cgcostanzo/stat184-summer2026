@@ -1,0 +1,65 @@
+---
+title: "STAT 184 — Homework 0: Setup Confirmation"
+subtitle: "Due Wednesday, May 20 at 11:59 PM on Canvas"
+author: "Your Name Here"
+format:
+  html:
+    toc: true
+    code-fold: false
+  pdf:
+    toc: false
+editor: source
+---
+
+**AI Disclosure**
+
+- [ ] No AI used
+- [ ] Syntax / Debugging (e.g., finding a missing comma, fixing an error code)
+- [ ] Conceptual explanation (e.g., asking how a `left_join` works)
+- [ ] Code Generation (e.g., asking AI to write a function from scratch)
+
+*Briefly describe your use (1-2 sentences):* 
+
+[Type your explanation here]
+
+---
+
+## Welcome to STAT 184! 
+
+The goal of this assignment is to ensure your RStudio environment is configured correctly, your core packages are installed, and you know how to render (knit) a Quarto document. 
+
+## Question 1: Setup
+
+Uncomment and run the `install.packages(tidyverse")` line ONCE by deleting the `# ` to install the "tidyverse" package on your machine. Make sure to remove any leading whitespace. Then re-comment by adding back the `# `. It is important to re-comment the line (otherwise, your file won't render).
+
+```{r setup}
+#| message: false
+#| warning: false
+# install.packages("tidyverse") 
+library(tidyverse)
+```
+
+## Question 2: Global Options
+
+### Part (a): Why is it important to change these specific settings when working reproducibly in R?
+
+[Write your answer here.]
+
+### Part (b): By typing your name below, you confirm that you have successfully changed these settings on the computer you will use for this course.
+
+[Type your name here to confirm.]
+
+## Question 3: Package Check
+
+To ensure that your R environment is working and the `tidyverse` package is loaded correctly in the setup chunk, run the code below to print out the first few rows of a built-in dataset called `mpg`. 
+
+```{r}
+# Replace the comment below with the following code: head(mpg)
+# (DELETE this line and write your code here.)
+```
+
+## Question 4: Rendering
+
+Now that you have answered the questions, click the **Render** button at the top of your RStudio script window. It should generate a HTML or PDF file.
+
+Submit that rendered file to Canvas.

@@ -5,17 +5,19 @@ subtitle: "STAT 184 — Summer 2026"
 
 There will be 1-2 homework assignments per week in the course. The lowest score is dropped. The following is an outline of the first two homeworks:
 
-| Number | Topic | Out | Due |
-|---|---|---|---|
-| 0 | Setup confirmation (R, RStudio, Quarto installed) | Mon May 18 | Wed May 20 |
-| 1 | First Quarto document, basic R, simple plots | Mon May 18 | Fri May 22 |
+::: {tbl-colwidths="[5, 30, 20, 20, 25]"}
+| # | Topic | Out | Due | Files |
+|---|---|---|---|---|
+| [0](hw0_template.qmd) | Setup confirmation (R, RStudio, Quarto installed) | Mon May 18 | Wed May 20 | [Quarto](hw0_template.qmd){download=""} · [HTML](hw0_template.html) · [PDF](hw0_template.pdf) |
+| 1 | Basic R, simple plots | Mon May 18 | Fri May 22 | |
+:::
 
 ## How to submit
 
 1. Work in Quarto, render to PDF or HTML.
 2. Include a code appendix at the end (for HW 2+).
 3. Include the **AI use note** (1–2 points).
-4. Submit the rendered file to Canvas. *Also* push the .qmd to your personal GitHub repo for the course.
+4. Submit the rendered file to Canvas.
 
 ## AI policy
 

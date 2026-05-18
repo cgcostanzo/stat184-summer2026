@@ -6,16 +6,21 @@ format:
     slide-number: true
     embed-resources: true
     smaller: true
-  pdf: default
+    output-file: "day2-r-basics-slides.html"
+  html:
+    toc: true
+    output-file: "day2-r-basics-page.html"
+  pdf:
+    output-file: "day2-r-basics.pdf"
 editor: source
 ---
 
 ::: {.callout-note style="font-size: 1.3em;"}
-## [Today]{style="font-size: 1.3em;"}
+## [Today: Tuesday May 19]{style="font-size: 1.3em;"}
 
 **Before class**
 
-- **First Perusall Assignment Due**: *Data Computing* §2.1-2.8.
+- **First Perusall Assignment**: *Data Computing* §2.1-2.8 ([Click here](https://psu.instructure.com/courses/2487468/assignments/18307706)).
 
 **Plan for today**
 
@@ -302,19 +307,21 @@ Install [**XQuartz**](https://www.xquartz.org) too — some packages we'll use l
 - Restore .RData into workspace at startup: **Unchecked**
 - Save workspace to .RData on exit: **Never**
 
-**Assignments due Wednesday 5/20**
-
-- [HW 0: Setup confirmation](#) <!-- replace # with Canvas link -->
-
 ## Wrap-up & looking ahead
 
 **Tomorrow:** Functions, packages, and the tidyverse. 
 
-**Due Wednesday before class:**
+**Due Wednesday May 20 (tomorrow) before class:**
 
-- Read *Data Computing* §3.1–3.5 on Perusall. 
+- Read *Data Computing* §3.1–3.5 on Perusall ([Click here](https://psu.instructure.com/courses/2487468/assignments/18298036)).
 
-**Reference links**
+**Due 11:59 p.m. Wednesday May 20 (tomorrow):**
+
+- HW 0: Setup confirmation ([Click here](https://psu.instructure.com/courses/2487468/assignments/18308171)).
+
+**Quiz 1 in class on Friday May 22**
+
+**Reference links:**
 
 - [Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*Data Computing*](https://dtkaplan.github.io/DataComputingEbook/)
 
