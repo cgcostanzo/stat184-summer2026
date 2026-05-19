@@ -74,14 +74,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cad2a2f8a56dfe71ee895a68e79c9b9a.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-70be5ccd51f03de5ce195d75fadf0882.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cad2a2f8a56dfe71ee895a68e79c9b9a.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/quarto-axe/axe-check.js" type="module"></script>
+<script id="quarto-axe-checker-options" type="text/plain">dHJ1ZQ==</script>
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-0e6139898bc333d8d362a68e1e84c4d8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-5d4c2f462ffa217fc73399f9052c53e0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-0e6139898bc333d8d362a68e1e84c4d8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-ae8dd8cbc432535888165c491a1ef120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-c348e284c378fa5b02e0205484958981.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-ae8dd8cbc432535888165c491a1ef120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -501,7 +503,7 @@ window.Quarto = {
   <li><a href="#tidy-data-neq-neat-data" id="toc-tidy-data-neq-neat-data" class="nav-link" data-scroll-target="#tidy-data-neq-neat-data">Tidy Data <span class="math inline">\(\neq\)</span> Neat Data</a></li>
   <li><a href="#pa-voter-table---tidied-up" id="toc-pa-voter-table---tidied-up" class="nav-link" data-scroll-target="#pa-voter-table---tidied-up">PA Voter Table - Tidied Up</a></li>
   <li><a href="#demo-what-r-can-do" id="toc-demo-what-r-can-do" class="nav-link" data-scroll-target="#demo-what-r-can-do">Demo: what R can do</a></li>
-  <li><a href="#demo-what-r-can-do-1" id="toc-demo-what-r-can-do-1" class="nav-link" data-scroll-target="#demo-what-r-can-do-1">Demo: what R can do</a></li>
+  <li><a href="#demo-a-campus-map" id="toc-demo-a-campus-map" class="nav-link" data-scroll-target="#demo-a-campus-map">Demo: a campus map</a></li>
   <li><a href="#setup-checklist-due-by-wednesday" id="toc-setup-checklist-due-by-wednesday" class="nav-link" data-scroll-target="#setup-checklist-due-by-wednesday">Setup checklist — due by Wednesday</a></li>
   <li><a href="#wrap-up-looking-ahead" id="toc-wrap-up-looking-ahead" class="nav-link" data-scroll-target="#wrap-up-looking-ahead">Wrap-up &amp; looking ahead</a></li>
   </ul>
@@ -545,45 +547,40 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Show the R code.</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install these first if you don't have them: install.packages(c("sf", "tigris"))</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tigris)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">tigris_use_cache =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Fetch spatial data</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>ohio_counties <span class="ot">&lt;-</span> <span class="fu">counties</span>(<span class="at">state =</span> <span class="st">"OH"</span>, <span class="at">cb =</span> <span class="cn">TRUE</span>, <span class="at">progress_bar =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>ohio_places <span class="ot">&lt;-</span> <span class="fu">places</span>(<span class="at">state =</span> <span class="st">"OH"</span>, <span class="at">cb =</span> <span class="cn">TRUE</span>, <span class="at">progress_bar =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Isolate areas</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>cuyahoga_county <span class="ot">&lt;-</span> ohio_counties <span class="sc">%&gt;%</span> <span class="fu">filter</span>(NAME <span class="sc">==</span> <span class="st">"Cuyahoga"</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>solon_city <span class="ot">&lt;-</span> ohio_places <span class="sc">%&gt;%</span> <span class="fu">filter</span>(NAME <span class="sc">==</span> <span class="st">"Solon"</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the map</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Counties</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> ohio_counties, <span class="at">fill =</span> <span class="st">"#f8f9fa"</span>, <span class="at">color =</span> <span class="st">"grey"</span>, <span class="at">linewidth =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Cuyahoga</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> cuyahoga_county, <span class="at">fill =</span> <span class="st">"#D6EAF8"</span>, <span class="at">color =</span> <span class="st">"#2980B9"</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Solon</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> solon_city, <span class="at">fill =</span> <span class="st">"dodgerblue"</span>, <span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># NEW: Add the text label</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf_text</span>(<span class="at">data =</span> solon_city, <span class="fu">aes</span>(<span class="at">label =</span> NAME), </span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">5</span>, </span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>               <span class="at">fontface =</span> <span class="st">"bold"</span>, </span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>               <span class="at">color =</span> <span class="st">"dodgerblue"</span>,</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>               <span class="at">nudge_y =</span> <span class="sc">-</span><span class="fl">0.05</span>,  <span class="co"># Pushes the label North</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>               <span class="at">nudge_x =</span> <span class="fl">0.25</span>) <span class="sc">+</span> <span class="co"># Pushes the label East</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install these first if you don't have them:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c("sf", "tigris"))</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tigris)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">tigris_use_cache =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Fetch spatial data</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>ohio_counties <span class="ot">&lt;-</span> <span class="fu">counties</span>(<span class="at">state =</span> <span class="st">"OH"</span>, <span class="at">cb =</span> <span class="cn">TRUE</span>, <span class="at">progress_bar =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>ohio_places <span class="ot">&lt;-</span> <span class="fu">places</span>(<span class="at">state =</span> <span class="st">"OH"</span>, <span class="at">cb =</span> <span class="cn">TRUE</span>, <span class="at">progress_bar =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Isolate areas</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>cuyahoga_county <span class="ot">&lt;-</span> ohio_counties <span class="sc">%&gt;%</span> <span class="fu">filter</span>(NAME <span class="sc">==</span> <span class="st">"Cuyahoga"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>solon_city <span class="ot">&lt;-</span> ohio_places <span class="sc">%&gt;%</span> <span class="fu">filter</span>(NAME <span class="sc">==</span> <span class="st">"Solon"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the map</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> ohio_counties,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill =</span> <span class="st">"#f8f9fa"</span>, <span class="at">color =</span> <span class="st">"grey"</span>, <span class="at">linewidth =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> cuyahoga_county,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill =</span> <span class="st">"#D6EAF8"</span>, <span class="at">color =</span> <span class="st">"#2980B9"</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> solon_city,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>          <span class="at">fill =</span> <span class="st">"dodgerblue"</span>, <span class="at">color =</span> <span class="st">"darkblue"</span>, <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf_text</span>(<span class="at">data =</span> solon_city, <span class="fu">aes</span>(<span class="at">label =</span> NAME),</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>               <span class="at">size =</span> <span class="dv">5</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">color =</span> <span class="st">"dodgerblue"</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>               <span class="at">nudge_y =</span> <span class="sc">-</span><span class="fl">0.05</span>, <span class="at">nudge_x =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="day1-intro_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+<p><img src="day1-intro_files/figure-revealjs/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Map of Ohio with all counties outlined in light gray. Cuyahoga County in the northeast is shaded light blue, and within it the city of Solon is shaded dark blue with a labeled marker. The map highlights Solon's location in northeastern Ohio."></p>
 </figure>
 </div>
 </div>
@@ -593,11 +590,21 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="meet-my-cats">Meet My Cats!</h2>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="images/babuh_nice.jpg" class="img-fluid"></p>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/babuh_nice.jpg" class="img-fluid figure-img" alt="A fluffy black cat named Babuh sitting calmly and looking at the camera."></p>
+<figcaption>Babuh</figcaption>
+</figure>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p><img src="images/tartar_nice.jpg" class="img-fluid"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/tartar_nice.jpg" class="img-fluid figure-img" alt="A brown tabby cat named Tartarus lounging contentedly."></p>
+<figcaption>Tartarus</figcaption>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -606,14 +613,35 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="more-realistic-cat-photos">More Realistic Cat Photos…</h2>
 <div class="quarto-layout-panel" data-layout-ncol="3">
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img src="images/babuh_bath1.jpg" class="fragment img-fluid"></p>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/babuh_bath1.jpg" class="img-fluid figure-img" alt="Babuh the gray cat in a bathtub, fur wet and flattened, looking distinctly unhappy."></p>
+<figcaption>Babuh in the bathtub looking soaked and indignant.</figcaption>
+</figure>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img src="images/babuh_bath2.jpg" class="fragment img-fluid"></p>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
-<p><img src="images/babuh_bath3.jpg" class="fragment img-fluid"></p>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/babuh_bath2.jpg" class="img-fluid figure-img" alt="Babuh the gray cat being lathered with shampoo during a bath, looking miserable."></p>
+<figcaption>Babuh mid-bath, fur fully soaked.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/babuh_bath3.jpg" class="img-fluid figure-img" alt="Babuh the gray cat wrapped in a towel after the bath, fur damp and disheveled."></p>
+<figcaption>Babuh wrapped in a towel after the bath.</figcaption>
+</figure>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -623,33 +651,28 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Show the R code.</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load required packages </span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(maps)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Get world map data</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>world_map <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"world"</span>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Define countries</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>visited_countries <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Canada"</span>, <span class="st">"USA"</span>, <span class="st">"Argentina"</span>, <span class="st">"Uruguay"</span>, </span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"Switzerland"</span>, <span class="st">"Rwanda"</span>, <span class="st">"Spain"</span>, <span class="st">"France"</span>, <span class="st">"Turkey"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(maps)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>world_map <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"world"</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>visited_countries <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Canada"</span>, <span class="st">"USA"</span>, <span class="st">"Argentina"</span>, <span class="st">"Uruguay"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                       <span class="st">"Switzerland"</span>, <span class="st">"Rwanda"</span>, <span class="st">"Spain"</span>, <span class="st">"France"</span>, <span class="st">"Turkey"</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>world_map <span class="ot">&lt;-</span> world_map <span class="sc">%&gt;%</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">visited =</span> <span class="fu">ifelse</span>(region <span class="sc">%in%</span> visited_countries, <span class="st">"Visited"</span>, <span class="st">"Not Visited"</span>))</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a new column to categorize visited vs unvisited</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>world_map <span class="ot">&lt;-</span> world_map <span class="sc">%&gt;%</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">visited =</span> <span class="fu">ifelse</span>(region <span class="sc">%in%</span> visited_countries, <span class="st">"Visited"</span>, <span class="st">"Not Visited"</span>))</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the map</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(world_map, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group, <span class="at">fill =</span> visited)) <span class="sc">+</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">color =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Not Visited"</span> <span class="ot">=</span> <span class="st">"#e0e0e0"</span>, <span class="st">"Visited"</span> <span class="ot">=</span> <span class="st">"#FF7F50"</span>)) <span class="sc">+</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(world_map, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group, <span class="at">fill =</span> visited)) <span class="sc">+</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">color =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Not Visited"</span> <span class="ot">=</span> <span class="st">"#e0e0e0"</span>, <span class="st">"Visited"</span> <span class="ot">=</span> <span class="st">"#FF7F50"</span>)) <span class="sc">+</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="day1-intro_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+<p><img src="day1-intro_files/figure-revealjs/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%" alt="World map with countries the instructor has visited shaded in coral orange and other countries in light gray. Visited countries are Canada, USA, Argentina, Uruguay, Switzerland, Rwanda, Spain, France, and Turkey, spanning North America, South America, Europe, and East Africa."></p>
 </figure>
 </div>
 </div>
@@ -660,56 +683,49 @@ window.Quarto = {
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Show the R code.</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load required packages </span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: You may need to run install.packages("mapproj") in your console first</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(maps)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mapproj)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Load US state map data</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>us_map <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"state"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: install.packages("mapproj") if needed</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(maps)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mapproj)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>us_map <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">"state"</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>lived_in <span class="ot">&lt;-</span> <span class="fu">tolower</span>(<span class="fu">c</span>(<span class="st">"Ohio"</span>, <span class="st">"Pennsylvania"</span>, <span class="st">"Texas"</span>))</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Define states </span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>lived_in <span class="ot">&lt;-</span> <span class="fu">tolower</span>(<span class="fu">c</span>(<span class="st">"Ohio"</span>, <span class="st">"Pennsylvania"</span>, <span class="st">"Texas"</span>))</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: Swapped "Washington DC" to "District of Columbia" to match map data</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>visited <span class="ot">&lt;-</span> <span class="fu">tolower</span>(<span class="fu">c</span>(<span class="st">"Washington"</span>, <span class="st">"Oregon"</span>, <span class="st">"California"</span>, <span class="st">"Nevada"</span>, <span class="st">"Idaho"</span>, </span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Montana"</span>, <span class="st">"Arizona"</span>, <span class="st">"New Mexico"</span>, <span class="st">"Colorado"</span>, <span class="st">"Wyoming"</span>, </span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"North Dakota"</span>, <span class="st">"South Dakota"</span>, <span class="st">"Kansas"</span>, <span class="st">"Iowa"</span>,</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Nebraska"</span>, <span class="st">"Minnesota"</span>, <span class="st">"Wisconsin"</span>, <span class="st">"Michigan"</span>, <span class="st">"Indiana"</span>, </span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Illinois"</span>, <span class="st">"Kentucky"</span>, <span class="st">"Tennessee"</span>, <span class="st">"Louisiana"</span>, <span class="st">"Florida"</span>, </span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Georgia"</span>, <span class="st">"North Carolina"</span>, <span class="st">"South Carolina"</span>, <span class="st">"Virginia"</span>, </span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"District of Columbia"</span>, <span class="st">"Maryland"</span>, <span class="st">"Delaware"</span>, <span class="st">"New Jersey"</span>, </span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"New York"</span>, <span class="st">"Missouri"</span>, <span class="st">"Utah"</span>, <span class="st">"West Virginia"</span>))</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Categorize the states</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>us_map <span class="ot">&lt;-</span> us_map <span class="sc">%&gt;%</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">status =</span> <span class="fu">case_when</span>(</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    region <span class="sc">%in%</span> lived_in <span class="sc">~</span> <span class="st">"Lived"</span>,</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    region <span class="sc">%in%</span> visited <span class="sc">~</span> <span class="st">"Visited"</span>,</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Not Visited"</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Order Legend</span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">status =</span> <span class="fu">factor</span>(status, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Lived"</span>, <span class="st">"Visited"</span>, <span class="st">"Not Visited"</span>)))</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the map</span></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(us_map, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group, <span class="at">fill =</span> status)) <span class="sc">+</span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">color =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Swap these hex codes out if you want different colors!</span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Lived"</span> <span class="ot">=</span> <span class="st">"#2C3E50"</span>,       <span class="co"># Dark blue</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Visited"</span> <span class="ot">=</span> <span class="st">"#3498DB"</span>,     <span class="co"># Light blue</span></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Not Visited"</span> <span class="ot">=</span> <span class="st">"#E0E0E0"</span>)) <span class="sc">+</span> <span class="co"># Gray</span></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_map</span>(<span class="st">"albers"</span>, <span class="at">lat0 =</span> <span class="dv">39</span>, <span class="at">lat1 =</span> <span class="dv">45</span>) <span class="sc">+</span> </span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>, </span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: "District of Columbia" matches the map data; "Washington DC" wouldn't</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>visited <span class="ot">&lt;-</span> <span class="fu">tolower</span>(<span class="fu">c</span>(<span class="st">"Washington"</span>, <span class="st">"Oregon"</span>, <span class="st">"California"</span>, <span class="st">"Nevada"</span>, <span class="st">"Idaho"</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Montana"</span>, <span class="st">"Arizona"</span>, <span class="st">"New Mexico"</span>, <span class="st">"Colorado"</span>, <span class="st">"Wyoming"</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"North Dakota"</span>, <span class="st">"South Dakota"</span>, <span class="st">"Kansas"</span>, <span class="st">"Iowa"</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Nebraska"</span>, <span class="st">"Minnesota"</span>, <span class="st">"Wisconsin"</span>, <span class="st">"Michigan"</span>, <span class="st">"Indiana"</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Illinois"</span>, <span class="st">"Kentucky"</span>, <span class="st">"Tennessee"</span>, <span class="st">"Louisiana"</span>, <span class="st">"Florida"</span>,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Georgia"</span>, <span class="st">"North Carolina"</span>, <span class="st">"South Carolina"</span>, <span class="st">"Virginia"</span>,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"District of Columbia"</span>, <span class="st">"Maryland"</span>, <span class="st">"Delaware"</span>, <span class="st">"New Jersey"</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"New York"</span>, <span class="st">"Missouri"</span>, <span class="st">"Utah"</span>, <span class="st">"West Virginia"</span>))</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>us_map <span class="ot">&lt;-</span> us_map <span class="sc">%&gt;%</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">status =</span> <span class="fu">case_when</span>(</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    region <span class="sc">%in%</span> lived_in <span class="sc">~</span> <span class="st">"Lived"</span>,</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    region <span class="sc">%in%</span> visited <span class="sc">~</span> <span class="st">"Visited"</span>,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Not Visited"</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">%&gt;%</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">status =</span> <span class="fu">factor</span>(status, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Lived"</span>, <span class="st">"Visited"</span>, <span class="st">"Not Visited"</span>)))</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(us_map, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group, <span class="at">fill =</span> status)) <span class="sc">+</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">color =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Lived"</span> <span class="ot">=</span> <span class="st">"#2C3E50"</span>,</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Visited"</span> <span class="ot">=</span> <span class="st">"#3498DB"</span>,</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"Not Visited"</span> <span class="ot">=</span> <span class="st">"#E0E0E0"</span>)) <span class="sc">+</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_map</span>(<span class="st">"albers"</span>, <span class="at">lat0 =</span> <span class="dv">39</span>, <span class="at">lat1 =</span> <span class="dv">45</span>) <span class="sc">+</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="day1-intro_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="960"></p>
+<p><img src="day1-intro_files/figure-revealjs/unnamed-chunk-4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%" alt="Map of the continental United States with three categories. States lived in (Ohio, Pennsylvania, Texas) are shaded dark navy blue. States visited (many states across the West, Midwest, South, and Northeast plus DC) are shaded medium blue. Remaining states are light gray. Legend at the bottom labels Lived, Visited, and Not Visited."></p>
 </figure>
 </div>
 </div>
@@ -829,81 +845,102 @@ window.Quarto = {
 <section id="course-logistics" class="level2">
 <h2 class="anchored" data-anchor-id="course-logistics">Course logistics</h2>
 <ul>
-<li><p><strong>Six weeks is short.</strong> Daily pace is faster than a 15-week course. Falling a week—or even a day—behind is more serious than spring/fall courses.</p></li>
-<li><p><strong>Attendance matters.</strong> Lots of in-class graded work (activities, quizzes, oral checkpoints).</p></li>
-<li><p><strong>Timely communication is critical.</strong> Reach out to me <strong>as soon as possible</strong> if something comes up that necessitates you missing class, having a deadline extended, etc.</p></li>
-<li><p><strong>Assignment Weights:</strong></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;">Readings</th>
-<th style="text-align: center;">Quizzes</th>
-<th style="text-align: center;">In-class activities</th>
-<th style="text-align: center;">Homework</th>
-<th style="text-align: center;">Exam</th>
-<th style="text-align: center;">Course project</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">10%</td>
-<td style="text-align: center;">15%</td>
-<td style="text-align: center;">25%</td>
-<td style="text-align: center;">10%</td>
-<td style="text-align: center;">20%</td>
-<td style="text-align: center;">20%</td>
-</tr>
-</tbody>
-</table></li>
-<li><p><strong>Grading Scheme:</strong></p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 11%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: center;"><strong>A</strong></th>
-<th style="text-align: center;"><strong>A-</strong></th>
-<th style="text-align: center;"><strong>B+</strong></th>
-<th style="text-align: center;"><strong>B</strong></th>
-<th style="text-align: center;"><strong>B-</strong></th>
-<th style="text-align: center;"><strong>C+</strong></th>
-<th style="text-align: center;"><strong>C</strong></th>
-<th style="text-align: center;"><strong>D</strong></th>
-<th style="text-align: center;"><strong>F</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: center;">93%+</td>
-<td style="text-align: center;">90%</td>
-<td style="text-align: center;">87%</td>
-<td style="text-align: center;">83%</td>
-<td style="text-align: center;">80%</td>
-<td style="text-align: center;">77%</td>
-<td style="text-align: center;">70%</td>
-<td style="text-align: center;">60%</td>
-<td style="text-align: center;">&lt; 60%</td>
-</tr>
-</tbody>
-</table></li>
+<li><strong>Six weeks is short.</strong> Daily pace is faster than a 15-week course. Falling a week—or even a day—behind is more serious than spring/fall courses.</li>
+<li><strong>Attendance matters.</strong> Lots of in-class graded work (activities, quizzes, oral checkpoints).</li>
+<li><strong>Timely communication is critical.</strong> Reach out to me <strong>as soon as possible</strong> if something comes up that necessitates you missing class, having a deadline extended, etc.</li>
 </ul>
+<p><strong>Assignment weights</strong></p>
+<table class="caption-top table">
+<caption>Assignment weights</caption>
+<colgroup>
+<col style="width: 60%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Component</th>
+<th style="text-align: center;">Weight</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Readings</td>
+<td style="text-align: center;">10%</td>
+</tr>
+<tr class="even">
+<td>Quizzes</td>
+<td style="text-align: center;">15%</td>
+</tr>
+<tr class="odd">
+<td>In-class activities</td>
+<td style="text-align: center;">25%</td>
+</tr>
+<tr class="even">
+<td>Homework</td>
+<td style="text-align: center;">10%</td>
+</tr>
+<tr class="odd">
+<td>Exam</td>
+<td style="text-align: center;">20%</td>
+</tr>
+<tr class="even">
+<td>Course project</td>
+<td style="text-align: center;">20%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Grading scheme</strong></p>
+<table class="caption-top table">
+<caption>Grading scheme</caption>
+<colgroup>
+<col style="width: 40%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Letter grade</th>
+<th style="text-align: center;">Minimum percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td style="text-align: center;">93%</td>
+</tr>
+<tr class="even">
+<td>A-</td>
+<td style="text-align: center;">90%</td>
+</tr>
+<tr class="odd">
+<td>B+</td>
+<td style="text-align: center;">87%</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td style="text-align: center;">83%</td>
+</tr>
+<tr class="odd">
+<td>B-</td>
+<td style="text-align: center;">80%</td>
+</tr>
+<tr class="even">
+<td>C+</td>
+<td style="text-align: center;">77%</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td style="text-align: center;">70%</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td style="text-align: center;">60%</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td style="text-align: center;">below 60%</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="ai-policy" class="level2">
 <h2 class="anchored" data-anchor-id="ai-policy">AI policy</h2>
@@ -957,20 +994,17 @@ window.Quarto = {
 </section>
 <section id="some-examples-of-said-r-packages" class="level2">
 <h2 class="anchored" data-anchor-id="some-examples-of-said-r-packages">Some Examples of Said R Packages</h2>
-<div id="fig-packages" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-packages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="https://github.com/rstudio/hex-stickers"><img src="images/hexwall_r.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://github.com/rstudio/hex-stickers"><img src="images/hexwall_r.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%" alt="A grid of dozens of hexagonal stickers, each representing a different R package such as ggplot2, dplyr, tidyr, shiny, knitr, and others. The hex stickers are tiled together into a colorful honeycomb pattern."></a></p>
 </figure>
 </div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-packages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Hex stickers from the <a href="https://github.com/rstudio/hex-stickers">rstudio/hex-stickers</a> repository.
-</figcaption>
+<figcaption>A grid of dozens of hexagonal stickers, each representing a different R package such as ggplot2, dplyr, tidyr, shiny, knitr, and others. The hex stickers are tiled together into a colorful honeycomb pattern.</figcaption>
 </figure>
 </div>
+<p>Hex stickers from the <a href="https://github.com/rstudio/hex-stickers">rstudio/hex-stickers</a> repository.</p>
 </section>
 <section id="r-vs.-rstudio" class="level2">
 <h2 class="anchored" data-anchor-id="r-vs.-rstudio">R vs.&nbsp;RStudio</h2>
@@ -978,43 +1012,28 @@ Figure&nbsp;1: Hex stickers from the <a href="https://github.com/rstudio/hex-sti
 <li><strong>R</strong> is a computer language that performs computations based on human-written instructions.</li>
 <li><strong>RStudio</strong> is an integrated development environment (<strong>IDE</strong>) for R programming. It combines the R console with supplementary tools for more efficient R programming.</li>
 </ul>
-<div id="fig-r-rstudio" class="quarto-layout-panel">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-r-rstudio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-panel" data-layout="[30, -10, 60]">
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-r-rstudio" style="flex-basis: 30.0%;justify-content: flex-start;">
-<div id="fig-r" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-r-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/Rlogo.svg" class="img-fluid figure-img" data-ref-parent="fig-r-rstudio">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-r-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) <strong>R:</strong> Do not open this
-</figcaption>
+<div class="quarto-layout-cell" style="flex-basis: 30.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Rlogo.svg" class="img-fluid figure-img" alt="The R programming language logo: a stylized capital letter R in blue, set inside a gray oval ring."></p>
+<figcaption><strong>R:</strong> Do not open this</figcaption>
 </figure>
 </div>
 </div>
 <div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 10.0%;justify-content: flex-start;">
 <p>&nbsp;</p>
 </div>
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-r-rstudio" style="flex-basis: 60.0%;justify-content: flex-start;">
-<div id="fig-rstudio" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-rstudio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/RStudio-Logo-flat.svg" class="img-fluid figure-img" data-ref-parent="fig-r-rstudio">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-rstudio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) <strong>RStudio:</strong> Open this
-</figcaption>
+<div class="quarto-layout-cell" style="flex-basis: 60.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/RStudio-Logo-flat.svg" class="img-fluid figure-img" alt="The RStudio logo: the word RStudio in dark text next to a light blue hexagonal icon containing a stylized R."></p>
+<figcaption><strong>RStudio:</strong> Open this</figcaption>
 </figure>
 </div>
 </div>
 </div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-r-rstudio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: R and RStudio logos.
-</figcaption>
-</figure>
 </div>
 </section>
 <section id="tidy-data-neq-neat-data" class="level2">
@@ -1032,14 +1051,10 @@ Figure&nbsp;2: R and RStudio logos.
 
 </div>
 </div>
-<div id="fig-pa-voters-untidy" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-pa-voters-untidy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/pa_voters_untidy.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pa-voters-untidy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: A spreadsheet showing party change applications in PA. Source: PA Dept. of State (May 4–11, 2026).
-</figcaption>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pa_voters_untidy.png" class="img-fluid figure-img" style="width:65.0%" alt="Screenshot of a Pennsylvania Department of State spreadsheet showing voter party-change applications by county. The layout uses multi-row merged header cells that group columns under 'This week' and 'Year to date', with sub-headers splitting each group into Democratic and Republican target parties, and further sub-headers for origin party (Republican or Other / Democratic or Other). County names run down the leftmost column. This nested-header structure is readable for humans but difficult for software to parse as a flat data table."></p>
+<figcaption>A spreadsheet showing party change applications in PA. Source: PA Dept. of State (May 4–11, 2026).</figcaption>
 </figure>
 </div>
 <div class="fragment fade-in">
@@ -1054,34 +1069,37 @@ Figure&nbsp;3: A spreadsheet showing party change applications in PA. Source: PA
 </section>
 <section id="pa-voter-table---tidied-up" class="level2 scrollable">
 <h2 class="scrollable anchored" data-anchor-id="pa-voter-table---tidied-up">PA Voter Table - Tidied Up</h2>
-<div style="display: flex; justify-content: left;">
 <div class="cell">
 <details class="code-fold">
 <summary>Show the R code.</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Load data and provide clean column names to handle the nested headers</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>raw_data <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">"data/currentvotestats.xlsx"</span>, </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">sheet =</span> <span class="st">"Party-to-Party(2026)"</span>, </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>raw_data <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">"data/currentvotestats.xlsx"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">sheet =</span> <span class="st">"Party-to-Party(2026)"</span>,</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">skip =</span> <span class="dv">3</span>, <span class="co"># Skip the human-readable headers</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"county"</span>, </span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">"week_dem_R"</span>, <span class="st">"week_dem_OTH"</span>, </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">col_names =</span> <span class="fu">c</span>(<span class="st">"county"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">"week_dem_R"</span>, <span class="st">"week_dem_OTH"</span>,</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">"week_rep_D"</span>, <span class="st">"week_rep_OTH"</span>,</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">"year_dem_R"</span>, <span class="st">"year_dem_OTH"</span>, </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">"year_dem_R"</span>, <span class="st">"year_dem_OTH"</span>,</span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                                     <span class="st">"year_rep_D"</span>, <span class="st">"year_rep_OTH"</span>))</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Clean and Pivot</span></span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>tidy_voter_data <span class="ot">&lt;-</span> raw_data <span class="sc">%&gt;%</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(county), county <span class="sc">!=</span> <span class="st">"Totals:"</span>) <span class="sc">%&gt;%</span> <span class="co"># Rule 1: Consistent Cases</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(county), county <span class="sc">!=</span> <span class="st">"Totals:"</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span>county, </span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="sc">-</span>county,</span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">"period"</span>, <span class="st">"target_party"</span>, <span class="st">"origin_party"</span>),</span>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_sep =</span> <span class="st">"_"</span>,</span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"count"</span></span>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(tidy_voter_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(county <span class="sc">==</span> <span class="st">"CENTRE"</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(tidy_voter_data <span class="sc">%&gt;%</span> <span class="fu">filter</span>(county <span class="sc">==</span> <span class="st">"CENTRE"</span>)),</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">"First six rows of the tidied PA voter party-change data, filtered to Centre County. Each row is one combination of period, target party, and origin party with its corresponding count."</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
+<caption>First six rows of the tidied PA voter party-change data, filtered to Centre County. Each row is one combination of period, target party, and origin party with its corresponding count.</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">county</th>
@@ -1138,30 +1156,17 @@ Figure&nbsp;3: A spreadsheet showing party change applications in PA. Source: PA
 </table>
 </div>
 </div>
-</div>
 </section>
 <section id="demo-what-r-can-do" class="level2 scrollable">
 <h2 class="scrollable anchored" data-anchor-id="demo-what-r-can-do">Demo: what R can do</h2>
-<div style="display: flex; justify-content: left;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Show the R code.</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'palmerpenguins'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:datasets':
-
-    penguins, penguins_raw</code></pre>
-</div>
-<details class="code-fold">
-<summary>Show the R code.</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What does the data look like?</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(penguins)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># What does the data look like?</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(penguins)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 344
@@ -1177,14 +1182,14 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 </div>
 <details class="code-fold">
 <summary>Show the R code.</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quick summary by species</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n            =</span> <span class="fu">n</span>(),</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_mass_g  =</span> <span class="fu">mean</span>(body_mass_g,    <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_bill_mm =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Quick summary by species</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">n            =</span> <span class="fu">n</span>(),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_mass_g  =</span> <span class="fu">mean</span>(body_mass_g,    <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_bill_mm =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 4
@@ -1196,115 +1201,85 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 </div>
 <details class="code-fold">
 <summary>Show the R code.</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A nice plot</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Bill length vs body mass, by species"</span>,</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Bill length (mm)"</span>,</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Body mass (g)"</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A nice plot</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> body_mass_g, <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Bill length vs body mass, by species"</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Bill length (mm)"</span>,</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Body mass (g)"</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 2 rows containing non-finite outside the scale range
-(`stat_smooth()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
 <div class="cell-output-display">
-<div>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="day1-intro_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="day1-intro_files/figure-revealjs/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%" alt="Scatter plot of bill length in millimeters on the x-axis versus body mass in grams on the y-axis for three penguin species: Adelie, Chinstrap, and Gentoo. Each species is plotted in a different color with a linear best-fit line. Gentoo penguins cluster at the top right (longer bills, heavier bodies); Adelie penguins cluster at the bottom left (shorter bills, lighter bodies); Chinstrap penguins fall in between with longer bills but moderate body mass."></p>
 </figure>
 </div>
 </div>
 </div>
-</div>
 </section>
-<section id="demo-what-r-can-do-1" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="demo-what-r-can-do-1">Demo: what R can do</h2>
-<div style="display: flex; justify-content: left;">
+<section id="demo-a-campus-map" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="demo-a-campus-map">Demo: a campus map</h2>
 <div class="cell">
 <details class="code-fold">
 <summary>Show the interactive Leaflet code.</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary libraries</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tigris)</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Get the boundary for Centre County, PA</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">tigris_use_cache =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>centre_county <span class="ot">&lt;-</span> <span class="fu">counties</span>(<span class="at">state =</span> <span class="st">"PA"</span>, <span class="at">cb =</span> <span class="cn">TRUE</span>, <span class="at">progress_bar =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(NAME <span class="sc">==</span> <span class="st">"Centre"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Leaflet strongly prefers coordinates in standard WGS84 (CRS 4326)</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="dv">4326</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-<div class="cell-output cell-output-stderr">
-<pre><code>Retrieving data for the year 2024</code></pre>
-</div>
-<details class="code-fold">
-<summary>Show the interactive Leaflet code.</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Define the exact coordinates for the Huck Life Sciences Building</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>huck_building <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">lon =</span> <span class="sc">-</span><span class="fl">77.86146</span>, </span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">lat =</span> <span class="fl">40.80100</span>, </span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="st">"Huck Life Sciences Building"</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span> </span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"lon"</span>, <span class="st">"lat"</span>), <span class="at">crs =</span> <span class="dv">4326</span>)</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Build the interactive map</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1. Use a clean, minimalist, light-gray basemap</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addProviderTiles</span>(providers<span class="sc">$</span>Esri.WorldImagery) <span class="sc">|&gt;</span> </span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 2. Style the county boundary (Penn State Blue fill, thick dashed border)</span></span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addPolygons</span>(</span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> centre_county,</span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">fillColor =</span> <span class="st">"#041E42"</span>,     <span class="co"># PSU Dark Blue</span></span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">fillOpacity =</span> <span class="fl">0.1</span>,         <span class="co"># Keep it mostly transparent</span></span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#FFF"</span>,            <span class="co"># Border color</span></span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">weight =</span> <span class="dv">3</span>,                <span class="co"># Thicker border</span></span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">dashArray =</span> <span class="st">"5, 5"</span>         <span class="co"># Make the border dashed</span></span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span> </span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 3. Style the building marker</span></span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addCircleMarkers</span>(</span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> huck_building,</span>
-<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#FFFFFF"</span>,         <span class="co"># White border around the dot</span></span>
-<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">weight =</span> <span class="dv">1</span>,                <span class="co"># Border thickness</span></span>
-<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">fillColor =</span> <span class="st">"#0096FF"</span>,     <span class="co"># Fill Bright Blue </span></span>
-<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">radius =</span> <span class="dv">8</span>,                <span class="co"># Slightly larger dot</span></span>
-<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">fillOpacity =</span> <span class="fl">0.9</span>,         <span class="co"># Mostly solid</span></span>
-<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add a hover label with custom styling</span></span>
-<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="sc">~</span>name, </span>
-<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">labelOptions =</span> <span class="fu">labelOptions</span>(</span>
-<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>      <span class="at">style =</span> <span class="fu">list</span>(</span>
-<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>        <span class="st">"font-family"</span> <span class="ot">=</span> <span class="st">"Arial, sans-serif"</span>,</span>
-<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>        <span class="st">"font-weight"</span> <span class="ot">=</span> <span class="st">"bold"</span>, </span>
-<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>        <span class="st">"color"</span> <span class="ot">=</span> <span class="st">"#041E42"</span>,</span>
-<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>        <span class="st">"padding"</span> <span class="ot">=</span> <span class="st">"4px 8px"</span></span>
-<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>      <span class="at">direction =</span> <span class="st">"auto"</span></span>
-<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Add a click popup with a second line of text</span></span>
-<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">popup =</span> <span class="st">"&lt;b&gt;Huck Life Sciences&lt;/b&gt;&lt;br&gt;Class meets in Room 007"</span></span>
-<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tigris)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaflet)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Centre County boundary, reprojected for Leaflet (WGS84 / CRS 4326)</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">tigris_use_cache =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>centre_county <span class="ot">&lt;-</span> <span class="fu">counties</span>(<span class="at">state =</span> <span class="st">"PA"</span>, <span class="at">cb =</span> <span class="cn">TRUE</span>, <span class="at">progress_bar =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(NAME <span class="sc">==</span> <span class="st">"Centre"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_transform</span>(<span class="dv">4326</span>)</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Huck Life Sciences Building</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>huck_building <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">lon =</span> <span class="sc">-</span><span class="fl">77.86146</span>,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">lat =</span> <span class="fl">40.80100</span>,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="st">"Huck Life Sciences Building"</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">st_as_sf</span>(<span class="at">coords =</span> <span class="fu">c</span>(<span class="st">"lon"</span>, <span class="st">"lat"</span>), <span class="at">crs =</span> <span class="dv">4326</span>)</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Build the map</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="fu">leaflet</span>() <span class="sc">|&gt;</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addProviderTiles</span>(providers<span class="sc">$</span>Esri.WorldImagery) <span class="sc">|&gt;</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addPolygons</span>(</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> centre_county,</span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">fillColor =</span> <span class="st">"#041E42"</span>,</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">fillOpacity =</span> <span class="fl">0.1</span>,</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#FFF"</span>,</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">weight =</span> <span class="dv">3</span>,</span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">dashArray =</span> <span class="st">"5, 5"</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addCircleMarkers</span>(</span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> huck_building,</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"#FFFFFF"</span>,</span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">weight =</span> <span class="dv">1</span>,</span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">fillColor =</span> <span class="st">"#0096FF"</span>,</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">radius =</span> <span class="dv">8</span>,</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">fillOpacity =</span> <span class="fl">0.9</span>,</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="sc">~</span>name,</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">labelOptions =</span> <span class="fu">labelOptions</span>(</span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>      <span class="at">style =</span> <span class="fu">list</span>(</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>        <span class="st">"font-family"</span> <span class="ot">=</span> <span class="st">"Arial, sans-serif"</span>,</span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a>        <span class="st">"font-weight"</span> <span class="ot">=</span> <span class="st">"bold"</span>,</span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a>        <span class="st">"color"</span> <span class="ot">=</span> <span class="st">"#041E42"</span>,</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>        <span class="st">"padding"</span> <span class="ot">=</span> <span class="st">"4px 8px"</span></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>      <span class="at">direction =</span> <span class="st">"auto"</span></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">popup =</span> <span class="st">"&lt;b&gt;Huck Life Sciences&lt;/b&gt;&lt;br&gt;Class meets in Room 007"</span></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div class="leaflet html-widget html-fill-item" id="htmlwidget-5d65aebc0b8154959910" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-5d65aebc0b8154959910">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["Esri.WorldImagery",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addPolygons","args":[[[[{"lng":[-78.376031,-78.374262,-78.373423,-78.37135000000001,-78.37068499999999,-78.367868,-78.365256,-78.363204,-78.360632,-78.359133,-78.356161,-78.35382799999999,-78.352053,-78.35171800000001,-78.35224100000001,-78.35123900000001,-78.35087,-78.349317,-78.34747,-78.34582,-78.345905,-78.342809,-78.34251399999999,-78.343478,-78.341836,-78.341875,-78.343109,-78.343675,-78.340249,-78.33925499999999,-78.339693,-78.338864,-78.339491,-78.338137,-78.334006,-78.331661,-78.33016499999999,-78.329566,-78.32731699999999,-78.326926,-78.32272399999999,-78.322169,-78.320308,-78.313886,-78.313177,-78.314021,-78.312212,-78.311632,-78.308008,-78.30667800000001,-78.305927,-78.30562500000001,-78.304067,-78.302154,-78.30150999999999,-78.29938300000001,-78.300282,-78.299522,-78.29997,-78.302254,-78.301295,-78.29879699999999,-78.294437,-78.29384400000001,-78.2906,-78.29131599999999,-78.290761,-78.288737,-78.28554200000001,-78.284237,-78.28005400000001,-78.27772899999999,-78.27556300000001,-78.273827,-78.27066600000001,-78.267742,-78.267584,-78.263953,-78.263042,-78.26057,-78.256771,-78.254763,-78.251598,-78.24921999999999,-78.246908,-78.24913100000001,-78.24819599999999,-78.248603,-78.249779,-78.248975,-78.24628800000001,-78.244111,-78.23918999999999,-78.23794599999999,-78.23752399999999,-78.23571,-78.235895,-78.238333,-78.24169500000001,-78.244378,-78.246475,-78.249342,-78.249509,-78.24723400000001,-78.247761,-78.243306,-78.242987,-78.24045,-78.23720899999999,-78.23509,-78.234708,-78.232992,-78.232938,-78.23003799999999,-78.228228,-78.227937,-78.22613800000001,-78.221597,-78.220641,-78.220911,-78.224194,-78.22422,-78.22720099999999,-78.227746,-78.226772,-78.229136,-78.227814,-78.226517,-78.22503,-78.224301,-78.225942,-78.22165,-78.217405,-78.215215,-78.214837,-78.21173400000001,-78.210351,-78.208601,-78.206818,-78.204611,-78.20163700000001,-78.199906,-78.20029599999999,-78.198275,-78.19598499999999,-78.19427899999999,-78.19238199999999,-78.19096500000001,-78.188745,-78.18571,-78.18569100000001,-78.18182899999999,-78.179875,-78.17784,-78.179089,-78.17720199999999,-78.175005,-78.171481,-78.172285,-78.171279,-78.168526,-78.166461,-78.163326,-78.16455499999999,-78.162454,-78.159931,-78.158124,-78.15563899999999,-78.155638,-78.157786,-78.158125,-78.159412,-78.159369,-78.162328,-78.16663200000001,-78.168206,-78.16962700000001,-78.168712,-78.16760499999999,-78.16613099999999,-78.15978699999999,-78.154787,-78.15160400000001,-78.14715,-78.14648800000001,-78.147183,-78.14763499999999,-78.146607,-78.144284,-78.141059,-78.140325,-78.14073500000001,-78.13952,-78.13964799999999,-78.13837599999999,-78.136447,-78.13601199999999,-78.136351,-78.13589399999999,-78.13369299999999,-78.131969,-78.129964,-78.132475,-78.13511099999999,-78.136376,-78.135356,-78.132302,-78.130621,-78.13130099999999,-78.133968,-78.13386199999999,-78.13260699999999,-78.12890299999999,-78.12703399999999,-78.121786,-78.12074200000001,-78.12244200000001,-78.120718,-78.116587,-78.111334,-78.110226,-78.10982799999999,-78.10759400000001,-78.104214,-78.09926299999999,-78.0949,-78.093031,-78.09211000000001,-78.089568,-78.081506,-78.07810499999999,-78.07774000000001,-78.078504,-78.081192,-78.08338000000001,-78.08404899999999,-78.086162,-78.08814700000001,-78.09128699999999,-78.093746,-78.096778,-78.094791,-78.092119,-78.08887900000001,-78.088674,-78.09064100000001,-78.09052200000001,-78.08905799999999,-78.086477,-78.084428,-78.082089,-78.081835,-78.08470199999999,-78.08686299999999,-78.086105,-78.08380200000001,-78.081095,-78.075598,-78.07360799999999,-78.07004499999999,-78.06811500000001,-78.066675,-78.064446,-78.06192299999999,-78.06108500000001,-78.06185000000001,-78.064449,-78.06532199999999,-78.065138,-78.06277300000001,-78.060411,-78.058271,-78.055705,-78.05595599999999,-78.06012,-78.06200200000001,-78.068067,-78.069136,-78.06983099999999,-78.06919499999999,-78.06788899999999,-78.070035,-78.07212699999999,-78.07485200000001,-78.075599,-78.074862,-78.071048,-78.07046,-78.07125499999999,-78.073308,-78.07629900000001,-78.077308,-78.079903,-78.08031200000001,-78.079319,-78.07830199999999,-78.07616299999999,-78.073941,-78.071529,-78.06926900000001,-78.067491,-78.06562,-78.061457,-78.05824800000001,-78.057149,-78.057258,-78.058683,-78.063174,-78.06408,-78.063023,-78.05938500000001,-78.06013400000001,-78.062363,-78.065657,-78.068203,-78.07139599999999,-78.07284900000001,-78.073303,-78.073176,-78.07419899999999,-78.07556,-78.077918,-78.08461800000001,-78.088104,-78.09036,-78.09065099999999,-78.088795,-78.085832,-78.085098,-78.08563700000001,-78.09051700000001,-78.092192,-78.095752,-78.097184,-78.09627999999999,-78.093733,-78.092557,-78.092671,-78.094809,-78.098111,-78.101574,-78.107614,-78.108873,-78.111695,-78.11225,-78.111239,-78.110572,-78.109329,-78.103273,-78.100345,-78.097184,-78.094757,-78.09377600000001,-78.09235700000001,-78.089202,-78.08759499999999,-78.086613,-78.08644700000001,-78.084138,-78.081907,-78.07767200000001,-78.07373200000001,-78.07041700000001,-78.068659,-78.068783,-78.070432,-78.070351,-78.068971,-78.065589,-78.063253,-78.05884399999999,-78.056026,-78.05483599999999,-78.05420599999999,-78.052733,-78.04980399999999,-78.046487,-78.04344,-78.04146900000001,-78.039738,-78.03817100000001,-78.034969,-78.03122500000001,-78.028594,-78.024602,-78.02015900000001,-78.017348,-78.01572899999999,-78.014476,-78.012021,-78.010732,-78.00910500000001,-78.00594100000001,-78.003569,-78.00098800000001,-78.00032899999999,-78.001796,-78.000753,-77.999201,-77.995391,-77.990272,-77.987926,-77.986711,-77.985116,-77.98418700000001,-77.980823,-77.978455,-77.973012,-77.970778,-77.970833,-77.97358800000001,-77.973715,-77.97333500000001,-77.973078,-77.97084099999999,-77.96565,-77.96391800000001,-77.96203199999999,-77.95943800000001,-77.95561499999999,-77.95060599999999,-77.943601,-77.940833,-77.939431,-77.93709,-77.93565599999999,-77.935615,-77.938795,-77.939008,-77.937909,-77.936261,-77.931759,-77.926987,-77.923631,-77.921801,-77.92016700000001,-77.916906,-77.913787,-77.910854,-77.906046,-77.900666,-77.898262,-77.897667,-77.860832,-77.790009,-77.789563,-77.777996,-77.746675,-77.743651,-77.739069,-77.736986,-77.733532,-77.730237,-77.72807899999999,-77.72560799999999,-77.724779,-77.724784,-77.723629,-77.717759,-77.714602,-77.71213,-77.71168299999999,-77.70925,-77.70732099999999,-77.706619,-77.703923,-77.70050000000001,-77.699119,-77.69549000000001,-77.691867,-77.690389,-77.686792,-77.68621899999999,-77.683751,-77.681044,-77.676745,-77.675589,-77.67204700000001,-77.670762,-77.667092,-77.664073,-77.662603,-77.66081200000001,-77.660191,-77.659206,-77.652782,-77.65006700000001,-77.647666,-77.64121799999999,-77.639515,-77.636038,-77.631806,-77.630995,-77.62983800000001,-77.629621,-77.62814400000001,-77.626586,-77.624883,-77.621759,-77.620948,-77.618579,-77.61203,-77.608863,-77.60695800000001,-77.600309,-77.598765,-77.59532,-77.594469,-77.591916,-77.59177699999999,-77.588359,-77.583821,-77.582477,-77.581428,-77.576251,-77.573565,-77.570696,-77.56740600000001,-77.561842,-77.564025,-77.571961,-77.57827399999999,-77.58019400000001,-77.559094,-77.547291,-77.54725000000001,-77.537992,-77.533569,-77.51759699999999,-77.514275,-77.508596,-77.440274,-77.393907,-77.343227,-77.33992499999999,-77.14416,-77.143804,-77.15765,-77.204027,-77.221631,-77.279236,-77.36418,-77.36775,-77.374708,-77.41386199999999,-77.429604,-77.43881500000001,-77.509597,-77.51109599999999,-77.552537,-77.571938,-77.593355,-77.624719,-77.652574,-77.66198799999999,-77.66781899999999,-77.68133400000001,-77.683848,-77.695466,-77.698955,-77.710548,-77.718677,-77.76854899999999,-77.82490300000001,-77.83141500000001,-77.85921999999999,-77.894282,-77.904641,-77.932604,-77.94412199999999,-77.94425,-77.978722,-77.99334,-78.010957,-78.050456,-78.085263,-78.11585599999999,-78.11652100000001,-78.131834,-78.194439,-78.203188,-78.23006100000001,-78.26569499999999,-78.278948,-78.282937,-78.340008,-78.360619,-78.36298600000001,-78.364532,-78.365163,-78.366426,-78.36784900000001,-78.36885700000001,-78.368994,-78.370431,-78.371897,-78.37286899999999,-78.373017,-78.37558,-78.37650499999999,-78.376031],"lat":[40.754497,40.755998,40.757553,40.757709,40.759706,40.760998,40.764545,40.764501,40.765391,40.767895,40.768395,40.768326,40.768912,40.77047,40.772079,40.772869,40.774896,40.776271,40.778947,40.7802,40.781053,40.781832,40.783404,40.783933,40.785007,40.787007,40.788479,40.79083,40.791562,40.794752,40.795848,40.797002,40.797864,40.799,40.800692,40.801122,40.802096,40.803359,40.80466,40.805899,40.806156,40.805531,40.808434,40.808496,40.80933,40.810166,40.811351,40.813892,40.81572,40.818533,40.818807,40.820638,40.821548,40.821739,40.822937,40.82456,40.827968,40.829839,40.831416,40.83412,40.83495,40.835144,40.837919,40.840619,40.84252,40.846748,40.848022,40.849601,40.849874,40.851049,40.850585,40.850993,40.85009,40.848055,40.846984,40.847649,40.850017,40.851034,40.852795,40.854684,40.855397,40.853756,40.854235,40.855383,40.858365,40.861101,40.862312,40.864632,40.865316,40.869519,40.872086,40.8717,40.872751,40.872068,40.873323,40.873603,40.8749,40.876436,40.876942,40.876775,40.875844,40.876387,40.877164,40.877804,40.879557,40.880645,40.881479,40.881636,40.880387,40.880159,40.879259,40.880177,40.878392,40.880299,40.883006,40.886733,40.887599,40.888506,40.890312,40.891574,40.894704,40.895968,40.897368,40.897564,40.898564,40.899744,40.904227,40.903483,40.905241,40.905982,40.9074,40.910968,40.91383,40.913317,40.914809,40.915872,40.917396,40.916401,40.916939,40.915619,40.915813,40.916816,40.917709,40.91762,40.919992,40.919385,40.920568,40.91873,40.919272,40.920789,40.921582,40.922294,40.923559,40.928161,40.927845,40.930209,40.931966,40.932418,40.935204,40.936767,40.936249,40.936686,40.939342,40.940943,40.942069,40.942021,40.94137,40.941645,40.942777,40.946108,40.948572,40.950366,40.954068,40.954763,40.952295,40.952034,40.955665,40.960228,40.961017,40.961559,40.961224,40.959481,40.957366,40.956675,40.956006,40.952216,40.949333,40.948684,40.948588,40.949844,40.951024,40.952431,40.953922,40.957102,40.959271,40.961413,40.962599,40.966018,40.966723,40.967042,40.965906,40.961841,40.958863,40.957372,40.956021,40.953965,40.953207,40.951341,40.949567,40.947766,40.946741,40.945894,40.94599,40.945681,40.947127,40.945569,40.943887,40.942053,40.942902,40.945124,40.947216,40.949933,40.950648,40.949518,40.951589,40.950436,40.951328,40.952987,40.954458,40.955064,40.956447,40.958824,40.960451,40.96384,40.965708,40.967731,40.969669,40.970321,40.969891,40.97049,40.972849,40.974102,40.972814,40.975346,40.976085,40.979419,40.980881,40.981109,40.980528,40.980831,40.984185,40.985414,40.990892,40.992769,40.994468,40.994458,40.993359,40.993463,40.993937,40.996015,40.997645,40.997692,40.995316,40.995219,40.996277,40.9979,40.999957,41.001725,41.003338,41.004789,41.004183,41.003655,41.00486,41.008273,41.012213,41.013271,41.012841,41.013242,41.014694,41.017229,41.019484,41.020447,41.020336,41.02142,41.022185,41.02355,41.024421,41.02494,41.026582,41.02705,41.026305,41.026601,41.02948,41.030655,41.033184,41.034064,41.034479,41.034069,41.032789,41.032721,41.034734,41.03578,41.035963,41.036708,41.037533,41.039351,41.040822,41.043976,41.045913,41.047326,41.050834,41.052343,41.05323,41.051741,41.049959,41.049918,41.051922,41.054212,41.056488,41.058649,41.059657,41.059747,41.057392,41.057144,41.058171,41.059412,41.063427,41.066336,41.068114,41.06865,41.069751,41.070414,41.070903,41.072349,41.073331,41.075833,41.078365,41.079562,41.082352,41.086039,41.092164,41.10551,41.107544,41.111061,41.11364,41.115473,41.116151,41.117138,41.121202,41.121783,41.121124,41.119666,41.116352,41.115679,41.116038,41.117173,41.11943,41.123573,41.125945,41.126308,41.125167,41.122055,41.121878,41.124308,41.125601,41.128981,41.13058,41.1319,41.132341,41.131366,41.130909,41.131995,41.134177,41.142665,41.145317,41.145979,41.14569,41.146508,41.15021,41.152579,41.153603,41.15392,41.151539,41.150325,41.150785,41.152734,41.153187,41.1529,41.151996,41.145071,41.143854,41.143316,41.143601,41.144856,41.147773,41.15095,41.158133,41.16166,41.163016,41.163125,41.161704,41.162647,41.163799,41.168734,41.170236,41.171639,41.171721,41.173021,41.174697,41.178314,41.189093,41.192394,41.193915,41.204188,41.20672,41.209584,41.211467,41.215289,41.217497,41.217427,41.213791,41.210292,41.209436,41.209482,41.210336,41.211741,41.214891,41.219789,41.222707,41.224841,41.225998,41.226467,41.226205,41.226427,41.227456,41.229239,41.235385,41.240565,41.243553,41.245991,41.249954,41.252665,41.176918,41.177005,41.177142,41.142127,41.146612,41.106261,41.107603,41.107426,41.107906,41.110191,41.111368,41.111323,41.110142,41.109097,41.107393,41.10685,41.104954,41.105571,41.109413,41.111137,41.111527,41.113483,41.113887,41.112899,41.110733,41.109642,41.1076,41.106376,41.106249,41.107419,41.108395,41.109306,41.109076,41.107092,41.105976,41.105236,41.105636,41.108281,41.109002,41.108523,41.106758,41.102845,41.10107,41.098268,41.097553,41.09808,41.096685,41.096922,41.095187,41.095127,41.094065,41.094599,41.093356,41.092549,41.092622,41.091846,41.091185,41.089087,41.088583,41.085809,41.083342,41.083166,41.080007,41.079779,41.077745,41.077053,41.074439,41.071152,41.071629,41.070097,41.067366,41.067115,41.068607,41.068682,41.066285,41.065105,41.057787,41.056221,41.051608,41.04856,41.04727,41.021818,41.008069,41.008021,40.997231,40.992071,40.973437,40.969562,40.962938,40.974448,40.978285,40.986623,40.987167,41.044338,41.042855,41.031257,40.99271,40.973282,40.90971,40.846937,40.846896,40.845295,40.833075,40.827541,40.8239,40.794575,40.793954,40.777591,40.769333,40.761247,40.752261,40.744921,40.737742,40.735335,40.729758,40.72872,40.72253,40.720704,40.714564,40.727372,40.719466,40.743534,40.741122,40.730819,40.716203,40.710734,40.696994,40.691622,40.691557,40.701154,40.705207,40.710423,40.721382,40.73092,40.739283,40.739127,40.743017,40.740544,40.740198,40.738973,40.737243,40.736597,40.736402,40.733535,40.733181,40.733157,40.73414,40.735565,40.736097,40.73908,40.740082,40.741919,40.742825,40.746586,40.746904,40.749892,40.750905,40.752559,40.754497]}]]],null,null,{"interactive":true,"className":"","stroke":true,"color":"#FFF","weight":3,"opacity":0.5,"fill":true,"fillColor":"#041E42","fillOpacity":0.1,"dashArray":"5, 5","smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircleMarkers","args":[40.801,-77.86145999999999,8,null,null,{"interactive":true,"className":"","stroke":true,"color":"#FFFFFF","weight":1,"opacity":0.5,"fill":true,"fillColor":"#0096FF","fillOpacity":0.9},null,null,"<b>Huck Life Sciences<\/b><br>Class meets in Room 007",null,"Huck Life Sciences Building",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"style":{"font-family":"Arial, sans-serif","font-weight":"bold","color":"#041E42","padding":"4px 8px"},"className":"","sticky":true},null]}],"limits":{"lat":[40.691557,41.252665],"lng":[-78.37650499999999,-77.143804]}},"evals":[],"jsHooks":[]}</script>
-</div>
+<div class="leaflet html-widget html-fill-item" id="htmlwidget-705153ad1d5507231542" style="width:960px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-705153ad1d5507231542">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["Esri.WorldImagery",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addPolygons","args":[[[[{"lng":[-78.376031,-78.374262,-78.373423,-78.37135000000001,-78.37068499999999,-78.367868,-78.365256,-78.363204,-78.360632,-78.359133,-78.356161,-78.35382799999999,-78.352053,-78.35171800000001,-78.35224100000001,-78.35123900000001,-78.35087,-78.349317,-78.34747,-78.34582,-78.345905,-78.342809,-78.34251399999999,-78.343478,-78.341836,-78.341875,-78.343109,-78.343675,-78.340249,-78.33925499999999,-78.339693,-78.338864,-78.339491,-78.338137,-78.334006,-78.331661,-78.33016499999999,-78.329566,-78.32731699999999,-78.326926,-78.32272399999999,-78.322169,-78.320308,-78.313886,-78.313177,-78.314021,-78.312212,-78.311632,-78.308008,-78.30667800000001,-78.305927,-78.30562500000001,-78.304067,-78.302154,-78.30150999999999,-78.29938300000001,-78.300282,-78.299522,-78.29997,-78.302254,-78.301295,-78.29879699999999,-78.294437,-78.29384400000001,-78.2906,-78.29131599999999,-78.290761,-78.288737,-78.28554200000001,-78.284237,-78.28005400000001,-78.27772899999999,-78.27556300000001,-78.273827,-78.27066600000001,-78.267742,-78.267584,-78.263953,-78.263042,-78.26057,-78.256771,-78.254763,-78.251598,-78.24921999999999,-78.246908,-78.24913100000001,-78.24819599999999,-78.248603,-78.249779,-78.248975,-78.24628800000001,-78.244111,-78.23918999999999,-78.23794599999999,-78.23752399999999,-78.23571,-78.235895,-78.238333,-78.24169500000001,-78.244378,-78.246475,-78.249342,-78.249509,-78.24723400000001,-78.247761,-78.243306,-78.242987,-78.24045,-78.23720899999999,-78.23509,-78.234708,-78.232992,-78.232938,-78.23003799999999,-78.228228,-78.227937,-78.22613800000001,-78.221597,-78.220641,-78.220911,-78.224194,-78.22422,-78.22720099999999,-78.227746,-78.226772,-78.229136,-78.227814,-78.226517,-78.22503,-78.224301,-78.225942,-78.22165,-78.217405,-78.215215,-78.214837,-78.21173400000001,-78.210351,-78.208601,-78.206818,-78.204611,-78.20163700000001,-78.199906,-78.20029599999999,-78.198275,-78.19598499999999,-78.19427899999999,-78.19238199999999,-78.19096500000001,-78.188745,-78.18571,-78.18569100000001,-78.18182899999999,-78.179875,-78.17784,-78.179089,-78.17720199999999,-78.175005,-78.171481,-78.172285,-78.171279,-78.168526,-78.166461,-78.163326,-78.16455499999999,-78.162454,-78.159931,-78.158124,-78.15563899999999,-78.155638,-78.157786,-78.158125,-78.159412,-78.159369,-78.162328,-78.16663200000001,-78.168206,-78.16962700000001,-78.168712,-78.16760499999999,-78.16613099999999,-78.15978699999999,-78.154787,-78.15160400000001,-78.14715,-78.14648800000001,-78.147183,-78.14763499999999,-78.146607,-78.144284,-78.141059,-78.140325,-78.14073500000001,-78.13952,-78.13964799999999,-78.13837599999999,-78.136447,-78.13601199999999,-78.136351,-78.13589399999999,-78.13369299999999,-78.131969,-78.129964,-78.132475,-78.13511099999999,-78.136376,-78.135356,-78.132302,-78.130621,-78.13130099999999,-78.133968,-78.13386199999999,-78.13260699999999,-78.12890299999999,-78.12703399999999,-78.121786,-78.12074200000001,-78.12244200000001,-78.120718,-78.116587,-78.111334,-78.110226,-78.10982799999999,-78.10759400000001,-78.104214,-78.09926299999999,-78.0949,-78.093031,-78.09211000000001,-78.089568,-78.081506,-78.07810499999999,-78.07774000000001,-78.078504,-78.081192,-78.08338000000001,-78.08404899999999,-78.086162,-78.08814700000001,-78.09128699999999,-78.093746,-78.096778,-78.094791,-78.092119,-78.08887900000001,-78.088674,-78.09064100000001,-78.09052200000001,-78.08905799999999,-78.086477,-78.084428,-78.082089,-78.081835,-78.08470199999999,-78.08686299999999,-78.086105,-78.08380200000001,-78.081095,-78.075598,-78.07360799999999,-78.07004499999999,-78.06811500000001,-78.066675,-78.064446,-78.06192299999999,-78.06108500000001,-78.06185000000001,-78.064449,-78.06532199999999,-78.065138,-78.06277300000001,-78.060411,-78.058271,-78.055705,-78.05595599999999,-78.06012,-78.06200200000001,-78.068067,-78.069136,-78.06983099999999,-78.06919499999999,-78.06788899999999,-78.070035,-78.07212699999999,-78.07485200000001,-78.075599,-78.074862,-78.071048,-78.07046,-78.07125499999999,-78.073308,-78.07629900000001,-78.077308,-78.079903,-78.08031200000001,-78.079319,-78.07830199999999,-78.07616299999999,-78.073941,-78.071529,-78.06926900000001,-78.067491,-78.06562,-78.061457,-78.05824800000001,-78.057149,-78.057258,-78.058683,-78.063174,-78.06408,-78.063023,-78.05938500000001,-78.06013400000001,-78.062363,-78.065657,-78.068203,-78.07139599999999,-78.07284900000001,-78.073303,-78.073176,-78.07419899999999,-78.07556,-78.077918,-78.08461800000001,-78.088104,-78.09036,-78.09065099999999,-78.088795,-78.085832,-78.085098,-78.08563700000001,-78.09051700000001,-78.092192,-78.095752,-78.097184,-78.09627999999999,-78.093733,-78.092557,-78.092671,-78.094809,-78.098111,-78.101574,-78.107614,-78.108873,-78.111695,-78.11225,-78.111239,-78.110572,-78.109329,-78.103273,-78.100345,-78.097184,-78.094757,-78.09377600000001,-78.09235700000001,-78.089202,-78.08759499999999,-78.086613,-78.08644700000001,-78.084138,-78.081907,-78.07767200000001,-78.07373200000001,-78.07041700000001,-78.068659,-78.068783,-78.070432,-78.070351,-78.068971,-78.065589,-78.063253,-78.05884399999999,-78.056026,-78.05483599999999,-78.05420599999999,-78.052733,-78.04980399999999,-78.046487,-78.04344,-78.04146900000001,-78.039738,-78.03817100000001,-78.034969,-78.03122500000001,-78.028594,-78.024602,-78.02015900000001,-78.017348,-78.01572899999999,-78.014476,-78.012021,-78.010732,-78.00910500000001,-78.00594100000001,-78.003569,-78.00098800000001,-78.00032899999999,-78.001796,-78.000753,-77.999201,-77.995391,-77.990272,-77.987926,-77.986711,-77.985116,-77.98418700000001,-77.980823,-77.978455,-77.973012,-77.970778,-77.970833,-77.97358800000001,-77.973715,-77.97333500000001,-77.973078,-77.97084099999999,-77.96565,-77.96391800000001,-77.96203199999999,-77.95943800000001,-77.95561499999999,-77.95060599999999,-77.943601,-77.940833,-77.939431,-77.93709,-77.93565599999999,-77.935615,-77.938795,-77.939008,-77.937909,-77.936261,-77.931759,-77.926987,-77.923631,-77.921801,-77.92016700000001,-77.916906,-77.913787,-77.910854,-77.906046,-77.900666,-77.898262,-77.897667,-77.860832,-77.790009,-77.789563,-77.777996,-77.746675,-77.743651,-77.739069,-77.736986,-77.733532,-77.730237,-77.72807899999999,-77.72560799999999,-77.724779,-77.724784,-77.723629,-77.717759,-77.714602,-77.71213,-77.71168299999999,-77.70925,-77.70732099999999,-77.706619,-77.703923,-77.70050000000001,-77.699119,-77.69549000000001,-77.691867,-77.690389,-77.686792,-77.68621899999999,-77.683751,-77.681044,-77.676745,-77.675589,-77.67204700000001,-77.670762,-77.667092,-77.664073,-77.662603,-77.66081200000001,-77.660191,-77.659206,-77.652782,-77.65006700000001,-77.647666,-77.64121799999999,-77.639515,-77.636038,-77.631806,-77.630995,-77.62983800000001,-77.629621,-77.62814400000001,-77.626586,-77.624883,-77.621759,-77.620948,-77.618579,-77.61203,-77.608863,-77.60695800000001,-77.600309,-77.598765,-77.59532,-77.594469,-77.591916,-77.59177699999999,-77.588359,-77.583821,-77.582477,-77.581428,-77.576251,-77.573565,-77.570696,-77.56740600000001,-77.561842,-77.564025,-77.571961,-77.57827399999999,-77.58019400000001,-77.559094,-77.547291,-77.54725000000001,-77.537992,-77.533569,-77.51759699999999,-77.514275,-77.508596,-77.440274,-77.393907,-77.343227,-77.33992499999999,-77.14416,-77.143804,-77.15765,-77.204027,-77.221631,-77.279236,-77.36418,-77.36775,-77.374708,-77.41386199999999,-77.429604,-77.43881500000001,-77.509597,-77.51109599999999,-77.552537,-77.571938,-77.593355,-77.624719,-77.652574,-77.66198799999999,-77.66781899999999,-77.68133400000001,-77.683848,-77.695466,-77.698955,-77.710548,-77.718677,-77.76854899999999,-77.82490300000001,-77.83141500000001,-77.85921999999999,-77.894282,-77.904641,-77.932604,-77.94412199999999,-77.94425,-77.978722,-77.99334,-78.010957,-78.050456,-78.085263,-78.11585599999999,-78.11652100000001,-78.131834,-78.194439,-78.203188,-78.23006100000001,-78.26569499999999,-78.278948,-78.282937,-78.340008,-78.360619,-78.36298600000001,-78.364532,-78.365163,-78.366426,-78.36784900000001,-78.36885700000001,-78.368994,-78.370431,-78.371897,-78.37286899999999,-78.373017,-78.37558,-78.37650499999999,-78.376031],"lat":[40.754497,40.755998,40.757553,40.757709,40.759706,40.760998,40.764545,40.764501,40.765391,40.767895,40.768395,40.768326,40.768912,40.77047,40.772079,40.772869,40.774896,40.776271,40.778947,40.7802,40.781053,40.781832,40.783404,40.783933,40.785007,40.787007,40.788479,40.79083,40.791562,40.794752,40.795848,40.797002,40.797864,40.799,40.800692,40.801122,40.802096,40.803359,40.80466,40.805899,40.806156,40.805531,40.808434,40.808496,40.80933,40.810166,40.811351,40.813892,40.81572,40.818533,40.818807,40.820638,40.821548,40.821739,40.822937,40.82456,40.827968,40.829839,40.831416,40.83412,40.83495,40.835144,40.837919,40.840619,40.84252,40.846748,40.848022,40.849601,40.849874,40.851049,40.850585,40.850993,40.85009,40.848055,40.846984,40.847649,40.850017,40.851034,40.852795,40.854684,40.855397,40.853756,40.854235,40.855383,40.858365,40.861101,40.862312,40.864632,40.865316,40.869519,40.872086,40.8717,40.872751,40.872068,40.873323,40.873603,40.8749,40.876436,40.876942,40.876775,40.875844,40.876387,40.877164,40.877804,40.879557,40.880645,40.881479,40.881636,40.880387,40.880159,40.879259,40.880177,40.878392,40.880299,40.883006,40.886733,40.887599,40.888506,40.890312,40.891574,40.894704,40.895968,40.897368,40.897564,40.898564,40.899744,40.904227,40.903483,40.905241,40.905982,40.9074,40.910968,40.91383,40.913317,40.914809,40.915872,40.917396,40.916401,40.916939,40.915619,40.915813,40.916816,40.917709,40.91762,40.919992,40.919385,40.920568,40.91873,40.919272,40.920789,40.921582,40.922294,40.923559,40.928161,40.927845,40.930209,40.931966,40.932418,40.935204,40.936767,40.936249,40.936686,40.939342,40.940943,40.942069,40.942021,40.94137,40.941645,40.942777,40.946108,40.948572,40.950366,40.954068,40.954763,40.952295,40.952034,40.955665,40.960228,40.961017,40.961559,40.961224,40.959481,40.957366,40.956675,40.956006,40.952216,40.949333,40.948684,40.948588,40.949844,40.951024,40.952431,40.953922,40.957102,40.959271,40.961413,40.962599,40.966018,40.966723,40.967042,40.965906,40.961841,40.958863,40.957372,40.956021,40.953965,40.953207,40.951341,40.949567,40.947766,40.946741,40.945894,40.94599,40.945681,40.947127,40.945569,40.943887,40.942053,40.942902,40.945124,40.947216,40.949933,40.950648,40.949518,40.951589,40.950436,40.951328,40.952987,40.954458,40.955064,40.956447,40.958824,40.960451,40.96384,40.965708,40.967731,40.969669,40.970321,40.969891,40.97049,40.972849,40.974102,40.972814,40.975346,40.976085,40.979419,40.980881,40.981109,40.980528,40.980831,40.984185,40.985414,40.990892,40.992769,40.994468,40.994458,40.993359,40.993463,40.993937,40.996015,40.997645,40.997692,40.995316,40.995219,40.996277,40.9979,40.999957,41.001725,41.003338,41.004789,41.004183,41.003655,41.00486,41.008273,41.012213,41.013271,41.012841,41.013242,41.014694,41.017229,41.019484,41.020447,41.020336,41.02142,41.022185,41.02355,41.024421,41.02494,41.026582,41.02705,41.026305,41.026601,41.02948,41.030655,41.033184,41.034064,41.034479,41.034069,41.032789,41.032721,41.034734,41.03578,41.035963,41.036708,41.037533,41.039351,41.040822,41.043976,41.045913,41.047326,41.050834,41.052343,41.05323,41.051741,41.049959,41.049918,41.051922,41.054212,41.056488,41.058649,41.059657,41.059747,41.057392,41.057144,41.058171,41.059412,41.063427,41.066336,41.068114,41.06865,41.069751,41.070414,41.070903,41.072349,41.073331,41.075833,41.078365,41.079562,41.082352,41.086039,41.092164,41.10551,41.107544,41.111061,41.11364,41.115473,41.116151,41.117138,41.121202,41.121783,41.121124,41.119666,41.116352,41.115679,41.116038,41.117173,41.11943,41.123573,41.125945,41.126308,41.125167,41.122055,41.121878,41.124308,41.125601,41.128981,41.13058,41.1319,41.132341,41.131366,41.130909,41.131995,41.134177,41.142665,41.145317,41.145979,41.14569,41.146508,41.15021,41.152579,41.153603,41.15392,41.151539,41.150325,41.150785,41.152734,41.153187,41.1529,41.151996,41.145071,41.143854,41.143316,41.143601,41.144856,41.147773,41.15095,41.158133,41.16166,41.163016,41.163125,41.161704,41.162647,41.163799,41.168734,41.170236,41.171639,41.171721,41.173021,41.174697,41.178314,41.189093,41.192394,41.193915,41.204188,41.20672,41.209584,41.211467,41.215289,41.217497,41.217427,41.213791,41.210292,41.209436,41.209482,41.210336,41.211741,41.214891,41.219789,41.222707,41.224841,41.225998,41.226467,41.226205,41.226427,41.227456,41.229239,41.235385,41.240565,41.243553,41.245991,41.249954,41.252665,41.176918,41.177005,41.177142,41.142127,41.146612,41.106261,41.107603,41.107426,41.107906,41.110191,41.111368,41.111323,41.110142,41.109097,41.107393,41.10685,41.104954,41.105571,41.109413,41.111137,41.111527,41.113483,41.113887,41.112899,41.110733,41.109642,41.1076,41.106376,41.106249,41.107419,41.108395,41.109306,41.109076,41.107092,41.105976,41.105236,41.105636,41.108281,41.109002,41.108523,41.106758,41.102845,41.10107,41.098268,41.097553,41.09808,41.096685,41.096922,41.095187,41.095127,41.094065,41.094599,41.093356,41.092549,41.092622,41.091846,41.091185,41.089087,41.088583,41.085809,41.083342,41.083166,41.080007,41.079779,41.077745,41.077053,41.074439,41.071152,41.071629,41.070097,41.067366,41.067115,41.068607,41.068682,41.066285,41.065105,41.057787,41.056221,41.051608,41.04856,41.04727,41.021818,41.008069,41.008021,40.997231,40.992071,40.973437,40.969562,40.962938,40.974448,40.978285,40.986623,40.987167,41.044338,41.042855,41.031257,40.99271,40.973282,40.90971,40.846937,40.846896,40.845295,40.833075,40.827541,40.8239,40.794575,40.793954,40.777591,40.769333,40.761247,40.752261,40.744921,40.737742,40.735335,40.729758,40.72872,40.72253,40.720704,40.714564,40.727372,40.719466,40.743534,40.741122,40.730819,40.716203,40.710734,40.696994,40.691622,40.691557,40.701154,40.705207,40.710423,40.721382,40.73092,40.739283,40.739127,40.743017,40.740544,40.740198,40.738973,40.737243,40.736597,40.736402,40.733535,40.733181,40.733157,40.73414,40.735565,40.736097,40.73908,40.740082,40.741919,40.742825,40.746586,40.746904,40.749892,40.750905,40.752559,40.754497]}]]],null,null,{"interactive":true,"className":"","stroke":true,"color":"#FFF","weight":3,"opacity":0.5,"fill":true,"fillColor":"#041E42","fillOpacity":0.1,"dashArray":"5, 5","smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addCircleMarkers","args":[40.801,-77.86145999999999,8,null,null,{"interactive":true,"className":"","stroke":true,"color":"#FFFFFF","weight":1,"opacity":0.5,"fill":true,"fillColor":"#0096FF","fillOpacity":0.9},null,null,"<b>Huck Life Sciences<\/b><br>Class meets in Room 007",null,"Huck Life Sciences Building",{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"style":{"font-family":"Arial, sans-serif","font-weight":"bold","color":"#041E42","padding":"4px 8px"},"className":"","sticky":true},null]}],"limits":{"lat":[40.691557,41.252665],"lng":[-78.37650499999999,-77.143804]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1336,36 +1311,26 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 </ul>
 <p><strong>Assignments due Wednesday 5/20</strong></p>
 <ul>
-<li><a href="#">HW 0: Setup confirmation</a> <!-- replace # with Canvas link --></li>
+<li><a href="https://psu.instructure.com/courses/2487468/assignments/18308171">HW 0: Setup confirmation</a></li>
 </ul>
 </section>
 <section id="wrap-up-looking-ahead" class="level2">
 <h2 class="anchored" data-anchor-id="wrap-up-looking-ahead">Wrap-up &amp; looking ahead</h2>
-<p><strong>Tomorrow:</strong> Real R syntax (variables, functions, vectors)</p>
-<p><strong>Due Tuesday May 19 (tomorrow) before class:</strong></p>
+<p><strong>Tomorrow:</strong> A tour of RStudio, R as a calculator, and creating your first objects</p>
+<div class="columns">
+<div class="column" style="width:55%;">
+<p><strong>Upcoming Deadlines</strong></p>
 <ul>
-<li>Read <em>Data Computing</em> §2.1–2.8 on Perusall (<a href="https://psu.instructure.com/courses/2487468/assignments/18307706">Click here</a>).</li>
+<li><strong>Tue 5/19, before class</strong> — <a href="https://psu.instructure.com/courses/2487468/assignments/18307706">DC §2.1–2.8</a></li>
+<li><strong>Wed 5/20, 11:59 p.m.</strong> — <a href="https://psu.instructure.com/courses/2487468/assignments/18308171">HW 0: Setup</a></li>
+<li><strong>Fri 5/22, in class</strong> — Quiz 1</li>
+<li><strong>Fri 5/22, 11:59 p.m.</strong> — <a href="https://psu.instructure.com/courses/2487468/assignments/18311694">HW 1: Basic R &amp; Plots</a></li>
 </ul>
-<p><strong>Due 11:59 p.m. Wednesday May 20:</strong></p>
-<ul>
-<li>HW 0: Setup confirmation (<a href="https://psu.instructure.com/courses/2487468/assignments/18308171">Click here</a>).</li>
-</ul>
-<p><strong>Quiz 1 in class on Friday May 22</strong></p>
-<p><strong>Reference links</strong></p>
-<ul>
-<li><a href="../../syllabus/syllabus.html">Syllabus</a> · <a href="../../syllabus/academic-integrity-and-ai-policy.html">AI policy</a> · <a href="../../schedule.html">Schedule</a> · <a href="https://dtkaplan.github.io/DataComputingEbook/"><em>Data Computing</em></a></li>
-</ul>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Reach out
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Stuck on setup? Come to office hours or email me (<a href="mailto:cgc5478@psu.edu">cgc5478@psu.edu</a>) or Xinyue (<a href="mailto:xpw5228@psu.edu">xpw5228@psu.edu</a>) before Wednesday — don’t wait until class.</p>
+</div><div class="column" style="width:45%;">
+<p><strong>Reach out</strong></p>
+<p>Stuck? Office hours, or email me (<a href="mailto:cgc5478@psu.edu">cgc5478@psu.edu</a>) or Xinyue (<a href="mailto:xpw5228@psu.edu">xpw5228@psu.edu</a>).</p>
+<p><strong>Reference</strong></p>
+<p><a href="../../syllabus/syllabus.html">Syllabus</a> · <a href="../../syllabus/academic-integrity-and-ai-policy.html">AI policy</a> · <a href="../../schedule.html">Schedule</a> · <a href="https://dtkaplan.github.io/DataComputingEbook/"><em>Data Computing</em></a></p>
 </div>
 </div>
 
@@ -1379,6 +1344,44 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <li id="fn1"><p><a href="https://cran.r-project.org/web/packages/">As of May 17, 2026.</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
+
+<script>
+  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+  // slide changes (different for each slide format).
+  (function () {
+    // dispatch for htmlwidgets
+    function fireSlideEnter() {
+      const event = window.document.createEvent("Event");
+      event.initEvent("slideenter", true, true);
+      window.document.dispatchEvent(event);
+    }
+
+    function fireSlideChanged(previousSlide, currentSlide) {
+      fireSlideEnter();
+
+      // dispatch for shiny
+      if (window.jQuery) {
+        if (previousSlide) {
+          window.jQuery(previousSlide).trigger("hidden");
+        }
+        if (currentSlide) {
+          window.jQuery(currentSlide).trigger("shown");
+        }
+      }
+    }
+
+    // hookup for slidy
+    if (window.w3c_slidy) {
+      window.w3c_slidy.add_observer(function (slide_num) {
+        // slide_num starts at position 1
+        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+      });
+    }
+
+  })();
+</script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

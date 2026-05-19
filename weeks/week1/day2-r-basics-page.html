@@ -74,14 +74,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cad2a2f8a56dfe71ee895a68e79c9b9a.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-70be5ccd51f03de5ce195d75fadf0882.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cad2a2f8a56dfe71ee895a68e79c9b9a.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/quarto-axe/axe-check.js" type="module"></script>
+<script id="quarto-axe-checker-options" type="text/plain">dHJ1ZQ==</script>
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-0e6139898bc333d8d362a68e1e84c4d8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-5d4c2f462ffa217fc73399f9052c53e0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-0e6139898bc333d8d362a68e1e84c4d8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-ae8dd8cbc432535888165c491a1ef120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-c348e284c378fa5b02e0205484958981.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-ae8dd8cbc432535888165c491a1ef120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -484,7 +486,10 @@ window.Quarto = {
   <li><a href="#output-pane---help-tab" id="toc-output-pane---help-tab" class="nav-link" data-scroll-target="#output-pane---help-tab">Output Pane - Help Tab</a></li>
   <li><a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types">Data Types</a></li>
   <li><a href="#data-structures" id="toc-data-structures" class="nav-link" data-scroll-target="#data-structures">Data Structures</a></li>
+  <li><a href="#data-structures-examples" id="toc-data-structures-examples" class="nav-link" data-scroll-target="#data-structures-examples">Data Structures Examples</a></li>
+  <li><a href="#data-structures-visualization" id="toc-data-structures-visualization" class="nav-link" data-scroll-target="#data-structures-visualization">Data Structures Visualization</a></li>
   <li><a href="#r-as-a-calculator" id="toc-r-as-a-calculator" class="nav-link" data-scroll-target="#r-as-a-calculator">R as a Calculator</a></li>
+  <li><a href="#your-turn-to-use-the-calculator" id="toc-your-turn-to-use-the-calculator" class="nav-link" data-scroll-target="#your-turn-to-use-the-calculator">Your Turn to Use the Calculator</a></li>
   <li><a href="#vector-operations" id="toc-vector-operations" class="nav-link" data-scroll-target="#vector-operations">Vector Operations</a></li>
   <li><a href="#built-in-functions-and-constants" id="toc-built-in-functions-and-constants" class="nav-link" data-scroll-target="#built-in-functions-and-constants">Built-in Functions and Constants</a></li>
   <li><a href="#creating-objects" id="toc-creating-objects" class="nav-link" data-scroll-target="#creating-objects">Creating objects</a></li>
@@ -546,7 +551,7 @@ window.Quarto = {
 </div>
 <section id="what-is-computing" class="level2">
 <h2 class="anchored" data-anchor-id="what-is-computing">What is Computing?</h2>
-<p>Computing is about turning human ideas into reproducible instructions that a computer can carry out</p>
+<p>Computing is about turning human ideas into reproducible instructions that a computer can carry out.</p>
 <p>In this course, we will learn how to:</p>
 <ul>
 <li>organize data</li>
@@ -569,15 +574,15 @@ window.Quarto = {
 <li>research</li>
 <li>industry analytics</li>
 </ul></li>
-<li>R is, free, open-source, and highly extensible through thousands of packages that contain additional tools and functions.</li>
+<li>R is free, open-source, and highly extensible through thousands of packages that contain additional tools and functions.</li>
 </ul>
 </section>
 <section id="rstudio-desktop-rstudio" class="level2">
 <h2 class="anchored" data-anchor-id="rstudio-desktop-rstudio">RStudio Desktop (RStudio)</h2>
 <ul>
-<li><p>First version released in 2011.</p></li>
-<li><p><em>Integrated development environment (IDE)</em> provides additional tools and window management to R to help coders, statisticians, and data scientists use R more effectively.</p></li>
-<li><p>While R is required to run RStudio, you do not need to have RStudio to use R.</p></li>
+<li>First version released in 2011.</li>
+<li><em>Integrated development environment (IDE)</em> provides additional tools and window management to R to help coders, statisticians, and data scientists use R more effectively.</li>
+<li>While R is required to run RStudio, you do not need to have RStudio to use R.</li>
 </ul>
 </section>
 <section id="r-vs.-rstudio" class="level2">
@@ -589,105 +594,58 @@ window.Quarto = {
 </section>
 <section id="rstudios-four-pane-layout" class="level2">
 <h2 class="anchored" data-anchor-id="rstudios-four-pane-layout">RStudio’s Four Pane Layout</h2>
-<div id="fig-packages" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-packages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href=""><img src="images/four_pane_layout.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></a></p>
-</figure>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-packages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: RStudio’s four pane layout.
-</figcaption>
+<p><img src="images/four_pane_layout.png" class="img-fluid figure-img" style="width:100.0%" alt="Screenshot of a freshly opened RStudio window divided into four quadrants. Top-left holds an empty script tab named Untitled1 with an editor toolbar that includes a Run button and a Source button. Bottom-left is the Console tab running R version 4.5.3 ('Reassured Reassurer') with the standard R startup message and a prompt symbol ready for input. Top-right shows the Environment pane labeled 'Environment is empty,' with tabs for History, Connections, and Tutorial. Bottom-right shows the Packages tab listing the installed user library (amen, arrow, assertthat, backbone, and so on) with checkboxes, source URLs, and version numbers."></p>
+<figcaption>RStudio’s four pane layout.</figcaption>
 </figure>
 </div>
 </section>
 <section id="source-pane" class="level2">
 <h2 class="anchored" data-anchor-id="source-pane">Source Pane</h2>
-<div id="fig-packages" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-packages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href=""><img src="images/source_pane.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></a></p>
-</figure>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-packages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: RStudio’s source pane, annotated.
-</figcaption>
+<p><img src="images/source_pane.png" class="img-fluid figure-img" style="width:100.0%" alt="Annotated screenshot of the full RStudio window with the source (editor) pane outlined by a red dashed border and labeled 'Editor.' Hand-drawn arrows and callouts identify, clockwise from the top-left: 'New File,' 'New Project,' 'Open,' and 'Save' buttons on the main toolbar; 'Pane Controls' for layout adjustment; 'Open Tabs' showing the file tab labeled Untitled1; 'Send selected commands to console' pointing at the Run button; 'Show/Hide Outline of File/Script' pointing at the document outline; 'File Type' indicator showing 'R Script' at the bottom-right of the editor; 'Jump Point List' pointing to a section navigator showing 'Data Frames'; and 'Line and Character of Cursor' showing position 17:1. The example script contains code creating constants, vectors, lists, a data frame, and an array, plus a deliberately fun naming error where an emoji is assigned a value."></p>
+<figcaption>RStudio’s source pane, annotated.</figcaption>
 </figure>
 </div>
 </section>
 <section id="console-pane" class="level2">
 <h2 class="anchored" data-anchor-id="console-pane">Console Pane</h2>
-<div id="fig-packages" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-packages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href=""><img src="images/console.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></a></p>
-</figure>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-packages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: RStudio’s console, annotated.
-</figcaption>
+<p><img src="images/console.png" class="img-fluid figure-img" style="width:100.0%" alt="Annotated screenshot of RStudio's console pane outlined in a red dashed border. Callouts identify: 'Current Working Directory' pointing to the R 4.5.3 version indicator and tilde-slash path at the top; 'Clear Console' pointing to the small broom icon at the top right; 'Submitted Commands' pointing to the body of the pane, which shows previously executed R commands prefixed with the prompt symbol; 'Example Error Message' pointing to a highlighted error reading 'Error: unexpected input' from a line that tried to assign a value to an emoji; and 'Command Line Prompt' pointing to the active prompt at the bottom waiting for new input. Two error blocks are visible mid-pane, each with 'Show Traceback' and 'Rerun with Debug' links on the right."></p>
+<figcaption>RStudio’s console, annotated.</figcaption>
 </figure>
 </div>
 </section>
 <section id="environment-pane" class="level2">
 <h2 class="anchored" data-anchor-id="environment-pane">Environment Pane</h2>
-<div id="fig-packages" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-packages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href=""><img src="images/environment.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></a></p>
-</figure>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-packages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: RStudio’s environment pane, annotated.
-</figcaption>
+<p><img src="images/environment.png" class="img-fluid figure-img" style="width:100.0%" alt="Annotated screenshot of RStudio's environment pane. Callouts identify: 'See all objects currently available' pointing to the Environment tab; 'Check current memory usage' pointing to the memory indicator showing 44 MiB; 'Current project' pointing to the project selector showing 'Project: (None)' in the top-right; 'Clear all objects' pointing to the broom icon; and 'See what packages are loaded' pointing to the language and environment selector showing 'R' and 'Global Environment.' The pane lists one data object (exDataFrame, 3 obs. of 2 variables) and four values: COURSE equal to 'STAT 184'; exArray as an integer array with dimensions 1:2 by 1:2 by 1:2 containing 1 through 8; exVector1 as num [1:3] 1 3 5; and exVector2 as chr [1:3] 'apple' 'grape' 'peach'."></p>
+<figcaption>RStudio’s environment pane, annotated.</figcaption>
 </figure>
 </div>
 </section>
 <section id="output-pane---files-tab" class="level2">
 <h2 class="anchored" data-anchor-id="output-pane---files-tab">Output Pane - Files Tab</h2>
-<div id="fig-packages" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-packages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href=""><img src="images/output_files.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></a></p>
-</figure>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-packages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: RStudio’s output pane (files tab), annotated.
-</figcaption>
+<p><img src="images/output_files.png" class="img-fluid figure-img" style="width:80.0%" alt="Annotated screenshot of RStudio's output pane with the Files tab selected. A callout labeled 'File Path' points to the breadcrumb navigation showing Home, Documents, stat184-summer2026, weeks, week1. A second callout labeled 'List of files, folders, and directories' (outlined with a red dashed border) points to the main file listing, which shows a parent-directory link, a 'data' folder, five Quarto files (day1-intro.qmd, day2-r-basics.qmd, day3-functions-packages.qmd, day4-quarto.qmd, day5-quiz-pipe.qmd), an 'images' folder, and index.qmd, along with their sizes and last-modified dates. The toolbar at the top has buttons for New Folder, New File, Delete, Rename, and More."></p>
+<figcaption>RStudio’s output pane (files tab), annotated.</figcaption>
 </figure>
 </div>
 </section>
 <section id="output-pane---plots-tab" class="level2 scrollable">
 <h2 class="scrollable anchored" data-anchor-id="output-pane---plots-tab">Output Pane - Plots Tab</h2>
-<div id="fig-packages" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-packages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href=""><img src="images/output_plots.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></a></p>
+<p><img src="images/output_plots.png" class="img-fluid figure-img" style="width:80.0%" alt="Annotated screenshot of RStudio's output pane with the Plots tab selected, displaying a 2D filled density contour plot. Callouts identify: 'Plot navigation' pointing to the left and right arrow buttons for cycling through previous plots; 'Open current plot in larger window' pointing to the Zoom button; 'Save image or copy to clipboard' pointing to the Export button; 'Delete current plot' pointing to a small red X icon; and 'Clear all plots' pointing to the broom icon. The plot itself shows two adjacent dense regions in a magma color scale (deep black at low density, through purple and red to pale yellow at the peaks). The x-axis runs from about 7.5 to 17.5, the y-axis from 9 to 13, and a legend on the right labels the density 'level' from 0.01 (black) to 0.07 (pale yellow)."></p>
+<figcaption>RStudio’s output pane (plots tab), annotated, displaying a 2D density contour plot created with ggplot2.</figcaption>
 </figure>
 </div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-packages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: RStudio’s output pane (plots tab), annotated, displaying a 2D density contour plot created with <code>ggplot2</code>. Darker regions indicate areas with higher concentrations of observations, while lighter regions represent lower densities. The plot combines filled density polygons with contour boundaries to visualize the distribution of simulated data.
-</figcaption>
-</figure>
-</div>
+<p>Darker regions indicate higher concentrations of observations; lighter regions represent lower densities. The plot combines filled density polygons with contour boundaries to visualize the distribution of simulated data.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Show the R code.</summary>
@@ -698,33 +656,26 @@ Figure&nbsp;6: RStudio’s output pane (plots tab), annotated, displaying a 2D d
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Data</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( <span class="at">x=</span><span class="fu">rnorm</span>(<span class="dv">20000</span>, <span class="dv">12</span>, <span class="dv">2</span>), <span class="at">y=</span><span class="fu">rnorm</span>(<span class="dv">20000</span>, <span class="dv">10</span>, <span class="fl">0.5</span>) )</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( <span class="at">x=</span><span class="fu">rnorm</span>(<span class="dv">20000</span>, <span class="dv">15</span>, <span class="fl">1.5</span>), <span class="at">y=</span><span class="fu">rnorm</span>(<span class="dv">20000</span>, <span class="dv">11</span>, <span class="fl">0.5</span>) )</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fu">data.frame</span>( <span class="at">x=</span><span class="fu">rnorm</span>(<span class="dv">20000</span>, <span class="dv">10</span>, <span class="fl">1.1</span>), <span class="at">y=</span><span class="fu">rnorm</span>(<span class="dv">20000</span>, <span class="fl">11.5</span>, <span class="fl">0.7</span>) )</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">rbind</span>(a,b,c)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">20000</span>, <span class="dv">12</span>,   <span class="dv">2</span>),   <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">20000</span>, <span class="dv">10</span>,   <span class="fl">0.5</span>))</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">20000</span>, <span class="dv">15</span>,   <span class="fl">1.5</span>), <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">20000</span>, <span class="dv">11</span>,   <span class="fl">0.5</span>))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">20000</span>, <span class="dv">10</span>,   <span class="fl">1.1</span>), <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">20000</span>, <span class="fl">11.5</span>, <span class="fl">0.7</span>))</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">rbind</span>(a, b, c)</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Area + contour</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y) ) <span class="sc">+</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density_2d</span>(<span class="fu">aes</span>(<span class="at">fill =</span> ..level..), <span class="at">geom =</span> <span class="st">"polygon"</span>, <span class="at">colour=</span><span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_density_2d</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">after_stat</span>(level)),</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>                  <span class="at">geom =</span> <span class="st">"polygon"</span>, <span class="at">colour =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"magma"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
 <section id="output-pane---packages-tab" class="level2">
 <h2 class="anchored" data-anchor-id="output-pane---packages-tab">Output Pane - Packages Tab</h2>
-<div id="fig-packages" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-packages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href=""><img src="images/output_packages.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></a></p>
-</figure>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-packages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: RStudio’s output pane (packages tab).
-</figcaption>
+<p><img src="images/output_packages.png" class="img-fluid figure-img" style="width:80.0%" alt="Screenshot of RStudio's output pane with the Packages tab selected. The pane lists installed R packages from the User Library in a table with four columns: a checkbox indicating whether each package is loaded into the current session, the package name (shown in blue), a short description, the source URL (https://cran.rstudio.com), and the installed version number. Visible packages include amen ('Additive and Multiplicative Effects Models for Networks,' version 1.4.5), arrow ('Integration to Apache Arrow,' 23.0.1.2), assertthat ('Easy Pre and Post Assertions,' 0.2.1), backbone, backports, base64enc, bayesplot, bench, BH, bigD, and biglm. A toolbar at the top has Install and Update buttons and a search box."></p>
+<figcaption>RStudio’s output pane (packages tab).</figcaption>
 </figure>
 </div>
 <ul>
@@ -734,23 +685,15 @@ Figure&nbsp;7: RStudio’s output pane (packages tab).
 </section>
 <section id="output-pane---help-tab" class="level2">
 <h2 class="anchored" data-anchor-id="output-pane---help-tab">Output Pane - Help Tab</h2>
-<div id="fig-packages" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-packages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href=""><img src="images/output_help.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%"></a></p>
-</figure>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-packages-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8: RStudio’s output pane (help tab).
-</figcaption>
+<p><img src="images/output_help.png" class="img-fluid figure-img" style="width:75.0%" alt="Screenshot of RStudio's output pane with the Help tab selected. The search box in the top right contains the query 'geom_density.' The pane shows the help page for geom_density from the ggplot2 package, with the topic title 'Smoothed density estimates,' a navigation bar reading 'R: Smoothed density estimates' and 'Find in Topic,' a label 'R Documentation' on the right, and the start of the Description section: 'Computes and draws kernel density estimate, which is a smoothed version of the histogram. This is a useful alternative to the histogram for continuous data that comes from an underlying smooth distribution.' The beginning of the Usage section is visible below, showing the function signature 'geom_density(mapping = NULL,'."></p>
+<figcaption>RStudio’s output pane (help tab).</figcaption>
 </figure>
 </div>
 <ul>
 <li>The “Help” tab displays help documentation that has been included with the packages for functions, data sets, and other objects.</li>
-<li><strong>Help Shortcuts:</strong> ?barplot, help(barplot), or ??barplot (broad sweep). You can also place your cursor in the object name and press fn + F1 (or just F1 if your function keys are active).</li>
+<li><strong>Help Shortcuts:</strong> <code>?barplot</code>, <code>help(barplot)</code>, or <code>??barplot</code> (broad sweep). You can also place your cursor in the object name and press fn + F1 (or just F1 if your function keys are active).</li>
 </ul>
 </section>
 <section id="data-types" class="level2">
@@ -777,6 +720,65 @@ Figure&nbsp;8: RStudio’s output pane (help tab).
 <li>If all values have to be the same data type.</li>
 </ol></li>
 </ul>
+<div id="tbl-data-structures" class="quarto-float quarto-figure quarto-figure-center anchored" data-tbl-colwidths="[30,30,40]">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-data-structures-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Summary of R’s main base data structures by dimension and type-mixing.
+</figcaption>
+<div aria-describedby="tbl-data-structures-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 30%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Structure</th>
+<th>Dimensions</th>
+<th>Mixed types?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Vector</td>
+<td>1</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>List</td>
+<td>1</td>
+<td>Yes</td>
+</tr>
+<tr class="odd">
+<td>Matrix</td>
+<td>2</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>Data frame</td>
+<td>2</td>
+<td>Yes (across columns)</td>
+</tr>
+<tr class="odd">
+<td>Array</td>
+<td>n (<span class="math inline">\(\geq\)</span> 2)</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="data-structures-examples" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="data-structures-examples">Data Structures Examples</h2>
+<div id="tbl-data-structures-ex" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-data-structures-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Examples of each data structure showing its printed form in the R console.
+</figcaption>
+<div aria-describedby="tbl-data-structures-ex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 22%">
@@ -831,61 +833,169 @@ Figure&nbsp;8: RStudio’s output pane (help tab).
      [,1] [,2]
 [1,]    2    6
 [2,]    4    8</code></pre></td>
-<td><em>N/A</em></td>
+<td><em>Not applicable</em></td>
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
+</section>
+<section id="data-structures-visualization" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="data-structures-visualization">Data Structures Visualization</h2>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Show the R code.</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Color palette</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>bg_color    <span class="ot">&lt;-</span> <span class="st">"#FFFFFF"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>light_blue  <span class="ot">&lt;-</span> <span class="st">"#DDEAF5"</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>mid_blue    <span class="ot">&lt;-</span> <span class="st">"#9BB8DC"</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>edge_color  <span class="ot">&lt;-</span> <span class="st">"#001E44"</span>   <span class="co"># Penn State Navy</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw a single unit cube at grid position (gx, gy, gz)</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Uses simple axonometric projection: x' = gx + 0.4*gz, y' = gy + 0.4*gz</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>draw_cube <span class="ot">&lt;-</span> <span class="cf">function</span>(gx, gy, gz, <span class="at">fill =</span> light_blue) {</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  s  <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  dx <span class="ot">&lt;-</span> <span class="fl">0.4</span> <span class="sc">*</span> s</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  dy <span class="ot">&lt;-</span> <span class="fl">0.4</span> <span class="sc">*</span> s</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  px <span class="ot">&lt;-</span> gx <span class="sc">+</span> dx <span class="sc">*</span> gz</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  py <span class="ot">&lt;-</span> gy <span class="sc">+</span> dy <span class="sc">*</span> gz</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Front face</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">polygon</span>(<span class="fu">c</span>(px, px <span class="sc">+</span> s, px <span class="sc">+</span> s, px),</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>          <span class="fu">c</span>(py, py,     py <span class="sc">+</span> s, py <span class="sc">+</span> s),</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>          <span class="at">col =</span> fill, <span class="at">border =</span> edge_color, <span class="at">lwd =</span> <span class="fl">1.2</span>)</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Top face</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">polygon</span>(<span class="fu">c</span>(px,        px <span class="sc">+</span> s,        px <span class="sc">+</span> s <span class="sc">+</span> dx, px <span class="sc">+</span> dx),</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>          <span class="fu">c</span>(py <span class="sc">+</span> s,    py <span class="sc">+</span> s,        py <span class="sc">+</span> s <span class="sc">+</span> dy, py <span class="sc">+</span> s <span class="sc">+</span> dy),</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>          <span class="at">col =</span> fill, <span class="at">border =</span> edge_color, <span class="at">lwd =</span> <span class="fl">1.2</span>)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Right face (slightly darker for shading)</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  shade <span class="ot">&lt;-</span> <span class="fu">adjustcolor</span>(fill, <span class="at">red.f =</span> <span class="fl">0.92</span>, <span class="at">green.f =</span> <span class="fl">0.92</span>, <span class="at">blue.f =</span> <span class="fl">0.95</span>)</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">polygon</span>(<span class="fu">c</span>(px <span class="sc">+</span> s,    px <span class="sc">+</span> s <span class="sc">+</span> dx,   px <span class="sc">+</span> s <span class="sc">+</span> dx, px <span class="sc">+</span> s),</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>          <span class="fu">c</span>(py,        py <span class="sc">+</span> dy,       py <span class="sc">+</span> s <span class="sc">+</span> dy, py <span class="sc">+</span> s),</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>          <span class="at">col =</span> shade, <span class="at">border =</span> edge_color, <span class="at">lwd =</span> <span class="fl">1.2</span>)</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternating fill in 3D (checkerboard)</span></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>checker_fill <span class="ot">&lt;-</span> <span class="cf">function</span>(i, j, <span class="at">k =</span> <span class="dv">0</span>) {</span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> ((i <span class="sc">+</span> j <span class="sc">+</span> k) <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>) light_blue <span class="cf">else</span> mid_blue</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>), <span class="at">bg =</span> bg_color)</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.new</span>()</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.window</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">18</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">6</span>), <span class="at">asp =</span> <span class="dv">1</span>)</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Vector: 1 x 3 row</span></span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>ox <span class="ot">&lt;-</span> <span class="dv">1</span>; oy <span class="ot">&lt;-</span> <span class="fl">2.2</span></span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">2</span>) {</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">draw_cube</span>(ox <span class="sc">+</span> i, oy, <span class="dv">0</span>, <span class="at">fill =</span> <span class="fu">checker_fill</span>(i, <span class="dv">0</span>))</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(ox <span class="sc">+</span> <span class="fl">1.7</span>, oy <span class="sc">-</span> <span class="dv">1</span>, <span class="st">"Vector"</span>,</span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex =</span> <span class="fl">1.4</span>, <span class="at">col =</span> edge_color, <span class="at">font =</span> <span class="dv">2</span>)</span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Matrix: 3 x 3 grid</span></span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>ox <span class="ot">&lt;-</span> <span class="dv">7</span>; oy <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">2</span>) {</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">2</span>) {</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">draw_cube</span>(ox <span class="sc">+</span> i, oy <span class="sc">+</span> j, <span class="dv">0</span>, <span class="at">fill =</span> <span class="fu">checker_fill</span>(i, j))</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(ox <span class="sc">+</span> <span class="fl">1.7</span>, oy <span class="sc">-</span> <span class="dv">1</span>, <span class="st">"Matrix"</span>,</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex =</span> <span class="fl">1.4</span>, <span class="at">col =</span> edge_color, <span class="at">font =</span> <span class="dv">2</span>)</span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Array: 3 x 3 x 3 cube — draw back-to-front, bottom-up, left-right</span></span>
+<span id="cb7-60"><a href="#cb7-60" aria-hidden="true" tabindex="-1"></a>ox <span class="ot">&lt;-</span> <span class="dv">13</span>; oy <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb7-61"><a href="#cb7-61" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">0</span>) {</span>
+<span id="cb7-62"><a href="#cb7-62" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">2</span>) {</span>
+<span id="cb7-63"><a href="#cb7-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">2</span>) {</span>
+<span id="cb7-64"><a href="#cb7-64" aria-hidden="true" tabindex="-1"></a>      <span class="fu">draw_cube</span>(ox <span class="sc">+</span> i, oy <span class="sc">+</span> j, k, <span class="at">fill =</span> <span class="fu">checker_fill</span>(i, j, k))</span>
+<span id="cb7-65"><a href="#cb7-65" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb7-66"><a href="#cb7-66" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-67"><a href="#cb7-67" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-68"><a href="#cb7-68" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(ox <span class="sc">+</span> <span class="fl">2.3</span>, oy <span class="sc">-</span> <span class="dv">1</span>, <span class="st">"Array"</span>,</span>
+<span id="cb7-69"><a href="#cb7-69" aria-hidden="true" tabindex="-1"></a>     <span class="at">cex =</span> <span class="fl">1.4</span>, <span class="at">col =</span> edge_color, <span class="at">font =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-data-structures" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Three isometric illustrations side by side labeled Vector, Matrix, and Array, showing how R's data structures grow in dimension. The vector is a single row of three cubes. The matrix is a 3-by-3 grid of cubes. The array is a 3-by-3-by-3 stack of cubes. Cubes alternate between light and slightly darker blue in a checkerboard pattern.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-data-structures-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="day2-r-basics_files/figure-revealjs/fig-data-structures-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%" alt="Three isometric illustrations side by side labeled Vector, Matrix, and Array, showing how R's data structures grow in dimension. The vector is a single row of three cubes. The matrix is a 3-by-3 grid of cubes. The array is a 3-by-3-by-3 stack of cubes. Cubes alternate between light and slightly darker blue in a checkerboard pattern.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-data-structures-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: R’s data structures as cubes: a vector (1D), matrix (2D), and array (3D).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="r-as-a-calculator" class="level2">
 <h2 class="anchored" data-anchor-id="r-as-a-calculator">R as a Calculator</h2>
 <p>You can use R as a calculator:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fl">184.101</span> <span class="sc">*</span> <span class="fl">9.35</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fl">184.101</span> <span class="sc">*</span> <span class="fl">9.35</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1721.344</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">8</span> <span class="sc">+</span> <span class="dv">4</span>) <span class="sc">/</span> <span class="dv">9</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">8</span> <span class="sc">+</span> <span class="dv">4</span>) <span class="sc">/</span> <span class="dv">9</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.333333</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">8</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">8</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.828427</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cos</span>(<span class="dv">2</span><span class="sc">*</span>pi)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cos</span>(<span class="dv">2</span> <span class="sc">*</span> pi)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1</code></pre>
 </div>
 </div>
 </section>
+<section id="your-turn-to-use-the-calculator" class="level2">
+<h2 class="anchored" data-anchor-id="your-turn-to-use-the-calculator">Your Turn to Use the Calculator</h2>
+<p>Your turn. Open the console and try each line below; don’t just read them, <strong>type them</strong>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">16</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">%%</span> <span class="dv">3</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">log</span>(<span class="dv">10</span><span class="sc">^</span><span class="dv">2</span>, <span class="at">base =</span> <span class="dv">10</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
 <section id="vector-operations" class="level2">
 <h2 class="anchored" data-anchor-id="vector-operations">Vector Operations</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">8</span>, <span class="dv">4</span>) <span class="sc">+</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">8</span>, <span class="dv">4</span>) <span class="sc">+</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 10 11  9</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">8</span>, <span class="dv">4</span>) <span class="sc">*</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">8</span>, <span class="dv">4</span>) <span class="sc">*</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">3</span>, <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  9 24 20</code></pre>
 </div>
 </div>
 <ul>
-<li>The <code>c</code> functions <strong>concatenates</strong> multiple individual values into one single vector.</li>
+<li>The <code>c()</code> function <strong>concatenates</strong> multiple individual values into one single vector.</li>
 </ul>
 </section>
 <section id="built-in-functions-and-constants" class="level2">
 <h2 class="anchored" data-anchor-id="built-in-functions-and-constants">Built-in Functions and Constants</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.718282</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(pi)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(pi)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.772454</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>(<span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.3989423</code></pre>
 </div>
@@ -899,18 +1009,16 @@ Figure&nbsp;8: RStudio’s output pane (help tab).
 </section>
 <section id="creating-objects" class="level2">
 <h2 class="anchored" data-anchor-id="creating-objects">Creating objects</h2>
-<p>You can create new objects with the <strong>assignment operator</strong>, <code>&lt;-</code></p>
+<p>You can create new objects with the <strong>assignment operator</strong>, <code>&lt;-</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">*</span> <span class="dv">5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">*</span> <span class="dv">5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The above is an example of an <strong>assignment statement</strong>. In general, assignment statements have the form:</p>
-<div style="text-align: center;">
-<code>object_name &lt;- value</code>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>object_name <span class="ot">&lt;-</span> value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In English, this is “object_name <strong>gets</strong> value.”</p>
 <ul>
 <li>Even though typing <code>&lt;-</code> for the many assignments you will make can be tedious, <strong>don’t use <code>=</code></strong>; it will work, but will cause confusion later.</li>
-<li>You can use the RStudio keyboard shortcut <code>Alt</code> + <code>-</code>, (or <code>Option</code> + <code>-</code> on a Mac).</li>
+<li>You can use the RStudio keyboard shortcut <code>Alt</code> + <code>-</code> (or <code>Option</code> + <code>-</code> on a Mac).</li>
 <li>Object names must start with a letter, and can only contain letters, numbers, <code>_</code>, and <code>.</code></li>
 </ul>
 </section>
@@ -943,35 +1051,21 @@ Figure&nbsp;8: RStudio’s output pane (help tab).
 </section>
 <section id="wrap-up-looking-ahead" class="level2">
 <h2 class="anchored" data-anchor-id="wrap-up-looking-ahead">Wrap-up &amp; looking ahead</h2>
-<p><strong>Tomorrow:</strong> Functions, packages, and the tidyverse.</p>
-<p><strong>Due Wednesday May 20 (tomorrow) before class:</strong></p>
+<p><strong>Tomorrow:</strong> Functions, packages, the tidyverse, and objects.</p>
+<div class="columns">
+<div class="column" style="width:55%;">
+<p><strong>Upcoming Deadlines</strong></p>
 <ul>
-<li>Read <em>Data Computing</em> §3.1–3.5 on Perusall (<a href="https://psu.instructure.com/courses/2487468/assignments/18298036">Click here</a>).</li>
+<li><strong>Wed 5/20, before class</strong> — <a href="https://psu.instructure.com/courses/2487468/assignments/18307709">DC §3.1–3.5</a></li>
+<li><strong>Wed 5/20, 11:59 p.m.</strong> — <a href="https://psu.instructure.com/courses/2487468/assignments/18308171">HW 0: Setup</a></li>
+<li><strong>Fri 5/22, in class</strong> — Quiz 1</li>
+<li><strong>Fri 5/22, 11:59 p.m.</strong> — <a href="https://psu.instructure.com/courses/2487468/assignments/18311694">HW 1: Basic R &amp; Plots</a></li>
 </ul>
-<p><strong>Due 11:59 p.m. Wednesday May 20 (tomorrow):</strong></p>
-<ul>
-<li>HW 0: Setup confirmation (<a href="https://psu.instructure.com/courses/2487468/assignments/18308171">Click here</a>).</li>
-</ul>
-<p><strong>Due 11:59 p.m. Friday May 22:</strong></p>
-<ul>
-<li>HW 1: (<a href="">Click here</a>).</li>
-</ul>
-<p><strong>Quiz 1 in class on Friday May 22</strong></p>
-<p><strong>Reference links:</strong></p>
-<ul>
-<li><a href="../../syllabus/syllabus.html">Syllabus</a> · <a href="../../syllabus/academic-integrity-and-ai-policy.html">AI policy</a> · <a href="../../schedule.html">Schedule</a> · <a href="https://dtkaplan.github.io/DataComputingEbook/"><em>Data Computing</em></a></li>
-</ul>
-<div class="callout callout-style-default callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Reach out
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Stuck on setup? Come to office hours or email me (<a href="mailto:cgc5478@psu.edu">cgc5478@psu.edu</a>) or Xinyue (<a href="mailto:xpw5228@psu.edu">xpw5228@psu.edu</a>) before Wednesday — don’t wait until class.</p>
+</div><div class="column" style="width:45%;">
+<p><strong>Reach out</strong></p>
+<p>Stuck? Office hours, or email me (<a href="mailto:cgc5478@psu.edu">cgc5478@psu.edu</a>) or Xinyue (<a href="mailto:xpw5228@psu.edu">xpw5228@psu.edu</a>).</p>
+<p><strong>Reference</strong></p>
+<p><a href="../../syllabus/syllabus.html">Syllabus</a> · <a href="../../syllabus/academic-integrity-and-ai-policy.html">AI policy</a> · <a href="../../schedule.html">Schedule</a> · <a href="https://dtkaplan.github.io/DataComputingEbook/"><em>Data Computing</em></a></p>
 </div>
 </div>
 
@@ -979,6 +1073,44 @@ Figure&nbsp;8: RStudio’s output pane (help tab).
 </section>
 
 </main> <!-- /main -->
+
+<script>
+  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+  // slide changes (different for each slide format).
+  (function () {
+    // dispatch for htmlwidgets
+    function fireSlideEnter() {
+      const event = window.document.createEvent("Event");
+      event.initEvent("slideenter", true, true);
+      window.document.dispatchEvent(event);
+    }
+
+    function fireSlideChanged(previousSlide, currentSlide) {
+      fireSlideEnter();
+
+      // dispatch for shiny
+      if (window.jQuery) {
+        if (previousSlide) {
+          window.jQuery(previousSlide).trigger("hidden");
+        }
+        if (currentSlide) {
+          window.jQuery(currentSlide).trigger("shown");
+        }
+      }
+    }
+
+    // hookup for slidy
+    if (window.w3c_slidy) {
+      window.w3c_slidy.add_observer(function (slide_num) {
+        // slide_num starts at position 1
+        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+      });
+    }
+
+  })();
+</script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
