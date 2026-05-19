@@ -1,19 +1,19 @@
 # =============================================================================
-# Day 2 — R, RStudio, and the console; vectors; types
+# Day 2 - R, RStudio, and the console; vectors; types
 # Tuesday, May 19, 2026
 #
 # This is a follow-along script. Type each line in the console as we get
-# to it on the slides — don't just read it!
+# to it on the slides - don't just read it!
 #
 # A few RStudio tips before we start:
-#   * To run the current line, place your cursor on it and press
+#   - To run the current line, place your cursor on it and press
 #       Ctrl + Enter   (Windows / Linux)
 #       Cmd  + Enter   (Mac)
 #     The result will show up in the Console pane below.
-#   * The sections marked with #### below are navigable. Look at the
+#   - The sections marked with #### below are navigable. Look at the
 #     bottom-left of the editor for a jump menu, or press Ctrl/Cmd + Shift + O
 #     to open the document outline on the right.
-#   * If you see a "+" instead of ">" in your console, R thinks you have
+#   - If you see a "+" instead of ">" in your console, R thinks you have
 #     an unfinished command. Press Esc to cancel and start over.
 # =============================================================================
 
@@ -31,7 +31,7 @@ cos(2 * pi)          # pi is built in; cos() works in radians
 
 
 # 2. YOUR TURN: type these yourself -------------------------------------- ####
-# Don't just read these — type each line and hit Enter.
+# Don't just read these - type each line and hit Enter.
 # Try to guess each answer BEFORE you run it.
 # If you get an error, that's normal. Flag me down or ask your neighbor.
 
@@ -39,21 +39,21 @@ cos(2 * pi)          # pi is built in; cos() works in radians
 
 sqrt(16)
 
-c(1, 2, 3) * 2       # what does multiplying a vector by 2 do?
+c(1, 2, 3) * 2              # what does multiplying a vector by 2 do?
 
-10 %% 3              # %% is the "modulo" operator: remainder after division
+10 %% 3                     # %% is the "modulo" operator: remainder after division
 
 x <- log(10^2, base = 10)   # log base 10 of 100
-x                            # type just the name to see the value
+x                           # type just the name to see the value
 
 
 # 3. Vector operations --------------------------------------------------- ####
 # c() concatenates values into a single vector.
 # Operations are applied element-by-element.
 
-c(1, 8, 4) + c(9, 3, 5)     # 1+9, 8+3, 4+5  ->  10 11  9
+c(1, 8, 4) + c(9, 3, 5)     # 1+9, 8+3, 4+5  ->  10, 11,  9
 
-c(1, 8, 4) * c(9, 3, 5)     # 1*9, 8*3, 4*5  ->   9 24 20
+c(1, 8, 4) * c(9, 3, 5)     # 1*9, 8*3, 4*5  ->   9, 24, 20
 
 
 # 4. Built-in functions and constants ------------------------------------ ####
@@ -63,7 +63,7 @@ exp(1)        # e^1, Euler's number (~ 2.718)
 
 sqrt(pi)      # pi is built in (the constant ~ 3.14159...)
 
-dnorm(0)      # standard normal density at x = 0 (~ 0.399)
+dnorm(0)      # standard normal--N(mean=0, var=1)--density at x = 0 (~ 0.399)
 
 
 # 5. Creating objects ---------------------------------------------------- ####
@@ -104,7 +104,7 @@ y <- 10
 z <- y + 5
 z
 
-# Check your Environment pane (top-right) — you should see
+# Check your Environment pane (top-right) - you should see
 # every object you've created listed there.
 
 
