@@ -83,3 +83,6 @@ format:
     code-overflow: wrap
 
 editor: source
+
+execute:
+  freeze: auto

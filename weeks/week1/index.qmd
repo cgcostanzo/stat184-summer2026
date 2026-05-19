@@ -7,13 +7,13 @@ This week we get everyone set up with R, RStudio, and Quarto, and cover the abso
 
 ## Daily plan
 
-| Date | Topic | Files |
-|---|---|---|
-| Mon May 18 | Course intro & what is R? | [View Slides](day1-intro-slides.html) · [View Page](day1-intro-page.html) · [View PDF](day1-intro.pdf) |
-| Tue May 19 | R, RStudio, console · vectors · data types | [View Slides](day2-r-basics-slides.html) · [View Page](day2-r-basics-page.html) · [View PDF](day2-r-basics.pdf) |
-| Wed May 20 | Functions, packages · tidyverse | [View Slides](day3-functions-packages-slides.html) · [View Page](day3-functions-packages-page.html) · [View PDF](day3-functions-packages.pdf) |
-| Thu May 21 | Quarto basics | [View Slides](day4-quarto-slides.html) · [View Page](day4-quarto-page.html) · [View PDF](day4-quarto.pdf) |
-| Fri May 22 | **Quiz 1** · pipe and chaining syntax | [View Slides](day5-quiz-pipe-slides.html) · [View Page](day5-quiz-pipe-page.html) · [View PDF](day5-quiz-pipe.pdf) |
+| Date | Topic | Slides & Notes | Code & Data |
+|---|---|---|---|
+| Mon May 18 | Course intro & what is R? | [Slides](day1-intro-slides.html) · [Page](day1-intro-page.html) · [PDF](day1-intro.pdf) | [day1-demo.R](day1-demo.R) · [currentvotestats.xlsx](data/currentvotestats.xlsx) |
+| Tue May 19 | R, RStudio, console · vectors · data types | [Slides](day2-r-basics-slides.html) · [Page](day2-r-basics-page.html) · [PDF](day2-r-basics.pdf) | [day2-follow-along.R](day2-follow-along.R) |
+| Wed May 20 | Functions, packages · tidyverse | [Slides](day3-functions-packages-slides.html) · [Page](day3-functions-packages-page.html) · [PDF](day3-functions-packages.pdf) | *coming soon* |
+| Thu May 21 | Quarto basics | [Slides](day4-quarto-slides.html) · [Page](day4-quarto-page.html) · [PDF](day4-quarto.pdf) | *coming soon* |
+| Fri May 22 | **Quiz 1** · pipe and chaining syntax | [Slides](day5-quiz-pipe-slides.html) · [Page](day5-quiz-pipe-page.html) · [PDF](day5-quiz-pipe.pdf) | *coming soon* |
 
 ## Due this week
 

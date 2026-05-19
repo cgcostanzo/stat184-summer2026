@@ -37,14 +37,21 @@ editor: source
 
 **Next week:** Data frames, intro to data graphics
 
-**Due Tuesday May 26 before class:**
+:::: {.columns}
+::: {.column width="55%"}
+**Upcoming Deadlines**
 
-- Read *Data Computing* §5.1–5.6 on Perusall ([Click here]()).
+- **Fri 5/22, 11:59 p.m.** — [HW 1: Basic R & Plots](https://psu.instructure.com/courses/2487468/assignments/18311694)
+- **Tues 5/26, before class** — [DC §5.1–5.6]()
+:::
 
-**Due 11:59 p.m. Friday May 22 (tonight):**
+::: {.column width="45%"}
+**Reach out**
 
-- HW 1: Basic R, simple plots ([Click here]()).
+Stuck? Office hours, or email me ([cgc5478@psu.edu](mailto:cgc5478@psu.edu)) or Xinyue ([xpw5228@psu.edu](mailto:xpw5228@psu.edu)).
 
-**Reference links:**
+**Reference**
 
-- [Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*Data Computing*](https://dtkaplan.github.io/DataComputingEbook/)
+[Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*Data Computing*](https://dtkaplan.github.io/DataComputingEbook/)
+:::
+::::

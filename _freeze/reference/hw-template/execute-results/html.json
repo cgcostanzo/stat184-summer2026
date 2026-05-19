@@ -1,0 +1,17 @@
+{
+  "hash": "dd7e1af500a480deeb52fe87c3bfb6cb",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"STAT 184 — Homework [N]\"\nauthor: \"Your Name Here\"\ndate: today\nformat:\n  pdf:\n    toc: false\n    code-line-numbers: true\n  html:\n    toc: true\n    code-fold: false\neditor: source\n---\n\n# AI Disclosure\n\n*Check off all boxes that apply to your usage and provide a brief description of how the tool was utilized.*\n\n- [ ] No AI used\n- [ ] Syntax / Debugging (e.g., finding a missing comma, fixing an error code)\n- [ ] Conceptual explanation (e.g., asking how a `left_join` works)\n- [ ] Code Generation (e.g., asking AI to write a function from scratch)\n\n*Briefly describe your use (1-2 sentences):* [Type your explanation here]\n\n---\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\n```\n:::\n\n\n# Question 1\n\n## Part (a)\n\nWrite your prose answer here.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# Your code here\n```\n:::\n\n\n## Part (b)\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# Your code here\n```\n:::\n\n\n# Question 2\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# Your code here\n```\n:::\n\n\n# Code Appendix\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\n# Your code here\n# Your code here\n# Your code here\n```\n:::\n\n",
+    "supporting": [
+      "hw-template_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

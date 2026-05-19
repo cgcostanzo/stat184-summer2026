@@ -36,16 +36,23 @@ editor: source
 
 **Tomorrow:** Quarto basics, writing reproducible documents.
 
-**Due Thursday May 21 (tomorrow) before class:**
+:::: {.columns}
+::: {.column width="55%"}
+**Upcoming Deadlines**
 
-- Read *Data Computing* §4.1–4.7 on Perusall ([Click here](https://psu.instructure.com/courses/2487468/assignments/18307710)).
+- **Wed 5/20, 11:59 p.m.** — [HW 0: Setup](https://psu.instructure.com/courses/2487468/assignments/18308171)
+- **Thurs 5/21, before class** — [DC §4.1–4.7](https://psu.instructure.com/courses/2487468/assignments/18307710)
+- **Fri 5/22, in class** — Quiz 1
+- **Fri 5/22, 11:59 p.m.** — [HW 1: Basic R & Plots](https://psu.instructure.com/courses/2487468/assignments/18311694)
+:::
 
-**Due 11:59 p.m. Friday May 22:**
+::: {.column width="45%"}
+**Reach out**
 
-- HW 1: Basic R, simple plots ([Click here]()).
+Stuck? Office hours, or email me ([cgc5478@psu.edu](mailto:cgc5478@psu.edu)) or Xinyue ([xpw5228@psu.edu](mailto:xpw5228@psu.edu)).
 
-**Quiz 1 in class on Friday May 22**
+**Reference**
 
-**Reference links:**
-
-- [Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*Data Computing*](https://dtkaplan.github.io/DataComputingEbook/)
+[Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*Data Computing*](https://dtkaplan.github.io/DataComputingEbook/)
+:::
+::::

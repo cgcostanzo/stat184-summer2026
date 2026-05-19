@@ -1,0 +1,15 @@
+{
+  "hash": "65d54e8bf312be025853ef4f9f83e5fe",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"STAT 184 — Quiz [N]\"\nsubtitle: \"[Date]\"\nformat:\n  pdf:\n    geometry:\n      - margin=1in\n    include-in-header:\n      - text: |\n          \\usepackage{enumitem}\neditor: source\n---\n\n::: {.callout-note appearance=\"simple\"}\n**Name (printed):** \\hspace{4in}\n\n**This quiz is closed book. No phones, laptops, AI tools, or notes.** You have 25 minutes.\n\nShow your work. Partial credit is available.\n:::\n\n\\vspace{0.5em}\n\n# Question 1 (X pts)\n\nTODO: question text.\n\n\\vspace{1.5in}\n\n# Question 2 (X pts)\n\nTODO: question text.\n\n\\vspace{1.5in}\n\n# Question 3 (X pts)\n\nPredict the output of the following code (or explain why it errors):\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# TODO: code snippet\n```\n:::\n\n\n\\vspace{1.5in}\n\n# Question 4 (X pts)\n\nTODO: write-some-code question. Leave space.\n\n\\vspace{2in}\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": null,
+    "postProcess": false
+  }
+}

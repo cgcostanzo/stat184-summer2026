@@ -1,17 +1,21 @@
 ---
 title: "Day 1 — Course intro & what is R?"
 subtitle: "Monday, May 18, 2026"
+lang: en
 format:
   revealjs:
     slide-number: true
     embed-resources: true
     smaller: true
+    highlight-style: a11y
     output-file: "day1-intro-slides.html"
   html:
     toc: true
+    highlight-style: a11y
+    axe: true
     output-file: "day1-intro-page.html"
   pdf:
-    output-file: "day1-intro.pdf"
+    fig-pos: "H"
 editor: source
 ---
 
@@ -26,7 +30,7 @@ library(tidyverse)
 
 **Instructor**: Charles Costanzo
 
-- Statistics Ph.D. student 
+- Statistics Ph.D. student
 - Hometown: Solon, OH
 - Some of my favorite things: cats, coffee, R (unironically)
 
@@ -41,8 +45,11 @@ library(tidyverse)
 #| fig-align: center
 #| fig-width: 8
 #| fig-height: 8
+#| out-width: 70%
+#| fig-alt: "Map of Ohio with all counties outlined in light gray. Cuyahoga County in the northeast is shaded light blue, and within it the city of Solon is shaded dark blue with a labeled marker. The map highlights Solon's location in northeastern Ohio."
 
-# Install these first if you don't have them: install.packages(c("sf", "tigris"))
+# Install these first if you don't have them:
+# install.packages(c("sf", "tigris"))
 library(ggplot2)
 library(sf)
 library(tigris)
@@ -60,40 +67,53 @@ solon_city <- ohio_places %>% filter(NAME == "Solon")
 
 # Build the map
 ggplot() +
-  # Counties
-  geom_sf(data = ohio_counties, fill = "#f8f9fa", color = "grey", linewidth = 0.3) +
-  # Cuyahoga
-  geom_sf(data = cuyahoga_county, fill = "#D6EAF8", color = "#2980B9", linewidth = 0.5) +
-  # Solon
-  geom_sf(data = solon_city, fill = "dodgerblue", color = "darkblue", linewidth = 0.5) +
-  
-  # NEW: Add the text label
-  geom_sf_text(data = solon_city, aes(label = NAME), 
-               size = 5, 
-               fontface = "bold", 
-               color = "dodgerblue",
-               nudge_y = -0.05,  # Pushes the label North
-               nudge_x = 0.25) + # Pushes the label East
-  
+  geom_sf(data = ohio_counties,
+          fill = "#f8f9fa", color = "grey", linewidth = 0.3) +
+  geom_sf(data = cuyahoga_county,
+          fill = "#D6EAF8", color = "#2980B9", linewidth = 0.5) +
+  geom_sf(data = solon_city,
+          fill = "dodgerblue", color = "darkblue", linewidth = 0.5) +
+  geom_sf_text(data = solon_city, aes(label = NAME),
+               size = 5, fontface = "bold", color = "dodgerblue",
+               nudge_y = -0.05, nudge_x = 0.25) +
   theme_void()
 ```
 
 ## Meet My Cats!
 
+::: {.content-visible unless-format="pdf"}
 ::: {layout-ncol=2}
-![](images/babuh_nice.jpg)
+![Babuh](images/babuh_nice.jpg){fig-alt="A fluffy black cat named Babuh sitting calmly and looking at the camera."}
 
-![](images/tartar_nice.jpg)
+![Tartarus](images/tartar_nice.jpg){fig-alt="A brown tabby cat named Tartarus lounging contentedly."}
+:::
+:::
+
+::: {.content-visible when-format="pdf"}
+![](images/babuh_nice.jpg){width=45% fig-alt="A fluffy black cat named Babuh sitting calmly and looking at the camera."}
+![](images/tartar_nice.jpg){width=45% fig-alt="A brown tabby cat named Tartarus lounging contentedly."}
+
+*Babuh (left) and Tartarus (right).*
 :::
 
 ## More Realistic Cat Photos...
 
+::: {.content-visible unless-format="pdf"}
 ::: {layout-ncol=3}
-![](images/babuh_bath1.jpg){.fragment}
+![Babuh in the bathtub looking soaked and indignant.](images/babuh_bath1.jpg){.fragment fig-alt="Babuh the gray cat in a bathtub, fur wet and flattened, looking distinctly unhappy."}
 
-![](images/babuh_bath2.jpg){.fragment}
+![Babuh mid-bath, fur fully soaked.](images/babuh_bath2.jpg){.fragment fig-alt="Babuh the gray cat being lathered with shampoo during a bath, looking miserable."}
 
-![](images/babuh_bath3.jpg){.fragment}
+![Babuh wrapped in a towel after the bath.](images/babuh_bath3.jpg){.fragment fig-alt="Babuh the gray cat wrapped in a towel after the bath, fur damp and disheveled."}
+:::
+:::
+
+::: {.content-visible when-format="pdf"}
+![](images/babuh_bath1.jpg){width=30% fig-alt="Babuh the gray cat in a bathtub, fur wet and flattened, looking distinctly unhappy."}
+![](images/babuh_bath2.jpg){width=30% fig-alt="Babuh the gray cat being lathered with shampoo during a bath, looking miserable."}
+![](images/babuh_bath3.jpg){width=30% fig-alt="Babuh the gray cat wrapped in a towel after the bath, fur damp and disheveled."}
+
+*Babuh: soaked and indignant, mid-bath, then wrapped in a towel.*
 :::
 
 ## Countries I've Been To
@@ -107,24 +127,21 @@ ggplot() +
 #| fig-align: center
 #| fig-width: 10
 #| fig-height: 5
+#| out-width: 90%
+#| fig-alt: "World map with countries the instructor has visited shaded in coral orange and other countries in light gray. Visited countries are Canada, USA, Argentina, Uruguay, Switzerland, Rwanda, Spain, France, and Turkey, spanning North America, South America, Europe, and East Africa."
 
-# Load required packages 
 library(ggplot2)
 library(maps)
 library(dplyr)
 
-# Get world map data
 world_map <- map_data("world")
 
-# Define countries
-visited_countries <- c("Canada", "USA", "Argentina", "Uruguay", 
+visited_countries <- c("Canada", "USA", "Argentina", "Uruguay",
                        "Switzerland", "Rwanda", "Spain", "France", "Turkey")
 
-# Create a new column to categorize visited vs unvisited
 world_map <- world_map %>%
   mutate(visited = ifelse(region %in% visited_countries, "Visited", "Not Visited"))
 
-# Plot the map
 ggplot(world_map, aes(x = long, y = lat, group = group, fill = visited)) +
   geom_polygon(color = "white", linewidth = 0.2) +
   scale_fill_manual(values = c("Not Visited" = "#e0e0e0", "Visited" = "#FF7F50")) +
@@ -143,50 +160,45 @@ ggplot(world_map, aes(x = long, y = lat, group = group, fill = visited)) +
 #| fig-align: center
 #| fig-width: 10
 #| fig-height: 6
+#| out-width: 90%
+#| fig-alt: "Map of the continental United States with three categories. States lived in (Ohio, Pennsylvania, Texas) are shaded dark navy blue. States visited (many states across the West, Midwest, South, and Northeast plus DC) are shaded medium blue. Remaining states are light gray. Legend at the bottom labels Lived, Visited, and Not Visited."
 
-# Load required packages 
-# Note: You may need to run install.packages("mapproj") in your console first
+# Note: install.packages("mapproj") if needed
 library(ggplot2)
 library(maps)
 library(dplyr)
 library(mapproj)
 
-# Load US state map data
 us_map <- map_data("state")
 
-# Define states 
 lived_in <- tolower(c("Ohio", "Pennsylvania", "Texas"))
 
-# Note: Swapped "Washington DC" to "District of Columbia" to match map data
-visited <- tolower(c("Washington", "Oregon", "California", "Nevada", "Idaho", 
-                     "Montana", "Arizona", "New Mexico", "Colorado", "Wyoming", 
+# Note: "District of Columbia" matches the map data; "Washington DC" wouldn't
+visited <- tolower(c("Washington", "Oregon", "California", "Nevada", "Idaho",
+                     "Montana", "Arizona", "New Mexico", "Colorado", "Wyoming",
                      "North Dakota", "South Dakota", "Kansas", "Iowa",
-                     "Nebraska", "Minnesota", "Wisconsin", "Michigan", "Indiana", 
-                     "Illinois", "Kentucky", "Tennessee", "Louisiana", "Florida", 
-                     "Georgia", "North Carolina", "South Carolina", "Virginia", 
-                     "District of Columbia", "Maryland", "Delaware", "New Jersey", 
+                     "Nebraska", "Minnesota", "Wisconsin", "Michigan", "Indiana",
+                     "Illinois", "Kentucky", "Tennessee", "Louisiana", "Florida",
+                     "Georgia", "North Carolina", "South Carolina", "Virginia",
+                     "District of Columbia", "Maryland", "Delaware", "New Jersey",
                      "New York", "Missouri", "Utah", "West Virginia"))
 
-# Categorize the states
 us_map <- us_map %>%
   mutate(status = case_when(
     region %in% lived_in ~ "Lived",
     region %in% visited ~ "Visited",
     TRUE ~ "Not Visited"
   )) %>%
-  # Order Legend
   mutate(status = factor(status, levels = c("Lived", "Visited", "Not Visited")))
 
-# Plot the map
 ggplot(us_map, aes(x = long, y = lat, group = group, fill = status)) +
   geom_polygon(color = "white", linewidth = 0.3) +
-  # Swap these hex codes out if you want different colors!
-  scale_fill_manual(values = c("Lived" = "#2C3E50",       # Dark blue
-                               "Visited" = "#3498DB",     # Light blue
-                               "Not Visited" = "#E0E0E0")) + # Gray
-  coord_map("albers", lat0 = 39, lat1 = 45) + 
+  scale_fill_manual(values = c("Lived" = "#2C3E50",
+                               "Visited" = "#3498DB",
+                               "Not Visited" = "#E0E0E0")) +
+  coord_map("albers", lat0 = 39, lat1 = 45) +
   theme_void() +
-  theme(legend.position = "bottom", 
+  theme(legend.position = "bottom",
         legend.title = element_blank(),
         legend.text = element_text(size = 14))
 ```
@@ -198,7 +210,7 @@ ggplot(us_map, aes(x = long, y = lat, group = group, fill = status)) +
 - Programming Experience
 - A Fun Fact (Favorite Song, Color, Food, etc.)
 
-## 
+##
 
 ::: {.callout-note style="font-size: 1.3em;"}
 ## [Today: Monday May 18]{style="font-size: 1.3em;"}
@@ -228,7 +240,7 @@ ggplot(us_map, aes(x = long, y = lat, group = group, fill = status)) +
 
 - **Class location:** Huck Life Sciences Building 007
 
-- **Instructor:** Charles Costanzo 
+- **Instructor:** Charles Costanzo
   - Email: [cgc5478@psu.edu](mailto:cgc5478@psu.edu)
   - Office Hours: M/W/Th/F: 10:50-11:50 a.m. in Huck 005 (or on Zoom by appt)
 
@@ -248,11 +260,11 @@ This course will teach you how to:
 :::
 
 ::: {.fragment .fade-in}
-- **Visualize Information**: Create graphical and descriptive summaries of data. 
+- **Visualize Information**: Create graphical and descriptive summaries of data.
 :::
 
 ::: {.fragment .fade-in}
-- **Build Reproducible Workflows**: Write well-documented code using tools like RStudio, RMarkdown, and Git/GitHub. 
+- **Build Reproducible Workflows**: Write well-documented code using tools like RStudio, RMarkdown, and Git/GitHub.
 :::
 
 ::: {.fragment .fade-in}
@@ -271,23 +283,40 @@ This course will teach you how to:
 
 - **Six weeks is short.** Daily pace is faster than a 15-week course. Falling a week---or even a day---behind is more serious than spring/fall courses.
 - **Attendance matters.** Lots of in-class graded work (activities, quizzes, oral checkpoints).
-- **Timely communication is critical.** Reach out to me **as soon as possible** if something comes up that necessitates you missing class, having a deadline extended, etc. 
-- **Assignment Weights:**
+- **Timely communication is critical.** Reach out to me **as soon as possible** if something comes up that necessitates you missing class, having a deadline extended, etc.
 
-  | Readings | Quizzes | In-class activities | Homework | Exam | Course project |
-  | :---: | :---: | :---: | :---: | :---: | :---: |
-  | 10% | 15% | 25% | 10% | 20% | 20% |
+**Assignment weights**
 
-- **Grading Scheme:**
+| Component           | Weight |
+|---------------------|:------:|
+| Readings            | 10%    |
+| Quizzes             | 15%    |
+| In-class activities | 25%    |
+| Homework            | 10%    |
+| Exam                | 20%    |
+| Course project      | 20%    |
 
-  | **A** | **A-** | **B+** | **B** | **B-** | **C+** | **C** | **D** | **F** |
-  | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-  | 93%+ | 90% | 87% | 83% | 80% | 77% | 70% | 60% | < 60% |
+: Assignment weights {tbl-colwidths="[60,40]"}
 
+**Grading scheme**
+
+| Letter grade | Minimum percentage |
+|--------------|:------------------:|
+| A            | 93%                |
+| A-           | 90%                |
+| B+           | 87%                |
+| B            | 83%                |
+| B-           | 80%                |
+| C+           | 77%                |
+| C            | 70%                |
+| D            | 60%                |
+| F            | below 60%          |
+
+: Grading scheme {tbl-colwidths="[40,60]"}
 
 ## AI policy
 
-- **Open assessments (Homework & Project):** AI tools are permitted **with mandatory disclosure**. 
+- **Open assessments (Homework & Project):** AI tools are permitted **with mandatory disclosure**.
 - **Closed-book, in-person work (Quizzes, Exam, Activities, Oral Checkpoints):** AI tools are **strictly prohibited**.
 - **Disclosure is graded (1-2 points).**
 - You must be able to explain any code you submit, which I will verify during in-class oral project checkpoints.
@@ -297,7 +326,7 @@ This course will teach you how to:
 
 - All assigned textbook readings are hosted on **Perusall**, a collaborative e-reading platform.
 - **How grading works:** You earn credit through holistic engagement (reading the entire text, spending active time, leaving high-quality comments, and replying to classmates).
-- **No access code needed!** You must access readings *directly through Canvas links* to automatically authenticate your Penn State account. 
+- **No access code needed!** You must access readings *directly through Canvas links* to automatically authenticate your Penn State account.
 
 ::: {.fragment .fade-in}
 ::: {.callout-important style="font-size:1.3em"}
@@ -315,31 +344,43 @@ R is a **programming language** *and* a **software environment** for statistical
 - Designed by statisticians for the purpose of data analysis.
 - First version created in August 1993 (almost 33 years ago).
 - Has grown rapidly in popularity and is widely used in academia and industry by statisticians, data analysts, and data scientists alike.
-- Enormous number of user-contributed **packages**, which are add-ons that extend the functionality of R. 
-  - Currently the Comprehensive R Archive Network (CRAN) package repository features 23,664 available packages.[^1] 
+- Enormous number of user-contributed **packages**, which are add-ons that extend the functionality of R.
+  - Currently the Comprehensive R Archive Network (CRAN) package repository features 23,664 available packages.[^1]
 
 [^1]: [As of May 17, 2026.](https://cran.r-project.org/web/packages/)
 
 ## Some Examples of Said R Packages
 
-::: {#fig-packages}
-[![](images/hexwall_r.svg){fig-align="center" width="100%"}](https://github.com/rstudio/hex-stickers)
+::: {.content-visible unless-format="pdf"}
+[![A grid of dozens of hexagonal stickers, each representing a different R package such as ggplot2, dplyr, tidyr, shiny, knitr, and others. The hex stickers are tiled together into a colorful honeycomb pattern.](images/hexwall_r.svg){fig-align="center" width="100%" fig-alt="A grid of dozens of hexagonal stickers, each representing a different R package such as ggplot2, dplyr, tidyr, shiny, knitr, and others. The hex stickers are tiled together into a colorful honeycomb pattern."}](https://github.com/rstudio/hex-stickers)
+
+Hex stickers from the [rstudio/hex-stickers](https://github.com/rstudio/hex-stickers) repository.
+:::
+
+::: {.content-visible when-format="pdf"}
+![](images/hexwall_r.svg){width=90% fig-alt="A grid of dozens of hexagonal stickers, each representing a different R package such as ggplot2, dplyr, tidyr, shiny, knitr, and others. The hex stickers are tiled together into a colorful honeycomb pattern."}
 
 Hex stickers from the [rstudio/hex-stickers](https://github.com/rstudio/hex-stickers) repository.
 :::
 
 ## R vs. RStudio
 
-  - **R** is a computer language that performs computations based on human-written instructions.
-  - **RStudio** is an integrated development environment (**IDE**) for R programming. It combines the R console with supplementary tools for more efficient R programming. 
+- **R** is a computer language that performs computations based on human-written instructions.
+- **RStudio** is an integrated development environment (**IDE**) for R programming. It combines the R console with supplementary tools for more efficient R programming.
 
-::: {#fig-r-rstudio layout="[30, -10, 60]"}
+::: {.content-visible unless-format="pdf"}
+::: {layout="[30, -10, 60]"}
+![**R:** Do not open this](images/Rlogo.svg){fig-alt="The R programming language logo: a stylized capital letter R in blue, set inside a gray oval ring."}
 
-![**R:** Do not open this](images/Rlogo.svg){#fig-r}
+![**RStudio:** Open this](images/RStudio-Logo-flat.svg){fig-alt="The RStudio logo: the word RStudio in dark text next to a light blue hexagonal icon containing a stylized R."}
+:::
+:::
 
-![**RStudio:** Open this](images/RStudio-Logo-flat.svg){#fig-rstudio}
+::: {.content-visible when-format="pdf"}
+![](images/Rlogo.svg){width=20% fig-alt="The R programming language logo: a stylized capital letter R in blue, set inside a gray oval ring."}
+![](images/RStudio-Logo-flat.svg){width=45% fig-alt="The RStudio logo: the word RStudio in dark text next to a light blue hexagonal icon containing a stylized R."}
 
-R and RStudio logos.
+*Left: **R** (don't open this). Right: **RStudio** (open this).*
 :::
 
 ## Tidy Data $\neq$ Neat Data
@@ -348,7 +389,7 @@ R and RStudio logos.
 ## This table is easy for humans to read. What might make it tricky for a computer to read?
 :::
 
-![A spreadsheet showing party change applications in PA. Source: PA Dept. of State (May 4–11, 2026).](images/pa_voters_untidy.png){#fig-pa-voters-untidy fig-align="center" width="65%"}
+![A spreadsheet showing party change applications in PA. Source: PA Dept. of State (May 4–11, 2026).](images/pa_voters_untidy.png){fig-align="center" width="65%" fig-alt="Screenshot of a Pennsylvania Department of State spreadsheet showing voter party-change applications by county. The layout uses multi-row merged header cells that group columns under 'This week' and 'Year to date', with sub-headers splitting each group into Democratic and Republican target parties, and further sub-headers for origin party (Republican or Other / Democratic or Other). County names run down the leftmost column. This nested-header structure is readable for humans but difficult for software to parse as a flat data table."}
 
 ::: {.fragment .fade-in}
 **Two simple rules for Tidy Data:**
@@ -361,44 +402,50 @@ R and RStudio logos.
 
 ## PA Voter Table - Tidied Up {.scrollable}
 
-::: {style="display: flex; justify-content: left;"}
 ```{r}
 #| echo: TRUE
 #| code-fold: true
 #| code-summary: "Show the R code."
 
 # 1. Load data and provide clean column names to handle the nested headers
-raw_data <- readxl::read_excel("data/currentvotestats.xlsx", 
-                       sheet = "Party-to-Party(2026)", 
+raw_data <- readxl::read_excel("data/currentvotestats.xlsx",
+                       sheet = "Party-to-Party(2026)",
                        skip = 3, # Skip the human-readable headers
-                       col_names = c("county", 
-                                     "week_dem_R", "week_dem_OTH", 
+                       col_names = c("county",
+                                     "week_dem_R", "week_dem_OTH",
                                      "week_rep_D", "week_rep_OTH",
-                                     "year_dem_R", "year_dem_OTH", 
+                                     "year_dem_R", "year_dem_OTH",
                                      "year_rep_D", "year_rep_OTH"))
 
 # 2. Clean and Pivot
 tidy_voter_data <- raw_data %>%
-  filter(!is.na(county), county != "Totals:") %>% # Rule 1: Consistent Cases
+  filter(!is.na(county), county != "Totals:") %>%
   pivot_longer(
-    cols = -county, 
+    cols = -county,
     names_to = c("period", "target_party", "origin_party"),
     names_sep = "_",
     values_to = "count"
   )
 
-knitr::kable(head(tidy_voter_data %>% filter(county == "CENTRE")))
+knitr::kable(
+  head(tidy_voter_data %>% filter(county == "CENTRE")),
+  caption = "First six rows of the tidied PA voter party-change data, filtered to Centre County. Each row is one combination of period, target party, and origin party with its corresponding count."
+)
 ```
-:::
 
 ## Demo: what R can do {.scrollable}
 
-::: {style="display: flex; justify-content: left;"}
 ```{r}
 #| eval: true
 #| echo: true
 #| code-fold: true
 #| code-summary: "Show the R code."
+#| fig-align: center
+#| fig-width: 8
+#| fig-height: 5
+#| out-width: 90%
+#| fig-alt: "Scatter plot of bill length in millimeters on the x-axis versus body mass in grams on the y-axis for three penguin species: Adelie, Chinstrap, and Gentoo. Each species is plotted in a different color with a linear best-fit line. Gentoo penguins cluster at the top right (longer bills, heavier bodies); Adelie penguins cluster at the bottom left (shorter bills, lighter bodies); Chinstrap penguins fall in between with longer bills but moderate body mass."
+
 library(tidyverse)
 library(palmerpenguins)
 
@@ -426,86 +473,70 @@ penguins |>
   ) +
   theme_minimal()
 ```
-:::
+
+## Demo: a campus map {.scrollable}
 
 ::: {.content-visible when-format="html"}
-## Demo: what R can do {.scrollable}
-
-::: {style="display: flex; justify-content: left;"}
 ```{r}
 #| eval: !expr knitr::is_html_output()
 #| echo: true
 #| code-fold: true
 #| code-summary: "Show the interactive Leaflet code."
+#| fig-alt: "Interactive satellite-imagery map of Centre County, Pennsylvania. The county boundary is outlined with a dashed white border and shaded faintly in dark blue. A bright blue dot marks the Huck Life Sciences Building on the Penn State University Park campus; hovering shows the building name and clicking reveals 'Class meets in Room 007.'"
 
-# Load necessary libraries
 library(tidyverse)
 library(sf)
 library(tigris)
 library(leaflet)
 
-# 1. Get the boundary for Centre County, PA
+# 1. Centre County boundary, reprojected for Leaflet (WGS84 / CRS 4326)
 options(tigris_use_cache = TRUE)
-centre_county <- counties(state = "PA", cb = TRUE, progress_bar = FALSE) |> 
-  filter(NAME == "Centre") |> 
-  # Leaflet strongly prefers coordinates in standard WGS84 (CRS 4326)
-  st_transform(4326) 
+centre_county <- counties(state = "PA", cb = TRUE, progress_bar = FALSE) |>
+  filter(NAME == "Centre") |>
+  st_transform(4326)
 
-# 2. Define the exact coordinates for the Huck Life Sciences Building
+# 2. Huck Life Sciences Building
 huck_building <- tibble(
-  lon = -77.86146, 
-  lat = 40.80100, 
+  lon = -77.86146,
+  lat = 40.80100,
   name = "Huck Life Sciences Building"
-) |> 
+) |>
   st_as_sf(coords = c("lon", "lat"), crs = 4326)
 
-# 3. Build the interactive map
-leaflet() |> 
-  # 1. Use a clean, minimalist, light-gray basemap
-  addProviderTiles(providers$Esri.WorldImagery) |> 
-  
-  # 2. Style the county boundary (Penn State Blue fill, thick dashed border)
+# 3. Build the map
+leaflet() |>
+  addProviderTiles(providers$Esri.WorldImagery) |>
   addPolygons(
     data = centre_county,
-    fillColor = "#041E42",     # PSU Dark Blue
-    fillOpacity = 0.1,         # Keep it mostly transparent
-    color = "#FFF",            # Border color
-    weight = 3,                # Thicker border
-    dashArray = "5, 5"         # Make the border dashed
-  ) |> 
-  
-  # 3. Style the building marker
+    fillColor = "#041E42",
+    fillOpacity = 0.1,
+    color = "#FFF",
+    weight = 3,
+    dashArray = "5, 5"
+  ) |>
   addCircleMarkers(
     data = huck_building,
-    color = "#FFFFFF",         # White border around the dot
-    weight = 1,                # Border thickness
-    fillColor = "#0096FF",     # Fill Bright Blue 
-    radius = 8,                # Slightly larger dot
-    fillOpacity = 0.9,         # Mostly solid
-    
-    # Add a hover label with custom styling
-    label = ~name, 
+    color = "#FFFFFF",
+    weight = 1,
+    fillColor = "#0096FF",
+    radius = 8,
+    fillOpacity = 0.9,
+    label = ~name,
     labelOptions = labelOptions(
       style = list(
         "font-family" = "Arial, sans-serif",
-        "font-weight" = "bold", 
+        "font-weight" = "bold",
         "color" = "#041E42",
         "padding" = "4px 8px"
       ),
       direction = "auto"
     ),
-    
-    # Add a click popup with a second line of text
     popup = "<b>Huck Life Sciences</b><br>Class meets in Room 007"
   )
 ```
-
-:::
-
 :::
 
 ::: {.content-visible when-format="pdf"}
-
 ```{r}
 #| eval: !expr knitr::is_latex_output()
 #| echo: TRUE
@@ -513,61 +544,56 @@ leaflet() |>
 #| message: FALSE
 #| code-fold: TRUE
 #| code-summary: "Show the static ggplot code."
-#| fig-align: "left"
+#| fig-align: center
+#| fig-width: 8
+#| fig-height: 5
+#| out-width: 90%
+#| fig-alt: "Two-panel static map of Centre County, Pennsylvania, with a red dot marking the location of the Huck Life Sciences Building on the Penn State University Park campus. The main panel shows the county outline filled gray; the inset panel zooms into campus on an OpenStreetMap basemap with a labeled marker for Huck Life Sciences."
 
-# Load necessary libraries
 library(tidyverse)
 library(sf)
 library(tigris)
 library(ggspatial)
 library(patchwork)
 
-# 1. Get the boundary for Centre County, PA
 options(tigris_use_cache = TRUE)
-centre_county <- counties(state = "PA", cb = TRUE, progress_bar = FALSE) |> 
+centre_county <- counties(state = "PA", cb = TRUE, progress_bar = FALSE) |>
   filter(NAME == "Centre")
 
-# 2. Define the exact coordinates for the Huck Life Sciences Building
 huck_building <- tibble(
-  lon = -77.86146, 
-  lat = 40.80100, 
+  lon = -77.86146,
+  lat = 40.80100,
   name = "Huck Life Sciences"
-) |> 
+) |>
   st_as_sf(coords = c("lon", "lat"), crs = 4326)
 
-# 3. Create the Main Map (Centre County overview)
 map_main <- ggplot() +
-  geom_sf(data = centre_county, fill = "gray90", color = "gray50", 
+  geom_sf(data = centre_county, fill = "gray90", color = "gray50",
           linewidth = 0.5) +
   geom_sf(data = huck_building, color = "red", size = 3) +
   theme_void() +
   labs(title = "Centre County, Pennsylvania")
 
-# 4. Create the Inset Map (Zoomed in on campus)
 map_inset <- ggplot() +
   annotation_map_tile(type = "osm", zoom = 15, progress = "none") +
   geom_sf(data = huck_building, color = "red", size = 4) +
   geom_sf_label(data = huck_building, aes(label = name), nudge_y = 0.0015) +
   coord_sf(
-    xlim = c(-77.870, -77.850), 
+    xlim = c(-77.870, -77.850),
     ylim = c(40.795, 40.805),
     expand = FALSE,
     crs = 4326
   ) +
   theme_void() +
-  theme(panel.border = element_rect(color = "black", fill = NA, 
+  theme(panel.border = element_rect(color = "black", fill = NA,
                                     linewidth = 2))
 
-# 5. Combine them using Patchwork
-final_map <- map_main + 
-  inset_element(map_inset, left = 0.45, bottom = 0.05, 
+map_main +
+  inset_element(map_inset, left = 0.45, bottom = 0.05,
                 right = 0.95, top = 0.45)
-
-final_map
 ```
-
 :::
-  
+
 ## Setup checklist — due by Wednesday {.scrollable}
 
 **Install R and RStudio**
@@ -588,28 +614,29 @@ Install [**XQuartz**](https://www.xquartz.org) too — some packages we'll use l
 
 **Assignments due Wednesday 5/20**
 
-- [HW 0: Setup confirmation](#) <!-- replace # with Canvas link -->
+- [HW 0: Setup confirmation](https://psu.instructure.com/courses/2487468/assignments/18308171)
 
 ## Wrap-up & looking ahead
 
-**Tomorrow:** Real R syntax (variables, functions, vectors)
+**Tomorrow:** A tour of RStudio, R as a calculator, and creating your first objects
 
-**Due Tuesday May 19 (tomorrow) before class:**
+:::: {.columns}
+::: {.column width="55%"}
+**Upcoming Deadlines**
 
-- Read *Data Computing* §2.1–2.8 on Perusall ([Click here](https://psu.instructure.com/courses/2487468/assignments/18307706)). 
-
-**Due 11:59 p.m. Wednesday May 20:**
-
-- HW 0: Setup confirmation ([Click here](https://psu.instructure.com/courses/2487468/assignments/18308171)).
-
-**Quiz 1 in class on Friday May 22**
-
-**Reference links**
-
-- [Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*Data Computing*](https://dtkaplan.github.io/DataComputingEbook/)
-
-::: {.callout-note icon=false}
-## Reach out
-Stuck on setup? Come to office hours or email me ([cgc5478@psu.edu](mailto:cgc5478@psu.edu)) or Xinyue ([xpw5228@psu.edu](mailto:xpw5228@psu.edu)) before Wednesday — don't wait until class.
+- **Tue 5/19, before class** — [DC §2.1–2.8](https://psu.instructure.com/courses/2487468/assignments/18307706)
+- **Wed 5/20, 11:59 p.m.** — [HW 0: Setup](https://psu.instructure.com/courses/2487468/assignments/18308171)
+- **Fri 5/22, in class** — Quiz 1
+- **Fri 5/22, 11:59 p.m.** — [HW 1: Basic R & Plots](https://psu.instructure.com/courses/2487468/assignments/18311694)
 :::
 
+::: {.column width="45%"}
+**Reach out**
+
+Stuck? Office hours, or email me ([cgc5478@psu.edu](mailto:cgc5478@psu.edu)) or Xinyue ([xpw5228@psu.edu](mailto:xpw5228@psu.edu)).
+
+**Reference**
+
+[Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*Data Computing*](https://dtkaplan.github.io/DataComputingEbook/)
+:::
+::::
