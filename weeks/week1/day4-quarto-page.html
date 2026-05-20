@@ -481,6 +481,11 @@ window.Quarto = {
   <li><a href="#quarto-vs.-r-markdown" id="toc-quarto-vs.-r-markdown" class="nav-link" data-scroll-target="#quarto-vs.-r-markdown">Quarto vs.&nbsp;R Markdown</a></li>
   <li><a href="#whats-in-a-.qmd-file" id="toc-whats-in-a-.qmd-file" class="nav-link" data-scroll-target="#whats-in-a-.qmd-file">What’s in a <code>.qmd</code> file?</a></li>
   <li><a href="#a-complete-example" id="toc-a-complete-example" class="nav-link" data-scroll-target="#a-complete-example">A complete example</a></li>
+  <li><a href="#rendered-output" id="toc-rendered-output" class="nav-link" data-scroll-target="#rendered-output">Rendered output</a></li>
+  </ul></li>
+  <li><a href="#the-yaml-header" id="toc-the-yaml-header" class="nav-link" data-scroll-target="#the-yaml-header">The YAML header</a>
+  <ul class="collapse">
+  <li><a href="#whats-a-yaml-header" id="toc-whats-a-yaml-header" class="nav-link" data-scroll-target="#whats-a-yaml-header">What’s a YAML header?</a></li>
   <li><a href="#yaml-syntax-rules" id="toc-yaml-syntax-rules" class="nav-link" data-scroll-target="#yaml-syntax-rules">YAML syntax rules</a></li>
   <li><a href="#common-format-options" id="toc-common-format-options" class="nav-link" data-scroll-target="#common-format-options">Common format options</a></li>
   </ul></li>
@@ -672,58 +677,84 @@ Note
 </ol>
 <p>You can open a <code>.qmd</code> file in any text editor.</p>
 </section>
-<section id="a-complete-example" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="a-complete-example">A complete example</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Penguin sizes"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Charles Costanzo"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>We have data on <span class="in">`r nrow(penguins)`</span> penguins</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>from three species.</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g)) <span class="sc">+</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The distribution looks roughly <strong>bimodal</strong>, with two peaks.</p>
-<pre><code>
-Three pieces: YAML header, prose, code chunk. The output will be a polished HTML page.
-
-# The YAML header {background-color="#001E44"}
-
-## What's a YAML header?
-
-The block at the very top, between the two `---` lines:
-
-``` yaml
----
+<section id="a-complete-example" class="level2">
+<h2 class="anchored" data-anchor-id="a-complete-example">A complete example</h2>
+<pre class="text"><code>---
 title: "Penguin sizes"
 author: "Charles Costanzo"
-date: "2026-05-21"
 format: html
----</code></pre>
+---
+
+# Introduction
+
+We have data on 344 penguins
+from three species.
+
+```r
+library(palmerpenguins)
+library(ggplot2)
+
+ggplot(penguins, aes(x = body_mass_g)) +
+  geom_histogram(bins = 30, 
+                 color = "black", 
+                 fill = rgb(0, 206/255, 209/255)) +
+  theme_classic() +
+  labs(title = "Distribution of Body Mass (grams)",
+       x = "Body Mass (grams)",
+       y = "Count of Penguins") 
+```
+
+The distribution looks roughly **bimodal**, with two peaks.</code></pre>
+</section>
+<section id="rendered-output" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="rendered-output">Rendered output</h2>
+<ul>
+<li>Three pieces: YAML header, prose, code chunk. The output is a polished HTML page (as promised).</li>
+</ul>
+<style>
+  /* Force the browser to respect our hiding rules */
+  @media screen {
+    .print-only-img { display: none !important; }
+  }
+  
+  @media print {
+    .screen-only-iframe { display: none !important; }
+    .print-only-img { display: block !important; }
+  }
+</style>
+<div class="screen-only-iframe">
+<iframe width="100%" height="600px" src="day4-qmd-example.html" style="border:1px solid #ccc;"></iframe>
+</div>
+</section>
+</section>
+<section id="the-yaml-header" class="level1" data-background-color="#001E44">
+<h1 data-background-color="#001E44">The YAML header</h1>
+<section id="whats-a-yaml-header" class="level2">
+<h2 class="anchored" data-anchor-id="whats-a-yaml-header">What’s a YAML header?</h2>
+<p>The block at the very top, between the two <code>---</code> lines:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Penguin sizes"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> </span><span class="st">"Charles Costanzo"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">"2026-05-21"</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This tells Quarto things like:</p>
 <ul>
 <li>What’s the title?</li>
 <li>Who’s the author?</li>
 <li>What format should I render to?</li>
 </ul>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled" title="Fun Fact">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+<span class="screen-reader-only">Tip</span>Fun Fact
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>YAML</strong> stands for “YAML Ain’t Markup Language.” Cute, but mostly you just need to know it’s how Quarto reads settings.</p>
+<p><strong>YAML</strong> originally stood for “Yet Another Markup Language.” However, unlike HTML or XML, which are designed to mark up and format text documents, YAML was designed strictly for data serialization: storing data, lists, and configuration settings in a way humans can easily read. To clarify its actual purpose, the creators later changed it to “YAML Ain’t Markup Language.” This makes it a “recursive acronym” (where the Y stands for YAML itself).</p>
 </div>
 </div>
 </section>
@@ -749,8 +780,8 @@ Tip
 <div class="callout-body-container callout-body">
 <ul>
 <li><strong>Indentation matters.</strong> Use spaces, not tabs. Two spaces per level is standard.</li>
-<li><strong>Colons need a space after them.</strong> <code>title: "Hi"</code>, not <code>title:"Hi"</code>.</li>
-<li><strong>Strings with special characters need quotes.</strong> Use <code>"My: Report"</code> not <code>My: Report</code>.</li>
+<li><strong>Colons need a space after them.</strong> <code>title: "Hi"</code>, <strong>not</strong>&nbsp;&nbsp;<code>title:"Hi"</code>.</li>
+<li><strong>Strings with special characters need quotes.</strong> Use <code>"My: Report"</code>, <strong>not</strong>&nbsp;&nbsp;<code>My: Report</code>.</li>
 </ul>
 </div>
 </div>
@@ -1099,48 +1130,9 @@ Note
 <section id="activity-your-first-quarto-report" class="level2 scrollable">
 <h2 class="scrollable anchored" data-anchor-id="activity-your-first-quarto-report">Activity: your first Quarto report</h2>
 <p>You’ll build a short Quarto report from scratch. Take 25 minutes for this activity.</p>
-<p><strong>Setup:</strong></p>
-<ol type="1">
-<li>Open RStudio.</li>
-<li><code>File &gt; New File &gt; Quarto Document...</code></li>
-<li>Title: <strong>“Penguin Exploration”</strong>, Author: your name.</li>
-<li>Pick <strong>HTML</strong> as the format.</li>
-<li><strong>Uncheck</strong> “Use visual markdown editor” if you want to see the raw source (recommended for learning today).</li>
-<li>Click <strong>Create</strong>.</li>
-</ol>
-<p>You’ll get a template document with example content. <strong>Delete everything below the YAML header.</strong> Keep the YAML.</p>
-<p><strong>Step 1 - Save the file</strong></p>
-<p><code>File &gt; Save As...</code>: call it <code>penguin-report.qmd</code>, save somewhere you’ll find it.</p>
-<p><strong>Step 2 - Add a setup chunk</strong></p>
-<p>Insert a code chunk (<code>Cmd/Ctrl + Alt + I</code>). Make it look like this:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Step 3 - Write an intro</strong></p>
-<p>Below the setup chunk, add a heading and a paragraph:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>This report explores the **Palmer Penguins** data set, which contains</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>measurements on three species of penguins from islands in Antarctica.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Step 4 - Add a plot</strong></p>
-<p>Insert another chunk and put a histogram in it:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>::: {.cell}</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>::: {.cell-output-display}</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="al">![](day4-quarto_files/figure-revealjs/mass-histogram-1.png)</span>{width=960}</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Step 5 - Add commentary</strong></p>
-<p>Below the plot, write 2–3 sentences (in Markdown) describing what you see.</p>
-<p><strong>Step 6 - Render</strong></p>
-<p>Press <code>Cmd/Ctrl + Shift + K</code>. Look at the HTML file that pops up.</p>
-<p>If you finish early, try one or more of these:</p>
 <ul>
-<li>Add a second plot using a different variable (<code>flipper_length_mm</code>, <code>bill_length_mm</code>, …).</li>
-<li>Try changing <code>format: html</code> to <code>format: docx</code> in the YAML and re-render.</li>
-<li>Add a <strong>table</strong> of the first few rows: insert a chunk with <code>knitr::kable(head(penguins))</code>.</li>
-<li>Set <code>echo: false</code> in your YAML under <code>execute:</code> to hide <em>all</em> code from the output:</li>
+<li><a href="https://psu.instructure.com/courses/2487468/assignments/18314926?module_item_id=48168875">Activity Canvas Link</a></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>To turn in:</strong> Save your <code>.qmd</code> file and the rendered HTML. We’ll check at the end of class.</p>
 </section>
 <section id="activity-debrief" class="level2">

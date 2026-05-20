@@ -1330,86 +1330,720 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day4-quarto-penguins.html#activity-your-first-quarto-report",
-    "href": "weeks/week1/day4-quarto-penguins.html#activity-your-first-quarto-report",
+    "objectID": "weeks/week1/day4-activity.html#activity-your-first-quarto-report",
+    "href": "weeks/week1/day4-activity.html#activity-your-first-quarto-report",
     "title": "STAT 184 — Summer 2026",
-    "section": "Activity: your first Quarto report",
-    "text": "Activity: your first Quarto report\nYou’ll build a short Quarto report from scratch. Take 25 minutes for this activity.\nSetup:\n\nOpen RStudio.\nFile &gt; New File &gt; Quarto Document...\nTitle: “Penguin Exploration”, Author: your name.\nPick HTML as the format.\nUncheck “Use visual markdown editor” if you want to see the raw source (recommended for learning today).\nClick Create.\n\nYou’ll get a template document with example content. Delete everything below the YAML header. Keep the YAML.\nStep 1 - Save the file\nFile &gt; Save As...: call it penguin-report.qmd, save somewhere you’ll find it.\nStep 2 - Add a setup chunk\nInsert a code chunk (Cmd/Ctrl + Alt + I). Make it look like this:\n\nStep 3 - Write an intro\nBelow the setup chunk, add a heading and a paragraph:\n# Introduction\n\nThis report explores the **Palmer Penguins** data set, which contains\nmeasurements on three species of penguins from islands in Antarctica.\nStep 4 - Add a plot\nInsert another chunk and put a histogram in it:\n\n::: {.cell}\n\n```{.r .cell-code}\nggplot(penguins, aes(x = body_mass_g)) +\n  geom_histogram(binwidth = 250, fill = \"steelblue\", color = \"white\") +\n  labs(\n    title = \"Distribution of penguin body mass\",\n    x = \"Body mass (g)\",\n    y = \"Count\"\n  )\n```\n\n::: {.cell-output-display}\n![](day4-quarto-penguins_files/figure-html/mass-histogram-1.png){width=672}\n:::\n:::\nStep 5 - Add commentary\nBelow the plot, write 2–3 sentences (in Markdown) describing what you see.\nStep 6 - Render\nPress Cmd/Ctrl + Shift + K. Look at the HTML file that pops up.\nIf you finish early, try one or more of these:\n\nAdd a second plot using a different variable (flipper_length_mm, bill_length_mm, …).\nTry changing format: html to format: docx in the YAML and re-render.\nAdd a table of the first few rows: insert a chunk with knitr::kable(head(penguins)).\nSet echo: false in your YAML under execute: to hide all code from the output:\n\nexecute:\n  echo: false\nTo turn in: Save your .qmd file and the rendered HTML. We’ll check at the end of class."
+    "section": "Activity: Your First Quarto Report",
+    "text": "Activity: Your First Quarto Report\nYou’ll build a short Quarto report from scratch. Take 20 minutes for this activity.\nSetup:\n\nOpen RStudio.\nFile &gt; New File &gt; Quarto Document...\nTitle: “Penguin Exploration”, Author: your name.\nPick HTML as the format.\nUncheck “Use visual markdown editor” if you want to see the raw source (recommended for learning today).\nClick Create.\n\nYou’ll get a template document, potentially with example content. Delete anything below the YAML header if present. Keep the YAML.\nStep 1 - Save the file\nFile &gt; Save As...: call it penguin-report.qmd, save somewhere you’ll find it.\nStep 2 - Upgrade your YAML\nLet’s make the HTML output look professional right away. Modify the top of your document (between the --- lines) to add a Table of Contents (toc) and a custom theme. Watch your indentation—YAML is picky.\n---\ntitle: \"Penguin Exploration\"\nauthor: \"Your Name\"\nformat: \n  html:\n    toc: true\n    theme: litera\n---\nDON’T FORGET: Render and open your html file to see if it worked.\nStep 3 - Add a setup chunk\nInsert a code chunk (Ctrl + Alt + I on Windows or Cmd + Option + I on Mac). Make it look like this:\n\nDON’T FORGET: Render and open your html file to see if it worked.\nStep 4 - Write an intro with a link, an image, and inline code\nBelow the setup chunk, add a heading and a paragraph.\nNotice three new Markdown features here:\n\nImages: Formatted as ![alt text](url). We’re pulling the package hex logo straight from the web and using Quarto’s {width} and fig-align attributes to float it to the right.\nHyperlinks: Formatted as [text](url).\nInline code: The backticks around 344 will automatically calculate the number of rows in the dataset when you render.\n\nCopy this into your document:\n# Introduction\n\n![]([https://allisonhorst.github.io/palmerpenguins/logo.png](https://allisonhorst.github.io/palmerpenguins/logo.png)){width=\"120\" fig-align=\"right\"}\n\nThis report explores the [**Palmer Penguins**](https://allisonhorst.github.io/palmerpenguins/) \ndata set, which contains measurements on 344 penguins from \nthree islands in Antarctica.\nDON’T FORGET: Render and open your html file to see if it worked.\nStep 5 - Add a plot\nInsert appropriate headings and another chunk (see if you can remember the keyboard shortcut for adding a chunk.) Then put a histogram in your new chunk. We are adding a fig-cap to label the figure, which lets us automatically reference it in our text.\n# Exploratory Data Analysis\n\n## Basic Histogram\n\n\n::: {.cell}\n\n```{.r .cell-code}\nggplot(penguins, aes(x = body_mass_g)) +\n  geom_histogram(binwidth = 250, fill = \"steelblue\", color = \"white\") +\n  theme_minimal() +\n  labs(\n    x = \"Body mass (g)\",\n    y = \"Count\"\n  )\n```\n\n::: {.cell-output-display}\n![Distribution of penguin body mass](day4-activity_files/figure-html/fig-mass-histogram-1.png){#fig-mass-histogram width=672}\n:::\n:::\nDON’T FORGET: Render and open your html file to see if it worked.\nStep 6 - Add commentary\nBelow the plot, write 2–3 sentences (in Markdown) describing what you see. Include this exact text somewhere in your paragraph to see how Quarto handles cross-references:\n“As shown in ?@fig-mass-histogram, the data is…”\nNote, you do not need the quotes. Just write the text and ?@fig-mass-histogram.\nDON’T FORGET: Render and open your html file to see if it worked.\nStep 7 - Add a Table\nLet’s look at the raw data. Add a new section heading and a code chunk that uses knitr::kable() to draw a clean table of the first 5 rows:\n## Data Preview\n\n\n::: {#tbl-preview .cell tbl-cap='First 5 rows of the penguins dataset'}\n\n```{.r .cell-code}\nknitr::kable(head(penguins, 5))\n```\n\n::: {.cell-output-display}\n\n\n|species |island    | bill_length_mm| bill_depth_mm| flipper_length_mm| body_mass_g|sex    | year|\n|:-------|:---------|--------------:|-------------:|-----------------:|-----------:|:------|----:|\n|Adelie  |Torgersen |           39.1|          18.7|               181|        3750|male   | 2007|\n|Adelie  |Torgersen |           39.5|          17.4|               186|        3800|female | 2007|\n|Adelie  |Torgersen |           40.3|          18.0|               195|        3250|female | 2007|\n|Adelie  |Torgersen |             NA|            NA|                NA|          NA|NA     | 2007|\n|Adelie  |Torgersen |           36.7|          19.3|               193|        3450|female | 2007|\n\n\n:::\n:::\nDON’T FORGET: Render and open your html file to see if it worked.\nStep 8 - Final Render\nPress Cmd/Ctrl + Shift + K. Look at the HTML file that pops up. Notice your table of contents, your styled theme, the evaluated inline code, and the figure numbering!\nIf you finish early, try one or more of these:\n\nCreate a Tabset: Want to hide multiple plots behind clickable tabs? Wrap two headings and code chunks in a tabset block like this:\n\n::: {.panel-tabset}\n\n### Mass Plot\n(Put your mass plot code chunk here)\n\n### Flipper Plot\n(Put a new flipper_length_mm plot code chunk here)\n\n:::\n\nChange the Output: Try changing format: html to format: docx in the YAML and re-render to get a Word document. (Note: themes and tabsets are HTML-only).\nHide the Code: Set echo: false in your YAML under execute: to hide all code from the output, leaving only the text, plots, and tables:\n\n---\ntitle: \"Penguin Exploration\"\nauthor: \"Your Name\"\nformat: \n  html:\n    toc: true\n    theme: litera\nexecute:\n  echo: false\n---\nTo turn in: Save your .qmd file and the rendered HTML. We’ll check at the end of class."
   },
   {
-    "objectID": "weeks/week1/index.html",
-    "href": "weeks/week1/index.html",
-    "title": "Week 1 — Foundations",
+    "objectID": "weeks/week1/day1-intro-slides.html#introductions",
+    "href": "weeks/week1/day1-intro-slides.html#introductions",
+    "title": "Course intro & what is R?",
+    "section": "Introductions",
+    "text": "Introductions\nInstructor: Charles Costanzo\n\nStatistics Ph.D. student\nHometown: Solon, OH\nSome of my favorite things: cats, coffee, R (unironically)"
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#solon-ohio",
+    "href": "weeks/week1/day1-intro-slides.html#solon-ohio",
+    "title": "Course intro & what is R?",
+    "section": "Solon, Ohio",
+    "text": "Solon, Ohio\n\n\nShow the R code.\n# Install these first if you don't have them:\n# install.packages(c(\"sf\", \"tigris\"))\nlibrary(ggplot2)\nlibrary(sf)\nlibrary(tigris)\nlibrary(dplyr)\n\noptions(tigris_use_cache = TRUE)\n\n# Fetch spatial data\nohio_counties &lt;- counties(state = \"OH\", cb = TRUE, progress_bar = FALSE)\nohio_places &lt;- places(state = \"OH\", cb = TRUE, progress_bar = FALSE)\n\n# Isolate areas\ncuyahoga_county &lt;- ohio_counties %&gt;% filter(NAME == \"Cuyahoga\")\nsolon_city &lt;- ohio_places %&gt;% filter(NAME == \"Solon\")\n\n# Build the map\nggplot() +\n  geom_sf(data = ohio_counties,\n          fill = \"#f8f9fa\", color = \"grey\", linewidth = 0.3) +\n  geom_sf(data = cuyahoga_county,\n          fill = \"#D6EAF8\", color = \"#2980B9\", linewidth = 0.5) +\n  geom_sf(data = solon_city,\n          fill = \"dodgerblue\", color = \"darkblue\", linewidth = 0.5) +\n  geom_sf_text(data = solon_city, aes(label = NAME),\n               size = 5, fontface = \"bold\", color = \"dodgerblue\",\n               nudge_y = -0.05, nudge_x = 0.25) +\n  theme_void()"
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#meet-my-cats",
+    "href": "weeks/week1/day1-intro-slides.html#meet-my-cats",
+    "title": "Course intro & what is R?",
+    "section": "Meet My Cats!",
+    "text": "Meet My Cats!\n\n\n\n\n\n\nBabuh\n\n\n\n\n\n\n\nTartarus"
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#more-realistic-cat-photos",
+    "href": "weeks/week1/day1-intro-slides.html#more-realistic-cat-photos",
+    "title": "Course intro & what is R?",
+    "section": "More Realistic Cat Photos…",
+    "text": "More Realistic Cat Photos…\n\n\n\n\n\n\n\nBabuh in the bathtub looking soaked and indignant.\n\n\n\n\n\n\n\n\n\nBabuh mid-bath, fur fully soaked.\n\n\n\n\n\n\n\n\n\nBabuh wrapped in a towel after the bath."
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#countries-ive-been-to",
+    "href": "weeks/week1/day1-intro-slides.html#countries-ive-been-to",
+    "title": "Course intro & what is R?",
+    "section": "Countries I’ve Been To",
+    "text": "Countries I’ve Been To\n\n\nShow the R code.\nlibrary(ggplot2)\nlibrary(maps)\nlibrary(dplyr)\n\nworld_map &lt;- map_data(\"world\")\n\nvisited_countries &lt;- c(\"Canada\", \"USA\", \"Argentina\", \"Uruguay\",\n                       \"Switzerland\", \"Rwanda\", \"Spain\", \"France\", \"Turkey\")\n\nworld_map &lt;- world_map %&gt;%\n  mutate(visited = ifelse(region %in% visited_countries, \"Visited\", \"Not Visited\"))\n\nggplot(world_map, aes(x = long, y = lat, group = group, fill = visited)) +\n  geom_polygon(color = \"white\", linewidth = 0.2) +\n  scale_fill_manual(values = c(\"Not Visited\" = \"#e0e0e0\", \"Visited\" = \"#FF7F50\")) +\n  theme_void() +\n  theme(legend.position = \"none\")"
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#states-ive-lived-in-visited",
+    "href": "weeks/week1/day1-intro-slides.html#states-ive-lived-in-visited",
+    "title": "Course intro & what is R?",
+    "section": "States I’ve Lived In & Visited",
+    "text": "States I’ve Lived In & Visited\n\n\nShow the R code.\n# Note: install.packages(\"mapproj\") if needed\nlibrary(ggplot2)\nlibrary(maps)\nlibrary(dplyr)\nlibrary(mapproj)\n\nus_map &lt;- map_data(\"state\")\n\nlived_in &lt;- tolower(c(\"Ohio\", \"Pennsylvania\", \"Texas\"))\n\n# Note: \"District of Columbia\" matches the map data; \"Washington DC\" wouldn't\nvisited &lt;- tolower(c(\"Washington\", \"Oregon\", \"California\", \"Nevada\", \"Idaho\",\n                     \"Montana\", \"Arizona\", \"New Mexico\", \"Colorado\", \"Wyoming\",\n                     \"North Dakota\", \"South Dakota\", \"Kansas\", \"Iowa\",\n                     \"Nebraska\", \"Minnesota\", \"Wisconsin\", \"Michigan\", \"Indiana\",\n                     \"Illinois\", \"Kentucky\", \"Tennessee\", \"Louisiana\", \"Florida\",\n                     \"Georgia\", \"North Carolina\", \"South Carolina\", \"Virginia\",\n                     \"District of Columbia\", \"Maryland\", \"Delaware\", \"New Jersey\",\n                     \"New York\", \"Missouri\", \"Utah\", \"West Virginia\"))\n\nus_map &lt;- us_map %&gt;%\n  mutate(status = case_when(\n    region %in% lived_in ~ \"Lived\",\n    region %in% visited ~ \"Visited\",\n    TRUE ~ \"Not Visited\"\n  )) %&gt;%\n  mutate(status = factor(status, levels = c(\"Lived\", \"Visited\", \"Not Visited\")))\n\nggplot(us_map, aes(x = long, y = lat, group = group, fill = status)) +\n  geom_polygon(color = \"white\", linewidth = 0.3) +\n  scale_fill_manual(values = c(\"Lived\" = \"#2C3E50\",\n                               \"Visited\" = \"#3498DB\",\n                               \"Not Visited\" = \"#E0E0E0\")) +\n  coord_map(\"albers\", lat0 = 39, lat1 = 45) +\n  theme_void() +\n  theme(legend.position = \"bottom\",\n        legend.title = element_blank(),\n        legend.text = element_text(size = 14))"
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#icebreaker-share-your",
+    "href": "weeks/week1/day1-intro-slides.html#icebreaker-share-your",
+    "title": "Course intro & what is R?",
+    "section": "Icebreaker 🧊: Share Your…",
+    "text": "Icebreaker 🧊: Share Your…\n\nName\nMajor\nProgramming Experience\nA Fun Fact (Favorite Song, Color, Food, etc.)"
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#section",
+    "href": "weeks/week1/day1-intro-slides.html#section",
+    "title": "Course intro & what is R?",
     "section": "",
-    "text": "This week we get everyone set up with R, RStudio, and Quarto, and cover the absolute basics of the R language. By Friday you’ll have written your first reproducible document and learned the pipe.",
-    "crumbs": [
-      "Week 1 --- Foundations"
-    ]
+    "text": "Today: Monday May 18\n\n\nBefore class\n\nRead the syllabus (Click here).\n(Optional): Read Data Computing §1.1–1.5 (Click here).\n\nPlan for today\n\nCourse logistics\nIntroduction to R and RStudio\nTidy data\nR Demo\n\nHelpful links\n\nSyllabus · AI policy · Schedule · Data Computing §1"
   },
   {
-    "objectID": "weeks/week1/index.html#daily-plan",
-    "href": "weeks/week1/index.html#daily-plan",
-    "title": "Week 1 — Foundations",
-    "section": "Daily plan",
-    "text": "Daily plan\n\n\n\nDate\nTopic\nSlides & Notes\nCode & Data\n\n\n\n\nMon May 18\nCourse intro & what is R?\nSlides · Page · PDF\nday1-demo.R · currentvotestats.xlsx\n\n\nTue May 19\nR, RStudio, console · vectors · data types\nSlides · Page · PDF\nday2-follow-along.R\n\n\nWed May 20\nFunctions, packages · tidyverse\nSlides · Page · PDF\nday3-activity.R\n\n\nThu May 21\nQuarto basics\nSlides · Page · PDF\ncoming soon\n\n\nFri May 22\nQuiz 1 · pipe and chaining syntax\nSlides · Page · PDF\ncoming soon",
-    "crumbs": [
-      "Week 1 --- Foundations"
-    ]
+    "objectID": "weeks/week1/day1-intro-slides.html#course-info",
+    "href": "weeks/week1/day1-intro-slides.html#course-info",
+    "title": "Course intro & what is R?",
+    "section": "Course Info",
+    "text": "Course Info\nSummer Session 1: May 18, 2026 – June 26, 2026\n\nClass time: M/T/W/Th/F, 9:35 a.m. to 10:50 a.m.\nClass location: Huck Life Sciences Building 007\nInstructor: Charles Costanzo\n\nEmail: cgc5478@psu.edu\nOffice Hours: M/W/Th/F: 10:50-11:50 a.m. in Huck 005 (or on Zoom by appt)\n\nTeaching Assistant (TA): Xinyue Wang\n\nEmail: xpw5228@psu.edu"
   },
   {
-    "objectID": "weeks/week1/index.html#due-this-week",
-    "href": "weeks/week1/index.html#due-this-week",
-    "title": "Week 1 — Foundations",
-    "section": "Due this week",
-    "text": "Due this week\nReadings (due at 9:35 a.m. on Perusall)\n\n(Optional) Monday: Data Computing Ch 1 (§1.1–1.5) — what tidy data is\nTuesday: Data Computing Ch 2 (§2.1–2.8) — R, RStudio, vectors, objects\nWednesday: Data Computing Ch 3 (§3.1–3.5) — basic R commands\nThursday: Data Computing Ch 4 (§4.1–4.7) — files and Rmd documents\n\n(Optional) R For Data Science Ch 28 — Quarto\n\nFriday: Data Computing §3.6 — chaining syntax (the pipe)\n\nAssignments (Canvas & In-class)\n\nWednesday May 20: HW 0 (setup confirmation) — due 11:59 p.m. on Canvas\nFriday May 22: HW 1 — due 11:59 p.m. on Canvas\nFriday May 22: Quiz 1 — in class",
-    "crumbs": [
-      "Week 1 --- Foundations"
-    ]
+    "objectID": "weeks/week1/day1-intro-slides.html#learning-goals",
+    "href": "weeks/week1/day1-intro-slides.html#learning-goals",
+    "title": "Course intro & what is R?",
+    "section": "Learning Goals",
+    "text": "Learning Goals\nThis course will teach you how to:\n\n\nUse R: Program in the R language effectively and use the R software environment to efficiently compute with data.\n\n\n\n\nWrangle Real Data: Access, clean, join, and format data from various sources.\n\n\n\n\nVisualize Information: Create graphical and descriptive summaries of data.\n\n\n\n\nBuild Reproducible Workflows: Write well-documented code using tools like RStudio, RMarkdown, and Git/GitHub.\n\n\n\n\n\n\n\n\n\n\nNo previous programming background is required for this course.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis is not a course on general purpose programming."
   },
   {
-    "objectID": "weeks/week1/index.html#heads-up-for-next-week",
-    "href": "weeks/week1/index.html#heads-up-for-next-week",
-    "title": "Week 1 — Foundations",
-    "section": "Heads up for next week",
-    "text": "Heads up for next week\n\nData Computing Ch 5 (§5.1–5.6) for Tuesday May 26 — graphics intro.\nNo class Monday May 25 (Memorial Day).",
-    "crumbs": [
-      "Week 1 --- Foundations"
-    ]
+    "objectID": "weeks/week1/day1-intro-slides.html#course-logistics-1",
+    "href": "weeks/week1/day1-intro-slides.html#course-logistics-1",
+    "title": "Course intro & what is R?",
+    "section": "Course logistics",
+    "text": "Course logistics\n\nSix weeks is short. Daily pace is faster than a 15-week course. Falling a week—or even a day—behind is more serious than spring/fall courses.\nAttendance matters. Lots of in-class graded work (activities, quizzes, oral checkpoints).\nTimely communication is critical. Reach out to me as soon as possible if something comes up that necessitates you missing class, having a deadline extended, etc.\n\n\nAssignment weights\n\n\n\n\n\n\n\n\n\n\nReadings\nQuizzes\nIn-class activities\nHomework\nExam\nCourse project\n\n\n\n\n10%\n15%\n25%\n10%\n20%\n20%\n\n\n\n\nGrading scheme\n\n\nA\nA-\nB+\nB\nB-\nC+\nC\nD\nF\n\n\n\n\n93%\n90%\n87%\n83%\n80%\n77%\n70%\n60%\nbelow 60%"
   },
   {
-    "objectID": "weeks/week1/day4-penguin-report.html",
-    "href": "weeks/week1/day4-penguin-report.html",
-    "title": "Penguin Exploration",
+    "objectID": "weeks/week1/day1-intro-slides.html#ai-policy",
+    "href": "weeks/week1/day1-intro-slides.html#ai-policy",
+    "title": "Course intro & what is R?",
+    "section": "AI policy",
+    "text": "AI policy\n\nOpen assessments (Homework & Project): AI tools are permitted with mandatory disclosure.\nClosed-book, in-person work (Quizzes, Exam, Activities, Oral Checkpoints): AI tools are strictly prohibited.\nDisclosure is graded (1-2 points).\nYou must be able to explain any code you submit, which I will verify during in-class oral project checkpoints.\nRoughly 60% of your grade comes from verified in-person work where AI cannot be used."
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#course-readings-perusall",
+    "href": "weeks/week1/day1-intro-slides.html#course-readings-perusall",
+    "title": "Course intro & what is R?",
+    "section": "Course Readings (Perusall)",
+    "text": "Course Readings (Perusall)\n\nAll assigned textbook readings are hosted on Perusall, a collaborative e-reading platform.\nHow grading works: You earn credit through holistic engagement (reading the entire text, spending active time, leaving high-quality comments, and replying to classmates).\nNo access code needed! You must access readings directly through Canvas links to automatically authenticate your Penn State account.\n\n\n\n\n\n\n\n\n\nLet’s try it together right now:\n\n\n\nLog into our Canvas course.\nClick the “Perusall” tab on the left.\nClick the link for DC Section 1 (§1.1–1.5)."
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#what-is-r-1",
+    "href": "weeks/week1/day1-intro-slides.html#what-is-r-1",
+    "title": "Course intro & what is R?",
+    "section": "What is R?",
+    "text": "What is R?\nR is a programming language and a software environment for statistical computing and graphics.\n\nDesigned by statisticians for the purpose of data analysis.\nFirst version created in August 1993 (almost 33 years ago).\nHas grown rapidly in popularity and is widely used in academia and industry by statisticians, data analysts, and data scientists alike.\nEnormous number of user-contributed packages, which are add-ons that extend the functionality of R.\n\nCurrently the Comprehensive R Archive Network (CRAN) package repository features 23,664 available packages.1\n\n\nAs of May 17, 2026."
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#some-examples-of-said-r-packages",
+    "href": "weeks/week1/day1-intro-slides.html#some-examples-of-said-r-packages",
+    "title": "Course intro & what is R?",
+    "section": "Some Examples of Said R Packages",
+    "text": "Some Examples of Said R Packages\n\n\n\n\n\n\n\nA grid of dozens of hexagonal stickers, each representing a different R package such as ggplot2, dplyr, tidyr, shiny, knitr, and others. The hex stickers are tiled together into a colorful honeycomb pattern.\n\n\nHex stickers from the rstudio/hex-stickers repository."
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#r-vs.-rstudio",
+    "href": "weeks/week1/day1-intro-slides.html#r-vs.-rstudio",
+    "title": "Course intro & what is R?",
+    "section": "R vs. RStudio",
+    "text": "R vs. RStudio\n\nR is a computer language that performs computations based on human-written instructions.\nRStudio is an integrated development environment (IDE) for R programming. It combines the R console with supplementary tools for more efficient R programming.\n\n\n\n\n\n\n\nR: Do not open this\n\n\n\n\n \n\n\n\n\n\nRStudio: Open this"
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#tidy-data-neq-neat-data",
+    "href": "weeks/week1/day1-intro-slides.html#tidy-data-neq-neat-data",
+    "title": "Course intro & what is R?",
+    "section": "Tidy Data \\(\\neq\\) Neat Data",
+    "text": "Tidy Data \\(\\neq\\) Neat Data\n\n\n\n\n\n\n\nThis table is easy for humans to read. What might make it tricky for a computer to read?\n\n\n\n\n\n\n\n\nA spreadsheet showing party change applications in PA. Source: PA Dept. of State (May 4–11, 2026).\nTwo simple rules for Tidy Data:\n\n\n\nConsistent Cases (Rows): Each row must represent a single, distinct instance of your unit of observation.\nUniform Variables (Columns): Every column contains the same type of value."
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#pa-voter-table---tidied-up",
+    "href": "weeks/week1/day1-intro-slides.html#pa-voter-table---tidied-up",
+    "title": "Course intro & what is R?",
+    "section": "PA Voter Table - Tidied Up",
+    "text": "PA Voter Table - Tidied Up\n\n\nShow the R code.\n# 1. Load data and provide clean column names to handle the nested headers\nraw_data &lt;- readxl::read_excel(\"data/currentvotestats.xlsx\",\n                       sheet = \"Party-to-Party(2026)\",\n                       skip = 3, # Skip the human-readable headers\n                       col_names = c(\"county\",\n                                     \"week_dem_R\", \"week_dem_OTH\",\n                                     \"week_rep_D\", \"week_rep_OTH\",\n                                     \"year_dem_R\", \"year_dem_OTH\",\n                                     \"year_rep_D\", \"year_rep_OTH\"))\n\n# 2. Clean and Pivot\ntidy_voter_data &lt;- raw_data %&gt;%\n  filter(!is.na(county), county != \"Totals:\") %&gt;%\n  pivot_longer(\n    cols = -county,\n    names_to = c(\"period\", \"target_party\", \"origin_party\"),\n    names_sep = \"_\",\n    values_to = \"count\"\n  )\n\nknitr::kable(\n  head(tidy_voter_data %&gt;% filter(county == \"CENTRE\")),\n  caption = \"First six rows of the tidied PA voter party-change data, filtered to Centre County. Each row is one combination of period, target party, and origin party with its corresponding count.\"\n)\n\n\n\nFirst six rows of the tidied PA voter party-change data, filtered to Centre County. Each row is one combination of period, target party, and origin party with its corresponding count.\n\n\ncounty\nperiod\ntarget_party\norigin_party\ncount\n\n\n\n\nCENTRE\nweek\ndem\nR\n2\n\n\nCENTRE\nweek\ndem\nOTH\n14\n\n\nCENTRE\nweek\nrep\nD\n3\n\n\nCENTRE\nweek\nrep\nOTH\n4\n\n\nCENTRE\nyear\ndem\nR\n88\n\n\nCENTRE\nyear\ndem\nOTH\n130"
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#demo-what-r-can-do",
+    "href": "weeks/week1/day1-intro-slides.html#demo-what-r-can-do",
+    "title": "Course intro & what is R?",
+    "section": "Demo: what R can do",
+    "text": "Demo: what R can do\n\n\nShow the R code.\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\n# What does the data look like?\nglimpse(penguins)\n\n\nRows: 344\nColumns: 8\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\nShow the R code.\n# Quick summary by species\npenguins |&gt;\n  group_by(species) |&gt;\n  summarize(\n    n            = n(),\n    mean_mass_g  = mean(body_mass_g,    na.rm = TRUE),\n    mean_bill_mm = mean(bill_length_mm, na.rm = TRUE)\n  )\n\n\n# A tibble: 3 × 4\n  species       n mean_mass_g mean_bill_mm\n  &lt;fct&gt;     &lt;int&gt;       &lt;dbl&gt;        &lt;dbl&gt;\n1 Adelie      152       3701.         38.8\n2 Chinstrap    68       3733.         48.8\n3 Gentoo      124       5076.         47.5\n\n\nShow the R code.\n# A nice plot\npenguins |&gt;\n  ggplot(aes(x = bill_length_mm, y = body_mass_g, color = species)) +\n  geom_point(alpha = 0.7) +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  labs(\n    title = \"Bill length vs body mass, by species\",\n    x = \"Bill length (mm)\",\n    y = \"Body mass (g)\"\n  ) +\n  theme_minimal()"
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#demo-a-campus-map",
+    "href": "weeks/week1/day1-intro-slides.html#demo-a-campus-map",
+    "title": "Course intro & what is R?",
+    "section": "Demo: a campus map",
+    "text": "Demo: a campus map\n\n\nShow the interactive Leaflet code.\nlibrary(tidyverse)\nlibrary(sf)\nlibrary(tigris)\nlibrary(leaflet)\n\n# 1. Centre County boundary, reprojected for Leaflet (WGS84 / CRS 4326)\noptions(tigris_use_cache = TRUE)\ncentre_county &lt;- counties(state = \"PA\", cb = TRUE, progress_bar = FALSE) |&gt;\n  filter(NAME == \"Centre\") |&gt;\n  st_transform(4326)\n\n# 2. Huck Life Sciences Building\nhuck_building &lt;- tibble(\n  lon = -77.86146,\n  lat = 40.80100,\n  name = \"Huck Life Sciences Building\"\n) |&gt;\n  st_as_sf(coords = c(\"lon\", \"lat\"), crs = 4326)\n\n# 3. Build the map\nleaflet() |&gt;\n  addProviderTiles(providers$Esri.WorldImagery) |&gt;\n  addPolygons(\n    data = centre_county,\n    fillColor = \"#041E42\",\n    fillOpacity = 0.1,\n    color = \"#FFF\",\n    weight = 3,\n    dashArray = \"5, 5\"\n  ) |&gt;\n  addCircleMarkers(\n    data = huck_building,\n    color = \"#FFFFFF\",\n    weight = 1,\n    fillColor = \"#0096FF\",\n    radius = 8,\n    fillOpacity = 0.9,\n    label = ~name,\n    labelOptions = labelOptions(\n      style = list(\n        \"font-family\" = \"Arial, sans-serif\",\n        \"font-weight\" = \"bold\",\n        \"color\" = \"#041E42\",\n        \"padding\" = \"4px 8px\"\n      ),\n      direction = \"auto\"\n    ),\n    popup = \"&lt;b&gt;Huck Life Sciences&lt;/b&gt;&lt;br&gt;Class meets in Room 007\"\n  )"
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#setup-checklist-due-by-wednesday",
+    "href": "weeks/week1/day1-intro-slides.html#setup-checklist-due-by-wednesday",
+    "title": "Course intro & what is R?",
+    "section": "Setup checklist — due by Wednesday",
+    "text": "Setup checklist — due by Wednesday\nInstall R and RStudio\n\nR: https://cloud.r-project.org\nRStudio: https://posit.co/download/rstudio-desktop\n\n\n\n\n\n\n\nMac users\n\n\nInstall XQuartz too — some packages we’ll use later in the course need it.\n\n\n\nConfigure RStudio\n\nTools &gt; Global Options... &gt; General\nRestore .RData into workspace at startup: Unchecked\nSave workspace to .RData on exit: Never\n\nAssignments due Wednesday 5/20\n\nHW 0: Setup confirmation"
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-slides.html#wrap-up-looking-ahead",
+    "href": "weeks/week1/day1-intro-slides.html#wrap-up-looking-ahead",
+    "title": "Course intro & what is R?",
+    "section": "Wrap-up & looking ahead",
+    "text": "Wrap-up & looking ahead\nTomorrow: A tour of RStudio, R as a calculator, and creating your first objects\n\n\nUpcoming Deadlines\n\nTue 5/19, before class — DC §2.1–2.8\nWed 5/20, 11:59 p.m. — HW 0: Setup\nFri 5/22, in class — Quiz 1\n\nQuiz 1 Practice\n\nFri 5/22, 11:59 p.m. — HW 1: Basic R & Plots\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · Data Computing"
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html",
+    "href": "weeks/week1/day1-intro-page.html",
+    "title": "Course intro & what is R?",
     "section": "",
-    "text": "TODO: Write your introduction here."
+    "text": "Instructor: Charles Costanzo\n\nStatistics Ph.D. student\nHometown: Solon, OH\nSome of my favorite things: cats, coffee, R (unironically)",
+    "crumbs": [
+      "Course intro & what is `R`?"
+    ]
   },
   {
-    "objectID": "weeks/week1/day4-penguin-report.html#option-a-a-second-plot",
-    "href": "weeks/week1/day4-penguin-report.html#option-a-a-second-plot",
-    "title": "Penguin Exploration",
-    "section": "Option A: A second plot",
-    "text": "Option A: A second plot\nPick a different numeric variable from penguins and make a histogram of it. Some options: flipper_length_mm, bill_length_mm, bill_depth_mm.\nAdd a new code chunk (Cmd/Ctrl + Alt + I) and copy the histogram code, then change the variable name and the labels."
+    "objectID": "weeks/week1/day1-intro-page.html#introductions",
+    "href": "weeks/week1/day1-intro-page.html#introductions",
+    "title": "Course intro & what is R?",
+    "section": "",
+    "text": "Instructor: Charles Costanzo\n\nStatistics Ph.D. student\nHometown: Solon, OH\nSome of my favorite things: cats, coffee, R (unironically)",
+    "crumbs": [
+      "Course intro & what is `R`?"
+    ]
   },
   {
-    "objectID": "weeks/week1/day4-penguin-report.html#option-b-render-to-word-instead",
-    "href": "weeks/week1/day4-penguin-report.html#option-b-render-to-word-instead",
-    "title": "Penguin Exploration",
-    "section": "Option B: Render to Word instead",
-    "text": "Option B: Render to Word instead\nChange format: html to format: docx in the YAML header at the top, then re-render. What happens?"
+    "objectID": "weeks/week1/day1-intro-page.html#solon-ohio",
+    "href": "weeks/week1/day1-intro-page.html#solon-ohio",
+    "title": "Course intro & what is R?",
+    "section": "Solon, Ohio",
+    "text": "Solon, Ohio\n\n\nShow the R code.\n# Install these first if you don't have them:\n# install.packages(c(\"sf\", \"tigris\"))\nlibrary(ggplot2)\nlibrary(sf)\nlibrary(tigris)\nlibrary(dplyr)\n\noptions(tigris_use_cache = TRUE)\n\n# Fetch spatial data\nohio_counties &lt;- counties(state = \"OH\", cb = TRUE, progress_bar = FALSE)\nohio_places &lt;- places(state = \"OH\", cb = TRUE, progress_bar = FALSE)\n\n# Isolate areas\ncuyahoga_county &lt;- ohio_counties %&gt;% filter(NAME == \"Cuyahoga\")\nsolon_city &lt;- ohio_places %&gt;% filter(NAME == \"Solon\")\n\n# Build the map\nggplot() +\n  geom_sf(data = ohio_counties,\n          fill = \"#f8f9fa\", color = \"grey\", linewidth = 0.3) +\n  geom_sf(data = cuyahoga_county,\n          fill = \"#D6EAF8\", color = \"#2980B9\", linewidth = 0.5) +\n  geom_sf(data = solon_city,\n          fill = \"dodgerblue\", color = \"darkblue\", linewidth = 0.5) +\n  geom_sf_text(data = solon_city, aes(label = NAME),\n               size = 5, fontface = \"bold\", color = \"dodgerblue\",\n               nudge_y = -0.05, nudge_x = 0.25) +\n  theme_void()",
+    "crumbs": [
+      "Course intro & what is `R`?"
+    ]
   },
   {
-    "objectID": "weeks/week1/day4-penguin-report.html#option-c-add-a-table",
-    "href": "weeks/week1/day4-penguin-report.html#option-c-add-a-table",
-    "title": "Penguin Exploration",
-    "section": "Option C: Add a table",
-    "text": "Option C: Add a table\nAdd a new code chunk somewhere and put this code in it:\nknitr::kable(head(penguins))\nRe-render and see what shows up."
+    "objectID": "weeks/week1/day1-intro-page.html#meet-my-cats",
+    "href": "weeks/week1/day1-intro-page.html#meet-my-cats",
+    "title": "Course intro & what is R?",
+    "section": "Meet My Cats!",
+    "text": "Meet My Cats!\n\n\n\n\n\n\nBabuh\n\n\n\n\n\n\n\nTartarus",
+    "crumbs": [
+      "Course intro & what is `R`?"
+    ]
   },
   {
-    "objectID": "weeks/week1/day4-penguin-report.html#option-d-hide-the-code",
-    "href": "weeks/week1/day4-penguin-report.html#option-d-hide-the-code",
-    "title": "Penguin Exploration",
-    "section": "Option D: Hide the code",
-    "text": "Option D: Hide the code\nIn the YAML header, add:\nexecute:\n  echo: false\nRe-render. What changed?"
+    "objectID": "weeks/week1/day1-intro-page.html#more-realistic-cat-photos",
+    "href": "weeks/week1/day1-intro-page.html#more-realistic-cat-photos",
+    "title": "Course intro & what is R?",
+    "section": "More Realistic Cat Photos…",
+    "text": "More Realistic Cat Photos…\n\n\n\n\n\n\n\nBabuh in the bathtub looking soaked and indignant.\n\n\n\n\n\n\n\n\n\nBabuh mid-bath, fur fully soaked.\n\n\n\n\n\n\n\n\n\nBabuh wrapped in a towel after the bath.",
+    "crumbs": [
+      "Course intro & what is `R`?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#countries-ive-been-to",
+    "href": "weeks/week1/day1-intro-page.html#countries-ive-been-to",
+    "title": "Course intro & what is R?",
+    "section": "Countries I’ve Been To",
+    "text": "Countries I’ve Been To\n\n\nShow the R code.\nlibrary(ggplot2)\nlibrary(maps)\nlibrary(dplyr)\n\nworld_map &lt;- map_data(\"world\")\n\nvisited_countries &lt;- c(\"Canada\", \"USA\", \"Argentina\", \"Uruguay\",\n                       \"Switzerland\", \"Rwanda\", \"Spain\", \"France\", \"Turkey\")\n\nworld_map &lt;- world_map %&gt;%\n  mutate(visited = ifelse(region %in% visited_countries, \"Visited\", \"Not Visited\"))\n\nggplot(world_map, aes(x = long, y = lat, group = group, fill = visited)) +\n  geom_polygon(color = \"white\", linewidth = 0.2) +\n  scale_fill_manual(values = c(\"Not Visited\" = \"#e0e0e0\", \"Visited\" = \"#FF7F50\")) +\n  theme_void() +\n  theme(legend.position = \"none\")",
+    "crumbs": [
+      "Course intro & what is `R`?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#states-ive-lived-in-visited",
+    "href": "weeks/week1/day1-intro-page.html#states-ive-lived-in-visited",
+    "title": "Course intro & what is R?",
+    "section": "States I’ve Lived In & Visited",
+    "text": "States I’ve Lived In & Visited\n\n\nShow the R code.\n# Note: install.packages(\"mapproj\") if needed\nlibrary(ggplot2)\nlibrary(maps)\nlibrary(dplyr)\nlibrary(mapproj)\n\nus_map &lt;- map_data(\"state\")\n\nlived_in &lt;- tolower(c(\"Ohio\", \"Pennsylvania\", \"Texas\"))\n\n# Note: \"District of Columbia\" matches the map data; \"Washington DC\" wouldn't\nvisited &lt;- tolower(c(\"Washington\", \"Oregon\", \"California\", \"Nevada\", \"Idaho\",\n                     \"Montana\", \"Arizona\", \"New Mexico\", \"Colorado\", \"Wyoming\",\n                     \"North Dakota\", \"South Dakota\", \"Kansas\", \"Iowa\",\n                     \"Nebraska\", \"Minnesota\", \"Wisconsin\", \"Michigan\", \"Indiana\",\n                     \"Illinois\", \"Kentucky\", \"Tennessee\", \"Louisiana\", \"Florida\",\n                     \"Georgia\", \"North Carolina\", \"South Carolina\", \"Virginia\",\n                     \"District of Columbia\", \"Maryland\", \"Delaware\", \"New Jersey\",\n                     \"New York\", \"Missouri\", \"Utah\", \"West Virginia\"))\n\nus_map &lt;- us_map %&gt;%\n  mutate(status = case_when(\n    region %in% lived_in ~ \"Lived\",\n    region %in% visited ~ \"Visited\",\n    TRUE ~ \"Not Visited\"\n  )) %&gt;%\n  mutate(status = factor(status, levels = c(\"Lived\", \"Visited\", \"Not Visited\")))\n\nggplot(us_map, aes(x = long, y = lat, group = group, fill = status)) +\n  geom_polygon(color = \"white\", linewidth = 0.3) +\n  scale_fill_manual(values = c(\"Lived\" = \"#2C3E50\",\n                               \"Visited\" = \"#3498DB\",\n                               \"Not Visited\" = \"#E0E0E0\")) +\n  coord_map(\"albers\", lat0 = 39, lat1 = 45) +\n  theme_void() +\n  theme(legend.position = \"bottom\",\n        legend.title = element_blank(),\n        legend.text = element_text(size = 14))",
+    "crumbs": [
+      "Course intro & what is `R`?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#icebreaker-share-your",
+    "href": "weeks/week1/day1-intro-page.html#icebreaker-share-your",
+    "title": "Course intro & what is R?",
+    "section": "Icebreaker 🧊: Share Your…",
+    "text": "Icebreaker 🧊: Share Your…\n\nName\nMajor\nProgramming Experience\nA Fun Fact (Favorite Song, Color, Food, etc.)",
+    "crumbs": [
+      "Course intro & what is `R`?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#section",
+    "href": "weeks/week1/day1-intro-page.html#section",
+    "title": "Course intro & what is R?",
+    "section": "",
+    "text": "NoteToday: Monday May 18\n\n\n\nBefore class\n\nRead the syllabus (Click here).\n(Optional): Read Data Computing §1.1–1.5 (Click here).\n\nPlan for today\n\nCourse logistics\nIntroduction to R and RStudio\nTidy data\nR Demo\n\nHelpful links\n\nSyllabus · AI policy · Schedule · Data Computing §1",
+    "crumbs": [
+      "Course intro & what is `R`?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#course-info",
+    "href": "weeks/week1/day1-intro-page.html#course-info",
+    "title": "Course intro & what is R?",
+    "section": "Course Info",
+    "text": "Course Info\nSummer Session 1: May 18, 2026 – June 26, 2026\n\nClass time: M/T/W/Th/F, 9:35 a.m. to 10:50 a.m.\nClass location: Huck Life Sciences Building 007\nInstructor: Charles Costanzo\n\nEmail: cgc5478@psu.edu\nOffice Hours: M/W/Th/F: 10:50-11:50 a.m. in Huck 005 (or on Zoom by appt)\n\nTeaching Assistant (TA): Xinyue Wang\n\nEmail: xpw5228@psu.edu",
+    "crumbs": [
+      "Course intro & what is `R`?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#learning-goals",
+    "href": "weeks/week1/day1-intro-page.html#learning-goals",
+    "title": "Course intro & what is R?",
+    "section": "Learning Goals",
+    "text": "Learning Goals\nThis course will teach you how to:\n\n\nUse R: Program in the R language effectively and use the R software environment to efficiently compute with data.\n\n\n\n\nWrangle Real Data: Access, clean, join, and format data from various sources.\n\n\n\n\nVisualize Information: Create graphical and descriptive summaries of data.\n\n\n\n\nBuild Reproducible Workflows: Write well-documented code using tools like RStudio, RMarkdown, and Git/GitHub.\n\n\n\n\n\n\n\n\n\nTipNo previous programming background is required for this course.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportantThis is not a course on general purpose programming.",
+    "crumbs": [
+      "Course intro & what is `R`?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#course-logistics-1",
+    "href": "weeks/week1/day1-intro-page.html#course-logistics-1",
+    "title": "Course intro & what is R?",
+    "section": "Course logistics",
+    "text": "Course logistics\n\nSix weeks is short. Daily pace is faster than a 15-week course. Falling a week—or even a day—behind is more serious than spring/fall courses.\nAttendance matters. Lots of in-class graded work (activities, quizzes, oral checkpoints).\nTimely communication is critical. Reach out to me as soon as possible if something comes up that necessitates you missing class, having a deadline extended, etc.\n\n\nAssignment weights\n\n\n\n\n\n\n\n\n\n\nReadings\nQuizzes\nIn-class activities\nHomework\nExam\nCourse project\n\n\n\n\n10%\n15%\n25%\n10%\n20%\n20%\n\n\n\n\nGrading scheme\n\n\nA\nA-\nB+\nB\nB-\nC+\nC\nD\nF\n\n\n\n\n93%\n90%\n87%\n83%\n80%\n77%\n70%\n60%\nbelow 60%",
+    "crumbs": [
+      "Course intro & what is `R`?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#ai-policy",
+    "href": "weeks/week1/day1-intro-page.html#ai-policy",
+    "title": "Course intro & what is R?",
+    "section": "AI policy",
+    "text": "AI policy\n\nOpen assessments (Homework & Project): AI tools are permitted with mandatory disclosure.\nClosed-book, in-person work (Quizzes, Exam, Activities, Oral Checkpoints): AI tools are strictly prohibited.\nDisclosure is graded (1-2 points).\nYou must be able to explain any code you submit, which I will verify during in-class oral project checkpoints.\nRoughly 60% of your grade comes from verified in-person work where AI cannot be used.",
+    "crumbs": [
+      "Course intro & what is `R`?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#course-readings-perusall",
+    "href": "weeks/week1/day1-intro-page.html#course-readings-perusall",
+    "title": "Course intro & what is R?",
+    "section": "Course Readings (Perusall)",
+    "text": "Course Readings (Perusall)\n\nAll assigned textbook readings are hosted on Perusall, a collaborative e-reading platform.\nHow grading works: You earn credit through holistic engagement (reading the entire text, spending active time, leaving high-quality comments, and replying to classmates).\nNo access code needed! You must access readings directly through Canvas links to automatically authenticate your Penn State account.\n\n\n\n\n\n\n\n\nImportantLet’s try it together right now:\n\n\n\n\nLog into our Canvas course.\nClick the “Perusall” tab on the left.\nClick the link for DC Section 1 (§1.1–1.5).",
+    "crumbs": [
+      "Course intro & what is `R`?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#what-is-r-1",
+    "href": "weeks/week1/day1-intro-page.html#what-is-r-1",
+    "title": "Course intro & what is R?",
+    "section": "What is R?",
+    "text": "What is R?\nR is a programming language and a software environment for statistical computing and graphics.\n\nDesigned by statisticians for the purpose of data analysis.\nFirst version created in August 1993 (almost 33 years ago).\nHas grown rapidly in popularity and is widely used in academia and industry by statisticians, data analysts, and data scientists alike.\nEnormous number of user-contributed packages, which are add-ons that extend the functionality of R.\n\nCurrently the Comprehensive R Archive Network (CRAN) package repository features 23,664 available packages.1",
+    "crumbs": [
+      "Course intro & what is `R`?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#some-examples-of-said-r-packages",
+    "href": "weeks/week1/day1-intro-page.html#some-examples-of-said-r-packages",
+    "title": "Course intro & what is R?",
+    "section": "Some Examples of Said R Packages",
+    "text": "Some Examples of Said R Packages\n\n\n\n\n\n\n\nA grid of dozens of hexagonal stickers, each representing a different R package such as ggplot2, dplyr, tidyr, shiny, knitr, and others. The hex stickers are tiled together into a colorful honeycomb pattern.\n\n\nHex stickers from the rstudio/hex-stickers repository.",
+    "crumbs": [
+      "Course intro & what is `R`?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#r-vs.-rstudio",
+    "href": "weeks/week1/day1-intro-page.html#r-vs.-rstudio",
+    "title": "Course intro & what is R?",
+    "section": "R vs. RStudio",
+    "text": "R vs. RStudio\n\nR is a computer language that performs computations based on human-written instructions.\nRStudio is an integrated development environment (IDE) for R programming. It combines the R console with supplementary tools for more efficient R programming.\n\n\n\n\n\n\n\nR: Do not open this\n\n\n\n\n \n\n\n\n\n\nRStudio: Open this",
+    "crumbs": [
+      "Course intro & what is `R`?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#tidy-data-neq-neat-data",
+    "href": "weeks/week1/day1-intro-page.html#tidy-data-neq-neat-data",
+    "title": "Course intro & what is R?",
+    "section": "Tidy Data \\(\\neq\\) Neat Data",
+    "text": "Tidy Data \\(\\neq\\) Neat Data\n\n\n\n\n\n\nTipThis table is easy for humans to read. What might make it tricky for a computer to read?\n\n\n\n\n\n\n\n\n\nA spreadsheet showing party change applications in PA. Source: PA Dept. of State (May 4–11, 2026).\n\n\n\nTwo simple rules for Tidy Data:\n\n\n\nConsistent Cases (Rows): Each row must represent a single, distinct instance of your unit of observation.\nUniform Variables (Columns): Every column contains the same type of value.",
+    "crumbs": [
+      "Course intro & what is `R`?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#pa-voter-table---tidied-up",
+    "href": "weeks/week1/day1-intro-page.html#pa-voter-table---tidied-up",
+    "title": "Course intro & what is R?",
+    "section": "PA Voter Table - Tidied Up",
+    "text": "PA Voter Table - Tidied Up\n\n\nShow the R code.\n# 1. Load data and provide clean column names to handle the nested headers\nraw_data &lt;- readxl::read_excel(\"data/currentvotestats.xlsx\",\n                       sheet = \"Party-to-Party(2026)\",\n                       skip = 3, # Skip the human-readable headers\n                       col_names = c(\"county\",\n                                     \"week_dem_R\", \"week_dem_OTH\",\n                                     \"week_rep_D\", \"week_rep_OTH\",\n                                     \"year_dem_R\", \"year_dem_OTH\",\n                                     \"year_rep_D\", \"year_rep_OTH\"))\n\n# 2. Clean and Pivot\ntidy_voter_data &lt;- raw_data %&gt;%\n  filter(!is.na(county), county != \"Totals:\") %&gt;%\n  pivot_longer(\n    cols = -county,\n    names_to = c(\"period\", \"target_party\", \"origin_party\"),\n    names_sep = \"_\",\n    values_to = \"count\"\n  )\n\nknitr::kable(\n  head(tidy_voter_data %&gt;% filter(county == \"CENTRE\")),\n  caption = \"First six rows of the tidied PA voter party-change data, filtered to Centre County. Each row is one combination of period, target party, and origin party with its corresponding count.\"\n)\n\n\n\nFirst six rows of the tidied PA voter party-change data, filtered to Centre County. Each row is one combination of period, target party, and origin party with its corresponding count.\n\n\ncounty\nperiod\ntarget_party\norigin_party\ncount\n\n\n\n\nCENTRE\nweek\ndem\nR\n2\n\n\nCENTRE\nweek\ndem\nOTH\n14\n\n\nCENTRE\nweek\nrep\nD\n3\n\n\nCENTRE\nweek\nrep\nOTH\n4\n\n\nCENTRE\nyear\ndem\nR\n88\n\n\nCENTRE\nyear\ndem\nOTH\n130",
+    "crumbs": [
+      "Course intro & what is `R`?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#demo-what-r-can-do",
+    "href": "weeks/week1/day1-intro-page.html#demo-what-r-can-do",
+    "title": "Course intro & what is R?",
+    "section": "Demo: what R can do",
+    "text": "Demo: what R can do\n\n\nShow the R code.\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\n# What does the data look like?\nglimpse(penguins)\n\n\nRows: 344\nColumns: 8\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\nShow the R code.\n# Quick summary by species\npenguins |&gt;\n  group_by(species) |&gt;\n  summarize(\n    n            = n(),\n    mean_mass_g  = mean(body_mass_g,    na.rm = TRUE),\n    mean_bill_mm = mean(bill_length_mm, na.rm = TRUE)\n  )\n\n\n# A tibble: 3 × 4\n  species       n mean_mass_g mean_bill_mm\n  &lt;fct&gt;     &lt;int&gt;       &lt;dbl&gt;        &lt;dbl&gt;\n1 Adelie      152       3701.         38.8\n2 Chinstrap    68       3733.         48.8\n3 Gentoo      124       5076.         47.5\n\n\nShow the R code.\n# A nice plot\npenguins |&gt;\n  ggplot(aes(x = bill_length_mm, y = body_mass_g, color = species)) +\n  geom_point(alpha = 0.7) +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  labs(\n    title = \"Bill length vs body mass, by species\",\n    x = \"Bill length (mm)\",\n    y = \"Body mass (g)\"\n  ) +\n  theme_minimal()",
+    "crumbs": [
+      "Course intro & what is `R`?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#demo-a-campus-map",
+    "href": "weeks/week1/day1-intro-page.html#demo-a-campus-map",
+    "title": "Course intro & what is R?",
+    "section": "Demo: a campus map",
+    "text": "Demo: a campus map\n\n\nShow the interactive Leaflet code.\nlibrary(tidyverse)\nlibrary(sf)\nlibrary(tigris)\nlibrary(leaflet)\n\n# 1. Centre County boundary, reprojected for Leaflet (WGS84 / CRS 4326)\noptions(tigris_use_cache = TRUE)\ncentre_county &lt;- counties(state = \"PA\", cb = TRUE, progress_bar = FALSE) |&gt;\n  filter(NAME == \"Centre\") |&gt;\n  st_transform(4326)\n\n# 2. Huck Life Sciences Building\nhuck_building &lt;- tibble(\n  lon = -77.86146,\n  lat = 40.80100,\n  name = \"Huck Life Sciences Building\"\n) |&gt;\n  st_as_sf(coords = c(\"lon\", \"lat\"), crs = 4326)\n\n# 3. Build the map\nleaflet() |&gt;\n  addProviderTiles(providers$Esri.WorldImagery) |&gt;\n  addPolygons(\n    data = centre_county,\n    fillColor = \"#041E42\",\n    fillOpacity = 0.1,\n    color = \"#FFF\",\n    weight = 3,\n    dashArray = \"5, 5\"\n  ) |&gt;\n  addCircleMarkers(\n    data = huck_building,\n    color = \"#FFFFFF\",\n    weight = 1,\n    fillColor = \"#0096FF\",\n    radius = 8,\n    fillOpacity = 0.9,\n    label = ~name,\n    labelOptions = labelOptions(\n      style = list(\n        \"font-family\" = \"Arial, sans-serif\",\n        \"font-weight\" = \"bold\",\n        \"color\" = \"#041E42\",\n        \"padding\" = \"4px 8px\"\n      ),\n      direction = \"auto\"\n    ),\n    popup = \"&lt;b&gt;Huck Life Sciences&lt;/b&gt;&lt;br&gt;Class meets in Room 007\"\n  )",
+    "crumbs": [
+      "Course intro & what is `R`?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#setup-checklist-due-by-wednesday",
+    "href": "weeks/week1/day1-intro-page.html#setup-checklist-due-by-wednesday",
+    "title": "Course intro & what is R?",
+    "section": "Setup checklist — due by Wednesday",
+    "text": "Setup checklist — due by Wednesday\nInstall R and RStudio\n\nR: https://cloud.r-project.org\nRStudio: https://posit.co/download/rstudio-desktop\n\n\n\n\n\n\n\nWarningMac users\n\n\n\nInstall XQuartz too — some packages we’ll use later in the course need it.\n\n\nConfigure RStudio\n\nTools &gt; Global Options... &gt; General\nRestore .RData into workspace at startup: Unchecked\nSave workspace to .RData on exit: Never\n\nAssignments due Wednesday 5/20\n\nHW 0: Setup confirmation",
+    "crumbs": [
+      "Course intro & what is `R`?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#wrap-up-looking-ahead",
+    "href": "weeks/week1/day1-intro-page.html#wrap-up-looking-ahead",
+    "title": "Course intro & what is R?",
+    "section": "Wrap-up & looking ahead",
+    "text": "Wrap-up & looking ahead\nTomorrow: A tour of RStudio, R as a calculator, and creating your first objects\n\n\nUpcoming Deadlines\n\nTue 5/19, before class — DC §2.1–2.8\nWed 5/20, 11:59 p.m. — HW 0: Setup\nFri 5/22, in class — Quiz 1\n\nQuiz 1 Practice\n\nFri 5/22, 11:59 p.m. — HW 1: Basic R & Plots\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · Data Computing",
+    "crumbs": [
+      "Course intro & what is `R`?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day1-intro-page.html#footnotes",
+    "href": "weeks/week1/day1-intro-page.html#footnotes",
+    "title": "Course intro & what is R?",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nAs of May 17, 2026.↩︎",
+    "crumbs": [
+      "Course intro & what is `R`?"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-slides.html#quiz-1-instructions",
+    "href": "weeks/week1/day5-pipe-slides.html#quiz-1-instructions",
+    "title": "%>% The pipe operator |>",
+    "section": "Quiz 1 — instructions",
+    "text": "Quiz 1 — instructions\n\n\n\n\n\n\n\nClosed-book, no AI, no electronics\n\n\n\nPut away phones and laptops.\nYou may use a pen or pencil.\n20 minutes.\nI’ll hand out the quiz now and collect it at the end.\n\n\n\n\n\nTopics covered:\n\nR as a calculator and basic syntax\nData types and structures\nObjects and assignment\nReading R code (functions, arguments, variables, constants)\nPackages: installing vs. loading\nHistograms in ggplot2 (reading code, not writing from scratch)\n\nWhen you finish early, flip your quiz face-down and wait quietly."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-slides.html#quiz-debrief",
+    "href": "weeks/week1/day5-pipe-slides.html#quiz-debrief",
+    "title": "%>% The pipe operator |>",
+    "section": "Quiz debrief",
+    "text": "Quiz debrief\nA few quick notes:\n\nWe’ll go over common stumbling points on Monday after I’ve graded them.\nIf you finished with time to spare: nice.\nIf you didn’t finish: don’t panic. Quizzes are 15% of the grade, weighted across the semester.\n\nNow let’s get into something new."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-slides.html#a-problem-weve-already-seen",
+    "href": "weeks/week1/day5-pipe-slides.html#a-problem-weve-already-seen",
+    "title": "%>% The pipe operator |>",
+    "section": "A problem we’ve already seen",
+    "text": "A problem we’ve already seen\nRemember this slide from Wednesday?\n\nsqrt(mean(c(1, 4, 9, 16, 25)))\n\n[1] 3.316625\n\n\nTo read this, your eye has to jump inside-out:\n\nFirst c(1, 4, 9, 16, 25) makes a vector.\nThen mean(...) of that vector is 11.\nThen sqrt(11) is ≈ 3.317.\n\nThat’s already tough. Imagine four or five nested functions."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-slides.html#a-real-example",
+    "href": "weeks/week1/day5-pipe-slides.html#a-real-example",
+    "title": "%>% The pipe operator |>",
+    "section": "A real example",
+    "text": "A real example\nSuppose we want to:\n\nTake the penguins data,\nKeep only rows where body_mass_g is not missing,\nGroup by species,\nCompute the mean body mass for each species.\n\nWritten with nested function calls:\n\nsummarize(\n  group_by(\n    filter(penguins, !is.na(body_mass_g)),\n    species\n  ),\n  avg_mass = mean(body_mass_g)\n)\n\nYou have to read it from the inside out, and the arguments get separated from their functions. Ugh."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-slides.html#enter-the-pipe",
+    "href": "weeks/week1/day5-pipe-slides.html#enter-the-pipe",
+    "title": "%>% The pipe operator |>",
+    "section": "Enter the pipe",
+    "text": "Enter the pipe\nThe pipe operator lets you read code left-to-right, top-to-bottom — the way you actually think about it.\n\npenguins |&gt;\n  filter(!is.na(body_mass_g)) |&gt;\n  group_by(species) |&gt;\n  summarize(avg_mass = mean(body_mass_g))\n\nRead this as:\n\n“Take penguins, then filter out missing values, then group by species, then summarize the average mass.”\n\nThat’s it. That’s the whole idea."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-slides.html#what-the-pipe-does",
+    "href": "weeks/week1/day5-pipe-slides.html#what-the-pipe-does",
+    "title": "%>% The pipe operator |>",
+    "section": "What the pipe does",
+    "text": "What the pipe does\nx |&gt; f()\nis exactly the same as\nf(x)\nThe pipe takes whatever’s on the left and inserts it as the first argument to the function on the right.\n\n# These do the same thing:\nsqrt(16)\n\n[1] 4\n\n16 |&gt; sqrt()\n\n[1] 4"
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-slides.html#with-multiple-arguments",
+    "href": "weeks/week1/day5-pipe-slides.html#with-multiple-arguments",
+    "title": "%>% The pipe operator |>",
+    "section": "With multiple arguments",
+    "text": "With multiple arguments\nx |&gt; f(arg2, arg3)\nis the same as\nf(x, arg2, arg3)\nThe pipe always fills the first argument; the rest go inside the parentheses as usual.\n\n# Without the pipe:\nround(3.14159, digits = 2)\n\n[1] 3.14\n\n# With the pipe:\n3.14159 |&gt; round(digits = 2)\n\n[1] 3.14"
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-slides.html#chaining-pipes",
+    "href": "weeks/week1/day5-pipe-slides.html#chaining-pipes",
+    "title": "%>% The pipe operator |>",
+    "section": "Chaining pipes",
+    "text": "Chaining pipes\nThe real power: you can chain pipes together to do many steps in order.\n\nc(1, 4, 9, 16, 25) |&gt;\n  mean() |&gt;\n  sqrt()\n\n[1] 3.316625\n\n\nCompare to the nested version:\n\nsqrt(mean(c(1, 4, 9, 16, 25)))\n\n[1] 3.316625\n\n\nSame answer. The piped version reads in the order you do the work."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-slides.html#style-one-pipe-per-line",
+    "href": "weeks/week1/day5-pipe-slides.html#style-one-pipe-per-line",
+    "title": "%>% The pipe operator |>",
+    "section": "Style: one pipe per line",
+    "text": "Style: one pipe per line\n\n\n\n\n\n\nConvention\n\n\nPut each pipe step on its own line, with the |&gt; at the end of the previous line.\nIndent the continuation by 2 spaces.\n\n\n\nGood:\n\npenguins |&gt;\n  filter(!is.na(body_mass_g)) |&gt;\n  group_by(species) |&gt;\n  summarize(avg_mass = mean(body_mass_g))\n\nNot so good (works, but harder to read):\n\npenguins |&gt; filter(!is.na(body_mass_g)) |&gt; group_by(species) |&gt; summarize(avg_mass = mean(body_mass_g))"
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-slides.html#vs.",
+    "href": "weeks/week1/day5-pipe-slides.html#vs.",
+    "title": "%>% The pipe operator |>",
+    "section": "|> vs. %>%",
+    "text": "|&gt; vs. %&gt;%\nYou will see two pipe operators in R code online:\n\nThe two pipes in R.\n\n\n\n\n\n\n\nPipe\nWhere it comes from\nWhen introduced\n\n\n\n\n%&gt;%\nThe magrittr package (and tidyverse)\n2014\n\n\n\\|&gt;\nBase R\n2021\n\n\n\nThey do almost the same thing. For everything we’ll cover in this course, they behave identically."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-slides.html#why-two-pipes",
+    "href": "weeks/week1/day5-pipe-slides.html#why-two-pipes",
+    "title": "%>% The pipe operator |>",
+    "section": "Why two pipes?",
+    "text": "Why two pipes?\n\n%&gt;% came first. It’s the original tidyverse pipe.\nBase R added |&gt; later because the pipe became so popular they wanted it built in.\nThe textbook (Data Computing) uses %&gt;%.\nI’ll use |&gt; in lecture going forward — it’s the modern default.\n\n\n\n\n\n\n\nNote\n\n\nYou can use either one. I’ll accept both on assignments. Just be consistent within a single document."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-slides.html#typing-the-pipe-quickly",
+    "href": "weeks/week1/day5-pipe-slides.html#typing-the-pipe-quickly",
+    "title": "%>% The pipe operator |>",
+    "section": "Typing the pipe quickly",
+    "text": "Typing the pipe quickly\nYou don’t have to type |&gt; character-by-character. RStudio has a shortcut:\n\nMac: Cmd + Shift + M\nWindows/Linux: Ctrl + Shift + M\n\n\n\n\n\n\n\nTip\n\n\nBy default, this shortcut inserts %&gt;%. To make it insert |&gt; instead:\nTools &gt; Global Options... &gt; Code &gt; Use native pipe operator"
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-slides.html#translating-between-styles",
+    "href": "weeks/week1/day5-pipe-slides.html#translating-between-styles",
+    "title": "%>% The pipe operator |>",
+    "section": "Translating between styles",
+    "text": "Translating between styles\nYou’ll see code in both styles all over the internet. Practice translating in your head.\nNested:\n\nhead(arrange(filter(penguins, species == \"Gentoo\"), body_mass_g), 5)\n\nPiped:\n\npenguins |&gt;\n  filter(species == \"Gentoo\") |&gt;\n  arrange(body_mass_g) |&gt;\n  head(5)\n\nSame result. Way easier to read the piped version."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-slides.html#what-the-pipe-is-not",
+    "href": "weeks/week1/day5-pipe-slides.html#what-the-pipe-is-not",
+    "title": "%>% The pipe operator |>",
+    "section": "What the pipe is NOT",
+    "text": "What the pipe is NOT\n\n\n\n\n\n\nThe pipe doesn’t run things in parallel\n\n\nIt just rewrites your code. Each step still runs one at a time, in order.\n\n\n\n\n\n\n\n\n\nThe pipe is NOT the same as + in ggplot2\n\n\n\ndplyr and other data verbs: use |&gt; or %&gt;%.\nggplot2 layers: use +.\n\nThis trips everyone up. Keep them straight.\n\n\n\n\n# Correct:\npenguins |&gt;\n  filter(!is.na(body_mass_g)) |&gt;\n  ggplot(aes(x = body_mass_g)) +\n    geom_histogram()"
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-slides.html#a-peek-at-whats-coming",
+    "href": "weeks/week1/day5-pipe-slides.html#a-peek-at-whats-coming",
+    "title": "%>% The pipe operator |>",
+    "section": "A peek at what’s coming",
+    "text": "A peek at what’s coming\nYou’ll see the pipe everywhere from here on out. Tomorrow we start the dplyr verbs:\n\nfilter() — pick rows\nselect() — pick columns\narrange() — sort\nmutate() — make new columns\nsummarize() — collapse to a single number\ngroup_by() — split into groups before summarizing\n\nEvery one of these is designed to be chained together with the pipe."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-slides.html#activity-pipe-practice-15-min",
+    "href": "weeks/week1/day5-pipe-slides.html#activity-pipe-practice-15-min",
+    "title": "%>% The pipe operator |>",
+    "section": "Activity: pipe practice (~ 15 min)",
+    "text": "Activity: pipe practice (~ 15 min)\nWork individually or with a neighbor.\nSetup:\n\nOpen RStudio.\nNew R script. Save as day5-activity.R.\nAt the top:\n\n\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\nGoal: Translate between nested and piped code, then write your own."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-slides.html#activity-part-1-translate-to-piped",
+    "href": "weeks/week1/day5-pipe-slides.html#activity-part-1-translate-to-piped",
+    "title": "%>% The pipe operator |>",
+    "section": "Activity: Part 1 — translate to piped",
+    "text": "Activity: Part 1 — translate to piped\nRewrite each of these using the pipe |&gt;. Don’t run them yet — just rewrite the code.\n\n# 1\nsqrt(64)\n\n# 2\nmean(c(2, 4, 6, 8, 10))\n\n# 3\nround(sqrt(50), digits = 2)\n\n# 4\nhead(arrange(penguins, body_mass_g), 3)\n\nThen run both the original and your piped version. Confirm you get the same answer."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-slides.html#activity-part-2-translate-to-nested",
+    "href": "weeks/week1/day5-pipe-slides.html#activity-part-2-translate-to-nested",
+    "title": "%>% The pipe operator |>",
+    "section": "Activity: Part 2 — translate to nested",
+    "text": "Activity: Part 2 — translate to nested\nRewrite each of these without the pipe. Then run both versions.\n\n# 5\nc(1, 2, 3, 4, 5) |&gt; sum()\n\n# 6\npenguins |&gt; head(2)\n\n# 7\n9 |&gt; sqrt() |&gt; round(1)"
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-slides.html#activity-part-3-write-your-own",
+    "href": "weeks/week1/day5-pipe-slides.html#activity-part-3-write-your-own",
+    "title": "%>% The pipe operator |>",
+    "section": "Activity: Part 3 — write your own",
+    "text": "Activity: Part 3 — write your own\nWrite a single piped expression that:\n\nTakes penguins,\nKeeps only the rows where species is \"Adelie\",\nPicks just the first 5 rows.\n\n\n\n\n\n\n\nHint\n\n\nYou’ll need filter() and head(). Chain them with |&gt;.\n\n\n\nTo turn in: Save your script. We’ll check at the end of class."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-slides.html#activity-debrief",
+    "href": "weeks/week1/day5-pipe-slides.html#activity-debrief",
+    "title": "%>% The pipe operator |>",
+    "section": "Activity debrief",
+    "text": "Activity debrief\nCommon things to watch for:\n\nThe pipe goes at the END of the line, not the start. x |&gt; then a new line — not \\n |&gt; f().\nThe first argument is filled automatically. Don’t write penguins |&gt; filter(penguins, ...) — drop the first penguins.\n+ vs. |&gt; again. dplyr verbs chain with |&gt;; ggplot layers chain with +.\nParentheses still matter. f() not f. The pipe doesn’t change that."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-slides.html#wrap-up-what-we-covered-today",
+    "href": "weeks/week1/day5-pipe-slides.html#wrap-up-what-we-covered-today",
+    "title": "%>% The pipe operator |>",
+    "section": "Wrap-up: what we covered today",
+    "text": "Wrap-up: what we covered today\n\nThe pipe operator (|&gt; or %&gt;%) takes the value on the left and feeds it as the first argument to the function on the right.\nPipes let you read code top-to-bottom in the order you’d actually do the work.\nEach step gets its own line; the pipe lives at the end of the previous line.\n|&gt; and %&gt;% are nearly interchangeable for our purposes.\ndplyr verbs chain with |&gt;; ggplot layers chain with +."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-slides.html#wrap-up-looking-ahead",
+    "href": "weeks/week1/day5-pipe-slides.html#wrap-up-looking-ahead",
+    "title": "%>% The pipe operator |>",
+    "section": "Wrap-up & looking ahead",
+    "text": "Wrap-up & looking ahead\nMonday: dplyr verbs — filter(), select(), arrange().\n\n\nUpcoming Deadlines\n\nToday, 11:59 p.m. — HW 1: Basic R & Plots\nMon 5/25, before class — DC §7 reading (Canvas link TBA)\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · Data Computing"
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-page.html",
+    "href": "weeks/week1/day5-pipe-page.html",
+    "title": "%>% The pipe operator |>",
+    "section": "",
+    "text": "NoteToday: Friday May 22\n\n\n\nBefore class\n\nRead Data Computing §3.6 (Click here).\n\nPlan for today\n\nQuiz 1 (20 min)\nThe pipe operator\nChaining commands together\nIn-class activity\n\nHelpful links\n\nSyllabus · AI policy · Schedule · Data Computing §3.6"
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-page.html#quiz-1-instructions",
+    "href": "weeks/week1/day5-pipe-page.html#quiz-1-instructions",
+    "title": "%>% The pipe operator |>",
+    "section": "Quiz 1 — instructions",
+    "text": "Quiz 1 — instructions\n\n\n\n\n\n\nImportantClosed-book, no AI, no electronics\n\n\n\n\nPut away phones and laptops.\nYou may use a pen or pencil.\n20 minutes.\nI’ll hand out the quiz now and collect it at the end.\n\n\n\nTopics covered:\n\nR as a calculator and basic syntax\nData types and structures\nObjects and assignment\nReading R code (functions, arguments, variables, constants)\nPackages: installing vs. loading\nHistograms in ggplot2 (reading code, not writing from scratch)\n\nWhen you finish early, flip your quiz face-down and wait quietly."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-page.html#quiz-debrief",
+    "href": "weeks/week1/day5-pipe-page.html#quiz-debrief",
+    "title": "%>% The pipe operator |>",
+    "section": "Quiz debrief",
+    "text": "Quiz debrief\nA few quick notes:\n\nWe’ll go over common stumbling points on Monday after I’ve graded them.\nIf you finished with time to spare: nice.\nIf you didn’t finish: don’t panic. Quizzes are 15% of the grade, weighted across the semester.\n\nNow let’s get into something new."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-page.html#a-problem-weve-already-seen",
+    "href": "weeks/week1/day5-pipe-page.html#a-problem-weve-already-seen",
+    "title": "%>% The pipe operator |>",
+    "section": "A problem we’ve already seen",
+    "text": "A problem we’ve already seen\nRemember this slide from Wednesday?\n\nsqrt(mean(c(1, 4, 9, 16, 25)))\n\n[1] 3.316625\n\n\nTo read this, your eye has to jump inside-out:\n\nFirst c(1, 4, 9, 16, 25) makes a vector.\nThen mean(...) of that vector is 11.\nThen sqrt(11) is ≈ 3.317.\n\nThat’s already tough. Imagine four or five nested functions."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-page.html#a-real-example",
+    "href": "weeks/week1/day5-pipe-page.html#a-real-example",
+    "title": "%>% The pipe operator |>",
+    "section": "A real example",
+    "text": "A real example\nSuppose we want to:\n\nTake the penguins data,\nKeep only rows where body_mass_g is not missing,\nGroup by species,\nCompute the mean body mass for each species.\n\nWritten with nested function calls:\n\nsummarize(\n  group_by(\n    filter(penguins, !is.na(body_mass_g)),\n    species\n  ),\n  avg_mass = mean(body_mass_g)\n)\n\nYou have to read it from the inside out, and the arguments get separated from their functions. Ugh."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-page.html#enter-the-pipe",
+    "href": "weeks/week1/day5-pipe-page.html#enter-the-pipe",
+    "title": "%>% The pipe operator |>",
+    "section": "Enter the pipe",
+    "text": "Enter the pipe\nThe pipe operator lets you read code left-to-right, top-to-bottom — the way you actually think about it.\n\npenguins |&gt;\n  filter(!is.na(body_mass_g)) |&gt;\n  group_by(species) |&gt;\n  summarize(avg_mass = mean(body_mass_g))\n\nRead this as:\n\n“Take penguins, then filter out missing values, then group by species, then summarize the average mass.”\n\nThat’s it. That’s the whole idea."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-page.html#what-the-pipe-does",
+    "href": "weeks/week1/day5-pipe-page.html#what-the-pipe-does",
+    "title": "%>% The pipe operator |>",
+    "section": "What the pipe does",
+    "text": "What the pipe does\nx |&gt; f()\nis exactly the same as\nf(x)\nThe pipe takes whatever’s on the left and inserts it as the first argument to the function on the right.\n\n# These do the same thing:\nsqrt(16)\n\n[1] 4\n\n16 |&gt; sqrt()\n\n[1] 4"
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-page.html#with-multiple-arguments",
+    "href": "weeks/week1/day5-pipe-page.html#with-multiple-arguments",
+    "title": "%>% The pipe operator |>",
+    "section": "With multiple arguments",
+    "text": "With multiple arguments\nx |&gt; f(arg2, arg3)\nis the same as\nf(x, arg2, arg3)\nThe pipe always fills the first argument; the rest go inside the parentheses as usual.\n\n# Without the pipe:\nround(3.14159, digits = 2)\n\n[1] 3.14\n\n# With the pipe:\n3.14159 |&gt; round(digits = 2)\n\n[1] 3.14"
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-page.html#chaining-pipes",
+    "href": "weeks/week1/day5-pipe-page.html#chaining-pipes",
+    "title": "%>% The pipe operator |>",
+    "section": "Chaining pipes",
+    "text": "Chaining pipes\nThe real power: you can chain pipes together to do many steps in order.\n\nc(1, 4, 9, 16, 25) |&gt;\n  mean() |&gt;\n  sqrt()\n\n[1] 3.316625\n\n\nCompare to the nested version:\n\nsqrt(mean(c(1, 4, 9, 16, 25)))\n\n[1] 3.316625\n\n\nSame answer. The piped version reads in the order you do the work."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-page.html#style-one-pipe-per-line",
+    "href": "weeks/week1/day5-pipe-page.html#style-one-pipe-per-line",
+    "title": "%>% The pipe operator |>",
+    "section": "Style: one pipe per line",
+    "text": "Style: one pipe per line\n\n\n\n\n\n\nTipConvention\n\n\n\nPut each pipe step on its own line, with the |&gt; at the end of the previous line.\nIndent the continuation by 2 spaces.\n\n\nGood:\n\npenguins |&gt;\n  filter(!is.na(body_mass_g)) |&gt;\n  group_by(species) |&gt;\n  summarize(avg_mass = mean(body_mass_g))\n\nNot so good (works, but harder to read):\n\npenguins |&gt; filter(!is.na(body_mass_g)) |&gt; group_by(species) |&gt; summarize(avg_mass = mean(body_mass_g))"
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-page.html#vs.",
+    "href": "weeks/week1/day5-pipe-page.html#vs.",
+    "title": "%>% The pipe operator |>",
+    "section": "|> vs. %>%",
+    "text": "|&gt; vs. %&gt;%\nYou will see two pipe operators in R code online:\n\nThe two pipes in R.\n\n\n\n\n\n\n\nPipe\nWhere it comes from\nWhen introduced\n\n\n\n\n%&gt;%\nThe magrittr package (and tidyverse)\n2014\n\n\n\\|&gt;\nBase R\n2021\n\n\n\nThey do almost the same thing. For everything we’ll cover in this course, they behave identically."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-page.html#why-two-pipes",
+    "href": "weeks/week1/day5-pipe-page.html#why-two-pipes",
+    "title": "%>% The pipe operator |>",
+    "section": "Why two pipes?",
+    "text": "Why two pipes?\n\n%&gt;% came first. It’s the original tidyverse pipe.\nBase R added |&gt; later because the pipe became so popular they wanted it built in.\nThe textbook (Data Computing) uses %&gt;%.\nI’ll use |&gt; in lecture going forward — it’s the modern default.\n\n\n\n\n\n\n\nNote\n\n\n\nYou can use either one. I’ll accept both on assignments. Just be consistent within a single document."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-page.html#typing-the-pipe-quickly",
+    "href": "weeks/week1/day5-pipe-page.html#typing-the-pipe-quickly",
+    "title": "%>% The pipe operator |>",
+    "section": "Typing the pipe quickly",
+    "text": "Typing the pipe quickly\nYou don’t have to type |&gt; character-by-character. RStudio has a shortcut:\n\nMac: Cmd + Shift + M\nWindows/Linux: Ctrl + Shift + M\n\n\n\n\n\n\n\nTip\n\n\n\nBy default, this shortcut inserts %&gt;%. To make it insert |&gt; instead:\nTools &gt; Global Options... &gt; Code &gt; Use native pipe operator"
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-page.html#translating-between-styles",
+    "href": "weeks/week1/day5-pipe-page.html#translating-between-styles",
+    "title": "%>% The pipe operator |>",
+    "section": "Translating between styles",
+    "text": "Translating between styles\nYou’ll see code in both styles all over the internet. Practice translating in your head.\nNested:\n\nhead(arrange(filter(penguins, species == \"Gentoo\"), body_mass_g), 5)\n\nPiped:\n\npenguins |&gt;\n  filter(species == \"Gentoo\") |&gt;\n  arrange(body_mass_g) |&gt;\n  head(5)\n\nSame result. Way easier to read the piped version."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-page.html#what-the-pipe-is-not",
+    "href": "weeks/week1/day5-pipe-page.html#what-the-pipe-is-not",
+    "title": "%>% The pipe operator |>",
+    "section": "What the pipe is NOT",
+    "text": "What the pipe is NOT\n\n\n\n\n\n\nWarningThe pipe doesn’t run things in parallel\n\n\n\nIt just rewrites your code. Each step still runs one at a time, in order.\n\n\n\n\n\n\n\n\nWarningThe pipe is NOT the same as + in ggplot2\n\n\n\n\ndplyr and other data verbs: use |&gt; or %&gt;%.\nggplot2 layers: use +.\n\nThis trips everyone up. Keep them straight.\n\n\n\n# Correct:\npenguins |&gt;\n  filter(!is.na(body_mass_g)) |&gt;\n  ggplot(aes(x = body_mass_g)) +\n    geom_histogram()"
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-page.html#a-peek-at-whats-coming",
+    "href": "weeks/week1/day5-pipe-page.html#a-peek-at-whats-coming",
+    "title": "%>% The pipe operator |>",
+    "section": "A peek at what’s coming",
+    "text": "A peek at what’s coming\nYou’ll see the pipe everywhere from here on out. Tomorrow we start the dplyr verbs:\n\nfilter() — pick rows\nselect() — pick columns\narrange() — sort\nmutate() — make new columns\nsummarize() — collapse to a single number\ngroup_by() — split into groups before summarizing\n\nEvery one of these is designed to be chained together with the pipe."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-page.html#activity-pipe-practice-15-min",
+    "href": "weeks/week1/day5-pipe-page.html#activity-pipe-practice-15-min",
+    "title": "%>% The pipe operator |>",
+    "section": "Activity: pipe practice (~ 15 min)",
+    "text": "Activity: pipe practice (~ 15 min)\nWork individually or with a neighbor.\nSetup:\n\nOpen RStudio.\nNew R script. Save as day5-activity.R.\nAt the top:\n\n\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\nGoal: Translate between nested and piped code, then write your own."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-page.html#activity-part-1-translate-to-piped",
+    "href": "weeks/week1/day5-pipe-page.html#activity-part-1-translate-to-piped",
+    "title": "%>% The pipe operator |>",
+    "section": "Activity: Part 1 — translate to piped",
+    "text": "Activity: Part 1 — translate to piped\nRewrite each of these using the pipe |&gt;. Don’t run them yet — just rewrite the code.\n\n# 1\nsqrt(64)\n\n# 2\nmean(c(2, 4, 6, 8, 10))\n\n# 3\nround(sqrt(50), digits = 2)\n\n# 4\nhead(arrange(penguins, body_mass_g), 3)\n\nThen run both the original and your piped version. Confirm you get the same answer."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-page.html#activity-part-2-translate-to-nested",
+    "href": "weeks/week1/day5-pipe-page.html#activity-part-2-translate-to-nested",
+    "title": "%>% The pipe operator |>",
+    "section": "Activity: Part 2 — translate to nested",
+    "text": "Activity: Part 2 — translate to nested\nRewrite each of these without the pipe. Then run both versions.\n\n# 5\nc(1, 2, 3, 4, 5) |&gt; sum()\n\n# 6\npenguins |&gt; head(2)\n\n# 7\n9 |&gt; sqrt() |&gt; round(1)"
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-page.html#activity-part-3-write-your-own",
+    "href": "weeks/week1/day5-pipe-page.html#activity-part-3-write-your-own",
+    "title": "%>% The pipe operator |>",
+    "section": "Activity: Part 3 — write your own",
+    "text": "Activity: Part 3 — write your own\nWrite a single piped expression that:\n\nTakes penguins,\nKeeps only the rows where species is \"Adelie\",\nPicks just the first 5 rows.\n\n\n\n\n\n\n\nTipHint\n\n\n\nYou’ll need filter() and head(). Chain them with |&gt;.\n\n\nTo turn in: Save your script. We’ll check at the end of class."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-page.html#activity-debrief",
+    "href": "weeks/week1/day5-pipe-page.html#activity-debrief",
+    "title": "%>% The pipe operator |>",
+    "section": "Activity debrief",
+    "text": "Activity debrief\nCommon things to watch for:\n\nThe pipe goes at the END of the line, not the start. x |&gt; then a new line — not \\n |&gt; f().\nThe first argument is filled automatically. Don’t write penguins |&gt; filter(penguins, ...) — drop the first penguins.\n+ vs. |&gt; again. dplyr verbs chain with |&gt;; ggplot layers chain with +.\nParentheses still matter. f() not f. The pipe doesn’t change that."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-page.html#wrap-up-what-we-covered-today",
+    "href": "weeks/week1/day5-pipe-page.html#wrap-up-what-we-covered-today",
+    "title": "%>% The pipe operator |>",
+    "section": "Wrap-up: what we covered today",
+    "text": "Wrap-up: what we covered today\n\nThe pipe operator (|&gt; or %&gt;%) takes the value on the left and feeds it as the first argument to the function on the right.\nPipes let you read code top-to-bottom in the order you’d actually do the work.\nEach step gets its own line; the pipe lives at the end of the previous line.\n|&gt; and %&gt;% are nearly interchangeable for our purposes.\ndplyr verbs chain with |&gt;; ggplot layers chain with +."
+  },
+  {
+    "objectID": "weeks/week1/day5-pipe-page.html#wrap-up-looking-ahead",
+    "href": "weeks/week1/day5-pipe-page.html#wrap-up-looking-ahead",
+    "title": "%>% The pipe operator |>",
+    "section": "Wrap-up & looking ahead",
+    "text": "Wrap-up & looking ahead\nMonday: dplyr verbs — filter(), select(), arrange().\n\n\nUpcoming Deadlines\n\nToday, 11:59 p.m. — HW 1: Basic R & Plots\nMon 5/25, before class — DC §7 reading (Canvas link TBA)\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · Data Computing"
   },
   {
     "objectID": "weeks/week6/day1-clustering.html",
@@ -1734,713 +2368,51 @@
     "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
   },
   {
-    "objectID": "weeks/week1/day5-pipe-page.html",
-    "href": "weeks/week1/day5-pipe-page.html",
-    "title": "%>% The pipe operator |>",
+    "objectID": "weeks/week1/index.html",
+    "href": "weeks/week1/index.html",
+    "title": "Week 1 — Foundations",
     "section": "",
-    "text": "NoteToday: Friday May 22\n\n\n\nBefore class\n\nRead Data Computing §3.6 (Click here).\n\nPlan for today\n\nQuiz 1 (20 min)\nThe pipe operator\nChaining commands together\nIn-class activity\n\nHelpful links\n\nSyllabus · AI policy · Schedule · Data Computing §3.6"
+    "text": "This week we get everyone set up with R, RStudio, and Quarto, and cover the absolute basics of the R language. By Friday you’ll have written your first reproducible document and learned the pipe.",
+    "crumbs": [
+      "Week 1 --- Foundations"
+    ]
   },
   {
-    "objectID": "weeks/week1/day5-pipe-page.html#quiz-1-instructions",
-    "href": "weeks/week1/day5-pipe-page.html#quiz-1-instructions",
-    "title": "%>% The pipe operator |>",
-    "section": "Quiz 1 — instructions",
-    "text": "Quiz 1 — instructions\n\n\n\n\n\n\nImportantClosed-book, no AI, no electronics\n\n\n\n\nPut away phones and laptops.\nYou may use a pen or pencil.\n20 minutes.\nI’ll hand out the quiz now and collect it at the end.\n\n\n\nTopics covered:\n\nR as a calculator and basic syntax\nData types and structures\nObjects and assignment\nReading R code (functions, arguments, variables, constants)\nPackages: installing vs. loading\nHistograms in ggplot2 (reading code, not writing from scratch)\n\nWhen you finish early, flip your quiz face-down and wait quietly."
+    "objectID": "weeks/week1/index.html#daily-plan",
+    "href": "weeks/week1/index.html#daily-plan",
+    "title": "Week 1 — Foundations",
+    "section": "Daily plan",
+    "text": "Daily plan\n\n\n\nDate\nTopic\nSlides & Notes\nCode & Data\n\n\n\n\nMon May 18\nCourse intro & what is R?\nSlides · Page · PDF\nday1-demo.R · currentvotestats.xlsx\n\n\nTue May 19\nR, RStudio, console · vectors · data types\nSlides · Page · PDF\nday2-follow-along.R\n\n\nWed May 20\nFunctions, packages · tidyverse\nSlides · Page · PDF\nday3-activity.R\n\n\nThu May 21\nQuarto basics\nSlides · Page · PDF\ncoming soon\n\n\nFri May 22\nQuiz 1 · pipe and chaining syntax\nSlides · Page · PDF\ncoming soon",
+    "crumbs": [
+      "Week 1 --- Foundations"
+    ]
   },
   {
-    "objectID": "weeks/week1/day5-pipe-page.html#quiz-debrief",
-    "href": "weeks/week1/day5-pipe-page.html#quiz-debrief",
-    "title": "%>% The pipe operator |>",
-    "section": "Quiz debrief",
-    "text": "Quiz debrief\nA few quick notes:\n\nWe’ll go over common stumbling points on Monday after I’ve graded them.\nIf you finished with time to spare: nice.\nIf you didn’t finish: don’t panic. Quizzes are 15% of the grade, weighted across the semester.\n\nNow let’s get into something new."
+    "objectID": "weeks/week1/index.html#due-this-week",
+    "href": "weeks/week1/index.html#due-this-week",
+    "title": "Week 1 — Foundations",
+    "section": "Due this week",
+    "text": "Due this week\nReadings (due at 9:35 a.m. on Perusall)\n\n(Optional) Monday: Data Computing Ch 1 (§1.1–1.5) — what tidy data is\nTuesday: Data Computing Ch 2 (§2.1–2.8) — R, RStudio, vectors, objects\nWednesday: Data Computing Ch 3 (§3.1–3.5) — basic R commands\nThursday: Data Computing Ch 4 (§4.1–4.7) — files and Rmd documents\n\n(Optional) R For Data Science Ch 28 — Quarto\n\nFriday: Data Computing §3.6 — chaining syntax (the pipe)\n\nAssignments (Canvas & In-class)\n\nWednesday May 20: HW 0 (setup confirmation) — due 11:59 p.m. on Canvas\nFriday May 22: HW 1 — due 11:59 p.m. on Canvas\nFriday May 22: Quiz 1 — in class",
+    "crumbs": [
+      "Week 1 --- Foundations"
+    ]
   },
   {
-    "objectID": "weeks/week1/day5-pipe-page.html#a-problem-weve-already-seen",
-    "href": "weeks/week1/day5-pipe-page.html#a-problem-weve-already-seen",
-    "title": "%>% The pipe operator |>",
-    "section": "A problem we’ve already seen",
-    "text": "A problem we’ve already seen\nRemember this slide from Wednesday?\n\nsqrt(mean(c(1, 4, 9, 16, 25)))\n\n[1] 3.316625\n\n\nTo read this, your eye has to jump inside-out:\n\nFirst c(1, 4, 9, 16, 25) makes a vector.\nThen mean(...) of that vector is 11.\nThen sqrt(11) is ≈ 3.317.\n\nThat’s already tough. Imagine four or five nested functions."
+    "objectID": "weeks/week1/index.html#heads-up-for-next-week",
+    "href": "weeks/week1/index.html#heads-up-for-next-week",
+    "title": "Week 1 — Foundations",
+    "section": "Heads up for next week",
+    "text": "Heads up for next week\n\nData Computing Ch 5 (§5.1–5.6) for Tuesday May 26 — graphics intro.\nNo class Monday May 25 (Memorial Day).",
+    "crumbs": [
+      "Week 1 --- Foundations"
+    ]
   },
   {
-    "objectID": "weeks/week1/day5-pipe-page.html#a-real-example",
-    "href": "weeks/week1/day5-pipe-page.html#a-real-example",
-    "title": "%>% The pipe operator |>",
-    "section": "A real example",
-    "text": "A real example\nSuppose we want to:\n\nTake the penguins data,\nKeep only rows where body_mass_g is not missing,\nGroup by species,\nCompute the mean body mass for each species.\n\nWritten with nested function calls:\n\nsummarize(\n  group_by(\n    filter(penguins, !is.na(body_mass_g)),\n    species\n  ),\n  avg_mass = mean(body_mass_g)\n)\n\nYou have to read it from the inside out, and the arguments get separated from their functions. Ugh."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-page.html#enter-the-pipe",
-    "href": "weeks/week1/day5-pipe-page.html#enter-the-pipe",
-    "title": "%>% The pipe operator |>",
-    "section": "Enter the pipe",
-    "text": "Enter the pipe\nThe pipe operator lets you read code left-to-right, top-to-bottom — the way you actually think about it.\n\npenguins |&gt;\n  filter(!is.na(body_mass_g)) |&gt;\n  group_by(species) |&gt;\n  summarize(avg_mass = mean(body_mass_g))\n\nRead this as:\n\n“Take penguins, then filter out missing values, then group by species, then summarize the average mass.”\n\nThat’s it. That’s the whole idea."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-page.html#what-the-pipe-does",
-    "href": "weeks/week1/day5-pipe-page.html#what-the-pipe-does",
-    "title": "%>% The pipe operator |>",
-    "section": "What the pipe does",
-    "text": "What the pipe does\nx |&gt; f()\nis exactly the same as\nf(x)\nThe pipe takes whatever’s on the left and inserts it as the first argument to the function on the right.\n\n# These do the same thing:\nsqrt(16)\n\n[1] 4\n\n16 |&gt; sqrt()\n\n[1] 4"
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-page.html#with-multiple-arguments",
-    "href": "weeks/week1/day5-pipe-page.html#with-multiple-arguments",
-    "title": "%>% The pipe operator |>",
-    "section": "With multiple arguments",
-    "text": "With multiple arguments\nx |&gt; f(arg2, arg3)\nis the same as\nf(x, arg2, arg3)\nThe pipe always fills the first argument; the rest go inside the parentheses as usual.\n\n# Without the pipe:\nround(3.14159, digits = 2)\n\n[1] 3.14\n\n# With the pipe:\n3.14159 |&gt; round(digits = 2)\n\n[1] 3.14"
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-page.html#chaining-pipes",
-    "href": "weeks/week1/day5-pipe-page.html#chaining-pipes",
-    "title": "%>% The pipe operator |>",
-    "section": "Chaining pipes",
-    "text": "Chaining pipes\nThe real power: you can chain pipes together to do many steps in order.\n\nc(1, 4, 9, 16, 25) |&gt;\n  mean() |&gt;\n  sqrt()\n\n[1] 3.316625\n\n\nCompare to the nested version:\n\nsqrt(mean(c(1, 4, 9, 16, 25)))\n\n[1] 3.316625\n\n\nSame answer. The piped version reads in the order you do the work."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-page.html#style-one-pipe-per-line",
-    "href": "weeks/week1/day5-pipe-page.html#style-one-pipe-per-line",
-    "title": "%>% The pipe operator |>",
-    "section": "Style: one pipe per line",
-    "text": "Style: one pipe per line\n\n\n\n\n\n\nTipConvention\n\n\n\nPut each pipe step on its own line, with the |&gt; at the end of the previous line.\nIndent the continuation by 2 spaces.\n\n\nGood:\n\npenguins |&gt;\n  filter(!is.na(body_mass_g)) |&gt;\n  group_by(species) |&gt;\n  summarize(avg_mass = mean(body_mass_g))\n\nNot so good (works, but harder to read):\n\npenguins |&gt; filter(!is.na(body_mass_g)) |&gt; group_by(species) |&gt; summarize(avg_mass = mean(body_mass_g))"
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-page.html#vs.",
-    "href": "weeks/week1/day5-pipe-page.html#vs.",
-    "title": "%>% The pipe operator |>",
-    "section": "|> vs. %>%",
-    "text": "|&gt; vs. %&gt;%\nYou will see two pipe operators in R code online:\n\nThe two pipes in R.\n\n\n\n\n\n\n\nPipe\nWhere it comes from\nWhen introduced\n\n\n\n\n%&gt;%\nThe magrittr package (and tidyverse)\n2014\n\n\n\\|&gt;\nBase R\n2021\n\n\n\nThey do almost the same thing. For everything we’ll cover in this course, they behave identically."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-page.html#why-two-pipes",
-    "href": "weeks/week1/day5-pipe-page.html#why-two-pipes",
-    "title": "%>% The pipe operator |>",
-    "section": "Why two pipes?",
-    "text": "Why two pipes?\n\n%&gt;% came first. It’s the original tidyverse pipe.\nBase R added |&gt; later because the pipe became so popular they wanted it built in.\nThe textbook (Data Computing) uses %&gt;%.\nI’ll use |&gt; in lecture going forward — it’s the modern default.\n\n\n\n\n\n\n\nNote\n\n\n\nYou can use either one. I’ll accept both on assignments. Just be consistent within a single document."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-page.html#typing-the-pipe-quickly",
-    "href": "weeks/week1/day5-pipe-page.html#typing-the-pipe-quickly",
-    "title": "%>% The pipe operator |>",
-    "section": "Typing the pipe quickly",
-    "text": "Typing the pipe quickly\nYou don’t have to type |&gt; character-by-character. RStudio has a shortcut:\n\nMac: Cmd + Shift + M\nWindows/Linux: Ctrl + Shift + M\n\n\n\n\n\n\n\nTip\n\n\n\nBy default, this shortcut inserts %&gt;%. To make it insert |&gt; instead:\nTools &gt; Global Options... &gt; Code &gt; Use native pipe operator"
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-page.html#translating-between-styles",
-    "href": "weeks/week1/day5-pipe-page.html#translating-between-styles",
-    "title": "%>% The pipe operator |>",
-    "section": "Translating between styles",
-    "text": "Translating between styles\nYou’ll see code in both styles all over the internet. Practice translating in your head.\nNested:\n\nhead(arrange(filter(penguins, species == \"Gentoo\"), body_mass_g), 5)\n\nPiped:\n\npenguins |&gt;\n  filter(species == \"Gentoo\") |&gt;\n  arrange(body_mass_g) |&gt;\n  head(5)\n\nSame result. Way easier to read the piped version."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-page.html#what-the-pipe-is-not",
-    "href": "weeks/week1/day5-pipe-page.html#what-the-pipe-is-not",
-    "title": "%>% The pipe operator |>",
-    "section": "What the pipe is NOT",
-    "text": "What the pipe is NOT\n\n\n\n\n\n\nWarningThe pipe doesn’t run things in parallel\n\n\n\nIt just rewrites your code. Each step still runs one at a time, in order.\n\n\n\n\n\n\n\n\nWarningThe pipe is NOT the same as + in ggplot2\n\n\n\n\ndplyr and other data verbs: use |&gt; or %&gt;%.\nggplot2 layers: use +.\n\nThis trips everyone up. Keep them straight.\n\n\n\n# Correct:\npenguins |&gt;\n  filter(!is.na(body_mass_g)) |&gt;\n  ggplot(aes(x = body_mass_g)) +\n    geom_histogram()"
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-page.html#a-peek-at-whats-coming",
-    "href": "weeks/week1/day5-pipe-page.html#a-peek-at-whats-coming",
-    "title": "%>% The pipe operator |>",
-    "section": "A peek at what’s coming",
-    "text": "A peek at what’s coming\nYou’ll see the pipe everywhere from here on out. Tomorrow we start the dplyr verbs:\n\nfilter() — pick rows\nselect() — pick columns\narrange() — sort\nmutate() — make new columns\nsummarize() — collapse to a single number\ngroup_by() — split into groups before summarizing\n\nEvery one of these is designed to be chained together with the pipe."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-page.html#activity-pipe-practice-15-min",
-    "href": "weeks/week1/day5-pipe-page.html#activity-pipe-practice-15-min",
-    "title": "%>% The pipe operator |>",
-    "section": "Activity: pipe practice (~ 15 min)",
-    "text": "Activity: pipe practice (~ 15 min)\nWork individually or with a neighbor.\nSetup:\n\nOpen RStudio.\nNew R script. Save as day5-activity.R.\nAt the top:\n\n\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\nGoal: Translate between nested and piped code, then write your own."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-page.html#activity-part-1-translate-to-piped",
-    "href": "weeks/week1/day5-pipe-page.html#activity-part-1-translate-to-piped",
-    "title": "%>% The pipe operator |>",
-    "section": "Activity: Part 1 — translate to piped",
-    "text": "Activity: Part 1 — translate to piped\nRewrite each of these using the pipe |&gt;. Don’t run them yet — just rewrite the code.\n\n# 1\nsqrt(64)\n\n# 2\nmean(c(2, 4, 6, 8, 10))\n\n# 3\nround(sqrt(50), digits = 2)\n\n# 4\nhead(arrange(penguins, body_mass_g), 3)\n\nThen run both the original and your piped version. Confirm you get the same answer."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-page.html#activity-part-2-translate-to-nested",
-    "href": "weeks/week1/day5-pipe-page.html#activity-part-2-translate-to-nested",
-    "title": "%>% The pipe operator |>",
-    "section": "Activity: Part 2 — translate to nested",
-    "text": "Activity: Part 2 — translate to nested\nRewrite each of these without the pipe. Then run both versions.\n\n# 5\nc(1, 2, 3, 4, 5) |&gt; sum()\n\n# 6\npenguins |&gt; head(2)\n\n# 7\n9 |&gt; sqrt() |&gt; round(1)"
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-page.html#activity-part-3-write-your-own",
-    "href": "weeks/week1/day5-pipe-page.html#activity-part-3-write-your-own",
-    "title": "%>% The pipe operator |>",
-    "section": "Activity: Part 3 — write your own",
-    "text": "Activity: Part 3 — write your own\nWrite a single piped expression that:\n\nTakes penguins,\nKeeps only the rows where species is \"Adelie\",\nPicks just the first 5 rows.\n\n\n\n\n\n\n\nTipHint\n\n\n\nYou’ll need filter() and head(). Chain them with |&gt;.\n\n\nTo turn in: Save your script. We’ll check at the end of class."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-page.html#activity-debrief",
-    "href": "weeks/week1/day5-pipe-page.html#activity-debrief",
-    "title": "%>% The pipe operator |>",
-    "section": "Activity debrief",
-    "text": "Activity debrief\nCommon things to watch for:\n\nThe pipe goes at the END of the line, not the start. x |&gt; then a new line — not \\n |&gt; f().\nThe first argument is filled automatically. Don’t write penguins |&gt; filter(penguins, ...) — drop the first penguins.\n+ vs. |&gt; again. dplyr verbs chain with |&gt;; ggplot layers chain with +.\nParentheses still matter. f() not f. The pipe doesn’t change that."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-page.html#wrap-up-what-we-covered-today",
-    "href": "weeks/week1/day5-pipe-page.html#wrap-up-what-we-covered-today",
-    "title": "%>% The pipe operator |>",
-    "section": "Wrap-up: what we covered today",
-    "text": "Wrap-up: what we covered today\n\nThe pipe operator (|&gt; or %&gt;%) takes the value on the left and feeds it as the first argument to the function on the right.\nPipes let you read code top-to-bottom in the order you’d actually do the work.\nEach step gets its own line; the pipe lives at the end of the previous line.\n|&gt; and %&gt;% are nearly interchangeable for our purposes.\ndplyr verbs chain with |&gt;; ggplot layers chain with +."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-page.html#wrap-up-looking-ahead",
-    "href": "weeks/week1/day5-pipe-page.html#wrap-up-looking-ahead",
-    "title": "%>% The pipe operator |>",
-    "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\nMonday: dplyr verbs — filter(), select(), arrange().\n\n\nUpcoming Deadlines\n\nToday, 11:59 p.m. — HW 1: Basic R & Plots\nMon 5/25, before class — DC §7 reading (Canvas link TBA)\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · Data Computing"
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-slides.html#quiz-1-instructions",
-    "href": "weeks/week1/day5-pipe-slides.html#quiz-1-instructions",
-    "title": "%>% The pipe operator |>",
-    "section": "Quiz 1 — instructions",
-    "text": "Quiz 1 — instructions\n\n\n\n\n\n\n\nClosed-book, no AI, no electronics\n\n\n\nPut away phones and laptops.\nYou may use a pen or pencil.\n20 minutes.\nI’ll hand out the quiz now and collect it at the end.\n\n\n\n\n\nTopics covered:\n\nR as a calculator and basic syntax\nData types and structures\nObjects and assignment\nReading R code (functions, arguments, variables, constants)\nPackages: installing vs. loading\nHistograms in ggplot2 (reading code, not writing from scratch)\n\nWhen you finish early, flip your quiz face-down and wait quietly."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-slides.html#quiz-debrief",
-    "href": "weeks/week1/day5-pipe-slides.html#quiz-debrief",
-    "title": "%>% The pipe operator |>",
-    "section": "Quiz debrief",
-    "text": "Quiz debrief\nA few quick notes:\n\nWe’ll go over common stumbling points on Monday after I’ve graded them.\nIf you finished with time to spare: nice.\nIf you didn’t finish: don’t panic. Quizzes are 15% of the grade, weighted across the semester.\n\nNow let’s get into something new."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-slides.html#a-problem-weve-already-seen",
-    "href": "weeks/week1/day5-pipe-slides.html#a-problem-weve-already-seen",
-    "title": "%>% The pipe operator |>",
-    "section": "A problem we’ve already seen",
-    "text": "A problem we’ve already seen\nRemember this slide from Wednesday?\n\nsqrt(mean(c(1, 4, 9, 16, 25)))\n\n[1] 3.316625\n\n\nTo read this, your eye has to jump inside-out:\n\nFirst c(1, 4, 9, 16, 25) makes a vector.\nThen mean(...) of that vector is 11.\nThen sqrt(11) is ≈ 3.317.\n\nThat’s already tough. Imagine four or five nested functions."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-slides.html#a-real-example",
-    "href": "weeks/week1/day5-pipe-slides.html#a-real-example",
-    "title": "%>% The pipe operator |>",
-    "section": "A real example",
-    "text": "A real example\nSuppose we want to:\n\nTake the penguins data,\nKeep only rows where body_mass_g is not missing,\nGroup by species,\nCompute the mean body mass for each species.\n\nWritten with nested function calls:\n\nsummarize(\n  group_by(\n    filter(penguins, !is.na(body_mass_g)),\n    species\n  ),\n  avg_mass = mean(body_mass_g)\n)\n\nYou have to read it from the inside out, and the arguments get separated from their functions. Ugh."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-slides.html#enter-the-pipe",
-    "href": "weeks/week1/day5-pipe-slides.html#enter-the-pipe",
-    "title": "%>% The pipe operator |>",
-    "section": "Enter the pipe",
-    "text": "Enter the pipe\nThe pipe operator lets you read code left-to-right, top-to-bottom — the way you actually think about it.\n\npenguins |&gt;\n  filter(!is.na(body_mass_g)) |&gt;\n  group_by(species) |&gt;\n  summarize(avg_mass = mean(body_mass_g))\n\nRead this as:\n\n“Take penguins, then filter out missing values, then group by species, then summarize the average mass.”\n\nThat’s it. That’s the whole idea."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-slides.html#what-the-pipe-does",
-    "href": "weeks/week1/day5-pipe-slides.html#what-the-pipe-does",
-    "title": "%>% The pipe operator |>",
-    "section": "What the pipe does",
-    "text": "What the pipe does\nx |&gt; f()\nis exactly the same as\nf(x)\nThe pipe takes whatever’s on the left and inserts it as the first argument to the function on the right.\n\n# These do the same thing:\nsqrt(16)\n\n[1] 4\n\n16 |&gt; sqrt()\n\n[1] 4"
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-slides.html#with-multiple-arguments",
-    "href": "weeks/week1/day5-pipe-slides.html#with-multiple-arguments",
-    "title": "%>% The pipe operator |>",
-    "section": "With multiple arguments",
-    "text": "With multiple arguments\nx |&gt; f(arg2, arg3)\nis the same as\nf(x, arg2, arg3)\nThe pipe always fills the first argument; the rest go inside the parentheses as usual.\n\n# Without the pipe:\nround(3.14159, digits = 2)\n\n[1] 3.14\n\n# With the pipe:\n3.14159 |&gt; round(digits = 2)\n\n[1] 3.14"
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-slides.html#chaining-pipes",
-    "href": "weeks/week1/day5-pipe-slides.html#chaining-pipes",
-    "title": "%>% The pipe operator |>",
-    "section": "Chaining pipes",
-    "text": "Chaining pipes\nThe real power: you can chain pipes together to do many steps in order.\n\nc(1, 4, 9, 16, 25) |&gt;\n  mean() |&gt;\n  sqrt()\n\n[1] 3.316625\n\n\nCompare to the nested version:\n\nsqrt(mean(c(1, 4, 9, 16, 25)))\n\n[1] 3.316625\n\n\nSame answer. The piped version reads in the order you do the work."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-slides.html#style-one-pipe-per-line",
-    "href": "weeks/week1/day5-pipe-slides.html#style-one-pipe-per-line",
-    "title": "%>% The pipe operator |>",
-    "section": "Style: one pipe per line",
-    "text": "Style: one pipe per line\n\n\n\n\n\n\nConvention\n\n\nPut each pipe step on its own line, with the |&gt; at the end of the previous line.\nIndent the continuation by 2 spaces.\n\n\n\nGood:\n\npenguins |&gt;\n  filter(!is.na(body_mass_g)) |&gt;\n  group_by(species) |&gt;\n  summarize(avg_mass = mean(body_mass_g))\n\nNot so good (works, but harder to read):\n\npenguins |&gt; filter(!is.na(body_mass_g)) |&gt; group_by(species) |&gt; summarize(avg_mass = mean(body_mass_g))"
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-slides.html#vs.",
-    "href": "weeks/week1/day5-pipe-slides.html#vs.",
-    "title": "%>% The pipe operator |>",
-    "section": "|> vs. %>%",
-    "text": "|&gt; vs. %&gt;%\nYou will see two pipe operators in R code online:\n\nThe two pipes in R.\n\n\n\n\n\n\n\nPipe\nWhere it comes from\nWhen introduced\n\n\n\n\n%&gt;%\nThe magrittr package (and tidyverse)\n2014\n\n\n\\|&gt;\nBase R\n2021\n\n\n\nThey do almost the same thing. For everything we’ll cover in this course, they behave identically."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-slides.html#why-two-pipes",
-    "href": "weeks/week1/day5-pipe-slides.html#why-two-pipes",
-    "title": "%>% The pipe operator |>",
-    "section": "Why two pipes?",
-    "text": "Why two pipes?\n\n%&gt;% came first. It’s the original tidyverse pipe.\nBase R added |&gt; later because the pipe became so popular they wanted it built in.\nThe textbook (Data Computing) uses %&gt;%.\nI’ll use |&gt; in lecture going forward — it’s the modern default.\n\n\n\n\n\n\n\nNote\n\n\nYou can use either one. I’ll accept both on assignments. Just be consistent within a single document."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-slides.html#typing-the-pipe-quickly",
-    "href": "weeks/week1/day5-pipe-slides.html#typing-the-pipe-quickly",
-    "title": "%>% The pipe operator |>",
-    "section": "Typing the pipe quickly",
-    "text": "Typing the pipe quickly\nYou don’t have to type |&gt; character-by-character. RStudio has a shortcut:\n\nMac: Cmd + Shift + M\nWindows/Linux: Ctrl + Shift + M\n\n\n\n\n\n\n\nTip\n\n\nBy default, this shortcut inserts %&gt;%. To make it insert |&gt; instead:\nTools &gt; Global Options... &gt; Code &gt; Use native pipe operator"
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-slides.html#translating-between-styles",
-    "href": "weeks/week1/day5-pipe-slides.html#translating-between-styles",
-    "title": "%>% The pipe operator |>",
-    "section": "Translating between styles",
-    "text": "Translating between styles\nYou’ll see code in both styles all over the internet. Practice translating in your head.\nNested:\n\nhead(arrange(filter(penguins, species == \"Gentoo\"), body_mass_g), 5)\n\nPiped:\n\npenguins |&gt;\n  filter(species == \"Gentoo\") |&gt;\n  arrange(body_mass_g) |&gt;\n  head(5)\n\nSame result. Way easier to read the piped version."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-slides.html#what-the-pipe-is-not",
-    "href": "weeks/week1/day5-pipe-slides.html#what-the-pipe-is-not",
-    "title": "%>% The pipe operator |>",
-    "section": "What the pipe is NOT",
-    "text": "What the pipe is NOT\n\n\n\n\n\n\nThe pipe doesn’t run things in parallel\n\n\nIt just rewrites your code. Each step still runs one at a time, in order.\n\n\n\n\n\n\n\n\n\nThe pipe is NOT the same as + in ggplot2\n\n\n\ndplyr and other data verbs: use |&gt; or %&gt;%.\nggplot2 layers: use +.\n\nThis trips everyone up. Keep them straight.\n\n\n\n\n# Correct:\npenguins |&gt;\n  filter(!is.na(body_mass_g)) |&gt;\n  ggplot(aes(x = body_mass_g)) +\n    geom_histogram()"
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-slides.html#a-peek-at-whats-coming",
-    "href": "weeks/week1/day5-pipe-slides.html#a-peek-at-whats-coming",
-    "title": "%>% The pipe operator |>",
-    "section": "A peek at what’s coming",
-    "text": "A peek at what’s coming\nYou’ll see the pipe everywhere from here on out. Tomorrow we start the dplyr verbs:\n\nfilter() — pick rows\nselect() — pick columns\narrange() — sort\nmutate() — make new columns\nsummarize() — collapse to a single number\ngroup_by() — split into groups before summarizing\n\nEvery one of these is designed to be chained together with the pipe."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-slides.html#activity-pipe-practice-15-min",
-    "href": "weeks/week1/day5-pipe-slides.html#activity-pipe-practice-15-min",
-    "title": "%>% The pipe operator |>",
-    "section": "Activity: pipe practice (~ 15 min)",
-    "text": "Activity: pipe practice (~ 15 min)\nWork individually or with a neighbor.\nSetup:\n\nOpen RStudio.\nNew R script. Save as day5-activity.R.\nAt the top:\n\n\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\nGoal: Translate between nested and piped code, then write your own."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-slides.html#activity-part-1-translate-to-piped",
-    "href": "weeks/week1/day5-pipe-slides.html#activity-part-1-translate-to-piped",
-    "title": "%>% The pipe operator |>",
-    "section": "Activity: Part 1 — translate to piped",
-    "text": "Activity: Part 1 — translate to piped\nRewrite each of these using the pipe |&gt;. Don’t run them yet — just rewrite the code.\n\n# 1\nsqrt(64)\n\n# 2\nmean(c(2, 4, 6, 8, 10))\n\n# 3\nround(sqrt(50), digits = 2)\n\n# 4\nhead(arrange(penguins, body_mass_g), 3)\n\nThen run both the original and your piped version. Confirm you get the same answer."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-slides.html#activity-part-2-translate-to-nested",
-    "href": "weeks/week1/day5-pipe-slides.html#activity-part-2-translate-to-nested",
-    "title": "%>% The pipe operator |>",
-    "section": "Activity: Part 2 — translate to nested",
-    "text": "Activity: Part 2 — translate to nested\nRewrite each of these without the pipe. Then run both versions.\n\n# 5\nc(1, 2, 3, 4, 5) |&gt; sum()\n\n# 6\npenguins |&gt; head(2)\n\n# 7\n9 |&gt; sqrt() |&gt; round(1)"
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-slides.html#activity-part-3-write-your-own",
-    "href": "weeks/week1/day5-pipe-slides.html#activity-part-3-write-your-own",
-    "title": "%>% The pipe operator |>",
-    "section": "Activity: Part 3 — write your own",
-    "text": "Activity: Part 3 — write your own\nWrite a single piped expression that:\n\nTakes penguins,\nKeeps only the rows where species is \"Adelie\",\nPicks just the first 5 rows.\n\n\n\n\n\n\n\nHint\n\n\nYou’ll need filter() and head(). Chain them with |&gt;.\n\n\n\nTo turn in: Save your script. We’ll check at the end of class."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-slides.html#activity-debrief",
-    "href": "weeks/week1/day5-pipe-slides.html#activity-debrief",
-    "title": "%>% The pipe operator |>",
-    "section": "Activity debrief",
-    "text": "Activity debrief\nCommon things to watch for:\n\nThe pipe goes at the END of the line, not the start. x |&gt; then a new line — not \\n |&gt; f().\nThe first argument is filled automatically. Don’t write penguins |&gt; filter(penguins, ...) — drop the first penguins.\n+ vs. |&gt; again. dplyr verbs chain with |&gt;; ggplot layers chain with +.\nParentheses still matter. f() not f. The pipe doesn’t change that."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-slides.html#wrap-up-what-we-covered-today",
-    "href": "weeks/week1/day5-pipe-slides.html#wrap-up-what-we-covered-today",
-    "title": "%>% The pipe operator |>",
-    "section": "Wrap-up: what we covered today",
-    "text": "Wrap-up: what we covered today\n\nThe pipe operator (|&gt; or %&gt;%) takes the value on the left and feeds it as the first argument to the function on the right.\nPipes let you read code top-to-bottom in the order you’d actually do the work.\nEach step gets its own line; the pipe lives at the end of the previous line.\n|&gt; and %&gt;% are nearly interchangeable for our purposes.\ndplyr verbs chain with |&gt;; ggplot layers chain with +."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-slides.html#wrap-up-looking-ahead",
-    "href": "weeks/week1/day5-pipe-slides.html#wrap-up-looking-ahead",
-    "title": "%>% The pipe operator |>",
-    "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\nMonday: dplyr verbs — filter(), select(), arrange().\n\n\nUpcoming Deadlines\n\nToday, 11:59 p.m. — HW 1: Basic R & Plots\nMon 5/25, before class — DC §7 reading (Canvas link TBA)\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · Data Computing"
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-page.html",
-    "href": "weeks/week1/day1-intro-page.html",
-    "title": "Course intro & what is R?",
+    "objectID": "weeks/week1/day4-qmd-example.html",
+    "href": "weeks/week1/day4-qmd-example.html",
+    "title": "Penguin sizes",
     "section": "",
-    "text": "Instructor: Charles Costanzo\n\nStatistics Ph.D. student\nHometown: Solon, OH\nSome of my favorite things: cats, coffee, R (unironically)",
-    "crumbs": [
-      "Course intro & what is `R`?"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-page.html#introductions",
-    "href": "weeks/week1/day1-intro-page.html#introductions",
-    "title": "Course intro & what is R?",
-    "section": "",
-    "text": "Instructor: Charles Costanzo\n\nStatistics Ph.D. student\nHometown: Solon, OH\nSome of my favorite things: cats, coffee, R (unironically)",
-    "crumbs": [
-      "Course intro & what is `R`?"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-page.html#solon-ohio",
-    "href": "weeks/week1/day1-intro-page.html#solon-ohio",
-    "title": "Course intro & what is R?",
-    "section": "Solon, Ohio",
-    "text": "Solon, Ohio\n\n\nShow the R code.\n# Install these first if you don't have them:\n# install.packages(c(\"sf\", \"tigris\"))\nlibrary(ggplot2)\nlibrary(sf)\nlibrary(tigris)\nlibrary(dplyr)\n\noptions(tigris_use_cache = TRUE)\n\n# Fetch spatial data\nohio_counties &lt;- counties(state = \"OH\", cb = TRUE, progress_bar = FALSE)\nohio_places &lt;- places(state = \"OH\", cb = TRUE, progress_bar = FALSE)\n\n# Isolate areas\ncuyahoga_county &lt;- ohio_counties %&gt;% filter(NAME == \"Cuyahoga\")\nsolon_city &lt;- ohio_places %&gt;% filter(NAME == \"Solon\")\n\n# Build the map\nggplot() +\n  geom_sf(data = ohio_counties,\n          fill = \"#f8f9fa\", color = \"grey\", linewidth = 0.3) +\n  geom_sf(data = cuyahoga_county,\n          fill = \"#D6EAF8\", color = \"#2980B9\", linewidth = 0.5) +\n  geom_sf(data = solon_city,\n          fill = \"dodgerblue\", color = \"darkblue\", linewidth = 0.5) +\n  geom_sf_text(data = solon_city, aes(label = NAME),\n               size = 5, fontface = \"bold\", color = \"dodgerblue\",\n               nudge_y = -0.05, nudge_x = 0.25) +\n  theme_void()",
-    "crumbs": [
-      "Course intro & what is `R`?"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-page.html#meet-my-cats",
-    "href": "weeks/week1/day1-intro-page.html#meet-my-cats",
-    "title": "Course intro & what is R?",
-    "section": "Meet My Cats!",
-    "text": "Meet My Cats!\n\n\n\n\n\n\nBabuh\n\n\n\n\n\n\n\nTartarus",
-    "crumbs": [
-      "Course intro & what is `R`?"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-page.html#more-realistic-cat-photos",
-    "href": "weeks/week1/day1-intro-page.html#more-realistic-cat-photos",
-    "title": "Course intro & what is R?",
-    "section": "More Realistic Cat Photos…",
-    "text": "More Realistic Cat Photos…\n\n\n\n\n\n\n\nBabuh in the bathtub looking soaked and indignant.\n\n\n\n\n\n\n\n\n\nBabuh mid-bath, fur fully soaked.\n\n\n\n\n\n\n\n\n\nBabuh wrapped in a towel after the bath.",
-    "crumbs": [
-      "Course intro & what is `R`?"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-page.html#countries-ive-been-to",
-    "href": "weeks/week1/day1-intro-page.html#countries-ive-been-to",
-    "title": "Course intro & what is R?",
-    "section": "Countries I’ve Been To",
-    "text": "Countries I’ve Been To\n\n\nShow the R code.\nlibrary(ggplot2)\nlibrary(maps)\nlibrary(dplyr)\n\nworld_map &lt;- map_data(\"world\")\n\nvisited_countries &lt;- c(\"Canada\", \"USA\", \"Argentina\", \"Uruguay\",\n                       \"Switzerland\", \"Rwanda\", \"Spain\", \"France\", \"Turkey\")\n\nworld_map &lt;- world_map %&gt;%\n  mutate(visited = ifelse(region %in% visited_countries, \"Visited\", \"Not Visited\"))\n\nggplot(world_map, aes(x = long, y = lat, group = group, fill = visited)) +\n  geom_polygon(color = \"white\", linewidth = 0.2) +\n  scale_fill_manual(values = c(\"Not Visited\" = \"#e0e0e0\", \"Visited\" = \"#FF7F50\")) +\n  theme_void() +\n  theme(legend.position = \"none\")",
-    "crumbs": [
-      "Course intro & what is `R`?"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-page.html#states-ive-lived-in-visited",
-    "href": "weeks/week1/day1-intro-page.html#states-ive-lived-in-visited",
-    "title": "Course intro & what is R?",
-    "section": "States I’ve Lived In & Visited",
-    "text": "States I’ve Lived In & Visited\n\n\nShow the R code.\n# Note: install.packages(\"mapproj\") if needed\nlibrary(ggplot2)\nlibrary(maps)\nlibrary(dplyr)\nlibrary(mapproj)\n\nus_map &lt;- map_data(\"state\")\n\nlived_in &lt;- tolower(c(\"Ohio\", \"Pennsylvania\", \"Texas\"))\n\n# Note: \"District of Columbia\" matches the map data; \"Washington DC\" wouldn't\nvisited &lt;- tolower(c(\"Washington\", \"Oregon\", \"California\", \"Nevada\", \"Idaho\",\n                     \"Montana\", \"Arizona\", \"New Mexico\", \"Colorado\", \"Wyoming\",\n                     \"North Dakota\", \"South Dakota\", \"Kansas\", \"Iowa\",\n                     \"Nebraska\", \"Minnesota\", \"Wisconsin\", \"Michigan\", \"Indiana\",\n                     \"Illinois\", \"Kentucky\", \"Tennessee\", \"Louisiana\", \"Florida\",\n                     \"Georgia\", \"North Carolina\", \"South Carolina\", \"Virginia\",\n                     \"District of Columbia\", \"Maryland\", \"Delaware\", \"New Jersey\",\n                     \"New York\", \"Missouri\", \"Utah\", \"West Virginia\"))\n\nus_map &lt;- us_map %&gt;%\n  mutate(status = case_when(\n    region %in% lived_in ~ \"Lived\",\n    region %in% visited ~ \"Visited\",\n    TRUE ~ \"Not Visited\"\n  )) %&gt;%\n  mutate(status = factor(status, levels = c(\"Lived\", \"Visited\", \"Not Visited\")))\n\nggplot(us_map, aes(x = long, y = lat, group = group, fill = status)) +\n  geom_polygon(color = \"white\", linewidth = 0.3) +\n  scale_fill_manual(values = c(\"Lived\" = \"#2C3E50\",\n                               \"Visited\" = \"#3498DB\",\n                               \"Not Visited\" = \"#E0E0E0\")) +\n  coord_map(\"albers\", lat0 = 39, lat1 = 45) +\n  theme_void() +\n  theme(legend.position = \"bottom\",\n        legend.title = element_blank(),\n        legend.text = element_text(size = 14))",
-    "crumbs": [
-      "Course intro & what is `R`?"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-page.html#icebreaker-share-your",
-    "href": "weeks/week1/day1-intro-page.html#icebreaker-share-your",
-    "title": "Course intro & what is R?",
-    "section": "Icebreaker 🧊: Share Your…",
-    "text": "Icebreaker 🧊: Share Your…\n\nName\nMajor\nProgramming Experience\nA Fun Fact (Favorite Song, Color, Food, etc.)",
-    "crumbs": [
-      "Course intro & what is `R`?"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-page.html#section",
-    "href": "weeks/week1/day1-intro-page.html#section",
-    "title": "Course intro & what is R?",
-    "section": "",
-    "text": "NoteToday: Monday May 18\n\n\n\nBefore class\n\nRead the syllabus (Click here).\n(Optional): Read Data Computing §1.1–1.5 (Click here).\n\nPlan for today\n\nCourse logistics\nIntroduction to R and RStudio\nTidy data\nR Demo\n\nHelpful links\n\nSyllabus · AI policy · Schedule · Data Computing §1",
-    "crumbs": [
-      "Course intro & what is `R`?"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-page.html#course-info",
-    "href": "weeks/week1/day1-intro-page.html#course-info",
-    "title": "Course intro & what is R?",
-    "section": "Course Info",
-    "text": "Course Info\nSummer Session 1: May 18, 2026 – June 26, 2026\n\nClass time: M/T/W/Th/F, 9:35 a.m. to 10:50 a.m.\nClass location: Huck Life Sciences Building 007\nInstructor: Charles Costanzo\n\nEmail: cgc5478@psu.edu\nOffice Hours: M/W/Th/F: 10:50-11:50 a.m. in Huck 005 (or on Zoom by appt)\n\nTeaching Assistant (TA): Xinyue Wang\n\nEmail: xpw5228@psu.edu",
-    "crumbs": [
-      "Course intro & what is `R`?"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-page.html#learning-goals",
-    "href": "weeks/week1/day1-intro-page.html#learning-goals",
-    "title": "Course intro & what is R?",
-    "section": "Learning Goals",
-    "text": "Learning Goals\nThis course will teach you how to:\n\n\nUse R: Program in the R language effectively and use the R software environment to efficiently compute with data.\n\n\n\n\nWrangle Real Data: Access, clean, join, and format data from various sources.\n\n\n\n\nVisualize Information: Create graphical and descriptive summaries of data.\n\n\n\n\nBuild Reproducible Workflows: Write well-documented code using tools like RStudio, RMarkdown, and Git/GitHub.\n\n\n\n\n\n\n\n\n\nTipNo previous programming background is required for this course.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportantThis is not a course on general purpose programming.",
-    "crumbs": [
-      "Course intro & what is `R`?"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-page.html#course-logistics-1",
-    "href": "weeks/week1/day1-intro-page.html#course-logistics-1",
-    "title": "Course intro & what is R?",
-    "section": "Course logistics",
-    "text": "Course logistics\n\nSix weeks is short. Daily pace is faster than a 15-week course. Falling a week—or even a day—behind is more serious than spring/fall courses.\nAttendance matters. Lots of in-class graded work (activities, quizzes, oral checkpoints).\nTimely communication is critical. Reach out to me as soon as possible if something comes up that necessitates you missing class, having a deadline extended, etc.\n\n\nAssignment weights\n\n\n\n\n\n\n\n\n\n\nReadings\nQuizzes\nIn-class activities\nHomework\nExam\nCourse project\n\n\n\n\n10%\n15%\n25%\n10%\n20%\n20%\n\n\n\n\nGrading scheme\n\n\nA\nA-\nB+\nB\nB-\nC+\nC\nD\nF\n\n\n\n\n93%\n90%\n87%\n83%\n80%\n77%\n70%\n60%\nbelow 60%",
-    "crumbs": [
-      "Course intro & what is `R`?"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-page.html#ai-policy",
-    "href": "weeks/week1/day1-intro-page.html#ai-policy",
-    "title": "Course intro & what is R?",
-    "section": "AI policy",
-    "text": "AI policy\n\nOpen assessments (Homework & Project): AI tools are permitted with mandatory disclosure.\nClosed-book, in-person work (Quizzes, Exam, Activities, Oral Checkpoints): AI tools are strictly prohibited.\nDisclosure is graded (1-2 points).\nYou must be able to explain any code you submit, which I will verify during in-class oral project checkpoints.\nRoughly 60% of your grade comes from verified in-person work where AI cannot be used.",
-    "crumbs": [
-      "Course intro & what is `R`?"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-page.html#course-readings-perusall",
-    "href": "weeks/week1/day1-intro-page.html#course-readings-perusall",
-    "title": "Course intro & what is R?",
-    "section": "Course Readings (Perusall)",
-    "text": "Course Readings (Perusall)\n\nAll assigned textbook readings are hosted on Perusall, a collaborative e-reading platform.\nHow grading works: You earn credit through holistic engagement (reading the entire text, spending active time, leaving high-quality comments, and replying to classmates).\nNo access code needed! You must access readings directly through Canvas links to automatically authenticate your Penn State account.\n\n\n\n\n\n\n\n\nImportantLet’s try it together right now:\n\n\n\n\nLog into our Canvas course.\nClick the “Perusall” tab on the left.\nClick the link for DC Section 1 (§1.1–1.5).",
-    "crumbs": [
-      "Course intro & what is `R`?"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-page.html#what-is-r-1",
-    "href": "weeks/week1/day1-intro-page.html#what-is-r-1",
-    "title": "Course intro & what is R?",
-    "section": "What is R?",
-    "text": "What is R?\nR is a programming language and a software environment for statistical computing and graphics.\n\nDesigned by statisticians for the purpose of data analysis.\nFirst version created in August 1993 (almost 33 years ago).\nHas grown rapidly in popularity and is widely used in academia and industry by statisticians, data analysts, and data scientists alike.\nEnormous number of user-contributed packages, which are add-ons that extend the functionality of R.\n\nCurrently the Comprehensive R Archive Network (CRAN) package repository features 23,664 available packages.1",
-    "crumbs": [
-      "Course intro & what is `R`?"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-page.html#some-examples-of-said-r-packages",
-    "href": "weeks/week1/day1-intro-page.html#some-examples-of-said-r-packages",
-    "title": "Course intro & what is R?",
-    "section": "Some Examples of Said R Packages",
-    "text": "Some Examples of Said R Packages\n\n\n\n\n\n\n\nA grid of dozens of hexagonal stickers, each representing a different R package such as ggplot2, dplyr, tidyr, shiny, knitr, and others. The hex stickers are tiled together into a colorful honeycomb pattern.\n\n\nHex stickers from the rstudio/hex-stickers repository.",
-    "crumbs": [
-      "Course intro & what is `R`?"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-page.html#r-vs.-rstudio",
-    "href": "weeks/week1/day1-intro-page.html#r-vs.-rstudio",
-    "title": "Course intro & what is R?",
-    "section": "R vs. RStudio",
-    "text": "R vs. RStudio\n\nR is a computer language that performs computations based on human-written instructions.\nRStudio is an integrated development environment (IDE) for R programming. It combines the R console with supplementary tools for more efficient R programming.\n\n\n\n\n\n\n\nR: Do not open this\n\n\n\n\n \n\n\n\n\n\nRStudio: Open this",
-    "crumbs": [
-      "Course intro & what is `R`?"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-page.html#tidy-data-neq-neat-data",
-    "href": "weeks/week1/day1-intro-page.html#tidy-data-neq-neat-data",
-    "title": "Course intro & what is R?",
-    "section": "Tidy Data \\(\\neq\\) Neat Data",
-    "text": "Tidy Data \\(\\neq\\) Neat Data\n\n\n\n\n\n\nTipThis table is easy for humans to read. What might make it tricky for a computer to read?\n\n\n\n\n\n\n\n\n\nA spreadsheet showing party change applications in PA. Source: PA Dept. of State (May 4–11, 2026).\n\n\n\nTwo simple rules for Tidy Data:\n\n\n\nConsistent Cases (Rows): Each row must represent a single, distinct instance of your unit of observation.\nUniform Variables (Columns): Every column contains the same type of value.",
-    "crumbs": [
-      "Course intro & what is `R`?"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-page.html#pa-voter-table---tidied-up",
-    "href": "weeks/week1/day1-intro-page.html#pa-voter-table---tidied-up",
-    "title": "Course intro & what is R?",
-    "section": "PA Voter Table - Tidied Up",
-    "text": "PA Voter Table - Tidied Up\n\n\nShow the R code.\n# 1. Load data and provide clean column names to handle the nested headers\nraw_data &lt;- readxl::read_excel(\"data/currentvotestats.xlsx\",\n                       sheet = \"Party-to-Party(2026)\",\n                       skip = 3, # Skip the human-readable headers\n                       col_names = c(\"county\",\n                                     \"week_dem_R\", \"week_dem_OTH\",\n                                     \"week_rep_D\", \"week_rep_OTH\",\n                                     \"year_dem_R\", \"year_dem_OTH\",\n                                     \"year_rep_D\", \"year_rep_OTH\"))\n\n# 2. Clean and Pivot\ntidy_voter_data &lt;- raw_data %&gt;%\n  filter(!is.na(county), county != \"Totals:\") %&gt;%\n  pivot_longer(\n    cols = -county,\n    names_to = c(\"period\", \"target_party\", \"origin_party\"),\n    names_sep = \"_\",\n    values_to = \"count\"\n  )\n\nknitr::kable(\n  head(tidy_voter_data %&gt;% filter(county == \"CENTRE\")),\n  caption = \"First six rows of the tidied PA voter party-change data, filtered to Centre County. Each row is one combination of period, target party, and origin party with its corresponding count.\"\n)\n\n\n\nFirst six rows of the tidied PA voter party-change data, filtered to Centre County. Each row is one combination of period, target party, and origin party with its corresponding count.\n\n\ncounty\nperiod\ntarget_party\norigin_party\ncount\n\n\n\n\nCENTRE\nweek\ndem\nR\n2\n\n\nCENTRE\nweek\ndem\nOTH\n14\n\n\nCENTRE\nweek\nrep\nD\n3\n\n\nCENTRE\nweek\nrep\nOTH\n4\n\n\nCENTRE\nyear\ndem\nR\n88\n\n\nCENTRE\nyear\ndem\nOTH\n130",
-    "crumbs": [
-      "Course intro & what is `R`?"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-page.html#demo-what-r-can-do",
-    "href": "weeks/week1/day1-intro-page.html#demo-what-r-can-do",
-    "title": "Course intro & what is R?",
-    "section": "Demo: what R can do",
-    "text": "Demo: what R can do\n\n\nShow the R code.\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\n# What does the data look like?\nglimpse(penguins)\n\n\nRows: 344\nColumns: 8\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\nShow the R code.\n# Quick summary by species\npenguins |&gt;\n  group_by(species) |&gt;\n  summarize(\n    n            = n(),\n    mean_mass_g  = mean(body_mass_g,    na.rm = TRUE),\n    mean_bill_mm = mean(bill_length_mm, na.rm = TRUE)\n  )\n\n\n# A tibble: 3 × 4\n  species       n mean_mass_g mean_bill_mm\n  &lt;fct&gt;     &lt;int&gt;       &lt;dbl&gt;        &lt;dbl&gt;\n1 Adelie      152       3701.         38.8\n2 Chinstrap    68       3733.         48.8\n3 Gentoo      124       5076.         47.5\n\n\nShow the R code.\n# A nice plot\npenguins |&gt;\n  ggplot(aes(x = bill_length_mm, y = body_mass_g, color = species)) +\n  geom_point(alpha = 0.7) +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  labs(\n    title = \"Bill length vs body mass, by species\",\n    x = \"Bill length (mm)\",\n    y = \"Body mass (g)\"\n  ) +\n  theme_minimal()",
-    "crumbs": [
-      "Course intro & what is `R`?"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-page.html#demo-a-campus-map",
-    "href": "weeks/week1/day1-intro-page.html#demo-a-campus-map",
-    "title": "Course intro & what is R?",
-    "section": "Demo: a campus map",
-    "text": "Demo: a campus map\n\n\nShow the interactive Leaflet code.\nlibrary(tidyverse)\nlibrary(sf)\nlibrary(tigris)\nlibrary(leaflet)\n\n# 1. Centre County boundary, reprojected for Leaflet (WGS84 / CRS 4326)\noptions(tigris_use_cache = TRUE)\ncentre_county &lt;- counties(state = \"PA\", cb = TRUE, progress_bar = FALSE) |&gt;\n  filter(NAME == \"Centre\") |&gt;\n  st_transform(4326)\n\n# 2. Huck Life Sciences Building\nhuck_building &lt;- tibble(\n  lon = -77.86146,\n  lat = 40.80100,\n  name = \"Huck Life Sciences Building\"\n) |&gt;\n  st_as_sf(coords = c(\"lon\", \"lat\"), crs = 4326)\n\n# 3. Build the map\nleaflet() |&gt;\n  addProviderTiles(providers$Esri.WorldImagery) |&gt;\n  addPolygons(\n    data = centre_county,\n    fillColor = \"#041E42\",\n    fillOpacity = 0.1,\n    color = \"#FFF\",\n    weight = 3,\n    dashArray = \"5, 5\"\n  ) |&gt;\n  addCircleMarkers(\n    data = huck_building,\n    color = \"#FFFFFF\",\n    weight = 1,\n    fillColor = \"#0096FF\",\n    radius = 8,\n    fillOpacity = 0.9,\n    label = ~name,\n    labelOptions = labelOptions(\n      style = list(\n        \"font-family\" = \"Arial, sans-serif\",\n        \"font-weight\" = \"bold\",\n        \"color\" = \"#041E42\",\n        \"padding\" = \"4px 8px\"\n      ),\n      direction = \"auto\"\n    ),\n    popup = \"&lt;b&gt;Huck Life Sciences&lt;/b&gt;&lt;br&gt;Class meets in Room 007\"\n  )",
-    "crumbs": [
-      "Course intro & what is `R`?"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-page.html#setup-checklist-due-by-wednesday",
-    "href": "weeks/week1/day1-intro-page.html#setup-checklist-due-by-wednesday",
-    "title": "Course intro & what is R?",
-    "section": "Setup checklist — due by Wednesday",
-    "text": "Setup checklist — due by Wednesday\nInstall R and RStudio\n\nR: https://cloud.r-project.org\nRStudio: https://posit.co/download/rstudio-desktop\n\n\n\n\n\n\n\nWarningMac users\n\n\n\nInstall XQuartz too — some packages we’ll use later in the course need it.\n\n\nConfigure RStudio\n\nTools &gt; Global Options... &gt; General\nRestore .RData into workspace at startup: Unchecked\nSave workspace to .RData on exit: Never\n\nAssignments due Wednesday 5/20\n\nHW 0: Setup confirmation",
-    "crumbs": [
-      "Course intro & what is `R`?"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-page.html#wrap-up-looking-ahead",
-    "href": "weeks/week1/day1-intro-page.html#wrap-up-looking-ahead",
-    "title": "Course intro & what is R?",
-    "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\nTomorrow: A tour of RStudio, R as a calculator, and creating your first objects\n\n\nUpcoming Deadlines\n\nTue 5/19, before class — DC §2.1–2.8\nWed 5/20, 11:59 p.m. — HW 0: Setup\nFri 5/22, in class — Quiz 1\n\nQuiz 1 Practice\n\nFri 5/22, 11:59 p.m. — HW 1: Basic R & Plots\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · Data Computing",
-    "crumbs": [
-      "Course intro & what is `R`?"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-page.html#footnotes",
-    "href": "weeks/week1/day1-intro-page.html#footnotes",
-    "title": "Course intro & what is R?",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nAs of May 17, 2026.↩︎",
-    "crumbs": [
-      "Course intro & what is `R`?"
-    ]
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-slides.html#introductions",
-    "href": "weeks/week1/day1-intro-slides.html#introductions",
-    "title": "Course intro & what is R?",
-    "section": "Introductions",
-    "text": "Introductions\nInstructor: Charles Costanzo\n\nStatistics Ph.D. student\nHometown: Solon, OH\nSome of my favorite things: cats, coffee, R (unironically)"
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-slides.html#solon-ohio",
-    "href": "weeks/week1/day1-intro-slides.html#solon-ohio",
-    "title": "Course intro & what is R?",
-    "section": "Solon, Ohio",
-    "text": "Solon, Ohio\n\n\nShow the R code.\n# Install these first if you don't have them:\n# install.packages(c(\"sf\", \"tigris\"))\nlibrary(ggplot2)\nlibrary(sf)\nlibrary(tigris)\nlibrary(dplyr)\n\noptions(tigris_use_cache = TRUE)\n\n# Fetch spatial data\nohio_counties &lt;- counties(state = \"OH\", cb = TRUE, progress_bar = FALSE)\nohio_places &lt;- places(state = \"OH\", cb = TRUE, progress_bar = FALSE)\n\n# Isolate areas\ncuyahoga_county &lt;- ohio_counties %&gt;% filter(NAME == \"Cuyahoga\")\nsolon_city &lt;- ohio_places %&gt;% filter(NAME == \"Solon\")\n\n# Build the map\nggplot() +\n  geom_sf(data = ohio_counties,\n          fill = \"#f8f9fa\", color = \"grey\", linewidth = 0.3) +\n  geom_sf(data = cuyahoga_county,\n          fill = \"#D6EAF8\", color = \"#2980B9\", linewidth = 0.5) +\n  geom_sf(data = solon_city,\n          fill = \"dodgerblue\", color = \"darkblue\", linewidth = 0.5) +\n  geom_sf_text(data = solon_city, aes(label = NAME),\n               size = 5, fontface = \"bold\", color = \"dodgerblue\",\n               nudge_y = -0.05, nudge_x = 0.25) +\n  theme_void()"
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-slides.html#meet-my-cats",
-    "href": "weeks/week1/day1-intro-slides.html#meet-my-cats",
-    "title": "Course intro & what is R?",
-    "section": "Meet My Cats!",
-    "text": "Meet My Cats!\n\n\n\n\n\n\nBabuh\n\n\n\n\n\n\n\nTartarus"
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-slides.html#more-realistic-cat-photos",
-    "href": "weeks/week1/day1-intro-slides.html#more-realistic-cat-photos",
-    "title": "Course intro & what is R?",
-    "section": "More Realistic Cat Photos…",
-    "text": "More Realistic Cat Photos…\n\n\n\n\n\n\n\nBabuh in the bathtub looking soaked and indignant.\n\n\n\n\n\n\n\n\n\nBabuh mid-bath, fur fully soaked.\n\n\n\n\n\n\n\n\n\nBabuh wrapped in a towel after the bath."
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-slides.html#countries-ive-been-to",
-    "href": "weeks/week1/day1-intro-slides.html#countries-ive-been-to",
-    "title": "Course intro & what is R?",
-    "section": "Countries I’ve Been To",
-    "text": "Countries I’ve Been To\n\n\nShow the R code.\nlibrary(ggplot2)\nlibrary(maps)\nlibrary(dplyr)\n\nworld_map &lt;- map_data(\"world\")\n\nvisited_countries &lt;- c(\"Canada\", \"USA\", \"Argentina\", \"Uruguay\",\n                       \"Switzerland\", \"Rwanda\", \"Spain\", \"France\", \"Turkey\")\n\nworld_map &lt;- world_map %&gt;%\n  mutate(visited = ifelse(region %in% visited_countries, \"Visited\", \"Not Visited\"))\n\nggplot(world_map, aes(x = long, y = lat, group = group, fill = visited)) +\n  geom_polygon(color = \"white\", linewidth = 0.2) +\n  scale_fill_manual(values = c(\"Not Visited\" = \"#e0e0e0\", \"Visited\" = \"#FF7F50\")) +\n  theme_void() +\n  theme(legend.position = \"none\")"
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-slides.html#states-ive-lived-in-visited",
-    "href": "weeks/week1/day1-intro-slides.html#states-ive-lived-in-visited",
-    "title": "Course intro & what is R?",
-    "section": "States I’ve Lived In & Visited",
-    "text": "States I’ve Lived In & Visited\n\n\nShow the R code.\n# Note: install.packages(\"mapproj\") if needed\nlibrary(ggplot2)\nlibrary(maps)\nlibrary(dplyr)\nlibrary(mapproj)\n\nus_map &lt;- map_data(\"state\")\n\nlived_in &lt;- tolower(c(\"Ohio\", \"Pennsylvania\", \"Texas\"))\n\n# Note: \"District of Columbia\" matches the map data; \"Washington DC\" wouldn't\nvisited &lt;- tolower(c(\"Washington\", \"Oregon\", \"California\", \"Nevada\", \"Idaho\",\n                     \"Montana\", \"Arizona\", \"New Mexico\", \"Colorado\", \"Wyoming\",\n                     \"North Dakota\", \"South Dakota\", \"Kansas\", \"Iowa\",\n                     \"Nebraska\", \"Minnesota\", \"Wisconsin\", \"Michigan\", \"Indiana\",\n                     \"Illinois\", \"Kentucky\", \"Tennessee\", \"Louisiana\", \"Florida\",\n                     \"Georgia\", \"North Carolina\", \"South Carolina\", \"Virginia\",\n                     \"District of Columbia\", \"Maryland\", \"Delaware\", \"New Jersey\",\n                     \"New York\", \"Missouri\", \"Utah\", \"West Virginia\"))\n\nus_map &lt;- us_map %&gt;%\n  mutate(status = case_when(\n    region %in% lived_in ~ \"Lived\",\n    region %in% visited ~ \"Visited\",\n    TRUE ~ \"Not Visited\"\n  )) %&gt;%\n  mutate(status = factor(status, levels = c(\"Lived\", \"Visited\", \"Not Visited\")))\n\nggplot(us_map, aes(x = long, y = lat, group = group, fill = status)) +\n  geom_polygon(color = \"white\", linewidth = 0.3) +\n  scale_fill_manual(values = c(\"Lived\" = \"#2C3E50\",\n                               \"Visited\" = \"#3498DB\",\n                               \"Not Visited\" = \"#E0E0E0\")) +\n  coord_map(\"albers\", lat0 = 39, lat1 = 45) +\n  theme_void() +\n  theme(legend.position = \"bottom\",\n        legend.title = element_blank(),\n        legend.text = element_text(size = 14))"
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-slides.html#icebreaker-share-your",
-    "href": "weeks/week1/day1-intro-slides.html#icebreaker-share-your",
-    "title": "Course intro & what is R?",
-    "section": "Icebreaker 🧊: Share Your…",
-    "text": "Icebreaker 🧊: Share Your…\n\nName\nMajor\nProgramming Experience\nA Fun Fact (Favorite Song, Color, Food, etc.)"
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-slides.html#section",
-    "href": "weeks/week1/day1-intro-slides.html#section",
-    "title": "Course intro & what is R?",
-    "section": "",
-    "text": "Today: Monday May 18\n\n\nBefore class\n\nRead the syllabus (Click here).\n(Optional): Read Data Computing §1.1–1.5 (Click here).\n\nPlan for today\n\nCourse logistics\nIntroduction to R and RStudio\nTidy data\nR Demo\n\nHelpful links\n\nSyllabus · AI policy · Schedule · Data Computing §1"
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-slides.html#course-info",
-    "href": "weeks/week1/day1-intro-slides.html#course-info",
-    "title": "Course intro & what is R?",
-    "section": "Course Info",
-    "text": "Course Info\nSummer Session 1: May 18, 2026 – June 26, 2026\n\nClass time: M/T/W/Th/F, 9:35 a.m. to 10:50 a.m.\nClass location: Huck Life Sciences Building 007\nInstructor: Charles Costanzo\n\nEmail: cgc5478@psu.edu\nOffice Hours: M/W/Th/F: 10:50-11:50 a.m. in Huck 005 (or on Zoom by appt)\n\nTeaching Assistant (TA): Xinyue Wang\n\nEmail: xpw5228@psu.edu"
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-slides.html#learning-goals",
-    "href": "weeks/week1/day1-intro-slides.html#learning-goals",
-    "title": "Course intro & what is R?",
-    "section": "Learning Goals",
-    "text": "Learning Goals\nThis course will teach you how to:\n\n\nUse R: Program in the R language effectively and use the R software environment to efficiently compute with data.\n\n\n\n\nWrangle Real Data: Access, clean, join, and format data from various sources.\n\n\n\n\nVisualize Information: Create graphical and descriptive summaries of data.\n\n\n\n\nBuild Reproducible Workflows: Write well-documented code using tools like RStudio, RMarkdown, and Git/GitHub.\n\n\n\n\n\n\n\n\n\n\nNo previous programming background is required for this course.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThis is not a course on general purpose programming."
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-slides.html#course-logistics-1",
-    "href": "weeks/week1/day1-intro-slides.html#course-logistics-1",
-    "title": "Course intro & what is R?",
-    "section": "Course logistics",
-    "text": "Course logistics\n\nSix weeks is short. Daily pace is faster than a 15-week course. Falling a week—or even a day—behind is more serious than spring/fall courses.\nAttendance matters. Lots of in-class graded work (activities, quizzes, oral checkpoints).\nTimely communication is critical. Reach out to me as soon as possible if something comes up that necessitates you missing class, having a deadline extended, etc.\n\n\nAssignment weights\n\n\n\n\n\n\n\n\n\n\nReadings\nQuizzes\nIn-class activities\nHomework\nExam\nCourse project\n\n\n\n\n10%\n15%\n25%\n10%\n20%\n20%\n\n\n\n\nGrading scheme\n\n\nA\nA-\nB+\nB\nB-\nC+\nC\nD\nF\n\n\n\n\n93%\n90%\n87%\n83%\n80%\n77%\n70%\n60%\nbelow 60%"
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-slides.html#ai-policy",
-    "href": "weeks/week1/day1-intro-slides.html#ai-policy",
-    "title": "Course intro & what is R?",
-    "section": "AI policy",
-    "text": "AI policy\n\nOpen assessments (Homework & Project): AI tools are permitted with mandatory disclosure.\nClosed-book, in-person work (Quizzes, Exam, Activities, Oral Checkpoints): AI tools are strictly prohibited.\nDisclosure is graded (1-2 points).\nYou must be able to explain any code you submit, which I will verify during in-class oral project checkpoints.\nRoughly 60% of your grade comes from verified in-person work where AI cannot be used."
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-slides.html#course-readings-perusall",
-    "href": "weeks/week1/day1-intro-slides.html#course-readings-perusall",
-    "title": "Course intro & what is R?",
-    "section": "Course Readings (Perusall)",
-    "text": "Course Readings (Perusall)\n\nAll assigned textbook readings are hosted on Perusall, a collaborative e-reading platform.\nHow grading works: You earn credit through holistic engagement (reading the entire text, spending active time, leaving high-quality comments, and replying to classmates).\nNo access code needed! You must access readings directly through Canvas links to automatically authenticate your Penn State account.\n\n\n\n\n\n\n\n\n\nLet’s try it together right now:\n\n\n\nLog into our Canvas course.\nClick the “Perusall” tab on the left.\nClick the link for DC Section 1 (§1.1–1.5)."
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-slides.html#what-is-r-1",
-    "href": "weeks/week1/day1-intro-slides.html#what-is-r-1",
-    "title": "Course intro & what is R?",
-    "section": "What is R?",
-    "text": "What is R?\nR is a programming language and a software environment for statistical computing and graphics.\n\nDesigned by statisticians for the purpose of data analysis.\nFirst version created in August 1993 (almost 33 years ago).\nHas grown rapidly in popularity and is widely used in academia and industry by statisticians, data analysts, and data scientists alike.\nEnormous number of user-contributed packages, which are add-ons that extend the functionality of R.\n\nCurrently the Comprehensive R Archive Network (CRAN) package repository features 23,664 available packages.1\n\n\nAs of May 17, 2026."
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-slides.html#some-examples-of-said-r-packages",
-    "href": "weeks/week1/day1-intro-slides.html#some-examples-of-said-r-packages",
-    "title": "Course intro & what is R?",
-    "section": "Some Examples of Said R Packages",
-    "text": "Some Examples of Said R Packages\n\n\n\n\n\n\n\nA grid of dozens of hexagonal stickers, each representing a different R package such as ggplot2, dplyr, tidyr, shiny, knitr, and others. The hex stickers are tiled together into a colorful honeycomb pattern.\n\n\nHex stickers from the rstudio/hex-stickers repository."
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-slides.html#r-vs.-rstudio",
-    "href": "weeks/week1/day1-intro-slides.html#r-vs.-rstudio",
-    "title": "Course intro & what is R?",
-    "section": "R vs. RStudio",
-    "text": "R vs. RStudio\n\nR is a computer language that performs computations based on human-written instructions.\nRStudio is an integrated development environment (IDE) for R programming. It combines the R console with supplementary tools for more efficient R programming.\n\n\n\n\n\n\n\nR: Do not open this\n\n\n\n\n \n\n\n\n\n\nRStudio: Open this"
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-slides.html#tidy-data-neq-neat-data",
-    "href": "weeks/week1/day1-intro-slides.html#tidy-data-neq-neat-data",
-    "title": "Course intro & what is R?",
-    "section": "Tidy Data \\(\\neq\\) Neat Data",
-    "text": "Tidy Data \\(\\neq\\) Neat Data\n\n\n\n\n\n\n\nThis table is easy for humans to read. What might make it tricky for a computer to read?\n\n\n\n\n\n\n\n\nA spreadsheet showing party change applications in PA. Source: PA Dept. of State (May 4–11, 2026).\nTwo simple rules for Tidy Data:\n\n\n\nConsistent Cases (Rows): Each row must represent a single, distinct instance of your unit of observation.\nUniform Variables (Columns): Every column contains the same type of value."
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-slides.html#pa-voter-table---tidied-up",
-    "href": "weeks/week1/day1-intro-slides.html#pa-voter-table---tidied-up",
-    "title": "Course intro & what is R?",
-    "section": "PA Voter Table - Tidied Up",
-    "text": "PA Voter Table - Tidied Up\n\n\nShow the R code.\n# 1. Load data and provide clean column names to handle the nested headers\nraw_data &lt;- readxl::read_excel(\"data/currentvotestats.xlsx\",\n                       sheet = \"Party-to-Party(2026)\",\n                       skip = 3, # Skip the human-readable headers\n                       col_names = c(\"county\",\n                                     \"week_dem_R\", \"week_dem_OTH\",\n                                     \"week_rep_D\", \"week_rep_OTH\",\n                                     \"year_dem_R\", \"year_dem_OTH\",\n                                     \"year_rep_D\", \"year_rep_OTH\"))\n\n# 2. Clean and Pivot\ntidy_voter_data &lt;- raw_data %&gt;%\n  filter(!is.na(county), county != \"Totals:\") %&gt;%\n  pivot_longer(\n    cols = -county,\n    names_to = c(\"period\", \"target_party\", \"origin_party\"),\n    names_sep = \"_\",\n    values_to = \"count\"\n  )\n\nknitr::kable(\n  head(tidy_voter_data %&gt;% filter(county == \"CENTRE\")),\n  caption = \"First six rows of the tidied PA voter party-change data, filtered to Centre County. Each row is one combination of period, target party, and origin party with its corresponding count.\"\n)\n\n\n\nFirst six rows of the tidied PA voter party-change data, filtered to Centre County. Each row is one combination of period, target party, and origin party with its corresponding count.\n\n\ncounty\nperiod\ntarget_party\norigin_party\ncount\n\n\n\n\nCENTRE\nweek\ndem\nR\n2\n\n\nCENTRE\nweek\ndem\nOTH\n14\n\n\nCENTRE\nweek\nrep\nD\n3\n\n\nCENTRE\nweek\nrep\nOTH\n4\n\n\nCENTRE\nyear\ndem\nR\n88\n\n\nCENTRE\nyear\ndem\nOTH\n130"
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-slides.html#demo-what-r-can-do",
-    "href": "weeks/week1/day1-intro-slides.html#demo-what-r-can-do",
-    "title": "Course intro & what is R?",
-    "section": "Demo: what R can do",
-    "text": "Demo: what R can do\n\n\nShow the R code.\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\n# What does the data look like?\nglimpse(penguins)\n\n\nRows: 344\nColumns: 8\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\nShow the R code.\n# Quick summary by species\npenguins |&gt;\n  group_by(species) |&gt;\n  summarize(\n    n            = n(),\n    mean_mass_g  = mean(body_mass_g,    na.rm = TRUE),\n    mean_bill_mm = mean(bill_length_mm, na.rm = TRUE)\n  )\n\n\n# A tibble: 3 × 4\n  species       n mean_mass_g mean_bill_mm\n  &lt;fct&gt;     &lt;int&gt;       &lt;dbl&gt;        &lt;dbl&gt;\n1 Adelie      152       3701.         38.8\n2 Chinstrap    68       3733.         48.8\n3 Gentoo      124       5076.         47.5\n\n\nShow the R code.\n# A nice plot\npenguins |&gt;\n  ggplot(aes(x = bill_length_mm, y = body_mass_g, color = species)) +\n  geom_point(alpha = 0.7) +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  labs(\n    title = \"Bill length vs body mass, by species\",\n    x = \"Bill length (mm)\",\n    y = \"Body mass (g)\"\n  ) +\n  theme_minimal()"
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-slides.html#demo-a-campus-map",
-    "href": "weeks/week1/day1-intro-slides.html#demo-a-campus-map",
-    "title": "Course intro & what is R?",
-    "section": "Demo: a campus map",
-    "text": "Demo: a campus map\n\n\nShow the interactive Leaflet code.\nlibrary(tidyverse)\nlibrary(sf)\nlibrary(tigris)\nlibrary(leaflet)\n\n# 1. Centre County boundary, reprojected for Leaflet (WGS84 / CRS 4326)\noptions(tigris_use_cache = TRUE)\ncentre_county &lt;- counties(state = \"PA\", cb = TRUE, progress_bar = FALSE) |&gt;\n  filter(NAME == \"Centre\") |&gt;\n  st_transform(4326)\n\n# 2. Huck Life Sciences Building\nhuck_building &lt;- tibble(\n  lon = -77.86146,\n  lat = 40.80100,\n  name = \"Huck Life Sciences Building\"\n) |&gt;\n  st_as_sf(coords = c(\"lon\", \"lat\"), crs = 4326)\n\n# 3. Build the map\nleaflet() |&gt;\n  addProviderTiles(providers$Esri.WorldImagery) |&gt;\n  addPolygons(\n    data = centre_county,\n    fillColor = \"#041E42\",\n    fillOpacity = 0.1,\n    color = \"#FFF\",\n    weight = 3,\n    dashArray = \"5, 5\"\n  ) |&gt;\n  addCircleMarkers(\n    data = huck_building,\n    color = \"#FFFFFF\",\n    weight = 1,\n    fillColor = \"#0096FF\",\n    radius = 8,\n    fillOpacity = 0.9,\n    label = ~name,\n    labelOptions = labelOptions(\n      style = list(\n        \"font-family\" = \"Arial, sans-serif\",\n        \"font-weight\" = \"bold\",\n        \"color\" = \"#041E42\",\n        \"padding\" = \"4px 8px\"\n      ),\n      direction = \"auto\"\n    ),\n    popup = \"&lt;b&gt;Huck Life Sciences&lt;/b&gt;&lt;br&gt;Class meets in Room 007\"\n  )"
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-slides.html#setup-checklist-due-by-wednesday",
-    "href": "weeks/week1/day1-intro-slides.html#setup-checklist-due-by-wednesday",
-    "title": "Course intro & what is R?",
-    "section": "Setup checklist — due by Wednesday",
-    "text": "Setup checklist — due by Wednesday\nInstall R and RStudio\n\nR: https://cloud.r-project.org\nRStudio: https://posit.co/download/rstudio-desktop\n\n\n\n\n\n\n\nMac users\n\n\nInstall XQuartz too — some packages we’ll use later in the course need it.\n\n\n\nConfigure RStudio\n\nTools &gt; Global Options... &gt; General\nRestore .RData into workspace at startup: Unchecked\nSave workspace to .RData on exit: Never\n\nAssignments due Wednesday 5/20\n\nHW 0: Setup confirmation"
-  },
-  {
-    "objectID": "weeks/week1/day1-intro-slides.html#wrap-up-looking-ahead",
-    "href": "weeks/week1/day1-intro-slides.html#wrap-up-looking-ahead",
-    "title": "Course intro & what is R?",
-    "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\nTomorrow: A tour of RStudio, R as a calculator, and creating your first objects\n\n\nUpcoming Deadlines\n\nTue 5/19, before class — DC §2.1–2.8\nWed 5/20, 11:59 p.m. — HW 0: Setup\nFri 5/22, in class — Quiz 1\n\nQuiz 1 Practice\n\nFri 5/22, 11:59 p.m. — HW 1: Basic R & Plots\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · Data Computing"
+    "text": "Introduction\nWe have data on r nrow(penguins) penguins from three species.\n\n\n\n\n\n\n\n\n\nThe distribution looks roughly bimodal, with two peaks."
   },
   {
     "objectID": "weeks/week1/day2-r-basics-page.html",
@@ -2918,7 +2890,27 @@
     "href": "weeks/week1/day4-quarto-page.html#a-complete-example",
     "title": "Quarto basics · reproducible documents",
     "section": "A complete example",
-    "text": "A complete example\n---\ntitle: \"Penguin sizes\"\nauthor: \"Charles Costanzo\"\nformat: html\n---\n\n# Introduction\n\nWe have data on `r nrow(penguins)` penguins\nfrom three species.\n\n```{r}\nlibrary(palmerpenguins)\n\nggplot(penguins, aes(x = body_mass_g)) +\n  geom_histogram(bins = 30)\nThe distribution looks roughly bimodal, with two peaks.\n\nThree pieces: YAML header, prose, code chunk. The output will be a polished HTML page.\n\n# The YAML header {background-color=\"#001E44\"}\n\n## What's a YAML header?\n\nThe block at the very top, between the two `---` lines:\n\n``` yaml\n---\ntitle: \"Penguin sizes\"\nauthor: \"Charles Costanzo\"\ndate: \"2026-05-21\"\nformat: html\n---\nThis tells Quarto things like:\n\nWhat’s the title?\nWho’s the author?\nWhat format should I render to?\n\n\n\n\n\n\n\nTip\n\n\n\nYAML stands for “YAML Ain’t Markup Language.” Cute, but mostly you just need to know it’s how Quarto reads settings.",
+    "text": "A complete example\n---\ntitle: \"Penguin sizes\"\nauthor: \"Charles Costanzo\"\nformat: html\n---\n\n# Introduction\n\nWe have data on 344 penguins\nfrom three species.\n\n```r\nlibrary(palmerpenguins)\nlibrary(ggplot2)\n\nggplot(penguins, aes(x = body_mass_g)) +\n  geom_histogram(bins = 30, \n                 color = \"black\", \n                 fill = rgb(0, 206/255, 209/255)) +\n  theme_classic() +\n  labs(title = \"Distribution of Body Mass (grams)\",\n       x = \"Body Mass (grams)\",\n       y = \"Count of Penguins\") \n```\n\nThe distribution looks roughly **bimodal**, with two peaks.",
+    "crumbs": [
+      "Quarto basics · reproducible documents"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day4-quarto-page.html#rendered-output",
+    "href": "weeks/week1/day4-quarto-page.html#rendered-output",
+    "title": "Quarto basics · reproducible documents",
+    "section": "Rendered output",
+    "text": "Rendered output\n\nThree pieces: YAML header, prose, code chunk. The output is a polished HTML page (as promised).",
+    "crumbs": [
+      "Quarto basics · reproducible documents"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day4-quarto-page.html#whats-a-yaml-header",
+    "href": "weeks/week1/day4-quarto-page.html#whats-a-yaml-header",
+    "title": "Quarto basics · reproducible documents",
+    "section": "What’s a YAML header?",
+    "text": "What’s a YAML header?\nThe block at the very top, between the two --- lines:\n---\ntitle: \"Penguin sizes\"\nauthor: \"Charles Costanzo\"\ndate: \"2026-05-21\"\nformat: html\n---\nThis tells Quarto things like:\n\nWhat’s the title?\nWho’s the author?\nWhat format should I render to?\n\n\n\n\n\n\n\nTipFun Fact\n\n\n\nYAML originally stood for “Yet Another Markup Language.” However, unlike HTML or XML, which are designed to mark up and format text documents, YAML was designed strictly for data serialization: storing data, lists, and configuration settings in a way humans can easily read. To clarify its actual purpose, the creators later changed it to “YAML Ain’t Markup Language.” This makes it a “recursive acronym” (where the Y stands for YAML itself).",
     "crumbs": [
       "Quarto basics · reproducible documents"
     ]
@@ -2928,7 +2920,7 @@
     "href": "weeks/week1/day4-quarto-page.html#yaml-syntax-rules",
     "title": "Quarto basics · reproducible documents",
     "section": "YAML syntax rules",
-    "text": "YAML syntax rules\nYAML is picky about formatting:\n---\ntitle: \"My Report\"\nformat:\n  html:\n    toc: true\n    embed-resources: true\n---\n\n\n\n\n\n\nWarningYAML gotchas\n\n\n\n\nIndentation matters. Use spaces, not tabs. Two spaces per level is standard.\nColons need a space after them. title: \"Hi\", not title:\"Hi\".\nStrings with special characters need quotes. Use \"My: Report\" not My: Report.\n\n\n\nIf your YAML breaks, your document won’t render. Most error messages will point to the line number.",
+    "text": "YAML syntax rules\nYAML is picky about formatting:\n---\ntitle: \"My Report\"\nformat:\n  html:\n    toc: true\n    embed-resources: true\n---\n\n\n\n\n\n\nWarningYAML gotchas\n\n\n\n\nIndentation matters. Use spaces, not tabs. Two spaces per level is standard.\nColons need a space after them. title: \"Hi\", not  title:\"Hi\".\nStrings with special characters need quotes. Use \"My: Report\", not  My: Report.\n\n\n\nIf your YAML breaks, your document won’t render. Most error messages will point to the line number.",
     "crumbs": [
       "Quarto basics · reproducible documents"
     ]
@@ -3068,7 +3060,7 @@
     "href": "weeks/week1/day4-quarto-page.html#activity-your-first-quarto-report",
     "title": "Quarto basics · reproducible documents",
     "section": "Activity: your first Quarto report",
-    "text": "Activity: your first Quarto report\nYou’ll build a short Quarto report from scratch. Take 25 minutes for this activity.\nSetup:\n\nOpen RStudio.\nFile &gt; New File &gt; Quarto Document...\nTitle: “Penguin Exploration”, Author: your name.\nPick HTML as the format.\nUncheck “Use visual markdown editor” if you want to see the raw source (recommended for learning today).\nClick Create.\n\nYou’ll get a template document with example content. Delete everything below the YAML header. Keep the YAML.\nStep 1 - Save the file\nFile &gt; Save As...: call it penguin-report.qmd, save somewhere you’ll find it.\nStep 2 - Add a setup chunk\nInsert a code chunk (Cmd/Ctrl + Alt + I). Make it look like this:\n\nStep 3 - Write an intro\nBelow the setup chunk, add a heading and a paragraph:\n# Introduction\n\nThis report explores the **Palmer Penguins** data set, which contains\nmeasurements on three species of penguins from islands in Antarctica.\nStep 4 - Add a plot\nInsert another chunk and put a histogram in it:\n\n::: {.cell}\n::: {.cell-output-display}\n![](day4-quarto_files/figure-revealjs/mass-histogram-1.png){width=960}\n:::\n:::\nStep 5 - Add commentary\nBelow the plot, write 2–3 sentences (in Markdown) describing what you see.\nStep 6 - Render\nPress Cmd/Ctrl + Shift + K. Look at the HTML file that pops up.\nIf you finish early, try one or more of these:\n\nAdd a second plot using a different variable (flipper_length_mm, bill_length_mm, …).\nTry changing format: html to format: docx in the YAML and re-render.\nAdd a table of the first few rows: insert a chunk with knitr::kable(head(penguins)).\nSet echo: false in your YAML under execute: to hide all code from the output:\n\nexecute:\n  echo: false\nTo turn in: Save your .qmd file and the rendered HTML. We’ll check at the end of class.",
+    "text": "Activity: your first Quarto report\nYou’ll build a short Quarto report from scratch. Take 25 minutes for this activity.\n\nActivity Canvas Link\n\nTo turn in: Save your .qmd file and the rendered HTML. We’ll check at the end of class.",
     "crumbs": [
       "Quarto basics · reproducible documents"
     ]
@@ -3150,14 +3142,28 @@
     "href": "weeks/week1/day4-quarto-slides.html#a-complete-example",
     "title": "Quarto basics · reproducible documents",
     "section": "A complete example",
-    "text": "A complete example\n---\ntitle: \"Penguin sizes\"\nauthor: \"Charles Costanzo\"\nformat: html\n---\n\n# Introduction\n\nWe have data on `r nrow(penguins)` penguins\nfrom three species.\n\n```{r}\nlibrary(palmerpenguins)\n\nggplot(penguins, aes(x = body_mass_g)) +\n  geom_histogram(bins = 30)\nThe distribution looks roughly bimodal, with two peaks.\n\nThree pieces: YAML header, prose, code chunk. The output will be a polished HTML page.\n\n# The YAML header {background-color=\"#001E44\"}\n\n## What's a YAML header?\n\nThe block at the very top, between the two `---` lines:\n\n``` yaml\n---\ntitle: \"Penguin sizes\"\nauthor: \"Charles Costanzo\"\ndate: \"2026-05-21\"\nformat: html\n---\nThis tells Quarto things like:\n\nWhat’s the title?\nWho’s the author?\nWhat format should I render to?\n\n\n\n\n\n\n\nTip\n\n\nYAML stands for “YAML Ain’t Markup Language.” Cute, but mostly you just need to know it’s how Quarto reads settings."
+    "text": "A complete example\n---\ntitle: \"Penguin sizes\"\nauthor: \"Charles Costanzo\"\nformat: html\n---\n\n# Introduction\n\nWe have data on 344 penguins\nfrom three species.\n\n```r\nlibrary(palmerpenguins)\nlibrary(ggplot2)\n\nggplot(penguins, aes(x = body_mass_g)) +\n  geom_histogram(bins = 30, \n                 color = \"black\", \n                 fill = rgb(0, 206/255, 209/255)) +\n  theme_classic() +\n  labs(title = \"Distribution of Body Mass (grams)\",\n       x = \"Body Mass (grams)\",\n       y = \"Count of Penguins\") \n```\n\nThe distribution looks roughly **bimodal**, with two peaks."
+  },
+  {
+    "objectID": "weeks/week1/day4-quarto-slides.html#rendered-output",
+    "href": "weeks/week1/day4-quarto-slides.html#rendered-output",
+    "title": "Quarto basics · reproducible documents",
+    "section": "Rendered output",
+    "text": "Rendered output\n\nThree pieces: YAML header, prose, code chunk. The output is a polished HTML page (as promised)."
+  },
+  {
+    "objectID": "weeks/week1/day4-quarto-slides.html#whats-a-yaml-header",
+    "href": "weeks/week1/day4-quarto-slides.html#whats-a-yaml-header",
+    "title": "Quarto basics · reproducible documents",
+    "section": "What’s a YAML header?",
+    "text": "What’s a YAML header?\nThe block at the very top, between the two --- lines:\n---\ntitle: \"Penguin sizes\"\nauthor: \"Charles Costanzo\"\ndate: \"2026-05-21\"\nformat: html\n---\nThis tells Quarto things like:\n\nWhat’s the title?\nWho’s the author?\nWhat format should I render to?\n\n\n\n\n\n\n\n\nFun Fact\n\n\nYAML originally stood for “Yet Another Markup Language.” However, unlike HTML or XML, which are designed to mark up and format text documents, YAML was designed strictly for data serialization: storing data, lists, and configuration settings in a way humans can easily read. To clarify its actual purpose, the creators later changed it to “YAML Ain’t Markup Language.” This makes it a “recursive acronym” (where the Y stands for YAML itself)."
   },
   {
     "objectID": "weeks/week1/day4-quarto-slides.html#yaml-syntax-rules",
     "href": "weeks/week1/day4-quarto-slides.html#yaml-syntax-rules",
     "title": "Quarto basics · reproducible documents",
     "section": "YAML syntax rules",
-    "text": "YAML syntax rules\nYAML is picky about formatting:\n---\ntitle: \"My Report\"\nformat:\n  html:\n    toc: true\n    embed-resources: true\n---\n\n\n\n\n\n\nYAML gotchas\n\n\n\nIndentation matters. Use spaces, not tabs. Two spaces per level is standard.\nColons need a space after them. title: \"Hi\", not title:\"Hi\".\nStrings with special characters need quotes. Use \"My: Report\" not My: Report.\n\n\n\n\nIf your YAML breaks, your document won’t render. Most error messages will point to the line number."
+    "text": "YAML syntax rules\nYAML is picky about formatting:\n---\ntitle: \"My Report\"\nformat:\n  html:\n    toc: true\n    embed-resources: true\n---\n\n\n\n\n\n\nYAML gotchas\n\n\n\nIndentation matters. Use spaces, not tabs. Two spaces per level is standard.\nColons need a space after them. title: \"Hi\", not  title:\"Hi\".\nStrings with special characters need quotes. Use \"My: Report\", not  My: Report.\n\n\n\n\nIf your YAML breaks, your document won’t render. Most error messages will point to the line number."
   },
   {
     "objectID": "weeks/week1/day4-quarto-slides.html#common-format-options",
@@ -3255,7 +3261,7 @@
     "href": "weeks/week1/day4-quarto-slides.html#activity-your-first-quarto-report",
     "title": "Quarto basics · reproducible documents",
     "section": "Activity: your first Quarto report",
-    "text": "Activity: your first Quarto report\nYou’ll build a short Quarto report from scratch. Take 25 minutes for this activity.\nSetup:\n\nOpen RStudio.\nFile &gt; New File &gt; Quarto Document...\nTitle: “Penguin Exploration”, Author: your name.\nPick HTML as the format.\nUncheck “Use visual markdown editor” if you want to see the raw source (recommended for learning today).\nClick Create.\n\nYou’ll get a template document with example content. Delete everything below the YAML header. Keep the YAML.\nStep 1 - Save the file\nFile &gt; Save As...: call it penguin-report.qmd, save somewhere you’ll find it.\nStep 2 - Add a setup chunk\nInsert a code chunk (Cmd/Ctrl + Alt + I). Make it look like this:\n\nStep 3 - Write an intro\nBelow the setup chunk, add a heading and a paragraph:\n# Introduction\n\nThis report explores the **Palmer Penguins** data set, which contains\nmeasurements on three species of penguins from islands in Antarctica.\nStep 4 - Add a plot\nInsert another chunk and put a histogram in it:\n\n::: {.cell}\n::: {.cell-output-display}\n![](day4-quarto_files/figure-revealjs/mass-histogram-1.png){width=960}\n:::\n:::\nStep 5 - Add commentary\nBelow the plot, write 2–3 sentences (in Markdown) describing what you see.\nStep 6 - Render\nPress Cmd/Ctrl + Shift + K. Look at the HTML file that pops up.\nIf you finish early, try one or more of these:\n\nAdd a second plot using a different variable (flipper_length_mm, bill_length_mm, …).\nTry changing format: html to format: docx in the YAML and re-render.\nAdd a table of the first few rows: insert a chunk with knitr::kable(head(penguins)).\nSet echo: false in your YAML under execute: to hide all code from the output:\n\nexecute:\n  echo: false\nTo turn in: Save your .qmd file and the rendered HTML. We’ll check at the end of class."
+    "text": "Activity: your first Quarto report\nYou’ll build a short Quarto report from scratch. Take 25 minutes for this activity.\n\nActivity Canvas Link\n\nTo turn in: Save your .qmd file and the rendered HTML. We’ll check at the end of class."
   },
   {
     "objectID": "weeks/week1/day4-quarto-slides.html#activity-debrief",
