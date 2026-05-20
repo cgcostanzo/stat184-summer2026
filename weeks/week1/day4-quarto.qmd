@@ -16,7 +16,6 @@ format:
     output-file: "day4-quarto-page.html"
   pdf:
     fig-pos: "H"
-    output-file: "day4-quarto.pdf"
 editor: source
 ---
 
@@ -126,9 +125,9 @@ A Quarto document is a plain text file with three kinds of content:
 
 You can open a `.qmd` file in any text editor.
 
-## A complete example {.scrollable}
+## A complete example
 
-``` markdown
+````text
 ---
 title: "Penguin sizes"
 author: "Charles Costanzo"
@@ -137,20 +136,50 @@ format: html
 
 # Introduction
 
-We have data on `r knitr::inline_expr("nrow(penguins)")` penguins
+We have data on `r nrow(penguins)` penguins
 from three species.
 
-```{r}`r ''`
+```r
 library(palmerpenguins)
+library(ggplot2)
 
 ggplot(penguins, aes(x = body_mass_g)) +
-  geom_histogram(bins = 30)
+  geom_histogram(bins = 30, 
+                 color = "black", 
+                 fill = rgb(0, 206/255, 209/255)) +
+  theme_classic() +
+  labs(title = "Distribution of Body Mass (grams)",
+       x = "Body Mass (grams)",
+       y = "Count of Penguins") 
 ```
 
 The distribution looks roughly **bimodal**, with two peaks.
+````
+
+
+## Rendered output {.scrollable}
+
+- Three pieces: YAML header, prose, code chunk. The output is a polished HTML page (as promised).
+
+```{=html}
+<style>
+  /* Force the browser to respect our hiding rules */
+  @media screen {
+    .print-only-img { display: none !important; }
+  }
+  
+  @media print {
+    .screen-only-iframe { display: none !important; }
+    .print-only-img { display: block !important; }
+  }
+</style>
 ```
 
-Three pieces: YAML header, prose, code chunk. The output will be a polished HTML page.
+::: {.screen-only-iframe}
+```{=html}
+<iframe width="100%" height="600px" src="day4-qmd-example.html" style="border:1px solid #ccc;"></iframe>
+```
+:::
 
 # The YAML header {background-color="#001E44"}
 
@@ -173,8 +202,8 @@ This tells Quarto things like:
 - Who's the author?
 - What format should I render to?
 
-::: {.callout-tip}
-**YAML** stands for "YAML Ain't Markup Language." Cute, but mostly you just need to know it's how Quarto reads settings.
+::: {.callout-tip title="Fun Fact"}
+**YAML** originally stood for "Yet Another Markup Language." However, unlike HTML or XML, which are designed to mark up and format text documents, YAML was designed strictly for data serialization: storing data, lists, and configuration settings in a way humans can easily read. To clarify its actual purpose, the creators later changed it to "YAML Ain't Markup Language." This makes it a "recursive acronym" (where the Y stands for YAML itself).
 :::
 
 ## YAML syntax rules
@@ -194,8 +223,8 @@ format:
 ::: {.callout-warning}
 ## YAML gotchas
 - **Indentation matters.** Use spaces, not tabs. Two spaces per level is standard.
-- **Colons need a space after them.** `title: "Hi"`, not `title:"Hi"`.
-- **Strings with special characters need quotes.** Use `"My: Report"` not `My: Report`.
+- **Colons need a space after them.** `title: "Hi"`, **not**&nbsp;&nbsp;`title:"Hi"`.
+- **Strings with special characters need quotes.** Use `"My: Report"`, **not**&nbsp;&nbsp;`My: Report`.
 :::
 
 If your YAML breaks, your document won't render. Most error messages will point to the line number.
@@ -426,85 +455,7 @@ If you make a mistake in chunk #47, it's much easier to find when you only added
 
 You'll build a short Quarto report from scratch. Take 25 minutes for this activity.
 
-**Setup:**
-
-1. Open RStudio.
-2. `File > New File > Quarto Document...`
-3. Title: **"Penguin Exploration"**, Author: your name.
-4. Pick **HTML** as the format.
-5. **Uncheck** "Use visual markdown editor" if you want to see the raw source (recommended for learning today).
-6. Click **Create**.
-
-You'll get a template document with example content. **Delete everything below the YAML header.** Keep the YAML.
-
-**Step 1 - Save the file**
-
-`File > Save As...`: call it `penguin-report.qmd`, save somewhere you'll find it.
-
-**Step 2 - Add a setup chunk**
-
-Insert a code chunk (`Cmd/Ctrl + Alt + I`). Make it look like this:
-
-```` markdown
-```{r}
-#| label: setup
-#| include: false
-
-library(tidyverse)
-library(palmerpenguins)
-```
-````
-
-**Step 3 - Write an intro**
-
-Below the setup chunk, add a heading and a paragraph:
-
-```markdown
-# Introduction
-
-This report explores the **Palmer Penguins** data set, which contains
-measurements on three species of penguins from islands in Antarctica.
-```
-
-**Step 4 - Add a plot**
-
-Insert another chunk and put a histogram in it:
-
-```` markdown
-```{r}
-#| label: mass-histogram
-#| message: false
-#| warning: false
-
-ggplot(penguins, aes(x = body_mass_g)) +
-  geom_histogram(binwidth = 250, fill = "steelblue", color = "white") +
-  labs(
-    title = "Distribution of penguin body mass",
-    x = "Body mass (g)",
-    y = "Count"
-  )
-```
-````
-
-**Step 5 - Add commentary**
-
-Below the plot, write 2–3 sentences (in Markdown) describing what you see.
-
-**Step 6 - Render**
-
-Press `Cmd/Ctrl + Shift + K`. Look at the HTML file that pops up.
-
-If you finish early, try one or more of these:
-
-- Add a second plot using a different variable (`flipper_length_mm`, `bill_length_mm`, ...).
-- Try changing `format: html` to `format: docx` in the YAML and re-render.
-- Add a **table** of the first few rows: insert a chunk with `knitr::kable(head(penguins))`.
-- Set `echo: false` in your YAML under `execute:` to hide *all* code from the output:
-
-```yaml
-execute:
-  echo: false
-```
+- [Activity Canvas Link](https://psu.instructure.com/courses/2487468/assignments/18314926?module_item_id=48168875)
 
 **To turn in:** Save your `.qmd` file and the rendered HTML. We'll check at the end of class.
 

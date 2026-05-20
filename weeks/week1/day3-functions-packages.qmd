@@ -98,6 +98,26 @@ BabyNames %>%
 
 Try to identify:
 
+- **Data table?**
+- **Functions?**
+- **Variables?**
+- **Constant?**
+- **Named argument?**
+
+This single command counts the total number of babies named "Arjun" in the data: **5,578**.
+
+## Spot the parts
+
+```{r}
+#| eval: FALSE
+#| echo: TRUE
+BabyNames %>%
+  filter(name == "Arjun") %>%
+  summarise(total = sum(count))
+```
+
+Try to identify:
+
 - **Data table?** `BabyNames` (starts with capital, no parentheses after it)
 - **Functions?** `filter`, `summarise`, `sum` (each followed by an open parenthesis)
 - **Variables?** `name`, `count` (lowercase, inside parentheses)

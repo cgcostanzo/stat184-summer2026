@@ -1,0 +1,17 @@
+{
+  "hash": "3c522022beea3ddc1a6b2e2b1e361e12",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Penguin sizes\"\nauthor: \"Charles Costanzo\"\nformat: html\nself-contained: TRUE\n---\n\n# Introduction\n\nWe have data on `r nrow(penguins)` penguins\nfrom three species.\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](day4-qmd-example_files/figure-html/unnamed-chunk-1-1.png){width=672}\n:::\n:::\n\n\nThe distribution looks roughly **bimodal**, with two peaks.",
+    "supporting": [
+      "day4-qmd-example_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

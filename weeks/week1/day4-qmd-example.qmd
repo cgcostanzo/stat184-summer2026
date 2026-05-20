@@ -1,0 +1,30 @@
+---
+title: "Penguin sizes"
+author: "Charles Costanzo"
+format: html
+self-contained: TRUE
+---
+
+# Introduction
+
+We have data on `r knitr::inline_expr("nrow(penguins)")` penguins
+from three species.
+
+```{r}
+#| echo: FALSE
+#| message: FALSE
+#| warning: FALSE
+library(palmerpenguins)
+library(ggplot2)
+
+ggplot(penguins, aes(x = body_mass_g)) +
+  geom_histogram(bins = 30, 
+                 color = "black", 
+                 fill = rgb(0, 206/255, 209/255)) +
+  theme_classic() +
+  labs(title = "Distribution of Body Mass (grams)",
+       x = "Body Mass (grams)",
+       y = "Count of Penguins") 
+```
+
+The distribution looks roughly **bimodal**, with two peaks.
