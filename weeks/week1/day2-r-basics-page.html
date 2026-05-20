@@ -438,7 +438,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../weeks/week1/day1-intro-page.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Day 1 — Course intro &amp; what is R?</span></a>
+ <span class="menu-text">Course intro &amp; what is `R`?</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -450,7 +450,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../weeks/week1/day3-functions-packages-page.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Functions, packages, and the tidyverse</span></a>
+ <span class="menu-text">Functions, packages, the tidyverse &amp; objects</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -476,6 +476,8 @@ window.Quarto = {
   <li><a href="#another-introduction-to-r" id="toc-another-introduction-to-r" class="nav-link" data-scroll-target="#another-introduction-to-r">Another Introduction to R</a></li>
   <li><a href="#rstudio-desktop-rstudio" id="toc-rstudio-desktop-rstudio" class="nav-link" data-scroll-target="#rstudio-desktop-rstudio">RStudio Desktop (RStudio)</a></li>
   <li><a href="#r-vs.-rstudio" id="toc-r-vs.-rstudio" class="nav-link" data-scroll-target="#r-vs.-rstudio">R vs.&nbsp;RStudio</a></li>
+  <li><a href="#a-tour-of-rstudio" id="toc-a-tour-of-rstudio" class="nav-link" data-scroll-target="#a-tour-of-rstudio">A tour of RStudio</a>
+  <ul class="collapse">
   <li><a href="#rstudios-four-pane-layout" id="toc-rstudios-four-pane-layout" class="nav-link" data-scroll-target="#rstudios-four-pane-layout">RStudio’s Four Pane Layout</a></li>
   <li><a href="#source-pane" id="toc-source-pane" class="nav-link" data-scroll-target="#source-pane">Source Pane</a></li>
   <li><a href="#console-pane" id="toc-console-pane" class="nav-link" data-scroll-target="#console-pane">Console Pane</a></li>
@@ -484,10 +486,16 @@ window.Quarto = {
   <li><a href="#output-pane---plots-tab" id="toc-output-pane---plots-tab" class="nav-link" data-scroll-target="#output-pane---plots-tab">Output Pane - Plots Tab</a></li>
   <li><a href="#output-pane---packages-tab" id="toc-output-pane---packages-tab" class="nav-link" data-scroll-target="#output-pane---packages-tab">Output Pane - Packages Tab</a></li>
   <li><a href="#output-pane---help-tab" id="toc-output-pane---help-tab" class="nav-link" data-scroll-target="#output-pane---help-tab">Output Pane - Help Tab</a></li>
+  </ul></li>
+  <li><a href="#data-types-and-structures" id="toc-data-types-and-structures" class="nav-link" data-scroll-target="#data-types-and-structures">Data types and structures</a>
+  <ul class="collapse">
   <li><a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types">Data Types</a></li>
   <li><a href="#data-structures" id="toc-data-structures" class="nav-link" data-scroll-target="#data-structures">Data Structures</a></li>
   <li><a href="#data-structures-examples" id="toc-data-structures-examples" class="nav-link" data-scroll-target="#data-structures-examples">Data Structures Examples</a></li>
   <li><a href="#data-structures-visualization" id="toc-data-structures-visualization" class="nav-link" data-scroll-target="#data-structures-visualization">Data Structures Visualization</a></li>
+  </ul></li>
+  <li><a href="#r-as-a-calculator-creating-objects" id="toc-r-as-a-calculator-creating-objects" class="nav-link" data-scroll-target="#r-as-a-calculator-creating-objects">R as a calculator · creating objects</a>
+  <ul class="collapse">
   <li><a href="#r-as-a-calculator" id="toc-r-as-a-calculator" class="nav-link" data-scroll-target="#r-as-a-calculator">R as a Calculator</a></li>
   <li><a href="#your-turn-to-use-the-calculator" id="toc-your-turn-to-use-the-calculator" class="nav-link" data-scroll-target="#your-turn-to-use-the-calculator">Your Turn to Use the Calculator</a></li>
   <li><a href="#vector-operations" id="toc-vector-operations" class="nav-link" data-scroll-target="#vector-operations">Vector Operations</a></li>
@@ -495,6 +503,7 @@ window.Quarto = {
   <li><a href="#creating-objects" id="toc-creating-objects" class="nav-link" data-scroll-target="#creating-objects">Creating objects</a></li>
   <li><a href="#setup-checklist-due-by-wednesday" id="toc-setup-checklist-due-by-wednesday" class="nav-link" data-scroll-target="#setup-checklist-due-by-wednesday">Setup checklist — due by Wednesday</a></li>
   <li><a href="#wrap-up-looking-ahead" id="toc-wrap-up-looking-ahead" class="nav-link" data-scroll-target="#wrap-up-looking-ahead">Wrap-up &amp; looking ahead</a></li>
+  </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="day2-r-basics-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li><li><a href="day2-r-basics.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -592,6 +601,8 @@ window.Quarto = {
 <li><strong>RStudio</strong> is the environment/interface we use to work with R more comfortably.</li>
 </ul>
 </section>
+<section id="a-tour-of-rstudio" class="level1" data-background-color="#001E44">
+<h1 data-background-color="#001E44">A tour of RStudio</h1>
 <section id="rstudios-four-pane-layout" class="level2">
 <h2 class="anchored" data-anchor-id="rstudios-four-pane-layout">RStudio’s Four Pane Layout</h2>
 <div class="quarto-figure quarto-figure-center">
@@ -696,6 +707,9 @@ window.Quarto = {
 <li><strong>Help Shortcuts:</strong> <code>?barplot</code>, <code>help(barplot)</code>, or <code>??barplot</code> (broad sweep). You can also place your cursor in the object name and press fn + F1 (or just F1 if your function keys are active).</li>
 </ul>
 </section>
+</section>
+<section id="data-types-and-structures" class="level1" data-background-color="#001E44">
+<h1 data-background-color="#001E44">Data types and structures</h1>
 <section id="data-types" class="level2">
 <h2 class="anchored" data-anchor-id="data-types">Data Types</h2>
 <ul>
@@ -930,6 +944,9 @@ Figure&nbsp;1: R’s data structures as cubes: a vector (1D), matrix (2D), and a
 </div>
 </div>
 </section>
+</section>
+<section id="r-as-a-calculator-creating-objects" class="level1" data-background-color="#001E44">
+<h1 data-background-color="#001E44">R as a calculator · creating objects</h1>
 <section id="r-as-a-calculator" class="level2">
 <h2 class="anchored" data-anchor-id="r-as-a-calculator">R as a Calculator</h2>
 <p>You can use R as a calculator:</p>
@@ -1070,6 +1087,7 @@ Figure&nbsp;1: R’s data structures as cubes: a vector (1D), matrix (2D), and a
 </div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

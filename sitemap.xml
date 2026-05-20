@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/schedule.html</loc>
-    <lastmod>2026-05-19T00:13:41.317Z</lastmod>
+    <lastmod>2026-05-20T04:32:58.498Z</lastmod>
   </url>
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/reference/hw-template.html</loc>
@@ -70,23 +70,23 @@
   </url>
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week1/day3-functions-packages-slides.html</loc>
-    <lastmod>2026-05-18T23:44:49.535Z</lastmod>
+    <lastmod>2026-05-20T04:30:31.345Z</lastmod>
   </url>
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week1/day3-functions-packages-page.html</loc>
-    <lastmod>2026-05-18T23:44:49.535Z</lastmod>
+    <lastmod>2026-05-20T04:30:31.345Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week1/day1-intro-slides.html</loc>
-    <lastmod>2026-05-19T01:11:45.197Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week1/day1-intro-page.html</loc>
-    <lastmod>2026-05-19T01:11:45.197Z</lastmod>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week1/day4-quarto-penguins.html</loc>
+    <lastmod>2026-05-20T01:26:13.988Z</lastmod>
   </url>
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week1/index.html</loc>
-    <lastmod>2026-05-18T23:58:29.204Z</lastmod>
+    <lastmod>2026-05-20T04:35:03.294Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week1/day4-penguin-report.html</loc>
+    <lastmod>2026-05-20T01:16:05.841Z</lastmod>
   </url>
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week6/day1-clustering.html</loc>
@@ -129,28 +129,36 @@
     <lastmod>2026-05-16T17:10:06.751Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week1/day5-quiz-pipe-page.html</loc>
-    <lastmod>2026-05-18T23:46:39.899Z</lastmod>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week1/day5-pipe-page.html</loc>
+    <lastmod>2026-05-20T04:30:04.809Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week1/day5-quiz-pipe-slides.html</loc>
-    <lastmod>2026-05-18T23:46:39.899Z</lastmod>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week1/day5-pipe-slides.html</loc>
+    <lastmod>2026-05-20T04:30:04.809Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week1/day1-intro-page.html</loc>
+    <lastmod>2026-05-20T04:30:16.426Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week1/day1-intro-slides.html</loc>
+    <lastmod>2026-05-20T04:30:16.426Z</lastmod>
   </url>
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week1/day2-r-basics-page.html</loc>
-    <lastmod>2026-05-19T01:11:48.493Z</lastmod>
+    <lastmod>2026-05-20T00:43:23.716Z</lastmod>
   </url>
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week1/day2-r-basics-slides.html</loc>
-    <lastmod>2026-05-19T01:11:48.493Z</lastmod>
+    <lastmod>2026-05-20T00:43:23.716Z</lastmod>
   </url>
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week1/day4-quarto-page.html</loc>
-    <lastmod>2026-05-18T23:46:00.347Z</lastmod>
+    <lastmod>2026-05-20T04:30:40.989Z</lastmod>
   </url>
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week1/day4-quarto-slides.html</loc>
-    <lastmod>2026-05-18T23:46:00.347Z</lastmod>
+    <lastmod>2026-05-20T04:30:40.989Z</lastmod>
   </url>
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week2/day4-critique.html</loc>

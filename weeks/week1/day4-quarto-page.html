@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -39,14 +74,16 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cad2a2f8a56dfe71ee895a68e79c9b9a.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-70be5ccd51f03de5ce195d75fadf0882.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cad2a2f8a56dfe71ee895a68e79c9b9a.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/quarto-axe/axe-check.js" type="module"></script>
+<script id="quarto-axe-checker-options" type="text/plain">dHJ1ZQ==</script>
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-0e6139898bc333d8d362a68e1e84c4d8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-5d4c2f462ffa217fc73399f9052c53e0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-0e6139898bc333d8d362a68e1e84c4d8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-ae8dd8cbc432535888165c491a1ef120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-c348e284c378fa5b02e0205484958981.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-ae8dd8cbc432535888165c491a1ef120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -75,6 +112,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../assets/styles.css">
 </head>
@@ -372,7 +438,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../weeks/week1/day1-intro-page.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Day 1 — Course intro &amp; what is R?</span></a>
+ <span class="menu-text">Course intro &amp; what is `R`?</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -384,7 +450,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../weeks/week1/day3-functions-packages-page.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Functions, packages, and the tidyverse</span></a>
+ <span class="menu-text">Functions, packages, the tidyverse &amp; objects</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -406,7 +472,46 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#wrap-up-looking-ahead" id="toc-wrap-up-looking-ahead" class="nav-link active" data-scroll-target="#wrap-up-looking-ahead">Wrap-up &amp; looking ahead</a></li>
+  <li><a href="#quick-recap-from-yesterday" id="toc-quick-recap-from-yesterday" class="nav-link active" data-scroll-target="#quick-recap-from-yesterday">Quick recap from yesterday</a></li>
+  <li><a href="#the-problem-with-copy-paste" id="toc-the-problem-with-copy-paste" class="nav-link" data-scroll-target="#the-problem-with-copy-paste">The problem with copy-paste</a></li>
+  <li><a href="#reproducibility" id="toc-reproducibility" class="nav-link" data-scroll-target="#reproducibility">Reproducibility</a></li>
+  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto">Quarto</a>
+  <ul class="collapse">
+  <li><a href="#what-is-quarto" id="toc-what-is-quarto" class="nav-link" data-scroll-target="#what-is-quarto">What is Quarto?</a></li>
+  <li><a href="#quarto-vs.-r-markdown" id="toc-quarto-vs.-r-markdown" class="nav-link" data-scroll-target="#quarto-vs.-r-markdown">Quarto vs.&nbsp;R Markdown</a></li>
+  <li><a href="#whats-in-a-.qmd-file" id="toc-whats-in-a-.qmd-file" class="nav-link" data-scroll-target="#whats-in-a-.qmd-file">What’s in a <code>.qmd</code> file?</a></li>
+  <li><a href="#a-complete-example" id="toc-a-complete-example" class="nav-link" data-scroll-target="#a-complete-example">A complete example</a></li>
+  <li><a href="#yaml-syntax-rules" id="toc-yaml-syntax-rules" class="nav-link" data-scroll-target="#yaml-syntax-rules">YAML syntax rules</a></li>
+  <li><a href="#common-format-options" id="toc-common-format-options" class="nav-link" data-scroll-target="#common-format-options">Common format options</a></li>
+  </ul></li>
+  <li><a href="#code-chunks" id="toc-code-chunks" class="nav-link" data-scroll-target="#code-chunks">Code chunks</a>
+  <ul class="collapse">
+  <li><a href="#whats-a-code-chunk" id="toc-whats-a-code-chunk" class="nav-link" data-scroll-target="#whats-a-code-chunk">What’s a code chunk?</a></li>
+  <li><a href="#three-ways-to-insert-a-chunk" id="toc-three-ways-to-insert-a-chunk" class="nav-link" data-scroll-target="#three-ways-to-insert-a-chunk">Three ways to insert a chunk</a></li>
+  <li><a href="#running-chunks-interactively" id="toc-running-chunks-interactively" class="nav-link" data-scroll-target="#running-chunks-interactively">Running chunks interactively</a></li>
+  <li><a href="#chunk-options" id="toc-chunk-options" class="nav-link" data-scroll-target="#chunk-options">Chunk options</a></li>
+  <li><a href="#when-to-use-which-option" id="toc-when-to-use-which-option" class="nav-link" data-scroll-target="#when-to-use-which-option">When to use which option</a></li>
+  <li><a href="#the-setup-chunk" id="toc-the-setup-chunk" class="nav-link" data-scroll-target="#the-setup-chunk">The setup chunk</a></li>
+  </ul></li>
+  <li><a href="#markdown" id="toc-markdown" class="nav-link" data-scroll-target="#markdown">Markdown</a>
+  <ul class="collapse">
+  <li><a href="#markdown-basics" id="toc-markdown-basics" class="nav-link" data-scroll-target="#markdown-basics">Markdown basics</a></li>
+  <li><a href="#more-markdown" id="toc-more-markdown" class="nav-link" data-scroll-target="#more-markdown">More Markdown</a></li>
+  <li><a href="#visual-editor-vs.-source-editor" id="toc-visual-editor-vs.-source-editor" class="nav-link" data-scroll-target="#visual-editor-vs.-source-editor">Visual editor vs.&nbsp;source editor</a></li>
+  </ul></li>
+  <li><a href="#rendering" id="toc-rendering" class="nav-link" data-scroll-target="#rendering">Rendering</a>
+  <ul class="collapse">
+  <li><a href="#how-rendering-works" id="toc-how-rendering-works" class="nav-link" data-scroll-target="#how-rendering-works">How rendering works</a></li>
+  <li><a href="#the-render-button" id="toc-the-render-button" class="nav-link" data-scroll-target="#the-render-button">The render button</a></li>
+  <li><a href="#the-write-render-cycle" id="toc-the-write-render-cycle" class="nav-link" data-scroll-target="#the-write-render-cycle">The write / render cycle</a></li>
+  </ul></li>
+  <li><a href="#activity" id="toc-activity" class="nav-link" data-scroll-target="#activity">Activity</a>
+  <ul class="collapse">
+  <li><a href="#activity-your-first-quarto-report" id="toc-activity-your-first-quarto-report" class="nav-link" data-scroll-target="#activity-your-first-quarto-report">Activity: your first Quarto report</a></li>
+  <li><a href="#activity-debrief" id="toc-activity-debrief" class="nav-link" data-scroll-target="#activity-debrief">Activity debrief</a></li>
+  <li><a href="#wrap-up-what-we-covered-today" id="toc-wrap-up-what-we-covered-today" class="nav-link" data-scroll-target="#wrap-up-what-we-covered-today">Wrap-up: what we covered today</a></li>
+  <li><a href="#wrap-up-looking-ahead" id="toc-wrap-up-looking-ahead" class="nav-link" data-scroll-target="#wrap-up-looking-ahead">Wrap-up &amp; looking ahead</a></li>
+  </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="day4-quarto-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li><li><a href="day4-quarto.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -417,7 +522,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Quarto basics · reproducible documents</h1>
-<p class="subtitle lead">Thursday, May 21, 2026</p>
+<p class="subtitle lead">Day 4 - Thursday, May 21, 2026</p>
 </div>
 
 
@@ -446,41 +551,685 @@ ul.task-list li input[type="checkbox"] {
 <div class="callout-body-container callout-body">
 <p><strong>Before class</strong></p>
 <ul>
-<li><strong>Perusall Assignment</strong>: <em>Data Computing</em> §4.1–4.7 (<a href="https://psu.instructure.com/courses/2487468/assignments/18307710">Click here</a>).</li>
+<li><strong>Perusall Assignment</strong>: <a href="https://psu.instructure.com/courses/2487468/assignments/18307710">DC §4.1–4.7</a>
+<ul>
+<li>(Optional) additional Quarto reading: <em>R for Data Science</em> Ch. 28 (<a href="https://r4ds.hadley.nz/quarto">Click here</a>).</li>
+</ul></li>
 </ul>
 <p><strong>Plan for today</strong></p>
 <ul>
-<li></li>
+<li>Why reproducibility matters</li>
+<li>Anatomy of a <code>.qmd</code> file</li>
+<li>Code chunks and chunk options</li>
+<li>Rendering and the write/render cycle</li>
+<li>In-class activity</li>
 </ul>
 <p><strong>Helpful links</strong></p>
 <ul>
-<li><a href="../../syllabus/syllabus.html">Syllabus</a> · <a href="../../syllabus/academic-integrity-and-ai-policy.html">AI policy</a> · <a href="../../schedule.html">Schedule</a> · <a href="https://dtkaplan.github.io/DataComputingEbook/chap-files-and-documents.html#chap:files-and-documents"><em>Data Computing</em> §4</a></li>
+<li><a href="../../syllabus/syllabus.html">Syllabus</a> · <a href="../../syllabus/academic-integrity-and-ai-policy.html">AI policy</a> · <a href="../../schedule.html">Schedule</a> · <a href="https://r4ds.hadley.nz/quarto"><em>R4DS</em> Ch. 28</a></li>
 </ul>
 </div>
 </div>
+<section id="quick-recap-from-yesterday" class="level2">
+<h2 class="anchored" data-anchor-id="quick-recap-from-yesterday">Quick recap from yesterday</h2>
+<p>Yesterday we covered:</p>
+<ul>
+<li>Reading R code: functions, arguments, data tables, variables, constants</li>
+<li>Calling functions with positional vs.&nbsp;named arguments</li>
+<li>Installing and loading <strong>packages</strong></li>
+<li>The <strong>tidyverse</strong> as a coherent collection</li>
+<li>Building histograms with <code>ggplot2</code></li>
+</ul>
+<p>Today we’ll learn how to wrap your code <em>and</em> your prose into a single reproducible document.</p>
+</section>
+<section id="the-problem-with-copy-paste" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem-with-copy-paste">The problem with copy-paste</h2>
+<p>Imagine you’ve just finished a homework assignment in R. You:</p>
+<ol type="1">
+<li>Run your code in the Console.</li>
+<li>Copy each plot into a Word document.</li>
+<li>Type up your interpretation.</li>
+<li>Submit.</li>
+</ol>
+<p>Then your professor says: <em>“oh, please redo this with the updated data.”</em></p>
+<div class="fragment fade-in">
+<div class="callout callout-style-default callout-warning callout-titled" title="Uh oh" style="font-size: 1.2em;">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Uh oh
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Now you have to re-do everything by hand. And to make things worse, every manual step is a place where mistakes happen.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="reproducibility" class="level2">
+<h2 class="anchored" data-anchor-id="reproducibility">Reproducibility</h2>
+<div class="callout callout-style-default callout-tip callout-empty-content callout-titled" style="font-size: 1.2em;">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>A <strong>reproducible</strong> document is one where the report and the code that made it are the <em>same file</em>.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<p>When the data changes, you just <strong>re-render</strong>. Every number, every plot, every table updates automatically.</p>
+<p>This is what Quarto is for.</p>
+</section>
+<section id="quarto" class="level1" data-background-color="#001E44">
+<h1 data-background-color="#001E44">Quarto</h1>
+<section id="what-is-quarto" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-quarto">What is Quarto?</h2>
+<p><strong>Quarto</strong> is a system for writing documents that mix:</p>
+<ul>
+<li><strong>Prose</strong> (regular text, headings, lists, links);</li>
+<li><strong>Code</strong> (R, Python, Julia);</li>
+<li><strong>Output</strong> (plots, tables, numbers from the code).</li>
+</ul>
+<p>Quarto turns the whole thing into a polished <strong>HTML page</strong>, <strong>PDF</strong>, <strong>Word doc</strong>, <strong>slide deck</strong>, or even a website.</p>
+<p>It’s what I used to make the slides you’re looking at right now.</p>
+</section>
+<section id="quarto-vs.-r-markdown" class="level2">
+<h2 class="anchored" data-anchor-id="quarto-vs.-r-markdown">Quarto vs.&nbsp;R Markdown</h2>
+<p>You might hear about <strong>R Markdown</strong> (<code>.Rmd</code> files) - it’s Quarto’s older sibling.</p>
+<ul>
+<li>R Markdown came first; it works only with R.</li>
+<li>Quarto is newer; works with R, Python, Julia, and more.</li>
+<li>Both use the same underlying ideas.</li>
+</ul>
+<p>In this class we’ll use <strong>Quarto</strong> (<code>.qmd</code> files) exclusively.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you see <code>.Rmd</code> examples online (including in the <em>Data Computing</em> book), they translate almost directly to <code>.qmd</code>. Don’t worry too much about the difference.</p>
+</div>
+</div>
+</section>
+<section id="whats-in-a-.qmd-file" class="level2">
+<h2 class="anchored" data-anchor-id="whats-in-a-.qmd-file">What’s in a <code>.qmd</code> file?</h2>
+<p>A Quarto document is a plain text file with three kinds of content:</p>
+<ol type="1">
+<li>A <strong>YAML header</strong> - settings, surrounded by <code>---</code></li>
+<li><strong>Code chunks</strong> - R code, surrounded by <code>```{r}</code> and <code>```</code></li>
+<li><strong>Markdown text</strong> - your prose, with formatting like <code># headings</code> and <code>**bold**</code></li>
+</ol>
+<p>You can open a <code>.qmd</code> file in any text editor.</p>
+</section>
+<section id="a-complete-example" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="a-complete-example">A complete example</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Penguin sizes"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Charles Costanzo"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> html</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>We have data on <span class="in">`r nrow(penguins)`</span> penguins</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>from three species.</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">30</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The distribution looks roughly <strong>bimodal</strong>, with two peaks.</p>
+<pre><code>
+Three pieces: YAML header, prose, code chunk. The output will be a polished HTML page.
+
+# The YAML header {background-color="#001E44"}
+
+## What's a YAML header?
+
+The block at the very top, between the two `---` lines:
+
+``` yaml
+---
+title: "Penguin sizes"
+author: "Charles Costanzo"
+date: "2026-05-21"
+format: html
+---</code></pre>
+<p>This tells Quarto things like:</p>
+<ul>
+<li>What’s the title?</li>
+<li>Who’s the author?</li>
+<li>What format should I render to?</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>YAML</strong> stands for “YAML Ain’t Markup Language.” Cute, but mostly you just need to know it’s how Quarto reads settings.</p>
+</div>
+</div>
+</section>
+<section id="yaml-syntax-rules" class="level2">
+<h2 class="anchored" data-anchor-id="yaml-syntax-rules">YAML syntax rules</h2>
+<p>YAML is <strong>picky</strong> about formatting:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"My Report"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">embed-resources</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>YAML gotchas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Indentation matters.</strong> Use spaces, not tabs. Two spaces per level is standard.</li>
+<li><strong>Colons need a space after them.</strong> <code>title: "Hi"</code>, not <code>title:"Hi"</code>.</li>
+<li><strong>Strings with special characters need quotes.</strong> Use <code>"My: Report"</code> not <code>My: Report</code>.</li>
+</ul>
+</div>
+</div>
+<p>If your YAML breaks, your document won’t render. Most error messages will point to the line number.</p>
+</section>
+<section id="common-format-options" class="level2">
+<h2 class="anchored" data-anchor-id="common-format-options">Common format options</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> pdf</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span><span class="at"> docx</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You can also render to <strong>multiple</strong> formats at once:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fig-pos</span><span class="kw">:</span><span class="at"> </span><span class="st">"H"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>PDF rendering needs <strong>LaTeX</strong> installed on your machine. RStudio will prompt you to install it the first time you try.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="code-chunks" class="level1" data-background-color="#001E44">
+<h1 data-background-color="#001E44">Code chunks</h1>
+<section id="whats-a-code-chunk" class="level2">
+<h2 class="anchored" data-anchor-id="whats-a-code-chunk">What’s a code chunk?</h2>
+<p>A <strong>code chunk</strong> is a block of R code embedded in your document. It looks like this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>When you render the document, Quarto:</p>
+<ol type="1">
+<li>Finds each chunk.</li>
+<li>Runs the R code inside.</li>
+<li>Inserts both the code <em>and</em> its output into the final document.</li>
+</ol>
+<p>So your readers see your work <em>and</em> its results, side-by-side, always in sync.</p>
+</section>
+<section id="three-ways-to-insert-a-chunk" class="level2">
+<h2 class="anchored" data-anchor-id="three-ways-to-insert-a-chunk">Three ways to insert a chunk</h2>
+<ol type="1">
+<li><p><strong>Keyboard shortcut</strong> (recommended):</p>
+<ul>
+<li>Mac: <code>Cmd + Option + I</code></li>
+<li>Windows/Linux: <code>Ctrl + Alt + I</code></li>
+</ul></li>
+<li><p><strong>Toolbar button</strong>: the green <code>+C</code> icon at the top of the editor.</p></li>
+<li><p><strong>Type it yourself</strong>: <code>```{r}</code> on one line, your code, <code>```</code> to close.</p></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Learn the keyboard shortcut. You’ll use it a lot.</p>
+</div>
+</div>
+</section>
+<section id="running-chunks-interactively" class="level2">
+<h2 class="anchored" data-anchor-id="running-chunks-interactively">Running chunks interactively</h2>
+<p>You don’t have to render the whole document every time. While editing, you can run chunks one at a time:</p>
+<table class="caption-top table">
+<caption>Useful chunk-running shortcuts.</caption>
+<colgroup>
+<col style="width: 60%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Action</th>
+<th>Shortcut</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Run the current line</td>
+<td><code>Cmd/Ctrl + Enter</code></td>
+</tr>
+<tr class="even">
+<td>Run the whole chunk</td>
+<td><code>Cmd/Ctrl + Shift + Enter</code></td>
+</tr>
+<tr class="odd">
+<td>Run all chunks above</td>
+<td>(button at top of chunk)</td>
+</tr>
+</tbody>
+</table>
+<p>This is exactly like working in the Console, but your code stays saved in the document.</p>
+</section>
+<section id="chunk-options" class="level2">
+<h2 class="anchored" data-anchor-id="chunk-options">Chunk options</h2>
+<p>You can control what each chunk does by adding options at the top, prefixed with <code>#|</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: my-plot</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 6</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Common options:</p>
+<table class="caption-top table">
+<caption>Common chunk options.</caption>
+<colgroup>
+<col style="width: 35%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>echo: false</code></td>
+<td>Hide the code, show the output</td>
+</tr>
+<tr class="even">
+<td><code>eval: false</code></td>
+<td>Show the code, don’t run it</td>
+</tr>
+<tr class="odd">
+<td><code>include: false</code></td>
+<td>Run the code, hide everything</td>
+</tr>
+<tr class="even">
+<td><code>message: false</code></td>
+<td>Hide messages (e.g., from <code>library()</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>warning: false</code></td>
+<td>Hide warnings</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="when-to-use-which-option" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-which-option">When to use which option</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Quick decision guide
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Writing a <strong>report for a non-coder?</strong>: <code>echo</code> <span class="math inline">\(\rightarrow\)</span> <code>false</code> everywhere.</li>
+<li><strong>Loading libraries</strong> in your setup chunk?: <code>include</code> <span class="math inline">\(\rightarrow\)</span> <code>false</code> to hide the noise.</li>
+<li><strong>Showing example code</strong> you don’t want to run?: <code>eval</code> <span class="math inline">\(\rightarrow\)</span> <code>false</code>.</li>
+<li><strong>Getting annoying red messages</strong> when loading the tidyverse?: <code>message</code> <span class="math inline">\(\rightarrow\)</span> <code>false</code>.</li>
+</ul>
+</div>
+</div>
+<p>You can set options chunk-by-chunk, or globally in the YAML header (more on that in a bit).</p>
+</section>
+<section id="the-setup-chunk" class="level2">
+<h2 class="anchored" data-anchor-id="the-setup-chunk">The setup chunk</h2>
+<p>A common pattern: have one chunk at the <strong>top</strong> of your document that loads packages and sets defaults.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: false</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><code>label: setup</code> is a <strong>special name</strong> - Quarto runs this chunk first, automatically.</li>
+<li><code>include: false</code> hides it from the rendered output (your reader doesn’t need to see <code>library(tidyverse)</code>).</li>
+</ul>
+</section>
+</section>
+<section id="markdown" class="level1" data-background-color="#001E44">
+<h1 data-background-color="#001E44">Markdown</h1>
+<section id="markdown-basics" class="level2">
+<h2 class="anchored" data-anchor-id="markdown-basics">Markdown basics</h2>
+<p>Outside code chunks, your prose is written in <strong>Markdown</strong> - a simple syntax for formatting plain text.</p>
+<table class="caption-top table">
+<caption>Common Markdown syntax.</caption>
+<colgroup>
+<col style="width: 40%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>You type</th>
+<th>You get</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>*italic*</code></td>
+<td><em>italic</em></td>
+</tr>
+<tr class="even">
+<td><code>**bold**</code></td>
+<td><strong>bold</strong></td>
+</tr>
+<tr class="odd">
+<td><code>`code`</code></td>
+<td><code>code</code></td>
+</tr>
+<tr class="even">
+<td><code># Heading 1</code></td>
+<td>(big heading)</td>
+</tr>
+<tr class="odd">
+<td><code>## Heading 2</code></td>
+<td>(smaller heading)</td>
+</tr>
+<tr class="even">
+<td><code>- item</code></td>
+<td>bulleted list item</td>
+</tr>
+<tr class="odd">
+<td><code>1. item</code></td>
+<td>numbered list item</td>
+</tr>
+<tr class="even">
+<td><code>[link text](https://example.com)</code></td>
+<td><a href="https://example.com">link text</a></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="more-markdown" class="level2">
+<h2 class="anchored" data-anchor-id="more-markdown">More Markdown</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; This is a block quote.</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; It gets a vertical bar on the left.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Column 1 <span class="pp">|</span> Column 2 <span class="pp">|</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="pp">|----------|----------|</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Apple    <span class="pp">|</span> Red      <span class="pp">|</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> Banana   <span class="pp">|</span> Yellow   <span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Shortcut
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In RStudio: <code>Help &gt; Markdown Quick Reference</code> opens a cheat sheet you can keep open while you write.</p>
+</div>
+</div>
+</section>
+<section id="visual-editor-vs.-source-editor" class="level2">
+<h2 class="anchored" data-anchor-id="visual-editor-vs.-source-editor">Visual editor vs.&nbsp;source editor</h2>
+<p>RStudio has <strong>two ways</strong> to edit a Quarto document:</p>
+<ul>
+<li><strong>Source</strong> - you see the raw Markdown and YAML. Like editing code.</li>
+<li><strong>Visual</strong> - looks more like Google Docs or Word. Buttons for bold, italic, headings, etc.</li>
+</ul>
+<p>There’s a toggle in the top-left of the editor pane.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Both editors save the <strong>same</strong> plain-text <code>.qmd</code> file underneath. You can switch back and forth freely.</p>
+</div>
+</div>
+<p>I recommend starting in <strong>Visual</strong> mode if you’re new to Markdown - you’ll learn the syntax by seeing it appear.</p>
+</section>
+</section>
+<section id="rendering" class="level1" data-background-color="#001E44">
+<h1 data-background-color="#001E44">Rendering</h1>
+<section id="how-rendering-works" class="level2">
+<h2 class="anchored" data-anchor-id="how-rendering-works">How rendering works</h2>
+<p>When you click <strong>Render</strong>, Quarto:</p>
+<ol type="1">
+<li>Reads your <code>.qmd</code> file.</li>
+<li>Sends it to <code>knitr</code>, which runs each code chunk in order.</li>
+<li>Sends the result to <code>pandoc</code>, which converts everything to your target format.</li>
+<li>Saves the final document next to your <code>.qmd</code> file.</li>
+</ol>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Fresh session
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Quarto runs your code in a <strong>brand new R session</strong> every render. It does <strong>not</strong> know about objects you made in the Console.</p>
+<p>If your code relies on something you typed in the Console, rendering will fail. Everything the document needs must be in the document.</p>
+</div>
+</div>
+</section>
+<section id="the-render-button" class="level2">
+<h2 class="anchored" data-anchor-id="the-render-button">The render button</h2>
+<p>In RStudio:</p>
+<ul>
+<li>Click <strong>Render</strong> in the editor toolbar, or</li>
+<li>Press <code>Cmd/Ctrl + Shift + K</code></li>
+</ul>
+<p>The output opens automatically in the Viewer pane (or your browser).</p>
+</section>
+<section id="the-write-render-cycle" class="level2">
+<h2 class="anchored" data-anchor-id="the-write-render-cycle">The write / render cycle</h2>
+<div class="callout callout-style-default callout-tip callout-empty-content callout-titled" style="font-size: 1.2em;">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Render early, render often.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<p>Don’t write 200 lines and then try to render. Write a little, render, check it works, write a little more.</p>
+<p>If you make a mistake in chunk #47, it’s much easier to find when you only added chunks #45–47 since your last successful render.</p>
+</section>
+</section>
+<section id="activity" class="level1" data-background-color="#7C0A02">
+<h1 data-background-color="#7C0A02">Activity</h1>
+<section id="activity-your-first-quarto-report" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="activity-your-first-quarto-report">Activity: your first Quarto report</h2>
+<p>You’ll build a short Quarto report from scratch. Take 25 minutes for this activity.</p>
+<p><strong>Setup:</strong></p>
+<ol type="1">
+<li>Open RStudio.</li>
+<li><code>File &gt; New File &gt; Quarto Document...</code></li>
+<li>Title: <strong>“Penguin Exploration”</strong>, Author: your name.</li>
+<li>Pick <strong>HTML</strong> as the format.</li>
+<li><strong>Uncheck</strong> “Use visual markdown editor” if you want to see the raw source (recommended for learning today).</li>
+<li>Click <strong>Create</strong>.</li>
+</ol>
+<p>You’ll get a template document with example content. <strong>Delete everything below the YAML header.</strong> Keep the YAML.</p>
+<p><strong>Step 1 - Save the file</strong></p>
+<p><code>File &gt; Save As...</code>: call it <code>penguin-report.qmd</code>, save somewhere you’ll find it.</p>
+<p><strong>Step 2 - Add a setup chunk</strong></p>
+<p>Insert a code chunk (<code>Cmd/Ctrl + Alt + I</code>). Make it look like this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Step 3 - Write an intro</strong></p>
+<p>Below the setup chunk, add a heading and a paragraph:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>This report explores the **Palmer Penguins** data set, which contains</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>measurements on three species of penguins from islands in Antarctica.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Step 4 - Add a plot</strong></p>
+<p>Insert another chunk and put a histogram in it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>::: {.cell}</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>::: {.cell-output-display}</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="al">![](day4-quarto_files/figure-revealjs/mass-histogram-1.png)</span>{width=960}</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Step 5 - Add commentary</strong></p>
+<p>Below the plot, write 2–3 sentences (in Markdown) describing what you see.</p>
+<p><strong>Step 6 - Render</strong></p>
+<p>Press <code>Cmd/Ctrl + Shift + K</code>. Look at the HTML file that pops up.</p>
+<p>If you finish early, try one or more of these:</p>
+<ul>
+<li>Add a second plot using a different variable (<code>flipper_length_mm</code>, <code>bill_length_mm</code>, …).</li>
+<li>Try changing <code>format: html</code> to <code>format: docx</code> in the YAML and re-render.</li>
+<li>Add a <strong>table</strong> of the first few rows: insert a chunk with <code>knitr::kable(head(penguins))</code>.</li>
+<li>Set <code>echo: false</code> in your YAML under <code>execute:</code> to hide <em>all</em> code from the output:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">execute</span><span class="kw">:</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>To turn in:</strong> Save your <code>.qmd</code> file and the rendered HTML. We’ll check at the end of class.</p>
+</section>
+<section id="activity-debrief" class="level2">
+<h2 class="anchored" data-anchor-id="activity-debrief">Activity debrief</h2>
+<p>Common stumbling blocks:</p>
+<ul>
+<li><strong>YAML indentation</strong> - extra space or missing space at the start of a line breaks everything.</li>
+<li><strong>Forgot to close a chunk</strong> - every <code>```{r}</code> needs a matching <code>```</code> on its own line.</li>
+<li><strong>Object not found</strong> during render - you typed it in the Console but not in the document. The render uses a fresh session.</li>
+<li><strong>Package not installed</strong> - <code>Error: there is no package called 'palmerpenguins'</code>. Install it in the Console.</li>
+<li><strong>Plot doesn’t appear</strong> - usually a missing <code>+</code> between <code>ggplot()</code> layers.</li>
+</ul>
+</section>
+<section id="wrap-up-what-we-covered-today" class="level2">
+<h2 class="anchored" data-anchor-id="wrap-up-what-we-covered-today">Wrap-up: what we covered today</h2>
+<ul>
+<li>Recognize a <code>.qmd</code> file as a mix of YAML, prose, and code chunks.</li>
+<li>Write a YAML header with title, author, and format.</li>
+<li>Insert and run code chunks.</li>
+<li>Hide code, output, messages, or warnings with chunk options.</li>
+<li>Use basic Markdown for headings, lists, bold, italic, and links.</li>
+<li>Render a document to HTML.</li>
+</ul>
+</section>
 <section id="wrap-up-looking-ahead" class="level2">
 <h2 class="anchored" data-anchor-id="wrap-up-looking-ahead">Wrap-up &amp; looking ahead</h2>
-<p><strong>Tomorrow:</strong> The pipe and chaining syntax</p>
+<p><strong>Tomorrow:</strong> Quiz 1, then the pipe operator and chaining syntax.</p>
 <div class="columns">
 <div class="column" style="width:55%;">
 <p><strong>Upcoming Deadlines</strong></p>
 <ul>
-<li><strong>Fri 5/22, before class</strong> — <a href="https://psu.instructure.com/courses/2487468/assignments/18307712">DC §3.6</a></li>
-<li><strong>Fri 5/22, in class</strong> — Quiz 1</li>
-<li><strong>Fri 5/22, 11:59 p.m.</strong> — <a href="https://psu.instructure.com/courses/2487468/assignments/18311694">HW 1: Basic R &amp; Plots</a></li>
+<li><strong>Fri 5/22, before class</strong> - <a href="https://psu.instructure.com/courses/2487468/assignments/18307712">DC §3.6</a></li>
+<li><strong>Fri 5/22, in class</strong> - Quiz 1
+<ul>
+<li><a href="https://psu.instructure.com/courses/2487468/pages/quiz-1-practice?module_item_id=48166672">Quiz 1 Practice</a></li>
+</ul></li>
+<li><strong>Fri 5/22, 11:59 p.m.</strong> - <a href="https://psu.instructure.com/courses/2487468/assignments/18311694">HW 1: Basic R &amp; Plots</a></li>
 </ul>
 </div><div class="column" style="width:45%;">
 <p><strong>Reach out</strong></p>
 <p>Stuck? Office hours, or email me (<a href="mailto:cgc5478@psu.edu">cgc5478@psu.edu</a>) or Xinyue (<a href="mailto:xpw5228@psu.edu">xpw5228@psu.edu</a>).</p>
 <p><strong>Reference</strong></p>
-<p><a href="../../syllabus/syllabus.html">Syllabus</a> · <a href="../../syllabus/academic-integrity-and-ai-policy.html">AI policy</a> · <a href="../../schedule.html">Schedule</a> · <a href="https://dtkaplan.github.io/DataComputingEbook/"><em>Data Computing</em></a></p>
+<p><a href="../../syllabus/syllabus.html">Syllabus</a> · <a href="../../syllabus/academic-integrity-and-ai-policy.html">AI policy</a> · <a href="../../schedule.html">Schedule</a> · <a href="https://r4ds.hadley.nz/quarto"><em>R4DS</em> Ch. 28</a></p>
 </div>
 </div>
 
 
 </section>
+</section>
 
 </main> <!-- /main -->
+
+<script>
+  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+  // slide changes (different for each slide format).
+  (function () {
+    // dispatch for htmlwidgets
+    function fireSlideEnter() {
+      const event = window.document.createEvent("Event");
+      event.initEvent("slideenter", true, true);
+      window.document.dispatchEvent(event);
+    }
+
+    function fireSlideChanged(previousSlide, currentSlide) {
+      fireSlideEnter();
+
+      // dispatch for shiny
+      if (window.jQuery) {
+        if (previousSlide) {
+          window.jQuery(previousSlide).trigger("hidden");
+        }
+        if (currentSlide) {
+          window.jQuery(currentSlide).trigger("shown");
+        }
+      }
+    }
+
+    // hookup for slidy
+    if (window.w3c_slidy) {
+      window.w3c_slidy.add_observer(function (slide_num) {
+        // slide_num starts at position 1
+        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+      });
+    }
+
+  })();
+</script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right

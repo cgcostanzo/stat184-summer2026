@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Functions, packages, and the tidyverse – STAT 184 — Summer 2026</title>
+<title>Functions, packages, the tidyverse &amp; objects – STAT 184 — Summer 2026</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -39,14 +74,16 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-d0ae9245876894da5ac7e18953ecc5cc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cad2a2f8a56dfe71ee895a68e79c9b9a.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-70be5ccd51f03de5ce195d75fadf0882.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cad2a2f8a56dfe71ee895a68e79c9b9a.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/quarto-axe/axe-check.js" type="module"></script>
+<script id="quarto-axe-checker-options" type="text/plain">dHJ1ZQ==</script>
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-0e6139898bc333d8d362a68e1e84c4d8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark-5d4c2f462ffa217fc73399f9052c53e0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../site_libs/bootstrap/bootstrap-0e6139898bc333d8d362a68e1e84c4d8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-ae8dd8cbc432535888165c491a1ef120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-c348e284c378fa5b02e0205484958981.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-ae8dd8cbc432535888165c491a1ef120.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -351,7 +388,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../weeks/week1/day3-functions-packages-page.html">Functions, packages, and the tidyverse</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../weeks/week1/day3-functions-packages-page.html">Functions, packages, the tidyverse &amp; objects</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -372,7 +409,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../weeks/week1/day1-intro-page.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Day 1 — Course intro &amp; what is R?</span></a>
+ <span class="menu-text">Course intro &amp; what is `R`?</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -384,7 +421,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../weeks/week1/day3-functions-packages-page.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Functions, packages, and the tidyverse</span></a>
+ <span class="menu-text">Functions, packages, the tidyverse &amp; objects</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -406,7 +443,51 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#wrap-up-looking-ahead" id="toc-wrap-up-looking-ahead" class="nav-link active" data-scroll-target="#wrap-up-looking-ahead">Wrap-up &amp; looking ahead</a></li>
+  <li><a href="#quick-recap-from-yesterday" id="toc-quick-recap-from-yesterday" class="nav-link active" data-scroll-target="#quick-recap-from-yesterday">Quick recap from yesterday</a></li>
+  <li><a href="#reading-r-code" id="toc-reading-r-code" class="nav-link" data-scroll-target="#reading-r-code">Reading R code</a></li>
+  <li><a href="#five-kinds-of-objects-in-r-code" id="toc-five-kinds-of-objects-in-r-code" class="nav-link" data-scroll-target="#five-kinds-of-objects-in-r-code">Five kinds of objects in R code</a></li>
+  <li><a href="#spot-the-parts" id="toc-spot-the-parts" class="nav-link" data-scroll-target="#spot-the-parts">Spot the parts</a></li>
+  <li><a href="#objects-revisited" id="toc-objects-revisited" class="nav-link" data-scroll-target="#objects-revisited">Objects, revisited</a></li>
+  <li><a href="#why-bother-naming-things" id="toc-why-bother-naming-things" class="nav-link" data-scroll-target="#why-bother-naming-things">Why bother naming things?</a></li>
+  <li><a href="#example-of-naming-conventions-from-data-computing" id="toc-example-of-naming-conventions-from-data-computing" class="nav-link" data-scroll-target="#example-of-naming-conventions-from-data-computing">Example of naming conventions from <em>Data Computing</em></a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a>
+  <ul class="collapse">
+  <li><a href="#what-is-a-function" id="toc-what-is-a-function" class="nav-link" data-scroll-target="#what-is-a-function">What is a function?</a></li>
+  <li><a href="#anatomy-of-a-function-call" id="toc-anatomy-of-a-function-call" class="nav-link" data-scroll-target="#anatomy-of-a-function-call">Anatomy of a function call</a></li>
+  <li><a href="#named-vs.-positional-arguments" id="toc-named-vs.-positional-arguments" class="nav-link" data-scroll-target="#named-vs.-positional-arguments">Named vs.&nbsp;positional arguments</a></li>
+  <li><a href="#getting-help-with-a-function" id="toc-getting-help-with-a-function" class="nav-link" data-scroll-target="#getting-help-with-a-function">Getting help with a function</a></li>
+  <li><a href="#functions-return-values" id="toc-functions-return-values" class="nav-link" data-scroll-target="#functions-return-values">Functions return values</a></li>
+  <li><a href="#functions-inside-functions" id="toc-functions-inside-functions" class="nav-link" data-scroll-target="#functions-inside-functions">Functions inside functions</a></li>
+  </ul></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a>
+  <ul class="collapse">
+  <li><a href="#what-is-a-package" id="toc-what-is-a-package" class="nav-link" data-scroll-target="#what-is-a-package">What is a package?</a></li>
+  <li><a href="#installing-vs.-loading" id="toc-installing-vs.-loading" class="nav-link" data-scroll-target="#installing-vs.-loading">Installing vs.&nbsp;loading</a></li>
+  <li><a href="#where-do-i-install-packages" id="toc-where-do-i-install-packages" class="nav-link" data-scroll-target="#where-do-i-install-packages">Where do I install packages?</a></li>
+  <li><a href="#what-happens-when-you-load-a-package" id="toc-what-happens-when-you-load-a-package" class="nav-link" data-scroll-target="#what-happens-when-you-load-a-package">What happens when you load a package?</a></li>
+  </ul></li>
+  <li><a href="#the-tidyverse" id="toc-the-tidyverse" class="nav-link" data-scroll-target="#the-tidyverse">The tidyverse</a>
+  <ul class="collapse">
+  <li><a href="#what-is-the-tidyverse" id="toc-what-is-the-tidyverse" class="nav-link" data-scroll-target="#what-is-the-tidyverse">What is the tidyverse?</a></li>
+  <li><a href="#the-tidyverse-hex-stickers" id="toc-the-tidyverse-hex-stickers" class="nav-link" data-scroll-target="#the-tidyverse-hex-stickers">The tidyverse hex stickers</a></li>
+  <li><a href="#why-use-the-tidyverse" id="toc-why-use-the-tidyverse" class="nav-link" data-scroll-target="#why-use-the-tidyverse">Why use the tidyverse?</a></li>
+  <li><a href="#a-taste-of-whats-coming" id="toc-a-taste-of-whats-coming" class="nav-link" data-scroll-target="#a-taste-of-whats-coming">A taste of what’s coming</a></li>
+  <li><a href="#ggplot2-a-grammar-of-graphics" id="toc-ggplot2-a-grammar-of-graphics" class="nav-link" data-scroll-target="#ggplot2-a-grammar-of-graphics">ggplot2: a grammar of graphics</a></li>
+  <li><a href="#histograms" id="toc-histograms" class="nav-link" data-scroll-target="#histograms">Histograms</a></li>
+  <li><a href="#a-basic-histogram" id="toc-a-basic-histogram" class="nav-link" data-scroll-target="#a-basic-histogram">A basic histogram</a></li>
+  <li><a href="#reading-that-code" id="toc-reading-that-code" class="nav-link" data-scroll-target="#reading-that-code">Reading that code</a></li>
+  <li><a href="#controlling-the-bins" id="toc-controlling-the-bins" class="nav-link" data-scroll-target="#controlling-the-bins">Controlling the bins</a></li>
+  <li><a href="#why-the-bin-choice-matters" id="toc-why-the-bin-choice-matters" class="nav-link" data-scroll-target="#why-the-bin-choice-matters">Why the bin choice matters</a></li>
+  <li><a href="#making-it-nicer" id="toc-making-it-nicer" class="nav-link" data-scroll-target="#making-it-nicer">Making it nicer</a></li>
+  <li><a href="#anatomy-of-that-command" id="toc-anatomy-of-that-command" class="nav-link" data-scroll-target="#anatomy-of-that-command">Anatomy of that command</a></li>
+  </ul></li>
+  <li><a href="#activity" id="toc-activity" class="nav-link" data-scroll-target="#activity">Activity</a>
+  <ul class="collapse">
+  <li><a href="#activity-your-first-histogram" id="toc-activity-your-first-histogram" class="nav-link" data-scroll-target="#activity-your-first-histogram">Activity: your first histogram</a></li>
+  <li><a href="#activity-debrief" id="toc-activity-debrief" class="nav-link" data-scroll-target="#activity-debrief">Activity debrief</a></li>
+  <li><a href="#wrap-up-what-we-covered-today" id="toc-wrap-up-what-we-covered-today" class="nav-link" data-scroll-target="#wrap-up-what-we-covered-today">Wrap-up: what we covered today</a></li>
+  <li><a href="#wrap-up-looking-ahead" id="toc-wrap-up-looking-ahead" class="nav-link" data-scroll-target="#wrap-up-looking-ahead">Wrap-up &amp; looking ahead</a></li>
+  </ul></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="day3-functions-packages-slides.html"><i class="bi bi-file-slides"></i>RevealJS</a></li><li><a href="day3-functions-packages.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -416,8 +497,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Functions, packages, and the tidyverse</h1>
-<p class="subtitle lead">Wednesday, May 20, 2026</p>
+<h1 class="title">Functions, packages, the tidyverse &amp; objects</h1>
+<p class="subtitle lead">Day 3 - Wednesday, May 20, 2026</p>
 </div>
 
 
@@ -451,7 +532,11 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p><strong>Plan for today</strong></p>
 <ul>
-<li></li>
+<li>Recap &amp; reading R code</li>
+<li>Functions</li>
+<li>Packages and the tidyverse</li>
+<li>Histograms in ggplot2</li>
+<li>In-class activity</li>
 </ul>
 <p><strong>Helpful links</strong></p>
 <ul>
@@ -459,6 +544,710 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 </div>
 </div>
+<section id="quick-recap-from-yesterday" class="level2">
+<h2 class="anchored" data-anchor-id="quick-recap-from-yesterday">Quick recap from yesterday</h2>
+<p>Yesterday we covered:</p>
+<ul>
+<li>The four panes of RStudio (Source, Console, Environment, Output)</li>
+<li>R as a calculator</li>
+<li>Data types (numeric, integer, character, logical)</li>
+<li>Data structures (vectors, lists, matrices, data frames, arrays)</li>
+<li>Creating objects with <code>&lt;-</code></li>
+</ul>
+<p>Today we’ll build on that to start <em>reading</em> and <em>writing</em> real R code.</p>
+</section>
+<section id="reading-r-code" class="level2">
+<h2 class="anchored" data-anchor-id="reading-r-code">Reading R code</h2>
+<p>Yesterday’s textbook reading made one key point:</p>
+<div class="callout callout-style-default callout-tip callout-empty-content callout-titled" style="font-size: 1.2em;">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Before you can write R code, you need to be able to <strong>read</strong> it.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<p>Most people who write code start by <strong>copying and modifying</strong> existing code.</p>
+<p>To do that well, you need to recognize a few key patterns and know what each piece of an expression is doing.</p>
+</section>
+<section id="five-kinds-of-objects-in-r-code" class="level2">
+<h2 class="anchored" data-anchor-id="five-kinds-of-objects-in-r-code">Five kinds of objects in R code</h2>
+<p>When you look at a line of R code, you’ll mostly see these five things:</p>
+<ol type="1">
+<li><strong>Data tables</strong> - start with a capital letter (e.g., <code>BabyNames</code>)</li>
+<li><strong>Functions</strong> - always followed by an open parenthesis (e.g., <code>filter()</code>, <code>mean()</code>)</li>
+<li><strong>Arguments</strong> - what’s <em>inside</em> the parentheses</li>
+<li><strong>Variables</strong> - the columns inside a data table (e.g., <code>name</code>, <code>sex</code>)</li>
+<li><strong>Constants</strong> - single values like <code>"Arjun"</code> or <code>1998</code></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The capital/lowercase convention is a <strong>style choice</strong> that is followed by the <em>Data Computing</em> textbook; but it is not strictly enforced by R.</p>
+</div>
+</div>
+</section>
+<section id="spot-the-parts" class="level2">
+<h2 class="anchored" data-anchor-id="spot-the-parts">Spot the parts</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>BabyNames <span class="sc">%&gt;%</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"Arjun"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total =</span> <span class="fu">sum</span>(count))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Try to identify:</p>
+<ul>
+<li><strong>Data table?</strong> <code>BabyNames</code> (starts with capital, no parentheses after it)</li>
+<li><strong>Functions?</strong> <code>filter</code>, <code>summarise</code>, <code>sum</code> (each followed by an open parenthesis)</li>
+<li><strong>Variables?</strong> <code>name</code>, <code>count</code> (lowercase, inside parentheses)</li>
+<li><strong>Constant?</strong> <code>"Arjun"</code> (in quotes)</li>
+<li><strong>Named argument?</strong> <code>total = sum(count)</code> (single <code>=</code> inside the function call)</li>
+</ul>
+<p>This single command counts the total number of babies named “Arjun” in the data: <strong>5,578</strong>.</p>
+</section>
+<section id="objects-revisited" class="level2">
+<h2 class="anchored" data-anchor-id="objects-revisited">Objects, revisited</h2>
+<p>An <strong>object</strong> is anything in R that has a name you can refer to later.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>age_cutoff <span class="ot">&lt;-</span> <span class="dv">21</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>my_numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">7</span>, <span class="dv">12</span>, <span class="dv">4</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>greeting   <span class="ot">&lt;-</span> <span class="st">"hello, world"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Once an object exists, you can use its name anywhere you’d otherwise type the value:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>age_cutoff <span class="sc">+</span> <span class="dv">5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 26</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(my_numbers)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6.5</code></pre>
+</div>
+</div>
+</section>
+<section id="why-bother-naming-things" class="level2">
+<h2 class="anchored" data-anchor-id="why-bother-naming-things">Why bother naming things?</h2>
+<p>Compare:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hard to update, hard to read:</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(students, age <span class="sc">&gt;=</span> <span class="dv">21</span> <span class="sc">&amp;</span> gpa <span class="sc">&gt;=</span> <span class="fl">3.5</span> <span class="sc">&amp;</span> credits <span class="sc">&gt;=</span> <span class="dv">60</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>vs.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Easy to read and change:</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>age_min     <span class="ot">&lt;-</span> <span class="dv">21</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>gpa_min     <span class="ot">&lt;-</span> <span class="fl">3.5</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>credit_min  <span class="ot">&lt;-</span> <span class="dv">60</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(students,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>       age     <span class="sc">&gt;=</span> age_min,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>       gpa     <span class="sc">&gt;=</span> gpa_min,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>       credits <span class="sc">&gt;=</span> credit_min)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Good names make your code <strong>readable</strong> and <strong>easy to change later</strong>.</p>
+</section>
+<section id="example-of-naming-conventions-from-data-computing" class="level2">
+<h2 class="anchored" data-anchor-id="example-of-naming-conventions-from-data-computing">Example of naming conventions from <em>Data Computing</em></h2>
+<table class="caption-top table">
+<caption>Naming conventions from <em>Data Computing</em>.</caption>
+<colgroup>
+<col style="width: 30%">
+<col style="width: 35%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Object type</th>
+<th>Convention</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data tables</td>
+<td>Capitalized</td>
+<td><code>BabyNames</code>, <code>Penguins</code></td>
+</tr>
+<tr class="even">
+<td>Variables / columns</td>
+<td>lowercase</td>
+<td><code>name</code>, <code>body_mass_g</code></td>
+</tr>
+<tr class="odd">
+<td>Constants you create</td>
+<td>lowercase, snake_case</td>
+<td><code>age_cutoff</code>, <code>gpa_min</code></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Object names <strong>must</strong> start with a letter and can only contain letters, numbers, <code>_</code>, and <code>.</code>. No spaces, no special characters, no starting with a number. This is a <strong>requirement</strong>, not a convention.</p>
+</div>
+</div>
+</section>
+<section id="functions" class="level1" data-background-color="#001E44">
+<h1 data-background-color="#001E44">Functions</h1>
+<section id="what-is-a-function" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-a-function">What is a function?</h2>
+<p>A <strong>function</strong> is a reusable chunk of code that takes some input, does something with it, and gives you back an output.</p>
+<p>You’ve already used many functions:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">16</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">8</span>, <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 8 4</code></pre>
+</div>
+</div>
+<p>Every function call has the same three key elements: a <strong>name</strong>, followed by <strong>parentheses</strong>, with <strong>arguments</strong> inside.</p>
+</section>
+<section id="anatomy-of-a-function-call" class="level2">
+<h2 class="anchored" data-anchor-id="anatomy-of-a-function-call">Anatomy of a function call</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">function_name</span>(argument1, argument2, <span class="at">name =</span> value, ...)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>The <strong>name</strong> tells R <em>which</em> function to use.</li>
+<li>The <strong>arguments</strong> tell the function <em>what to work on</em> and <em>how</em>.</li>
+<li>Arguments are separated by commas.</li>
+<li>Some arguments are <strong>named</strong> (<code>name = value</code>); others are matched by position.</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Positional: round(x, digits)</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fl">3.14159</span>, <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.14</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Named: order doesn't matter</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="at">digits =</span> <span class="dv">2</span>, <span class="at">x =</span> <span class="fl">3.14159</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.14</code></pre>
+</div>
+</div>
+</section>
+<section id="named-vs.-positional-arguments" class="level2">
+<h2 class="anchored" data-anchor-id="named-vs.-positional-arguments">Named vs.&nbsp;positional arguments</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Both of these work the same way:</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 3 5 7 9</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 3 5 7 9</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="A good habit">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>A good habit
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Use <strong>positional</strong> arguments for the obvious ones (the data, the first input).</li>
+<li>Use <strong>named</strong> arguments for everything else.</li>
+</ul>
+<p>Your future self will thank you when reading the code six weeks from now.</p>
+</div>
+</div>
+</section>
+<section id="getting-help-with-a-function" class="level2">
+<h2 class="anchored" data-anchor-id="getting-help-with-a-function">Getting help with a function</h2>
+<p>If you don’t remember what arguments a function takes:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>?mean       <span class="co"># opens the help page</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(mean)  <span class="co"># same thing</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>??mean      <span class="co"># broader search if you're unsure of the name</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Every help page has the same sections: <strong>Description</strong>, <strong>Usage</strong>, <strong>Arguments</strong>, <strong>Value</strong>, <strong>Examples</strong>.</p>
+</section>
+<section id="functions-return-values" class="level2">
+<h2 class="anchored" data-anchor-id="functions-return-values">Functions return values</h2>
+<p>Every function gives you back a <strong>value</strong>. You can store that value with <code>&lt;-</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="dv">16</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>))</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>m</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+<p>If you don’t assign the result, R just prints it to the console and it’s gone. The result will not be stored anywhere for you to access in the future.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Example
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>))   <span class="co"># prints 5, but doesn't save it anywhere</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>If you want to use that 5 later, you need <code>m &lt;- mean(c(2, 4, 6, 8))</code>.</p>
+</div>
+</div>
+</section>
+<section id="functions-inside-functions" class="level2">
+<h2 class="anchored" data-anchor-id="functions-inside-functions">Functions inside functions</h2>
+<p>The output of one function can become the input to another:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">9</span>, <span class="dv">16</span>, <span class="dv">25</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.316625</code></pre>
+</div>
+</div>
+<p>R works <strong>inside-out</strong>:</p>
+<ol type="1">
+<li>First <code>c(1, 4, 9, 16, 25)</code> makes a vector.</li>
+<li>Then <code>mean(...)</code> of that vector is <code>11</code>.</li>
+<li>Then <code>sqrt(11)</code> is <code>≈ 3.317</code>.</li>
+</ol>
+<p>This nesting can get unreadable fast. Later on, we’ll see a cleaner way (the <strong>pipe</strong>).</p>
+</section>
+</section>
+<section id="packages" class="level1" data-background-color="#001E44">
+<h1 data-background-color="#001E44">Packages</h1>
+<section id="what-is-a-package" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-a-package">What is a package?</h2>
+<p>Base R has a lot of features, but many useful tools live in <strong>packages</strong>.</p>
+<p>A <strong>package</strong> is a bundle of:</p>
+<ul>
+<li>functions</li>
+<li>data sets</li>
+<li>documentation</li>
+</ul>
+<p>Packages are written by someone in the R community and made available for everyone to use.</p>
+<p>There are over <strong>23,000</strong> packages on CRAN (the main R package repository).</p>
+</section>
+<section id="installing-vs.-loading" class="level2">
+<h2 class="anchored" data-anchor-id="installing-vs.-loading">Installing vs.&nbsp;loading</h2>
+<p>There are <strong>two steps</strong> to using a package.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Install once, load every session
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Install</strong> with <code>install.packages("packagename")</code> - do this <strong>once</strong> per computer.</li>
+<li><strong>Load</strong> with <code>library(packagename)</code> - do this <strong>every time</strong> you start a new R session.</li>
+</ul>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run this once, in the Console (NOT in your script):</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Run this at the top of every script or .qmd that uses it:</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Quotation marks matter: <code>install.packages("tidyverse")</code> (string), but <code>library(tidyverse)</code> (object).</p>
+</section>
+<section id="where-do-i-install-packages" class="level2">
+<h2 class="anchored" data-anchor-id="where-do-i-install-packages">Where do I install packages?</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Run <code>install.packages()</code> in the <strong>Console</strong>, not in your script.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You only need to install once, so it doesn’t belong in a script that runs every time.</p>
+</div>
+</div>
+<p>If your script needs a package, just put <code>library(packagename)</code> at the top.</p>
+</section>
+<section id="what-happens-when-you-load-a-package" class="level2">
+<h2 class="anchored" data-anchor-id="what-happens-when-you-load-a-package">What happens when you load a package?</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<pre><code>── Attaching core tidyverse packages ──────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.4
+── Conflicts ────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()</code></pre>
+<p>These messages are <strong>fine</strong>. They mean: “Here are the packages I just loaded, and here are the function names that now point to a new place.”</p>
+</section>
+</section>
+<section id="the-tidyverse" class="level1" data-background-color="#001E44">
+<h1 data-background-color="#001E44">The tidyverse</h1>
+<section id="what-is-the-tidyverse" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-the-tidyverse">What is the tidyverse?</h2>
+<p>The <strong>tidyverse</strong> is a <em>collection</em> of R packages that share a common philosophy and work well together.</p>
+<p>When you run <code>library(tidyverse)</code>, you load all of them at once:</p>
+<ul>
+<li><strong><code>ggplot2</code></strong> - making plots</li>
+<li><strong><code>dplyr</code></strong> - manipulating data tables</li>
+<li><strong><code>tidyr</code></strong> - reshaping data</li>
+<li><strong><code>readr</code></strong> - reading data files</li>
+<li><strong><code>tibble</code></strong> - a nicer kind of data frame</li>
+<li><strong><code>stringr</code></strong> - working with text</li>
+<li><strong><code>forcats</code></strong> - working with categorical data</li>
+<li><strong><code>purrr</code></strong> - applying functions across collections</li>
+</ul>
+<p>We will use almost all of them this semester.</p>
+</section>
+<section id="the-tidyverse-hex-stickers" class="level2">
+<h2 class="anchored" data-anchor-id="the-tidyverse-hex-stickers">The tidyverse hex stickers</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.tidyverse.org/images/hex-tidyverse.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%" alt="The official tidyverse hex sticker, a hexagonal logo with the word tidyverse and a stylized icon, in dark blue and white. Surrounding it are the hex stickers for ggplot2, dplyr, tidyr, readr, tibble, stringr, forcats, and purrr."></p>
+</figure>
+</div>
+<p>Each tidyverse package has its own hex sticker - a fun tradition in the R community.</p>
+</section>
+<section id="why-use-the-tidyverse" class="level2">
+<h2 class="anchored" data-anchor-id="why-use-the-tidyverse">Why use the tidyverse?</h2>
+<p>Two reasons:</p>
+<ol type="1">
+<li><strong>Consistency.</strong> Tidyverse functions are designed to work the same way:
+<ul>
+<li>First argument is always the data.</li>
+<li>Output is always a data frame (a “tibble”).</li>
+<li>You can chain them together cleanly (more on that later).</li>
+</ul></li>
+<li><strong>Readability.</strong> Tidyverse code reads almost like English.</li>
+</ol>
+<p>We’ll spend most of the semester learning to <em>think</em> in this style.</p>
+</section>
+<section id="a-taste-of-whats-coming" class="level2">
+<h2 class="anchored" data-anchor-id="a-taste-of-whats-coming">A taste of what’s coming</h2>
+<p>Don’t worry about understanding every line - just notice how <strong>readable</strong> this is:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(body_mass_g)) <span class="sc">|&gt;</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n           =</span> <span class="fu">n</span>(),</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_mass_g  =</span> <span class="fu">mean</span>(body_mass_g)</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  species       n avg_mass_g
+  &lt;fct&gt;     &lt;int&gt;      &lt;dbl&gt;
+1 Adelie      151      3701.
+2 Chinstrap    68      3733.
+3 Gentoo      123      5076.</code></pre>
+</div>
+</div>
+<p>This is the <strong>dplyr</strong> package in action. We’ll cover it in detail later this week.</p>
+</section>
+<section id="ggplot2-a-grammar-of-graphics" class="level2">
+<h2 class="anchored" data-anchor-id="ggplot2-a-grammar-of-graphics">ggplot2: a grammar of graphics</h2>
+<p><code>ggplot2</code> (part of the tidyverse) is the most popular plotting package in R.</p>
+<p>It’s built on the idea of a <strong>grammar</strong>: you build up a plot by adding layers.</p>
+<p>Every <code>ggplot2</code> plot has at least three pieces:</p>
+<ol type="1">
+<li><strong>Data</strong> - a data frame.</li>
+<li><strong>Aesthetics</strong> (<code>aes(...)</code>) - which variables map to which parts of the plot (x, y, color, fill, etc.).</li>
+<li><strong>Geometry</strong> (<code>geom_*()</code>) - what <em>kind</em> of plot (points, bars, lines, histograms…).</li>
+</ol>
+</section>
+<section id="histograms" class="level2">
+<h2 class="anchored" data-anchor-id="histograms">Histograms</h2>
+<p>A <strong>histogram</strong> shows the <em>distribution</em> of a single numeric variable by bucketing values into bins and counting how many fall in each bin.</p>
+<p>It’s the right tool when you want to ask:</p>
+<ul>
+<li>What values are typical?</li>
+<li>Are there outliers?</li>
+<li>Is the distribution symmetric? Skewed? Bimodal?</li>
+</ul>
+<p>In <code>ggplot2</code>, you make a histogram with <code>geom_histogram()</code>.</p>
+</section>
+<section id="a-basic-histogram" class="level2">
+<h2 class="anchored" data-anchor-id="a-basic-histogram">A basic histogram</h2>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="day3-functions-packages_files/figure-revealjs/unnamed-chunk-17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%" alt="Histogram of penguin body mass in grams. The x-axis runs from about 2500 to 6500 grams, and bars show the count of penguins falling in each weight bin. The distribution is roughly bimodal, with one peak near 3700 grams and another around 5000 grams."></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="reading-that-code" class="level2">
+<h2 class="anchored" data-anchor-id="reading-that-code">Reading that code</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Breaking it down:</p>
+<ul>
+<li><code>ggplot(penguins, ...)</code>: start a plot using the <code>penguins</code> data.</li>
+<li><code>aes(x = body_mass_g)</code>: map the variable <code>body_mass_g</code> to the <strong>x-axis</strong>.</li>
+<li><code>+ geom_histogram()</code>: add a histogram layer.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In <code>ggplot2</code>, you add layers with <code>+</code>, not with <code>%&gt;%</code> or <code>|&gt;</code>.</p>
+</div>
+</div>
+</section>
+<section id="controlling-the-bins" class="level2">
+<h2 class="anchored" data-anchor-id="controlling-the-bins">Controlling the bins</h2>
+<p>R will warn you: <em>“stat_bin() using bins = 30. Pick better value with <code>binwidth</code>.”</em></p>
+<p>You can control the number of bins two ways:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="day3-functions-packages_files/figure-revealjs/unnamed-chunk-19-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Histogram of penguin body mass in grams with 15 bins, showing a wider, smoother shape than the default. Two peaks remain visible, near 3700 grams and 5000 grams."></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Or specify the width of each bin:</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">250</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="why-the-bin-choice-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-the-bin-choice-matters">Why the bin choice matters</h2>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Too few bins
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You lose detail and the shape gets oversmoothed.</p>
+<section id="too-many-bins" class="level3">
+<h3 class="anchored" data-anchor-id="too-many-bins">Too many bins</h3>
+<p>You see noise and the shape gets jagged and hard to read.</p>
+</section>
+</div>
+</div>
+<p>There’s no single “right” answer. <strong>Try a few</strong>, and pick what tells the clearest story about your data.</p>
+</section>
+<section id="making-it-nicer" class="level2">
+<h2 class="anchored" data-anchor-id="making-it-nicer">Making it nicer</h2>
+<p>Add fill, color, and labels:</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">250</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of penguin body mass"</span>,</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Body mass (g)"</span>,</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of penguins"</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="day3-functions-packages_files/figure-revealjs/unnamed-chunk-21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%" alt="Histogram of penguin body mass with steel-blue filled bars outlined in white, bin width of 250 grams. The x-axis is labeled 'Body mass (g)' and the y-axis is labeled 'Number of penguins'. The plot title reads 'Distribution of penguin body mass'."></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="anatomy-of-that-command" class="level2">
+<h2 class="anchored" data-anchor-id="anatomy-of-that-command">Anatomy of that command</h2>
+<table class="caption-top table">
+<caption>Anatomy of a basic histogram in ggplot2.</caption>
+<colgroup>
+<col style="width: 45%">
+<col style="width: 55%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Piece</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ggplot(penguins, aes(x = body_mass_g))</code></td>
+<td>Use the penguins data; put <code>body_mass_g</code> on x</td>
+</tr>
+<tr class="even">
+<td><code>geom_histogram(...)</code></td>
+<td>Add the histogram layer</td>
+</tr>
+<tr class="odd">
+<td><code>binwidth = 250</code></td>
+<td>Each bar is 250 g wide</td>
+</tr>
+<tr class="even">
+<td><code>fill = "steelblue"</code></td>
+<td>Bar color</td>
+</tr>
+<tr class="odd">
+<td><code>color = "white"</code></td>
+<td>Outline color</td>
+</tr>
+<tr class="even">
+<td><code>labs(...)</code></td>
+<td>Title and axis labels</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can run <code>?geom_histogram</code> in the Console to see <em>every</em> option.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="activity" class="level1" data-background-color="#7C0A02">
+<h1 data-background-color="#7C0A02">Activity</h1>
+<section id="activity-your-first-histogram" class="level2 scrollable">
+<h2 class="scrollable anchored" data-anchor-id="activity-your-first-histogram">Activity: your first histogram</h2>
+<p>You’ll work on this individually or with a neighbor for 20 minutes. We’ll regroup at the end.</p>
+<p><strong>Goal:</strong> Make a histogram of a real dataset and tweak it.</p>
+<p><strong>Setup:</strong></p>
+<ol type="1">
+<li>Download the <code>day3-activity.R</code> starter file from Canvas.</li>
+<li>Open RStudio.</li>
+<li>Go to <code>File &gt; Open File...</code> and open the script you downloaded.</li>
+</ol>
+<p><strong>Step 1 - Load packages</strong></p>
+<p>At the top of your script, type and run:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>If <code>palmerpenguins</code> isn’t installed, run <code>install.packages("palmerpenguins")</code> in the <strong>Console</strong> first.</p>
+<p><strong>Step 2 - Look at the data</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Pick ONE of these to peek at the data:</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(penguins)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(penguins)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>?penguins</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>What variables are in this data set? What does each row represent?</p>
+<p><strong>Step 3 - Make a default histogram</strong></p>
+<p>Pick a numeric variable from <code>penguins</code> (e.g., <code>flipper_length_mm</code>, <code>bill_length_mm</code>, <code>bill_depth_mm</code>).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm)) <span class="sc">+</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Step 4 - Tweak your histogram</strong></p>
+<p>Make at least <strong>three</strong> changes to your histogram:</p>
+<ul>
+<li>Try a different <code>binwidth</code> or <code>bins</code> value.</li>
+<li>Change the <code>fill</code> and <code>color</code> of the bars.</li>
+<li>Add a title and axis labels with <code>labs(...)</code>.</li>
+</ul>
+<p><strong>Step 5 - Comment</strong></p>
+<p>Open a comment block in your script and write 2–3 sentences answering:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># What does the shape of your histogram tell you about the variable?</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Did changing the binwidth change the story?</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>To turn in:</strong></p>
+<p>Save your script (<code>Cmd/Ctrl + S</code>). Upload the <code>.R</code> file to the Canvas assignment page.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Stuck?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Read the error message - it’s usually a typo, missing <code>+</code>, or unmatched <code>(</code>.</li>
+<li>Ask a neighbor.</li>
+<li>Wave me down.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="activity-debrief" class="level2">
+<h2 class="anchored" data-anchor-id="activity-debrief">Activity debrief</h2>
+<p>Some things to look out for:</p>
+<ul>
+<li><strong>Forgot <code>+</code> between layers</strong>: R thinks the line is finished.</li>
+<li><strong>Used <code>=</code> instead of <code>&lt;-</code></strong>: works in some places, but breaks elsewhere.</li>
+<li><strong>Typo in a variable name</strong>: R doesn’t guess. The spelling and capitalization must match exactly.</li>
+<li><strong>Package not loaded</strong>: <code>Error: could not find function "ggplot"</code>: run <code>library(tidyverse)</code>.</li>
+</ul>
+</section>
+<section id="wrap-up-what-we-covered-today" class="level2">
+<h2 class="anchored" data-anchor-id="wrap-up-what-we-covered-today">Wrap-up: what we covered today</h2>
+<ul>
+<li>Recognize the five kinds of objects in R code.</li>
+<li>Read and call functions, including named and positional arguments.</li>
+<li>Install and load <strong>packages</strong>.</li>
+<li>Recognize the <strong>tidyverse</strong> as a coherent collection of packages.</li>
+<li>Build a <strong>histogram</strong> in <code>ggplot2</code> from scratch.</li>
+</ul>
+</section>
 <section id="wrap-up-looking-ahead" class="level2">
 <h2 class="anchored" data-anchor-id="wrap-up-looking-ahead">Wrap-up &amp; looking ahead</h2>
 <p><strong>Tomorrow:</strong> Quarto basics, writing reproducible documents.</p>
@@ -466,10 +1255,13 @@ ul.task-list li input[type="checkbox"] {
 <div class="column" style="width:55%;">
 <p><strong>Upcoming Deadlines</strong></p>
 <ul>
-<li><strong>Wed 5/20, 11:59 p.m.</strong> — <a href="https://psu.instructure.com/courses/2487468/assignments/18308171">HW 0: Setup</a></li>
-<li><strong>Thurs 5/21, before class</strong> — <a href="https://psu.instructure.com/courses/2487468/assignments/18307710">DC §4.1–4.7</a></li>
-<li><strong>Fri 5/22, in class</strong> — Quiz 1</li>
-<li><strong>Fri 5/22, 11:59 p.m.</strong> — <a href="https://psu.instructure.com/courses/2487468/assignments/18311694">HW 1: Basic R &amp; Plots</a></li>
+<li><strong>Wed 5/20, 11:59 p.m.</strong> - <a href="https://psu.instructure.com/courses/2487468/assignments/18308171">HW 0: Setup</a></li>
+<li><strong>Thurs 5/21, before class</strong> - <a href="https://psu.instructure.com/courses/2487468/assignments/18307710">DC §4.1–4.7</a></li>
+<li><strong>Fri 5/22, in class</strong> - Quiz 1
+<ul>
+<li><a href="https://psu.instructure.com/courses/2487468/pages/quiz-1-practice?module_item_id=48166672">Quiz 1 Practice</a></li>
+</ul></li>
+<li><strong>Fri 5/22, 11:59 p.m.</strong> - <a href="https://psu.instructure.com/courses/2487468/assignments/18311694">HW 1: Basic R &amp; Plots</a></li>
 </ul>
 </div><div class="column" style="width:45%;">
 <p><strong>Reach out</strong></p>
@@ -481,8 +1273,47 @@ ul.task-list li input[type="checkbox"] {
 
 
 </section>
+</section>
 
 </main> <!-- /main -->
+
+<script>
+  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+  // slide changes (different for each slide format).
+  (function () {
+    // dispatch for htmlwidgets
+    function fireSlideEnter() {
+      const event = window.document.createEvent("Event");
+      event.initEvent("slideenter", true, true);
+      window.document.dispatchEvent(event);
+    }
+
+    function fireSlideChanged(previousSlide, currentSlide) {
+      fireSlideEnter();
+
+      // dispatch for shiny
+      if (window.jQuery) {
+        if (previousSlide) {
+          window.jQuery(previousSlide).trigger("hidden");
+        }
+        if (currentSlide) {
+          window.jQuery(currentSlide).trigger("shown");
+        }
+      }
+    }
+
+    // hookup for slidy
+    if (window.w3c_slidy) {
+      window.w3c_slidy.add_observer(function (slide_num) {
+        // slide_num starts at position 1
+        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+      });
+    }
+
+  })();
+</script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
