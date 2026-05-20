@@ -767,6 +767,13 @@
     "href": "weeks/week1/day3-functions-packages-slides.html#spot-the-parts",
     "title": "Functions, packages, the tidyverse & objects",
     "section": "Spot the parts",
+    "text": "Spot the parts\n\nBabyNames %&gt;%\n  filter(name == \"Arjun\") %&gt;%\n  summarise(total = sum(count))\n\nTry to identify:\n\nData table?\nFunctions?\nVariables?\nConstant?\nNamed argument?\n\nThis single command counts the total number of babies named “Arjun” in the data: 5,578."
+  },
+  {
+    "objectID": "weeks/week1/day3-functions-packages-slides.html#spot-the-parts-1",
+    "href": "weeks/week1/day3-functions-packages-slides.html#spot-the-parts-1",
+    "title": "Functions, packages, the tidyverse & objects",
+    "section": "Spot the parts",
     "text": "Spot the parts\n\nBabyNames %&gt;%\n  filter(name == \"Arjun\") %&gt;%\n  summarise(total = sum(count))\n\nTry to identify:\n\nData table? BabyNames (starts with capital, no parentheses after it)\nFunctions? filter, summarise, sum (each followed by an open parenthesis)\nVariables? name, count (lowercase, inside parentheses)\nConstant? \"Arjun\" (in quotes)\nNamed argument? total = sum(count) (single = inside the function call)\n\nThis single command counts the total number of babies named “Arjun” in the data: 5,578."
   },
   {
@@ -1015,6 +1022,16 @@
   {
     "objectID": "weeks/week1/day3-functions-packages-page.html#spot-the-parts",
     "href": "weeks/week1/day3-functions-packages-page.html#spot-the-parts",
+    "title": "Functions, packages, the tidyverse & objects",
+    "section": "Spot the parts",
+    "text": "Spot the parts\n\nBabyNames %&gt;%\n  filter(name == \"Arjun\") %&gt;%\n  summarise(total = sum(count))\n\nTry to identify:\n\nData table?\nFunctions?\nVariables?\nConstant?\nNamed argument?\n\nThis single command counts the total number of babies named “Arjun” in the data: 5,578.",
+    "crumbs": [
+      "Functions, packages, the tidyverse & objects"
+    ]
+  },
+  {
+    "objectID": "weeks/week1/day3-functions-packages-page.html#spot-the-parts-1",
+    "href": "weeks/week1/day3-functions-packages-page.html#spot-the-parts-1",
     "title": "Functions, packages, the tidyverse & objects",
     "section": "Spot the parts",
     "text": "Spot the parts\n\nBabyNames %&gt;%\n  filter(name == \"Arjun\") %&gt;%\n  summarise(total = sum(count))\n\nTry to identify:\n\nData table? BabyNames (starts with capital, no parentheses after it)\nFunctions? filter, summarise, sum (each followed by an open parenthesis)\nVariables? name, count (lowercase, inside parentheses)\nConstant? \"Arjun\" (in quotes)\nNamed argument? total = sum(count) (single = inside the function call)\n\nThis single command counts the total number of babies named “Arjun” in the data: 5,578.",
