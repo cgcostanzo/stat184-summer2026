@@ -74,6 +74,8 @@ R is the tool we will use to do that.
 - **R** is the programming language.
 - **RStudio** is the environment/interface we use to work with R more comfortably.
 
+# A tour of RStudio {background-color="#001E44"}
+
 ## RStudio's Four Pane Layout
 
 ![RStudio's four pane layout.](images/four_pane_layout.png){fig-align="center" width="100%" fig-alt="Screenshot of a freshly opened RStudio window divided into four quadrants. Top-left holds an empty script tab named Untitled1 with an editor toolbar that includes a Run button and a Source button. Bottom-left is the Console tab running R version 4.5.3 ('Reassured Reassurer') with the standard R startup message and a prompt symbol ready for input. Top-right shows the Environment pane labeled 'Environment is empty,' with tabs for History, Connections, and Tutorial. Bottom-right shows the Packages tab listing the installed user library (amen, arrow, assertthat, backbone, and so on) with checkboxes, source URLs, and version numbers."}
@@ -139,6 +141,8 @@ ggplot(data, aes(x = x, y = y)) +
 
 - The "Help" tab displays help documentation that has been included with the packages for functions, data sets, and other objects.
 - **Help Shortcuts:** `?barplot`, `help(barplot)`, or `??barplot` (broad sweep). You can also place your cursor in the object name and press fn + F1 (or just F1 if your function keys are active).
+
+# Data types and structures {background-color="#001E44"}
 
 ## Data Types
 
@@ -289,6 +293,8 @@ for (k in 2:0) {
 text(ox + 2.3, oy - 1, "Array",
      cex = 1.4, col = edge_color, font = 2)
 ```
+
+# R as a calculator · creating objects {background-color="#001E44"}
 
 ## R as a Calculator
 

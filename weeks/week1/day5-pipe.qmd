@@ -1,0 +1,455 @@
+---
+title: "`%>%` The pipe operator `|>`"
+subtitle: "Day 5 - Friday, May 22, 2026"
+lang: en
+format:
+  revealjs:
+    slide-number: true
+    embed-resources: true
+    smaller: true
+    highlight-style: a11y
+    output-file: "day5-pipe-slides.html"
+  html:
+    toc: true
+    highlight-style: a11y
+    axe: true
+    output-file: "day5-pipe-page.html"
+  pdf:
+    fig-pos: "H"
+editor: source
+---
+
+```{r}
+#| echo: FALSE
+#| message: FALSE
+#| warning: FALSE
+library(tidyverse)
+library(palmerpenguins)
+```
+
+::: {.callout-note style="font-size: 1.3em;"}
+## [Today: Friday May 22]{style="font-size: 1.3em;"}
+
+**Before class**
+
+- Read *Data Computing* §3.6 ([Click here](https://psu.instructure.com/courses/2487468/assignments/18307712)).
+
+**Plan for today**
+
+- Quiz 1 (20 min)
+- The pipe operator
+- Chaining commands together
+- In-class activity
+
+**Helpful links**
+
+- [Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*Data Computing* §3.6](https://dtkaplan.github.io/DataComputingEbook/chap-basic-r-commands.html)
+:::
+
+# Quiz 1 {background-color="#7C0A02"}
+
+## Quiz 1 — instructions
+
+::: {.callout-important style="font-size: 1.1em;"}
+## Closed-book, no AI, no electronics
+- Put away phones and laptops.
+- You may use a pen or pencil.
+- 20 minutes.
+- I'll hand out the quiz now and collect it at the end.
+:::
+
+**Topics covered:**
+
+- R as a calculator and basic syntax
+- Data types and structures
+- Objects and assignment
+- Reading R code (functions, arguments, variables, constants)
+- Packages: installing vs. loading
+- Histograms in `ggplot2` (reading code, not writing from scratch)
+
+When you finish early, flip your quiz face-down and wait quietly.
+
+## Quiz debrief
+
+A few quick notes:
+
+- We'll go over common stumbling points on Monday after I've graded them.
+- If you finished with time to spare: nice.
+- If you didn't finish: don't panic. Quizzes are 15% of the grade, weighted across the semester.
+
+Now let's get into something new.
+
+# The pipe operator {background-color="#001E44"}
+
+## A problem we've already seen
+
+Remember this slide from Wednesday?
+
+```{r}
+#| echo: TRUE
+sqrt(mean(c(1, 4, 9, 16, 25)))
+```
+
+To read this, your eye has to jump **inside-out**:
+
+1. First `c(1, 4, 9, 16, 25)` makes a vector.
+2. Then `mean(...)` of that vector is `11`.
+3. Then `sqrt(11)` is `≈ 3.317`.
+
+That's already tough. Imagine four or five nested functions.
+
+## A real example
+
+Suppose we want to:
+
+1. Take the `penguins` data,
+2. Keep only rows where `body_mass_g` is not missing,
+3. Group by `species`,
+4. Compute the mean body mass for each species.
+
+Written with nested function calls:
+
+```{r}
+#| eval: FALSE
+#| echo: TRUE
+summarize(
+  group_by(
+    filter(penguins, !is.na(body_mass_g)),
+    species
+  ),
+  avg_mass = mean(body_mass_g)
+)
+```
+
+You have to read it from the **inside out**, and the arguments get separated from their functions. Ugh.
+
+## Enter the pipe
+
+The **pipe operator** lets you read code left-to-right, top-to-bottom — the way you actually think about it.
+
+```{r}
+#| eval: FALSE
+#| echo: TRUE
+penguins |>
+  filter(!is.na(body_mass_g)) |>
+  group_by(species) |>
+  summarize(avg_mass = mean(body_mass_g))
+```
+
+Read this as:
+
+> "Take `penguins`, **then** filter out missing values, **then** group by species, **then** summarize the average mass."
+
+That's it. That's the whole idea.
+
+## What the pipe does
+
+```r
+x |> f()
+```
+
+is **exactly the same** as
+
+```r
+f(x)
+```
+
+The pipe takes whatever's on the **left** and inserts it as the **first argument** to the function on the **right**.
+
+```{r}
+#| echo: TRUE
+# These do the same thing:
+sqrt(16)
+
+16 |> sqrt()
+```
+
+## With multiple arguments
+
+```r
+x |> f(arg2, arg3)
+```
+
+is the same as
+
+```r
+f(x, arg2, arg3)
+```
+
+The pipe always fills the **first** argument; the rest go inside the parentheses as usual.
+
+```{r}
+#| echo: TRUE
+# Without the pipe:
+round(3.14159, digits = 2)
+
+# With the pipe:
+3.14159 |> round(digits = 2)
+```
+
+## Chaining pipes
+
+The real power: you can chain pipes together to do many steps in order.
+
+```{r}
+#| echo: TRUE
+c(1, 4, 9, 16, 25) |>
+  mean() |>
+  sqrt()
+```
+
+Compare to the nested version:
+
+```{r}
+#| echo: TRUE
+sqrt(mean(c(1, 4, 9, 16, 25)))
+```
+
+Same answer. The piped version reads in the order you do the work.
+
+## Style: one pipe per line
+
+::: {.callout-tip}
+## Convention
+Put each pipe step on its **own line**, with the `|>` at the **end** of the previous line.
+
+Indent the continuation by 2 spaces.
+:::
+
+Good:
+
+```{r}
+#| eval: FALSE
+#| echo: TRUE
+penguins |>
+  filter(!is.na(body_mass_g)) |>
+  group_by(species) |>
+  summarize(avg_mass = mean(body_mass_g))
+```
+
+Not so good (works, but harder to read):
+
+```{r}
+#| eval: FALSE
+#| echo: TRUE
+penguins |> filter(!is.na(body_mass_g)) |> group_by(species) |> summarize(avg_mass = mean(body_mass_g))
+```
+
+# Two pipes? {background-color="#001E44"}
+
+## `|>` vs. `%>%`
+
+You will see **two** pipe operators in R code online:
+
+| Pipe | Where it comes from | When introduced |
+|------|---------------------|-----------------|
+| `%>%` | The `magrittr` package (and tidyverse) | 2014 |
+| `\|>` | Base R | 2021 |
+
+: The two pipes in R. {tbl-colwidths="[20,50,30]"}
+
+They do **almost the same thing**. For everything we'll cover in this course, they behave identically.
+
+## Why two pipes?
+
+- `%>%` came first. It's the original tidyverse pipe.
+- Base R added `|>` later because the pipe became so popular they wanted it built in.
+- The textbook (*Data Computing*) uses `%>%`.
+- I'll use `|>` in lecture going forward — it's the modern default.
+
+::: {.callout-note}
+**You can use either one.** I'll accept both on assignments. Just be consistent within a single document.
+:::
+
+## Typing the pipe quickly
+
+You don't have to type `|>` character-by-character. RStudio has a shortcut:
+
+- **Mac:** `Cmd + Shift + M`
+- **Windows/Linux:** `Ctrl + Shift + M`
+
+::: {.callout-tip}
+By default, this shortcut inserts `%>%`. To make it insert `|>` instead:
+
+`Tools > Global Options... > Code > Use native pipe operator`
+:::
+
+# Reading piped code {background-color="#001E44"}
+
+## Translating between styles
+
+You'll see code in both styles all over the internet. Practice translating in your head.
+
+**Nested:**
+
+```{r}
+#| eval: FALSE
+#| echo: TRUE
+head(arrange(filter(penguins, species == "Gentoo"), body_mass_g), 5)
+```
+
+**Piped:**
+
+```{r}
+#| eval: FALSE
+#| echo: TRUE
+penguins |>
+  filter(species == "Gentoo") |>
+  arrange(body_mass_g) |>
+  head(5)
+```
+
+Same result. **Way** easier to read the piped version.
+
+## What the pipe is NOT
+
+::: {.callout-warning}
+## The pipe doesn't run things in parallel
+It just rewrites your code. Each step still runs one at a time, in order.
+:::
+
+::: {.callout-warning}
+## The pipe is NOT the same as `+` in ggplot2
+- `dplyr` and other data verbs: use `|>` or `%>%`.
+- `ggplot2` layers: use `+`.
+
+This trips everyone up. Keep them straight.
+:::
+
+```{r}
+#| eval: FALSE
+#| echo: TRUE
+# Correct:
+penguins |>
+  filter(!is.na(body_mass_g)) |>
+  ggplot(aes(x = body_mass_g)) +
+    geom_histogram()
+```
+
+## A peek at what's coming
+
+You'll see the pipe everywhere from here on out. Tomorrow we start the **dplyr** verbs:
+
+- `filter()` — pick rows
+- `select()` — pick columns
+- `arrange()` — sort
+- `mutate()` — make new columns
+- `summarize()` — collapse to a single number
+- `group_by()` — split into groups before summarizing
+
+Every one of these is designed to be chained together with the pipe.
+
+# In-class activity {background-color="#7C0A02"}
+
+## Activity: pipe practice (~ 15 min)
+
+Work individually or with a neighbor.
+
+**Setup:**
+
+1. Open RStudio.
+2. New R script. Save as `day5-activity.R`.
+3. At the top:
+
+```{r}
+#| eval: FALSE
+#| echo: TRUE
+library(tidyverse)
+library(palmerpenguins)
+```
+
+**Goal:** Translate between nested and piped code, then write your own.
+
+## Activity: Part 1 — translate to piped
+
+Rewrite each of these using the pipe `|>`. Don't run them yet — just rewrite the code.
+
+```{r}
+#| eval: FALSE
+#| echo: TRUE
+# 1
+sqrt(64)
+
+# 2
+mean(c(2, 4, 6, 8, 10))
+
+# 3
+round(sqrt(50), digits = 2)
+
+# 4
+head(arrange(penguins, body_mass_g), 3)
+```
+
+Then run both the original and your piped version. Confirm you get the same answer.
+
+## Activity: Part 2 — translate to nested
+
+Rewrite each of these **without** the pipe. Then run both versions.
+
+```{r}
+#| eval: FALSE
+#| echo: TRUE
+# 5
+c(1, 2, 3, 4, 5) |> sum()
+
+# 6
+penguins |> head(2)
+
+# 7
+9 |> sqrt() |> round(1)
+```
+
+## Activity: Part 3 — write your own
+
+Write a single piped expression that:
+
+1. Takes `penguins`,
+2. Keeps only the rows where `species` is `"Adelie"`,
+3. Picks just the first 5 rows.
+
+::: {.callout-tip}
+## Hint
+You'll need `filter()` and `head()`. Chain them with `|>`.
+:::
+
+**To turn in:** Save your script. We'll check at the end of class.
+
+## Activity debrief
+
+Common things to watch for:
+
+- **The pipe goes at the END of the line**, not the start. `x |>` then a new line — not `\n |> f()`.
+- **The first argument is filled automatically.** Don't write `penguins |> filter(penguins, ...)` — drop the first `penguins`.
+- **`+` vs. `|>` again.** dplyr verbs chain with `|>`; ggplot layers chain with `+`.
+- **Parentheses still matter.** `f()` not `f`. The pipe doesn't change that.
+
+## Wrap-up: what we covered today
+
+- The pipe operator (`|>` or `%>%`) takes the value on the left and feeds it as the first argument to the function on the right.
+- Pipes let you read code top-to-bottom in the order you'd actually do the work.
+- Each step gets its own line; the pipe lives at the **end** of the previous line.
+- `|>` and `%>%` are nearly interchangeable for our purposes.
+- dplyr verbs chain with `|>`; ggplot layers chain with `+`.
+
+## Wrap-up & looking ahead
+
+**Monday:** dplyr verbs — `filter()`, `select()`, `arrange()`.
+
+:::: {.columns}
+::: {.column width="55%"}
+**Upcoming Deadlines**
+
+- **Today, 11:59 p.m.** — [HW 1: Basic R & Plots](https://psu.instructure.com/courses/2487468/assignments/18311694)
+- **Mon 5/25, before class** — DC §7 reading (Canvas link TBA)
+:::
+
+::: {.column width="45%"}
+**Reach out**
+
+Stuck? Office hours, or email me ([cgc5478@psu.edu](mailto:cgc5478@psu.edu)) or Xinyue ([xpw5228@psu.edu](mailto:xpw5228@psu.edu)).
+
+**Reference**
+
+[Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*Data Computing*](https://dtkaplan.github.io/DataComputingEbook/)
+:::
+::::

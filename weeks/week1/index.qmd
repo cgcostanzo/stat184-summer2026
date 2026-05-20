@@ -1,6 +1,10 @@
 ---
-title: "Week 1 — Foundations"
+title: "Week 1 --- Foundations"
 subtitle: "May 18 – 22, 2026"
+resources:
+  - "day1-demo.R"
+  - "day2-follow-along.R"
+  - "day3-activity.R"
 ---
 
 This week we get everyone set up with R, RStudio, and Quarto, and cover the absolute basics of the R language. By Friday you'll have written your first reproducible document and learned the pipe.
@@ -9,29 +13,30 @@ This week we get everyone set up with R, RStudio, and Quarto, and cover the abso
 
 | Date | Topic | Slides & Notes | Code & Data |
 |---|---|---|---|
-| Mon May 18 | Course intro & what is R? | [Slides](day1-intro-slides.html) · [Page](day1-intro-page.html) · [PDF](day1-intro.pdf) | [day1-demo.R](day1-demo.R) · [currentvotestats.xlsx](data/currentvotestats.xlsx) |
-| Tue May 19 | R, RStudio, console · vectors · data types | [Slides](day2-r-basics-slides.html) · [Page](day2-r-basics-page.html) · [PDF](day2-r-basics.pdf) | [day2-follow-along.R](day2-follow-along.R) |
-| Wed May 20 | Functions, packages · tidyverse | [Slides](day3-functions-packages-slides.html) · [Page](day3-functions-packages-page.html) · [PDF](day3-functions-packages.pdf) | *coming soon* |
+| Mon May 18 | Course intro & what is R? | [Slides](day1-intro-slides.html) · [Page](day1-intro-page.html) · [PDF](day1-intro.pdf) | [day1-demo.R](day1-demo.R){download="day1-demo.R"} · [currentvotestats.xlsx](data/currentvotestats.xlsx){download="currentvotestats.xlsx"} |
+| Tue May 19 | R, RStudio, console · vectors · data types | [Slides](day2-r-basics-slides.html) · [Page](day2-r-basics-page.html) · [PDF](day2-r-basics.pdf) | [day2-follow-along.R](day2-follow-along.R){download="day2-follow-along.R"} |
+| Wed May 20 | Functions, packages · tidyverse | [Slides](day3-functions-packages-slides.html) · [Page](day3-functions-packages-page.html) · [PDF](day3-functions-packages.pdf) | [day3-activity.R](day3-activity.R){download="day3-activity.R"} |
 | Thu May 21 | Quarto basics | [Slides](day4-quarto-slides.html) · [Page](day4-quarto-page.html) · [PDF](day4-quarto.pdf) | *coming soon* |
-| Fri May 22 | **Quiz 1** · pipe and chaining syntax | [Slides](day5-quiz-pipe-slides.html) · [Page](day5-quiz-pipe-page.html) · [PDF](day5-quiz-pipe.pdf) | *coming soon* |
+| Fri May 22 | **Quiz 1** · pipe and chaining syntax | [Slides](day5-pipe-slides.html) · [Page](day5-pipe-page.html) · [PDF](day5-pipe.pdf) | *coming soon* |
 
 ## Due this week
 
 **Readings (due at 9:35 a.m. on Perusall)**
 
-- *(Optional)* **Monday:** *Data Computing* Ch 1 (§1.1–1.5) — what tidy data is
-- **Tuesday:** *Data Computing* Ch 2 (§2.1–2.8) — R, RStudio, vectors, objects
-- **Wednesday:** *Data Computing* Ch 3 (§3.1–3.5) — basic R commands
-- **Thursday:** *Data Computing* Ch 4 (§4.1–4.7) — files and Quarto/Rmd documents
-- **Friday:** *Data Computing* §3.6 — chaining syntax (the pipe)
+- *(Optional)* **Monday:** *Data Computing* Ch 1 (§1.1–1.5) --- what tidy data is
+- **Tuesday:** *Data Computing* Ch 2 (§2.1–2.8) --- R, RStudio, vectors, objects
+- **Wednesday:** *Data Computing* Ch 3 (§3.1–3.5) --- basic R commands
+- **Thursday:** *Data Computing* Ch 4 (§4.1–4.7) --- files and Rmd documents
+  - *(Optional)* *R For Data Science* Ch 28 --- Quarto
+- **Friday:** *Data Computing* §3.6 --- chaining syntax (the pipe)
 
 **Assignments (Canvas & In-class)**
 
-- **Wednesday May 20:** HW 0 (setup confirmation) — due 11:59 p.m. on Canvas
-- **Friday May 22:** HW 1 — due 11:59 p.m. on Canvas
-- **Friday May 22:** **Quiz 1** — in class
+- **Wednesday May 20:** HW 0 (setup confirmation) --- due 11:59 p.m. on Canvas
+- **Friday May 22:** HW 1 --- due 11:59 p.m. on Canvas
+- **Friday May 22:** **Quiz 1** --- in class
 
 ## Heads up for next week
 
-- *Data Computing* Ch 5 (§5.1–5.6) for Tuesday May 26 — graphics intro.
+- *Data Computing* Ch 5 (§5.1–5.6) for Tuesday May 26 --- graphics intro.
 - **No class Monday May 25** (Memorial Day).

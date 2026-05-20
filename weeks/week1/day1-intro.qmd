@@ -1,6 +1,6 @@
 ---
-title: "Day 1 — Course intro & what is R?"
-subtitle: "Monday, May 18, 2026"
+title: "Course intro & what is `R`?"
+subtitle: "Day 1 - Monday, May 18, 2026"
 lang: en
 format:
   revealjs:
@@ -232,6 +232,8 @@ ggplot(us_map, aes(x = long, y = lat, group = group, fill = status)) +
 - [Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*Data Computing* §1](https://dtkaplan.github.io/DataComputingEbook/)
 :::
 
+# Course logistics {background-color="#001E44"}
+
 ## Course Info
 
 **Summer Session 1: May 18, 2026 – June 26, 2026**
@@ -285,34 +287,17 @@ This course will teach you how to:
 - **Attendance matters.** Lots of in-class graded work (activities, quizzes, oral checkpoints).
 - **Timely communication is critical.** Reach out to me **as soon as possible** if something comes up that necessitates you missing class, having a deadline extended, etc.
 
-**Assignment weights**
+| Readings | Quizzes | In-class activities | Homework | Exam | Course project |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| 10% | 15% | 25% | 10% | 20% | 20% |
 
-| Component           | Weight |
-|---------------------|:------:|
-| Readings            | 10%    |
-| Quizzes             | 15%    |
-| In-class activities | 25%    |
-| Homework            | 10%    |
-| Exam                | 20%    |
-| Course project      | 20%    |
+: **Assignment weights**
 
-: Assignment weights {tbl-colwidths="[60,40]"}
+| A | A- | B+ | B | B- | C+ | C | D | F |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| 93% | 90% | 87% | 83% | 80% | 77% | 70% | 60% | below 60% |
 
-**Grading scheme**
-
-| Letter grade | Minimum percentage |
-|--------------|:------------------:|
-| A            | 93%                |
-| A-           | 90%                |
-| B+           | 87%                |
-| B            | 83%                |
-| B-           | 80%                |
-| C+           | 77%                |
-| C            | 70%                |
-| D            | 60%                |
-| F            | below 60%          |
-
-: Grading scheme {tbl-colwidths="[40,60]"}
+: **Grading scheme**
 
 ## AI policy
 
@@ -336,6 +321,8 @@ This course will teach you how to:
 3. Click the link for **DC Section 1 (§1.1–1.5)**.
 :::
 :::
+
+# What is R? {background-color="#001E44"}
 
 ## What is R?
 
@@ -382,6 +369,8 @@ Hex stickers from the [rstudio/hex-stickers](https://github.com/rstudio/hex-stic
 
 *Left: **R** (don't open this). Right: **RStudio** (open this).*
 :::
+
+# Tidy data {background-color="#001E44"}
 
 ## Tidy Data $\neq$ Neat Data
 
@@ -432,6 +421,8 @@ knitr::kable(
   caption = "First six rows of the tidied PA voter party-change data, filtered to Centre County. Each row is one combination of period, target party, and origin party with its corresponding count."
 )
 ```
+
+# Demos {background-color="#001E44"}
 
 ## Demo: what R can do {.scrollable}
 
@@ -627,6 +618,7 @@ Install [**XQuartz**](https://www.xquartz.org) too — some packages we'll use l
 - **Tue 5/19, before class** — [DC §2.1–2.8](https://psu.instructure.com/courses/2487468/assignments/18307706)
 - **Wed 5/20, 11:59 p.m.** — [HW 0: Setup](https://psu.instructure.com/courses/2487468/assignments/18308171)
 - **Fri 5/22, in class** — Quiz 1
+  - [Quiz 1 Practice](https://psu.instructure.com/courses/2487468/pages/quiz-1-practice?module_item_id=48166672)
 - **Fri 5/22, 11:59 p.m.** — [HW 1: Basic R & Plots](https://psu.instructure.com/courses/2487468/assignments/18311694)
 :::
 

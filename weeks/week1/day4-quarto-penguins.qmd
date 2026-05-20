@@ -1,0 +1,89 @@
+### ------------------------------------------------------------------------ ###
+### WARNING: DO NOT RUN THIS - IT IS NOT A .R FILE
+### SIMPLY USE THIS TO READ THROUGH AND COPY/PASTE CODE AS NEEDED
+### ------------------------------------------------------------------------ ###
+## Activity: your first Quarto report
+
+You'll build a short Quarto report from scratch. Take 25 minutes for this activity.
+
+**Setup:**
+
+1. Open RStudio.
+2. `File > New File > Quarto Document...`
+3. Title: **"Penguin Exploration"**, Author: your name.
+4. Pick **HTML** as the format.
+5. **Uncheck** "Use visual markdown editor" if you want to see the raw source (recommended for learning today).
+6. Click **Create**.
+
+You'll get a template document with example content. **Delete everything below the YAML header.** Keep the YAML.
+
+**Step 1 - Save the file**
+  
+  `File > Save As...`: call it `penguin-report.qmd`, save somewhere you'll find it.
+
+**Step 2 - Add a setup chunk**
+
+Insert a code chunk (`Cmd/Ctrl + Alt + I`). Make it look like this:
+
+```` markdown
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(palmerpenguins)
+```
+````
+
+**Step 3 - Write an intro**
+
+Below the setup chunk, add a heading and a paragraph:
+
+```markdown
+# Introduction
+
+This report explores the **Palmer Penguins** data set, which contains
+measurements on three species of penguins from islands in Antarctica.
+```
+
+**Step 4 - Add a plot**
+
+Insert another chunk and put a histogram in it:
+
+```` markdown
+```{r}
+#| label: mass-histogram
+#| message: false
+#| warning: false
+
+ggplot(penguins, aes(x = body_mass_g)) +
+  geom_histogram(binwidth = 250, fill = "steelblue", color = "white") +
+  labs(
+    title = "Distribution of penguin body mass",
+    x = "Body mass (g)",
+    y = "Count"
+  )
+```
+````
+
+**Step 5 - Add commentary**
+
+Below the plot, write 2–3 sentences (in Markdown) describing what you see.
+
+**Step 6 - Render**
+
+Press `Cmd/Ctrl + Shift + K`. Look at the HTML file that pops up.
+
+If you finish early, try one or more of these:
+
+- Add a second plot using a different variable (`flipper_length_mm`, `bill_length_mm`, ...).
+- Try changing `format: html` to `format: docx` in the YAML and re-render.
+- Add a **table** of the first few rows: insert a chunk with `knitr::kable(head(penguins))`.
+- Set `echo: false` in your YAML under `execute:` to hide *all* code from the output:
+
+```yaml
+execute:
+  echo: false
+```
+
+**To turn in:** Save your `.qmd` file and the rendered HTML. We'll check at the end of class.

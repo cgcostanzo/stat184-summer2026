@@ -21,7 +21,7 @@ This schedule is tentative and subject to change. Substantive changes will be an
 | Tue May 19 | R, RStudio, and the console · vectors · data types | [DC §2.1–2.8](https://psu.instructure.com/courses/2487468/assignments/18307706) | — |
 | Wed May 20 | Functions, packages, the tidyverse · objects | [DC §3.1–3.5](https://psu.instructure.com/courses/2487468/assignments/18307709) | [HW 0: Setup](https://psu.instructure.com/courses/2487468/assignments/18308171) |
 | Thu May 21 | Quarto basics · writing reproducible documents | [DC §4.1–4.7](https://psu.instructure.com/courses/2487468/assignments/18307710) | — |
-| Fri May 22 | **Quiz 1** · the pipe and chaining syntax | [DC §3.6](https://psu.instructure.com/courses/2487468/assignments/18307712) | [HW 1: Basic R & Plots](https://psu.instructure.com/courses/2487468/assignments/18311694) · Quiz 1 (in class) |
+| Fri May 22 | **Quiz 1** · the pipe and chaining syntax | [DC §3.6](https://psu.instructure.com/courses/2487468/assignments/18307712) [R4DS §28](https://r4ds.hadley.nz/quarto) | [HW 1: Basic R & Plots](https://psu.instructure.com/courses/2487468/assignments/18311694) · Quiz 1 (in class) |
 
 : Week 1 schedule {tbl-colwidths="[10,35,25,30]"}
 

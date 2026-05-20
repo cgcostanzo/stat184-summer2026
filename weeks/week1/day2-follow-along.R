@@ -69,17 +69,20 @@ dnorm(0)      # standard normal--N(mean=0, var=1)--density at x = 0 (~ 0.399)
 # 5. Creating objects ---------------------------------------------------- ####
 # Use the assignment operator  <-  to store a value in an object.
 # In RStudio:   Alt + -   (Windows / Linux)
-#               Option + -   (Mac)
+#               Option + - (Mac)
 # inserts <- automatically with proper spacing.
 
 x <- 3 * 5
 
-x             # type the name to print the value
+x     # type the name to print the value
+
+x = 3 * 5
 
 # General form:
 #   object_name <- value
 # "object_name GETS value"
 #
+
 # Naming rules:
 #   * start with a letter
 #   * letters, numbers, _, and . are allowed

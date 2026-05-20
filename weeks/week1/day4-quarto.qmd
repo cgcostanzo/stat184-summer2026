@@ -1,47 +1,544 @@
 ---
 title: "Quarto basics · reproducible documents"
-subtitle: "Thursday, May 21, 2026"
+subtitle: "Day 4 - Thursday, May 21, 2026"
+lang: en
 format:
   revealjs:
     slide-number: true
     embed-resources: true
     smaller: true
+    highlight-style: a11y
     output-file: "day4-quarto-slides.html"
   html:
     toc: true
+    highlight-style: a11y
+    axe: true
     output-file: "day4-quarto-page.html"
   pdf:
+    fig-pos: "H"
     output-file: "day4-quarto.pdf"
 editor: source
 ---
+
+```{r}
+#| echo: FALSE
+#| message: FALSE
+#| warning: FALSE
+library(tidyverse)
+library(palmerpenguins)
+```
 
 ::: {.callout-note style="font-size: 1.3em;"}
 ## [Today: Thursday May 21]{style="font-size: 1.3em;"}
 
 **Before class**
 
-- **Perusall Assignment**: *Data Computing* §4.1–4.7 ([Click here](https://psu.instructure.com/courses/2487468/assignments/18307710)).
+- **Perusall Assignment**: [DC §4.1–4.7](https://psu.instructure.com/courses/2487468/assignments/18307710)
+  - (Optional) additional Quarto reading: *R for Data Science* Ch. 28 ([Click here](https://r4ds.hadley.nz/quarto)).
 
 **Plan for today**
 
-- 
+- Why reproducibility matters
+- Anatomy of a `.qmd` file
+- Code chunks and chunk options
+- Rendering and the write/render cycle
+- In-class activity
 
 **Helpful links**
 
-- [Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*Data Computing* §4](https://dtkaplan.github.io/DataComputingEbook/chap-files-and-documents.html#chap:files-and-documents)
+- [Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*R4DS* Ch. 28](https://r4ds.hadley.nz/quarto)
 :::
+
+## Quick recap from yesterday
+
+Yesterday we covered:
+
+- Reading R code: functions, arguments, data tables, variables, constants
+- Calling functions with positional vs. named arguments
+- Installing and loading **packages**
+- The **tidyverse** as a coherent collection
+- Building histograms with `ggplot2`
+
+Today we'll learn how to wrap your code *and* your prose into a single reproducible document.
+
+## The problem with copy-paste
+
+Imagine you've just finished a homework assignment in R. You:
+
+1. Run your code in the Console.
+2. Copy each plot into a Word document.
+3. Type up your interpretation.
+4. Submit.
+
+Then your professor says: *"oh, please redo this with the updated data."*
+
+::: {.fragment .fade-in}
+::: {.callout-warning title="Uh oh" style="font-size: 1.2em;"}
+Now you have to re-do everything by hand. And to make things worse, every manual step is a place where mistakes happen.
+:::
+:::
+
+## Reproducibility
+
+::: {.callout-tip style="font-size: 1.2em;"}
+## A **reproducible** document is one where the report and the code that made it are the *same file*.
+:::
+
+When the data changes, you just **re-render**. Every number, every plot, every table updates automatically.
+
+This is what Quarto is for.
+
+# Quarto {background-color="#001E44"}
+
+## What is Quarto?
+
+**Quarto** is a system for writing documents that mix:
+
+- **Prose** (regular text, headings, lists, links);
+- **Code** (R, Python, Julia);
+- **Output** (plots, tables, numbers from the code).
+
+Quarto turns the whole thing into a polished **HTML page**, **PDF**, **Word doc**, **slide deck**, or even a website.
+
+It's what I used to make the slides you're looking at right now.
+
+## Quarto vs. R Markdown
+
+You might hear about **R Markdown** (`.Rmd` files) - it's Quarto's older sibling.
+
+- R Markdown came first; it works only with R.
+- Quarto is newer; works with R, Python, Julia, and more.
+- Both use the same underlying ideas.
+
+In this class we'll use **Quarto** (`.qmd` files) exclusively.
+
+::: {.callout-note}
+If you see `.Rmd` examples online (including in the *Data Computing* book), they translate almost directly to `.qmd`. Don't worry too much about the difference.
+:::
+
+## What's in a `.qmd` file?
+
+A Quarto document is a plain text file with three kinds of content:
+
+1. A **YAML header** - settings, surrounded by `---`
+2. **Code chunks** - R code, surrounded by ` ```{r} ` and ` ``` `
+3. **Markdown text** - your prose, with formatting like `# headings` and `**bold**`
+
+You can open a `.qmd` file in any text editor.
+
+## A complete example {.scrollable}
+
+``` markdown
+---
+title: "Penguin sizes"
+author: "Charles Costanzo"
+format: html
+---
+
+# Introduction
+
+We have data on `r knitr::inline_expr("nrow(penguins)")` penguins
+from three species.
+
+```{r}`r ''`
+library(palmerpenguins)
+
+ggplot(penguins, aes(x = body_mass_g)) +
+  geom_histogram(bins = 30)
+```
+
+The distribution looks roughly **bimodal**, with two peaks.
+```
+
+Three pieces: YAML header, prose, code chunk. The output will be a polished HTML page.
+
+# The YAML header {background-color="#001E44"}
+
+## What's a YAML header?
+
+The block at the very top, between the two `---` lines:
+
+``` yaml
+---
+title: "Penguin sizes"
+author: "Charles Costanzo"
+date: "2026-05-21"
+format: html
+---
+```
+
+This tells Quarto things like:
+
+- What's the title?
+- Who's the author?
+- What format should I render to?
+
+::: {.callout-tip}
+**YAML** stands for "YAML Ain't Markup Language." Cute, but mostly you just need to know it's how Quarto reads settings.
+:::
+
+## YAML syntax rules
+
+YAML is **picky** about formatting:
+
+```yaml
+---
+title: "My Report"
+format:
+  html:
+    toc: true
+    embed-resources: true
+---
+```
+
+::: {.callout-warning}
+## YAML gotchas
+- **Indentation matters.** Use spaces, not tabs. Two spaces per level is standard.
+- **Colons need a space after them.** `title: "Hi"`, not `title:"Hi"`.
+- **Strings with special characters need quotes.** Use `"My: Report"` not `My: Report`.
+:::
+
+If your YAML breaks, your document won't render. Most error messages will point to the line number.
+
+## Common format options
+
+```yaml
+format: html
+```
+
+```yaml
+format: pdf
+```
+
+```yaml
+format: docx
+```
+
+You can also render to **multiple** formats at once:
+
+```yaml
+format:
+  html:
+    toc: true
+  pdf:
+    fig-pos: "H"
+```
+
+::: {.callout-note}
+PDF rendering needs **LaTeX** installed on your machine. RStudio will prompt you to install it the first time you try.
+:::
+
+# Code chunks {background-color="#001E44"}
+
+## What's a code chunk?
+
+A **code chunk** is a block of R code embedded in your document. It looks like this:
+
+```` markdown
+```{{r}}
+2 + 2
+```
+````
+
+When you render the document, Quarto:
+
+1. Finds each chunk.
+2. Runs the R code inside.
+3. Inserts both the code *and* its output into the final document.
+
+So your readers see your work *and* its results, side-by-side, always in sync.
+
+## Three ways to insert a chunk
+
+1. **Keyboard shortcut** (recommended):
+   - Mac: `Cmd + Option + I`
+   - Windows/Linux: `Ctrl + Alt + I`
+
+2. **Toolbar button**: the green `+C` icon at the top of the editor.
+
+3. **Type it yourself**: ` ```{r} ` on one line, your code, ` ``` ` to close.
+
+::: {.callout-tip}
+Learn the keyboard shortcut. You'll use it a lot.
+:::
+
+## Running chunks interactively
+
+You don't have to render the whole document every time. While editing, you can run chunks one at a time:
+
+| Action | Shortcut |
+|---|---|
+| Run the current line | `Cmd/Ctrl + Enter` |
+| Run the whole chunk | `Cmd/Ctrl + Shift + Enter` |
+| Run all chunks above | (button at top of chunk) |
+
+: Useful chunk-running shortcuts. {tbl-colwidths="[60,40]"}
+
+This is exactly like working in the Console, but your code stays saved in the document.
+
+## Chunk options
+
+You can control what each chunk does by adding options at the top, prefixed with `#|`:
+
+```` markdown
+```{{r}}
+#| label: my-plot
+#| echo: false
+#| fig-width: 6
+
+ggplot(penguins, aes(x = body_mass_g)) +
+  geom_histogram()
+```
+````
+
+Common options:
+
+| Option | What it does |
+|---|---|
+| `echo: false` | Hide the code, show the output |
+| `eval: false` | Show the code, don't run it |
+| `include: false` | Run the code, hide everything |
+| `message: false` | Hide messages (e.g., from `library()`) |
+| `warning: false` | Hide warnings |
+
+: Common chunk options. {tbl-colwidths="[35,65]"}
+
+## When to use which option
+
+::: {.callout-tip}
+## Quick decision guide
+- Writing a **report for a non-coder?**: `echo` $\rightarrow$ `false` everywhere.
+- **Loading libraries** in your setup chunk?: `include` $\rightarrow$ `false` to hide the noise.
+- **Showing example code** you don't want to run?: `eval` $\rightarrow$ `false`.
+- **Getting annoying red messages** when loading the tidyverse?: `message` $\rightarrow$ `false`.
+:::
+
+You can set options chunk-by-chunk, or globally in the YAML header (more on that in a bit).
+
+## The setup chunk
+
+A common pattern: have one chunk at the **top** of your document that loads packages and sets defaults.
+
+```{{r}}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(palmerpenguins)
+```
+
+- `label: setup` is a **special name** - Quarto runs this chunk first, automatically.
+- `include: false` hides it from the rendered output (your reader doesn't need to see `library(tidyverse)`).
+
+# Markdown {background-color="#001E44"}
+
+## Markdown basics
+
+Outside code chunks, your prose is written in **Markdown** - a simple syntax for formatting plain text.
+
+| You type | You get |
+|---|---|
+| `*italic*` | *italic* |
+| `**bold**` | **bold** |
+| `` `code` `` | `code` |
+| `# Heading 1` | (big heading) |
+| `## Heading 2` | (smaller heading) |
+| `- item` | bulleted list item |
+| `1. item` | numbered list item |
+| `[link text](https://example.com)` | [link text](https://example.com) |
+
+: Common Markdown syntax. {tbl-colwidths="[40,60]"}
+
+## More Markdown
+
+```markdown
+> This is a block quote.
+> It gets a vertical bar on the left.
+```
+
+```markdown
+| Column 1 | Column 2 |
+|----------|----------|
+| Apple    | Red      |
+| Banana   | Yellow   |
+```
+
+::: {.callout-tip}
+## Shortcut
+In RStudio: `Help > Markdown Quick Reference` opens a cheat sheet you can keep open while you write.
+:::
+
+## Visual editor vs. source editor
+
+RStudio has **two ways** to edit a Quarto document:
+
+- **Source** - you see the raw Markdown and YAML. Like editing code.
+- **Visual** - looks more like Google Docs or Word. Buttons for bold, italic, headings, etc.
+
+There's a toggle in the top-left of the editor pane.
+
+::: {.callout-note}
+Both editors save the **same** plain-text `.qmd` file underneath. You can switch back and forth freely.
+:::
+
+I recommend starting in **Visual** mode if you're new to Markdown - you'll learn the syntax by seeing it appear.
+
+# Rendering {background-color="#001E44"}
+
+## How rendering works
+
+When you click **Render**, Quarto:
+
+1. Reads your `.qmd` file.
+2. Sends it to `knitr`, which runs each code chunk in order.
+3. Sends the result to `pandoc`, which converts everything to your target format.
+4. Saves the final document next to your `.qmd` file.
+
+::: {.callout-important}
+## Fresh session
+Quarto runs your code in a **brand new R session** every render. It does **not** know about objects you made in the Console.
+
+If your code relies on something you typed in the Console, rendering will fail. Everything the document needs must be in the document.
+:::
+
+## The render button
+
+In RStudio:
+
+- Click **Render** in the editor toolbar, or
+- Press `Cmd/Ctrl + Shift + K`
+
+The output opens automatically in the Viewer pane (or your browser).
+
+## The write / render cycle
+
+::: {.callout-tip style="font-size: 1.2em;"}
+## Render early, render often.
+:::
+
+Don't write 200 lines and then try to render. Write a little, render, check it works, write a little more.
+
+If you make a mistake in chunk #47, it's much easier to find when you only added chunks #45–47 since your last successful render.
+
+# Activity {background-color="#7C0A02"}
+
+## Activity: your first Quarto report {.scrollable}
+
+You'll build a short Quarto report from scratch. Take 25 minutes for this activity.
+
+**Setup:**
+
+1. Open RStudio.
+2. `File > New File > Quarto Document...`
+3. Title: **"Penguin Exploration"**, Author: your name.
+4. Pick **HTML** as the format.
+5. **Uncheck** "Use visual markdown editor" if you want to see the raw source (recommended for learning today).
+6. Click **Create**.
+
+You'll get a template document with example content. **Delete everything below the YAML header.** Keep the YAML.
+
+**Step 1 - Save the file**
+
+`File > Save As...`: call it `penguin-report.qmd`, save somewhere you'll find it.
+
+**Step 2 - Add a setup chunk**
+
+Insert a code chunk (`Cmd/Ctrl + Alt + I`). Make it look like this:
+
+```` markdown
+```{r}
+#| label: setup
+#| include: false
+
+library(tidyverse)
+library(palmerpenguins)
+```
+````
+
+**Step 3 - Write an intro**
+
+Below the setup chunk, add a heading and a paragraph:
+
+```markdown
+# Introduction
+
+This report explores the **Palmer Penguins** data set, which contains
+measurements on three species of penguins from islands in Antarctica.
+```
+
+**Step 4 - Add a plot**
+
+Insert another chunk and put a histogram in it:
+
+```` markdown
+```{r}
+#| label: mass-histogram
+#| message: false
+#| warning: false
+
+ggplot(penguins, aes(x = body_mass_g)) +
+  geom_histogram(binwidth = 250, fill = "steelblue", color = "white") +
+  labs(
+    title = "Distribution of penguin body mass",
+    x = "Body mass (g)",
+    y = "Count"
+  )
+```
+````
+
+**Step 5 - Add commentary**
+
+Below the plot, write 2–3 sentences (in Markdown) describing what you see.
+
+**Step 6 - Render**
+
+Press `Cmd/Ctrl + Shift + K`. Look at the HTML file that pops up.
+
+If you finish early, try one or more of these:
+
+- Add a second plot using a different variable (`flipper_length_mm`, `bill_length_mm`, ...).
+- Try changing `format: html` to `format: docx` in the YAML and re-render.
+- Add a **table** of the first few rows: insert a chunk with `knitr::kable(head(penguins))`.
+- Set `echo: false` in your YAML under `execute:` to hide *all* code from the output:
+
+```yaml
+execute:
+  echo: false
+```
+
+**To turn in:** Save your `.qmd` file and the rendered HTML. We'll check at the end of class.
+
+## Activity debrief
+
+Common stumbling blocks:
+
+- **YAML indentation** - extra space or missing space at the start of a line breaks everything.
+- **Forgot to close a chunk** - every ` ```{r} ` needs a matching ` ``` ` on its own line.
+- **Object not found** during render - you typed it in the Console but not in the document. The render uses a fresh session.
+- **Package not installed** - `Error: there is no package called 'palmerpenguins'`. Install it in the Console.
+- **Plot doesn't appear** - usually a missing `+` between `ggplot()` layers.
+
+## Wrap-up: what we covered today
+
+- Recognize a `.qmd` file as a mix of YAML, prose, and code chunks.
+- Write a YAML header with title, author, and format.
+- Insert and run code chunks.
+- Hide code, output, messages, or warnings with chunk options.
+- Use basic Markdown for headings, lists, bold, italic, and links.
+- Render a document to HTML.
 
 ## Wrap-up & looking ahead
 
-**Tomorrow:** The pipe and chaining syntax
+**Tomorrow:** Quiz 1, then the pipe operator and chaining syntax.
 
 :::: {.columns}
 ::: {.column width="55%"}
 **Upcoming Deadlines**
 
-- **Fri 5/22, before class** — [DC §3.6](https://psu.instructure.com/courses/2487468/assignments/18307712)
-- **Fri 5/22, in class** — Quiz 1
-- **Fri 5/22, 11:59 p.m.** — [HW 1: Basic R & Plots](https://psu.instructure.com/courses/2487468/assignments/18311694)
+- **Fri 5/22, before class** - [DC §3.6](https://psu.instructure.com/courses/2487468/assignments/18307712)
+- **Fri 5/22, in class** - Quiz 1
+  - [Quiz 1 Practice](https://psu.instructure.com/courses/2487468/pages/quiz-1-practice?module_item_id=48166672)
+- **Fri 5/22, 11:59 p.m.** - [HW 1: Basic R & Plots](https://psu.instructure.com/courses/2487468/assignments/18311694)
 :::
 
 ::: {.column width="45%"}
@@ -51,6 +548,6 @@ Stuck? Office hours, or email me ([cgc5478@psu.edu](mailto:cgc5478@psu.edu)) or 
 
 **Reference**
 
-[Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*Data Computing*](https://dtkaplan.github.io/DataComputingEbook/)
+[Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*R4DS* Ch. 28](https://r4ds.hadley.nz/quarto)
 :::
 ::::

@@ -1,0 +1,17 @@
+{
+  "hash": "bcb6591cfc9ab19e176345403606c0e8",
+  "result": {
+    "engine": "knitr",
+    "markdown": "### ------------------------------------------------------------------------ ###\n### WARNING: DO NOT RUN THIS - IT IS NOT A .R FILE\n### SIMPLY USE THIS TO READ THROUGH AND COPY/PASTE CODE AS NEEDED\n### ------------------------------------------------------------------------ ###\n## Activity: your first Quarto report\n\nYou'll build a short Quarto report from scratch. Take 25 minutes for this activity.\n\n**Setup:**\n\n1. Open RStudio.\n2. `File > New File > Quarto Document...`\n3. Title: **\"Penguin Exploration\"**, Author: your name.\n4. Pick **HTML** as the format.\n5. **Uncheck** \"Use visual markdown editor\" if you want to see the raw source (recommended for learning today).\n6. Click **Create**.\n\nYou'll get a template document with example content. **Delete everything below the YAML header.** Keep the YAML.\n\n**Step 1 - Save the file**\n  \n  `File > Save As...`: call it `penguin-report.qmd`, save somewhere you'll find it.\n\n**Step 2 - Add a setup chunk**\n\nInsert a code chunk (`Cmd/Ctrl + Alt + I`). Make it look like this:\n\n```` markdown\n\n````\n\n**Step 3 - Write an intro**\n\nBelow the setup chunk, add a heading and a paragraph:\n\n```markdown\n# Introduction\n\nThis report explores the **Palmer Penguins** data set, which contains\nmeasurements on three species of penguins from islands in Antarctica.\n```\n\n**Step 4 - Add a plot**\n\nInsert another chunk and put a histogram in it:\n\n```` markdown\n\n::: {.cell}\n\n```{.r .cell-code}\nggplot(penguins, aes(x = body_mass_g)) +\n  geom_histogram(binwidth = 250, fill = \"steelblue\", color = \"white\") +\n  labs(\n    title = \"Distribution of penguin body mass\",\n    x = \"Body mass (g)\",\n    y = \"Count\"\n  )\n```\n\n::: {.cell-output-display}\n![](day4-quarto-penguins_files/figure-html/mass-histogram-1.png){width=672}\n:::\n:::\n\n````\n\n**Step 5 - Add commentary**\n\nBelow the plot, write 2–3 sentences (in Markdown) describing what you see.\n\n**Step 6 - Render**\n\nPress `Cmd/Ctrl + Shift + K`. Look at the HTML file that pops up.\n\nIf you finish early, try one or more of these:\n\n- Add a second plot using a different variable (`flipper_length_mm`, `bill_length_mm`, ...).\n- Try changing `format: html` to `format: docx` in the YAML and re-render.\n- Add a **table** of the first few rows: insert a chunk with `knitr::kable(head(penguins))`.\n- Set `echo: false` in your YAML under `execute:` to hide *all* code from the output:\n\n```yaml\nexecute:\n  echo: false\n```\n\n**To turn in:** Save your `.qmd` file and the rendered HTML. We'll check at the end of class.\n",
+    "supporting": [
+      "day4-quarto-penguins_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
