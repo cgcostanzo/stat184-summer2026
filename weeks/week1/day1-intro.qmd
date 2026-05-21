@@ -11,6 +11,7 @@ format:
     output-file: "day1-intro-slides.html"
   html:
     toc: true
+    embed-resources: true
     highlight-style: a11y
     axe: true
     output-file: "day1-intro-page.html"
