@@ -122,16 +122,10 @@
 
 \textbf{Total: 30 points} $\cdot$ 9 questions $\cdot$ 20 minutes
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, bottomrule=.15mm, bottomtitle=1mm, breakable, colback=white, colbacktitle=quarto-callout-tip-color!10!white, colframe=quarto-callout-tip-color-frame, coltitle=black, left=2mm, leftrule=.75mm, opacityback=0, opacitybacktitle=0.6, rightrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb[regular]}\hspace{0.5em}{How to use this key}, titlerule=0mm, toprule=.15mm, toptitle=1mm]
-
 \begin{itemize}
 \tightlist
-\item Try the practice quiz first \textbf{without} looking at the key, ideally in a 20-minute closed-book session.
-\item Then check your answers below.
-\item If you missed a question, the ``Why'' notes will point you to what concept to review.
+\item Try the practice quiz first \textbf{without} looking at the key.
 \end{itemize}
-
-\end{tcolorbox}
 
 \vspace{0.5em}
 
@@ -162,7 +156,7 @@
 \end{enumerate}
 
 \begin{quote}
-Why: scalar arithmetic on a vector is applied \textbf{element-by-element}.
+Why: scalar arithmetic on a vector is applied \textbf{elementwise}.
 \end{quote}
 
 \begin{enumerate}
@@ -172,7 +166,7 @@ Why: scalar arithmetic on a vector is applied \textbf{element-by-element}.
 \end{enumerate}
 
 \begin{quote}
-Why: \texttt{\%\%} is the \textbf{modulo} operator --- the remainder after division. 15 $\div$ 4 = 3 remainder 3.
+Why: \texttt{\%\%} is the \textbf{modulo} operator (the remainder after division.) 15 $\div$ 4 = 3 remainder 3.
 \end{quote}
 
 \begin{enumerate}
@@ -225,7 +219,7 @@ Why: lowercase, used inside function arguments.
 \end{enumerate}
 
 \begin{quote}
-Why: a literal numeric value.
+Why: a single numeric value.
 \end{quote}
 
 \hrulefill
@@ -258,7 +252,7 @@ A one-dimensional collection of values, all of the same type.
 \end{enumerate}
 
 \begin{quote}
-Why: in \texttt{round(3.14159,\ digits\ =\ 3)}, the first argument is matched by \textit{position} --- \texttt{round()} expects \texttt{x} first. The second is matched by \textit{name} (\texttt{digits\ =\ 3}).
+Why: in \texttt{round(3.14159,\ digits\ =\ 3)}, the first argument is matched by \textit{position}. \texttt{round()} expects \texttt{x} first. The second is matched by \textit{name} (\texttt{digits\ =\ 3}).
 \end{quote}
 
 \hrulefill
@@ -271,7 +265,7 @@ Both lines compute the mean (which is \texttt{4}), but:
 
 \begin{itemize}
 \tightlist
-\item \texttt{mean(c(2,\ 4,\ 6))} just \textbf{prints} the result to the console --- it's not saved anywhere.
+\item \texttt{mean(c(2,\ 4,\ 6))} just \textbf{prints} the result to the console. It's not saved anywhere.
 \item \texttt{m\ \textless{}-\ mean(c(2,\ 4,\ 6))} \textbf{assigns} the result to an object called \texttt{m}, so you can use \texttt{m} later.
 \end{itemize}
 
@@ -320,33 +314,6 @@ Why: the pipe \texttt{|\textgreater{}} (or \texttt{\%\textgreater{}\%}) is for \
   \FunctionTok{geom\_histogram}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{quote}
-Grading notes:
-
-\begin{itemize}
-\tightlist
-\item Full credit if the \texttt{+} replaces the \texttt{\%\textgreater{}\%} and the rest is unchanged.
-\item 2 pts if they wrote correct code but missed an explanation in (a).
-\item 1 pt if they tried but produced something that still wouldn't run.
-\end{itemize}
-\end{quote}
-
-\hrulefill
-
-\subsection{How did you do?}
-
-\begin{longtable}[]{@{}lp{4.5in}@{}}
-\toprule\noalign{}
-\textbf{Score} & \textbf{Interpretation} \\
-\midrule\noalign{}
-\endhead
-27--30 & You're ready for the real quiz. \\
-22--26 & Solid --- review the questions you missed. \\
-17--21 & Worth a serious review. Re-read DC §3 and revisit your Day 2 and Day 3 notes. \\
-Below 17 & Come to office hours before the real quiz. We can work through the trouble spots together. \\
-\bottomrule\noalign{}
-\end{longtable}
 
 \vspace{0.5em}
 

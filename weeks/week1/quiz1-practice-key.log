@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.5.18)  20 MAY 2026 12:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.5.18)  20 MAY 2026 17:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -810,42 +810,40 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <8> on input line 123.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 123.
-LaTeX Font Info:    Trying to load font information for U+fontawesomefree2 on input line 125.
- (/Users/charlescostanzo/Library/TinyTeX/texmf-dist/tex/latex/fontawesome5/ufontawesomefree2.fd)
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 129.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 127.
  (/Users/charlescostanzo/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 142.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 136.
  (/Users/charlescostanzo/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 160.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 154.
  [1
 
 
-{/Users/charlescostanzo/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/charlescostanzo/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/charlescostanzo/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/Users/charlescostanzo/Library/TinyTeX/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free2.enc}{/Users/charlescostanzo/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}] [2] [3]
-LaTeX Font Info:    Trying to load font information for U+fontawesomefree1 on input line 353.
- (/Users/charlescostanzo/Library/TinyTeX/texmf-dist/tex/latex/fontawesome5/ufontawesomefree1.fd) [4] [5{/Users/charlescostanzo/Library/TinyTeX/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free1.enc}] (./quiz1-practice-key.aux)
+{/Users/charlescostanzo/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/Users/charlescostanzo/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/charlescostanzo/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/Users/charlescostanzo/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}] [2] [3]
+LaTeX Font Info:    Trying to load font information for U+fontawesomefree1 on input line 320.
+ (/Users/charlescostanzo/Library/TinyTeX/texmf-dist/tex/latex/fontawesome5/ufontawesomefree1.fd) [4{/Users/charlescostanzo/Library/TinyTeX/texmf-dist/fonts/enc/dvips/fontawesome5/fa5free1.enc}] (./quiz1-practice-key.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-04-28>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 32277 strings out of 469288
- 667523 string characters out of 5463255
- 1199320 words of memory out of 5000000
- 60611 multiletter control sequences out of 15000+600000
- 680076 words of font info for 88 fonts, out of 8000000 for 9000
+ 32247 strings out of 469288
+ 666750 string characters out of 5463255
+ 1198320 words of memory out of 5000000
+ 60589 multiletter control sequences out of 15000+600000
+ 679823 words of font info for 87 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 124i,7n,121p,11240b,947s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</Users/charlescostanzo/Library/TinyTeX/texmf-dist/fonts/type1/public/fontawesome5/FontAwesome5Free-Regular.pfb></Users/charlescostanzo/Library/TinyTeX/texmf-dist/fonts/type1/public/fontawesome5/FontAwesome5Free-Solid.pfb></Users/charlescostanzo/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/charlescostanzo/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/charlescostanzo/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/charlescostanzo/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></Users/charlescostanzo/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/charlescostanzo/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></Users/charlescostanzo/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on quiz1-practice-key.pdf (5 pages, 198618 bytes).
+ 124i,7n,121p,11240b,939s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</Users/charlescostanzo/Library/TinyTeX/texmf-dist/fonts/type1/public/fontawesome5/FontAwesome5Free-Solid.pfb></Users/charlescostanzo/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/charlescostanzo/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/charlescostanzo/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/charlescostanzo/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></Users/charlescostanzo/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/charlescostanzo/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtk10.pfb></Users/charlescostanzo/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
+Output written on quiz1-practice-key.pdf (4 pages, 186135 bytes).
 PDF statistics:
- 151 PDF objects out of 1000 (max. 8388607)
- 123 compressed objects within 2 object streams
- 34 named destinations out of 1000 (max. 500000)
- 93 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 136 PDF objects out of 1000 (max. 8388607)
+ 111 compressed objects within 2 object streams
+ 31 named destinations out of 1000 (max. 500000)
+ 85 words of extra memory for PDF output out of 10000 (max. 10000000)
 
