@@ -2382,7 +2382,7 @@
     "href": "weeks/week1/index.html#daily-plan",
     "title": "Week 1 — Foundations",
     "section": "Daily plan",
-    "text": "Daily plan\n\n\n\nDate\nTopic\nSlides & Notes\nCode & Data\n\n\n\n\nMon May 18\nCourse intro & what is R?\nSlides · Page · PDF\nday1-demo.R · currentvotestats.xlsx\n\n\nTue May 19\nR, RStudio, console · vectors · data types\nSlides · Page · PDF\nday2-follow-along.R\n\n\nWed May 20\nFunctions, packages · tidyverse\nSlides · Page · PDF\nday3-activity.R\n\n\nThu May 21\nQuarto basics\nSlides · Page · PDF\ncoming soon\n\n\nFri May 22\nQuiz 1 · pipe and chaining syntax\nSlides · Page · PDF\ncoming soon",
+    "text": "Daily plan\n\n\n\nDate\nTopic\nSlides & Notes\nCode & Data\n\n\n\n\nMon May 18\nCourse intro & what is R?\nSlides · Page · PDF\nday1-demo.R · currentvotestats.xlsx\n\n\nTue May 19\nR, RStudio, console · vectors · data types\nSlides · Page · PDF\nday2-follow-along.R\n\n\nWed May 20\nFunctions, packages · tidyverse\nSlides · Page · PDF\nday3-activity.R\n\n\nThu May 21\nQuarto basics\nSlides · Page · PDF\nday4-activity.qmd\n\n\nFri May 22\nQuiz 1 · pipe and chaining syntax\nSlides · Page · PDF\ncoming soon",
     "crumbs": [
       "Week 1 --- Foundations"
     ]
