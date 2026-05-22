@@ -1330,11 +1330,11 @@
     ]
   },
   {
-    "objectID": "weeks/week1/day4-activity.html#activity-your-first-quarto-report",
-    "href": "weeks/week1/day4-activity.html#activity-your-first-quarto-report",
-    "title": "STAT 184 — Summer 2026",
-    "section": "Activity: Your First Quarto Report",
-    "text": "Activity: Your First Quarto Report\nYou’ll build a short Quarto report from scratch. Take 20 minutes for this activity.\nSetup:\n\nOpen RStudio.\nFile &gt; New File &gt; Quarto Document...\nTitle: “Penguin Exploration”, Author: your name.\nPick HTML as the format.\nUncheck “Use visual markdown editor” if you want to see the raw source (recommended for learning today).\nClick Create.\n\nYou’ll get a template document, potentially with example content. Delete anything below the YAML header if present. Keep the YAML.\nStep 1 - Save the file\nFile &gt; Save As...: call it penguin-report.qmd, save somewhere you’ll find it.\nStep 2 - Upgrade your YAML\nLet’s make the HTML output look professional right away. Modify the top of your document (between the --- lines) to add a Table of Contents (toc) and a custom theme. Watch your indentation—YAML is picky.\n---\ntitle: \"Penguin Exploration\"\nauthor: \"Your Name\"\nformat: \n  html:\n    toc: true\n    theme: litera\n---\nDON’T FORGET: Render and open your html file to see if it worked.\nStep 3 - Add a setup chunk\nInsert a code chunk (Ctrl + Alt + I on Windows or Cmd + Option + I on Mac). Make it look like this:\n\nDON’T FORGET: Render and open your html file to see if it worked.\nStep 4 - Write an intro with a link, an image, and inline code\nBelow the setup chunk, add a heading and a paragraph.\nNotice three new Markdown features here:\n\nImages: Formatted as ![alt text](url). We’re pulling the package hex logo straight from the web and using Quarto’s {width} and fig-align attributes to float it to the right.\nHyperlinks: Formatted as [text](url).\nInline code: The backticks around 344 will automatically calculate the number of rows in the dataset when you render.\n\nCopy this into your document:\n# Introduction\n\n![]([https://allisonhorst.github.io/palmerpenguins/logo.png](https://allisonhorst.github.io/palmerpenguins/logo.png)){width=\"120\" fig-align=\"right\"}\n\nThis report explores the [**Palmer Penguins**](https://allisonhorst.github.io/palmerpenguins/) \ndata set, which contains measurements on 344 penguins from \nthree islands in Antarctica.\nDON’T FORGET: Render and open your html file to see if it worked.\nStep 5 - Add a plot\nInsert appropriate headings and another chunk (see if you can remember the keyboard shortcut for adding a chunk.) Then put a histogram in your new chunk. We are adding a fig-cap to label the figure, which lets us automatically reference it in our text.\n# Exploratory Data Analysis\n\n## Basic Histogram\n\n\n::: {.cell}\n\n```{.r .cell-code}\nggplot(penguins, aes(x = body_mass_g)) +\n  geom_histogram(binwidth = 250, fill = \"steelblue\", color = \"white\") +\n  theme_minimal() +\n  labs(\n    x = \"Body mass (g)\",\n    y = \"Count\"\n  )\n```\n\n::: {.cell-output-display}\n![Distribution of penguin body mass](day4-activity_files/figure-html/fig-mass-histogram-1.png){#fig-mass-histogram width=672}\n:::\n:::\nDON’T FORGET: Render and open your html file to see if it worked.\nStep 6 - Add commentary\nBelow the plot, write 2–3 sentences (in Markdown) describing what you see. Include this exact text somewhere in your paragraph to see how Quarto handles cross-references:\n“As shown in ?@fig-mass-histogram, the data is…”\nNote, you do not need the quotes. Just write the text and ?@fig-mass-histogram.\nDON’T FORGET: Render and open your html file to see if it worked.\nStep 7 - Add a Table\nLet’s look at the raw data. Add a new section heading and a code chunk that uses knitr::kable() to draw a clean table of the first 5 rows:\n## Data Preview\n\n\n::: {#tbl-preview .cell tbl-cap='First 5 rows of the penguins dataset'}\n\n```{.r .cell-code}\nknitr::kable(head(penguins, 5))\n```\n\n::: {.cell-output-display}\n\n\n|species |island    | bill_length_mm| bill_depth_mm| flipper_length_mm| body_mass_g|sex    | year|\n|:-------|:---------|--------------:|-------------:|-----------------:|-----------:|:------|----:|\n|Adelie  |Torgersen |           39.1|          18.7|               181|        3750|male   | 2007|\n|Adelie  |Torgersen |           39.5|          17.4|               186|        3800|female | 2007|\n|Adelie  |Torgersen |           40.3|          18.0|               195|        3250|female | 2007|\n|Adelie  |Torgersen |             NA|            NA|                NA|          NA|NA     | 2007|\n|Adelie  |Torgersen |           36.7|          19.3|               193|        3450|female | 2007|\n\n\n:::\n:::\nDON’T FORGET: Render and open your html file to see if it worked.\nStep 8 - Final Render\nPress Cmd/Ctrl + Shift + K. Look at the HTML file that pops up. Notice your table of contents, your styled theme, the evaluated inline code, and the figure numbering!\nIf you finish early, try one or more of these:\n\nCreate a Tabset: Want to hide multiple plots behind clickable tabs? Wrap two headings and code chunks in a tabset block like this:\n\n::: {.panel-tabset}\n\n### Mass Plot\n(Put your mass plot code chunk here)\n\n### Flipper Plot\n(Put a new flipper_length_mm plot code chunk here)\n\n:::\n\nChange the Output: Try changing format: html to format: docx in the YAML and re-render to get a Word document. (Note: themes and tabsets are HTML-only).\nHide the Code: Set echo: false in your YAML under execute: to hide all code from the output, leaving only the text, plots, and tables:\n\n---\ntitle: \"Penguin Exploration\"\nauthor: \"Your Name\"\nformat: \n  html:\n    toc: true\n    theme: litera\nexecute:\n  echo: false\n---\nTo turn in: Save your .qmd file and the rendered HTML. We’ll check at the end of class."
+    "objectID": "weeks/week1/day4-activity.html",
+    "href": "weeks/week1/day4-activity.html",
+    "title": "Day 4 Activity",
+    "section": "",
+    "text": "Activity: Your First Quarto Report\nYou’ll build a short Quarto report from scratch. Take 20 minutes for this activity.\nSetup:\n\nOpen RStudio.\nFile &gt; New File &gt; Quarto Document...\nTitle: “Penguin Exploration”, Author: your name.\nPick HTML as the format.\nUncheck “Use visual markdown editor” if you want to see the raw source.\nClick Create.\n\nYou’ll get a template document, potentially with example content. Delete anything below the YAML header if present. Keep the YAML.\nStep 1 - Save the file\nFile &gt; Save As...: call it penguin-report.qmd, save somewhere you’ll know where to find it.\nStep 2 - Save the provided image\nPlace your downloaded fig-mass-histogram-1.png in the same folder where you saved penguin-report.qmd.\nStep 3 - Upgrade your YAML\nWe can make the HTML output look professional right away. Modify the top of your document (between the --- lines) to add a Table of Contents (toc) and a custom theme. Be careful with indentation (use spaces instead of tabs) since YAML can be picky.\n---\ntitle: \"Penguin Exploration\"\nauthor: \"Your Name\"\nformat:\n  html:\n    toc: TRUE\n      theme: litera\nembed-resources: TRUE\n---\nBe sure to include embed-resources: TRUE to ensure Quarto packages the entire document (CSS styles, JavaScript libraries, fonts, images) into one, self-contained HTML file. This enables offline viewing of the document and ensures that all content you create will be saved in the html file you submit on Canvas.\nDON’T FORGET: Render and open your html file to see if it worked.\nStep 4 - Add a setup chunk\nInsert a code chunk (Ctrl + Alt + I on Windows or `Cmd + Option + I on Mac). Make it look like this:\n```{r}\n#| label: setup\n#| include: FALSE\n\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n```\nDON’T FORGET: Render and open your html file to see if it worked.\nStep 5 - Write an intro with a link, an image, and inline code\nBelow the setup chunk, add a heading and a paragraph.\nNotice three new Markdown features here:\n\nImages: Formatted as ![caption](path/to/image). We’re pulling the package hex logo straight from the web and using Quarto’s {width} and fig-align attributes to float it to the right.\nHyperlinks: Formatted as [text](url)\nInline code: The backticks around `r nrow(penguins)` will automatically calculate the number of rows in the dataset when you render.\n\nCopy and paste this into your document:\n# Introduction\n\n![]([https://allisonhorst.github.io/palmerpenguins/logo.png](https://allisonhorst.github.io/palmerpenguins/logo.png)){width=\"120\" fig-align=\"right\"}\n\nThis report explores the [**Palmer Penguins**](https://allisonhorst.github.io/palmerpenguins/) \ndata set, which contains measurements on 344 penguins from \nthree islands in Antarctica.\nDON’T FORGET: Render and open your html file to see if it worked.\nStep 6 - Add a plot\nCopy and paste the code below to insert appropriate headings and another chunk (see if you can remember the keyboard shortcut for adding a chunk.) Then put a histogram in your new chunk. We are adding a fig-cap to label the figure, which lets us automatically reference it in our text.\n# Exploratory Data Analysis\n\n## Basic Histogram\n\n![Distribution of penguin body mass](fig-mass-histogram-1.png){#fig-mass-histogram width=672}\nDON’T FORGET: Render and open your html file to see if it worked.\nStep 7 - Add commentary\nBelow the plot, write 2-3 sentences (in Markdown) describing what you see. Include this exact text somewhere in your paragraph to see how Quarto handles cross-references:\nAs shown in @fig-mass-histogram, the data is...\nDON’T FORGET: Render and open your html file to see if it worked.\nStep 8 - Add a table\nCopy and paste the code below to add a new section heading and a code chunk that uses the kable() function from the knitr package to draw a clean table of the first 5 rows:\n## Data Preview\n\n\n::: {#tbl-preview .cell tbl-cap='First 5 rows of the penguins dataset'}\n::: {.cell-output-display}\n\n\n|species |island    | bill_length_mm| bill_depth_mm| flipper_length_mm| body_mass_g|sex    | year|\n|:-------|:---------|--------------:|-------------:|-----------------:|-----------:|:------|----:|\n|Adelie  |Torgersen |           39.1|          18.7|               181|        3750|male   | 2007|\n|Adelie  |Torgersen |           39.5|          17.4|               186|        3800|female | 2007|\n|Adelie  |Torgersen |           40.3|          18.0|               195|        3250|female | 2007|\n|Adelie  |Torgersen |             NA|            NA|                NA|          NA|NA     | 2007|\n|Adelie  |Torgersen |           36.7|          19.3|               193|        3450|female | 2007|\n\n\n:::\n:::\nDON’T FORGET: Render and open your html file to see if it worked.\nStep 9 - Final render\nPress Cmd/Ctrl + Shift + K. Look at the HTML file that pops up. Notice your table of contents, your styled theme, the evaluated inline code, and the figure numbering.\nIf you finish early, try one or more of these:\n\nCreate a Tabset: Wrap two heading and code chunks in a tabset block by copying and pasting the code below to hide multiple plots behind clickable tabs:\n\n::: {.panel-tabset}\n\n### Mass Plot\n(Put your mass plot code chunk here)\n\n### Flipper Plot\n(Put a new flipper_length_mm plot code chunk here)\n\n:::\n\nChange the Output: Try changing format: html to format: docx in the YAML and re-render to get a Word document. (Note: themes and tabsets are HTML-only).\nHide the Code: Set echo: FALSE in your YAML under execute: to hide all code from the output, leaving only the text, plots, and tables.\n\n---\ntitle: \"Penguin Exploration\"\nauthor: \"Your Name\"\nformat: \n  html:\n    toc: true\n    theme: litera\nexecute:\n  echo: false\n---\nTo turn in: Save your .qmd file and the rendered HTML. We’ll check back in at the end of class."
   },
   {
     "objectID": "weeks/week1/day1-intro-slides.html#introductions",
@@ -1733,315 +1733,273 @@
   {
     "objectID": "weeks/week1/day5-pipe-slides.html#quiz-1-instructions",
     "href": "weeks/week1/day5-pipe-slides.html#quiz-1-instructions",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "Quiz 1 — instructions",
-    "text": "Quiz 1 — instructions\n\n\n\n\n\n\n\nClosed-book, no AI, no electronics\n\n\n\nPut away phones and laptops.\nYou may use a pen or pencil.\n20 minutes.\nI’ll hand out the quiz now and collect it at the end.\n\n\n\n\n\nTopics covered:\n\nR as a calculator and basic syntax\nData types and structures\nObjects and assignment\nReading R code (functions, arguments, variables, constants)\nPackages: installing vs. loading\nHistograms in ggplot2 (reading code, not writing from scratch)\n\nWhen you finish early, flip your quiz face-down and wait quietly."
+    "text": "Quiz 1 — instructions\n\n\n\n\n\n\n\nClosed-book, no AI, no electronics\n\n\n\nPut away phones and laptops.\nYou may use a pen or pencil.\n20 minutes.\n\n\n\n\n\nTopics covered:\n\nR as a calculator and basic syntax\nData types and structures\nObjects and assignment\nReading R code (functions, arguments, variables, constants)\nPackages: installing vs. loading\nHistograms in ggplot2 (reading code, not writing from scratch)\n\nWhen you finish, bring your quiz up to the front."
   },
   {
     "objectID": "weeks/week1/day5-pipe-slides.html#quiz-debrief",
     "href": "weeks/week1/day5-pipe-slides.html#quiz-debrief",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "Quiz debrief",
-    "text": "Quiz debrief\nA few quick notes:\n\nWe’ll go over common stumbling points on Monday after I’ve graded them.\nIf you finished with time to spare: nice.\nIf you didn’t finish: don’t panic. Quizzes are 15% of the grade, weighted across the semester.\n\nNow let’s get into something new."
+    "text": "Quiz debrief\n\nWe’ll go over common stumbling points on Monday after I’ve graded them."
   },
   {
     "objectID": "weeks/week1/day5-pipe-slides.html#a-problem-weve-already-seen",
     "href": "weeks/week1/day5-pipe-slides.html#a-problem-weve-already-seen",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "A problem we’ve already seen",
-    "text": "A problem we’ve already seen\nRemember this slide from Wednesday?\n\nsqrt(mean(c(1, 4, 9, 16, 25)))\n\n[1] 3.316625\n\n\nTo read this, your eye has to jump inside-out:\n\nFirst c(1, 4, 9, 16, 25) makes a vector.\nThen mean(...) of that vector is 11.\nThen sqrt(11) is ≈ 3.317.\n\nThat’s already tough. Imagine four or five nested functions."
+    "text": "A problem we’ve already seen\nRemember this code from Wednesday?\n\nsqrt(mean(c(1, 4, 9, 16, 25)))\n\n[1] 3.316625\n\n\nThis should be read from the inside-out:\n\nFirst c(1, 4, 9, 16, 25) makes a vector.\nThen mean(...) of that vector is 11.\nThen sqrt(11) is \\(\\approx\\) 3.317.\n\nAs the number of functions you nest grows, the harder and harder it gets to read."
   },
   {
     "objectID": "weeks/week1/day5-pipe-slides.html#a-real-example",
     "href": "weeks/week1/day5-pipe-slides.html#a-real-example",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "A real example",
-    "text": "A real example\nSuppose we want to:\n\nTake the penguins data,\nKeep only rows where body_mass_g is not missing,\nGroup by species,\nCompute the mean body mass for each species.\n\nWritten with nested function calls:\n\nsummarize(\n  group_by(\n    filter(penguins, !is.na(body_mass_g)),\n    species\n  ),\n  avg_mass = mean(body_mass_g)\n)\n\nYou have to read it from the inside out, and the arguments get separated from their functions. Ugh."
+    "text": "A real example\nSuppose we want to:\n\nTake the penguins data,\nKeep only rows where body_mass_g is not missing,\nGroup by species,\nCompute the mean body mass for each species.\n\nWritten with nested function calls:\n\nsummarize(\n  group_by(\n    filter(penguins, !is.na(body_mass_g)),\n    species\n  ),\n  avg_mass = mean(body_mass_g)\n)\n\nYou have to read it from the inside out, and the arguments get separated from their functions. This is not ideal or intuitive for humans."
   },
   {
     "objectID": "weeks/week1/day5-pipe-slides.html#enter-the-pipe",
     "href": "weeks/week1/day5-pipe-slides.html#enter-the-pipe",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "Enter the pipe",
-    "text": "Enter the pipe\nThe pipe operator lets you read code left-to-right, top-to-bottom — the way you actually think about it.\n\npenguins |&gt;\n  filter(!is.na(body_mass_g)) |&gt;\n  group_by(species) |&gt;\n  summarize(avg_mass = mean(body_mass_g))\n\nRead this as:\n\n“Take penguins, then filter out missing values, then group by species, then summarize the average mass.”\n\nThat’s it. That’s the whole idea."
+    "text": "Enter the pipe\nThe pipe operator lets you read code left-to-right, top-to-bottom, which is the way you actually think about it.\n\npenguins |&gt;\n  filter(!is.na(body_mass_g)) |&gt;\n  group_by(species) |&gt;\n  summarize(avg_mass = mean(body_mass_g))\n\nRead this as:\n\n“Take penguins, then filter out missing values, then group by species, then summarize the average mass.”\n\nThat’s it. That’s the whole idea."
   },
   {
     "objectID": "weeks/week1/day5-pipe-slides.html#what-the-pipe-does",
     "href": "weeks/week1/day5-pipe-slides.html#what-the-pipe-does",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "What the pipe does",
     "text": "What the pipe does\nx |&gt; f()\nis exactly the same as\nf(x)\nThe pipe takes whatever’s on the left and inserts it as the first argument to the function on the right.\n\n# These do the same thing:\nsqrt(16)\n\n[1] 4\n\n16 |&gt; sqrt()\n\n[1] 4"
   },
   {
     "objectID": "weeks/week1/day5-pipe-slides.html#with-multiple-arguments",
     "href": "weeks/week1/day5-pipe-slides.html#with-multiple-arguments",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "With multiple arguments",
     "text": "With multiple arguments\nx |&gt; f(arg2, arg3)\nis the same as\nf(x, arg2, arg3)\nThe pipe always fills the first argument; the rest go inside the parentheses as usual.\n\n# Without the pipe:\nround(3.14159, digits = 2)\n\n[1] 3.14\n\n# With the pipe:\n3.14159 |&gt; round(digits = 2)\n\n[1] 3.14"
   },
   {
     "objectID": "weeks/week1/day5-pipe-slides.html#chaining-pipes",
     "href": "weeks/week1/day5-pipe-slides.html#chaining-pipes",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "Chaining pipes",
-    "text": "Chaining pipes\nThe real power: you can chain pipes together to do many steps in order.\n\nc(1, 4, 9, 16, 25) |&gt;\n  mean() |&gt;\n  sqrt()\n\n[1] 3.316625\n\n\nCompare to the nested version:\n\nsqrt(mean(c(1, 4, 9, 16, 25)))\n\n[1] 3.316625\n\n\nSame answer. The piped version reads in the order you do the work."
+    "text": "Chaining pipes\nIt is very useful to chain pipes together to do many steps in order.\n\nc(1, 4, 9, 16, 25) |&gt;\n  mean() |&gt;\n  sqrt()\n\n[1] 3.316625\n\n\nCompare to the nested version:\n\nsqrt(mean(c(1, 4, 9, 16, 25)))\n\n[1] 3.316625\n\n\nHere, we get the same answer. The piped version reads in the order you do the work."
   },
   {
     "objectID": "weeks/week1/day5-pipe-slides.html#style-one-pipe-per-line",
     "href": "weeks/week1/day5-pipe-slides.html#style-one-pipe-per-line",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "Style: one pipe per line",
-    "text": "Style: one pipe per line\n\n\n\n\n\n\nConvention\n\n\nPut each pipe step on its own line, with the |&gt; at the end of the previous line.\nIndent the continuation by 2 spaces.\n\n\n\nGood:\n\npenguins |&gt;\n  filter(!is.na(body_mass_g)) |&gt;\n  group_by(species) |&gt;\n  summarize(avg_mass = mean(body_mass_g))\n\nNot so good (works, but harder to read):\n\npenguins |&gt; filter(!is.na(body_mass_g)) |&gt; group_by(species) |&gt; summarize(avg_mass = mean(body_mass_g))"
+    "text": "Style: one pipe per line\n\n\n\n\n\n\nConvention\n\n\nPut each pipe step on its own line, with the |&gt; at the end of the previous line.\nIndent the continuation by 2 spaces.\n\n\n\nGood:\n\npenguins |&gt;\n  filter(!is.na(body_mass_g)) |&gt;\n  group_by(species) |&gt;\n  summarize(avg_mass = mean(body_mass_g))\n\nNot so good (works, but much harder to read):\n\npenguins |&gt; filter(!is.na(body_mass_g)) |&gt; group_by(species) |&gt; summarize(avg_mass = mean(body_mass_g))"
   },
   {
     "objectID": "weeks/week1/day5-pipe-slides.html#vs.",
     "href": "weeks/week1/day5-pipe-slides.html#vs.",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "|> vs. %>%",
-    "text": "|&gt; vs. %&gt;%\nYou will see two pipe operators in R code online:\n\nThe two pipes in R.\n\n\n\n\n\n\n\nPipe\nWhere it comes from\nWhen introduced\n\n\n\n\n%&gt;%\nThe magrittr package (and tidyverse)\n2014\n\n\n\\|&gt;\nBase R\n2021\n\n\n\nThey do almost the same thing. For everything we’ll cover in this course, they behave identically."
+    "text": "|&gt; vs. %&gt;%\nYou will see two pipe operators in R code online:\n\nThe two pipes in R.\n\n\n\n\n\n\n\nPipe\nWhere it comes from\nWhen introduced\n\n\n\n\n%&gt;%\nThe magrittr package (and tidyverse)\n2014\n\n\n\\|&gt;\nBase R\n2021\n\n\n\nThey do almost the same thing. There are slight differences, but for the purposes of this course, the distinction is not very significant."
   },
   {
     "objectID": "weeks/week1/day5-pipe-slides.html#why-two-pipes",
     "href": "weeks/week1/day5-pipe-slides.html#why-two-pipes",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "Why two pipes?",
-    "text": "Why two pipes?\n\n%&gt;% came first. It’s the original tidyverse pipe.\nBase R added |&gt; later because the pipe became so popular they wanted it built in.\nThe textbook (Data Computing) uses %&gt;%.\nI’ll use |&gt; in lecture going forward — it’s the modern default.\n\n\n\n\n\n\n\nNote\n\n\nYou can use either one. I’ll accept both on assignments. Just be consistent within a single document."
+    "text": "Why two pipes?\n\n%&gt;% came first. It’s the original tidyverse pipe from the magrittr package.\nBase R added |&gt; later because the pipe became so popular they wanted it built in.\nNote that the textbook (Data Computing) uses %&gt;%; I’ll mostly use |&gt;.\n\n\n\n\n\n\n\nNote\n\n\nYou can use either one. But try to be consistent within a single document."
   },
   {
     "objectID": "weeks/week1/day5-pipe-slides.html#typing-the-pipe-quickly",
     "href": "weeks/week1/day5-pipe-slides.html#typing-the-pipe-quickly",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "Typing the pipe quickly",
     "text": "Typing the pipe quickly\nYou don’t have to type |&gt; character-by-character. RStudio has a shortcut:\n\nMac: Cmd + Shift + M\nWindows/Linux: Ctrl + Shift + M\n\n\n\n\n\n\n\nTip\n\n\nBy default, this shortcut inserts %&gt;%. To make it insert |&gt; instead:\nTools &gt; Global Options... &gt; Code &gt; Use native pipe operator"
   },
   {
     "objectID": "weeks/week1/day5-pipe-slides.html#translating-between-styles",
     "href": "weeks/week1/day5-pipe-slides.html#translating-between-styles",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "Translating between styles",
-    "text": "Translating between styles\nYou’ll see code in both styles all over the internet. Practice translating in your head.\nNested:\n\nhead(arrange(filter(penguins, species == \"Gentoo\"), body_mass_g), 5)\n\nPiped:\n\npenguins |&gt;\n  filter(species == \"Gentoo\") |&gt;\n  arrange(body_mass_g) |&gt;\n  head(5)\n\nSame result. Way easier to read the piped version."
+    "text": "Translating between styles\nYou’ll see code in both styles all over the internet. Practice translating in your head.\nNested:\n\nhead(arrange(filter(penguins, species == \"Gentoo\"), body_mass_g), 5)\n\nPiped:\n\npenguins |&gt;\n  filter(species == \"Gentoo\") |&gt;\n  arrange(body_mass_g) |&gt;\n  head(5)\n\nThis gives the same result, and is much easier to read the piped version."
   },
   {
-    "objectID": "weeks/week1/day5-pipe-slides.html#what-the-pipe-is-not",
-    "href": "weeks/week1/day5-pipe-slides.html#what-the-pipe-is-not",
-    "title": "%>% The pipe operator |>",
-    "section": "What the pipe is NOT",
-    "text": "What the pipe is NOT\n\n\n\n\n\n\nThe pipe doesn’t run things in parallel\n\n\nIt just rewrites your code. Each step still runs one at a time, in order.\n\n\n\n\n\n\n\n\n\nThe pipe is NOT the same as + in ggplot2\n\n\n\ndplyr and other data verbs: use |&gt; or %&gt;%.\nggplot2 layers: use +.\n\nThis trips everyone up. Keep them straight.\n\n\n\n\n# Correct:\npenguins |&gt;\n  filter(!is.na(body_mass_g)) |&gt;\n  ggplot(aes(x = body_mass_g)) +\n    geom_histogram()"
+    "objectID": "weeks/week1/day5-pipe-slides.html#limitations-of-the-pipe",
+    "href": "weeks/week1/day5-pipe-slides.html#limitations-of-the-pipe",
+    "title": "The pipe operator",
+    "section": "Limitations of the pipe",
+    "text": "Limitations of the pipe\n\n\n\n\n\n\nThe pipe doesn’t run things in parallel\n\n\nIt just rewrites your code. Each step still runs one at a time, in order.\n\n\n\n\n\n\n\n\n\nThe pipe is NOT the same as + in ggplot2\n\n\n\ndplyr and other data verbs: use |&gt; or %&gt;%.\nggplot2 layers: use + (it was developed before the pipe).\n\n\n\n\n\n# Correct:\npenguins |&gt;\n  filter(!is.na(body_mass_g)) |&gt;\n  ggplot(aes(x = body_mass_g)) +\n    geom_histogram()"
   },
   {
     "objectID": "weeks/week1/day5-pipe-slides.html#a-peek-at-whats-coming",
     "href": "weeks/week1/day5-pipe-slides.html#a-peek-at-whats-coming",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "A peek at what’s coming",
-    "text": "A peek at what’s coming\nYou’ll see the pipe everywhere from here on out. Tomorrow we start the dplyr verbs:\n\nfilter() — pick rows\nselect() — pick columns\narrange() — sort\nmutate() — make new columns\nsummarize() — collapse to a single number\ngroup_by() — split into groups before summarizing\n\nEvery one of these is designed to be chained together with the pipe."
+    "text": "A peek at what’s coming\nYou’ll see the pipe very often from here on out. Next time we start the dplyr verbs:\n\nfilter() - pick rows\nselect() - pick columns\narrange() - sort\nmutate() - make new columns\nsummarize() - collapse to a single number\ngroup_by() - split into groups before summarizing\n\nEvery one of these is designed to be chained together with the pipe."
   },
   {
     "objectID": "weeks/week1/day5-pipe-slides.html#activity-pipe-practice-15-min",
     "href": "weeks/week1/day5-pipe-slides.html#activity-pipe-practice-15-min",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "Activity: pipe practice (~ 15 min)",
-    "text": "Activity: pipe practice (~ 15 min)\nWork individually or with a neighbor.\nSetup:\n\nOpen RStudio.\nNew R script. Save as day5-activity.R.\nAt the top:\n\n\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\nGoal: Translate between nested and piped code, then write your own."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-slides.html#activity-part-1-translate-to-piped",
-    "href": "weeks/week1/day5-pipe-slides.html#activity-part-1-translate-to-piped",
-    "title": "%>% The pipe operator |>",
-    "section": "Activity: Part 1 — translate to piped",
-    "text": "Activity: Part 1 — translate to piped\nRewrite each of these using the pipe |&gt;. Don’t run them yet — just rewrite the code.\n\n# 1\nsqrt(64)\n\n# 2\nmean(c(2, 4, 6, 8, 10))\n\n# 3\nround(sqrt(50), digits = 2)\n\n# 4\nhead(arrange(penguins, body_mass_g), 3)\n\nThen run both the original and your piped version. Confirm you get the same answer."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-slides.html#activity-part-2-translate-to-nested",
-    "href": "weeks/week1/day5-pipe-slides.html#activity-part-2-translate-to-nested",
-    "title": "%>% The pipe operator |>",
-    "section": "Activity: Part 2 — translate to nested",
-    "text": "Activity: Part 2 — translate to nested\nRewrite each of these without the pipe. Then run both versions.\n\n# 5\nc(1, 2, 3, 4, 5) |&gt; sum()\n\n# 6\npenguins |&gt; head(2)\n\n# 7\n9 |&gt; sqrt() |&gt; round(1)"
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-slides.html#activity-part-3-write-your-own",
-    "href": "weeks/week1/day5-pipe-slides.html#activity-part-3-write-your-own",
-    "title": "%>% The pipe operator |>",
-    "section": "Activity: Part 3 — write your own",
-    "text": "Activity: Part 3 — write your own\nWrite a single piped expression that:\n\nTakes penguins,\nKeeps only the rows where species is \"Adelie\",\nPicks just the first 5 rows.\n\n\n\n\n\n\n\nHint\n\n\nYou’ll need filter() and head(). Chain them with |&gt;.\n\n\n\nTo turn in: Save your script. We’ll check at the end of class."
+    "text": "Activity: pipe practice (~ 15 min)\n\nClick here for the activity\n\nTo turn in: Save your script. We’ll check at the end of class."
   },
   {
     "objectID": "weeks/week1/day5-pipe-slides.html#activity-debrief",
     "href": "weeks/week1/day5-pipe-slides.html#activity-debrief",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "Activity debrief",
-    "text": "Activity debrief\nCommon things to watch for:\n\nThe pipe goes at the END of the line, not the start. x |&gt; then a new line — not \\n |&gt; f().\nThe first argument is filled automatically. Don’t write penguins |&gt; filter(penguins, ...) — drop the first penguins.\n+ vs. |&gt; again. dplyr verbs chain with |&gt;; ggplot layers chain with +.\nParentheses still matter. f() not f. The pipe doesn’t change that."
+    "text": "Activity debrief\nCommon things to watch for:\n\nThe pipe goes at the end of the line, not the start. x |&gt; then a new line - not \\n |&gt; f().\nThe first argument is filled automatically. Don’t write penguins |&gt; filter(penguins, ...): drop the first penguins.\n+ vs. |&gt; again. dplyr verbs chain with |&gt;; ggplot layers chain with +.\nParentheses still matter. f() not f. The pipe doesn’t change that."
   },
   {
     "objectID": "weeks/week1/day5-pipe-slides.html#wrap-up-what-we-covered-today",
     "href": "weeks/week1/day5-pipe-slides.html#wrap-up-what-we-covered-today",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "Wrap-up: what we covered today",
     "text": "Wrap-up: what we covered today\n\nThe pipe operator (|&gt; or %&gt;%) takes the value on the left and feeds it as the first argument to the function on the right.\nPipes let you read code top-to-bottom in the order you’d actually do the work.\nEach step gets its own line; the pipe lives at the end of the previous line.\n|&gt; and %&gt;% are nearly interchangeable for our purposes.\ndplyr verbs chain with |&gt;; ggplot layers chain with +."
   },
   {
     "objectID": "weeks/week1/day5-pipe-slides.html#wrap-up-looking-ahead",
     "href": "weeks/week1/day5-pipe-slides.html#wrap-up-looking-ahead",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "Wrap-up & looking ahead",
     "text": "Wrap-up & looking ahead\nMonday: dplyr verbs — filter(), select(), arrange().\n\n\nUpcoming Deadlines\n\nToday, 11:59 p.m. — HW 1: Basic R & Plots\nMon 5/25, before class — DC §7 reading (Canvas link TBA)\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · Data Computing"
   },
   {
     "objectID": "weeks/week1/day5-pipe-page.html",
     "href": "weeks/week1/day5-pipe-page.html",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "",
     "text": "NoteToday: Friday May 22\n\n\n\nBefore class\n\nRead Data Computing §3.6 (Click here).\n\nPlan for today\n\nQuiz 1 (20 min)\nThe pipe operator\nChaining commands together\nIn-class activity\n\nHelpful links\n\nSyllabus · AI policy · Schedule · Data Computing §3.6"
   },
   {
     "objectID": "weeks/week1/day5-pipe-page.html#quiz-1-instructions",
     "href": "weeks/week1/day5-pipe-page.html#quiz-1-instructions",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "Quiz 1 — instructions",
-    "text": "Quiz 1 — instructions\n\n\n\n\n\n\nImportantClosed-book, no AI, no electronics\n\n\n\n\nPut away phones and laptops.\nYou may use a pen or pencil.\n20 minutes.\nI’ll hand out the quiz now and collect it at the end.\n\n\n\nTopics covered:\n\nR as a calculator and basic syntax\nData types and structures\nObjects and assignment\nReading R code (functions, arguments, variables, constants)\nPackages: installing vs. loading\nHistograms in ggplot2 (reading code, not writing from scratch)\n\nWhen you finish early, flip your quiz face-down and wait quietly."
+    "text": "Quiz 1 — instructions\n\n\n\n\n\n\nImportantClosed-book, no AI, no electronics\n\n\n\n\nPut away phones and laptops.\nYou may use a pen or pencil.\n20 minutes.\n\n\n\nTopics covered:\n\nR as a calculator and basic syntax\nData types and structures\nObjects and assignment\nReading R code (functions, arguments, variables, constants)\nPackages: installing vs. loading\nHistograms in ggplot2 (reading code, not writing from scratch)\n\nWhen you finish, bring your quiz up to the front."
   },
   {
     "objectID": "weeks/week1/day5-pipe-page.html#quiz-debrief",
     "href": "weeks/week1/day5-pipe-page.html#quiz-debrief",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "Quiz debrief",
-    "text": "Quiz debrief\nA few quick notes:\n\nWe’ll go over common stumbling points on Monday after I’ve graded them.\nIf you finished with time to spare: nice.\nIf you didn’t finish: don’t panic. Quizzes are 15% of the grade, weighted across the semester.\n\nNow let’s get into something new."
+    "text": "Quiz debrief\n\nWe’ll go over common stumbling points on Monday after I’ve graded them."
   },
   {
     "objectID": "weeks/week1/day5-pipe-page.html#a-problem-weve-already-seen",
     "href": "weeks/week1/day5-pipe-page.html#a-problem-weve-already-seen",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "A problem we’ve already seen",
-    "text": "A problem we’ve already seen\nRemember this slide from Wednesday?\n\nsqrt(mean(c(1, 4, 9, 16, 25)))\n\n[1] 3.316625\n\n\nTo read this, your eye has to jump inside-out:\n\nFirst c(1, 4, 9, 16, 25) makes a vector.\nThen mean(...) of that vector is 11.\nThen sqrt(11) is ≈ 3.317.\n\nThat’s already tough. Imagine four or five nested functions."
+    "text": "A problem we’ve already seen\nRemember this code from Wednesday?\n\nsqrt(mean(c(1, 4, 9, 16, 25)))\n\n[1] 3.316625\n\n\nThis should be read from the inside-out:\n\nFirst c(1, 4, 9, 16, 25) makes a vector.\nThen mean(...) of that vector is 11.\nThen sqrt(11) is \\(\\approx\\) 3.317.\n\nAs the number of functions you nest grows, the harder and harder it gets to read."
   },
   {
     "objectID": "weeks/week1/day5-pipe-page.html#a-real-example",
     "href": "weeks/week1/day5-pipe-page.html#a-real-example",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "A real example",
-    "text": "A real example\nSuppose we want to:\n\nTake the penguins data,\nKeep only rows where body_mass_g is not missing,\nGroup by species,\nCompute the mean body mass for each species.\n\nWritten with nested function calls:\n\nsummarize(\n  group_by(\n    filter(penguins, !is.na(body_mass_g)),\n    species\n  ),\n  avg_mass = mean(body_mass_g)\n)\n\nYou have to read it from the inside out, and the arguments get separated from their functions. Ugh."
+    "text": "A real example\nSuppose we want to:\n\nTake the penguins data,\nKeep only rows where body_mass_g is not missing,\nGroup by species,\nCompute the mean body mass for each species.\n\nWritten with nested function calls:\n\nsummarize(\n  group_by(\n    filter(penguins, !is.na(body_mass_g)),\n    species\n  ),\n  avg_mass = mean(body_mass_g)\n)\n\nYou have to read it from the inside out, and the arguments get separated from their functions. This is not ideal or intuitive for humans."
   },
   {
     "objectID": "weeks/week1/day5-pipe-page.html#enter-the-pipe",
     "href": "weeks/week1/day5-pipe-page.html#enter-the-pipe",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "Enter the pipe",
-    "text": "Enter the pipe\nThe pipe operator lets you read code left-to-right, top-to-bottom — the way you actually think about it.\n\npenguins |&gt;\n  filter(!is.na(body_mass_g)) |&gt;\n  group_by(species) |&gt;\n  summarize(avg_mass = mean(body_mass_g))\n\nRead this as:\n\n“Take penguins, then filter out missing values, then group by species, then summarize the average mass.”\n\nThat’s it. That’s the whole idea."
+    "text": "Enter the pipe\nThe pipe operator lets you read code left-to-right, top-to-bottom, which is the way you actually think about it.\n\npenguins |&gt;\n  filter(!is.na(body_mass_g)) |&gt;\n  group_by(species) |&gt;\n  summarize(avg_mass = mean(body_mass_g))\n\nRead this as:\n\n“Take penguins, then filter out missing values, then group by species, then summarize the average mass.”\n\nThat’s it. That’s the whole idea."
   },
   {
     "objectID": "weeks/week1/day5-pipe-page.html#what-the-pipe-does",
     "href": "weeks/week1/day5-pipe-page.html#what-the-pipe-does",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "What the pipe does",
     "text": "What the pipe does\nx |&gt; f()\nis exactly the same as\nf(x)\nThe pipe takes whatever’s on the left and inserts it as the first argument to the function on the right.\n\n# These do the same thing:\nsqrt(16)\n\n[1] 4\n\n16 |&gt; sqrt()\n\n[1] 4"
   },
   {
     "objectID": "weeks/week1/day5-pipe-page.html#with-multiple-arguments",
     "href": "weeks/week1/day5-pipe-page.html#with-multiple-arguments",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "With multiple arguments",
     "text": "With multiple arguments\nx |&gt; f(arg2, arg3)\nis the same as\nf(x, arg2, arg3)\nThe pipe always fills the first argument; the rest go inside the parentheses as usual.\n\n# Without the pipe:\nround(3.14159, digits = 2)\n\n[1] 3.14\n\n# With the pipe:\n3.14159 |&gt; round(digits = 2)\n\n[1] 3.14"
   },
   {
     "objectID": "weeks/week1/day5-pipe-page.html#chaining-pipes",
     "href": "weeks/week1/day5-pipe-page.html#chaining-pipes",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "Chaining pipes",
-    "text": "Chaining pipes\nThe real power: you can chain pipes together to do many steps in order.\n\nc(1, 4, 9, 16, 25) |&gt;\n  mean() |&gt;\n  sqrt()\n\n[1] 3.316625\n\n\nCompare to the nested version:\n\nsqrt(mean(c(1, 4, 9, 16, 25)))\n\n[1] 3.316625\n\n\nSame answer. The piped version reads in the order you do the work."
+    "text": "Chaining pipes\nIt is very useful to chain pipes together to do many steps in order.\n\nc(1, 4, 9, 16, 25) |&gt;\n  mean() |&gt;\n  sqrt()\n\n[1] 3.316625\n\n\nCompare to the nested version:\n\nsqrt(mean(c(1, 4, 9, 16, 25)))\n\n[1] 3.316625\n\n\nHere, we get the same answer. The piped version reads in the order you do the work."
   },
   {
     "objectID": "weeks/week1/day5-pipe-page.html#style-one-pipe-per-line",
     "href": "weeks/week1/day5-pipe-page.html#style-one-pipe-per-line",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "Style: one pipe per line",
-    "text": "Style: one pipe per line\n\n\n\n\n\n\nTipConvention\n\n\n\nPut each pipe step on its own line, with the |&gt; at the end of the previous line.\nIndent the continuation by 2 spaces.\n\n\nGood:\n\npenguins |&gt;\n  filter(!is.na(body_mass_g)) |&gt;\n  group_by(species) |&gt;\n  summarize(avg_mass = mean(body_mass_g))\n\nNot so good (works, but harder to read):\n\npenguins |&gt; filter(!is.na(body_mass_g)) |&gt; group_by(species) |&gt; summarize(avg_mass = mean(body_mass_g))"
+    "text": "Style: one pipe per line\n\n\n\n\n\n\nTipConvention\n\n\n\nPut each pipe step on its own line, with the |&gt; at the end of the previous line.\nIndent the continuation by 2 spaces.\n\n\nGood:\n\npenguins |&gt;\n  filter(!is.na(body_mass_g)) |&gt;\n  group_by(species) |&gt;\n  summarize(avg_mass = mean(body_mass_g))\n\nNot so good (works, but much harder to read):\n\npenguins |&gt; filter(!is.na(body_mass_g)) |&gt; group_by(species) |&gt; summarize(avg_mass = mean(body_mass_g))"
   },
   {
     "objectID": "weeks/week1/day5-pipe-page.html#vs.",
     "href": "weeks/week1/day5-pipe-page.html#vs.",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "|> vs. %>%",
-    "text": "|&gt; vs. %&gt;%\nYou will see two pipe operators in R code online:\n\nThe two pipes in R.\n\n\n\n\n\n\n\nPipe\nWhere it comes from\nWhen introduced\n\n\n\n\n%&gt;%\nThe magrittr package (and tidyverse)\n2014\n\n\n\\|&gt;\nBase R\n2021\n\n\n\nThey do almost the same thing. For everything we’ll cover in this course, they behave identically."
+    "text": "|&gt; vs. %&gt;%\nYou will see two pipe operators in R code online:\n\nThe two pipes in R.\n\n\n\n\n\n\n\nPipe\nWhere it comes from\nWhen introduced\n\n\n\n\n%&gt;%\nThe magrittr package (and tidyverse)\n2014\n\n\n\\|&gt;\nBase R\n2021\n\n\n\nThey do almost the same thing. There are slight differences, but for the purposes of this course, the distinction is not very significant."
   },
   {
     "objectID": "weeks/week1/day5-pipe-page.html#why-two-pipes",
     "href": "weeks/week1/day5-pipe-page.html#why-two-pipes",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "Why two pipes?",
-    "text": "Why two pipes?\n\n%&gt;% came first. It’s the original tidyverse pipe.\nBase R added |&gt; later because the pipe became so popular they wanted it built in.\nThe textbook (Data Computing) uses %&gt;%.\nI’ll use |&gt; in lecture going forward — it’s the modern default.\n\n\n\n\n\n\n\nNote\n\n\n\nYou can use either one. I’ll accept both on assignments. Just be consistent within a single document."
+    "text": "Why two pipes?\n\n%&gt;% came first. It’s the original tidyverse pipe from the magrittr package.\nBase R added |&gt; later because the pipe became so popular they wanted it built in.\nNote that the textbook (Data Computing) uses %&gt;%; I’ll mostly use |&gt;.\n\n\n\n\n\n\n\nNote\n\n\n\nYou can use either one. But try to be consistent within a single document."
   },
   {
     "objectID": "weeks/week1/day5-pipe-page.html#typing-the-pipe-quickly",
     "href": "weeks/week1/day5-pipe-page.html#typing-the-pipe-quickly",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "Typing the pipe quickly",
     "text": "Typing the pipe quickly\nYou don’t have to type |&gt; character-by-character. RStudio has a shortcut:\n\nMac: Cmd + Shift + M\nWindows/Linux: Ctrl + Shift + M\n\n\n\n\n\n\n\nTip\n\n\n\nBy default, this shortcut inserts %&gt;%. To make it insert |&gt; instead:\nTools &gt; Global Options... &gt; Code &gt; Use native pipe operator"
   },
   {
     "objectID": "weeks/week1/day5-pipe-page.html#translating-between-styles",
     "href": "weeks/week1/day5-pipe-page.html#translating-between-styles",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "Translating between styles",
-    "text": "Translating between styles\nYou’ll see code in both styles all over the internet. Practice translating in your head.\nNested:\n\nhead(arrange(filter(penguins, species == \"Gentoo\"), body_mass_g), 5)\n\nPiped:\n\npenguins |&gt;\n  filter(species == \"Gentoo\") |&gt;\n  arrange(body_mass_g) |&gt;\n  head(5)\n\nSame result. Way easier to read the piped version."
+    "text": "Translating between styles\nYou’ll see code in both styles all over the internet. Practice translating in your head.\nNested:\n\nhead(arrange(filter(penguins, species == \"Gentoo\"), body_mass_g), 5)\n\nPiped:\n\npenguins |&gt;\n  filter(species == \"Gentoo\") |&gt;\n  arrange(body_mass_g) |&gt;\n  head(5)\n\nThis gives the same result, and is much easier to read the piped version."
   },
   {
-    "objectID": "weeks/week1/day5-pipe-page.html#what-the-pipe-is-not",
-    "href": "weeks/week1/day5-pipe-page.html#what-the-pipe-is-not",
-    "title": "%>% The pipe operator |>",
-    "section": "What the pipe is NOT",
-    "text": "What the pipe is NOT\n\n\n\n\n\n\nWarningThe pipe doesn’t run things in parallel\n\n\n\nIt just rewrites your code. Each step still runs one at a time, in order.\n\n\n\n\n\n\n\n\nWarningThe pipe is NOT the same as + in ggplot2\n\n\n\n\ndplyr and other data verbs: use |&gt; or %&gt;%.\nggplot2 layers: use +.\n\nThis trips everyone up. Keep them straight.\n\n\n\n# Correct:\npenguins |&gt;\n  filter(!is.na(body_mass_g)) |&gt;\n  ggplot(aes(x = body_mass_g)) +\n    geom_histogram()"
+    "objectID": "weeks/week1/day5-pipe-page.html#limitations-of-the-pipe",
+    "href": "weeks/week1/day5-pipe-page.html#limitations-of-the-pipe",
+    "title": "The pipe operator",
+    "section": "Limitations of the pipe",
+    "text": "Limitations of the pipe\n\n\n\n\n\n\nWarningThe pipe doesn’t run things in parallel\n\n\n\nIt just rewrites your code. Each step still runs one at a time, in order.\n\n\n\n\n\n\n\n\nWarningThe pipe is NOT the same as + in ggplot2\n\n\n\n\ndplyr and other data verbs: use |&gt; or %&gt;%.\nggplot2 layers: use + (it was developed before the pipe).\n\n\n\n\n# Correct:\npenguins |&gt;\n  filter(!is.na(body_mass_g)) |&gt;\n  ggplot(aes(x = body_mass_g)) +\n    geom_histogram()"
   },
   {
     "objectID": "weeks/week1/day5-pipe-page.html#a-peek-at-whats-coming",
     "href": "weeks/week1/day5-pipe-page.html#a-peek-at-whats-coming",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "A peek at what’s coming",
-    "text": "A peek at what’s coming\nYou’ll see the pipe everywhere from here on out. Tomorrow we start the dplyr verbs:\n\nfilter() — pick rows\nselect() — pick columns\narrange() — sort\nmutate() — make new columns\nsummarize() — collapse to a single number\ngroup_by() — split into groups before summarizing\n\nEvery one of these is designed to be chained together with the pipe."
+    "text": "A peek at what’s coming\nYou’ll see the pipe very often from here on out. Next time we start the dplyr verbs:\n\nfilter() - pick rows\nselect() - pick columns\narrange() - sort\nmutate() - make new columns\nsummarize() - collapse to a single number\ngroup_by() - split into groups before summarizing\n\nEvery one of these is designed to be chained together with the pipe."
   },
   {
     "objectID": "weeks/week1/day5-pipe-page.html#activity-pipe-practice-15-min",
     "href": "weeks/week1/day5-pipe-page.html#activity-pipe-practice-15-min",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "Activity: pipe practice (~ 15 min)",
-    "text": "Activity: pipe practice (~ 15 min)\nWork individually or with a neighbor.\nSetup:\n\nOpen RStudio.\nNew R script. Save as day5-activity.R.\nAt the top:\n\n\nlibrary(tidyverse)\nlibrary(palmerpenguins)\n\nGoal: Translate between nested and piped code, then write your own."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-page.html#activity-part-1-translate-to-piped",
-    "href": "weeks/week1/day5-pipe-page.html#activity-part-1-translate-to-piped",
-    "title": "%>% The pipe operator |>",
-    "section": "Activity: Part 1 — translate to piped",
-    "text": "Activity: Part 1 — translate to piped\nRewrite each of these using the pipe |&gt;. Don’t run them yet — just rewrite the code.\n\n# 1\nsqrt(64)\n\n# 2\nmean(c(2, 4, 6, 8, 10))\n\n# 3\nround(sqrt(50), digits = 2)\n\n# 4\nhead(arrange(penguins, body_mass_g), 3)\n\nThen run both the original and your piped version. Confirm you get the same answer."
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-page.html#activity-part-2-translate-to-nested",
-    "href": "weeks/week1/day5-pipe-page.html#activity-part-2-translate-to-nested",
-    "title": "%>% The pipe operator |>",
-    "section": "Activity: Part 2 — translate to nested",
-    "text": "Activity: Part 2 — translate to nested\nRewrite each of these without the pipe. Then run both versions.\n\n# 5\nc(1, 2, 3, 4, 5) |&gt; sum()\n\n# 6\npenguins |&gt; head(2)\n\n# 7\n9 |&gt; sqrt() |&gt; round(1)"
-  },
-  {
-    "objectID": "weeks/week1/day5-pipe-page.html#activity-part-3-write-your-own",
-    "href": "weeks/week1/day5-pipe-page.html#activity-part-3-write-your-own",
-    "title": "%>% The pipe operator |>",
-    "section": "Activity: Part 3 — write your own",
-    "text": "Activity: Part 3 — write your own\nWrite a single piped expression that:\n\nTakes penguins,\nKeeps only the rows where species is \"Adelie\",\nPicks just the first 5 rows.\n\n\n\n\n\n\n\nTipHint\n\n\n\nYou’ll need filter() and head(). Chain them with |&gt;.\n\n\nTo turn in: Save your script. We’ll check at the end of class."
+    "text": "Activity: pipe practice (~ 15 min)\n\nClick here for the activity\n\nTo turn in: Save your script. We’ll check at the end of class."
   },
   {
     "objectID": "weeks/week1/day5-pipe-page.html#activity-debrief",
     "href": "weeks/week1/day5-pipe-page.html#activity-debrief",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "Activity debrief",
-    "text": "Activity debrief\nCommon things to watch for:\n\nThe pipe goes at the END of the line, not the start. x |&gt; then a new line — not \\n |&gt; f().\nThe first argument is filled automatically. Don’t write penguins |&gt; filter(penguins, ...) — drop the first penguins.\n+ vs. |&gt; again. dplyr verbs chain with |&gt;; ggplot layers chain with +.\nParentheses still matter. f() not f. The pipe doesn’t change that."
+    "text": "Activity debrief\nCommon things to watch for:\n\nThe pipe goes at the end of the line, not the start. x |&gt; then a new line - not \\n |&gt; f().\nThe first argument is filled automatically. Don’t write penguins |&gt; filter(penguins, ...): drop the first penguins.\n+ vs. |&gt; again. dplyr verbs chain with |&gt;; ggplot layers chain with +.\nParentheses still matter. f() not f. The pipe doesn’t change that."
   },
   {
     "objectID": "weeks/week1/day5-pipe-page.html#wrap-up-what-we-covered-today",
     "href": "weeks/week1/day5-pipe-page.html#wrap-up-what-we-covered-today",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "Wrap-up: what we covered today",
     "text": "Wrap-up: what we covered today\n\nThe pipe operator (|&gt; or %&gt;%) takes the value on the left and feeds it as the first argument to the function on the right.\nPipes let you read code top-to-bottom in the order you’d actually do the work.\nEach step gets its own line; the pipe lives at the end of the previous line.\n|&gt; and %&gt;% are nearly interchangeable for our purposes.\ndplyr verbs chain with |&gt;; ggplot layers chain with +."
   },
   {
     "objectID": "weeks/week1/day5-pipe-page.html#wrap-up-looking-ahead",
     "href": "weeks/week1/day5-pipe-page.html#wrap-up-looking-ahead",
-    "title": "%>% The pipe operator |>",
+    "title": "The pipe operator",
     "section": "Wrap-up & looking ahead",
     "text": "Wrap-up & looking ahead\nMonday: dplyr verbs — filter(), select(), arrange().\n\n\nUpcoming Deadlines\n\nToday, 11:59 p.m. — HW 1: Basic R & Plots\nMon 5/25, before class — DC §7 reading (Canvas link TBA)\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · Data Computing"
   },
