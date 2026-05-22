@@ -1,5 +1,5 @@
 ---
-title: "`%>%` The pipe operator `|>`"
+title: "The pipe operator"
 subtitle: "Day 5 - Friday, May 22, 2026"
 lang: en
 format:
@@ -56,7 +56,6 @@ library(palmerpenguins)
 - Put away phones and laptops.
 - You may use a pen or pencil.
 - 20 minutes.
-- I'll hand out the quiz now and collect it at the end.
 :::
 
 **Topics covered:**
@@ -68,36 +67,30 @@ library(palmerpenguins)
 - Packages: installing vs. loading
 - Histograms in `ggplot2` (reading code, not writing from scratch)
 
-When you finish early, flip your quiz face-down and wait quietly.
+When you finish, bring your quiz up to the front.
 
 ## Quiz debrief
 
-A few quick notes:
-
 - We'll go over common stumbling points on Monday after I've graded them.
-- If you finished with time to spare: nice.
-- If you didn't finish: don't panic. Quizzes are 15% of the grade, weighted across the semester.
-
-Now let's get into something new.
 
 # The pipe operator {background-color="#001E44"}
 
 ## A problem we've already seen
 
-Remember this slide from Wednesday?
+Remember this code from Wednesday?
 
 ```{r}
 #| echo: TRUE
 sqrt(mean(c(1, 4, 9, 16, 25)))
 ```
 
-To read this, your eye has to jump **inside-out**:
+This should be read from the **inside-out**:
 
 1. First `c(1, 4, 9, 16, 25)` makes a vector.
 2. Then `mean(...)` of that vector is `11`.
-3. Then `sqrt(11)` is `≈ 3.317`.
+3. Then `sqrt(11)` is $\approx$ `3.317`.
 
-That's already tough. Imagine four or five nested functions.
+As the number of functions you nest grows, the harder and harder it gets to read.
 
 ## A real example
 
@@ -122,11 +115,11 @@ summarize(
 )
 ```
 
-You have to read it from the **inside out**, and the arguments get separated from their functions. Ugh.
+You have to read it from the **inside out**, and the arguments get separated from their functions. This is not ideal or intuitive for humans. 
 
 ## Enter the pipe
 
-The **pipe operator** lets you read code left-to-right, top-to-bottom — the way you actually think about it.
+The **pipe operator** lets you read code left-to-right, top-to-bottom, which is the way you actually think about it.
 
 ```{r}
 #| eval: FALSE
@@ -190,7 +183,7 @@ round(3.14159, digits = 2)
 
 ## Chaining pipes
 
-The real power: you can chain pipes together to do many steps in order.
+It is very useful to chain pipes together to do many steps in order.
 
 ```{r}
 #| echo: TRUE
@@ -206,7 +199,7 @@ Compare to the nested version:
 sqrt(mean(c(1, 4, 9, 16, 25)))
 ```
 
-Same answer. The piped version reads in the order you do the work.
+Here, we get the same answer. The piped version reads in the order you do the work.
 
 ## Style: one pipe per line
 
@@ -228,7 +221,7 @@ penguins |>
   summarize(avg_mass = mean(body_mass_g))
 ```
 
-Not so good (works, but harder to read):
+Not so good (works, but much harder to read):
 
 ```{r}
 #| eval: FALSE
@@ -249,17 +242,16 @@ You will see **two** pipe operators in R code online:
 
 : The two pipes in R. {tbl-colwidths="[20,50,30]"}
 
-They do **almost the same thing**. For everything we'll cover in this course, they behave identically.
+They do **almost the same thing**. There are slight differences, but for the purposes of this course, the distinction is not very significant. 
 
 ## Why two pipes?
 
-- `%>%` came first. It's the original tidyverse pipe.
+- `%>%` came first. It's the original tidyverse pipe from the magrittr package.
 - Base R added `|>` later because the pipe became so popular they wanted it built in.
-- The textbook (*Data Computing*) uses `%>%`.
-- I'll use `|>` in lecture going forward — it's the modern default.
+- Note that the textbook (*Data Computing*) uses `%>%`; I'll mostly use `|>`.
 
 ::: {.callout-note}
-**You can use either one.** I'll accept both on assignments. Just be consistent within a single document.
+**You can use either one.** But try to be consistent within a single document.
 :::
 
 ## Typing the pipe quickly
@@ -300,9 +292,9 @@ penguins |>
   head(5)
 ```
 
-Same result. **Way** easier to read the piped version.
+This gives the same result, and is **much** easier to read the piped version.
 
-## What the pipe is NOT
+## Limitations of the pipe
 
 ::: {.callout-warning}
 ## The pipe doesn't run things in parallel
@@ -312,9 +304,7 @@ It just rewrites your code. Each step still runs one at a time, in order.
 ::: {.callout-warning}
 ## The pipe is NOT the same as `+` in ggplot2
 - `dplyr` and other data verbs: use `|>` or `%>%`.
-- `ggplot2` layers: use `+`.
-
-This trips everyone up. Keep them straight.
+- `ggplot2` layers: use `+` (it was developed before the pipe).
 :::
 
 ```{r}
@@ -329,14 +319,14 @@ penguins |>
 
 ## A peek at what's coming
 
-You'll see the pipe everywhere from here on out. Tomorrow we start the **dplyr** verbs:
+You'll see the pipe very often from here on out. Next time we start the **dplyr** verbs:
 
-- `filter()` — pick rows
-- `select()` — pick columns
-- `arrange()` — sort
-- `mutate()` — make new columns
-- `summarize()` — collapse to a single number
-- `group_by()` — split into groups before summarizing
+- `filter()` - pick rows
+- `select()` - pick columns
+- `arrange()` - sort
+- `mutate()` - make new columns
+- `summarize()` - collapse to a single number
+- `group_by()` - split into groups before summarizing
 
 Every one of these is designed to be chained together with the pipe.
 
@@ -344,74 +334,7 @@ Every one of these is designed to be chained together with the pipe.
 
 ## Activity: pipe practice (~ 15 min)
 
-Work individually or with a neighbor.
-
-**Setup:**
-
-1. Open RStudio.
-2. New R script. Save as `day5-activity.R`.
-3. At the top:
-
-```{r}
-#| eval: FALSE
-#| echo: TRUE
-library(tidyverse)
-library(palmerpenguins)
-```
-
-**Goal:** Translate between nested and piped code, then write your own.
-
-## Activity: Part 1 — translate to piped
-
-Rewrite each of these using the pipe `|>`. Don't run them yet — just rewrite the code.
-
-```{r}
-#| eval: FALSE
-#| echo: TRUE
-# 1
-sqrt(64)
-
-# 2
-mean(c(2, 4, 6, 8, 10))
-
-# 3
-round(sqrt(50), digits = 2)
-
-# 4
-head(arrange(penguins, body_mass_g), 3)
-```
-
-Then run both the original and your piped version. Confirm you get the same answer.
-
-## Activity: Part 2 — translate to nested
-
-Rewrite each of these **without** the pipe. Then run both versions.
-
-```{r}
-#| eval: FALSE
-#| echo: TRUE
-# 5
-c(1, 2, 3, 4, 5) |> sum()
-
-# 6
-penguins |> head(2)
-
-# 7
-9 |> sqrt() |> round(1)
-```
-
-## Activity: Part 3 — write your own
-
-Write a single piped expression that:
-
-1. Takes `penguins`,
-2. Keeps only the rows where `species` is `"Adelie"`,
-3. Picks just the first 5 rows.
-
-::: {.callout-tip}
-## Hint
-You'll need `filter()` and `head()`. Chain them with `|>`.
-:::
+- [Click here for the activity](https://psu.instructure.com/courses/2487468/assignments/18315110)
 
 **To turn in:** Save your script. We'll check at the end of class.
 
@@ -419,8 +342,8 @@ You'll need `filter()` and `head()`. Chain them with `|>`.
 
 Common things to watch for:
 
-- **The pipe goes at the END of the line**, not the start. `x |>` then a new line — not `\n |> f()`.
-- **The first argument is filled automatically.** Don't write `penguins |> filter(penguins, ...)` — drop the first `penguins`.
+- **The pipe goes at the end of the line**, not the start. `x |>` then a new line - not `\n |> f()`.
+- **The first argument is filled automatically.** Don't write `penguins |> filter(penguins, ...)`: drop the first `penguins`.
 - **`+` vs. `|>` again.** dplyr verbs chain with `|>`; ggplot layers chain with `+`.
 - **Parentheses still matter.** `f()` not `f`. The pipe doesn't change that.
 

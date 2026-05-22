@@ -1,165 +1,160 @@
-### ------------------------------------------------------------------------ ###
-### WARNING: DO NOT RUN or RENDER THIS
-### SIMPLY USE THIS TO READ THROUGH AND TYPE OUT OR COPY/PASTE CODE AS NEEDED
-### ------------------------------------------------------------------------ ###
-## Activity: Your First Quarto Report
+---
+title: "Day 4 Activity"
+output: html
+embed-resources: TRUE
+execute: 
+  echo: FALSE
+---
 
-You'll build a short Quarto report from scratch. Take 20 minutes for this 
-activity.
+```{r}
+#| label: setup
+#| include: FALSE
+
+library(tidyverse)
+library(palmerpenguins)
+```
+
+# Activity: Your First Quarto Report
+
+You'll build a short Quarto report from scratch. Take 20 minutes for this activity.
 
 **Setup:**
 
 1. Open RStudio.
 2. `File > New File > Quarto Document...`
-3. Title: **"Penguin Exploration"**, Author: your name.
+3. Title: "**Penguin Exploration**", Author: your name.
 4. Pick **HTML** as the format.
-5. **Uncheck** "Use visual markdown editor" if you want to see the raw source 
-   (recommended for learning today).
+5. **Uncheck** "Use visual markdown editor" if you want to see the raw source.
 6. Click **Create**.
 
-You'll get a template document, potentially with example content. **Delete 
-anything below the YAML header if present.** Keep the YAML.
+You'll get a template document, potentially with example content. **Delete anything below the YAML header if present.** Keep the YAML.
 
 **Step 1 - Save the file**
-  
-  `File > Save As...`: call it `penguin-report.qmd`, save somewhere you'll 
-  find it.
 
-**Step 2 - Upgrade your YAML**
+`File > Save As...`: call it `penguin-report.qmd`, save somewhere you'll know where to find it. 
 
-Let's make the HTML output look professional right away. Modify the top of 
-your document (between the `---` lines) to add a Table of Contents (`toc`) 
-and a custom theme. **Watch your indentation—YAML is picky.**
+**Step 2 - Save the provided image**
 
-```yaml
+Place your downloaded `fig-mass-histogram-1.png` in the **same folder** where you saved `penguin-report.qmd`. 
+
+**Step 3 - Upgrade your YAML**
+
+We can make the HTML output look professional right away. Modify the top of your document (between the `---` lines) to add a Table of Contents (`toc`) and a custom theme. **Be careful with indentation (use spaces instead of tabs) since YAML can be picky**.
+
+````markdown
 ---
 title: "Penguin Exploration"
 author: "Your Name"
-format: 
+format:
   html:
-    toc: true
-    theme: litera
+    toc: TRUE
+      theme: litera
+embed-resources: TRUE
 ---
-```
+````
+
+Be sure to include `embed-resources: TRUE` to ensure Quarto packages the entire document (CSS styles, JavaScript libraries, fonts, images) into one, self-contained HTML file. This enables offline viewing of the document and ensures that all content you create will be saved in the html file you submit on Canvas. 
 
 DON'T FORGET: *Render and open your html file to see if it worked.*
 
-**Step 3 - Add a setup chunk**
+**Step 4 - Add a setup chunk**
 
-Insert a code chunk (`Ctrl + Alt + I` on Windows or `Cmd + Option + I` on Mac). 
-Make it look like this:
+Insert a code chunk (`Ctrl + Alt + I` on Windows or `Cmd + Option + I on Mac). Make it look like this:
 
 ````markdown
-```{r}
+```{{r}}
 #| label: setup
-#| include: false
+#| include: FALSE
 
 library(tidyverse)
 library(palmerpenguins)
 ```
 ````
-
 DON'T FORGET: *Render and open your html file to see if it worked.*
 
-**Step 4 - Write an intro with a link, an image, and inline code**
+**Step 5 - Write an intro with a link, an image, and inline code**
 
-Below the setup chunk, add a heading and a paragraph. 
+Below the setup chunk, add a heading and a paragraph.
 
 Notice three new Markdown features here:
 
-  1. **Images:** Formatted as `![alt text](url)`. We're pulling the package 
-     hex logo straight from the web and using Quarto's `{width}` and 
-     `fig-align` attributes to float it to the right.
-  2. **Hyperlinks:** Formatted as `[text](url)`.
-  3. **Inline code:** The backticks around `r nrow(penguins)` will 
-     automatically calculate the number of rows in the dataset when you render.
+1. **Images:** Formatted as `![caption](path/to/image)`. We're pulling the package hex logo straight from the web and using Quarto's `{width}` and `fig-align` attributes to float it to the right.
+2. **Hyperlinks:** Formatted as `[text](url)`
+3. **Inline code:** The backticks around `` `r knitr::inline_expr("nrow(penguins)")` `` will automatically calculate the number of rows in the dataset when you render.
 
-Copy this into your document:
+Copy and paste this into your document:
 
-```markdown
+``` markdown
 # Introduction
 
 ![]([https://allisonhorst.github.io/palmerpenguins/logo.png](https://allisonhorst.github.io/palmerpenguins/logo.png)){width="120" fig-align="right"}
 
 This report explores the [**Palmer Penguins**](https://allisonhorst.github.io/palmerpenguins/) 
-data set, which contains measurements on `r nrow(penguins)` penguins from 
+data set, which contains measurements on 344 penguins from 
 three islands in Antarctica.
 ```
 
 DON'T FORGET: *Render and open your html file to see if it worked.*
 
-**Step 5 - Add a plot**
+**Step 6 - Add a plot**
 
-Insert appropriate headings and another chunk (see if you can remember the 
-keyboard shortcut for adding a chunk.) Then put a histogram in your new chunk. 
-We are adding a fig-cap to label the figure, which lets us automatically 
-reference it in our text.
+Copy and paste the code below to insert appropriate headings and another chunk (see if you can remember the keyboard shortcut for adding a chunk.) Then put a histogram in your new chunk. We are adding a fig-cap to label the figure, which lets us automatically reference it in our text.
 
-````markdown
+``` markdown
 # Exploratory Data Analysis
 
 ## Basic Histogram
 
-```{r}
-#| label: fig-mass-histogram
-#| fig-cap: "Distribution of penguin body mass"
-#| message: false
-#| warning: false
-
-ggplot(penguins, aes(x = body_mass_g)) +
-  geom_histogram(binwidth = 250, fill = "steelblue", color = "white") +
-  theme_minimal() +
-  labs(
-    x = "Body mass (g)",
-    y = "Count"
-  )
+![Distribution of penguin body mass](fig-mass-histogram-1.png){#fig-mass-histogram width=672}
 ```
-````
 
 DON'T FORGET: *Render and open your html file to see if it worked.*
 
-**Step 6 - Add commentary**
+**Step 7 - Add commentary**
 
-Below the plot, write 2–3 sentences (in Markdown) describing what you see.
-Include this exact text somewhere in your paragraph to see how Quarto 
-handles cross-references:
+Below the plot, write 2-3 sentences (in Markdown) describing what you see. Include this exact text somewhere in your paragraph to see how Quarto handles cross-references:
 
-"As shown in @fig-mass-histogram, the data is..."
-
-Note, you do not need the quotes. Just write the text and @fig-mass-histogram.
-
+``` markdown
+As shown in @fig-mass-histogram, the data is...
+```
 DON'T FORGET: *Render and open your html file to see if it worked.*
 
-**Step 7 - Add a Table**
+**Step 8 - Add a table**
 
-Let's look at the raw data. Add a new section heading and a code chunk that 
-uses knitr::kable() to draw a clean table of the first 5 rows:
+Copy and paste the code below to add a new section heading and a code chunk that uses the `kable()` function from the `knitr` package to draw a clean table of the first 5 rows:
 
-````markdown
+``` markdown
 ## Data Preview
 
-```{r}
-#| label: tbl-preview
-#| tbl-cap: "First 5 rows of the penguins dataset"
 
-knitr::kable(head(penguins, 5))
+::: {#tbl-preview .cell tbl-cap='First 5 rows of the penguins dataset'}
+::: {.cell-output-display}
+
+
+|species |island    | bill_length_mm| bill_depth_mm| flipper_length_mm| body_mass_g|sex    | year|
+|:-------|:---------|--------------:|-------------:|-----------------:|-----------:|:------|----:|
+|Adelie  |Torgersen |           39.1|          18.7|               181|        3750|male   | 2007|
+|Adelie  |Torgersen |           39.5|          17.4|               186|        3800|female | 2007|
+|Adelie  |Torgersen |           40.3|          18.0|               195|        3250|female | 2007|
+|Adelie  |Torgersen |             NA|            NA|                NA|          NA|NA     | 2007|
+|Adelie  |Torgersen |           36.7|          19.3|               193|        3450|female | 2007|
+
+
+:::
+:::
 ```
-````
 
 DON'T FORGET: *Render and open your html file to see if it worked.*
 
-**Step 8 - Final Render**
+**Step 9 - Final render**
 
-Press Cmd/Ctrl + Shift + K. Look at the HTML file that pops up. Notice your 
-table of contents, your styled theme, the evaluated inline code, and the 
-figure numbering!
+Press Cmd/Ctrl + Shift + K. Look at the HTML file that pops up. Notice your table of contents, your styled theme, the evaluated inline code, and the figure numbering.
 
 If you finish early, try one or more of these:
 
-- **Create a Tabset:** Want to hide multiple plots behind clickable tabs? Wrap 
-  two headings and code chunks in a tabset block like this:
+- **Create a Tabset**: Wrap two heading and code chunks in a tabset block by copying and pasting the code below to hide multiple plots behind clickable tabs:
 
-```markdown
+``` markdown
 ::: {.panel-tabset}
 
 ### Mass Plot
@@ -170,14 +165,10 @@ If you finish early, try one or more of these:
 
 :::
 ```
+- **Change the Output**: Try changing `format: html` to `format: docx` in the YAML and re-render to get a Word document. (Note: themes and tabsets are HTML-only).
+- **Hide the Code**: Set `echo: FALSE` in your YAML under `execute:` to hide all code from the output, leaving only the text, plots, and tables.
 
-- **Change the Output:** Try changing `format: html` to `format: docx` in the 
-  YAML and re-render to get a Word document. (Note: themes and tabsets are 
-  HTML-only).
-- **Hide the Code:** Set `echo: false` in your YAML under `execute:` to hide 
-  *all* code from the output, leaving only the text, plots, and tables:
-
-```yaml
+``` markdown
 ---
 title: "Penguin Exploration"
 author: "Your Name"
@@ -190,5 +181,4 @@ execute:
 ---
 ```
 
-**To turn in:** Save your `.qmd` file and the rendered HTML. We'll check at 
-the end of class.
+**To turn in:** Save your `.qmd` file and the rendered HTML. We'll check back in at the end of class. 
