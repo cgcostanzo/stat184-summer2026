@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>ggplot2 basics · frames, glyphs, scales, facets – STAT 184 — Summer 2026</title>
+<title>Week 2 — Tidy Data &amp; ggplot – STAT 184 — Summer 2026</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,41 +22,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -386,7 +351,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../weeks/week2/day2-ggplot-basics.html">ggplot2 basics · frames, glyphs, scales, facets</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../weeks/week2/day2-ggplot-basics.html">Week 2 --- Tidy Data &amp; ggplot</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -406,14 +371,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../weeks/week2/day1-data-frames.html" class="sidebar-item-text sidebar-link">
+  <a href="../../weeks/week2/day1-data-frames-page.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Data frames · intro to data graphics</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../weeks/week2/day2-ggplot-basics.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">ggplot2 basics · frames, glyphs, scales, facets</span></a>
+ <span class="menu-text">Week 2 --- Tidy Data &amp; ggplot</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -438,16 +403,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#before-class" id="toc-before-class" class="nav-link active" data-scroll-target="#before-class">Before class</a></li>
-  <li><a href="#outline" id="toc-outline" class="nav-link" data-scroll-target="#outline">Outline</a>
-  <ul class="collapse">
-  <li><a href="#todo-opening-segment-15-min" id="toc-todo-opening-segment-15-min" class="nav-link" data-scroll-target="#todo-opening-segment-15-min">1. TODO: opening segment (~15 min)</a></li>
-  <li><a href="#todo-main-segment-25-min" id="toc-todo-main-segment-25-min" class="nav-link" data-scroll-target="#todo-main-segment-25-min">2. TODO: main segment (~25 min)</a></li>
-  <li><a href="#in-class-activity-20-min" id="toc-in-class-activity-20-min" class="nav-link" data-scroll-target="#in-class-activity-20-min">3. In-class activity (~20 min)</a></li>
-  <li><a href="#wrap-up-5-min" id="toc-wrap-up-5-min" class="nav-link" data-scroll-target="#wrap-up-5-min">4. Wrap-up (~5 min)</a></li>
-  </ul></li>
-  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources</a></li>
-  <li><a href="#after-class" id="toc-after-class" class="nav-link" data-scroll-target="#after-class">After class</a></li>
+  <li><a href="#daily-plan" id="toc-daily-plan" class="nav-link active" data-scroll-target="#daily-plan">Daily plan</a></li>
+  <li><a href="#due-this-week" id="toc-due-this-week" class="nav-link" data-scroll-target="#due-this-week">Due this week</a></li>
+  <li><a href="#heads-up-for-next-week" id="toc-heads-up-for-next-week" class="nav-link" data-scroll-target="#heads-up-for-next-week">Heads up for next week</a></li>
   </ul>
 </nav>
     </div>
@@ -457,8 +415,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">ggplot2 basics · frames, glyphs, scales, facets</h1>
-<p class="subtitle lead">Wednesday, May 27, 2026</p>
+<h1 class="title">Week 2 — Tidy Data &amp; ggplot</h1>
+<p class="subtitle lead">May 25 – 29, 2026</p>
 </div>
 
 
@@ -475,86 +433,78 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Today’s plan
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul class="task-list">
-<li><label><input type="checkbox">TODO: list 2-4 concrete goals for the class</label></li>
-</ul>
-</div>
-</div>
-<section id="before-class" class="level2">
-<h2 class="anchored" data-anchor-id="before-class">Before class</h2>
+<p>This week we get everyone set up with R, RStudio, and Quarto, and cover the absolute basics of the R language. By Friday you’ll have written your first reproducible document and learned the pipe.</p>
+<section id="daily-plan" class="level2">
+<h2 class="anchored" data-anchor-id="daily-plan">Daily plan</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Date</th>
+<th>Topic</th>
+<th>Slides &amp; Notes</th>
+<th>Code &amp; Data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mon May 25</td>
+<td><strong>No class - Memorial Day</strong></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>Tue May 26</td>
+<td>Data frames · intro to data graphics</td>
+<td><a href="day1-data-frames-slides.html">Slides</a> · <a href="day1-data-frames-page.html">Page</a> · <a href="day1-data-frames.pdf">PDF</a></td>
+<td><a href="day1-activity.R" download="day1-activity.R">day1-activity.R</a></td>
+</tr>
+<tr class="odd">
+<td>Wed May 27</td>
+<td>ggplot2 basics · frames, glyphs, scales, facets</td>
+<td><a href="day2-ggplot-basics-slides.html">Slides</a> · <a href="day2-ggplot-basics-page.html">Page</a> · <a href="day2-ggplot-basics.pdf">PDF</a></td>
+<td><a href="day2-activity.R" download="day2-activity.R">day2-activity.R</a></td>
+</tr>
+<tr class="even">
+<td>Thu May 28</td>
+<td>Multivariable graphics · specifying graphs · axes &amp; labels</td>
+<td><a href="day3-multivariable-slides.html">Slides</a> · <a href="day3-multivariable-page.html">Page</a> · <a href="day3-multivariable.pdf">PDF</a></td>
+<td><a href="day3-activity.R" download="day3-activity.R">day3-activity.R</a></td>
+</tr>
+<tr class="odd">
+<td>Fri May 29</td>
+<td><strong>Quiz 2</strong> · graphics critique activity</td>
+<td><a href="day4-critique-slides.html">Slides</a> · <a href="day4-critique-page.html">Page</a> · <a href="day4-critique.pdf">PDF</a></td>
+<td><a href="day4-activity.qmd" download="day4-activity.qmd">day4-activity.qmd</a></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="due-this-week" class="level2">
+<h2 class="anchored" data-anchor-id="due-this-week">Due this week</h2>
+<p><strong>Readings (due at 9:35 a.m. on Perusall)</strong></p>
 <ul>
-<li>Read: Data Computing Ch 6 (§6.1–6.5)</li>
-<li>TODO: any prep materials, data files, etc.</li>
-</ul>
-</section>
-<section id="outline" class="level2">
-<h2 class="anchored" data-anchor-id="outline">Outline</h2>
-<section id="todo-opening-segment-15-min" class="level3">
-<h3 class="anchored" data-anchor-id="todo-opening-segment-15-min">1. TODO: opening segment (~15 min)</h3>
-<p>TODO: concept exposition or motivating example.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: live-coded example</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="todo-main-segment-25-min" class="level3">
-<h3 class="anchored" data-anchor-id="todo-main-segment-25-min">2. TODO: main segment (~25 min)</h3>
-<p>TODO: hands-on practice — students follow along.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co">: example to walk through</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="in-class-activity-20-min" class="level3">
-<h3 class="anchored" data-anchor-id="in-class-activity-20-min">3. In-class activity (~20 min)</h3>
-<p>TODO: brief description, or link to a separate handout.</p>
-</section>
-<section id="wrap-up-5-min" class="level3">
-<h3 class="anchored" data-anchor-id="wrap-up-5-min">4. Wrap-up (~5 min)</h3>
+<li><em>(Optional)</em> <strong>Monday:</strong> <em>Data Computing</em> Ch 1 (§1.1–1.5) — what tidy data is</li>
+<li><strong>Tuesday:</strong> <em>Data Computing</em> Ch 2 (§2.1–2.8) — R, RStudio, vectors, objects</li>
+<li><strong>Wednesday:</strong> <em>Data Computing</em> Ch 3 (§3.1–3.5) — basic R commands</li>
+<li><strong>Thursday:</strong> <em>Data Computing</em> Ch 4 (§4.1–4.7) — files and Rmd documents
 <ul>
-<li>TODO: key takeaway</li>
-<li>TODO: preview next class</li>
+<li><em>(Optional)</em> <em>R For Data Science</em> Ch 28 — Quarto</li>
+</ul></li>
+<li><strong>Friday:</strong> <em>Data Computing</em> §3.6 — chaining syntax (the pipe)</li>
 </ul>
-</section>
-</section>
-<section id="resources" class="level2">
-<h2 class="anchored" data-anchor-id="resources">Resources</h2>
+<p><strong>Assignments (Canvas &amp; In-class)</strong></p>
 <ul>
-<li>TODO: slides PDF</li>
-<li>TODO: in-class code .R file</li>
-<li>TODO: activity handout</li>
+<li><strong>Wednesday May 20:</strong> HW 0 (setup confirmation) — due 11:59 p.m. on Canvas</li>
+<li><strong>Friday May 22:</strong> HW 1 — due 11:59 p.m. on Canvas</li>
+<li><strong>Friday May 22:</strong> <strong>Quiz 1</strong> — in class</li>
 </ul>
 </section>
-<section id="after-class" class="level2">
-<h2 class="anchored" data-anchor-id="after-class">After class</h2>
+<section id="heads-up-for-next-week" class="level2">
+<h2 class="anchored" data-anchor-id="heads-up-for-next-week">Heads up for next week</h2>
 <ul>
-<li>TODO: due tomorrow</li>
-<li>TODO: optional supplementary reading</li>
+<li><em>Data Computing</em> Ch 5 (§5.1–5.6) for Tuesday May 26 — graphics intro.</li>
+<li><strong>No class Monday May 25</strong> (Memorial Day).</li>
 </ul>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Instructor notes
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>TODO: notes to self — pacing, common student questions, things to watch for.</p>
-</div>
-</div>
-</div>
 
 
 </section>
