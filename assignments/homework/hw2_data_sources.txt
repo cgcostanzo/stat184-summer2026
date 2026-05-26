@@ -1,0 +1,91 @@
+STAT 184 HW2 Question 4 - Data sources audit
+Generated: 2026-05-25 22:02:34 EDT
+Script: build_crime_data.R
+Working directory: /Users/charlescostanzo/Documents/stat184-summer2026
+
+=== UCR state-level violent crime rate, 2024 ===
+Mode: scraped
+Source: Scraped from Wikipedia (FBI UCR data): https://en.wikipedia.org/wiki/List_of_U.S._states_and_territories_by_violent_crime_rate
+Rows: 52
+
+=== NCVS national violent victimization rate ===
+Hand-entered from BJS Criminal Victimization annual reports.
+Per-row sources:
+  1993: 79.8 per 1,000  ->  https://bjs.ojp.gov/document/cv24.pdf
+     CV 2024 (Historical trend line): 'from 1993 (79.8 per 1,000)'
+  1994: 80.0 per 1,000  ->  https://bjs.ojp.gov/content/pub/pdf/cv11.pdf
+     CV 2011: 'changed from 79.8 in 1993 to 80.0 in 1994'
+  1995: 70.7 per 1,000  ->  https://bjs.ojp.gov/content/pub/pdf/cv11.pdf
+     CV 2011: 'from 1994 to 1995, rate declined... from 80.0 to 70.7'
+  1996: 64.7 per 1,000  ->  https://bjs.ojp.gov/content/pub/pdf/cv11.pdf
+     CV 2011: 'from 1996 to 1997... declined from 64.7 to 61.1'
+  1997: 61.1 per 1,000  ->  https://bjs.ojp.gov/content/pub/pdf/cv11.pdf
+     CV 2011: 'from 1996 to 1997... declined from 64.7 to 61.1'
+  1998: 54.1 per 1,000  ->  https://bjs.ojp.gov/document/cv23.pdf
+     CV 2023 (Appendix Table 1): 1998 rate restated to 54.1
+  1999: 47.2 per 1,000  ->  https://bjs.ojp.gov/document/cv23.pdf
+     CV 2023 (Appendix Table 1): 1999 rate restated to 47.2
+  2000: 37.5 per 1,000  ->  https://bjs.ojp.gov/document/cv23.pdf
+     CV 2023 (Appendix Table 1): 2000 rate restated to 37.5
+  2001: 32.6 per 1,000  ->  https://bjs.ojp.gov/document/cv23.pdf
+     CV 2023 (Appendix Table 1): 2001 rate restated to 32.6
+  2002: 32.1 per 1,000  ->  https://bjs.ojp.gov/content/pub/pdf/cv13.pdf
+     CV 2013 (Appendix Table 1): 2002 rate restated to 32.1
+  2003: 32.1 per 1,000  ->  https://bjs.ojp.gov/content/pub/pdf/cv13.pdf
+     CV 2013 (Appendix Table 1): 2003 rate restated to 32.1
+  2004: 27.8 per 1,000  ->  https://bjs.ojp.gov/content/pub/pdf/cv13.pdf
+     CV 2013 (Appendix Table 1): 2004 rate restated to 27.8
+  2005: 28.4 per 1,000  ->  https://bjs.ojp.gov/content/pub/pdf/cv14.pdf
+     CV 2014 (Table 1): 2005 rate restated to 28.4
+  2007: 24.8 per 1,000  ->  https://bjs.ojp.gov/content/pub/pdf/cv13.pdf
+     CV 2013 (Historical trend lines): 2007 rate reported as 24.8
+  2008: 24.0 per 1,000  ->  https://bjs.ojp.gov/content/pub/pdf/cv13.pdf
+     CV 2013 (Historical trend lines): 2008 rate reported as 24.0
+  2009: 22.3 per 1,000  ->  https://bjs.ojp.gov/content/pub/pdf/cv13.pdf
+     CV 2013 (Historical trend lines): 2009 rate reported as 22.3
+  2010: 19.3 per 1,000  ->  https://bjs.ojp.gov/content/pub/pdf/cv11.pdf
+     CV 2011: 'increased 17%, from 19.3... in 2010 to 22.5 in 2011'
+  2011: 22.5 per 1,000  ->  https://bjs.ojp.gov/content/pub/pdf/cv11.pdf
+     CV 2011: 'to 22.5 victimizations per 1,000 persons... in 2011'
+  2012: 26.1 per 1,000  ->  https://bjs.ojp.gov/content/pub/pdf/cv21.pdf
+     CV 2021: 'period from 2012 to 2021... declined from 26.1'
+  2013: 23.2 per 1,000  ->  https://bjs.ojp.gov/content/pub/pdf/cv15.pdf
+     CV 2015: 'lower than in 2013 (23.2 per 1,000)'
+  2014: 20.1 per 1,000  ->  https://bjs.ojp.gov/content/pub/pdf/cv15.pdf
+     CV 2015: 'from 2014 (20.1 victimizations per 1,000...)'
+  2015: 18.6 per 1,000  ->  https://bjs.ojp.gov/content/pub/pdf/cv15.pdf
+     CV 2015: 'to 2015 (18.6 per 1,000)'
+  2016: 19.7 per 1,000  ->  https://bjs.ojp.gov/content/pub/pdf/cv16re.pdf
+     CV 2016: 'declined from 79.8 to 19.7 per 1,000'
+  2017: 20.6 per 1,000  ->  https://bjs.ojp.gov/content/pub/pdf/cv21.pdf
+     CV 2021: 'From 2017 to 2021... declined 20%, from 20.6'
+  2018: 23.2 per 1,000  ->  https://bjs.ojp.gov/content/pub/pdf/cv18.pdf
+     CV 2018: 'increased from 18.6 to 23.2 victimizations per 1,000'
+  2019: 21.0 per 1,000  ->  https://bjs.ojp.gov/library/publications/criminal-victimization-2020
+     CV 2020: 'declined from 21.0 per 1,000 in 2019 to 16.4 in 2020'
+  2020: 16.4 per 1,000  ->  https://bjs.ojp.gov/library/publications/criminal-victimization-2020
+     CV 2020: '16.4 per 1,000 in 2020'
+  2021: 16.5 per 1,000  ->  https://bjs.ojp.gov/library/publications/criminal-victimization-2021
+     CV 2021: 'declined from 79.8 to 16.5 ... 1993 to 2021'
+  2022: 23.5 per 1,000  ->  https://bjs.ojp.gov/library/publications/criminal-victimization-2022
+     CV 2022 press release: '23.5 victimizations per 1,000 ... in 2022'
+  2023: 22.5 per 1,000  ->  https://bjs.ojp.gov/library/publications/criminal-victimization-2023
+     CV 2023: '22.5 violent victimizations per 1,000 persons'
+  2024: 23.3 per 1,000  ->  https://bjs.ojp.gov/library/publications/criminal-victimization-2024
+     CV 2024: '23.3 violent victimizations per 1,000 persons age 12 or older'
+
+URL reachability checks (HTTP status at script run time):
+  https://bjs.ojp.gov/document/cv24.pdf -> 200
+  https://bjs.ojp.gov/content/pub/pdf/cv11.pdf -> 200
+  https://bjs.ojp.gov/document/cv23.pdf -> 200
+  https://bjs.ojp.gov/content/pub/pdf/cv13.pdf -> 200
+  https://bjs.ojp.gov/content/pub/pdf/cv14.pdf -> 200
+  https://bjs.ojp.gov/content/pub/pdf/cv21.pdf -> 200
+  https://bjs.ojp.gov/content/pub/pdf/cv15.pdf -> 200
+  https://bjs.ojp.gov/content/pub/pdf/cv16re.pdf -> 200
+  https://bjs.ojp.gov/content/pub/pdf/cv18.pdf -> 200
+  https://bjs.ojp.gov/library/publications/criminal-victimization-2020 -> 200
+  https://bjs.ojp.gov/library/publications/criminal-victimization-2021 -> 200
+  https://bjs.ojp.gov/library/publications/criminal-victimization-2022 -> 200
+  https://bjs.ojp.gov/library/publications/criminal-victimization-2023 -> 200
+  https://bjs.ojp.gov/library/publications/criminal-victimization-2024 -> 200

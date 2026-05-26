@@ -10,6 +10,7 @@ There will be 1-2 homework assignments per week in the course. The lowest score 
 |---|---|---|---|---|---|
 | 0 | Setup Confirmation (R, RStudio, Quarto installed) | Mon May 18 | Wed May 20 | [Quarto](hw0_template.qmd){download=""} · [HTML](hw0_template.html) · [PDF](hw0_template.pdf) | [Click here](https://psu.instructure.com/courses/2487468/assignments/18308171) |
 | 1 | Basic R & Plots | Mon May 18 | Fri May 22 | [Quarto](hw1_template.qmd){download=""} · [HTML](hw1_template.html) · [PDF](hw1_template.pdf) | [Click here](https://psu.instructure.com/courses/2487468/assignments/18311694) |
+| 2 | Pipes, Plots & Reading Graphics | Tues May 26 | Fri May 29 | [Quarto](hw2_template.qmd){download=""} · [HTML](hw2_template.html) · [PDF](hw2_template.pdf) | [Click here](https://psu.instructure.com/courses/2487468/assignments/18318785) |
 :::
 
 ## How to submit

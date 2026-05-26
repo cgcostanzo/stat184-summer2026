@@ -1,0 +1,439 @@
+---
+title: "STAT 184 - Homework 2: Pipes, Plots & Reading Graphics"
+subtitle: "Due Friday, May 29 at 11:59 PM on Canvas"
+author: "Your Name Here"
+format:
+  html:
+    toc: TRUE
+    code-fold: FALSE
+    embed-resources: TRUE
+  pdf:
+    toc: FALSE
+    include-in-header:
+      text: |
+        \usepackage[labelfont=bf, format=plain, labelsep=colon]{caption}
+execute:
+  enabled: true
+  freeze: auto
+editor: source
+---
+
+**AI Disclosure**
+
+- [ ] No AI used
+- [ ] Syntax / Debugging (e.g., finding a missing comma, fixing an error code)
+- [ ] Conceptual explanation (e.g., asking how `ggplot()` layers work)
+- [ ] Code Generation (e.g., asking AI to write a function from scratch)
+
+*Briefly describe your use (1-2 sentences):*
+
+[Type your explanation here]
+
+---
+
+### Setup
+
+Run the chunk below to load the necessary packages. Make sure `tidyverse`, `palmerpenguins`, `nycflights13`, `maps`, and `colorspace` are installed before you start.
+
+- Run `install.packages(c("palmerpenguins", "nycflights13", "maps", "colorspace"))` in the **Console** once if you haven't already.
+
+*Note: we'll also use the `msleep` dataset, which comes pre-loaded with `ggplot2` (part of the tidyverse).*
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(palmerpenguins)
+library(nycflights13)
+library(maps)
+library(colorspace)
+```
+
+You will also need two data files for Question 4. Download them from Canvas and put them in the **same folder** as this `.qmd`:
+
+- `ncvs_violent_victimization_1993_2024.csv`: NCVS national violent victimization rates
+- `ucr_state_violent_crime_2024.csv`: FBI UCR state-level violent crime rates for 2024
+
+## Question 1 - Pipe practice
+
+The **pipe operator** (`|>` or `%>%`) lets you read code top-to-bottom in the order you'd actually do the work. This question gives you four exercises to practice translating between nested and piped syntax across different datasets.
+
+### Part (a): Nested $\rightarrow$ piped
+
+Rewrite the following nested expression using the **pipe operator (`|>`)**. Each step should go on its own line, and the result should be identical to the original.
+
+```{r}
+# Original (nested):
+round(mean(sqrt(abs(c(-4, -9, -16, -25, -36)))), digits = 2)
+
+# Your piped version:
+```
+
+### Part (b): Piped $\rightarrow$ nested
+
+Rewrite the following piped expression **without** the pipe. The result should be identical.
+
+- *Hint: work from the inside out. The first thing the piped version does (`filter`) becomes the innermost function in the nested version.*
+
+```{r}
+# Original (piped):
+flights |>
+  filter(dest == "CLE") |>
+  arrange(desc(dep_delay)) |>
+  head(2)
+
+# Your nested version:
+```
+
+### Part (c): Spot the errors
+
+The chunk below has **two common mistakes**. Run it once to see the error, then fix both so it correctly returns the average flipper length for each species of penguin. In one or two sentences below, explain what the two errors were.
+
+```{r}
+#| eval: FALSE
+# Original (broken):
+penguins |>
+  group_by(penguins, species) |>
+  summarize(avg_flipper = mean(flipper_length_mm))
+```
+
+```{r}
+# Your fixed version:
+```
+
+[Write your explanation of the two errors here.]
+
+### Part (d): Write your own (data wrangling)
+
+Write a **single piped expression** using the `flights` dataset that:
+
+1. Keeps only flights departing from JFK (`origin == "JFK"`).
+2. Groups the data by airline `carrier`.
+3. Calculates the average departure delay (`dep_delay`) for each carrier, ignoring `NA` values.
+4. Sorts the final output so the carrier with the **highest** average delay is at the top.
+
+```{r}
+# Write your R code here
+```
+
+In one sentence, which carrier has the worst average departure delay out of JFK, and roughly how bad is it?
+
+[Write your one-sentence answer here.]
+
+## Question 2 - Reading graphics
+
+Data graphics answer distinct types of questions depending on their genre: **scatter plots, histograms, bar charts, maps, and networks**.
+
+### Part (a): Match the genre
+
+For each question below, name **which genre** would best answer it.
+
+1. "How is the cost of one-bedroom apartments in State College distributed?"
+2. "Which NCAA Division I Football Bowl Subdivision (FBS) conference scored the most points last season?"
+3. "Do students who drink more coffee tend to get higher exam scores?"
+4. "Which counties in the US had the highest voter turnout in 2024?"
+5. "How are the world's airports connected to one another by direct flights?"
+6. "Is the *typical* runtime of a Hayao Miyazaki movie longer than the *typical* Star Wars movie?"
+
+[Write your six answers here, one per line.]
+
+### Part (b): Find a real-life plot
+
+Explore the following resources:
+
+- [eBird Status and Trends](https://science.ebird.org/en/status-and-trends);
+- [New York Times Graphics Spotlight](https://www.nytimes.com/spotlight/graphics);
+- [R Graph Gallery](https://r-graph-gallery.com/);
+- [RAND Visualizations Page](https://www.rand.org/pubs/visualizations.html);
+- [Pew Research Center Favorite Data Visualizations of 2025](https://www.pewresearch.org/short-reads/2025/12/15/our-favorite-data-visualizations-of-2025/);
+- [ESPN Analytics](https://espnanalytics.com/);
+- [Spurious Correlations](https://www.tylervigen.com/spurious-correlations);
+- [Python Graph Gallery](https://python-graph-gallery.com/);
+- [Silver Bulletin](https://www.natesilver.net/);
+- [The Pudding](https://pudding.cool/).
+
+Pick **one** real-world graphic.
+
+Take a screenshot or download the graphic as a png file and move it to the same folder where you saved `hw2_template.qmd`. Name this file `my_graphic.png`. In **3–5 sentences**, write a short critique:
+
+1. **Include a screenshot** of the plot by removing the backticks (\`) from the `![caption](my_graphic.png)` line and add a caption.
+2. **Which genre** is it (or is it a hybrid)?
+3. **What question** does it answer?
+4. **One thing it does well** (clear labels, good color choice, reveals a pattern, etc.).
+5. **One thing you'd change** (misleading axis, confusing legend, too many categories, etc.).
+
+`![write caption here](my_graphic.png)`
+
+[Write your critique here.]
+
+### Part (c): A misleading plot
+
+Run the chunk below. It uses the `msleep` dataset to compare the total sleep times of carnivores and herbivores.
+
+```{r}
+#| label: misleading-plot
+#| fig-width: 6
+#| fig-height: 3.5
+msleep |>
+  mutate(vore = case_when(
+    vore == "carni" ~ "Carnivore",
+    vore == "herbi" ~ "Herbivore",
+    TRUE ~ vore
+  )) |>
+  filter(vore %in% c("Carnivore", "Herbivore")) |>
+  group_by(vore) |>
+  summarize(avg_sleep = mean(sleep_total), .groups = "drop") |>
+  ggplot(aes(x = vore, y = avg_sleep)) +
+    geom_col(fill = "#1e407c") +
+    coord_cartesian(ylim = c(9, 11)) +
+    labs(x = "Diet", y = "Average sleep (hours)",
+         title = "Carnivores sleep drastically more than Herbivores") +
+    theme_minimal()
+```
+
+In **2-3 sentences**, explain what this plot is doing that's misleading. Then, in a new chunk, **fix it** so it gives an honest picture of the difference.
+
+[Write your explanation here.]
+
+```{r}
+# Your fixed version:
+```
+
+## Question 3 - Build your own plots
+
+In this question, you'll build three plots across different datasets, each paired with a sentence describing what the plot reveals.
+
+::: {.callout-tip}
+## A reminder on ggplot syntax
+A basic `ggplot()` call has three pieces:
+
+```r
+ggplot(data = my_data, aes(x = var1, y = var2)) +
+  geom_point() +
+  labs(x = "...", y = "...", title = "...")
+```
+
+Layers are added with `+`, not `|>`. Always label your axes.
+:::
+
+### Part (a): A scatter plot with a log scale (`msleep`)
+
+Build a scatter plot using the `msleep` dataset.
+
+- Put body weight (`bodywt`) on the x-axis and total sleep (`sleep_total`) on the y-axis.
+- Color the points by diet (`vore`).
+- **Challenge:** Body weights vary enormously (mice to elephants), so add `scale_x_log10()` to put the x-axis on a logarithmic scale.
+- Add clear axis labels and a title.
+
+```{r}
+# Write your R code here
+```
+
+In **1-2 sentences**, describe the general relationship between body weight and total sleep.
+
+[Write your description here.]
+
+### Part (b): A histogram (`flights`)
+
+Build a histogram of arrival delays (`arr_delay`) using the `flights` dataset.
+
+- Limit the data to flights that were delayed **less than 150 minutes** (you'll need to `filter()` first).
+- Pick a reasonable number of bins or a specific `binwidth`.
+- Add axis labels and a title.
+
+```{r}
+# Write your R code here
+```
+
+In **1-2 sentences**, describe the shape of the distribution. Is it symmetric, left-skewed, or right-skewed? Where is it centered?
+
+[Write your description here.]
+
+### Part (c): A faceted bar chart (`penguins`)
+
+Build a bar chart showing the count of penguins on each island (`island` on the x-axis), with bars filled by `species`.
+
+- Use `facet_wrap(~ sex)` to create separate panels for male and female penguins.
+- You'll want to filter out `NA` values for `sex` first.
+- Add labels and a title.
+
+```{r}
+# Write your R code here
+```
+
+In **1-2 sentences**, what does this faceted plot tell you about the distribution of species across the islands?
+
+[Write your description here.]
+
+### Part (d): Pick the right genre
+
+Suppose someone asks you: **"Has the average global life expectancy increased steadily since 1950?"**
+
+In **2-3 sentences**, answer the following without writing any code:
+
+1. Which of the five basic genres would best answer this question?
+2. What variables would go on which axis?
+3. What is one potential pitfall to avoid when designing this specific plot?
+
+[Write your answer here.]
+
+---
+
+## Question 4 - Two sources, two stories
+
+The U.S. federal government publishes **two** big crime reports each year, and they often disagree.
+
+- The **FBI's Uniform Crime Reporting (UCR)** program counts crimes that were **reported to police**, broken down by state.
+- The **Bureau of Justice Statistics' (BJS) National Crime Victimization Survey (NCVS)** is a *survey* of about 240,000 Americans that asks whether they were the victim of a crime, **regardless of whether they reported it**.
+
+The disagreement matters. In 2024, BJS estimated that only 48% of violent crimes were reported to authorities. So UCR is, by design, missing more than half of the actual victimizations.
+
+*(Note on the data: In 2006, the BJS implemented methodological changes to the NCVS for budgetary reasons. The estimates for that year should not be compared to other years. You can read more about these changes in the [Criminal Victimization, 2007 report (NCJ 224390)](https://bjs.ojp.gov/content/pub/pdf/cv07.pdf). Our dataset explicitly excludes 2006 for this reason.)*
+
+In this question, you'll plot both sources and think about what each one is good for.
+
+### Part (a): NCVS trend over 30 years
+
+Load the NCVS data:
+
+```{r}
+#| warning: FALSE
+ncvs <- read_csv("ncvs_violent_victimization_1993_2024.csv")
+head(ncvs, n = 2)
+ncvs |>
+  filter(year == 2006)
+tail(ncvs, n = 2)
+```
+
+Build a **line plot** of `violent_victimization_rate` (y-axis) against `year` (x-axis). Use `geom_line()` *and* `geom_point()` together so the individual data years are visible. Add an appropriate y axis label (the x-axis and title is filled in for you). *Be sure to change `eval: FALSE` to `TRUE` before knitting*. 
+
+::: {#fig-ncvs-trend}
+
+```{r}
+#| eval: FALSE
+#| warning: FALSE
+#| fig-width: 8
+#| fig-height: 5
+
+label_years <- c(1993, seq(1995, 2020, by = 5), 2024)
+
+ncvs |>
+  ggplot(aes(x = year, y = )) +
+  
+  # 1. Shade the gap (2005 to 2007). 
+  annotate("rect", xmin = 2005, xmax = 2007, ymin = -Inf, ymax = Inf, 
+           fill = "gray70", alpha = 0.3) +
+  
+  # 2. Add an explicit text label inside the shaded box
+  annotate("text", x = 2007.5, y = 70, 
+           label = "Methodology Shifts\n(Data Excluded)", 
+           size = 4, color = "gray30", fontface = "italic", hjust = 0) +
+  
+  # 3. Draw the main solid line and points
+  geom_line(color = "#a22b21", linewidth = 1) +
+  geom_point(color = "#a22b21", size = 1) +
+  
+  # 4. Draw a specific dashed line just between 2005 and 2007
+  geom_line(data = ncvs |> filter(year %in% c(2005, 2007)), 
+            linetype = "dotted", color = "#a22b21", linewidth = 1) +
+  
+  # 5. Axis labels
+  labs(
+    x = "Year",
+    y = ""
+  ) +
+  scale_x_continuous(
+  breaks = 1993:2024, 
+  labels = \(x) ifelse(x %in% label_years, x, "")) +
+  scale_y_continuous(limits = c(0, 90), breaks = seq(0, 90, by = 10)) +
+  theme_classic() +
+  theme(panel.grid.major.y = element_line(color = "grey", linewidth = 0.4))
+```
+
+National Violent Victimization Rate (1993–2024). The dotted line and shaded region represent the 2006 methodology break. Source: Bureau of Justice Statistics (NCVS)
+
+:::
+
+In **2-3 sentences**, describe what the plot shows. Be sure to mention:
+
+- The long-term trend from 1993 to today.
+- What happened during the COVID years (2020–2021).
+- Whether 2024 looks more like the 1990s or more like the 2010s.
+
+[Write your description here.]
+
+### Part (b): A choropleth map of state-level UCR data
+
+Now load the FBI UCR state-level data:
+
+```{r}
+#| message: FALSE
+ucr <- read_csv("ucr_state_violent_crime_2024.csv")
+glimpse(ucr)
+```
+
+The chunk below joins the UCR data with state map coordinates from the `maps` package. **Run it as-is** to see the joined table:
+
+```{r}
+us_states <- map_data("state")
+
+ucr_map_data <- ucr |>
+  filter(state != "United States", state != "District of Columbia") |>
+  mutate(region = tolower(state)) |>
+  right_join(us_states, by = "region")
+
+glimpse(ucr_map_data)
+```
+
+Now build the choropleth map. **Fill in the blank** in the code below. *Be sure to change `eval: FALSE` to `TRUE` before knitting*. 
+
+- The `fill =` should be the column from `ucr_map_data` that holds the violent crime rate.
+
+::: {#fig-ucr-map}
+
+```{r}
+#| eval: FALSE
+
+# Color palette
+my_colors <- c("#d9aaa5", "#bd6a61", "#a12a1e", "#937291", "#3d203b")
+
+ggplot(ucr_map_data, aes(x = long, y = lat, group = group, 
+                         fill = )) +
+  geom_polygon(color = "white", linewidth = 0.2) +
+  coord_sf(default_crs = 4326, crs = 9311, clip = "off") +
+  scale_fill_gradientn(
+    colors = lighten(my_colors, amount = 0.1), 
+    guide = guide_colorbar(barwidth = 15, barheight = 0.5)
+  ) +
+  labs(title = "", fill = "Rate per 100,000") +
+  theme_void() +
+  theme(
+    legend.position = "bottom",
+    plot.margin = margin(t = 5, r = 5, b = 5, l = 5)
+  )
+```
+
+National Violent Crime Rate (2024). Source: Federal Bureau of Investigation (UCR)
+
+:::
+
+In **2-3 sentences**, describe the geographic pattern. Which regions of the country tend to have higher rates? Lower? Are there any surprises?
+
+[Write your description here.]
+
+### Part (c): Why the two sources disagree
+
+In **3-4 sentences**, answer the following:
+
+1. Which question is the **NCVS** better at answering: *"How much crime is actually happening?"* or *"How much crime is being reported to police?"* Why?
+2. Which question is the **UCR** better at answering: *"How does crime vary across states?"* or *"What is the true national crime rate?"* Why?
+3. In 2023, the Council on Criminal Justice summarized recent conflicting reports with the headline: [*"Did Violent Crime Go Up or Down? Yes, It Did."*](https://counciloncj.org/did-violent-crime-go-up-or-down-last-year-yes-it-did/) In your own words, what does that mean?
+
+[Write your answer here.]
+
+---
+
+# Code appendix
+
+```{r ref.label=knitr::all_labels()}
+#| echo: TRUE
+#| eval: FALSE
+```
