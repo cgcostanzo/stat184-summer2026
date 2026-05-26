@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/schedule.html</loc>
-    <lastmod>2026-05-24T06:05:46.479Z</lastmod>
+    <lastmod>2026-05-26T07:16:02.824Z</lastmod>
   </url>
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/reference/hw-template.html</loc>
@@ -66,7 +66,7 @@
   </url>
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week2/index.html</loc>
-    <lastmod>2026-05-24T06:14:44.090Z</lastmod>
+    <lastmod>2026-05-26T07:14:28.288Z</lastmod>
   </url>
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week1/day4-quarto-slides.html</loc>
@@ -109,16 +109,20 @@
     <lastmod>2026-05-17T15:27:07.130Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/assignments/homework/hw0_template.html</loc>
-    <lastmod>2026-05-18T20:29:49.763Z</lastmod>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/assignments/homework/index.html</loc>
+    <lastmod>2026-05-26T04:09:35.161Z</lastmod>
   </url>
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/assignments/homework/hw1_template.html</loc>
     <lastmod>2026-05-18T22:16:59.055Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/assignments/homework/index.html</loc>
-    <lastmod>2026-05-18T22:49:18.562Z</lastmod>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/assignments/homework/hw0_template.html</loc>
+    <lastmod>2026-05-18T20:29:49.763Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/assignments/homework/hw2_template.html</loc>
+    <lastmod>2026-05-26T05:18:28.138Z</lastmod>
   </url>
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/assignments/exam/index.html</loc>
@@ -162,7 +166,7 @@
   </url>
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week2/day1-activity.html</loc>
-    <lastmod>2026-05-24T06:27:43.345Z</lastmod>
+    <lastmod>2026-05-26T07:10:20.168Z</lastmod>
   </url>
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week2/day4-critique.html</loc>
