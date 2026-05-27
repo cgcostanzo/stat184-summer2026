@@ -17,7 +17,7 @@ This week we get everyone set up with R, RStudio, and Quarto, and cover the abso
 | Tue May 19 | R, RStudio, console · vectors · data types | [Slides](day2-r-basics-slides.html) · [Page](day2-r-basics-page.html) · [PDF](day2-r-basics.pdf) | [day2-follow-along.R](day2-follow-along.R){download="day2-follow-along.R"} |
 | Wed May 20 | Functions, packages · tidyverse | [Slides](day3-functions-packages-slides.html) · [Page](day3-functions-packages-page.html) · [PDF](day3-functions-packages.pdf) | [day3-activity.R](day3-activity.R){download="day3-activity.R"} |
 | Thu May 21 | Quarto basics | [Slides](day4-quarto-slides.html) · [Page](day4-quarto-page.html) · [PDF](day4-quarto.pdf) | [day4-activity.qmd](day4-activity.qmd){download="day4-activity.qmd"} |
-| Fri May 22 | **Quiz 1** · pipe and chaining syntax | [Slides](day5-pipe-slides.html) · [Page](day5-pipe-page.html) · [PDF](day5-pipe.pdf) | *coming soon* |
+| Fri May 22 | **Quiz 1** · pipe and chaining syntax | [Slides](day5-pipe-slides.html) · [Page](day5-pipe-page.html) · [PDF](day5-pipe.pdf) | [day5-activity.qmd](day5-activity.qmd){download="day5-activity.qmd"} |
 
 ## Due this week
 

@@ -1,0 +1,162 @@
+---
+title: "Day 1 Activity: Reading Data Graphics"
+output: html
+embed-resources: TRUE
+execute:
+  echo: TRUE
+  message: FALSE
+  warning: FALSE
+---
+
+```{r}
+#| label: setup
+#| include: FALSE
+
+library(tidyverse)
+library(palmerpenguins)
+```
+
+# Activity: Reading Data Graphics
+
+You won't write much code today. Instead, the goal is to **read plots effectively** to figure out what question each one is answering, what works, and what doesn't.
+
+Take 20 minutes for this activity. 
+
+**Setup:**
+
+1. Open RStudio.
+2. `File > New File > Quarto Document...` (or open the `.qmd` posted to Canvas).
+3. Save it as `day1-activity.qmd` somewhere you'll find it later.
+4. Add a setup chunk like the one at the top of *this* document.
+
+Write your answers in the same `.qmd`. Use Markdown headings (`##`) to keep your sections labeled.
+
+---
+
+## Part 1 --- Match the question to the graphic (5 min)
+
+For each question, write down which of the five genres you'd use: **scatter plot**, **histogram**, **bar chart**, **map**, or **network**.
+
+1. "Do students who sleep more tend to have higher GPAs?"
+2. "Which Big Ten football team has the most wins this season?"
+3. "How is rent distributed across one-bedroom apartments in State College?"
+4. "Which counties in Pennsylvania voted most heavily for the winning candidate in 2024?"
+5. "Among Taylor Swift collaborators, which artists have worked together?"
+6. "Are there more underweight, normal, or overweight cats at the local shelter?"
+
+---
+
+## Part 2 --- Critique these plots (10 min)
+
+Each chunk below makes a plot from the `penguins` dataset. **Run each one**, look at the output, and write 2–3 sentences answering:
+
+- **What question is this plot trying to answer?**
+- **Does it answer that question well?** What's good or bad about it?
+- **Would a different genre work better?** If so, which one?
+
+Write your answers underneath each plot in your `.qmd`.
+
+### Plot A
+
+```{r}
+#| label: plot-a
+penguins |>
+  filter(!is.na(flipper_length_mm), !is.na(body_mass_g)) |>
+  ggplot(aes(x = flipper_length_mm, y = body_mass_g)) +
+    geom_point(alpha = 0.6) +
+    labs(x = "Flipper length (mm)", y = "Body mass (g)") +
+    theme_minimal()
+```
+
+**Your answer:**
+
+### Plot B
+
+```{r}
+#| label: plot-b
+penguins |>
+  filter(!is.na(bill_length_mm)) |>
+  ggplot(aes(x = bill_length_mm)) +
+    geom_histogram(bins = 30, fill = "#7C0A02", color = "white") +
+    labs(x = "Bill length (mm)", y = "Count") +
+    theme_minimal()
+```
+
+**Your answer:**
+
+### Plot C
+
+```{r}
+#| label: plot-c
+penguins |>
+  filter(!is.na(species), !is.na(island)) |>
+  count(species, island) |>
+  ggplot(aes(x = species, y = n, fill = island)) +
+    geom_col(position = "dodge") +
+    labs(x = NULL, y = "Count", fill = "Island") +
+    theme_minimal()
+```
+
+**Your answer:**
+
+### Plot D
+
+```{r}
+#| label: plot-d
+penguins |>
+  filter(!is.na(body_mass_g)) |>
+  ggplot(aes(x = species, y = body_mass_g)) +
+    geom_point() +
+    labs(x = NULL, y = "Body mass (g)") +
+    theme_minimal()
+```
+
+**Your answer:** *(Hint: this technically works, but a different geom would tell the story much better. Which one?)*
+
+---
+
+## Part 3 --- Find a plot in the wild (5 min)
+
+Open up a news site, a sports site, a Wikipedia article, or anywhere with a real graphic. Examples to try:
+
+- [eBird Status and Trends](https://science.ebird.org/en/status-and-trends);
+- [New York Times Graphics Spotlight](https://www.nytimes.com/spotlight/graphics);
+- [R Graph Gallery](https://r-graph-gallery.com/);
+- [RAND Visualizations Page](https://www.rand.org/pubs/visualizations.html);
+- [Pew Research Center Favorite Data Visualizations of 2025](https://www.pewresearch.org/short-reads/2025/12/15/our-favorite-data-visualizations-of-2025/);
+- [ESPN Analytics](https://espnanalytics.com/);
+- [Spurious Correlations](https://www.tylervigen.com/spurious-correlations);
+- [Python Graph Gallery](https://python-graph-gallery.com/);
+- [Silver Bulletin](https://www.natesilver.net/);
+- [The Pudding](https://pudding.cool/).
+
+Pick **one** plot you find. In your `.qmd`, write:
+
+1. **A link or description** of the plot.
+2. **Which of the five genres** it belongs to (or whether it's a hybrid).
+3. **What question it answers** in one sentence.
+4. **One thing it does well.** (Clear labels? Good color choice? Reveals a pattern?)
+5. **One thing you'd change.** (Misleading axis? Too many categories? Cluttered?)
+
+---
+
+1. [Link text here](www.wikipedia.com)
+2. ![](image_path.png)
+
+## Wrap-up
+
+::: {.callout-note}
+## Before you turn in
+
+- Render your `.qmd` (`Cmd/Ctrl + Shift + K`) and make sure it knits without errors.
+- Check that your answers are written under each plot in plain English, not just stuck in code comments.
+- Save both the `.qmd` and the rendered HTML.
+:::
+
+**To turn in:** Upload your `.qmd` and HTML to Canvas before the end of class.
+
+If you finish early:
+
+- Try changing one of the plots above to a different genre. Does the new version answer a different question?
+- Look up the `geom_boxplot()` function. Where would it fit in our five genres?
+- Pull up a graphic from your own social media feed (Instagram story polls, Spotify Wrapped, a YouTube analytics chart) and answer the same five questions about it.

@@ -49,7 +49,7 @@ library(palmerpenguins)
 
 # Quiz 1 {background-color="#7C0A02"}
 
-## Quiz 1 — instructions
+## Quiz 1 - instructions
 
 ::: {.callout-important style="font-size: 1.1em;"}
 ## Closed-book, no AI, no electronics
@@ -357,14 +357,14 @@ Common things to watch for:
 
 ## Wrap-up & looking ahead
 
-**Monday:** dplyr verbs — `filter()`, `select()`, `arrange()`.
+**Tuesday:** 	Data frames · intro to data graphics.
 
 :::: {.columns}
 ::: {.column width="55%"}
 **Upcoming Deadlines**
 
-- **Today, 11:59 p.m.** — [HW 1: Basic R & Plots](https://psu.instructure.com/courses/2487468/assignments/18311694)
-- **Mon 5/25, before class** — DC §7 reading (Canvas link TBA)
+- **Today, 11:59 p.m.** - [HW 1: Basic R & Plots](https://psu.instructure.com/courses/2487468/assignments/18311694)
+- **Mon 5/25, before class** - [DC §5.1-5.6](https://psu.instructure.com/courses/2487468/assignments/18317722)
 :::
 
 ::: {.column width="45%"}

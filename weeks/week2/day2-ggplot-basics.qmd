@@ -1,65 +1,42 @@
 ---
-title: "ggplot2 basics · frames, glyphs, scales, facets"
-subtitle: "Wednesday, May 27, 2026"
-format:
-  html:
-    toc: true
-    code-fold: false
-editor: source
+title: "Week 2 --- Tidy Data & ggplot"
+subtitle: "May 25 – 29, 2026"
+resources:
+  - "day1-demo.R"
+  - "day2-follow-along.R"
+  - "day3-activity.R"
 ---
 
-::: callout-note
-## Today's plan
-- [ ] TODO: list 2-4 concrete goals for the class
-:::
+This week we get everyone set up with R, RStudio, and Quarto, and cover the absolute basics of the R language. By Friday you'll have written your first reproducible document and learned the pipe.
 
-## Before class
+## Daily plan
 
-- Read: Data Computing Ch 6 (§6.1–6.5)
-- TODO: any prep materials, data files, etc.
+| Date | Topic | Slides & Notes | Code & Data |
+|---|---|---|---|
+| Mon May 25 | 	**No class - Memorial Day** | - | - |
+| Tue May 26 | Data frames · intro to data graphics | [Slides](day1-data-frames-slides.html) · [Page](day1-data-frames-page.html) · [PDF](day1-data-frames.pdf) | [day1-activity.R](day1-activity.R){download="day1-activity.R"} |
+| Wed May 27 | 	ggplot2 basics · frames, glyphs, scales, facets | [Slides](day2-ggplot-basics-slides.html) · [Page](day2-ggplot-basics-page.html) · [PDF](day2-ggplot-basics.pdf) | [day2-activity.R](day2-activity.R){download="day2-activity.R"} |
+| Thu May 28 | 	Multivariable graphics · specifying graphs · axes & labels | [Slides](day3-multivariable-slides.html) · [Page](day3-multivariable-page.html) · [PDF](day3-multivariable.pdf) | [day3-activity.R](day3-activity.R){download="day3-activity.R"} |
+| Fri May 29 | **Quiz 2** · graphics critique activity | [Slides](day4-critique-slides.html) · [Page](day4-critique-page.html) · [PDF](day4-critique.pdf) | [day4-activity.qmd](day4-activity.qmd){download="day4-activity.qmd"} |
 
-## Outline
+## Due this week
 
-### 1. TODO: opening segment (~15 min)
+**Readings (due at 9:35 a.m. on Perusall)**
 
-TODO: concept exposition or motivating example.
+- *(Optional)* **Monday:** *Data Computing* Ch 1 (§1.1–1.5) --- what tidy data is
+- **Tuesday:** *Data Computing* Ch 2 (§2.1–2.8) --- R, RStudio, vectors, objects
+- **Wednesday:** *Data Computing* Ch 3 (§3.1–3.5) --- basic R commands
+- **Thursday:** *Data Computing* Ch 4 (§4.1–4.7) --- files and Rmd documents
+  - *(Optional)* *R For Data Science* Ch 28 --- Quarto
+- **Friday:** *Data Computing* §3.6 --- chaining syntax (the pipe)
 
-```{r}
-#| eval: false
-# TODO: live-coded example
-```
+**Assignments (Canvas & In-class)**
 
-### 2. TODO: main segment (~25 min)
+- **Wednesday May 20:** HW 0 (setup confirmation) --- due 11:59 p.m. on Canvas
+- **Friday May 22:** HW 1 --- due 11:59 p.m. on Canvas
+- **Friday May 22:** **Quiz 1** --- in class
 
-TODO: hands-on practice — students follow along.
+## Heads up for next week
 
-```{r}
-#| eval: false
-# TODO: example to walk through
-```
-
-### 3. In-class activity (~20 min)
-
-TODO: brief description, or link to a separate handout.
-
-### 4. Wrap-up (~5 min)
-
-- TODO: key takeaway
-- TODO: preview next class
-
-## Resources
-
-- TODO: slides PDF
-- TODO: in-class code .R file
-- TODO: activity handout
-
-## After class
-
-- TODO: due tomorrow
-- TODO: optional supplementary reading
-
-::: {.callout-tip collapse="true"}
-## Instructor notes
-
-TODO: notes to self — pacing, common student questions, things to watch for.
-:::
+- *Data Computing* Ch 5 (§5.1–5.6) for Tuesday May 26 --- graphics intro.
+- **No class Monday May 25** (Memorial Day).

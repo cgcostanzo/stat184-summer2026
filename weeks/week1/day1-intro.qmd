@@ -9,12 +9,18 @@ format:
     smaller: true
     highlight-style: a11y
     output-file: "day1-intro-slides.html"
+    execute:
+      enabled: true
+      freeze: auto
   html:
     toc: true
     embed-resources: true
     highlight-style: a11y
     axe: true
     output-file: "day1-intro-page.html"
+    execute:
+      enabled: true
+      freeze: auto
   pdf:
     fig-pos: "H"
 editor: source

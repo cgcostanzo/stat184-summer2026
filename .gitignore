@@ -5,7 +5,6 @@
 .DS_Store
 .quarto/
 _site/
-*_files/
 .cache/
 "site_libs 2"/
 assignments/homework/instructor_scripts/

@@ -5,10 +5,8 @@
 #
 # Goal: Translate between nested and piped code, then write your own.
 #
-# Work individually or with a neighbor. We'll regroup at the end of class.
-#
 # Save this file somewhere you'll remember (e.g., a "stat184" folder).
-# You'll turn it in at the end of class.
+# Turn in your completed .R script on Canvas at the end of class.
 #
 # =============================================================================
 
@@ -86,7 +84,7 @@ penguins |> head(2)
 # -----------------------------------------------------------------------------
 
 # The magrittr package's pipe (`%>%`), which `library(tidyverse)` loads, allows 
-# the use of the . placeholder to pass objects into argumentsother than the 
+# the use of the . placeholder to pass objects into arguments other than the 
 # first one (e.g., x %>% f(1, .)). Run the code below.
 penguins %>%
   filter(., species == "Adelie")
@@ -95,12 +93,23 @@ penguins %>%
 # natively without needing to load the magrittr package. It's great if you only 
 # need to pass the left-hand side to the first argument of the right-hand side 
 # function.
-# But, it's more limited. `|>` does NOT allow the use of the . placeholder.
+# But, |>` does NOT allow the use of the . placeholder.
 # Instead, it throws an error (object '.' not found). 
 # The `|>` operator uses '_' as a placeholder instead, but the usage is a bit
-# different than that of '.'. Run the code below.
-penguins %>%
-  dplyr::filter(species == "Adelie")
+# different than that of '.'. 
+# 1. Default: 
+# - LHS goes to the first argument automatically. No arg name needed
+# 2. Overrides: 
+# - If it needs to go somewhere else, use _.
+# 3. Placeholder Rule: 
+# - If you use _, it must be tied to a named argument (e.g., data = _, x = _), 
+#   based on whatever that specific function calls its argument.
+#
+# Run the code below for an example, and see ?dplyr::filter for documentation
+# Note that the first argument must be named '.data' for dplyr::filter
+# if you want to use the '_' placeholder
+penguins |>
+  dplyr::filter(.data = _, species == "Adelie")
 
 # -----------------------------------------------------------------------------
 # Part 4 - Write your own
@@ -119,7 +128,7 @@ penguins %>%
 
 
 # -----------------------------------------------------------------------------
-# Stuck?
+# Notes:
 # -----------------------------------------------------------------------------
 # - Remember: x %>% f() is the same as f(x).
 # - The pipe always fills the first argument of the function on the right.
