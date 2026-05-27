@@ -127,7 +127,7 @@ Each row is a **6-hour observation** of one storm, so single hurricane shows up 
 
 # Aesthetic mappings {background-color="#001E44"}
 
-## Mapping vs. setting
+## Mapping vs. setting {.scrollable .nostretch}
 
 The single most common ggplot bug is confusing **mapping** with **setting**.
 
@@ -137,7 +137,9 @@ The single most common ggplot bug is confusing **mapping** with **setting**.
 
 Goes **inside** `aes()`.
 
-```r
+```{r}
+#| echo: TRUE
+#| eval: TRUE
 ggplot(storms, 
        aes(x = wind, y = pressure,
            color = status)) +
@@ -152,9 +154,12 @@ ggplot(storms,
 
 Goes **outside** `aes()`.
 
-```r
+```{r}
+#| echo: TRUE
+#| eval: TRUE
 ggplot(storms, 
-       aes(x = wind, y = pressure)) +
+       aes(x = wind, 
+           y = pressure)) +
   geom_point(color = "steelblue")
 ```
 
@@ -162,7 +167,7 @@ Every point is steelblue.
 :::
 :::
 
-## The classic mistake {.scrollable}
+## The classic mistake {.scrollable .nostretch}
 
 What does this do?
 
@@ -213,8 +218,8 @@ ggplot picks a scale automatically based on the **type** of the variable.
 | Aesthetic | Discrete variable | Continuous variable |
 |---|---|---|
 | `color` / `fill` | qualitative palette (distinct hues) | gradient (e.g., light $\rightarrow$ dark) |
-| `size` | warns — order is implied but levels aren't ordered | smooth size range |
-| `shape` | distinct shapes (max 6) | error — shapes don't have an order |
+| `size` | warns (order is implied but levels aren't ordered) | smooth size range |
+| `shape` | distinct shapes (max 6) | error (shapes don't have an order) |
 | `alpha` | warns, same reason as size | smooth |
 
 : How ggplot scales aesthetics by variable type. {tbl-colwidths="[20,40,40]"}
@@ -235,27 +240,27 @@ R has 26 built-in shapes that are identified by numbers.
 
 :::
 
-## Example: status mapped four ways {.scrollable}
+## Example: status mapped four ways {.scrollable .nostretch}
 
 ```{r}
 #| echo: TRUE
 #| eval: TRUE
-# Color — good for categorical
+# Color: good for categorical
 ggplot(storms, aes(x = wind, y = pressure, color = status)) + geom_point(alpha = 0.4)
 
-# Shape — also good, but watch the 6-value limit
+# Shape: also good, but watch the 6-value limit
 ggplot(storms, aes(x = wind, y = pressure, shape = status)) + geom_point()
 
-# Size — bad: implies ranking
+# Size: bad: implies ranking
 ggplot(storms, aes(x = wind, y = pressure, size = status)) + geom_point()
 
-# Alpha — same problem as size
+# Alpha: same problem as size
 ggplot(storms, aes(x = wind, y = pressure, alpha = status)) + geom_point()
 ```
 
 *Using size/alpha for a discrete variable is not advised.*
 
-## The `stroke` aesthetic {.scrollable}
+## The `stroke` aesthetic {.scrollable .nostretch}
 
 For filled point shapes (21–25), `stroke` controls border thickness independently of `size`.
 
@@ -270,7 +275,7 @@ ggplot(storms |> filter(category >= 4),
 
 A white stroke around colored points is one of the easiest ways to make a busy plot readable.
 
-## On-the-fly transformations {.scrollable}
+## On-the-fly transformations {.scrollable .nostretch}
 
 Aesthetics don't have to map to a variable name; they can map to *any expression* involving variables.
 
@@ -306,7 +311,7 @@ Each geom produces one *type* of glyph. The big ones:
 
 ggplot2 ships with 40+. Extension packages add hundreds more.
 
-## Layering: more than one geom {.scrollable}
+## Layering: more than one geom {.scrollable .nostretch}
 
 A plot can have as many geoms as you want. They stack in the order you write them.
 
@@ -324,7 +329,7 @@ Here we have two layers, the same data, and the same mappings. The points show e
 The relationship between wind and pressure in tropical cyclones is *very* strong. The scatter shows what that law looks like in real storm data.
 :::
 
-## Global vs. local mappings {.scrollable}
+## Global vs. local mappings {.scrollable .nostretch}
 
 You can put `aes()` in two places:
 
@@ -360,7 +365,7 @@ Only points are colored; the smooth is one curve.
 :::
 :::
 
-## Why local mappings matter {.scrollable}
+## Why local mappings matter {.scrollable .nostretch}
 
 If you put `color = status` in the global `aes()`, **every layer** sees it. `geom_smooth()` will draw one smoother *per status*, not one overall.
 
@@ -380,7 +385,7 @@ ggplot(storms, aes(x = wind, y = pressure)) +
 
 Where you put the mapping changes the plot. There's no "right" choice (just be *intentional* in your choices.)
 
-## Different data per layer {.scrollable}
+## Different data per layer {.scrollable .nostretch}
  
 Each layer can have its **own data**. This is how you highlight a subset.
 
@@ -399,7 +404,7 @@ ggplot(storms |> filter(year == 2005),
 
 Three layers: all storms (faint), Katrina's path (red), Katrina's observations (red dots). Each calls `data =` locally to override the default.
 
-## The `group` aesthetic {.scrollable}
+## The `group` aesthetic {.scrollable .nostretch}
 
 Some geoms --- lines, smoothers, polygons --- connect multiple rows. They need to know **which rows belong together**.
 
@@ -421,7 +426,7 @@ ggplot(storms |> filter(year == 2005), aes(x = long, y = lat, group = name)) +
 
 # Statistical transformations {background-color="#001E44"}
 
-## Where do bar heights come from? {.scrollable}
+## Where do bar heights come from? {.scrollable .nostretch}
 
 Here's a (potentially) tricky question:
 
@@ -449,13 +454,13 @@ Every geom has a **stat** (statistical transformation) it runs under the hood.
 | `geom_boxplot()` | `stat_boxplot()` | five-number summary |
 | `geom_smooth()` | `stat_smooth()` | fitted curve + CI |
 | `geom_density()` | `stat_density()` | kernel density estimate |
-| `geom_point()` | `stat_identity()` | nothing — just plots raw |
+| `geom_point()` | `stat_identity()` | nothing --- just plots raw |
 
 : Geoms and their default stats. {tbl-colwidths="[30,30,40]"}
 
 You can use a geom and never think about its stat. But sometimes you will need to think about it.
 
-## Three reasons to touch the stat {.scrollable}
+## Three reasons to touch the stat {.scrollable .nostretch}
 
 **1. You already pre-computed the values.** We can override the default behavior of `geom_bar` with `stat = "identity"`.
 
@@ -466,12 +471,12 @@ storm_counts <- storms |> count(status)
 storm_counts
 
 ggplot(storm_counts, aes(x = status, y = n)) +
-  geom_bar(stat = "identity")   # or just use geom_col() — same thing
+  geom_bar(stat = "identity")   # or just use geom_col(), it's the same thing
 ```
 
 `geom_col()` is a shortcut for `geom_bar(stat = "identity")`. You can use it when you have your own y values.
 
-## Three reasons to touch the stat {.scrollable}
+## Three reasons to touch the stat {.scrollable .nostretch}
 
 **2. You want a *computed* variable, not the default.**
 
@@ -489,7 +494,7 @@ ggplot(storms, aes(x = status, y = after_stat(prop), group = 1)) +
 By default, `prop` is computed *within each x group*, which means every bar would be 100%. Setting `group = 1` tells ggplot "treat all rows as one group when computing proportions" so they sum to 1 across the whole plot.
 :::
 
-## Three reasons to touch the stat {.scrollable}
+## Three reasons to touch the stat {.scrollable .nostretch}
 
 **3. You want to make the transformation explicit.** Use a `stat_*()` function directly.
 
@@ -506,14 +511,14 @@ ggplot(storms, aes(x = status, y = wind)) +
 
 This shows the min, median, and max wind speed for each status without you having to manually write any `dplyr` code first. `stat_summary()` does the aggregation as part of the plot.
 
-## `after_stat()` quick overview {.scrollable}
+## `after_stat()` quick overview {.scrollable .nostretch}
 
 Anywhere you'd write a variable name inside `aes()`, you can wrap it in `after_stat(...)` to refer to a **computed** variable instead of one in the original data.
 
 ```{r}
 #| echo: TRUE
 #| eval: TRUE
-# Default — bin counts on y
+# Default: bin counts on y
 ggplot(storms, aes(x = wind)) +
   geom_histogram(binwidth = 5)
 
@@ -542,7 +547,7 @@ The big four:
 
 : ggplot's main position adjustments. {tbl-colwidths="[15,55,30]"}
 
-## Stacking (the default for filled bars) {.scrollable}
+## Stacking (the default for filled bars) {.scrollable .nostretch}
 
 ```{r}
 #| echo: TRUE
@@ -555,9 +560,9 @@ ggplot(hurricanes, aes(x = month, fill = factor(category))) +
 
 Each month gets one bar; segments stack by hurricane category.
 
-This is useful for showing total *and* composition at once — but hard to compare middle segments across bars (their bottoms aren't aligned).
+This is useful for showing total *and* composition at once, but hard to compare middle segments across bars (their bottoms aren't aligned).
 
-## `position = "fill"` {.scrollable}
+## `position = "fill"` {.scrollable .nostretch}
 
 Here we have the same code, but every bar is normalized to height 1:
 
@@ -570,7 +575,7 @@ ggplot(hurricanes, aes(x = month, fill = factor(category))) +
 
 Now the y-axis is proportion, not count. Loses information about total volume, but makes the *composition* easy to compare across months.
 
-## `position = "dodge"` {.scrollable}
+## `position = "dodge"` {.scrollable .nostretch}
 
 Here are the bars side-by-side instead of stacked:
 
@@ -590,14 +595,14 @@ This is the easiest version for comparing individual counts directly. The trade-
 - **Dodge:** compare individual values, ignore totals.
 :::
 
-## Jittering --- for scatterplots, not bars {.scrollable}
+## Jittering --- for scatterplots, not bars {.scrollable .nostretch}
 
 A different problem: many storm observations are recorded only every 6 hours, and pressure readings are rounded to whole millibars. Lots of points overlap.
 
 ```{r}
 #| echo: TRUE
 #| eval: TRUE
-# Lots of overplotting — points are stacked on top of each other
+# Lots of overplotting since points are stacked on top of each other
 ggplot(storms, aes(x = category, y = wind)) +
   geom_point()
 
@@ -612,13 +617,13 @@ ggplot(storms, aes(x = category, y = wind)) +
 
 Jitter adds tiny random noise so points stop landing on top of each other. You lose precision but (often) can gain a clear picture of density.
 
-## Don't over-jitter {.scrollable}
+## Don't over-jitter {.scrollable .nostretch}
 
 `geom_jitter()` takes `width` and `height` arguments. Defaults are usually fine, but:
 
 - **Categorical x:** small `width` (~0.2), `height = 0` to keep y meaningful.
 - **Integer x and y:** small jitter on both.
-- **Continuous data:** you probably don't need jitter at all — use `alpha` or `geom_hex()`/`geom_bin2d()` instead.
+- **Continuous data:** you probably don't need jitter at all, just use `alpha` or `geom_hex()`/`geom_bin2d()` instead.
 
 ```{r}
 #| echo: TRUE
@@ -651,11 +656,11 @@ That's why just `ggplot() + aes() + geom_*()` go a long way on their own. The ot
 ## What we covered today
 
 - The **vocabulary**: frame, glyph, aesthetic, scale, guide.
-- **Mapping** (inside `aes()`) vs. **setting** (outside `aes()`) — and the bug where you mix them up.
+- **Mapping** (inside `aes()`) vs. **setting** (outside `aes()`) and the bug where you mix them up.
 - Aesthetics: x, y, color, fill, size, shape, alpha, linetype, group, stroke. Discrete vs. continuous behavior.
 - **Geoms**: stacking layers, global vs. local mappings, different data per layer, the `group` aesthetic.
 - **Stats**: the hidden transformation in every geom; `geom_col()` vs `geom_bar()`; `after_stat()` for proportions and densities; `stat_summary()` for ad hoc aggregation.
-- **Position adjustments**: identity, stack, fill, dodge, jitter — when to use which.
+- **Position adjustments**: identity, stack, fill, dodge, jitter --- when to use which.
 
 # Activity {background-color="#7C0A02"}
 
@@ -665,25 +670,25 @@ Two parts.
 
 - [Activity Canvas Link](https://psu.instructure.com/courses/2487468/assignments/)
 
-**Part 1 — Guided warmup.** Five short fill-in-the-blank chunks. Practice each concept from today on a fresh question.
+**Part 1: Guided warmup.** Five short fill-in-the-blank chunks. Practice each concept from today on a fresh question.
 
-**Part 2 — Open exploration.** Pick one of three guiding questions about the `storms` data and build the plot you think answers it best. We'll show a few at the end.
+**Part 2: Open exploration.** Pick one of three guiding questions about the `storms` data and build the plot you think answers it best. We'll show a few at the end.
 
-**To turn in:** Save your `.qmd` and rendered HTML — we'll check at the end of class.
+**To turn in:** Save your `.qmd` and rendered HTML.
 
 ## Activity debrief
 
 Things to watch for:
 
-- `aes(color = "red")` instead of `color = "red"` — and getting confused when nothing turns red.
+- `aes(color = "red")` instead of `color = "red"` (and getting confused when nothing turns red.)
 - A `geom_path()` that zigzags wildly because `group` is missing.
 - `geom_bar(stat = "identity")` when you already have counts (use `geom_col()`).
-- `position = "fill"` when you actually wanted `"dodge"` — proportions vs. side-by-side counts.
-- Mapping a categorical to `size` — listen to that warning.
+- `position = "fill"` when you actually wanted `"dodge"` (proportions vs. side-by-side counts.)
+- Mapping a categorical to `size`.
 
 ## Wrap-up & looking ahead
 
-**Tomorrow:** facets in depth, scales, and color choices — including continuous color scales, sequential vs. diverging palettes, and accessibility.
+**Tomorrow:** facets in depth, scales, and color choices, including continuous color scales, sequential vs. diverging palettes, and accessibility.
 
 **Friday:** Quiz 2 + a graphics critique activity.
 

@@ -1,0 +1,175 @@
+---
+title: "Day 8 Activity: Plot-matching with `penguins`"
+subtitle: "Thursday, May 28, 2026"
+author: "Your Name Here"
+editor: source
+engine: knitr
+format:
+  html:
+    toc: TRUE
+    code-fold: FALSE
+    embed-resources: TRUE
+  pdf:
+    toc: FALSE
+---
+
+## Setup
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(palmerpenguins)
+```
+
+Today's activity uses the `penguins` dataset (`palmerpenguins` package). Glimpse it before you start:
+
+```{r}
+glimpse(penguins)
+```
+
+---
+
+# Instructions
+
+Below are **four target plots**, generated for you in advance. Your job is to **recreate each one as closely as you can** using `ggplot2`, then write **one sentence** about what each plot reveals about the penguins.
+
+You won't get pixel-perfect matches — themes, exact colors, and tiny details may differ. Aim to match:
+
+- The frame (which variables are on x and y)
+- The glyph (which geom)
+- The aesthetic mappings (color, shape, facets, etc.)
+- Any axis transformations or labels
+- Anything else that's clearly *intentional* in the target
+
+Look closely. A target plot with three colors and three facets is showing you something different than one with three colors and no facets.
+
+---
+
+## Target 1 — Bills, with species and a smoother
+
+```{r target1, echo=FALSE, fig.width=7, fig.height=4, warning=FALSE, message=FALSE}
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
+  geom_point(size = 2, alpha = 0.7, na.rm = TRUE) +
+  geom_smooth(method = "lm", se = FALSE, na.rm = TRUE) +
+  labs(
+    x = "Bill length (mm)",
+    y = "Bill depth (mm)",
+    title = "Bill dimensions by species",
+    color = "Species"
+  ) +
+  theme_minimal()
+```
+
+```{r recreate-1}
+# Your code:
+
+```
+
+**What does this plot reveal?**
+
+[Write one sentence.]
+
+---
+
+## Target 2 — Body mass distribution by species and sex
+
+```{r target2, echo=FALSE, fig.width=8, fig.height=4, warning=FALSE, message=FALSE}
+penguins |>
+  filter(!is.na(sex)) |>
+  ggplot(aes(x = body_mass_g, fill = species)) +
+  geom_histogram(bins = 20, position = "identity", alpha = 0.6) +
+  facet_grid(sex ~ species) +
+  labs(
+    x = "Body mass (g)",
+    y = "Count",
+    title = "Body mass distribution by species and sex",
+    fill = "Species"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+```{r recreate-2}
+# Your code:
+
+```
+
+*Hint: the legend is hidden because the fill is redundant with the facet columns. You can use `show.legend = FALSE` on the geom, or `theme(legend.position = "none")` to do this.*
+
+**What does this plot reveal?**
+
+[Write one sentence.]
+
+---
+
+## Target 3 — Flipper length vs. body mass, with continuous color
+
+```{r target3, echo=FALSE, fig.width=7, fig.height=4, warning=FALSE, message=FALSE}
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, color = bill_length_mm)) +
+  geom_point(size = 2.5, na.rm = TRUE) +
+  scale_color_viridis_c(option = "plasma") +
+  facet_wrap(~species) +
+  labs(
+    x = "Body mass (g)",
+    y = "Flipper length (mm)",
+    title = "Flipper length vs. body mass, colored by bill length",
+    color = "Bill length (mm)"
+  ) +
+  theme_minimal()
+```
+
+```{r recreate-3}
+# Your code:
+
+```
+
+*Hint: this plot encodes **four** variables. The continuous color scale is from the viridis package — see the slide on continuous color.*
+
+**What does this plot reveal?**
+
+[Write one sentence.]
+
+---
+
+## Target 4 — Counts of penguins by island and species
+
+```{r target4, echo=FALSE, fig.width=7, fig.height=4, warning=FALSE, message=FALSE}
+ggplot(penguins, aes(x = island, fill = species)) +
+  geom_bar(position = "dodge") +
+  labs(
+    x = "Island",
+    y = "Number of penguins",
+    title = "Where each species lives",
+    fill = "Species"
+  ) +
+  theme_minimal()
+```
+
+```{r recreate-4}
+# Your code:
+
+```
+
+*Hint: pay attention to the position adjustment. Stacked, dodged, and filled bars all look different.*
+
+**What does this plot reveal?**
+
+[Write one sentence.]
+
+---
+
+# Wrap-up
+
+Once you've matched all four, take a moment to reflect:
+
+**Which target was hardest?** Was it the one with the most variables, or one with a subtler design choice?
+
+[Write 1–2 sentences.]
+
+---
+
+# Code appendix
+
+```{r ref.label=knitr::all_labels()}
+#| echo: TRUE
+#| eval: FALSE
+```

@@ -1,0 +1,185 @@
+---
+title: "Day 9 Activity: AI-assisted analysis, with verification"
+subtitle: "Friday, May 29, 2026"
+author: "Your Name Here"
+editor: source
+engine: knitr
+format:
+  html:
+    toc: TRUE
+    code-fold: FALSE
+    embed-resources: TRUE
+  pdf:
+    toc: FALSE
+---
+
+**AI Disclosure**
+
+You are **required** to use AI for at least part of this activity. List every AI tool you used and roughly how you used it:
+
+- [ ] ChatGPT (any version)
+- [ ] Claude (any version)
+- [ ] Gemini (any version)
+- [ ] GitHub Copilot
+- [ ] Other: _______________
+
+*Briefly describe your use (2-3 sentences). Be specific about what you asked.*
+
+[Type your explanation here.]
+
+---
+
+## Setup
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(nycflights13)
+```
+
+We're using the `nycflights13` package, a dataset of every commercial flight that departed from one of NYC's three major airports in 2013. You've already seen `flights` on Homework 2. Today we'll also be using a second table, `airlines`, which gives the full names of each carrier.
+
+```{r}
+glimpse(flights)
+glimpse(airlines)
+```
+
+---
+
+# The task
+
+You're working with a regional newspaper. A reporter asks you:
+
+> **"Which airlines were the worst for travelers leaving JFK in summer 2013? I want a clear, readable graphic and a couple of sentences I can quote."**
+
+Their definition of "worst" is intentionally vague. That's part of the assignment; different reasonable interpretations could give different answers. Your job has three parts.
+
+---
+
+# Part 1
+
+Use any AI tool you want. Ask it for help building an analysis that answers the reporter's question. You should end up with:
+
+- A pipeline that filters to JFK summer 2013 flights
+- Some measure of "worst"
+- The airline name (not the 2-letter code)
+- A finished plot with proper labels
+- 2-3 sentences interpreting it
+
+**Paste the AI's response below as-is.** Do not edit it yet. You'll edit in Part 3.
+
+```{r ai-version}
+# Paste AI's code here. Try to run it as-is, even if you suspect it won't work.
+
+```
+
+**What did the AI claim about the answer?** Copy or paraphrase its interpretation:
+
+[Paste here.]
+
+---
+
+# Part 2
+
+Now work through the AI's output critically. Find at least **three** things that are wrong, suspicious, unverified, or could go wrong. For each one, write:
+
+1. **What's the problem?**
+2. **How did you find it?** (Did you read the code? Run a check? Compare to the data?)
+3. **What's the right answer or fix?**
+
+::: {.callout-tip}
+## Things to check
+- Did it filter "summer" correctly? What months count? Did it filter on `month` or did it try something weird with dates?
+- Did it handle `NA` values? `flights$dep_delay` has a lot of NAs (cancelled flights). Are they being dropped silently, or treated as 0, or treated as NA in the answer?
+- Did it join `flights` to `airlines` to get the carrier name? Did the join work as expected?
+- Did it average delays, sum them, or count delayed flights? Are those the same question?
+- Did the AI invent any functions or arguments that don't exist? Run `?function_name` on anything you haven't seen.
+- Does the plot have axis labels? Units? A title that reflects what's actually being shown?
+- Did the AI claim something in its interpretation that isn't actually visible in the plot?
+:::
+
+### Issue 1
+
+**Problem:**
+
+[Describe.]
+
+**How you found it:**
+
+[Describe.]
+
+**Fix:**
+
+[Describe.]
+
+### Issue 2
+
+**Problem:**
+
+[Describe.]
+
+**How you found it:**
+
+[Describe.]
+
+**Fix:**
+
+[Describe.]
+
+### Issue 3
+
+**Problem:**
+
+[Describe.]
+
+**How you found it:**
+
+[Describe.]
+
+**Fix:**
+
+[Describe.]
+
+### Issue 4 (optional)
+
+[If you found more, list them here.]
+
+---
+
+# Part 3
+
+Now produce **your own** version of the analysis, with the issues fixed. Use the AI's code as a starting point if you want, but **every line should be one you understand and can defend**.
+
+```{r verified}
+# Your verified pipeline:
+
+```
+
+```{r verified-plot}
+# Your verified plot:
+
+```
+
+**Your interpretation (2-3 sentences):**
+
+[Write here. State explicitly what definition of "worst" you used and any caveats the reporter should know.]
+
+---
+
+# Part 4
+
+In **3-4 sentences**, answer the following:
+
+1. What was the most surprising thing the AI got right or wrong?
+2. If you had submitted the AI's first version without review, what would have been the worst-case consequence?
+3. How would you change the way you talk to AI in the future based on what you found?
+
+[Your reflection here.]
+
+---
+
+# Code appendix
+
+```{r ref.label=knitr::all_labels()}
+#| echo: TRUE
+#| eval: FALSE
+```
