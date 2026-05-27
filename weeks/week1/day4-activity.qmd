@@ -2,8 +2,8 @@
 title: "Day 4 Activity"
 output: html
 embed-resources: TRUE
-execute: 
-  echo: FALSE
+editor: source
+engine: knitr
 ---
 
 ```{r}

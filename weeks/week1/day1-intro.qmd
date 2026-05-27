@@ -2,6 +2,8 @@
 title: "Course intro & what is `R`?"
 subtitle: "Day 1 - Monday, May 18, 2026"
 lang: en
+editor: source
+engine: knitr
 format:
   revealjs:
     slide-number: true
@@ -9,21 +11,14 @@ format:
     smaller: true
     highlight-style: a11y
     output-file: "day1-intro-slides.html"
-    execute:
-      enabled: true
-      freeze: auto
   html:
     toc: true
     embed-resources: true
     highlight-style: a11y
     axe: true
     output-file: "day1-intro-page.html"
-    execute:
-      enabled: true
-      freeze: auto
   pdf:
     fig-pos: "H"
-editor: source
 ---
 
 ```{r}

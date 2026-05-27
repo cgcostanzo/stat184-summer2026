@@ -2,6 +2,8 @@
 title: "Quarto basics · reproducible documents"
 subtitle: "Day 4 - Thursday, May 21, 2026"
 lang: en
+editor: source
+engine: knitr
 format:
   revealjs:
     slide-number: true
@@ -17,7 +19,6 @@ format:
     output-file: "day4-quarto-page.html"
   pdf:
     fig-pos: "H"
-editor: source
 ---
 
 ```{r}

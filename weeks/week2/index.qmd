@@ -14,15 +14,15 @@ We introduce data frames and the *grammar of graphics*. By Friday you'll be maki
 | Date | Topic | Slides & Notes | Code & Data |
 |---|---|---|---|
 | Mon May 25 | **No class (Memorial Day)** | - | - |
-| Tue May 26 | Data frames · tibbles · grammar of graphics | [Slides](day1-data-frames-slides.html) · [Page](day1-data-frames-page.html) · [PDF](day1-data-frames.pdf) | [day1-activity.R](day1-activity.qmd){download="day1-activity.qmd"} |
-| Wed May 27 | ggplot2 basics · aesthetics · geoms | [Slides](day2-ggplot-basics-slides.html) · [Page](day2-ggplot-basics-page.html) · [PDF](day2-ggplot-basics.pdf) | [day2-activity.R](day2-activity.R){download="day2-activity.R"} |
+| Tue May 26 | Data frames · tibbles · grammar of graphics | [Slides](day6-data-frames-slides.html) · [Page](day6-data-frames-page.html) · [PDF](day6-data-frames.pdf) | [day6-activity.R](day6-activity.qmd){download="day1-activity.qmd"} |
+| Wed May 27 | ggplot2 basics · aesthetics · geoms | [Slides](day7-ggplot2-slides.html) · [Page](day7-ggplot2-page.html) · [PDF](day7-ggplot2.pdf) | [day7-activity.R](day7-activity.R){download="day7-activity.R"} |
 | Thu May 28 | Multivariable graphics · facets · scales | [Slides](day3-multivariable-slides.html) · [Page](day3-multivariable-page.html) · [PDF](day3-multivariable.pdf) | [day3-activity.R](day3-activity.R){download="day3-activity.R"} |
 | Fri May 29 | **Quiz 2** · graphics critique activity | [Slides](day4-critique-slides.html) · [Page](day4-critique-page.html) · [PDF](day4-critique.pdf) | [day4-activity.R](day4-activity.R){download="day4-activity.R"} |
 
 ## Readings due this week
 
-- Before Tue: *Data Computing* Ch 5 ([DC §5.1–5.6](https://psu.instructure.com/courses/2487468/assignments/18317722) ): introduction to data graphics
-- Before Wed: *Data Computing* Ch 6 ([DC §6.1–6.5](https://psu.instructure.com/courses/2487468/assignments/18317724) ): frames, glyphs, scales, facets, layers
+- Before Tue: *Data Computing* Ch 5 ([DC §5.1–5.6](https://psu.instructure.com/courses/2487468/assignments/18317722)): introduction to data graphics
+- Before Wed: *Data Computing* Ch 6 ([DC §6.1–6.5](https://psu.instructure.com/courses/2487468/assignments/18317724)): frames, glyphs, scales, facets, layers
 - Before Thu: *Data Computing* Ch 8 ([DC §8.1–8.3](https://psu.instructure.com/courses/2487468/assignments/18317726)): specifying graphs, axes, labels
 
 ## Assignments due this week

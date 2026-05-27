@@ -2,6 +2,8 @@
 title: "Functions, packages, the tidyverse & objects"
 subtitle: "Day 3 - Wednesday, May 20, 2026"
 lang: en
+editor: source
+engine: knitr
 format:
   revealjs:
     slide-number: true
@@ -17,7 +19,6 @@ format:
     output-file: "day3-functions-packages-page.html"
   pdf:
     fig-pos: "H"
-editor: source
 ---
 
 ```{r}

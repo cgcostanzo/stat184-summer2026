@@ -85,4 +85,4 @@ format:
 editor: source
 
 execute:
-  freeze: auto
+  enabled: true

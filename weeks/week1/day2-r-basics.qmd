@@ -2,6 +2,8 @@
 title: "R, RStudio, and the console · vectors · types"
 subtitle: "Tuesday, May 19, 2026"
 lang: en
+editor: source
+engine: knitr
 format:
   revealjs:
     slide-number: true
@@ -17,7 +19,6 @@ format:
     output-file: "day2-r-basics-page.html"
   pdf:
     fig-pos: "H"
-editor: source
 ---
 
 ::: {.callout-note style="font-size: 1.3em;"}
