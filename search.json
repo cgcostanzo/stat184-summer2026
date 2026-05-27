@@ -998,21 +998,21 @@
     "href": "weeks/week2/day7-activity.html#mapping-vs.-setting",
     "title": "Day 7 Activity: ggplot2 internals with storms",
     "section": "1.1 — Mapping vs. setting",
-    "text": "1.1 — Mapping vs. setting\nThe chunk below colors every point the same shade of teal. Without changing anything else, modify the code so points are colored by status instead.\n\nggplot(storms, aes(x = wind, y = pressure)) +\n  geom_point(color = \"#1c7293\", alpha = 0.4)\n\n\n# Your fixed version:\n\nIn one sentence, what’s the difference between putting color = \"#1c7293\" inside aes() versus outside it?\n[Your answer here.]"
+    "text": "1.1 — Mapping vs. setting\nThe chunk below colors every point the same shade of teal. Without changing anything else, modify the code so points are colored by status instead.\n\nggplot(storms, aes(x = wind, y = pressure)) +\n  geom_point(color = \"#1c7293\", alpha = 0.4)\n\n\n\n\n\n\n\n\n\n# Your fixed version:\n\nIn one sentence, what’s the difference between putting color = \"#1c7293\" inside aes() versus outside it?\n[Your answer here.]"
   },
   {
     "objectID": "weeks/week2/day7-activity.html#local-mappings",
     "href": "weeks/week2/day7-activity.html#local-mappings",
     "title": "Day 7 Activity: ggplot2 internals with storms",
     "section": "1.2 — Local mappings",
-    "text": "1.2 — Local mappings\nThe plot below colors both the points and the smoothers by status (so you get one smoother per status). Modify it so only the points are colored, but the smoother is a single curve fit to all the data.\n\nggplot(storms, aes(x = wind, y = pressure, color = status)) +\n  geom_point(alpha = 0.2) +\n  geom_smooth()\n\n\n# Your fixed version:"
+    "text": "1.2 — Local mappings\nThe plot below colors both the points and the smoothers by status (so you get one smoother per status). Modify it so only the points are colored, but the smoother is a single curve fit to all the data.\n\nggplot(storms, aes(x = wind, y = pressure, color = status)) +\n  geom_point(alpha = 0.2) +\n  geom_smooth()\n\n`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = \"cs\")'\n\n\nWarning: Failed to fit group 1.\nCaused by error in `smooth.construct.cr.smooth.spec()`:\n! x has insufficient unique values to support 10 knots: reduce k.\n\n\nWarning: Failed to fit group 5.\nCaused by error in `smooth.construct.cr.smooth.spec()`:\n! x has insufficient unique values to support 10 knots: reduce k.\n\n\nWarning: Failed to fit group 6.\nCaused by error in `smooth.construct.cr.smooth.spec()`:\n! x has insufficient unique values to support 10 knots: reduce k.\n\n\nWarning: Failed to fit group 7.\nCaused by error in `smooth.construct.cr.smooth.spec()`:\n! x has insufficient unique values to support 10 knots: reduce k.\n\n\nWarning: Failed to fit group 8.\nCaused by error in `smooth.construct.cr.smooth.spec()`:\n! x has insufficient unique values to support 10 knots: reduce k.\n\n\nWarning: Failed to fit group 9.\nCaused by error in `smooth.construct.cr.smooth.spec()`:\n! x has insufficient unique values to support 10 knots: reduce k.\n\n\n\n\n\n\n\n\n\n\n# Your fixed version:"
   },
   {
     "objectID": "weeks/week2/day7-activity.html#the-group-aesthetic",
     "href": "weeks/week2/day7-activity.html#the-group-aesthetic",
     "title": "Day 7 Activity: ggplot2 internals with storms",
     "section": "1.3 — The group aesthetic",
-    "text": "1.3 — The group aesthetic\nRun this code first. It tries to draw the path of every storm in 2005, but it produces a single zigzagging line that connects unrelated storms together.\n\nggplot(storms |&gt; filter(year == 2005), aes(x = long, y = lat)) +\n  geom_path()\n\nAdd one aesthetic mapping so each storm gets its own path. (Hint: which variable identifies a storm?)\n\n# Your fixed version:"
+    "text": "1.3 — The group aesthetic\nRun this code first. It tries to draw the path of every storm in 2005, but it produces a single zigzagging line that connects unrelated storms together.\n\nggplot(storms |&gt; filter(year == 2005), aes(x = long, y = lat)) +\n  geom_path()\n\n\n\n\n\n\n\n\nAdd one aesthetic mapping so each storm gets its own path. (Hint: which variable identifies a storm?)\n\n# Your fixed version:"
   },
   {
     "objectID": "weeks/week2/day7-activity.html#after_stat-for-proportions",
@@ -1026,7 +1026,7 @@
     "href": "weeks/week2/day7-activity.html#position-adjustments",
     "title": "Day 7 Activity: ggplot2 internals with storms",
     "section": "1.5 — Position adjustments",
-    "text": "1.5 — Position adjustments\nRun the code below. It stacks hurricane counts by category, within each month.\n\nhurricanes &lt;- storms |&gt; filter(status == \"hurricane\")\n\nggplot(hurricanes, aes(x = month, fill = factor(category))) +\n  geom_bar()\n\nMake two more versions:\n\nOne where each bar is normalized so every month has the same height, and segments show the proportion of each category.\nOne where the categories are placed side by side within each month, not stacked.\n\n\n# (a) position = \"fill\"\n\n\n# (b) position = \"dodge\"\n\nIn one sentence, which of the three versions (original stacked, fill, dodge) would you use to answer the question “In which month is Category 5 most common as a share of all hurricanes?”\n[Your answer here.]"
+    "text": "1.5 — Position adjustments\nRun the code below. It stacks hurricane counts by category, within each month.\n\nhurricanes &lt;- storms |&gt; filter(status == \"hurricane\")\n\nggplot(hurricanes, aes(x = month, fill = factor(category))) +\n  geom_bar()\n\n\n\n\n\n\n\n\nMake two more versions:\n\nOne where each bar is normalized so every month has the same height, and segments show the proportion of each category.\nOne where the categories are placed side by side within each month, not stacked.\n\n\n# (a) position = \"fill\"\n\n\n# (b) position = \"dodge\"\n\nIn one sentence, which of the three versions (original stacked, fill, dodge) would you use to answer the question “In which month is Category 5 most common as a share of all hurricanes?”\n[Your answer here.]"
   },
   {
     "objectID": "weeks/week2/day7-activity.html#question-a-wind-vs.-pressure",
