@@ -18,7 +18,7 @@
     "href": "schedule.html#week-2-graphics-may-25---29",
     "title": "Course Schedule",
     "section": "Week 2 — Graphics (May 25 - 29)",
-    "text": "Week 2 — Graphics (May 25 - 29)\n\nWeek 2 schedule\n\n\n\n\n\n\n\n\nDate\nTopic\nRead before class\nDue\n\n\n\n\nMon May 25\nNo class - Memorial Day\n—\n—\n\n\nTue May 26\nData frames · intro to data graphics\nDC §5.1–5.6\n—\n\n\nWed May 27\nggplot2 basics · frames, glyphs, scales, facets\nDC §6.1–6.5\n—\n\n\nThu May 28\nMultivariable graphics · specifying graphs · axes & labels\nDC §8.1–8.3\n—\n\n\nFri May 29\nQuiz 2 · graphics critique activity\n—\nHW 2: Pipes, Plots & Reading Graphics · Quiz 2 (in class)"
+    "text": "Week 2 — Graphics (May 25 - 29)\n\nWeek 2 schedule\n\n\n\n\n\n\n\n\nDate\nTopic\nRead before class\nDue\n\n\n\n\nMon May 25\nNo class - Memorial Day\n—\n—\n\n\nTue May 26\nData frames · tibbles · grammar of graphics\nDC §5.1–5.6\n—\n\n\nWed May 27\nggplot2 basics · aesthetics · geoms\nDC §6.1–6.5\n—\n\n\nThu May 28\nMultivariable graphics · facets · scales\nDC §8.1–8.3\n—\n\n\nFri May 29\nQuiz 2 · AI coding/critique activity\n—\nHW 2: Pipes, Plots & Reading Graphics · Quiz 2 (in class)"
   },
   {
     "objectID": "schedule.html#week-3-data-wrangling-june-1---5",
