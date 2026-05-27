@@ -1050,36 +1050,36 @@
     "text": "Question C — One season’s storm tracks\nPick a single year (say, 2005 — a famously bad year — or any other). Build a map of lat vs. long showing the paths of every storm that season. Highlight one or two notable storms.\nSuggestion: this needs the group aesthetic, and probably two geom_path() layers with different data.\n\n# Your plot:\n\nYour 2–3 sentence interpretation:\n[Write here.]"
   },
   {
-    "objectID": "weeks/week2/day8-multivariable.html",
-    "href": "weeks/week2/day8-multivariable.html",
-    "title": "Multivariable graphics · specifying graphs · axes & labels",
-    "section": "",
-    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
-  },
-  {
-    "objectID": "weeks/week2/day8-multivariable.html#before-class",
-    "href": "weeks/week2/day8-multivariable.html#before-class",
-    "title": "Multivariable graphics · specifying graphs · axes & labels",
-    "section": "Before class",
-    "text": "Before class\n\nRead: Data Computing Ch 8 (§8.1–8.3)\nTODO: any prep materials, data files, etc."
-  },
-  {
-    "objectID": "weeks/week2/day8-multivariable.html#outline",
-    "href": "weeks/week2/day8-multivariable.html#outline",
-    "title": "Multivariable graphics · specifying graphs · axes & labels",
-    "section": "Outline",
-    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
-  },
-  {
-    "objectID": "weeks/week2/day8-multivariable.html#resources",
-    "href": "weeks/week2/day8-multivariable.html#resources",
+    "objectID": "weeks/week2/day8-multivariable-slides.html#resources",
+    "href": "weeks/week2/day8-multivariable-slides.html#resources",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Resources",
     "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
   },
   {
-    "objectID": "weeks/week2/day8-multivariable.html#after-class",
-    "href": "weeks/week2/day8-multivariable.html#after-class",
+    "objectID": "weeks/week2/day8-multivariable-slides.html#after-class",
+    "href": "weeks/week2/day8-multivariable-slides.html#after-class",
+    "title": "Multivariable graphics · specifying graphs · axes & labels",
+    "section": "After class",
+    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nInstructor notes\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
+  },
+  {
+    "objectID": "weeks/week2/day8-multivariable-page.html",
+    "href": "weeks/week2/day8-multivariable-page.html",
+    "title": "Multivariable graphics · specifying graphs · axes & labels",
+    "section": "",
+    "text": "NoteToday: Thursday May 28\n\n\n\nBefore class\n\nPerusall Assignment: DC §8.1–8.3\n\nPlan for today\nHelpful links\n\nSyllabus · AI policy · Schedule · R4DS Ch. 9 · DC §8 · ggplot2 reference"
+  },
+  {
+    "objectID": "weeks/week2/day8-multivariable-page.html#resources",
+    "href": "weeks/week2/day8-multivariable-page.html#resources",
+    "title": "Multivariable graphics · specifying graphs · axes & labels",
+    "section": "Resources",
+    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+  },
+  {
+    "objectID": "weeks/week2/day8-multivariable-page.html#after-class",
+    "href": "weeks/week2/day8-multivariable-page.html#after-class",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "After class",
     "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
@@ -3700,14 +3700,14 @@
     "href": "weeks/week2/day7-ggplot2-page.html",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "",
-    "text": "NoteToday: Wednesday May 27\n\n\n\nBefore class\n\nPerusall Assignment: R for Data Science Ch. 9 (Layers) and DC Ch. 6 (Frames, glyphs, & components).\n\nPlan for today\n\nThe grammar of graphics: a vocabulary for any plot\nAesthetic mappings vs. fixed properties (and a common bug)\nGeoms in depth: layering, local vs. global, multiple data\nStatistical transformations: where do bar heights come from?\nPosition adjustments: stacking, dodging, jittering\nIn-class activity\n\nHelpful links\n\nSyllabus · AI policy · Schedule · R4DS Ch. 9 · ggplot2 reference"
+    "text": "NoteToday: Wednesday May 27\n\n\n\nBefore class\n\nPerusall Assignment: DC §6.1–6.5\n\nPlan for today\n\nThe grammar of graphics: a vocabulary for any plot\nAesthetic mappings vs. fixed properties (and a common bug)\nGeoms in depth: layering, local vs. global, multiple data\nStatistical transformations: where do bar heights come from?\nPosition adjustments: stacking, dodging, jittering\nIn-class activity\n\nHelpful links\n\nSyllabus · AI policy · Schedule · R4DS Ch. 9 · DC §6 · ggplot2 reference"
   },
   {
     "objectID": "weeks/week2/day7-ggplot2-page.html#quick-recap",
     "href": "weeks/week2/day7-ggplot2-page.html#quick-recap",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Quick recap",
-    "text": "Quick recap\nWe’ve been making ggplots for a while now. You know how to:\n\nPass data and aes() to ggplot()\nAdd a geom like geom_point(), geom_bar(), geom_histogram()\nMap variables to x, y, color, fill\n\nToday we’re going to slow down and look at what’s actually happening under the hood. Same plots, but with a precise vocabulary for talking about them — and a few tools you probably haven’t used yet.\n\n\n\n\n\n\n\nTip\n\n\n\nThis is the chapter that turns ggplot2 from “memorizing recipes” into “I can build any plot I can describe.”"
+    "text": "Quick recap\nWe’ve been making ggplots for a while now. You know how to:\n\nPass data and aes() to ggplot()\nAdd a geom like geom_point(), geom_bar(), geom_histogram()\nMap variables to x, y, color, fill\n\nToday we’re going to slow down and look at what’s actually happening under the hood.\n\n\n\n\n\n\n\nTip\n\n\n\nThe goal of today is to give you the tools to be able to build any plot you can describe."
   },
   {
     "objectID": "weeks/week2/day7-ggplot2-page.html#a-vocabulary-for-plots",
@@ -3959,14 +3959,14 @@
     "href": "weeks/week2/day7-ggplot2-page.html#wrap-up-looking-ahead",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\nTomorrow: facets in depth, scales, and color choices — including continuous color scales, sequential vs. diverging palettes, and accessibility.\nFriday: Quiz 2 + a graphics critique activity.\n\n\nUpcoming Deadlines\n\nThurs 5/28, before class\nFri 5/29, in class — Quiz 2\nFri 5/29, 11:59 p.m. — HW 2: Pipes, Plots & Reading Graphics\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 9 · ggplot2 reference"
+    "text": "Wrap-up & looking ahead\nTomorrow: facets in depth, scales, and color choices — including continuous color scales, sequential vs. diverging palettes, and accessibility.\nFriday: Quiz 2 + a graphics critique activity.\n\n\nUpcoming Deadlines\n\nThurs 5/28, before class: DC §8.1–8.3\nFri 5/29, in class: Quiz 2\nFri 5/29, 11:59 p.m.: HW 2: Pipes, Plots & Reading Graphics\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 9 · ggplot2 reference"
   },
   {
     "objectID": "weeks/week2/day7-ggplot2-slides.html#quick-recap",
     "href": "weeks/week2/day7-ggplot2-slides.html#quick-recap",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Quick recap",
-    "text": "Quick recap\nWe’ve been making ggplots for a while now. You know how to:\n\nPass data and aes() to ggplot()\nAdd a geom like geom_point(), geom_bar(), geom_histogram()\nMap variables to x, y, color, fill\n\nToday we’re going to slow down and look at what’s actually happening under the hood. Same plots, but with a precise vocabulary for talking about them — and a few tools you probably haven’t used yet.\n\n\n\n\n\n\n\n\nTip\n\n\nThis is the chapter that turns ggplot2 from “memorizing recipes” into “I can build any plot I can describe.”"
+    "text": "Quick recap\nWe’ve been making ggplots for a while now. You know how to:\n\nPass data and aes() to ggplot()\nAdd a geom like geom_point(), geom_bar(), geom_histogram()\nMap variables to x, y, color, fill\n\nToday we’re going to slow down and look at what’s actually happening under the hood.\n\n\n\n\n\n\n\n\nTip\n\n\nThe goal of today is to give you the tools to be able to build any plot you can describe."
   },
   {
     "objectID": "weeks/week2/day7-ggplot2-slides.html#a-vocabulary-for-plots",
@@ -4218,7 +4218,7 @@
     "href": "weeks/week2/day7-ggplot2-slides.html#wrap-up-looking-ahead",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\nTomorrow: facets in depth, scales, and color choices — including continuous color scales, sequential vs. diverging palettes, and accessibility.\nFriday: Quiz 2 + a graphics critique activity.\n\n\nUpcoming Deadlines\n\nThurs 5/28, before class\nFri 5/29, in class — Quiz 2\nFri 5/29, 11:59 p.m. — HW 2: Pipes, Plots & Reading Graphics\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 9 · ggplot2 reference"
+    "text": "Wrap-up & looking ahead\nTomorrow: facets in depth, scales, and color choices — including continuous color scales, sequential vs. diverging palettes, and accessibility.\nFriday: Quiz 2 + a graphics critique activity.\n\n\nUpcoming Deadlines\n\nThurs 5/28, before class: DC §8.1–8.3\nFri 5/29, in class: Quiz 2\nFri 5/29, 11:59 p.m.: HW 2: Pipes, Plots & Reading Graphics\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 9 · ggplot2 reference"
   },
   {
     "objectID": "weeks/week5/day3-iteration.html",
