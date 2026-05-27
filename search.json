@@ -637,344 +637,344 @@
     "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-slides.html#last-friday",
-    "href": "weeks/week2/day1-data-frames-slides.html#last-friday",
+    "objectID": "weeks/week2/day6-data-frames-slides.html#last-friday",
+    "href": "weeks/week2/day6-data-frames-slides.html#last-friday",
     "title": "Data frames · intro to data graphics",
     "section": "Last Friday",
     "text": "Last Friday\nWe learned the pipe operator: x |&gt; f() is the same as f(x).\n\nc(1, 4, 9, 16, 25) |&gt;\n  mean() |&gt;\n  sqrt()\n\n[1] 3.316625\n\n\nToday we’ll learn to leverage the pipee to push data frames through chains of operations and into plots."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-slides.html#what-is-a-data-frame",
-    "href": "weeks/week2/day1-data-frames-slides.html#what-is-a-data-frame",
+    "objectID": "weeks/week2/day6-data-frames-slides.html#what-is-a-data-frame",
+    "href": "weeks/week2/day6-data-frames-slides.html#what-is-a-data-frame",
     "title": "Data frames · intro to data graphics",
     "section": "What is a data frame?",
     "text": "What is a data frame?\nA data frame is essentially a table: rows and columns. It’s very similar to a spreadsheet, but it has specific rules and requirements.\n\nEach row is one case (one penguin, one song, one person, one tweet).\nEach column is one variable (a measurement or attribute of that case).\nAll values in a column have the same type (numbers, text, dates, etc.).\n\n\npenguins\n\n# A tibble: 344 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Torgersen           39.1          18.7               181        3750\n 2 Adelie  Torgersen           39.5          17.4               186        3800\n 3 Adelie  Torgersen           40.3          18                 195        3250\n 4 Adelie  Torgersen           NA            NA                  NA          NA\n 5 Adelie  Torgersen           36.7          19.3               193        3450\n 6 Adelie  Torgersen           39.3          20.6               190        3650\n 7 Adelie  Torgersen           38.9          17.8               181        3625\n 8 Adelie  Torgersen           39.2          19.6               195        4675\n 9 Adelie  Torgersen           34.1          18.1               193        3475\n10 Adelie  Torgersen           42            20.2               190        4250\n# ℹ 334 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-slides.html#rows-are-cases-columns-are-variables",
-    "href": "weeks/week2/day1-data-frames-slides.html#rows-are-cases-columns-are-variables",
+    "objectID": "weeks/week2/day6-data-frames-slides.html#rows-are-cases-columns-are-variables",
+    "href": "weeks/week2/day6-data-frames-slides.html#rows-are-cases-columns-are-variables",
     "title": "Data frames · intro to data graphics",
     "section": "Rows are cases, columns are variables",
     "text": "Rows are cases, columns are variables\n\n\n\n\n\n\nRule of thumb\n\n\nIf you’re not sure what a “case” is in a data frame, ask: what does one row represent?\n\n\n\nIn penguins, one row = one penguin. In a Spotify dataset, one row might be one song. In NYC subway data, one row might be one turnstile entry.\nThe shape of the data frame depends entirely on what you decided to count."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-slides.html#anatomy-of-a-data-frame",
-    "href": "weeks/week2/day1-data-frames-slides.html#anatomy-of-a-data-frame",
+    "objectID": "weeks/week2/day6-data-frames-slides.html#anatomy-of-a-data-frame",
+    "href": "weeks/week2/day6-data-frames-slides.html#anatomy-of-a-data-frame",
     "title": "Data frames · intro to data graphics",
     "section": "Anatomy of a data frame",
     "text": "Anatomy of a data frame\n\nglimpse(penguins)\n\nRows: 344\nColumns: 8\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\n\nRows: 344 (there are 344 penguins.)\nColumns: 8 (eight things we know about each one.)\nEach column has a type next to it: &lt;fct&gt; (factor), &lt;dbl&gt; (decimal number), &lt;int&gt; (whole number)."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-slides.html#common-variable-types",
-    "href": "weeks/week2/day1-data-frames-slides.html#common-variable-types",
+    "objectID": "weeks/week2/day6-data-frames-slides.html#common-variable-types",
+    "href": "weeks/week2/day6-data-frames-slides.html#common-variable-types",
     "title": "Data frames · intro to data graphics",
     "section": "Common variable types",
     "text": "Common variable types\nWhile there are many types of variables, these are some of the most common that you’ll encounter:\n\nNumeric (&lt;dbl&gt;, &lt;int&gt;): body_mass_g, flipper_length_mm. You can do math on them.\nCategorical (&lt;fct&gt;, &lt;chr&gt;): species, island, sex. Labels, not numbers.\nLogical (&lt;lgl&gt;): TRUE / FALSE.\nDate/time (&lt;date&gt;, &lt;dttm&gt;): calendar dates and timestamps.\n\nThe type of a variable determines what kind of plot makes sense for it."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-slides.html#data-frame-real-life-examples",
-    "href": "weeks/week2/day1-data-frames-slides.html#data-frame-real-life-examples",
+    "objectID": "weeks/week2/day6-data-frames-slides.html#data-frame-real-life-examples",
+    "href": "weeks/week2/day6-data-frames-slides.html#data-frame-real-life-examples",
     "title": "Data frames · intro to data graphics",
     "section": "Data frame real-life examples",
     "text": "Data frame real-life examples\nAlmost every dataset you’ll see in this course — and in the real world — is a data frame.\n\nSpotify’s “Wrapped” stats? A data frame: one row per song you played.\n538’s election forecasts? A data frame: one row per state per day.\nYour Strava history? A data frame: one row per run.\nThe CDC’s COVID dashboards? Data frames stacked on data frames.\n\nThe skill we’re building: take any of these and ask good questions of them with code."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-slides.html#why-we-plot",
-    "href": "weeks/week2/day1-data-frames-slides.html#why-we-plot",
+    "objectID": "weeks/week2/day6-data-frames-slides.html#why-we-plot",
+    "href": "weeks/week2/day6-data-frames-slides.html#why-we-plot",
     "title": "Data frames · intro to data graphics",
     "section": "Why we plot",
     "text": "Why we plot\nYou could stare at this:\n\npenguins |&gt; select(species, body_mass_g) |&gt; head(10)\n\n# A tibble: 10 × 2\n   species body_mass_g\n   &lt;fct&gt;         &lt;int&gt;\n 1 Adelie         3750\n 2 Adelie         3800\n 3 Adelie         3250\n 4 Adelie           NA\n 5 Adelie         3450\n 6 Adelie         3650\n 7 Adelie         3625\n 8 Adelie         4675\n 9 Adelie         3475\n10 Adelie         4250\n\n\n…or you could just look at a picture. Our eyes are very, very good at spotting patterns in plots. Tables, not so much."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-slides.html#five-genres-of-data-graphics",
-    "href": "weeks/week2/day1-data-frames-slides.html#five-genres-of-data-graphics",
+    "objectID": "weeks/week2/day6-data-frames-slides.html#five-genres-of-data-graphics",
+    "href": "weeks/week2/day6-data-frames-slides.html#five-genres-of-data-graphics",
     "title": "Data frames · intro to data graphics",
     "section": "Five genres of data graphics",
     "text": "Five genres of data graphics\nThe reading lays out five common types. Each one answers a different kind of question.\n\nThe big five.\n\n\n\n\n\n\nGraphic\nAnswers the question…\n\n\n\n\nScatter plot\nHow do two numbers relate?\n\n\nHistogram / freq. polygon\nHow is one variable distributed?\n\n\nBar chart\nHow does a quantity compare across groups?\n\n\nMap\nHow does a variable vary across geography?\n\n\nNetwork\nHow are things connected to each other?\n\n\n\nWe’ll look at each one."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-slides.html#scatter-plot-two-numbers-one-dot-per-case",
-    "href": "weeks/week2/day1-data-frames-slides.html#scatter-plot-two-numbers-one-dot-per-case",
+    "objectID": "weeks/week2/day6-data-frames-slides.html#scatter-plot-two-numbers-one-dot-per-case",
+    "href": "weeks/week2/day6-data-frames-slides.html#scatter-plot-two-numbers-one-dot-per-case",
     "title": "Data frames · intro to data graphics",
     "section": "Scatter plot: two numbers, one dot per case",
     "text": "Scatter plot: two numbers, one dot per case\n\n\nA scatter plot puts one numeric variable on the x-axis, another on the y-axis. Each case is one dot.\nUse it when you want to see how two numbers move together.\nThe classic example: as kids get older, they get taller. Age on the x-axis, height on the y-axis, and the dots trace out a growth curve.\n\n\n\n\n\n\n\n\n\n\n\nBigger penguins tend to have longer bills, and the species cluster apart from each other."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-slides.html#what-to-look-for-in-a-scatter-plot",
-    "href": "weeks/week2/day1-data-frames-slides.html#what-to-look-for-in-a-scatter-plot",
+    "objectID": "weeks/week2/day6-data-frames-slides.html#what-to-look-for-in-a-scatter-plot",
+    "href": "weeks/week2/day6-data-frames-slides.html#what-to-look-for-in-a-scatter-plot",
     "title": "Data frames · intro to data graphics",
     "section": "What to look for in a scatter plot",
     "text": "What to look for in a scatter plot\n\nDirection: do the dots trend up, down, or neither?\nStrength: tight line/group or random scatter?\nGroups: do the dots clump into clusters? (Color-coding a categorical variable helps.)\nOutliers: any dots way off on their own?\n\n\n\n\n\n\n\nTip\n\n\nA scatter plot can show a third variable through color, shape, or size. The plot above is really showing three variables at once: bill length, body mass, and species."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-slides.html#histograms-how-is-one-variable-spread-out",
-    "href": "weeks/week2/day1-data-frames-slides.html#histograms-how-is-one-variable-spread-out",
+    "objectID": "weeks/week2/day6-data-frames-slides.html#histograms-how-is-one-variable-spread-out",
+    "href": "weeks/week2/day6-data-frames-slides.html#histograms-how-is-one-variable-spread-out",
     "title": "Data frames · intro to data graphics",
     "section": "Histograms: how is one variable spread out?",
     "text": "Histograms: how is one variable spread out?\nA histogram chops a numeric variable into bins and counts how many cases fall in each bin.\n\nThe tallest bar shows the most common range. The shape tells you whether values pile up on one side, spread evenly, or split into multiple bumps."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-slides.html#frequency-polygons-distributions-side-by-side",
-    "href": "weeks/week2/day1-data-frames-slides.html#frequency-polygons-distributions-side-by-side",
+    "objectID": "weeks/week2/day6-data-frames-slides.html#frequency-polygons-distributions-side-by-side",
+    "href": "weeks/week2/day6-data-frames-slides.html#frequency-polygons-distributions-side-by-side",
     "title": "Data frames · intro to data graphics",
     "section": "Frequency polygons: distributions, side by side",
     "text": "Frequency polygons: distributions, side by side\nA frequency polygon is a histogram drawn as a line. The advantage: you can more easily overlay multiple groups on the same plot.\n\nNow you can see that Gentoo penguins are heavier than the other two species: that wasn’t obvious in the single histogram."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-slides.html#what-to-look-for-in-a-distribution",
-    "href": "weeks/week2/day1-data-frames-slides.html#what-to-look-for-in-a-distribution",
+    "objectID": "weeks/week2/day6-data-frames-slides.html#what-to-look-for-in-a-distribution",
+    "href": "weeks/week2/day6-data-frames-slides.html#what-to-look-for-in-a-distribution",
     "title": "Data frames · intro to data graphics",
     "section": "What to look for in a distribution",
     "text": "What to look for in a distribution\n\nCenter: where do most values sit?\nSpread: are they bunched up or scattered widely?\nShape: bell curve, skewed, two peaks, flat?\nGaps and outliers: any empty stretches, any extreme values?\n\n\n\n\n\n\n\nNote\n\n\nA real-world example: if you plot a histogram of household incomes in the US, you’ll see it’s heavily right-skewed: most people earn modest amounts, with a long tail of high earners. A scatter plot wouldn’t tell you that."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-slides.html#bar-charts-comparing-groups",
-    "href": "weeks/week2/day1-data-frames-slides.html#bar-charts-comparing-groups",
+    "objectID": "weeks/week2/day6-data-frames-slides.html#bar-charts-comparing-groups",
+    "href": "weeks/week2/day6-data-frames-slides.html#bar-charts-comparing-groups",
     "title": "Data frames · intro to data graphics",
     "section": "Bar charts: comparing groups",
     "text": "Bar charts: comparing groups\nA bar chart is for comparing a single quantity across a handful of categories.\n\nBars next to each other are easy for the eye to compare. The length is the message."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-slides.html#when-to-use-a-bar-chart",
-    "href": "weeks/week2/day1-data-frames-slides.html#when-to-use-a-bar-chart",
+    "objectID": "weeks/week2/day6-data-frames-slides.html#when-to-use-a-bar-chart",
+    "href": "weeks/week2/day6-data-frames-slides.html#when-to-use-a-bar-chart",
     "title": "Data frames · intro to data graphics",
     "section": "When to use a bar chart",
     "text": "When to use a bar chart\n\nComparing average salary across job titles\nCounting goals scored by each team in the Premier League\nShowing how many people picked each option in a survey\n\n\n\n\n\n\n\nBar charts ≠ histograms\n\n\nThey look similar, but they’re different. A bar chart compares a value across categories. A histogram shows the distribution of one numeric variable. The bars in a histogram have a meaningful order (low to high); bar chart bars usually don’t."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-slides.html#maps-visualizing-spatial-data",
-    "href": "weeks/week2/day1-data-frames-slides.html#maps-visualizing-spatial-data",
+    "objectID": "weeks/week2/day6-data-frames-slides.html#maps-visualizing-spatial-data",
+    "href": "weeks/week2/day6-data-frames-slides.html#maps-visualizing-spatial-data",
     "title": "Data frames · intro to data graphics",
     "section": "Maps: visualizing spatial data",
     "text": "Maps: visualizing spatial data\nA choropleth map shades regions (countries, states, counties) by the value of a variable. The reading shows oil production by country; you’ve seen the same idea on every election night cable broadcast.\nUse a map when:\n\nThe geography itself carries meaning (election results, disease outbreaks, internet access, weather).\nYou want to spot spatial clusters or regional patterns.\n\n\n\n\n\n\n\nMaps can mislead\n\n\nBigger regions look more important even when they hold fewer people. Alaska on an election map dwarfs every state on the East Coast despite having fewer residents than Columbus, Ohio. Be aware of what your map is actually emphasizing."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-slides.html#networks-who-connects-to-whom",
-    "href": "weeks/week2/day1-data-frames-slides.html#networks-who-connects-to-whom",
+    "objectID": "weeks/week2/day6-data-frames-slides.html#networks-who-connects-to-whom",
+    "href": "weeks/week2/day6-data-frames-slides.html#networks-who-connects-to-whom",
     "title": "Data frames · intro to data graphics",
     "section": "Networks: who connects to whom",
     "text": "Networks: who connects to whom\nA network diagram consists of two different structures:\n\nVertices (nodes, dots): the things.\nEdges (lines): the connections between them.\n\nSome examples you’ve probably seen without knowing it:\n\nYour “mutuals” graph on social media: each user is a vertex, each follow is an edge.\nThe cast of every Marvel movie: actors as vertices, edges between two actors who appeared in the same film.\nThe internet itself: routers as vertices, cables as edges."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-slides.html#insights-from-network-graphics",
-    "href": "weeks/week2/day1-data-frames-slides.html#insights-from-network-graphics",
+    "objectID": "weeks/week2/day6-data-frames-slides.html#insights-from-network-graphics",
+    "href": "weeks/week2/day6-data-frames-slides.html#insights-from-network-graphics",
     "title": "Data frames · intro to data graphics",
     "section": "Insights from network graphics",
     "text": "Insights from network graphics\nThe shape of the network tells you things a table can’t:\n\nClusters: groups of nodes tightly connected to each other (your friend group within a larger school)\nBridges: single nodes that connect otherwise-separate clusters\nHubs: nodes with way more connections than average\n\nThe reading’s example: tumor cell lines that cluster by cancer type, suggesting that melanomas “look like” other melanomas genetically: useful if you’re trying to design a treatment."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-slides.html#match-the-graphic-to-the-question",
-    "href": "weeks/week2/day1-data-frames-slides.html#match-the-graphic-to-the-question",
+    "objectID": "weeks/week2/day6-data-frames-slides.html#match-the-graphic-to-the-question",
+    "href": "weeks/week2/day6-data-frames-slides.html#match-the-graphic-to-the-question",
     "title": "Data frames · intro to data graphics",
     "section": "Match the graphic to the question",
     "text": "Match the graphic to the question\nBefore you make a plot, ask: what question am I trying to answer?\n\nQuestion → graphic.\n\n\n\n\n\n\nIf your question is…\nChoose a…\n\n\n\n\n“How does X relate to Y?” (both numeric)\nScatter plot\n\n\n“What’s a typical value of X? Are there outliers?”\nHistogram or freq. polygon\n\n\n“How does X compare across groups?”\nBar chart\n\n\n“Where is X concentrated?”\nMap\n\n\n“How is X connected to Y?”\nNetwork"
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-slides.html#a-bad-plot-story",
-    "href": "weeks/week2/day1-data-frames-slides.html#a-bad-plot-story",
+    "objectID": "weeks/week2/day6-data-frames-slides.html#a-bad-plot-story",
+    "href": "weeks/week2/day6-data-frames-slides.html#a-bad-plot-story",
     "title": "Data frames · intro to data graphics",
     "section": "A bad-plot story",
     "text": "A bad-plot story\nIn 2015, Reuters published a chart of Florida gun deaths that flipped the y-axis upside down. The line dropped after a 2005 “Stand Your Ground” law went into effect: except the axis was inverted, and deaths actually rose.\nThe data was correct. The graphic was technically accurate. It just told the wrong story at a glance.\n\n\n\n\n\n\nTakeaway\n\n\nGraphics are persuasive. Pick the right one, label it clearly, and don’t let the chart say something the data doesn’t."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-slides.html#activity-read-some-plots-20-min",
-    "href": "weeks/week2/day1-data-frames-slides.html#activity-read-some-plots-20-min",
+    "objectID": "weeks/week2/day6-data-frames-slides.html#activity-read-some-plots-20-min",
+    "href": "weeks/week2/day6-data-frames-slides.html#activity-read-some-plots-20-min",
     "title": "Data frames · intro to data graphics",
     "section": "Activity: read some plots (~ 20 min)",
     "text": "Activity: read some plots (~ 20 min)\n\nClick here for the activity\n\nYou won’t write much code today: the focus is on reading plots and matching them to questions. We’ll write the code to build them ourselves next week.\nTo turn in: Save your .qmd and rendered HTML. We’ll check at the end of class."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-slides.html#activity-debrief",
-    "href": "weeks/week2/day1-data-frames-slides.html#activity-debrief",
+    "objectID": "weeks/week2/day6-data-frames-slides.html#activity-debrief",
+    "href": "weeks/week2/day6-data-frames-slides.html#activity-debrief",
     "title": "Data frames · intro to data graphics",
     "section": "Activity debrief",
     "text": "Activity debrief\nCommon things to watch for:\n\nA chart needs a question. “Make a plot of the data” is not a plan. “Does flipper length differ by species?” is.\nAxis labels matter. “value” is not a label. “Body mass (g)” is.\nMatch the graphic to the data type. Two numeric variables? Scatter plot. One numeric variable? Histogram. Numeric vs. category? Bar chart or boxplot.\nMore chart isn’t better chart. 3D bars, rainbow gradients, and pie charts with 14 slices all hide information instead of showing it."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-slides.html#wrap-up-what-we-covered-today",
-    "href": "weeks/week2/day1-data-frames-slides.html#wrap-up-what-we-covered-today",
+    "objectID": "weeks/week2/day6-data-frames-slides.html#wrap-up-what-we-covered-today",
+    "href": "weeks/week2/day6-data-frames-slides.html#wrap-up-what-we-covered-today",
     "title": "Data frames · intro to data graphics",
     "section": "Wrap-up: what we covered today",
     "text": "Wrap-up: what we covered today\n\nA data frame is rows (cases) and columns (variables), with each column having a single type.\nThe type of a variable determines what kinds of plots make sense for it.\nFive common genres: scatter plots, histograms/freq. polygons, bar charts, maps, networks.\nEach genre answers a different kind of question. Pick the one that matches your question.\nGraphics are persuasive: be honest with them."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-slides.html#wrap-up-looking-ahead",
-    "href": "weeks/week2/day1-data-frames-slides.html#wrap-up-looking-ahead",
+    "objectID": "weeks/week2/day6-data-frames-slides.html#wrap-up-looking-ahead",
+    "href": "weeks/week2/day6-data-frames-slides.html#wrap-up-looking-ahead",
     "title": "Data frames · intro to data graphics",
     "section": "Wrap-up & looking ahead",
     "text": "Wrap-up & looking ahead\nWednesday: We start building plots ourselves with ggplot2: the grammar of graphics.\n\n\nUpcoming Deadlines\n\nWed 5/27, before class: DC §6.1-6.5\nWed 5/27, 11:59 p.m.: HW 2\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · Data Computing"
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-page.html",
-    "href": "weeks/week2/day1-data-frames-page.html",
+    "objectID": "weeks/week2/day6-data-frames-page.html",
+    "href": "weeks/week2/day6-data-frames-page.html",
     "title": "Data frames · intro to data graphics",
     "section": "",
     "text": "NoteToday: Tuesday May 26\n\n\n\nBefore class\n\nRead Data Computing §5.1–5.6 (Click here).\n\nPlan for today\n\nQuick recap of the pipe\nWhat’s a data frame, really?\nFive genres of data graphics\nHow to read each one\nIn-class activity\n\nHelpful links\n\nSyllabus · AI policy · Schedule · Data Computing §5"
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-page.html#last-friday",
-    "href": "weeks/week2/day1-data-frames-page.html#last-friday",
+    "objectID": "weeks/week2/day6-data-frames-page.html#last-friday",
+    "href": "weeks/week2/day6-data-frames-page.html#last-friday",
     "title": "Data frames · intro to data graphics",
     "section": "Last Friday",
     "text": "Last Friday\nWe learned the pipe operator: x |&gt; f() is the same as f(x).\n\nc(1, 4, 9, 16, 25) |&gt;\n  mean() |&gt;\n  sqrt()\n\n[1] 3.316625\n\n\nToday we’ll learn to leverage the pipee to push data frames through chains of operations and into plots."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-page.html#what-is-a-data-frame",
-    "href": "weeks/week2/day1-data-frames-page.html#what-is-a-data-frame",
+    "objectID": "weeks/week2/day6-data-frames-page.html#what-is-a-data-frame",
+    "href": "weeks/week2/day6-data-frames-page.html#what-is-a-data-frame",
     "title": "Data frames · intro to data graphics",
     "section": "What is a data frame?",
     "text": "What is a data frame?\nA data frame is essentially a table: rows and columns. It’s very similar to a spreadsheet, but it has specific rules and requirements.\n\nEach row is one case (one penguin, one song, one person, one tweet).\nEach column is one variable (a measurement or attribute of that case).\nAll values in a column have the same type (numbers, text, dates, etc.).\n\n\npenguins\n\n# A tibble: 344 × 8\n   species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Adelie  Torgersen           39.1          18.7               181        3750\n 2 Adelie  Torgersen           39.5          17.4               186        3800\n 3 Adelie  Torgersen           40.3          18                 195        3250\n 4 Adelie  Torgersen           NA            NA                  NA          NA\n 5 Adelie  Torgersen           36.7          19.3               193        3450\n 6 Adelie  Torgersen           39.3          20.6               190        3650\n 7 Adelie  Torgersen           38.9          17.8               181        3625\n 8 Adelie  Torgersen           39.2          19.6               195        4675\n 9 Adelie  Torgersen           34.1          18.1               193        3475\n10 Adelie  Torgersen           42            20.2               190        4250\n# ℹ 334 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-page.html#rows-are-cases-columns-are-variables",
-    "href": "weeks/week2/day1-data-frames-page.html#rows-are-cases-columns-are-variables",
+    "objectID": "weeks/week2/day6-data-frames-page.html#rows-are-cases-columns-are-variables",
+    "href": "weeks/week2/day6-data-frames-page.html#rows-are-cases-columns-are-variables",
     "title": "Data frames · intro to data graphics",
     "section": "Rows are cases, columns are variables",
     "text": "Rows are cases, columns are variables\n\n\n\n\n\n\nTipRule of thumb\n\n\n\nIf you’re not sure what a “case” is in a data frame, ask: what does one row represent?\n\n\nIn penguins, one row = one penguin. In a Spotify dataset, one row might be one song. In NYC subway data, one row might be one turnstile entry.\nThe shape of the data frame depends entirely on what you decided to count."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-page.html#anatomy-of-a-data-frame",
-    "href": "weeks/week2/day1-data-frames-page.html#anatomy-of-a-data-frame",
+    "objectID": "weeks/week2/day6-data-frames-page.html#anatomy-of-a-data-frame",
+    "href": "weeks/week2/day6-data-frames-page.html#anatomy-of-a-data-frame",
     "title": "Data frames · intro to data graphics",
     "section": "Anatomy of a data frame",
     "text": "Anatomy of a data frame\n\nglimpse(penguins)\n\nRows: 344\nColumns: 8\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\n\nRows: 344 (there are 344 penguins.)\nColumns: 8 (eight things we know about each one.)\nEach column has a type next to it: &lt;fct&gt; (factor), &lt;dbl&gt; (decimal number), &lt;int&gt; (whole number)."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-page.html#common-variable-types",
-    "href": "weeks/week2/day1-data-frames-page.html#common-variable-types",
+    "objectID": "weeks/week2/day6-data-frames-page.html#common-variable-types",
+    "href": "weeks/week2/day6-data-frames-page.html#common-variable-types",
     "title": "Data frames · intro to data graphics",
     "section": "Common variable types",
     "text": "Common variable types\nWhile there are many types of variables, these are some of the most common that you’ll encounter:\n\nNumeric (&lt;dbl&gt;, &lt;int&gt;): body_mass_g, flipper_length_mm. You can do math on them.\nCategorical (&lt;fct&gt;, &lt;chr&gt;): species, island, sex. Labels, not numbers.\nLogical (&lt;lgl&gt;): TRUE / FALSE.\nDate/time (&lt;date&gt;, &lt;dttm&gt;): calendar dates and timestamps.\n\nThe type of a variable determines what kind of plot makes sense for it."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-page.html#data-frame-real-life-examples",
-    "href": "weeks/week2/day1-data-frames-page.html#data-frame-real-life-examples",
+    "objectID": "weeks/week2/day6-data-frames-page.html#data-frame-real-life-examples",
+    "href": "weeks/week2/day6-data-frames-page.html#data-frame-real-life-examples",
     "title": "Data frames · intro to data graphics",
     "section": "Data frame real-life examples",
     "text": "Data frame real-life examples\nAlmost every dataset you’ll see in this course — and in the real world — is a data frame.\n\nSpotify’s “Wrapped” stats? A data frame: one row per song you played.\n538’s election forecasts? A data frame: one row per state per day.\nYour Strava history? A data frame: one row per run.\nThe CDC’s COVID dashboards? Data frames stacked on data frames.\n\nThe skill we’re building: take any of these and ask good questions of them with code."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-page.html#why-we-plot",
-    "href": "weeks/week2/day1-data-frames-page.html#why-we-plot",
+    "objectID": "weeks/week2/day6-data-frames-page.html#why-we-plot",
+    "href": "weeks/week2/day6-data-frames-page.html#why-we-plot",
     "title": "Data frames · intro to data graphics",
     "section": "Why we plot",
     "text": "Why we plot\nYou could stare at this:\n\npenguins |&gt; select(species, body_mass_g) |&gt; head(10)\n\n# A tibble: 10 × 2\n   species body_mass_g\n   &lt;fct&gt;         &lt;int&gt;\n 1 Adelie         3750\n 2 Adelie         3800\n 3 Adelie         3250\n 4 Adelie           NA\n 5 Adelie         3450\n 6 Adelie         3650\n 7 Adelie         3625\n 8 Adelie         4675\n 9 Adelie         3475\n10 Adelie         4250\n\n\n…or you could just look at a picture. Our eyes are very, very good at spotting patterns in plots. Tables, not so much."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-page.html#five-genres-of-data-graphics",
-    "href": "weeks/week2/day1-data-frames-page.html#five-genres-of-data-graphics",
+    "objectID": "weeks/week2/day6-data-frames-page.html#five-genres-of-data-graphics",
+    "href": "weeks/week2/day6-data-frames-page.html#five-genres-of-data-graphics",
     "title": "Data frames · intro to data graphics",
     "section": "Five genres of data graphics",
     "text": "Five genres of data graphics\nThe reading lays out five common types. Each one answers a different kind of question.\n\nThe big five.\n\n\n\n\n\n\nGraphic\nAnswers the question…\n\n\n\n\nScatter plot\nHow do two numbers relate?\n\n\nHistogram / freq. polygon\nHow is one variable distributed?\n\n\nBar chart\nHow does a quantity compare across groups?\n\n\nMap\nHow does a variable vary across geography?\n\n\nNetwork\nHow are things connected to each other?\n\n\n\nWe’ll look at each one."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-page.html#scatter-plot-two-numbers-one-dot-per-case",
-    "href": "weeks/week2/day1-data-frames-page.html#scatter-plot-two-numbers-one-dot-per-case",
+    "objectID": "weeks/week2/day6-data-frames-page.html#scatter-plot-two-numbers-one-dot-per-case",
+    "href": "weeks/week2/day6-data-frames-page.html#scatter-plot-two-numbers-one-dot-per-case",
     "title": "Data frames · intro to data graphics",
     "section": "Scatter plot: two numbers, one dot per case",
     "text": "Scatter plot: two numbers, one dot per case\n\n\nA scatter plot puts one numeric variable on the x-axis, another on the y-axis. Each case is one dot.\nUse it when you want to see how two numbers move together.\nThe classic example: as kids get older, they get taller. Age on the x-axis, height on the y-axis, and the dots trace out a growth curve.\n\n\n\n\n\n\n\n\n\n\n\n\nBigger penguins tend to have longer bills, and the species cluster apart from each other."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-page.html#what-to-look-for-in-a-scatter-plot",
-    "href": "weeks/week2/day1-data-frames-page.html#what-to-look-for-in-a-scatter-plot",
+    "objectID": "weeks/week2/day6-data-frames-page.html#what-to-look-for-in-a-scatter-plot",
+    "href": "weeks/week2/day6-data-frames-page.html#what-to-look-for-in-a-scatter-plot",
     "title": "Data frames · intro to data graphics",
     "section": "What to look for in a scatter plot",
     "text": "What to look for in a scatter plot\n\nDirection: do the dots trend up, down, or neither?\nStrength: tight line/group or random scatter?\nGroups: do the dots clump into clusters? (Color-coding a categorical variable helps.)\nOutliers: any dots way off on their own?\n\n\n\n\n\n\n\nTip\n\n\n\nA scatter plot can show a third variable through color, shape, or size. The plot above is really showing three variables at once: bill length, body mass, and species."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-page.html#histograms-how-is-one-variable-spread-out",
-    "href": "weeks/week2/day1-data-frames-page.html#histograms-how-is-one-variable-spread-out",
+    "objectID": "weeks/week2/day6-data-frames-page.html#histograms-how-is-one-variable-spread-out",
+    "href": "weeks/week2/day6-data-frames-page.html#histograms-how-is-one-variable-spread-out",
     "title": "Data frames · intro to data graphics",
     "section": "Histograms: how is one variable spread out?",
     "text": "Histograms: how is one variable spread out?\nA histogram chops a numeric variable into bins and counts how many cases fall in each bin.\n\n\n\n\n\n\n\n\n\nThe tallest bar shows the most common range. The shape tells you whether values pile up on one side, spread evenly, or split into multiple bumps."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-page.html#frequency-polygons-distributions-side-by-side",
-    "href": "weeks/week2/day1-data-frames-page.html#frequency-polygons-distributions-side-by-side",
+    "objectID": "weeks/week2/day6-data-frames-page.html#frequency-polygons-distributions-side-by-side",
+    "href": "weeks/week2/day6-data-frames-page.html#frequency-polygons-distributions-side-by-side",
     "title": "Data frames · intro to data graphics",
     "section": "Frequency polygons: distributions, side by side",
     "text": "Frequency polygons: distributions, side by side\nA frequency polygon is a histogram drawn as a line. The advantage: you can more easily overlay multiple groups on the same plot.\n\n\n\n\n\n\n\n\n\nNow you can see that Gentoo penguins are heavier than the other two species: that wasn’t obvious in the single histogram."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-page.html#what-to-look-for-in-a-distribution",
-    "href": "weeks/week2/day1-data-frames-page.html#what-to-look-for-in-a-distribution",
+    "objectID": "weeks/week2/day6-data-frames-page.html#what-to-look-for-in-a-distribution",
+    "href": "weeks/week2/day6-data-frames-page.html#what-to-look-for-in-a-distribution",
     "title": "Data frames · intro to data graphics",
     "section": "What to look for in a distribution",
     "text": "What to look for in a distribution\n\nCenter: where do most values sit?\nSpread: are they bunched up or scattered widely?\nShape: bell curve, skewed, two peaks, flat?\nGaps and outliers: any empty stretches, any extreme values?\n\n\n\n\n\n\n\nNote\n\n\n\nA real-world example: if you plot a histogram of household incomes in the US, you’ll see it’s heavily right-skewed: most people earn modest amounts, with a long tail of high earners. A scatter plot wouldn’t tell you that."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-page.html#bar-charts-comparing-groups",
-    "href": "weeks/week2/day1-data-frames-page.html#bar-charts-comparing-groups",
+    "objectID": "weeks/week2/day6-data-frames-page.html#bar-charts-comparing-groups",
+    "href": "weeks/week2/day6-data-frames-page.html#bar-charts-comparing-groups",
     "title": "Data frames · intro to data graphics",
     "section": "Bar charts: comparing groups",
     "text": "Bar charts: comparing groups\nA bar chart is for comparing a single quantity across a handful of categories.\n\n\n\n\n\n\n\n\n\nBars next to each other are easy for the eye to compare. The length is the message."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-page.html#when-to-use-a-bar-chart",
-    "href": "weeks/week2/day1-data-frames-page.html#when-to-use-a-bar-chart",
+    "objectID": "weeks/week2/day6-data-frames-page.html#when-to-use-a-bar-chart",
+    "href": "weeks/week2/day6-data-frames-page.html#when-to-use-a-bar-chart",
     "title": "Data frames · intro to data graphics",
     "section": "When to use a bar chart",
     "text": "When to use a bar chart\n\nComparing average salary across job titles\nCounting goals scored by each team in the Premier League\nShowing how many people picked each option in a survey\n\n\n\n\n\n\n\nWarningBar charts ≠ histograms\n\n\n\nThey look similar, but they’re different. A bar chart compares a value across categories. A histogram shows the distribution of one numeric variable. The bars in a histogram have a meaningful order (low to high); bar chart bars usually don’t."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-page.html#maps-visualizing-spatial-data",
-    "href": "weeks/week2/day1-data-frames-page.html#maps-visualizing-spatial-data",
+    "objectID": "weeks/week2/day6-data-frames-page.html#maps-visualizing-spatial-data",
+    "href": "weeks/week2/day6-data-frames-page.html#maps-visualizing-spatial-data",
     "title": "Data frames · intro to data graphics",
     "section": "Maps: visualizing spatial data",
     "text": "Maps: visualizing spatial data\nA choropleth map shades regions (countries, states, counties) by the value of a variable. The reading shows oil production by country; you’ve seen the same idea on every election night cable broadcast.\nUse a map when:\n\nThe geography itself carries meaning (election results, disease outbreaks, internet access, weather).\nYou want to spot spatial clusters or regional patterns.\n\n\n\n\n\n\n\nWarningMaps can mislead\n\n\n\nBigger regions look more important even when they hold fewer people. Alaska on an election map dwarfs every state on the East Coast despite having fewer residents than Columbus, Ohio. Be aware of what your map is actually emphasizing."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-page.html#networks-who-connects-to-whom",
-    "href": "weeks/week2/day1-data-frames-page.html#networks-who-connects-to-whom",
+    "objectID": "weeks/week2/day6-data-frames-page.html#networks-who-connects-to-whom",
+    "href": "weeks/week2/day6-data-frames-page.html#networks-who-connects-to-whom",
     "title": "Data frames · intro to data graphics",
     "section": "Networks: who connects to whom",
     "text": "Networks: who connects to whom\nA network diagram consists of two different structures:\n\nVertices (nodes, dots): the things.\nEdges (lines): the connections between them.\n\nSome examples you’ve probably seen without knowing it:\n\nYour “mutuals” graph on social media: each user is a vertex, each follow is an edge.\nThe cast of every Marvel movie: actors as vertices, edges between two actors who appeared in the same film.\nThe internet itself: routers as vertices, cables as edges."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-page.html#insights-from-network-graphics",
-    "href": "weeks/week2/day1-data-frames-page.html#insights-from-network-graphics",
+    "objectID": "weeks/week2/day6-data-frames-page.html#insights-from-network-graphics",
+    "href": "weeks/week2/day6-data-frames-page.html#insights-from-network-graphics",
     "title": "Data frames · intro to data graphics",
     "section": "Insights from network graphics",
     "text": "Insights from network graphics\nThe shape of the network tells you things a table can’t:\n\nClusters: groups of nodes tightly connected to each other (your friend group within a larger school)\nBridges: single nodes that connect otherwise-separate clusters\nHubs: nodes with way more connections than average\n\nThe reading’s example: tumor cell lines that cluster by cancer type, suggesting that melanomas “look like” other melanomas genetically: useful if you’re trying to design a treatment."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-page.html#match-the-graphic-to-the-question",
-    "href": "weeks/week2/day1-data-frames-page.html#match-the-graphic-to-the-question",
+    "objectID": "weeks/week2/day6-data-frames-page.html#match-the-graphic-to-the-question",
+    "href": "weeks/week2/day6-data-frames-page.html#match-the-graphic-to-the-question",
     "title": "Data frames · intro to data graphics",
     "section": "Match the graphic to the question",
     "text": "Match the graphic to the question\nBefore you make a plot, ask: what question am I trying to answer?\n\nQuestion → graphic.\n\n\n\n\n\n\nIf your question is…\nChoose a…\n\n\n\n\n“How does X relate to Y?” (both numeric)\nScatter plot\n\n\n“What’s a typical value of X? Are there outliers?”\nHistogram or freq. polygon\n\n\n“How does X compare across groups?”\nBar chart\n\n\n“Where is X concentrated?”\nMap\n\n\n“How is X connected to Y?”\nNetwork"
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-page.html#a-bad-plot-story",
-    "href": "weeks/week2/day1-data-frames-page.html#a-bad-plot-story",
+    "objectID": "weeks/week2/day6-data-frames-page.html#a-bad-plot-story",
+    "href": "weeks/week2/day6-data-frames-page.html#a-bad-plot-story",
     "title": "Data frames · intro to data graphics",
     "section": "A bad-plot story",
     "text": "A bad-plot story\nIn 2015, Reuters published a chart of Florida gun deaths that flipped the y-axis upside down. The line dropped after a 2005 “Stand Your Ground” law went into effect: except the axis was inverted, and deaths actually rose.\nThe data was correct. The graphic was technically accurate. It just told the wrong story at a glance.\n\n\n\n\n\n\nImportantTakeaway\n\n\n\nGraphics are persuasive. Pick the right one, label it clearly, and don’t let the chart say something the data doesn’t."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-page.html#activity-read-some-plots-20-min",
-    "href": "weeks/week2/day1-data-frames-page.html#activity-read-some-plots-20-min",
+    "objectID": "weeks/week2/day6-data-frames-page.html#activity-read-some-plots-20-min",
+    "href": "weeks/week2/day6-data-frames-page.html#activity-read-some-plots-20-min",
     "title": "Data frames · intro to data graphics",
     "section": "Activity: read some plots (~ 20 min)",
     "text": "Activity: read some plots (~ 20 min)\n\nClick here for the activity\n\nYou won’t write much code today: the focus is on reading plots and matching them to questions. We’ll write the code to build them ourselves next week.\nTo turn in: Save your .qmd and rendered HTML. We’ll check at the end of class."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-page.html#activity-debrief",
-    "href": "weeks/week2/day1-data-frames-page.html#activity-debrief",
+    "objectID": "weeks/week2/day6-data-frames-page.html#activity-debrief",
+    "href": "weeks/week2/day6-data-frames-page.html#activity-debrief",
     "title": "Data frames · intro to data graphics",
     "section": "Activity debrief",
     "text": "Activity debrief\nCommon things to watch for:\n\nA chart needs a question. “Make a plot of the data” is not a plan. “Does flipper length differ by species?” is.\nAxis labels matter. “value” is not a label. “Body mass (g)” is.\nMatch the graphic to the data type. Two numeric variables? Scatter plot. One numeric variable? Histogram. Numeric vs. category? Bar chart or boxplot.\nMore chart isn’t better chart. 3D bars, rainbow gradients, and pie charts with 14 slices all hide information instead of showing it."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-page.html#wrap-up-what-we-covered-today",
-    "href": "weeks/week2/day1-data-frames-page.html#wrap-up-what-we-covered-today",
+    "objectID": "weeks/week2/day6-data-frames-page.html#wrap-up-what-we-covered-today",
+    "href": "weeks/week2/day6-data-frames-page.html#wrap-up-what-we-covered-today",
     "title": "Data frames · intro to data graphics",
     "section": "Wrap-up: what we covered today",
     "text": "Wrap-up: what we covered today\n\nA data frame is rows (cases) and columns (variables), with each column having a single type.\nThe type of a variable determines what kinds of plots make sense for it.\nFive common genres: scatter plots, histograms/freq. polygons, bar charts, maps, networks.\nEach genre answers a different kind of question. Pick the one that matches your question.\nGraphics are persuasive: be honest with them."
   },
   {
-    "objectID": "weeks/week2/day1-data-frames-page.html#wrap-up-looking-ahead",
-    "href": "weeks/week2/day1-data-frames-page.html#wrap-up-looking-ahead",
+    "objectID": "weeks/week2/day6-data-frames-page.html#wrap-up-looking-ahead",
+    "href": "weeks/week2/day6-data-frames-page.html#wrap-up-looking-ahead",
     "title": "Data frames · intro to data graphics",
     "section": "Wrap-up & looking ahead",
     "text": "Wrap-up & looking ahead\nWednesday: We start building plots ourselves with ggplot2: the grammar of graphics.\n\n\nUpcoming Deadlines\n\nWed 5/27, before class: DC §6.1-6.5\nWed 5/27, 11:59 p.m.: HW 2\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · Data Computing"
@@ -982,70 +982,70 @@
   {
     "objectID": "weeks/week2/day7-activity.html",
     "href": "weeks/week2/day7-activity.html",
-    "title": "Day 8 Activity: ggplot2 internals with storms",
+    "title": "Day 7 Activity: ggplot2 internals with storms",
     "section": "",
     "text": "library(tidyverse)\n\nWe’ll use the storms dataset that comes built into the tidyverse (via dplyr). It contains 6-hourly observations of every named Atlantic storm since 1975, from NOAA’s HURDAT2 reanalysis.\n\nglimpse(storms)\n\nRows: 20,778\nColumns: 13\n$ name                         &lt;chr&gt; \"Amy\", \"Amy\", \"Amy\", \"Amy\", \"Amy\", \"Amy\",…\n$ year                         &lt;dbl&gt; 1975, 1975, 1975, 1975, 1975, 1975, 1975,…\n$ month                        &lt;dbl&gt; 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,…\n$ day                          &lt;int&gt; 27, 27, 27, 27, 28, 28, 28, 28, 29, 29, 2…\n$ hour                         &lt;dbl&gt; 0, 6, 12, 18, 0, 6, 12, 18, 0, 6, 12, 18,…\n$ lat                          &lt;dbl&gt; 27.5, 28.5, 29.5, 30.5, 31.5, 32.4, 33.3,…\n$ long                         &lt;dbl&gt; -79.0, -79.0, -79.0, -79.0, -78.8, -78.7,…\n$ status                       &lt;fct&gt; tropical depression, tropical depression,…\n$ category                     &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…\n$ wind                         &lt;int&gt; 25, 25, 25, 25, 25, 25, 25, 30, 35, 40, 4…\n$ pressure                     &lt;int&gt; 1013, 1013, 1013, 1013, 1012, 1012, 1011,…\n$ tropicalstorm_force_diameter &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…\n$ hurricane_force_diameter     &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…\n\n\nUseful variables for today:\n\nname, year, month, day, hour — when the observation was taken\nlat, long — where the storm was\nstatus — tropical depression, tropical storm, hurricane, …\ncategory — Saffir-Simpson scale (1–5), NA for non-hurricanes\nwind — maximum sustained wind speed, knots\npressure — central pressure, millibars (lower = stronger)"
   },
   {
     "objectID": "weeks/week2/day7-activity.html#setup",
     "href": "weeks/week2/day7-activity.html#setup",
-    "title": "Day 8 Activity: ggplot2 internals with storms",
+    "title": "Day 7 Activity: ggplot2 internals with storms",
     "section": "",
     "text": "library(tidyverse)\n\nWe’ll use the storms dataset that comes built into the tidyverse (via dplyr). It contains 6-hourly observations of every named Atlantic storm since 1975, from NOAA’s HURDAT2 reanalysis.\n\nglimpse(storms)\n\nRows: 20,778\nColumns: 13\n$ name                         &lt;chr&gt; \"Amy\", \"Amy\", \"Amy\", \"Amy\", \"Amy\", \"Amy\",…\n$ year                         &lt;dbl&gt; 1975, 1975, 1975, 1975, 1975, 1975, 1975,…\n$ month                        &lt;dbl&gt; 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,…\n$ day                          &lt;int&gt; 27, 27, 27, 27, 28, 28, 28, 28, 29, 29, 2…\n$ hour                         &lt;dbl&gt; 0, 6, 12, 18, 0, 6, 12, 18, 0, 6, 12, 18,…\n$ lat                          &lt;dbl&gt; 27.5, 28.5, 29.5, 30.5, 31.5, 32.4, 33.3,…\n$ long                         &lt;dbl&gt; -79.0, -79.0, -79.0, -79.0, -78.8, -78.7,…\n$ status                       &lt;fct&gt; tropical depression, tropical depression,…\n$ category                     &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…\n$ wind                         &lt;int&gt; 25, 25, 25, 25, 25, 25, 25, 30, 35, 40, 4…\n$ pressure                     &lt;int&gt; 1013, 1013, 1013, 1013, 1012, 1012, 1011,…\n$ tropicalstorm_force_diameter &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…\n$ hurricane_force_diameter     &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…\n\n\nUseful variables for today:\n\nname, year, month, day, hour — when the observation was taken\nlat, long — where the storm was\nstatus — tropical depression, tropical storm, hurricane, …\ncategory — Saffir-Simpson scale (1–5), NA for non-hurricanes\nwind — maximum sustained wind speed, knots\npressure — central pressure, millibars (lower = stronger)"
   },
   {
     "objectID": "weeks/week2/day7-activity.html#mapping-vs.-setting",
     "href": "weeks/week2/day7-activity.html#mapping-vs.-setting",
-    "title": "Day 8 Activity: ggplot2 internals with storms",
+    "title": "Day 7 Activity: ggplot2 internals with storms",
     "section": "1.1 — Mapping vs. setting",
     "text": "1.1 — Mapping vs. setting\nThe chunk below colors every point the same shade of teal. Without changing anything else, modify the code so points are colored by status instead.\n\nggplot(storms, aes(x = wind, y = pressure)) +\n  geom_point(color = \"#1c7293\", alpha = 0.4)\n\n\n# Your fixed version:\n\nIn one sentence, what’s the difference between putting color = \"#1c7293\" inside aes() versus outside it?\n[Your answer here.]"
   },
   {
     "objectID": "weeks/week2/day7-activity.html#local-mappings",
     "href": "weeks/week2/day7-activity.html#local-mappings",
-    "title": "Day 8 Activity: ggplot2 internals with storms",
+    "title": "Day 7 Activity: ggplot2 internals with storms",
     "section": "1.2 — Local mappings",
     "text": "1.2 — Local mappings\nThe plot below colors both the points and the smoothers by status (so you get one smoother per status). Modify it so only the points are colored, but the smoother is a single curve fit to all the data.\n\nggplot(storms, aes(x = wind, y = pressure, color = status)) +\n  geom_point(alpha = 0.2) +\n  geom_smooth()\n\n\n# Your fixed version:"
   },
   {
     "objectID": "weeks/week2/day7-activity.html#the-group-aesthetic",
     "href": "weeks/week2/day7-activity.html#the-group-aesthetic",
-    "title": "Day 8 Activity: ggplot2 internals with storms",
+    "title": "Day 7 Activity: ggplot2 internals with storms",
     "section": "1.3 — The group aesthetic",
     "text": "1.3 — The group aesthetic\nRun this code first. It tries to draw the path of every storm in 2005, but it produces a single zigzagging line that connects unrelated storms together.\n\nggplot(storms |&gt; filter(year == 2005), aes(x = long, y = lat)) +\n  geom_path()\n\nAdd one aesthetic mapping so each storm gets its own path. (Hint: which variable identifies a storm?)\n\n# Your fixed version:"
   },
   {
     "objectID": "weeks/week2/day7-activity.html#after_stat-for-proportions",
     "href": "weeks/week2/day7-activity.html#after_stat-for-proportions",
-    "title": "Day 8 Activity: ggplot2 internals with storms",
+    "title": "Day 7 Activity: ggplot2 internals with storms",
     "section": "1.4 — after_stat() for proportions",
     "text": "1.4 — after_stat() for proportions\nMake a bar chart showing the proportion (not count) of observations in each status category. You should not pre-compute the proportions with dplyr — let ggplot do it via after_stat().\nHint: you’ll need group = 1. The slide on after_stat() explains why.\n\n# Your code:"
   },
   {
     "objectID": "weeks/week2/day7-activity.html#position-adjustments",
     "href": "weeks/week2/day7-activity.html#position-adjustments",
-    "title": "Day 8 Activity: ggplot2 internals with storms",
+    "title": "Day 7 Activity: ggplot2 internals with storms",
     "section": "1.5 — Position adjustments",
     "text": "1.5 — Position adjustments\nRun the code below. It stacks hurricane counts by category, within each month.\n\nhurricanes &lt;- storms |&gt; filter(status == \"hurricane\")\n\nggplot(hurricanes, aes(x = month, fill = factor(category))) +\n  geom_bar()\n\nMake two more versions:\n\nOne where each bar is normalized so every month has the same height, and segments show the proportion of each category.\nOne where the categories are placed side by side within each month, not stacked.\n\n\n# (a) position = \"fill\"\n\n\n# (b) position = \"dodge\"\n\nIn one sentence, which of the three versions (original stacked, fill, dodge) would you use to answer the question “In which month is Category 5 most common as a share of all hurricanes?”\n[Your answer here.]"
   },
   {
     "objectID": "weeks/week2/day7-activity.html#question-a-wind-vs.-pressure",
     "href": "weeks/week2/day7-activity.html#question-a-wind-vs.-pressure",
-    "title": "Day 8 Activity: ggplot2 internals with storms",
+    "title": "Day 7 Activity: ggplot2 internals with storms",
     "section": "Question A — Wind vs. pressure",
     "text": "Question A — Wind vs. pressure\nIt’s well-known among meteorologists that storm wind speed and central pressure have a very tight relationship. Build a plot that shows this relationship clearly and lets us see how status (or category) fits in.\nSuggestion: layered geoms with a smoother on top, or color by category and an alpha tuned for the overplotting."
   },
   {
     "objectID": "weeks/week2/day7-activity.html#question-b-when-is-hurricane-season",
     "href": "weeks/week2/day7-activity.html#question-b-when-is-hurricane-season",
-    "title": "Day 8 Activity: ggplot2 internals with storms",
+    "title": "Day 7 Activity: ggplot2 internals with storms",
     "section": "Question B — When is hurricane season?",
-    "text": "Question B — When is hurricane season?\nBuild a plot that shows how hurricane activity varies through the year. You could look at counts by month, intensity by month, or how the distribution of categories shifts as the season progresses.\nSuggestion: this is a job for geom_bar() with a position adjustment, or possibly a faceted version of something simpler."
+    "text": "Question B — When is hurricane season?\nBuild a plot that shows how hurricane activity varies through the year. You could look at counts by month, intensity by month, or how the distribution of categories shifts as the season progresses.\nSuggestion: geom_bar() works well here with a position adjustment, or possibly a faceted version of something simpler."
   },
   {
     "objectID": "weeks/week2/day7-activity.html#question-c-one-seasons-storm-tracks",
     "href": "weeks/week2/day7-activity.html#question-c-one-seasons-storm-tracks",
-    "title": "Day 8 Activity: ggplot2 internals with storms",
+    "title": "Day 7 Activity: ggplot2 internals with storms",
     "section": "Question C — One season’s storm tracks",
     "text": "Question C — One season’s storm tracks\nPick a single year (say, 2005 — a famously bad year — or any other). Build a map of lat vs. long showing the paths of every storm that season. Highlight one or two notable storms.\nSuggestion: this needs the group aesthetic, and probably two geom_path() layers with different data.\n\n# Your plot:\n\nYour 2–3 sentence interpretation:\n[Write here.]"
   },
@@ -3696,515 +3696,529 @@
     ]
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html",
-    "href": "weeks/week2/day8-ggplot2-page.html",
+    "objectID": "weeks/week2/day7-ggplot2-page.html",
+    "href": "weeks/week2/day7-ggplot2-page.html",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "",
     "text": "NoteToday: Wednesday May 27\n\n\n\nBefore class\n\nPerusall Assignment: R for Data Science Ch. 9 (Layers) and DC Ch. 6 (Frames, glyphs, & components).\n\nPlan for today\n\nThe grammar of graphics: a vocabulary for any plot\nAesthetic mappings vs. fixed properties (and a common bug)\nGeoms in depth: layering, local vs. global, multiple data\nStatistical transformations: where do bar heights come from?\nPosition adjustments: stacking, dodging, jittering\nIn-class activity\n\nHelpful links\n\nSyllabus · AI policy · Schedule · R4DS Ch. 9 · ggplot2 reference"
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#quick-recap",
-    "href": "weeks/week2/day8-ggplot2-page.html#quick-recap",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#quick-recap",
+    "href": "weeks/week2/day7-ggplot2-page.html#quick-recap",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Quick recap",
     "text": "Quick recap\nWe’ve been making ggplots for a while now. You know how to:\n\nPass data and aes() to ggplot()\nAdd a geom like geom_point(), geom_bar(), geom_histogram()\nMap variables to x, y, color, fill\n\nToday we’re going to slow down and look at what’s actually happening under the hood. Same plots, but with a precise vocabulary for talking about them — and a few tools you probably haven’t used yet.\n\n\n\n\n\n\n\nTip\n\n\n\nThis is the chapter that turns ggplot2 from “memorizing recipes” into “I can build any plot I can describe.”"
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#a-vocabulary-for-plots",
-    "href": "weeks/week2/day8-ggplot2-page.html#a-vocabulary-for-plots",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#a-vocabulary-for-plots",
+    "href": "weeks/week2/day7-ggplot2-page.html#a-vocabulary-for-plots",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "A vocabulary for plots",
-    "text": "A vocabulary for plots\nThe DC chapter introduces five words. Internalize these — they’ll come up over and over.\n\nFive words to describe any data graphic.\n\n\n\n\n\n\nTerm\nWhat it is\n\n\n\n\nframe\nThe relationship between position and data. The coordinate system + the variables on each axis.\n\n\nglyph\nThe basic graphical unit. One glyph = one case in your data frame.\n\n\naesthetic\nAny graphical attribute of a glyph: position, size, color, shape, transparency, …\n\n\nscale\nThe rule that translates a variable value into an aesthetic value.\n\n\nguide\nWhat helps the viewer translate back: axes, tick marks, legends, color bars."
+    "text": "A vocabulary for plots\nThe DC chapter introduces five words. These will come up a lot.\n\nFive words to describe any data graphic.\n\n\n\n\n\n\nTerm\nWhat it is\n\n\n\n\nframe\nThe relationship between position and data. The coordinate system + the variables on each axis.\n\n\nglyph\nThe basic graphical unit. One glyph = one case in your data frame.\n\n\naesthetic\nAny graphical attribute of a glyph: position, size, color, shape, transparency, …\n\n\nscale\nThe rule that translates a variable value into an aesthetic value.\n\n\nguide\nWhat helps the viewer translate back: axes, tick marks, legends, color bars."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#one-sentence-five-words",
-    "href": "weeks/week2/day8-ggplot2-page.html#one-sentence-five-words",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#one-sentence-five-words",
+    "href": "weeks/week2/day7-ggplot2-page.html#one-sentence-five-words",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "One sentence, five words",
     "text": "One sentence, five words\n\n\n\n\n\n\nTip\n\n\n\nA graphic is a collection of glyphs sitting inside a frame, where each glyph’s aesthetics are controlled by scales that map variables to graphical attributes, and guides help the viewer read the scales backward.\n\n\nToday we focus on the first three; tomorrow we’ll deal more with scales and guides."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#why-this-matters",
-    "href": "weeks/week2/day8-ggplot2-page.html#why-this-matters",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#why-this-matters",
+    "href": "weeks/week2/day7-ggplot2-page.html#why-this-matters",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Why this matters",
     "text": "Why this matters\nOnce you have the vocabulary, debugging gets easier:\n\n“My color isn’t working” \\(\\rightarrow\\) is it a mapping (inside aes()) or a fixed property (outside)?\n“I want different lines per group” \\(\\rightarrow\\) I need a discrete variable mapped to an aesthetic that splits the geom (color, linetype, group).\n“My bar chart shows counts but I want proportions” \\(\\rightarrow\\) I need to override the stat.\n\nEvery confusion you’ve had with ggplot maps onto one of these concepts."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#the-storms-dataset",
-    "href": "weeks/week2/day8-ggplot2-page.html#the-storms-dataset",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#the-storms-dataset",
+    "href": "weeks/week2/day7-ggplot2-page.html#the-storms-dataset",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "The storms dataset",
     "text": "The storms dataset\nBuilt into the tidyverse (via dplyr). Records of every named Atlantic storm since 1975, drawn from NOAA’s HURDAT2 reanalysis.\n\nstorms\n\n# A tibble: 20,778 × 13\n   name   year month   day  hour   lat  long status      category  wind pressure\n   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;\n 1 Amy    1975     6    27     0  27.5 -79   tropical d…       NA    25     1013\n 2 Amy    1975     6    27     6  28.5 -79   tropical d…       NA    25     1013\n 3 Amy    1975     6    27    12  29.5 -79   tropical d…       NA    25     1013\n 4 Amy    1975     6    27    18  30.5 -79   tropical d…       NA    25     1013\n 5 Amy    1975     6    28     0  31.5 -78.8 tropical d…       NA    25     1012\n 6 Amy    1975     6    28     6  32.4 -78.7 tropical d…       NA    25     1012\n 7 Amy    1975     6    28    12  33.3 -78   tropical d…       NA    25     1011\n 8 Amy    1975     6    28    18  34   -77   tropical d…       NA    30     1006\n 9 Amy    1975     6    29     0  34.4 -75.8 tropical s…       NA    35     1004\n10 Amy    1975     6    29     6  34   -74.8 tropical s…       NA    40     1002\n# ℹ 20,768 more rows\n# ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,\n#   hurricane_force_diameter &lt;int&gt;"
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#variables-well-use",
-    "href": "weeks/week2/day8-ggplot2-page.html#variables-well-use",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#variables-well-use",
+    "href": "weeks/week2/day7-ggplot2-page.html#variables-well-use",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Variables we’ll use",
-    "text": "Variables we’ll use\n\nSelected variables in storms.\n\n\n\n\n\n\nVariable\nDescription\n\n\n\n\nname, year, month, day, hour\nWhen the observation was taken\n\n\nlat, long\nWhere the storm was\n\n\nstatus\ntropical depression, tropical storm, hurricane, …\n\n\ncategory\nSaffir-Simpson scale (1–5), NA for non-hurricanes\n\n\nwind\nMaximum sustained wind speed, knots\n\n\npressure\nCentral pressure, millibars (lower = stronger)\n\n\n\nEach row is a 6-hour observation of one storm — so a single hurricane shows up many times as it moves and intensifies."
+    "text": "Variables we’ll use\n\nSelected variables in storms.\n\n\n\n\n\n\nVariable\nDescription\n\n\n\n\nname, year, month, day, hour\nWhen the observation was taken\n\n\nlat, long\nWhere the storm was\n\n\nstatus\ntropical depression, tropical storm, hurricane, …\n\n\ncategory\nSaffir-Simpson scale (1–5), NA for non-hurricanes\n\n\nwind\nMaximum sustained wind speed, knots\n\n\npressure\nCentral pressure, millibars (lower = stronger)\n\n\n\nEach row is a 6-hour observation of one storm, so single hurricane shows up many times as it moves and intensifies."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#mapping-vs.-setting",
-    "href": "weeks/week2/day8-ggplot2-page.html#mapping-vs.-setting",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#mapping-vs.-setting",
+    "href": "weeks/week2/day7-ggplot2-page.html#mapping-vs.-setting",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Mapping vs. setting",
-    "text": "Mapping vs. setting\nThe single most common ggplot bug is confusing mapping with setting.\n\n\nMapping — a variable controls the aesthetic.\nGoes inside aes().\nggplot(storms, \n       aes(x = wind, y = pressure,\n           color = status)) +\n  geom_point()\ncolor varies by status value.\n\nSetting — you fix the aesthetic to a constant.\nGoes outside aes().\nggplot(storms, \n       aes(x = wind, y = pressure)) +\n  geom_point(color = \"steelblue\")\nEvery point is steelblue."
+    "text": "Mapping vs. setting\nThe single most common ggplot bug is confusing mapping with setting.\n\n\nMapping: a variable controls the aesthetic.\nGoes inside aes().\nggplot(storms, \n       aes(x = wind, y = pressure,\n           color = status)) +\n  geom_point()\ncolor varies by status value.\n\nSetting: you fix the aesthetic to a constant.\nGoes outside aes().\nggplot(storms, \n       aes(x = wind, y = pressure)) +\n  geom_point(color = \"steelblue\")\nEvery point is steelblue."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#the-classic-mistake",
-    "href": "weeks/week2/day8-ggplot2-page.html#the-classic-mistake",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#the-classic-mistake",
+    "href": "weeks/week2/day7-ggplot2-page.html#the-classic-mistake",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "The classic mistake",
     "text": "The classic mistake\nWhat does this do?\n\nggplot(storms, aes(x = wind, y = pressure)) +\n  geom_point(aes(color = \"steelblue\"))\n\n\nIt makes every point a salmon red and adds a legend that says \"steelblue\".\nWhy? aes() says “map a variable to color.” We gave it the string \"steelblue\", which ggplot treated as a one-level categorical variable. It then picked a default color (red-pink) for that one level.\nRule of thumb: if you want a constant color, it goes outside aes(). If you want it to depend on data, it goes inside aes()."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#what-can-you-map",
-    "href": "weeks/week2/day8-ggplot2-page.html#what-can-you-map",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#what-can-you-map",
+    "href": "weeks/week2/day7-ggplot2-page.html#what-can-you-map",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "What can you map?",
     "text": "What can you map?\nEvery geom accepts a subset of these aesthetics. The most common:\n\nCommon aesthetics.\n\n\n\n\n\n\n\nAesthetic\nWorks on\nNotes\n\n\n\n\nx, y\nalmost everything\nposition in the frame\n\n\ncolor\npoints, lines, borders\noutline of a glyph\n\n\nfill\nbars, areas, filled shapes\ninterior of a glyph\n\n\nsize\npoints, lines\nnumerical only, ideally\n\n\nalpha\nalmost everything\ntransparency, 0–1\n\n\nshape\npoints\nmax 6 discrete values by default\n\n\nlinetype\nlines\nsolid, dashed, dotted, …\n\n\ngroup\ngrouped geoms\nsplits w/o adding a legend"
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#discrete-vs.-continuous-aesthetics",
-    "href": "weeks/week2/day8-ggplot2-page.html#discrete-vs.-continuous-aesthetics",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#discrete-vs.-continuous-aesthetics",
+    "href": "weeks/week2/day7-ggplot2-page.html#discrete-vs.-continuous-aesthetics",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Discrete vs. continuous aesthetics",
-    "text": "Discrete vs. continuous aesthetics\nggplot picks a scale automatically based on the type of the variable.\n\nHow ggplot scales aesthetics by variable type.\n\n\n\n\n\n\n\nAesthetic\nDiscrete variable\nContinuous variable\n\n\n\n\ncolor / fill\nqualitative palette (distinct hues)\ngradient (e.g., light \\(\\rightarrow\\) dark)\n\n\nsize\nwarns — order is implied but levels aren’t ordered\nsmooth size range\n\n\nshape\ndistinct shapes (max 6)\nerror — shapes don’t have an order\n\n\nalpha\nwarns, same reason as size\nsmooth\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\nMapping a categorical variable like status to size or alpha tells the reader “these categories are ordered” — usually a lie. Stick to color, fill, shape, or facets for categorical splits."
+    "text": "Discrete vs. continuous aesthetics\nggplot picks a scale automatically based on the type of the variable.\n\nHow ggplot scales aesthetics by variable type.\n\n\n\n\n\n\n\nAesthetic\nDiscrete variable\nContinuous variable\n\n\n\n\ncolor / fill\nqualitative palette (distinct hues)\ngradient (e.g., light \\(\\rightarrow\\) dark)\n\n\nsize\nwarns — order is implied but levels aren’t ordered\nsmooth size range\n\n\nshape\ndistinct shapes (max 6)\nerror — shapes don’t have an order\n\n\nalpha\nwarns, same reason as size\nsmooth\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\nMapping a categorical variable like status to size or alpha tells the reader “these categories are ordered”, which is often not actually the case. Stick to color, fill, shape, or facets for categorical splits."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#example-status-mapped-four-ways",
-    "href": "weeks/week2/day8-ggplot2-page.html#example-status-mapped-four-ways",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#shape-reference",
+    "href": "weeks/week2/day7-ggplot2-page.html#shape-reference",
+    "title": "ggplot2 internals · aesthetics · geoms",
+    "section": "Shape reference",
+    "text": "Shape reference\nIn ggplot, you specify the shape of a point as a number.\n\n\n\n\n\n\nFigure 1: R has 26 built-in shapes that are identified by numbers."
+  },
+  {
+    "objectID": "weeks/week2/day7-ggplot2-page.html#example-status-mapped-four-ways",
+    "href": "weeks/week2/day7-ggplot2-page.html#example-status-mapped-four-ways",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Example: status mapped four ways",
-    "text": "Example: status mapped four ways\n\n# Color — good for categorical\nggplot(storms, aes(x = wind, y = pressure, color = status)) + geom_point(alpha = 0.4)\n\n# Shape — also good, but watch the 6-value limit\nggplot(storms, aes(x = wind, y = pressure, shape = status)) + geom_point()\n\n# Size — bad: implies ranking\nggplot(storms, aes(x = wind, y = pressure, size = status)) + geom_point()\n\n# Alpha — same problem as size\nggplot(storms, aes(x = wind, y = pressure, alpha = status)) + geom_point()\n\nThe last two will print warnings: “Using size/alpha for a discrete variable is not advised.” Listen to them."
+    "text": "Example: status mapped four ways\n\n# Color — good for categorical\nggplot(storms, aes(x = wind, y = pressure, color = status)) + geom_point(alpha = 0.4)\n\n# Shape — also good, but watch the 6-value limit\nggplot(storms, aes(x = wind, y = pressure, shape = status)) + geom_point()\n\n# Size — bad: implies ranking\nggplot(storms, aes(x = wind, y = pressure, size = status)) + geom_point()\n\n# Alpha — same problem as size\nggplot(storms, aes(x = wind, y = pressure, alpha = status)) + geom_point()\n\nUsing size/alpha for a discrete variable is not advised."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#the-stroke-aesthetic-a-nice-one-to-know",
-    "href": "weeks/week2/day8-ggplot2-page.html#the-stroke-aesthetic-a-nice-one-to-know",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#the-stroke-aesthetic",
+    "href": "weeks/week2/day7-ggplot2-page.html#the-stroke-aesthetic",
     "title": "ggplot2 internals · aesthetics · geoms",
-    "section": "The stroke aesthetic (a nice one to know)",
-    "text": "The stroke aesthetic (a nice one to know)\nFor filled point shapes (21–25), stroke controls border thickness independently of size.\n\nggplot(storms |&gt; filter(category &gt;= 4), \n       aes(x = wind, y = pressure, fill = factor(category))) +\n  geom_point(shape = 21, size = 3, stroke = 1.2, color = \"white\") +\n  labs(fill = \"Category\")\n\nA white stroke around colored points is one of the easiest ways to make a busy plot readable."
+    "section": "The stroke aesthetic",
+    "text": "The stroke aesthetic\nFor filled point shapes (21–25), stroke controls border thickness independently of size.\n\nggplot(storms |&gt; filter(category &gt;= 4), \n       aes(x = wind, y = pressure, fill = factor(category))) +\n  geom_point(shape = 21, size = 3, stroke = 1.2, color = \"white\") +\n  labs(fill = \"Category\")\n\nA white stroke around colored points is one of the easiest ways to make a busy plot readable."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#on-the-fly-transformations",
-    "href": "weeks/week2/day8-ggplot2-page.html#on-the-fly-transformations",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#on-the-fly-transformations",
+    "href": "weeks/week2/day7-ggplot2-page.html#on-the-fly-transformations",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "On-the-fly transformations",
-    "text": "On-the-fly transformations\nAesthetics don’t have to map to a variable name — they can map to any expression involving variables.\n\nggplot(storms, \n       aes(x = wind, y = pressure, color = wind &gt;= 64)) +\n  geom_point(alpha = 0.3) +\n  labs(color = \"Hurricane-strength?\")\n\nThe expression wind &gt;= 64 returns TRUE/FALSE for each row, and that gets mapped to color. No need to create the column in advance."
+    "text": "On-the-fly transformations\nAesthetics don’t have to map to a variable name; they can map to any expression involving variables.\n\nggplot(storms, \n       aes(x = wind, y = pressure, color = wind &gt;= 64)) +\n  geom_point(alpha = 0.3) +\n  labs(color = \"Hurricane-strength?\")\n\nThe expression wind &gt;= 64 returns TRUE/FALSE for each row, and that gets mapped to color. No need to create the column in advance."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#geoms-glyph-families",
-    "href": "weeks/week2/day8-ggplot2-page.html#geoms-glyph-families",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#geoms-glyph-families",
+    "href": "weeks/week2/day7-ggplot2-page.html#geoms-glyph-families",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Geoms = glyph families",
     "text": "Geoms = glyph families\nEach geom produces one type of glyph. The big ones:\n\nCommon geoms.\n\n\n\n\n\n\n\nGeom\nGlyph\nBest for\n\n\n\n\ngeom_point()\ndot\nscatter\n\n\ngeom_line()\nconnected segments\ntrends over an ordered x\n\n\ngeom_smooth()\none curve (per group)\nsummarize a trend\n\n\ngeom_bar() / geom_col()\nrectangles\ncounts / values by category\n\n\ngeom_histogram()\nrectangles (bins)\ndistribution of one numeric var\n\n\ngeom_boxplot()\nboxes + whiskers\ndistribution by group\n\n\ngeom_density()\nsmooth curve\ndistribution, smoothed\n\n\ngeom_polygon()\nfilled shapes\nmaps, custom regions\n\n\n\nggplot2 ships with 40+. Extension packages add hundreds more."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#layering-more-than-one-geom",
-    "href": "weeks/week2/day8-ggplot2-page.html#layering-more-than-one-geom",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#layering-more-than-one-geom",
+    "href": "weeks/week2/day7-ggplot2-page.html#layering-more-than-one-geom",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Layering: more than one geom",
-    "text": "Layering: more than one geom\nA plot can have as many geoms as you want. They stack in the order you write them.\n\nggplot(storms, aes(x = wind, y = pressure)) +\n  geom_point(alpha = 0.2) +\n  geom_smooth(color = \"firebrick\")\n\nTwo layers, same data, same mappings. The points show every observation; the smooth shows the trend.\n\n\n\n\n\n\nNote\n\n\n\nThe relationship between wind and pressure in tropical cyclones is very tight — it’s essentially a physical law. The scatter shows what that law looks like in real storm data."
+    "text": "Layering: more than one geom\nA plot can have as many geoms as you want. They stack in the order you write them.\n\nggplot(storms, aes(x = wind, y = pressure)) +\n  geom_point(alpha = 0.2) +\n  geom_smooth(color = \"firebrick\")\n\nHere we have two layers, the same data, and the same mappings. The points show every observation; the smooth shows the trend.\n\n\n\n\n\n\nNote\n\n\n\nThe relationship between wind and pressure in tropical cyclones is very strong. The scatter shows what that law looks like in real storm data."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#global-vs.-local-mappings",
-    "href": "weeks/week2/day8-ggplot2-page.html#global-vs.-local-mappings",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#global-vs.-local-mappings",
+    "href": "weeks/week2/day7-ggplot2-page.html#global-vs.-local-mappings",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Global vs. local mappings",
-    "text": "Global vs. local mappings\nYou can put aes() in two places:\n\n\nIn ggplot() — global. Every layer inherits these mappings.\n\nggplot(storms, \n       aes(x = wind, y = pressure)) +\n  geom_point() +\n  geom_smooth()\n\nBoth geoms see x and y.\n\nIn a geom — local. Only that layer sees it.\n\nggplot(storms, \n       aes(x = wind, y = pressure)) +\n  geom_point(aes(color = status)) +\n  geom_smooth()\n\nOnly points are colored; the smooth is one curve."
+    "text": "Global vs. local mappings\nYou can put aes() in two places:\n\n\nIn ggplot(): global. Every layer inherits these mappings.\n\nggplot(storms, \n       aes(x = wind, y = pressure)) +\n  geom_point() +\n  geom_smooth()\n\nBoth geoms see x and y.\n\nIn a geom: local. Only that layer sees it.\n\nggplot(storms, \n       aes(x = wind, y = pressure)) +\n  geom_point(aes(color = status)) +\n  geom_smooth()\n\nOnly points are colored; the smooth is one curve."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#why-local-mappings-matter",
-    "href": "weeks/week2/day8-ggplot2-page.html#why-local-mappings-matter",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#why-local-mappings-matter",
+    "href": "weeks/week2/day7-ggplot2-page.html#why-local-mappings-matter",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Why local mappings matter",
-    "text": "Why local mappings matter\nIf you put color = status in the global aes(), every layer sees it. geom_smooth() will draw one smoother per status, not one overall.\n\n# One smoother per status (probably not what you want here):\nggplot(storms, aes(x = wind, y = pressure, color = status)) +\n  geom_point(alpha = 0.2) +\n  geom_smooth()\n\n# Points colored by status, one global smoother:\nggplot(storms, aes(x = wind, y = pressure)) +\n  geom_point(aes(color = status), alpha = 0.2) +\n  geom_smooth()\n\nWhere you put the mapping changes the plot. There’s no “right” choice — just be intentional."
+    "text": "Why local mappings matter\nIf you put color = status in the global aes(), every layer sees it. geom_smooth() will draw one smoother per status, not one overall.\n\n# One smoother per status (probably not what you want here):\nggplot(storms, aes(x = wind, y = pressure, color = status)) +\n  geom_point(alpha = 0.2) +\n  geom_smooth()\n\n# Points colored by status, one global smoother:\nggplot(storms, aes(x = wind, y = pressure)) +\n  geom_point(aes(color = status), alpha = 0.2) +\n  geom_smooth()\n\nWhere you put the mapping changes the plot. There’s no “right” choice (just be intentional in your choices.)"
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#different-data-per-layer",
-    "href": "weeks/week2/day8-ggplot2-page.html#different-data-per-layer",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#different-data-per-layer",
+    "href": "weeks/week2/day7-ggplot2-page.html#different-data-per-layer",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Different data per layer",
     "text": "Different data per layer\nEach layer can have its own data. This is how you highlight a subset.\n\nkatrina &lt;- storms |&gt; filter(name == \"Katrina\", year == 2005)\n\nggplot(storms |&gt; filter(year == 2005), \n       aes(x = long, y = lat)) +\n  geom_path(aes(group = name), alpha = 0.2) +\n  geom_path(data = katrina, color = \"firebrick\", linewidth = 1.2) +\n  geom_point(data = katrina, color = \"firebrick\") +\n  labs(title = \"2005 Atlantic hurricane season, with Katrina highlighted\")\n\nThree layers: all storms (faint), Katrina’s path (red), Katrina’s observations (red dots). Each calls data = locally to override the default."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#the-group-aesthetic",
-    "href": "weeks/week2/day8-ggplot2-page.html#the-group-aesthetic",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#the-group-aesthetic",
+    "href": "weeks/week2/day7-ggplot2-page.html#the-group-aesthetic",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "The group aesthetic",
-    "text": "The group aesthetic\nSome geoms — lines, smoothers, polygons — connect multiple rows. They need to know which rows belong together.\nIf you map a discrete variable to color or linetype, ggplot groups for you automatically. If you don’t, you may need to set group explicitly.\n\n# Bad: one giant line zigzagging between every storm\nggplot(storms |&gt; filter(year == 2005), aes(x = long, y = lat)) +\n  geom_path()\n\n# Good: one path per storm\nggplot(storms |&gt; filter(year == 2005), aes(x = long, y = lat, group = name)) +\n  geom_path()\n\ngroup doesn’t add a legend or change colors — it just splits the geom."
+    "text": "The group aesthetic\nSome geoms — lines, smoothers, polygons — connect multiple rows. They need to know which rows belong together.\nIf you map a discrete variable to color or linetype, ggplot groups for you automatically. If you don’t, you may need to set group explicitly.\n\n# Bad: one giant line zigzagging between every storm\nggplot(storms |&gt; filter(year == 2005), aes(x = long, y = lat)) +\n  geom_path()\n\n# Good: one path per storm\nggplot(storms |&gt; filter(year == 2005), aes(x = long, y = lat, group = name)) +\n  geom_path()\n\ngroup doesn’t add a legend or change colors, it just splits the geom."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#where-do-bar-heights-come-from",
-    "href": "weeks/week2/day8-ggplot2-page.html#where-do-bar-heights-come-from",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#where-do-bar-heights-come-from",
+    "href": "weeks/week2/day7-ggplot2-page.html#where-do-bar-heights-come-from",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Where do bar heights come from?",
-    "text": "Where do bar heights come from?\nHere’s the question that broke my brain the first time:\n\nggplot(storms, aes(x = status)) +\n  geom_bar()\n\nWe told ggplot about x = status. Where did the y-axis (count) come from?\n\nIt was computed. geom_bar() doesn’t just plot raw data — it transforms it. It groups rows by status and counts them, then plots the counts.\nEvery geom has a stat (statistical transformation) it runs under the hood."
+    "text": "Where do bar heights come from?\nHere’s a (potentially) tricky question:\n\nggplot(storms, aes(x = status)) +\n  geom_bar()\n\nWe told ggplot about x = status. Where did the y-axis (count) come from?\n\nIt was computed. geom_bar() doesn’t just plot raw data. It also transforms it by grouping rows by status and counting them, then plotting the counts.\nEvery geom has a stat (statistical transformation) it runs under the hood."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#every-geom-leftrightarrow-stat-pair",
-    "href": "weeks/week2/day8-ggplot2-page.html#every-geom-leftrightarrow-stat-pair",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#every-geom-leftrightarrow-stat-pair",
+    "href": "weeks/week2/day7-ggplot2-page.html#every-geom-leftrightarrow-stat-pair",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Every geom \\(\\leftrightarrow\\) stat pair",
-    "text": "Every geom \\(\\leftrightarrow\\) stat pair\n\nGeoms and their default stats.\n\n\n\n\n\n\n\nGeom\nDefault stat\nWhat it computes\n\n\n\n\ngeom_bar()\nstat_count()\ncounts per x value\n\n\ngeom_histogram()\nstat_bin()\ncounts per bin\n\n\ngeom_boxplot()\nstat_boxplot()\nfive-number summary\n\n\ngeom_smooth()\nstat_smooth()\nfitted curve + CI\n\n\ngeom_density()\nstat_density()\nkernel density estimate\n\n\ngeom_point()\nstat_identity()\nnothing — just plots raw\n\n\n\nYou can use a geom and never think about its stat. But sometimes you need to."
+    "text": "Every geom \\(\\leftrightarrow\\) stat pair\n\nGeoms and their default stats.\n\n\n\n\n\n\n\nGeom\nDefault stat\nWhat it computes\n\n\n\n\ngeom_bar()\nstat_count()\ncounts per x value\n\n\ngeom_histogram()\nstat_bin()\ncounts per bin\n\n\ngeom_boxplot()\nstat_boxplot()\nfive-number summary\n\n\ngeom_smooth()\nstat_smooth()\nfitted curve + CI\n\n\ngeom_density()\nstat_density()\nkernel density estimate\n\n\ngeom_point()\nstat_identity()\nnothing — just plots raw\n\n\n\nYou can use a geom and never think about its stat. But sometimes you will need to think about it."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#three-reasons-to-touch-the-stat",
-    "href": "weeks/week2/day8-ggplot2-page.html#three-reasons-to-touch-the-stat",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#three-reasons-to-touch-the-stat",
+    "href": "weeks/week2/day7-ggplot2-page.html#three-reasons-to-touch-the-stat",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Three reasons to touch the stat",
-    "text": "Three reasons to touch the stat\n1. You already pre-computed the values. Override the default with stat = \"identity\".\n\nstorm_counts &lt;- storms |&gt; count(status)\nstorm_counts\n\nggplot(storm_counts, aes(x = status, y = n)) +\n  geom_bar(stat = \"identity\")   # or just use geom_col() — same thing\n\ngeom_col() is a shortcut for geom_bar(stat = \"identity\"). Use it when you have your own y values."
+    "text": "Three reasons to touch the stat\n1. You already pre-computed the values. We can override the default behavior of geom_bar with stat = \"identity\".\n\nstorm_counts &lt;- storms |&gt; count(status)\nstorm_counts\n\nggplot(storm_counts, aes(x = status, y = n)) +\n  geom_bar(stat = \"identity\")   # or just use geom_col() — same thing\n\ngeom_col() is a shortcut for geom_bar(stat = \"identity\"). You can use it when you have your own y values."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#three-reasons-to-touch-the-stat-1",
-    "href": "weeks/week2/day8-ggplot2-page.html#three-reasons-to-touch-the-stat-1",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#three-reasons-to-touch-the-stat-1",
+    "href": "weeks/week2/day7-ggplot2-page.html#three-reasons-to-touch-the-stat-1",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Three reasons to touch the stat",
     "text": "Three reasons to touch the stat\n2. You want a computed variable, not the default.\nstat_count() actually computes two things: count (default) and prop (proportion). You can ask for the proportion using after_stat():\n\nggplot(storms, aes(x = status, y = after_stat(prop), group = 1)) +\n  geom_bar()\n\n\n\n\n\n\n\nWarningWhy group = 1?\n\n\n\nBy default, prop is computed within each x group, which means every bar would be 100%. Setting group = 1 tells ggplot “treat all rows as one group when computing proportions” so they sum to 1 across the whole plot."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#three-reasons-to-touch-the-stat-2",
-    "href": "weeks/week2/day8-ggplot2-page.html#three-reasons-to-touch-the-stat-2",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#three-reasons-to-touch-the-stat-2",
+    "href": "weeks/week2/day7-ggplot2-page.html#three-reasons-to-touch-the-stat-2",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Three reasons to touch the stat",
-    "text": "Three reasons to touch the stat\n3. You want to make the transformation explicit. Use a stat_*() function directly.\n\nggplot(storms, aes(x = status, y = wind)) +\n  stat_summary(\n    fun.min = min,\n    fun.max = max,\n    fun = median\n  )\n\nThis shows the min, median, and max wind speed for each status — without writing any dplyr code first. stat_summary() does the aggregation as part of the plot."
+    "text": "Three reasons to touch the stat\n3. You want to make the transformation explicit. Use a stat_*() function directly.\n\nggplot(storms, aes(x = status, y = wind)) +\n  stat_summary(\n    fun.min = min,\n    fun.max = max,\n    fun = median\n  )\n\nThis shows the min, median, and max wind speed for each status without you having to manually write any dplyr code first. stat_summary() does the aggregation as part of the plot."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#after_stat-in-one-minute",
-    "href": "weeks/week2/day8-ggplot2-page.html#after_stat-in-one-minute",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#after_stat-quick-overview",
+    "href": "weeks/week2/day7-ggplot2-page.html#after_stat-quick-overview",
     "title": "ggplot2 internals · aesthetics · geoms",
-    "section": "after_stat() in one minute",
-    "text": "after_stat() in one minute\nAnywhere you’d write a variable name inside aes(), you can wrap it in after_stat(...) to refer to a computed variable instead of one in the original data.\n\n# Default — bin counts on y\nggplot(storms, aes(x = wind)) +\n  geom_histogram(binwidth = 5)\n\n# Same bins, but density on y instead\nggplot(storms, aes(x = wind, y = after_stat(density))) +\n  geom_histogram(binwidth = 5)\n\nTo see what’s available for a given geom, run ?geom_bar and look for the Computed variables section."
+    "section": "after_stat() quick overview",
+    "text": "after_stat() quick overview\nAnywhere you’d write a variable name inside aes(), you can wrap it in after_stat(...) to refer to a computed variable instead of one in the original data.\n\n# Default — bin counts on y\nggplot(storms, aes(x = wind)) +\n  geom_histogram(binwidth = 5)\n\n# Same bins, but density on y instead\nggplot(storms, aes(x = wind, y = after_stat(density))) +\n  geom_histogram(binwidth = 5)\n\nTo see what’s available for a given geom, run ?geom_bar and look for the Computed variables section."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#whats-a-position-adjustment",
-    "href": "weeks/week2/day8-ggplot2-page.html#whats-a-position-adjustment",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#whats-a-position-adjustment",
+    "href": "weeks/week2/day7-ggplot2-page.html#whats-a-position-adjustment",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "What’s a position adjustment?",
     "text": "What’s a position adjustment?\nWhen multiple glyphs would land in the same spot, ggplot has to decide what to do. That decision is the position adjustment.\nThe big four:\n\nggplot’s main position adjustments.\n\n\n\n\n\n\n\nPosition\nWhat it does\nDefault for\n\n\n\n\n\"identity\"\nleave it alone\npoints, lines\n\n\n\"stack\"\nstack on top of each other\nbars (when filled by a 2nd var)\n\n\n\"dodge\"\nside-by-side\n(you have to ask)\n\n\n\"jitter\"\nadd small random noise\n(you have to ask)\n\n\n\"fill\"\nstack and normalize to 1\n(you have to ask)"
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#stacking-the-default-for-filled-bars",
-    "href": "weeks/week2/day8-ggplot2-page.html#stacking-the-default-for-filled-bars",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#stacking-the-default-for-filled-bars",
+    "href": "weeks/week2/day7-ggplot2-page.html#stacking-the-default-for-filled-bars",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Stacking (the default for filled bars)",
-    "text": "Stacking (the default for filled bars)\n\nhurricanes &lt;- storms |&gt; filter(status == \"hurricane\")\n\nggplot(hurricanes, aes(x = month, fill = factor(category))) +\n  geom_bar()\n\nEach month gets one bar; segments stack by hurricane category.\nUseful for showing total and composition at once — but hard to compare middle segments across bars (their bottoms aren’t aligned)."
+    "text": "Stacking (the default for filled bars)\n\nhurricanes &lt;- storms |&gt; filter(status == \"hurricane\")\n\nggplot(hurricanes, aes(x = month, fill = factor(category))) +\n  geom_bar()\n\nEach month gets one bar; segments stack by hurricane category.\nThis is useful for showing total and composition at once — but hard to compare middle segments across bars (their bottoms aren’t aligned)."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#position-fill",
-    "href": "weeks/week2/day8-ggplot2-page.html#position-fill",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#position-fill",
+    "href": "weeks/week2/day7-ggplot2-page.html#position-fill",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "position = \"fill\"",
-    "text": "position = \"fill\"\nSame code, but every bar is normalized to height 1:\n\nggplot(hurricanes, aes(x = month, fill = factor(category))) +\n  geom_bar(position = \"fill\")\n\nNow the y-axis is proportion, not count. Loses information about total volume, but makes the composition easy to compare across months."
+    "text": "position = \"fill\"\nHere we have the same code, but every bar is normalized to height 1:\n\nggplot(hurricanes, aes(x = month, fill = factor(category))) +\n  geom_bar(position = \"fill\")\n\nNow the y-axis is proportion, not count. Loses information about total volume, but makes the composition easy to compare across months."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#position-dodge",
-    "href": "weeks/week2/day8-ggplot2-page.html#position-dodge",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#position-dodge",
+    "href": "weeks/week2/day7-ggplot2-page.html#position-dodge",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "position = \"dodge\"",
-    "text": "position = \"dodge\"\nBars side-by-side instead of stacked:\n\nggplot(hurricanes, aes(x = month, fill = factor(category))) +\n  geom_bar(position = \"dodge\")\n\nEasiest version for comparing individual counts directly. The trade-off: lots of bars, can get crowded fast.\n\n\n\n\n\n\nTipQuick rule\n\n\n\n\nStack: show totals, with composition as bonus.\nFill: show composition only, ignore totals.\nDodge: compare individual values, ignore totals."
+    "text": "position = \"dodge\"\nHere are the bars side-by-side instead of stacked:\n\nggplot(hurricanes, aes(x = month, fill = factor(category))) +\n  geom_bar(position = \"dodge\")\n\nThis is the easiest version for comparing individual counts directly. The trade-off: lots of bars, can get crowded fast.\n\n\n\n\n\n\nTipQuick rule\n\n\n\n\nStack: show totals, with composition as bonus.\nFill: show composition only, ignore totals.\nDodge: compare individual values, ignore totals."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#jittering-for-scatterplots-not-bars",
-    "href": "weeks/week2/day8-ggplot2-page.html#jittering-for-scatterplots-not-bars",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#jittering-for-scatterplots-not-bars",
+    "href": "weeks/week2/day7-ggplot2-page.html#jittering-for-scatterplots-not-bars",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Jittering — for scatterplots, not bars",
-    "text": "Jittering — for scatterplots, not bars\nA different problem: many storm observations are recorded only every 6 hours, and pressure readings are rounded to whole millibars. Lots of points overlap.\n\n# Lots of overplotting — points are stacked on top of each other\nggplot(storms, aes(x = category, y = wind)) +\n  geom_point()\n\n# Spread them out a bit\nggplot(storms, aes(x = category, y = wind)) +\n  geom_point(position = \"jitter\", alpha = 0.3)\n\n# Shorthand for the same thing\nggplot(storms, aes(x = category, y = wind)) +\n  geom_jitter(alpha = 0.3)\n\nJitter adds tiny random noise so points stop landing on top of each other. You lose precision; you gain a clear picture of density."
+    "text": "Jittering — for scatterplots, not bars\nA different problem: many storm observations are recorded only every 6 hours, and pressure readings are rounded to whole millibars. Lots of points overlap.\n\n# Lots of overplotting — points are stacked on top of each other\nggplot(storms, aes(x = category, y = wind)) +\n  geom_point()\n\n# Spread them out a bit\nggplot(storms, aes(x = category, y = wind)) +\n  geom_point(position = \"jitter\", alpha = 0.3)\n\n# Shorthand for the same thing\nggplot(storms, aes(x = category, y = wind)) +\n  geom_jitter(alpha = 0.3)\n\nJitter adds tiny random noise so points stop landing on top of each other. You lose precision but (often) can gain a clear picture of density."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#dont-over-jitter",
-    "href": "weeks/week2/day8-ggplot2-page.html#dont-over-jitter",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#dont-over-jitter",
+    "href": "weeks/week2/day7-ggplot2-page.html#dont-over-jitter",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Don’t over-jitter",
     "text": "Don’t over-jitter\ngeom_jitter() takes width and height arguments. Defaults are usually fine, but:\n\nCategorical x: small width (~0.2), height = 0 to keep y meaningful.\nInteger x and y: small jitter on both.\nContinuous data: you probably don’t need jitter at all — use alpha or geom_hex()/geom_bin2d() instead.\n\n\nggplot(storms, aes(x = factor(category), y = wind)) +\n  geom_jitter(width = 0.2, height = 0, alpha = 0.3)"
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#the-layered-grammar-of-graphics",
-    "href": "weeks/week2/day8-ggplot2-page.html#the-layered-grammar-of-graphics",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#the-layered-grammar-of-graphics",
+    "href": "weeks/week2/day7-ggplot2-page.html#the-layered-grammar-of-graphics",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "The layered grammar of graphics",
-    "text": "The layered grammar of graphics\nPutting it all together, every ggplot has the same skeleton:\nggplot(data = &lt;DATA&gt;) +\n  &lt;GEOM_FUNCTION&gt;(\n    mapping = aes(&lt;MAPPINGS&gt;),\n    stat = &lt;STAT&gt;,\n    position = &lt;POSITION&gt;\n  ) +\n  &lt;COORDINATE_FUNCTION&gt; +\n  &lt;FACET_FUNCTION&gt;\nSeven slots. You only fill the ones you need to change — ggplot picks sensible defaults for the rest.\nThat’s why you can get a long way with just ggplot() + aes() + geom_*(). The other slots are there when you need them."
+    "text": "The layered grammar of graphics\nPutting it all together, every ggplot has the same skeleton:\nggplot(data = &lt;DATA&gt;) +\n  &lt;GEOM_FUNCTION&gt;(\n    mapping = aes(&lt;MAPPINGS&gt;),\n    stat = &lt;STAT&gt;,\n    position = &lt;POSITION&gt;\n  ) +\n  &lt;COORDINATE_FUNCTION&gt; +\n  &lt;FACET_FUNCTION&gt;\nThere are seven slots here. You only want to fill the ones you need to change since ggplot picks sensible defaults for the rest.\nThat’s why just ggplot() + aes() + geom_*() go a long way on their own. The other slots are there when you need them."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#what-we-covered-today",
-    "href": "weeks/week2/day8-ggplot2-page.html#what-we-covered-today",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#what-we-covered-today",
+    "href": "weeks/week2/day7-ggplot2-page.html#what-we-covered-today",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "What we covered today",
     "text": "What we covered today\n\nThe vocabulary: frame, glyph, aesthetic, scale, guide.\nMapping (inside aes()) vs. setting (outside aes()) — and the bug where you mix them up.\nAesthetics: x, y, color, fill, size, shape, alpha, linetype, group, stroke. Discrete vs. continuous behavior.\nGeoms: stacking layers, global vs. local mappings, different data per layer, the group aesthetic.\nStats: the hidden transformation in every geom; geom_col() vs geom_bar(); after_stat() for proportions and densities; stat_summary() for ad hoc aggregation.\nPosition adjustments: identity, stack, fill, dodge, jitter — when to use which."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#activity-ggplot-internals-with-storms",
-    "href": "weeks/week2/day8-ggplot2-page.html#activity-ggplot-internals-with-storms",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#activity-ggplot-internals-with-storms",
+    "href": "weeks/week2/day7-ggplot2-page.html#activity-ggplot-internals-with-storms",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Activity: ggplot internals, with storms",
-    "text": "Activity: ggplot internals, with storms\nTwo parts. Take ~25 minutes total.\n\nActivity Canvas Link\n\nPart 1 — Guided warmup (~10 min). Five short fill-in-the-blank chunks. Practice each concept from today on a fresh question.\nPart 2 — Open exploration (~15 min). Pick one of three guiding questions about the storms data and build the plot you think answers it best. We’ll show a few at the end.\nTo turn in: Save your .qmd and rendered HTML — we’ll check at the end of class."
+    "text": "Activity: ggplot internals, with storms\nTwo parts.\n\nActivity Canvas Link\n\nPart 1 — Guided warmup. Five short fill-in-the-blank chunks. Practice each concept from today on a fresh question.\nPart 2 — Open exploration. Pick one of three guiding questions about the storms data and build the plot you think answers it best. We’ll show a few at the end.\nTo turn in: Save your .qmd and rendered HTML — we’ll check at the end of class."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#activity-debrief",
-    "href": "weeks/week2/day8-ggplot2-page.html#activity-debrief",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#activity-debrief",
+    "href": "weeks/week2/day7-ggplot2-page.html#activity-debrief",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Activity debrief",
     "text": "Activity debrief\nThings to watch for:\n\naes(color = \"red\") instead of color = \"red\" — and getting confused when nothing turns red.\nA geom_path() that zigzags wildly because group is missing.\ngeom_bar(stat = \"identity\") when you already have counts (use geom_col()).\nposition = \"fill\" when you actually wanted \"dodge\" — proportions vs. side-by-side counts.\nMapping a categorical to size — listen to that warning."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-page.html#wrap-up-looking-ahead",
-    "href": "weeks/week2/day8-ggplot2-page.html#wrap-up-looking-ahead",
+    "objectID": "weeks/week2/day7-ggplot2-page.html#wrap-up-looking-ahead",
+    "href": "weeks/week2/day7-ggplot2-page.html#wrap-up-looking-ahead",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\nTomorrow: facets in depth, scales, and color choices — including continuous color scales, sequential vs. diverging palettes, and accessibility.\nFriday: Quiz 2 + a graphics critique activity. Bring a real-world plot you’ve seen.\n\n\nUpcoming Deadlines\n\nFri 5/29, before class — Perusall reading (TBA)\nFri 5/29, in class — Quiz 2\nFri 5/29, 11:59 p.m. — HW 2: Pipes, Plots & Reading Graphics\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 9 · ggplot2 reference"
+    "text": "Wrap-up & looking ahead\nTomorrow: facets in depth, scales, and color choices — including continuous color scales, sequential vs. diverging palettes, and accessibility.\nFriday: Quiz 2 + a graphics critique activity.\n\n\nUpcoming Deadlines\n\nThurs 5/28, before class\nFri 5/29, in class — Quiz 2\nFri 5/29, 11:59 p.m. — HW 2: Pipes, Plots & Reading Graphics\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 9 · ggplot2 reference"
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#quick-recap",
-    "href": "weeks/week2/day8-ggplot2-slides.html#quick-recap",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#quick-recap",
+    "href": "weeks/week2/day7-ggplot2-slides.html#quick-recap",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Quick recap",
     "text": "Quick recap\nWe’ve been making ggplots for a while now. You know how to:\n\nPass data and aes() to ggplot()\nAdd a geom like geom_point(), geom_bar(), geom_histogram()\nMap variables to x, y, color, fill\n\nToday we’re going to slow down and look at what’s actually happening under the hood. Same plots, but with a precise vocabulary for talking about them — and a few tools you probably haven’t used yet.\n\n\n\n\n\n\n\n\nTip\n\n\nThis is the chapter that turns ggplot2 from “memorizing recipes” into “I can build any plot I can describe.”"
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#a-vocabulary-for-plots",
-    "href": "weeks/week2/day8-ggplot2-slides.html#a-vocabulary-for-plots",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#a-vocabulary-for-plots",
+    "href": "weeks/week2/day7-ggplot2-slides.html#a-vocabulary-for-plots",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "A vocabulary for plots",
-    "text": "A vocabulary for plots\nThe DC chapter introduces five words. Internalize these — they’ll come up over and over.\n\nFive words to describe any data graphic.\n\n\n\n\n\n\nTerm\nWhat it is\n\n\n\n\nframe\nThe relationship between position and data. The coordinate system + the variables on each axis.\n\n\nglyph\nThe basic graphical unit. One glyph = one case in your data frame.\n\n\naesthetic\nAny graphical attribute of a glyph: position, size, color, shape, transparency, …\n\n\nscale\nThe rule that translates a variable value into an aesthetic value.\n\n\nguide\nWhat helps the viewer translate back: axes, tick marks, legends, color bars."
+    "text": "A vocabulary for plots\nThe DC chapter introduces five words. These will come up a lot.\n\nFive words to describe any data graphic.\n\n\n\n\n\n\nTerm\nWhat it is\n\n\n\n\nframe\nThe relationship between position and data. The coordinate system + the variables on each axis.\n\n\nglyph\nThe basic graphical unit. One glyph = one case in your data frame.\n\n\naesthetic\nAny graphical attribute of a glyph: position, size, color, shape, transparency, …\n\n\nscale\nThe rule that translates a variable value into an aesthetic value.\n\n\nguide\nWhat helps the viewer translate back: axes, tick marks, legends, color bars."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#one-sentence-five-words",
-    "href": "weeks/week2/day8-ggplot2-slides.html#one-sentence-five-words",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#one-sentence-five-words",
+    "href": "weeks/week2/day7-ggplot2-slides.html#one-sentence-five-words",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "One sentence, five words",
     "text": "One sentence, five words\n\n\n\n\n\n\n\nTip\n\n\nA graphic is a collection of glyphs sitting inside a frame, where each glyph’s aesthetics are controlled by scales that map variables to graphical attributes, and guides help the viewer read the scales backward.\n\n\n\n\nToday we focus on the first three; tomorrow we’ll deal more with scales and guides."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#why-this-matters",
-    "href": "weeks/week2/day8-ggplot2-slides.html#why-this-matters",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#why-this-matters",
+    "href": "weeks/week2/day7-ggplot2-slides.html#why-this-matters",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Why this matters",
     "text": "Why this matters\nOnce you have the vocabulary, debugging gets easier:\n\n“My color isn’t working” \\(\\rightarrow\\) is it a mapping (inside aes()) or a fixed property (outside)?\n“I want different lines per group” \\(\\rightarrow\\) I need a discrete variable mapped to an aesthetic that splits the geom (color, linetype, group).\n“My bar chart shows counts but I want proportions” \\(\\rightarrow\\) I need to override the stat.\n\nEvery confusion you’ve had with ggplot maps onto one of these concepts."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#the-storms-dataset",
-    "href": "weeks/week2/day8-ggplot2-slides.html#the-storms-dataset",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#the-storms-dataset",
+    "href": "weeks/week2/day7-ggplot2-slides.html#the-storms-dataset",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "The storms dataset",
     "text": "The storms dataset\nBuilt into the tidyverse (via dplyr). Records of every named Atlantic storm since 1975, drawn from NOAA’s HURDAT2 reanalysis.\n\nstorms\n\n# A tibble: 20,778 × 13\n   name   year month   day  hour   lat  long status      category  wind pressure\n   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;          &lt;dbl&gt; &lt;int&gt;    &lt;int&gt;\n 1 Amy    1975     6    27     0  27.5 -79   tropical d…       NA    25     1013\n 2 Amy    1975     6    27     6  28.5 -79   tropical d…       NA    25     1013\n 3 Amy    1975     6    27    12  29.5 -79   tropical d…       NA    25     1013\n 4 Amy    1975     6    27    18  30.5 -79   tropical d…       NA    25     1013\n 5 Amy    1975     6    28     0  31.5 -78.8 tropical d…       NA    25     1012\n 6 Amy    1975     6    28     6  32.4 -78.7 tropical d…       NA    25     1012\n 7 Amy    1975     6    28    12  33.3 -78   tropical d…       NA    25     1011\n 8 Amy    1975     6    28    18  34   -77   tropical d…       NA    30     1006\n 9 Amy    1975     6    29     0  34.4 -75.8 tropical s…       NA    35     1004\n10 Amy    1975     6    29     6  34   -74.8 tropical s…       NA    40     1002\n# ℹ 20,768 more rows\n# ℹ 2 more variables: tropicalstorm_force_diameter &lt;int&gt;,\n#   hurricane_force_diameter &lt;int&gt;"
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#variables-well-use",
-    "href": "weeks/week2/day8-ggplot2-slides.html#variables-well-use",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#variables-well-use",
+    "href": "weeks/week2/day7-ggplot2-slides.html#variables-well-use",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Variables we’ll use",
-    "text": "Variables we’ll use\n\nSelected variables in storms.\n\n\n\n\n\n\nVariable\nDescription\n\n\n\n\nname, year, month, day, hour\nWhen the observation was taken\n\n\nlat, long\nWhere the storm was\n\n\nstatus\ntropical depression, tropical storm, hurricane, …\n\n\ncategory\nSaffir-Simpson scale (1–5), NA for non-hurricanes\n\n\nwind\nMaximum sustained wind speed, knots\n\n\npressure\nCentral pressure, millibars (lower = stronger)\n\n\n\nEach row is a 6-hour observation of one storm — so a single hurricane shows up many times as it moves and intensifies."
+    "text": "Variables we’ll use\n\nSelected variables in storms.\n\n\n\n\n\n\nVariable\nDescription\n\n\n\n\nname, year, month, day, hour\nWhen the observation was taken\n\n\nlat, long\nWhere the storm was\n\n\nstatus\ntropical depression, tropical storm, hurricane, …\n\n\ncategory\nSaffir-Simpson scale (1–5), NA for non-hurricanes\n\n\nwind\nMaximum sustained wind speed, knots\n\n\npressure\nCentral pressure, millibars (lower = stronger)\n\n\n\nEach row is a 6-hour observation of one storm, so single hurricane shows up many times as it moves and intensifies."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#mapping-vs.-setting",
-    "href": "weeks/week2/day8-ggplot2-slides.html#mapping-vs.-setting",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#mapping-vs.-setting",
+    "href": "weeks/week2/day7-ggplot2-slides.html#mapping-vs.-setting",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Mapping vs. setting",
-    "text": "Mapping vs. setting\nThe single most common ggplot bug is confusing mapping with setting.\n\n\nMapping — a variable controls the aesthetic.\nGoes inside aes().\nggplot(storms, \n       aes(x = wind, y = pressure,\n           color = status)) +\n  geom_point()\ncolor varies by status value.\n\nSetting — you fix the aesthetic to a constant.\nGoes outside aes().\nggplot(storms, \n       aes(x = wind, y = pressure)) +\n  geom_point(color = \"steelblue\")\nEvery point is steelblue."
+    "text": "Mapping vs. setting\nThe single most common ggplot bug is confusing mapping with setting.\n\n\nMapping: a variable controls the aesthetic.\nGoes inside aes().\nggplot(storms, \n       aes(x = wind, y = pressure,\n           color = status)) +\n  geom_point()\ncolor varies by status value.\n\nSetting: you fix the aesthetic to a constant.\nGoes outside aes().\nggplot(storms, \n       aes(x = wind, y = pressure)) +\n  geom_point(color = \"steelblue\")\nEvery point is steelblue."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#the-classic-mistake",
-    "href": "weeks/week2/day8-ggplot2-slides.html#the-classic-mistake",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#the-classic-mistake",
+    "href": "weeks/week2/day7-ggplot2-slides.html#the-classic-mistake",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "The classic mistake",
     "text": "The classic mistake\nWhat does this do?\n\nggplot(storms, aes(x = wind, y = pressure)) +\n  geom_point(aes(color = \"steelblue\"))\n\n\nIt makes every point a salmon red and adds a legend that says \"steelblue\".\nWhy? aes() says “map a variable to color.” We gave it the string \"steelblue\", which ggplot treated as a one-level categorical variable. It then picked a default color (red-pink) for that one level.\nRule of thumb: if you want a constant color, it goes outside aes(). If you want it to depend on data, it goes inside aes()."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#what-can-you-map",
-    "href": "weeks/week2/day8-ggplot2-slides.html#what-can-you-map",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#what-can-you-map",
+    "href": "weeks/week2/day7-ggplot2-slides.html#what-can-you-map",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "What can you map?",
     "text": "What can you map?\nEvery geom accepts a subset of these aesthetics. The most common:\n\nCommon aesthetics.\n\n\n\n\n\n\n\nAesthetic\nWorks on\nNotes\n\n\n\n\nx, y\nalmost everything\nposition in the frame\n\n\ncolor\npoints, lines, borders\noutline of a glyph\n\n\nfill\nbars, areas, filled shapes\ninterior of a glyph\n\n\nsize\npoints, lines\nnumerical only, ideally\n\n\nalpha\nalmost everything\ntransparency, 0–1\n\n\nshape\npoints\nmax 6 discrete values by default\n\n\nlinetype\nlines\nsolid, dashed, dotted, …\n\n\ngroup\ngrouped geoms\nsplits w/o adding a legend"
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#discrete-vs.-continuous-aesthetics",
-    "href": "weeks/week2/day8-ggplot2-slides.html#discrete-vs.-continuous-aesthetics",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#discrete-vs.-continuous-aesthetics",
+    "href": "weeks/week2/day7-ggplot2-slides.html#discrete-vs.-continuous-aesthetics",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Discrete vs. continuous aesthetics",
-    "text": "Discrete vs. continuous aesthetics\nggplot picks a scale automatically based on the type of the variable.\n\nHow ggplot scales aesthetics by variable type.\n\n\n\n\n\n\n\nAesthetic\nDiscrete variable\nContinuous variable\n\n\n\n\ncolor / fill\nqualitative palette (distinct hues)\ngradient (e.g., light \\(\\rightarrow\\) dark)\n\n\nsize\nwarns — order is implied but levels aren’t ordered\nsmooth size range\n\n\nshape\ndistinct shapes (max 6)\nerror — shapes don’t have an order\n\n\nalpha\nwarns, same reason as size\nsmooth\n\n\n\n\n\n\n\n\n\nWarning\n\n\nMapping a categorical variable like status to size or alpha tells the reader “these categories are ordered” — usually a lie. Stick to color, fill, shape, or facets for categorical splits."
+    "text": "Discrete vs. continuous aesthetics\nggplot picks a scale automatically based on the type of the variable.\n\nHow ggplot scales aesthetics by variable type.\n\n\n\n\n\n\n\nAesthetic\nDiscrete variable\nContinuous variable\n\n\n\n\ncolor / fill\nqualitative palette (distinct hues)\ngradient (e.g., light \\(\\rightarrow\\) dark)\n\n\nsize\nwarns — order is implied but levels aren’t ordered\nsmooth size range\n\n\nshape\ndistinct shapes (max 6)\nerror — shapes don’t have an order\n\n\nalpha\nwarns, same reason as size\nsmooth\n\n\n\n\n\n\n\n\n\nWarning\n\n\nMapping a categorical variable like status to size or alpha tells the reader “these categories are ordered”, which is often not actually the case. Stick to color, fill, shape, or facets for categorical splits."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#example-status-mapped-four-ways",
-    "href": "weeks/week2/day8-ggplot2-slides.html#example-status-mapped-four-ways",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#shape-reference",
+    "href": "weeks/week2/day7-ggplot2-slides.html#shape-reference",
+    "title": "ggplot2 internals · aesthetics · geoms",
+    "section": "Shape reference",
+    "text": "Shape reference\nIn ggplot, you specify the shape of a point as a number.\n\n\nFigure 1: R has 26 built-in shapes that are identified by numbers."
+  },
+  {
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#example-status-mapped-four-ways",
+    "href": "weeks/week2/day7-ggplot2-slides.html#example-status-mapped-four-ways",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Example: status mapped four ways",
-    "text": "Example: status mapped four ways\n\n# Color — good for categorical\nggplot(storms, aes(x = wind, y = pressure, color = status)) + geom_point(alpha = 0.4)\n\n# Shape — also good, but watch the 6-value limit\nggplot(storms, aes(x = wind, y = pressure, shape = status)) + geom_point()\n\n# Size — bad: implies ranking\nggplot(storms, aes(x = wind, y = pressure, size = status)) + geom_point()\n\n# Alpha — same problem as size\nggplot(storms, aes(x = wind, y = pressure, alpha = status)) + geom_point()\n\nThe last two will print warnings: “Using size/alpha for a discrete variable is not advised.” Listen to them."
+    "text": "Example: status mapped four ways\n\n# Color — good for categorical\nggplot(storms, aes(x = wind, y = pressure, color = status)) + geom_point(alpha = 0.4)\n\n# Shape — also good, but watch the 6-value limit\nggplot(storms, aes(x = wind, y = pressure, shape = status)) + geom_point()\n\n# Size — bad: implies ranking\nggplot(storms, aes(x = wind, y = pressure, size = status)) + geom_point()\n\n# Alpha — same problem as size\nggplot(storms, aes(x = wind, y = pressure, alpha = status)) + geom_point()\n\nUsing size/alpha for a discrete variable is not advised."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#the-stroke-aesthetic-a-nice-one-to-know",
-    "href": "weeks/week2/day8-ggplot2-slides.html#the-stroke-aesthetic-a-nice-one-to-know",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#the-stroke-aesthetic",
+    "href": "weeks/week2/day7-ggplot2-slides.html#the-stroke-aesthetic",
     "title": "ggplot2 internals · aesthetics · geoms",
-    "section": "The stroke aesthetic (a nice one to know)",
-    "text": "The stroke aesthetic (a nice one to know)\nFor filled point shapes (21–25), stroke controls border thickness independently of size.\n\nggplot(storms |&gt; filter(category &gt;= 4), \n       aes(x = wind, y = pressure, fill = factor(category))) +\n  geom_point(shape = 21, size = 3, stroke = 1.2, color = \"white\") +\n  labs(fill = \"Category\")\n\nA white stroke around colored points is one of the easiest ways to make a busy plot readable."
+    "section": "The stroke aesthetic",
+    "text": "The stroke aesthetic\nFor filled point shapes (21–25), stroke controls border thickness independently of size.\n\nggplot(storms |&gt; filter(category &gt;= 4), \n       aes(x = wind, y = pressure, fill = factor(category))) +\n  geom_point(shape = 21, size = 3, stroke = 1.2, color = \"white\") +\n  labs(fill = \"Category\")\n\nA white stroke around colored points is one of the easiest ways to make a busy plot readable."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#on-the-fly-transformations",
-    "href": "weeks/week2/day8-ggplot2-slides.html#on-the-fly-transformations",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#on-the-fly-transformations",
+    "href": "weeks/week2/day7-ggplot2-slides.html#on-the-fly-transformations",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "On-the-fly transformations",
-    "text": "On-the-fly transformations\nAesthetics don’t have to map to a variable name — they can map to any expression involving variables.\n\nggplot(storms, \n       aes(x = wind, y = pressure, color = wind &gt;= 64)) +\n  geom_point(alpha = 0.3) +\n  labs(color = \"Hurricane-strength?\")\n\nThe expression wind &gt;= 64 returns TRUE/FALSE for each row, and that gets mapped to color. No need to create the column in advance."
+    "text": "On-the-fly transformations\nAesthetics don’t have to map to a variable name; they can map to any expression involving variables.\n\nggplot(storms, \n       aes(x = wind, y = pressure, color = wind &gt;= 64)) +\n  geom_point(alpha = 0.3) +\n  labs(color = \"Hurricane-strength?\")\n\nThe expression wind &gt;= 64 returns TRUE/FALSE for each row, and that gets mapped to color. No need to create the column in advance."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#geoms-glyph-families",
-    "href": "weeks/week2/day8-ggplot2-slides.html#geoms-glyph-families",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#geoms-glyph-families",
+    "href": "weeks/week2/day7-ggplot2-slides.html#geoms-glyph-families",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Geoms = glyph families",
     "text": "Geoms = glyph families\nEach geom produces one type of glyph. The big ones:\n\nCommon geoms.\n\n\n\n\n\n\n\nGeom\nGlyph\nBest for\n\n\n\n\ngeom_point()\ndot\nscatter\n\n\ngeom_line()\nconnected segments\ntrends over an ordered x\n\n\ngeom_smooth()\none curve (per group)\nsummarize a trend\n\n\ngeom_bar() / geom_col()\nrectangles\ncounts / values by category\n\n\ngeom_histogram()\nrectangles (bins)\ndistribution of one numeric var\n\n\ngeom_boxplot()\nboxes + whiskers\ndistribution by group\n\n\ngeom_density()\nsmooth curve\ndistribution, smoothed\n\n\ngeom_polygon()\nfilled shapes\nmaps, custom regions\n\n\n\nggplot2 ships with 40+. Extension packages add hundreds more."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#layering-more-than-one-geom",
-    "href": "weeks/week2/day8-ggplot2-slides.html#layering-more-than-one-geom",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#layering-more-than-one-geom",
+    "href": "weeks/week2/day7-ggplot2-slides.html#layering-more-than-one-geom",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Layering: more than one geom",
-    "text": "Layering: more than one geom\nA plot can have as many geoms as you want. They stack in the order you write them.\n\nggplot(storms, aes(x = wind, y = pressure)) +\n  geom_point(alpha = 0.2) +\n  geom_smooth(color = \"firebrick\")\n\nTwo layers, same data, same mappings. The points show every observation; the smooth shows the trend.\n\n\n\n\n\n\nNote\n\n\nThe relationship between wind and pressure in tropical cyclones is very tight — it’s essentially a physical law. The scatter shows what that law looks like in real storm data."
+    "text": "Layering: more than one geom\nA plot can have as many geoms as you want. They stack in the order you write them.\n\nggplot(storms, aes(x = wind, y = pressure)) +\n  geom_point(alpha = 0.2) +\n  geom_smooth(color = \"firebrick\")\n\nHere we have two layers, the same data, and the same mappings. The points show every observation; the smooth shows the trend.\n\n\n\n\n\n\nNote\n\n\nThe relationship between wind and pressure in tropical cyclones is very strong. The scatter shows what that law looks like in real storm data."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#global-vs.-local-mappings",
-    "href": "weeks/week2/day8-ggplot2-slides.html#global-vs.-local-mappings",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#global-vs.-local-mappings",
+    "href": "weeks/week2/day7-ggplot2-slides.html#global-vs.-local-mappings",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Global vs. local mappings",
-    "text": "Global vs. local mappings\nYou can put aes() in two places:\n\n\nIn ggplot() — global. Every layer inherits these mappings.\n\nggplot(storms, \n       aes(x = wind, y = pressure)) +\n  geom_point() +\n  geom_smooth()\n\nBoth geoms see x and y.\n\nIn a geom — local. Only that layer sees it.\n\nggplot(storms, \n       aes(x = wind, y = pressure)) +\n  geom_point(aes(color = status)) +\n  geom_smooth()\n\nOnly points are colored; the smooth is one curve."
+    "text": "Global vs. local mappings\nYou can put aes() in two places:\n\n\nIn ggplot(): global. Every layer inherits these mappings.\n\nggplot(storms, \n       aes(x = wind, y = pressure)) +\n  geom_point() +\n  geom_smooth()\n\nBoth geoms see x and y.\n\nIn a geom: local. Only that layer sees it.\n\nggplot(storms, \n       aes(x = wind, y = pressure)) +\n  geom_point(aes(color = status)) +\n  geom_smooth()\n\nOnly points are colored; the smooth is one curve."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#why-local-mappings-matter",
-    "href": "weeks/week2/day8-ggplot2-slides.html#why-local-mappings-matter",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#why-local-mappings-matter",
+    "href": "weeks/week2/day7-ggplot2-slides.html#why-local-mappings-matter",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Why local mappings matter",
-    "text": "Why local mappings matter\nIf you put color = status in the global aes(), every layer sees it. geom_smooth() will draw one smoother per status, not one overall.\n\n# One smoother per status (probably not what you want here):\nggplot(storms, aes(x = wind, y = pressure, color = status)) +\n  geom_point(alpha = 0.2) +\n  geom_smooth()\n\n# Points colored by status, one global smoother:\nggplot(storms, aes(x = wind, y = pressure)) +\n  geom_point(aes(color = status), alpha = 0.2) +\n  geom_smooth()\n\nWhere you put the mapping changes the plot. There’s no “right” choice — just be intentional."
+    "text": "Why local mappings matter\nIf you put color = status in the global aes(), every layer sees it. geom_smooth() will draw one smoother per status, not one overall.\n\n# One smoother per status (probably not what you want here):\nggplot(storms, aes(x = wind, y = pressure, color = status)) +\n  geom_point(alpha = 0.2) +\n  geom_smooth()\n\n# Points colored by status, one global smoother:\nggplot(storms, aes(x = wind, y = pressure)) +\n  geom_point(aes(color = status), alpha = 0.2) +\n  geom_smooth()\n\nWhere you put the mapping changes the plot. There’s no “right” choice (just be intentional in your choices.)"
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#different-data-per-layer",
-    "href": "weeks/week2/day8-ggplot2-slides.html#different-data-per-layer",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#different-data-per-layer",
+    "href": "weeks/week2/day7-ggplot2-slides.html#different-data-per-layer",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Different data per layer",
     "text": "Different data per layer\nEach layer can have its own data. This is how you highlight a subset.\n\nkatrina &lt;- storms |&gt; filter(name == \"Katrina\", year == 2005)\n\nggplot(storms |&gt; filter(year == 2005), \n       aes(x = long, y = lat)) +\n  geom_path(aes(group = name), alpha = 0.2) +\n  geom_path(data = katrina, color = \"firebrick\", linewidth = 1.2) +\n  geom_point(data = katrina, color = \"firebrick\") +\n  labs(title = \"2005 Atlantic hurricane season, with Katrina highlighted\")\n\nThree layers: all storms (faint), Katrina’s path (red), Katrina’s observations (red dots). Each calls data = locally to override the default."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#the-group-aesthetic",
-    "href": "weeks/week2/day8-ggplot2-slides.html#the-group-aesthetic",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#the-group-aesthetic",
+    "href": "weeks/week2/day7-ggplot2-slides.html#the-group-aesthetic",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "The group aesthetic",
-    "text": "The group aesthetic\nSome geoms — lines, smoothers, polygons — connect multiple rows. They need to know which rows belong together.\nIf you map a discrete variable to color or linetype, ggplot groups for you automatically. If you don’t, you may need to set group explicitly.\n\n# Bad: one giant line zigzagging between every storm\nggplot(storms |&gt; filter(year == 2005), aes(x = long, y = lat)) +\n  geom_path()\n\n# Good: one path per storm\nggplot(storms |&gt; filter(year == 2005), aes(x = long, y = lat, group = name)) +\n  geom_path()\n\ngroup doesn’t add a legend or change colors — it just splits the geom."
+    "text": "The group aesthetic\nSome geoms — lines, smoothers, polygons — connect multiple rows. They need to know which rows belong together.\nIf you map a discrete variable to color or linetype, ggplot groups for you automatically. If you don’t, you may need to set group explicitly.\n\n# Bad: one giant line zigzagging between every storm\nggplot(storms |&gt; filter(year == 2005), aes(x = long, y = lat)) +\n  geom_path()\n\n# Good: one path per storm\nggplot(storms |&gt; filter(year == 2005), aes(x = long, y = lat, group = name)) +\n  geom_path()\n\ngroup doesn’t add a legend or change colors, it just splits the geom."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#where-do-bar-heights-come-from",
-    "href": "weeks/week2/day8-ggplot2-slides.html#where-do-bar-heights-come-from",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#where-do-bar-heights-come-from",
+    "href": "weeks/week2/day7-ggplot2-slides.html#where-do-bar-heights-come-from",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Where do bar heights come from?",
-    "text": "Where do bar heights come from?\nHere’s the question that broke my brain the first time:\n\nggplot(storms, aes(x = status)) +\n  geom_bar()\n\nWe told ggplot about x = status. Where did the y-axis (count) come from?\n\nIt was computed. geom_bar() doesn’t just plot raw data — it transforms it. It groups rows by status and counts them, then plots the counts.\nEvery geom has a stat (statistical transformation) it runs under the hood."
+    "text": "Where do bar heights come from?\nHere’s a (potentially) tricky question:\n\nggplot(storms, aes(x = status)) +\n  geom_bar()\n\nWe told ggplot about x = status. Where did the y-axis (count) come from?\n\nIt was computed. geom_bar() doesn’t just plot raw data. It also transforms it by grouping rows by status and counting them, then plotting the counts.\nEvery geom has a stat (statistical transformation) it runs under the hood."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#every-geom-leftrightarrow-stat-pair",
-    "href": "weeks/week2/day8-ggplot2-slides.html#every-geom-leftrightarrow-stat-pair",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#every-geom-leftrightarrow-stat-pair",
+    "href": "weeks/week2/day7-ggplot2-slides.html#every-geom-leftrightarrow-stat-pair",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Every geom \\(\\leftrightarrow\\) stat pair",
-    "text": "Every geom \\(\\leftrightarrow\\) stat pair\n\nGeoms and their default stats.\n\n\n\n\n\n\n\nGeom\nDefault stat\nWhat it computes\n\n\n\n\ngeom_bar()\nstat_count()\ncounts per x value\n\n\ngeom_histogram()\nstat_bin()\ncounts per bin\n\n\ngeom_boxplot()\nstat_boxplot()\nfive-number summary\n\n\ngeom_smooth()\nstat_smooth()\nfitted curve + CI\n\n\ngeom_density()\nstat_density()\nkernel density estimate\n\n\ngeom_point()\nstat_identity()\nnothing — just plots raw\n\n\n\nYou can use a geom and never think about its stat. But sometimes you need to."
+    "text": "Every geom \\(\\leftrightarrow\\) stat pair\n\nGeoms and their default stats.\n\n\n\n\n\n\n\nGeom\nDefault stat\nWhat it computes\n\n\n\n\ngeom_bar()\nstat_count()\ncounts per x value\n\n\ngeom_histogram()\nstat_bin()\ncounts per bin\n\n\ngeom_boxplot()\nstat_boxplot()\nfive-number summary\n\n\ngeom_smooth()\nstat_smooth()\nfitted curve + CI\n\n\ngeom_density()\nstat_density()\nkernel density estimate\n\n\ngeom_point()\nstat_identity()\nnothing — just plots raw\n\n\n\nYou can use a geom and never think about its stat. But sometimes you will need to think about it."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#three-reasons-to-touch-the-stat",
-    "href": "weeks/week2/day8-ggplot2-slides.html#three-reasons-to-touch-the-stat",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#three-reasons-to-touch-the-stat",
+    "href": "weeks/week2/day7-ggplot2-slides.html#three-reasons-to-touch-the-stat",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Three reasons to touch the stat",
-    "text": "Three reasons to touch the stat\n1. You already pre-computed the values. Override the default with stat = \"identity\".\n\nstorm_counts &lt;- storms |&gt; count(status)\nstorm_counts\n\nggplot(storm_counts, aes(x = status, y = n)) +\n  geom_bar(stat = \"identity\")   # or just use geom_col() — same thing\n\ngeom_col() is a shortcut for geom_bar(stat = \"identity\"). Use it when you have your own y values."
+    "text": "Three reasons to touch the stat\n1. You already pre-computed the values. We can override the default behavior of geom_bar with stat = \"identity\".\n\nstorm_counts &lt;- storms |&gt; count(status)\nstorm_counts\n\nggplot(storm_counts, aes(x = status, y = n)) +\n  geom_bar(stat = \"identity\")   # or just use geom_col() — same thing\n\ngeom_col() is a shortcut for geom_bar(stat = \"identity\"). You can use it when you have your own y values."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#three-reasons-to-touch-the-stat-1",
-    "href": "weeks/week2/day8-ggplot2-slides.html#three-reasons-to-touch-the-stat-1",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#three-reasons-to-touch-the-stat-1",
+    "href": "weeks/week2/day7-ggplot2-slides.html#three-reasons-to-touch-the-stat-1",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Three reasons to touch the stat",
     "text": "Three reasons to touch the stat\n2. You want a computed variable, not the default.\nstat_count() actually computes two things: count (default) and prop (proportion). You can ask for the proportion using after_stat():\n\nggplot(storms, aes(x = status, y = after_stat(prop), group = 1)) +\n  geom_bar()\n\n\n\n\n\n\n\nWhy group = 1?\n\n\nBy default, prop is computed within each x group, which means every bar would be 100%. Setting group = 1 tells ggplot “treat all rows as one group when computing proportions” so they sum to 1 across the whole plot."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#three-reasons-to-touch-the-stat-2",
-    "href": "weeks/week2/day8-ggplot2-slides.html#three-reasons-to-touch-the-stat-2",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#three-reasons-to-touch-the-stat-2",
+    "href": "weeks/week2/day7-ggplot2-slides.html#three-reasons-to-touch-the-stat-2",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Three reasons to touch the stat",
-    "text": "Three reasons to touch the stat\n3. You want to make the transformation explicit. Use a stat_*() function directly.\n\nggplot(storms, aes(x = status, y = wind)) +\n  stat_summary(\n    fun.min = min,\n    fun.max = max,\n    fun = median\n  )\n\nThis shows the min, median, and max wind speed for each status — without writing any dplyr code first. stat_summary() does the aggregation as part of the plot."
+    "text": "Three reasons to touch the stat\n3. You want to make the transformation explicit. Use a stat_*() function directly.\n\nggplot(storms, aes(x = status, y = wind)) +\n  stat_summary(\n    fun.min = min,\n    fun.max = max,\n    fun = median\n  )\n\nThis shows the min, median, and max wind speed for each status without you having to manually write any dplyr code first. stat_summary() does the aggregation as part of the plot."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#after_stat-in-one-minute",
-    "href": "weeks/week2/day8-ggplot2-slides.html#after_stat-in-one-minute",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#after_stat-quick-overview",
+    "href": "weeks/week2/day7-ggplot2-slides.html#after_stat-quick-overview",
     "title": "ggplot2 internals · aesthetics · geoms",
-    "section": "after_stat() in one minute",
-    "text": "after_stat() in one minute\nAnywhere you’d write a variable name inside aes(), you can wrap it in after_stat(...) to refer to a computed variable instead of one in the original data.\n\n# Default — bin counts on y\nggplot(storms, aes(x = wind)) +\n  geom_histogram(binwidth = 5)\n\n# Same bins, but density on y instead\nggplot(storms, aes(x = wind, y = after_stat(density))) +\n  geom_histogram(binwidth = 5)\n\nTo see what’s available for a given geom, run ?geom_bar and look for the Computed variables section."
+    "section": "after_stat() quick overview",
+    "text": "after_stat() quick overview\nAnywhere you’d write a variable name inside aes(), you can wrap it in after_stat(...) to refer to a computed variable instead of one in the original data.\n\n# Default — bin counts on y\nggplot(storms, aes(x = wind)) +\n  geom_histogram(binwidth = 5)\n\n# Same bins, but density on y instead\nggplot(storms, aes(x = wind, y = after_stat(density))) +\n  geom_histogram(binwidth = 5)\n\nTo see what’s available for a given geom, run ?geom_bar and look for the Computed variables section."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#whats-a-position-adjustment",
-    "href": "weeks/week2/day8-ggplot2-slides.html#whats-a-position-adjustment",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#whats-a-position-adjustment",
+    "href": "weeks/week2/day7-ggplot2-slides.html#whats-a-position-adjustment",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "What’s a position adjustment?",
     "text": "What’s a position adjustment?\nWhen multiple glyphs would land in the same spot, ggplot has to decide what to do. That decision is the position adjustment.\nThe big four:\n\nggplot’s main position adjustments.\n\n\n\n\n\n\n\nPosition\nWhat it does\nDefault for\n\n\n\n\n\"identity\"\nleave it alone\npoints, lines\n\n\n\"stack\"\nstack on top of each other\nbars (when filled by a 2nd var)\n\n\n\"dodge\"\nside-by-side\n(you have to ask)\n\n\n\"jitter\"\nadd small random noise\n(you have to ask)\n\n\n\"fill\"\nstack and normalize to 1\n(you have to ask)"
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#stacking-the-default-for-filled-bars",
-    "href": "weeks/week2/day8-ggplot2-slides.html#stacking-the-default-for-filled-bars",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#stacking-the-default-for-filled-bars",
+    "href": "weeks/week2/day7-ggplot2-slides.html#stacking-the-default-for-filled-bars",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Stacking (the default for filled bars)",
-    "text": "Stacking (the default for filled bars)\n\nhurricanes &lt;- storms |&gt; filter(status == \"hurricane\")\n\nggplot(hurricanes, aes(x = month, fill = factor(category))) +\n  geom_bar()\n\nEach month gets one bar; segments stack by hurricane category.\nUseful for showing total and composition at once — but hard to compare middle segments across bars (their bottoms aren’t aligned)."
+    "text": "Stacking (the default for filled bars)\n\nhurricanes &lt;- storms |&gt; filter(status == \"hurricane\")\n\nggplot(hurricanes, aes(x = month, fill = factor(category))) +\n  geom_bar()\n\nEach month gets one bar; segments stack by hurricane category.\nThis is useful for showing total and composition at once — but hard to compare middle segments across bars (their bottoms aren’t aligned)."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#position-fill",
-    "href": "weeks/week2/day8-ggplot2-slides.html#position-fill",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#position-fill",
+    "href": "weeks/week2/day7-ggplot2-slides.html#position-fill",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "position = \"fill\"",
-    "text": "position = \"fill\"\nSame code, but every bar is normalized to height 1:\n\nggplot(hurricanes, aes(x = month, fill = factor(category))) +\n  geom_bar(position = \"fill\")\n\nNow the y-axis is proportion, not count. Loses information about total volume, but makes the composition easy to compare across months."
+    "text": "position = \"fill\"\nHere we have the same code, but every bar is normalized to height 1:\n\nggplot(hurricanes, aes(x = month, fill = factor(category))) +\n  geom_bar(position = \"fill\")\n\nNow the y-axis is proportion, not count. Loses information about total volume, but makes the composition easy to compare across months."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#position-dodge",
-    "href": "weeks/week2/day8-ggplot2-slides.html#position-dodge",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#position-dodge",
+    "href": "weeks/week2/day7-ggplot2-slides.html#position-dodge",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "position = \"dodge\"",
-    "text": "position = \"dodge\"\nBars side-by-side instead of stacked:\n\nggplot(hurricanes, aes(x = month, fill = factor(category))) +\n  geom_bar(position = \"dodge\")\n\nEasiest version for comparing individual counts directly. The trade-off: lots of bars, can get crowded fast.\n\n\n\n\n\n\nQuick rule\n\n\n\nStack: show totals, with composition as bonus.\nFill: show composition only, ignore totals.\nDodge: compare individual values, ignore totals."
+    "text": "position = \"dodge\"\nHere are the bars side-by-side instead of stacked:\n\nggplot(hurricanes, aes(x = month, fill = factor(category))) +\n  geom_bar(position = \"dodge\")\n\nThis is the easiest version for comparing individual counts directly. The trade-off: lots of bars, can get crowded fast.\n\n\n\n\n\n\nQuick rule\n\n\n\nStack: show totals, with composition as bonus.\nFill: show composition only, ignore totals.\nDodge: compare individual values, ignore totals."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#jittering-for-scatterplots-not-bars",
-    "href": "weeks/week2/day8-ggplot2-slides.html#jittering-for-scatterplots-not-bars",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#jittering-for-scatterplots-not-bars",
+    "href": "weeks/week2/day7-ggplot2-slides.html#jittering-for-scatterplots-not-bars",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Jittering — for scatterplots, not bars",
-    "text": "Jittering — for scatterplots, not bars\nA different problem: many storm observations are recorded only every 6 hours, and pressure readings are rounded to whole millibars. Lots of points overlap.\n\n# Lots of overplotting — points are stacked on top of each other\nggplot(storms, aes(x = category, y = wind)) +\n  geom_point()\n\n# Spread them out a bit\nggplot(storms, aes(x = category, y = wind)) +\n  geom_point(position = \"jitter\", alpha = 0.3)\n\n# Shorthand for the same thing\nggplot(storms, aes(x = category, y = wind)) +\n  geom_jitter(alpha = 0.3)\n\nJitter adds tiny random noise so points stop landing on top of each other. You lose precision; you gain a clear picture of density."
+    "text": "Jittering — for scatterplots, not bars\nA different problem: many storm observations are recorded only every 6 hours, and pressure readings are rounded to whole millibars. Lots of points overlap.\n\n# Lots of overplotting — points are stacked on top of each other\nggplot(storms, aes(x = category, y = wind)) +\n  geom_point()\n\n# Spread them out a bit\nggplot(storms, aes(x = category, y = wind)) +\n  geom_point(position = \"jitter\", alpha = 0.3)\n\n# Shorthand for the same thing\nggplot(storms, aes(x = category, y = wind)) +\n  geom_jitter(alpha = 0.3)\n\nJitter adds tiny random noise so points stop landing on top of each other. You lose precision but (often) can gain a clear picture of density."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#dont-over-jitter",
-    "href": "weeks/week2/day8-ggplot2-slides.html#dont-over-jitter",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#dont-over-jitter",
+    "href": "weeks/week2/day7-ggplot2-slides.html#dont-over-jitter",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Don’t over-jitter",
     "text": "Don’t over-jitter\ngeom_jitter() takes width and height arguments. Defaults are usually fine, but:\n\nCategorical x: small width (~0.2), height = 0 to keep y meaningful.\nInteger x and y: small jitter on both.\nContinuous data: you probably don’t need jitter at all — use alpha or geom_hex()/geom_bin2d() instead.\n\n\nggplot(storms, aes(x = factor(category), y = wind)) +\n  geom_jitter(width = 0.2, height = 0, alpha = 0.3)"
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#the-layered-grammar-of-graphics",
-    "href": "weeks/week2/day8-ggplot2-slides.html#the-layered-grammar-of-graphics",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#the-layered-grammar-of-graphics",
+    "href": "weeks/week2/day7-ggplot2-slides.html#the-layered-grammar-of-graphics",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "The layered grammar of graphics",
-    "text": "The layered grammar of graphics\nPutting it all together, every ggplot has the same skeleton:\nggplot(data = &lt;DATA&gt;) +\n  &lt;GEOM_FUNCTION&gt;(\n    mapping = aes(&lt;MAPPINGS&gt;),\n    stat = &lt;STAT&gt;,\n    position = &lt;POSITION&gt;\n  ) +\n  &lt;COORDINATE_FUNCTION&gt; +\n  &lt;FACET_FUNCTION&gt;\nSeven slots. You only fill the ones you need to change — ggplot picks sensible defaults for the rest.\nThat’s why you can get a long way with just ggplot() + aes() + geom_*(). The other slots are there when you need them."
+    "text": "The layered grammar of graphics\nPutting it all together, every ggplot has the same skeleton:\nggplot(data = &lt;DATA&gt;) +\n  &lt;GEOM_FUNCTION&gt;(\n    mapping = aes(&lt;MAPPINGS&gt;),\n    stat = &lt;STAT&gt;,\n    position = &lt;POSITION&gt;\n  ) +\n  &lt;COORDINATE_FUNCTION&gt; +\n  &lt;FACET_FUNCTION&gt;\nThere are seven slots here. You only want to fill the ones you need to change since ggplot picks sensible defaults for the rest.\nThat’s why just ggplot() + aes() + geom_*() go a long way on their own. The other slots are there when you need them."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#what-we-covered-today",
-    "href": "weeks/week2/day8-ggplot2-slides.html#what-we-covered-today",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#what-we-covered-today",
+    "href": "weeks/week2/day7-ggplot2-slides.html#what-we-covered-today",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "What we covered today",
     "text": "What we covered today\n\nThe vocabulary: frame, glyph, aesthetic, scale, guide.\nMapping (inside aes()) vs. setting (outside aes()) — and the bug where you mix them up.\nAesthetics: x, y, color, fill, size, shape, alpha, linetype, group, stroke. Discrete vs. continuous behavior.\nGeoms: stacking layers, global vs. local mappings, different data per layer, the group aesthetic.\nStats: the hidden transformation in every geom; geom_col() vs geom_bar(); after_stat() for proportions and densities; stat_summary() for ad hoc aggregation.\nPosition adjustments: identity, stack, fill, dodge, jitter — when to use which."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#activity-ggplot-internals-with-storms",
-    "href": "weeks/week2/day8-ggplot2-slides.html#activity-ggplot-internals-with-storms",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#activity-ggplot-internals-with-storms",
+    "href": "weeks/week2/day7-ggplot2-slides.html#activity-ggplot-internals-with-storms",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Activity: ggplot internals, with storms",
-    "text": "Activity: ggplot internals, with storms\nTwo parts. Take ~25 minutes total.\n\nActivity Canvas Link\n\nPart 1 — Guided warmup (~10 min). Five short fill-in-the-blank chunks. Practice each concept from today on a fresh question.\nPart 2 — Open exploration (~15 min). Pick one of three guiding questions about the storms data and build the plot you think answers it best. We’ll show a few at the end.\nTo turn in: Save your .qmd and rendered HTML — we’ll check at the end of class."
+    "text": "Activity: ggplot internals, with storms\nTwo parts.\n\nActivity Canvas Link\n\nPart 1 — Guided warmup. Five short fill-in-the-blank chunks. Practice each concept from today on a fresh question.\nPart 2 — Open exploration. Pick one of three guiding questions about the storms data and build the plot you think answers it best. We’ll show a few at the end.\nTo turn in: Save your .qmd and rendered HTML — we’ll check at the end of class."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#activity-debrief",
-    "href": "weeks/week2/day8-ggplot2-slides.html#activity-debrief",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#activity-debrief",
+    "href": "weeks/week2/day7-ggplot2-slides.html#activity-debrief",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Activity debrief",
     "text": "Activity debrief\nThings to watch for:\n\naes(color = \"red\") instead of color = \"red\" — and getting confused when nothing turns red.\nA geom_path() that zigzags wildly because group is missing.\ngeom_bar(stat = \"identity\") when you already have counts (use geom_col()).\nposition = \"fill\" when you actually wanted \"dodge\" — proportions vs. side-by-side counts.\nMapping a categorical to size — listen to that warning."
   },
   {
-    "objectID": "weeks/week2/day8-ggplot2-slides.html#wrap-up-looking-ahead",
-    "href": "weeks/week2/day8-ggplot2-slides.html#wrap-up-looking-ahead",
+    "objectID": "weeks/week2/day7-ggplot2-slides.html#wrap-up-looking-ahead",
+    "href": "weeks/week2/day7-ggplot2-slides.html#wrap-up-looking-ahead",
     "title": "ggplot2 internals · aesthetics · geoms",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\nTomorrow: facets in depth, scales, and color choices — including continuous color scales, sequential vs. diverging palettes, and accessibility.\nFriday: Quiz 2 + a graphics critique activity. Bring a real-world plot you’ve seen.\n\n\nUpcoming Deadlines\n\nFri 5/29, before class — Perusall reading (TBA)\nFri 5/29, in class — Quiz 2\nFri 5/29, 11:59 p.m. — HW 2: Pipes, Plots & Reading Graphics\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 9 · ggplot2 reference"
+    "text": "Wrap-up & looking ahead\nTomorrow: facets in depth, scales, and color choices — including continuous color scales, sequential vs. diverging palettes, and accessibility.\nFriday: Quiz 2 + a graphics critique activity.\n\n\nUpcoming Deadlines\n\nThurs 5/28, before class\nFri 5/29, in class — Quiz 2\nFri 5/29, 11:59 p.m. — HW 2: Pipes, Plots & Reading Graphics\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 9 · ggplot2 reference"
   },
   {
     "objectID": "weeks/week5/day3-iteration.html",

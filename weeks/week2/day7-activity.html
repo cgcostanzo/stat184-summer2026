@@ -8,7 +8,7 @@
 
 <meta name="author" content="Your Name Here">
 
-<title>Day 8 Activity: ggplot2 internals with storms – STAT 184 — Summer 2026</title>
+<title>Day 7 Activity: ggplot2 internals with storms – STAT 184 — Summer 2026</title>
 <style>
 
 code{white-space: pre-wrap;}
@@ -4376,7 +4376,7 @@ margin-bottom: 1.5rem;
   <li><a href="#after_stat-for-proportions" id="toc-after_stat-for-proportions" class="nav-link" data-scroll-target="#after_stat-for-proportions">1.4 — <code>after_stat()</code> for proportions</a></li>
   <li><a href="#position-adjustments" id="toc-position-adjustments" class="nav-link" data-scroll-target="#position-adjustments">1.5 — Position adjustments</a></li>
   </ul></li>
-  <li><a href="#part-2-open-exploration-15-minutes" id="toc-part-2-open-exploration-15-minutes" class="nav-link" data-scroll-target="#part-2-open-exploration-15-minutes">Part 2 — Open exploration (~15 minutes)</a>
+  <li><a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a>
   <ul class="collapse">
   <li><a href="#question-a-wind-vs.-pressure" id="toc-question-a-wind-vs.-pressure" class="nav-link" data-scroll-target="#question-a-wind-vs.-pressure">Question A — Wind vs. pressure</a></li>
   <li><a href="#question-b-when-is-hurricane-season" id="toc-question-b-when-is-hurricane-season" class="nav-link" data-scroll-target="#question-b-when-is-hurricane-season">Question B — When is hurricane season?</a></li>
@@ -4392,7 +4392,7 @@ margin-bottom: 1.5rem;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Day 8 Activity: ggplot2 internals with <code>storms</code></h1>
+<h1 class="title">Day 7 Activity: ggplot2 internals with <code>storms</code></h1>
 <p class="subtitle lead">Wednesday, May 27, 2026</p>
 </div>
 
@@ -4526,8 +4526,8 @@ $ hurricane_force_diameter     &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 <hr>
 </section>
 </section>
-<section id="part-2-open-exploration-15-minutes" class="level1">
-<h1>Part 2 — Open exploration (~15 minutes)</h1>
+<section id="part-2" class="level1">
+<h1>Part 2</h1>
 <p><strong>Pick ONE</strong> of the three questions below. Build a plot that you think answers it well, then write 2–3 sentences explaining what you see.</p>
 <p>You’re encouraged to use:</p>
 <ul>
@@ -4536,7 +4536,7 @@ $ hurricane_force_diameter     &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 <li>a stat or position adjustment we covered today</li>
 <li>a thoughtful color or alpha choice</li>
 </ul>
-<p>Don’t try to use all of them — pick the ones that fit the question.</p>
+<p>You do not have to use all of them.</p>
 <section id="question-a-wind-vs.-pressure" class="level2">
 <h2 class="anchored" data-anchor-id="question-a-wind-vs.-pressure">Question A — Wind vs. pressure</h2>
 <p>It’s well-known among meteorologists that storm wind speed and central pressure have a very tight relationship. Build a plot that <strong>shows this relationship clearly</strong> and lets us see how <code>status</code> (or <code>category</code>) fits in.</p>
@@ -4545,7 +4545,7 @@ $ hurricane_force_diameter     &lt;int&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 <section id="question-b-when-is-hurricane-season" class="level2">
 <h2 class="anchored" data-anchor-id="question-b-when-is-hurricane-season">Question B — When is hurricane season?</h2>
 <p>Build a plot that shows how <strong>hurricane activity varies through the year</strong>. You could look at counts by month, intensity by month, or how the distribution of categories shifts as the season progresses.</p>
-<p><em>Suggestion: this is a job for <code>geom_bar()</code> with a position adjustment, or possibly a faceted version of something simpler.</em></p>
+<p><em>Suggestion: <code>geom_bar()</code> works well here with a position adjustment, or possibly a faceted version of something simpler.</em></p>
 </section>
 <section id="question-c-one-seasons-storm-tracks" class="level2">
 <h2 class="anchored" data-anchor-id="question-c-one-seasons-storm-tracks">Question C — One season’s storm tracks</h2>
