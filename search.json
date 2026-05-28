@@ -1607,35 +1607,35 @@
     "href": "weeks/week2/day8-multivariable-slides.html#two-variables",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Two variables",
-    "text": "Two variables\nThe starting point. Just x and y.\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +\n  geom_point(na.rm = TRUE)\n\n\n\n\n\n\n\n\nSimpson’s paradox preview\n\n\nThis scatter looks like longer bills are shallower. We’ll see in a minute why that’s the opposite of the truth."
+    "text": "Two variables\nThe starting point. Just x and y.\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +\n  geom_point(na.rm = TRUE)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSimpson’s paradox preview\n\n\nThis scatter looks like longer bills are shallower. We’ll see in a minute why that’s the opposite of the truth."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-slides.html#three-variables-with-color",
     "href": "weeks/week2/day8-multivariable-slides.html#three-variables-with-color",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Three variables, with color",
-    "text": "Three variables, with color\nAdd species as the third variable via color:\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +\n  geom_point(na.rm = TRUE)\n\n\nThe negative trend we saw before was Simpson’s paradox — within each species, longer bills are deeper. The pooled trend ran the wrong way because Gentoos (long bills, shallow bills) are a separate cluster from the other species."
+    "text": "Three variables, with color\nAdd species as the third variable via color:\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +\n  geom_point(na.rm = TRUE)\n\n\n\n\n\n\n\n\nThe negative trend we saw before was Simpson’s paradox — within each species, longer bills are deeper. The pooled trend ran the wrong way because Gentoos (long bills, shallow bills) are a separate cluster from the other species."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-slides.html#three-variables-with-shape",
     "href": "weeks/week2/day8-multivariable-slides.html#three-variables-with-shape",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Three variables, with shape",
-    "text": "Three variables, with shape\nSame data, but using shape instead of color:\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, shape = species)) +\n  geom_point(na.rm = TRUE)\n\n\nWhen is shape better than color? When your output might be printed in black and white, or when you specifically need color free for another variable."
+    "text": "Three variables, with shape\nSame data, but using shape instead of color:\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, shape = species)) +\n  geom_point(na.rm = TRUE)\n\n\n\n\n\n\n\n\nWhen is shape better than color? When your output might be printed in black and white, or when you specifically need color free for another variable."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-slides.html#four-variables-combine-color-and-shape",
     "href": "weeks/week2/day8-multivariable-slides.html#four-variables-combine-color-and-shape",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Four variables: combine color and shape",
-    "text": "Four variables: combine color and shape\nMap two different variables to color and shape at once:\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm,\n                     color = species, shape = sex)) +\n  geom_point(size = 2, na.rm = TRUE)\n\n\nThis works — but readers have to track two legends and two mappings. The visual load gets heavy fast."
+    "text": "Four variables: combine color and shape\nMap two different variables to color and shape at once:\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm,\n                     color = species, shape = sex)) +\n  geom_point(size = 2, na.rm = TRUE)\n\n\n\n\n\n\n\n\nThis works — but readers have to track two legends and two mappings. The visual load gets heavy fast."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-slides.html#five-variables-add-a-facet",
     "href": "weeks/week2/day8-multivariable-slides.html#five-variables-add-a-facet",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Five variables: add a facet",
-    "text": "Five variables: add a facet\nWhen you’re tempted to map a 5th aesthetic, try faceting instead:\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm,\n                     color = species, shape = sex)) +\n  geom_point(size = 2, na.rm = TRUE) +\n  facet_wrap(~island)\n\n\nNow we can see species × sex × island all at once — and crucially, see that Gentoos only live on Biscoe and Adélies live everywhere."
+    "text": "Five variables: add a facet\nWhen you’re tempted to map a 5th aesthetic, try faceting instead:\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm,\n                     color = species, shape = sex)) +\n  geom_point(size = 2, na.rm = TRUE) +\n  facet_wrap(~island)\n\n\n\n\n\n\n\n\nNow we can see species × sex × island all at once — and crucially, see that Gentoos only live on Biscoe and Adélies live everywhere."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-slides.html#facet_wrap-vs-facet_grid",
@@ -1663,7 +1663,7 @@
     "href": "weeks/week2/day8-multivariable-slides.html#free-vs.-fixed-scales-in-facets",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Free vs. fixed scales in facets",
-    "text": "Free vs. fixed scales in facets\nBy default, every facet shares the same x and y scale. That’s almost always what you want for comparison.\nBut occasionally a facet has a very different range, and forcing them to share crushes the detail:\n\nggplot(penguins, aes(x = body_mass_g)) +\n  geom_histogram(bins = 15, na.rm = TRUE) +\n  facet_wrap(~species, scales = \"free\")\n\n\n\nscales = \"free_x\" — let x-axes differ across facets\nscales = \"free_y\" — let y-axes differ across facets\nscales = \"free\" — let both differ\n\n\n\n\n\n\n\nWarning\n\n\nFree scales make individual facets readable but make comparison across facets misleading. If your goal is comparison, leave scales fixed."
+    "text": "Free vs. fixed scales in facets\nBy default, every facet shares the same x and y scale. That’s almost always what you want for comparison.\nBut occasionally a facet has a very different range, and forcing them to share crushes the detail:\n\nggplot(penguins, aes(x = body_mass_g)) +\n  geom_histogram(bins = 15, na.rm = TRUE) +\n  facet_wrap(~species, scales = \"free\")\n\n\n\n\n\n\n\n\n\nscales = \"free_x\" — let x-axes differ across facets\nscales = \"free_y\" — let y-axes differ across facets\nscales = \"free\" — let both differ\n\n\n\n\n\n\n\nWarning\n\n\nFree scales make individual facets readable but make comparison across facets misleading. If your goal is comparison, leave scales fixed."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-slides.html#when-to-facet-vs.-when-to-use-color",
@@ -1712,21 +1712,21 @@
     "href": "weeks/week2/day8-multivariable-slides.html#when-to-log-transform-an-axis",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "When to log-transform an axis",
-    "text": "When to log-transform an axis\nIf a variable spans several orders of magnitude, the raw scale will squish everything together at the bottom:\n\nggplot(msleep, aes(x = bodywt, y = sleep_total)) +\n  geom_point(na.rm = TRUE)\n\n\nEverything is jammed against the left edge. The elephant ruins the plot."
+    "text": "When to log-transform an axis\nIf a variable spans several orders of magnitude, the raw scale will squish everything together at the bottom:\n\nggplot(msleep, aes(x = bodywt, y = sleep_total)) +\n  geom_point(na.rm = TRUE)\n\n\n\n\n\n\n\n\nEverything is jammed against the left edge. The elephant ruins the plot."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-slides.html#log-axis-fixes-it",
     "href": "weeks/week2/day8-multivariable-slides.html#log-axis-fixes-it",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Log axis fixes it",
-    "text": "Log axis fixes it\n\nggplot(msleep, aes(x = bodywt, y = sleep_total)) +\n  geom_point(na.rm = TRUE) +\n  scale_x_log10() +\n  labs(x = \"Body weight (kg, log scale)\", y = \"Total sleep (hr)\")\n\n\nNow you can see the actual relationship: heavier animals sleep less. The slope wasn’t visible before because 99% of the data was in the leftmost 5% of the x-axis.\n\n\n\n\n\n\nTip\n\n\nWhen to log: ratios matter more than absolute differences (e.g., the difference between 1g and 10g matters about as much as 1kg vs 10kg); your data spans orders of magnitude; you’re plotting counts/prices/populations."
+    "text": "Log axis fixes it\n\nggplot(msleep, aes(x = bodywt, y = sleep_total)) +\n  geom_point(na.rm = TRUE) +\n  scale_x_log10() +\n  labs(x = \"Body weight (kg, log scale)\", y = \"Total sleep (hr)\")\n\n\n\n\n\n\n\n\nNow you can see the actual relationship: heavier animals sleep less. The slope wasn’t visible before because 99% of the data was in the leftmost 5% of the x-axis.\n\n\n\n\n\n\nTip\n\n\nWhen to log: ratios matter more than absolute differences (e.g., the difference between 1g and 10g matters about as much as 1kg vs 10kg); your data spans orders of magnitude; you’re plotting counts/prices/populations."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-slides.html#continuous-color-scales",
     "href": "weeks/week2/day8-multivariable-slides.html#continuous-color-scales",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Continuous color scales",
-    "text": "Continuous color scales\nA categorical variable maps to a qualitative palette (distinct hues). A continuous one maps to a gradient.\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm,\n                     color = body_mass_g)) +\n  geom_point(size = 2, na.rm = TRUE) +\n  scale_color_viridis_c(option = \"plasma\") +\n  labs(color = \"Body mass (g)\")\n\n\nscale_color_viridis_c() is the gold standard for continuous color: perceptually uniform, colorblind-friendly, prints fine in greyscale. The _c is for continuous; _d exists for discrete."
+    "text": "Continuous color scales\nA categorical variable maps to a qualitative palette (distinct hues). A continuous one maps to a gradient.\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm,\n                     color = body_mass_g)) +\n  geom_point(size = 2, na.rm = TRUE) +\n  scale_color_viridis_c(option = \"plasma\") +\n  labs(color = \"Body mass (g)\")\n\n\n\n\n\n\n\n\nscale_color_viridis_c() is the gold standard for continuous color: perceptually uniform, colorblind-friendly, prints fine in greyscale. The _c is for continuous; _d exists for discrete."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-slides.html#sequential-vs.-diverging-palettes",
@@ -1747,7 +1747,7 @@
     "href": "weeks/week2/day8-multivariable-slides.html#long-labels-swap-x-and-y",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Long labels: swap x and y",
-    "text": "Long labels: swap x and y\n\nggplot(penguins, aes(y = species, x = body_mass_g)) +\n  geom_boxplot(na.rm = TRUE) +\n  labs(x = \"Body mass (g)\", y = NULL)\n\n\n\n\n\n\n\n\nNote\n\n\nModern ggplot2 lets you just swap the x = and y = mappings directly (which is what we did above). The older approach was + coord_flip() after defining x = species. Both work; the new way is cleaner."
+    "text": "Long labels: swap x and y\n\nggplot(penguins, aes(y = species, x = body_mass_g)) +\n  geom_boxplot(na.rm = TRUE) +\n  labs(x = \"Body mass (g)\", y = NULL)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nModern ggplot2 lets you just swap the x = and y = mappings directly (which is what we did above). The older approach was + coord_flip() after defining x = species. Both work; the new way is cleaner."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-slides.html#where-we-are",
