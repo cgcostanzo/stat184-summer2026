@@ -4579,9 +4579,9 @@ margin-bottom: 1.5rem;
 <hr>
 <section id="setup" class="level3">
 <h3 class="anchored" data-anchor-id="setup">Setup</h3>
-<p>Run the chunk below to load the necessary packages. Make sure <code>tidyverse</code>, <code>palmerpenguins</code>, <code>nycflights13</code>, <code>maps</code>, and <code>colorspace</code> are installed before you start.</p>
+<p>Run the chunk below to load the necessary packages. Make sure <code>tidyverse</code>, <code>palmerpenguins</code>, <code>nycflights13</code>, <code>maps</code>, <code>colorspace</code>, and <code>sf</code> are installed before you start.</p>
 <ul>
-<li>Run <code>install.packages(c(&quot;palmerpenguins&quot;, &quot;nycflights13&quot;, &quot;maps&quot;, &quot;colorspace&quot;))</code> in the <strong>Console</strong> once if you haven’t already.</li>
+<li>Run <code>install.packages(c(&quot;palmerpenguins&quot;, &quot;nycflights13&quot;, &quot;maps&quot;, &quot;colorspace&quot;, &quot;sf&quot;))</code> in the <strong>Console</strong> once if you haven’t already.</li>
 </ul>
 <p><em>Note: we’ll also use the <code>msleep</code> dataset, which comes pre-loaded with <code>ggplot2</code> (part of the tidyverse).</em></p>
 <div class="cell">
@@ -4589,7 +4589,8 @@ margin-bottom: 1.5rem;
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(maps)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(colorspace)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(colorspace)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>You will also need two data files for Question 4. Download them from Canvas and put them in the <strong>same folder</strong> as this <code>.qmd</code>:</p>
 <ul>
@@ -5006,107 +5007,108 @@ Figure 2: National Violent Crime Rate (2024). Source: Federal Bureau of Investi
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(maps)</span>
 <span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(colorspace)</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Original (nested):</span></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">mean</span>(<span class="fu">sqrt</span>(<span class="fu">abs</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="sc">-</span><span class="dv">9</span>, <span class="sc">-</span><span class="dv">16</span>, <span class="sc">-</span><span class="dv">25</span>, <span class="sc">-</span><span class="dv">36</span>)))), <span class="at">digits =</span> <span class="dv">2</span>)</span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Your piped version:</span></span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Original (piped):</span></span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dest <span class="sc">==</span> <span class="st">&quot;CLE&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(dep_delay)) <span class="sc">|&gt;</span></span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">2</span>)</span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Your nested version:</span></span>
-<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Original (broken):</span></span>
-<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(penguins, species) <span class="sc">|&gt;</span></span>
-<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_flipper =</span> <span class="fu">mean</span>(flipper_length_mm))</span>
-<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Your fixed version:</span></span>
-<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
-<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>msleep <span class="sc">|&gt;</span></span>
-<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">vore =</span> <span class="fu">case_when</span>(</span>
-<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>    vore <span class="sc">==</span> <span class="st">&quot;carni&quot;</span> <span class="sc">~</span> <span class="st">&quot;Carnivore&quot;</span>,</span>
-<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>    vore <span class="sc">==</span> <span class="st">&quot;herbi&quot;</span> <span class="sc">~</span> <span class="st">&quot;Herbivore&quot;</span>,</span>
-<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> vore</span>
-<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">|&gt;</span></span>
-<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(vore <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Carnivore&quot;</span>, <span class="st">&quot;Herbivore&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(vore) <span class="sc">|&gt;</span></span>
-<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_sleep =</span> <span class="fu">mean</span>(sleep_total), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> vore, <span class="at">y =</span> avg_sleep)) <span class="sc">+</span></span>
-<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;#1e407c&quot;</span>) <span class="sc">+</span></span>
-<span id="cb29-34"><a href="#cb29-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">11</span>)) <span class="sc">+</span></span>
-<span id="cb29-35"><a href="#cb29-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Diet&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Average sleep (hours)&quot;</span>,</span>
-<span id="cb29-36"><a href="#cb29-36" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Carnivores sleep drastically more than Herbivores&quot;</span>) <span class="sc">+</span></span>
-<span id="cb29-37"><a href="#cb29-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
-<span id="cb29-38"><a href="#cb29-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Your fixed version:</span></span>
-<span id="cb29-39"><a href="#cb29-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Original (nested):</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">mean</span>(<span class="fu">sqrt</span>(<span class="fu">abs</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="sc">-</span><span class="dv">9</span>, <span class="sc">-</span><span class="dv">16</span>, <span class="sc">-</span><span class="dv">25</span>, <span class="sc">-</span><span class="dv">36</span>)))), <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Your piped version:</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Original (piped):</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dest <span class="sc">==</span> <span class="st">&quot;CLE&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(dep_delay)) <span class="sc">|&gt;</span></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">2</span>)</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Your nested version:</span></span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Original (broken):</span></span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(penguins, species) <span class="sc">|&gt;</span></span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_flipper =</span> <span class="fu">mean</span>(flipper_length_mm))</span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Your fixed version:</span></span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>msleep <span class="sc">|&gt;</span></span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">vore =</span> <span class="fu">case_when</span>(</span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>    vore <span class="sc">==</span> <span class="st">&quot;carni&quot;</span> <span class="sc">~</span> <span class="st">&quot;Carnivore&quot;</span>,</span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>    vore <span class="sc">==</span> <span class="st">&quot;herbi&quot;</span> <span class="sc">~</span> <span class="st">&quot;Herbivore&quot;</span>,</span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> vore</span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">|&gt;</span></span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(vore <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Carnivore&quot;</span>, <span class="st">&quot;Herbivore&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(vore) <span class="sc">|&gt;</span></span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">avg_sleep =</span> <span class="fu">mean</span>(sleep_total), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> vore, <span class="at">y =</span> avg_sleep)) <span class="sc">+</span></span>
+<span id="cb29-34"><a href="#cb29-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;#1e407c&quot;</span>) <span class="sc">+</span></span>
+<span id="cb29-35"><a href="#cb29-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">11</span>)) <span class="sc">+</span></span>
+<span id="cb29-36"><a href="#cb29-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Diet&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Average sleep (hours)&quot;</span>,</span>
+<span id="cb29-37"><a href="#cb29-37" aria-hidden="true" tabindex="-1"></a>         <span class="at">title =</span> <span class="st">&quot;Carnivores sleep drastically more than Herbivores&quot;</span>) <span class="sc">+</span></span>
+<span id="cb29-38"><a href="#cb29-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
+<span id="cb29-39"><a href="#cb29-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Your fixed version:</span></span>
 <span id="cb29-40"><a href="#cb29-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
 <span id="cb29-41"><a href="#cb29-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
-<span id="cb29-42"><a href="#cb29-42" aria-hidden="true" tabindex="-1"></a>ncvs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;ncvs_violent_victimization_1993_2024.csv&quot;</span>)</span>
-<span id="cb29-43"><a href="#cb29-43" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ncvs, <span class="at">n =</span> <span class="dv">2</span>)</span>
-<span id="cb29-44"><a href="#cb29-44" aria-hidden="true" tabindex="-1"></a>ncvs <span class="sc">|&gt;</span></span>
-<span id="cb29-45"><a href="#cb29-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2006</span>)</span>
-<span id="cb29-46"><a href="#cb29-46" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(ncvs, <span class="at">n =</span> <span class="dv">2</span>)</span>
-<span id="cb29-47"><a href="#cb29-47" aria-hidden="true" tabindex="-1"></a>label_years <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1993</span>, <span class="fu">seq</span>(<span class="dv">1995</span>, <span class="dv">2020</span>, <span class="at">by =</span> <span class="dv">5</span>), <span class="dv">2024</span>)</span>
-<span id="cb29-48"><a href="#cb29-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-49"><a href="#cb29-49" aria-hidden="true" tabindex="-1"></a>ncvs <span class="sc">|&gt;</span></span>
-<span id="cb29-50"><a href="#cb29-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> )) <span class="sc">+</span></span>
-<span id="cb29-51"><a href="#cb29-51" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb29-52"><a href="#cb29-52" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1. Shade the gap (2005 to 2007). </span></span>
-<span id="cb29-53"><a href="#cb29-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;rect&quot;</span>, <span class="at">xmin =</span> <span class="dv">2005</span>, <span class="at">xmax =</span> <span class="dv">2007</span>, <span class="at">ymin =</span> <span class="sc">-</span><span class="cn">Inf</span>, <span class="at">ymax =</span> <span class="cn">Inf</span>, </span>
-<span id="cb29-54"><a href="#cb29-54" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">&quot;gray70&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb29-55"><a href="#cb29-55" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb29-56"><a href="#cb29-56" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 2. Add an explicit text label inside the shaded box</span></span>
-<span id="cb29-57"><a href="#cb29-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="fl">2007.5</span>, <span class="at">y =</span> <span class="dv">70</span>, </span>
-<span id="cb29-58"><a href="#cb29-58" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">&quot;Methodology Shifts</span><span class="sc">\n</span><span class="st">(Data Excluded)&quot;</span>, </span>
-<span id="cb29-59"><a href="#cb29-59" aria-hidden="true" tabindex="-1"></a>           <span class="at">size =</span> <span class="dv">4</span>, <span class="at">color =</span> <span class="st">&quot;gray30&quot;</span>, <span class="at">fontface =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">hjust =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb29-60"><a href="#cb29-60" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb29-61"><a href="#cb29-61" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 3. Draw the main solid line and points</span></span>
-<span id="cb29-62"><a href="#cb29-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;#a22b21&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb29-63"><a href="#cb29-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;#a22b21&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb29-64"><a href="#cb29-64" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb29-65"><a href="#cb29-65" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 4. Draw a specific dashed line just between 2005 and 2007</span></span>
-<span id="cb29-66"><a href="#cb29-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> ncvs <span class="sc">|&gt;</span> <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2005</span>, <span class="dv">2007</span>)), </span>
-<span id="cb29-67"><a href="#cb29-67" aria-hidden="true" tabindex="-1"></a>            <span class="at">linetype =</span> <span class="st">&quot;dotted&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#a22b21&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb29-68"><a href="#cb29-68" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb29-69"><a href="#cb29-69" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 5. Axis labels</span></span>
-<span id="cb29-70"><a href="#cb29-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb29-71"><a href="#cb29-71" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
-<span id="cb29-72"><a href="#cb29-72" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;&quot;</span></span>
-<span id="cb29-73"><a href="#cb29-73" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb29-74"><a href="#cb29-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
-<span id="cb29-75"><a href="#cb29-75" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> <span class="dv">1993</span><span class="sc">:</span><span class="dv">2024</span>, </span>
-<span id="cb29-76"><a href="#cb29-76" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> \(x) <span class="fu">ifelse</span>(x <span class="sc">%in%</span> label_years, x, <span class="st">&quot;&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb29-77"><a href="#cb29-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">90</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">90</span>, <span class="at">by =</span> <span class="dv">10</span>)) <span class="sc">+</span></span>
-<span id="cb29-78"><a href="#cb29-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
-<span id="cb29-79"><a href="#cb29-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">linewidth =</span> <span class="fl">0.4</span>))</span>
-<span id="cb29-80"><a href="#cb29-80" aria-hidden="true" tabindex="-1"></a>ucr <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;ucr_state_violent_crime_2024.csv&quot;</span>)</span>
-<span id="cb29-81"><a href="#cb29-81" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(ucr)</span>
-<span id="cb29-82"><a href="#cb29-82" aria-hidden="true" tabindex="-1"></a>us_states <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">&quot;state&quot;</span>)</span>
-<span id="cb29-83"><a href="#cb29-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-84"><a href="#cb29-84" aria-hidden="true" tabindex="-1"></a>ucr_map_data <span class="ot">&lt;-</span> ucr <span class="sc">|&gt;</span></span>
-<span id="cb29-85"><a href="#cb29-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(state <span class="sc">!=</span> <span class="st">&quot;United States&quot;</span>, state <span class="sc">!=</span> <span class="st">&quot;District of Columbia&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb29-86"><a href="#cb29-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">region =</span> <span class="fu">tolower</span>(state)) <span class="sc">|&gt;</span></span>
-<span id="cb29-87"><a href="#cb29-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(us_states, <span class="at">by =</span> <span class="st">&quot;region&quot;</span>)</span>
-<span id="cb29-88"><a href="#cb29-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-89"><a href="#cb29-89" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(ucr_map_data)</span>
-<span id="cb29-90"><a href="#cb29-90" aria-hidden="true" tabindex="-1"></a><span class="co"># Color palette</span></span>
-<span id="cb29-91"><a href="#cb29-91" aria-hidden="true" tabindex="-1"></a>my_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#d9aaa5&quot;</span>, <span class="st">&quot;#bd6a61&quot;</span>, <span class="st">&quot;#a12a1e&quot;</span>, <span class="st">&quot;#937291&quot;</span>, <span class="st">&quot;#3d203b&quot;</span>)</span>
-<span id="cb29-92"><a href="#cb29-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-93"><a href="#cb29-93" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ucr_map_data, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group, </span>
-<span id="cb29-94"><a href="#cb29-94" aria-hidden="true" tabindex="-1"></a>                         <span class="at">fill =</span> )) <span class="sc">+</span></span>
-<span id="cb29-95"><a href="#cb29-95" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb29-96"><a href="#cb29-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">default_crs =</span> <span class="dv">4326</span>, <span class="at">crs =</span> <span class="dv">9311</span>, <span class="at">clip =</span> <span class="st">&quot;off&quot;</span>) <span class="sc">+</span></span>
-<span id="cb29-97"><a href="#cb29-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(</span>
-<span id="cb29-98"><a href="#cb29-98" aria-hidden="true" tabindex="-1"></a>    <span class="at">colors =</span> <span class="fu">lighten</span>(my_colors, <span class="at">amount =</span> <span class="fl">0.1</span>), </span>
-<span id="cb29-99"><a href="#cb29-99" aria-hidden="true" tabindex="-1"></a>    <span class="at">guide =</span> <span class="fu">guide_colorbar</span>(<span class="at">barwidth =</span> <span class="dv">15</span>, <span class="at">barheight =</span> <span class="fl">0.5</span>)</span>
-<span id="cb29-100"><a href="#cb29-100" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb29-101"><a href="#cb29-101" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Rate per 100,000&quot;</span>) <span class="sc">+</span></span>
-<span id="cb29-102"><a href="#cb29-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb29-103"><a href="#cb29-103" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb29-104"><a href="#cb29-104" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
-<span id="cb29-105"><a href="#cb29-105" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">5</span>, <span class="at">r =</span> <span class="dv">5</span>, <span class="at">b =</span> <span class="dv">5</span>, <span class="at">l =</span> <span class="dv">5</span>)</span>
-<span id="cb29-106"><a href="#cb29-106" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb29-42"><a href="#cb29-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
+<span id="cb29-43"><a href="#cb29-43" aria-hidden="true" tabindex="-1"></a>ncvs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;ncvs_violent_victimization_1993_2024.csv&quot;</span>)</span>
+<span id="cb29-44"><a href="#cb29-44" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ncvs, <span class="at">n =</span> <span class="dv">2</span>)</span>
+<span id="cb29-45"><a href="#cb29-45" aria-hidden="true" tabindex="-1"></a>ncvs <span class="sc">|&gt;</span></span>
+<span id="cb29-46"><a href="#cb29-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2006</span>)</span>
+<span id="cb29-47"><a href="#cb29-47" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(ncvs, <span class="at">n =</span> <span class="dv">2</span>)</span>
+<span id="cb29-48"><a href="#cb29-48" aria-hidden="true" tabindex="-1"></a>label_years <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1993</span>, <span class="fu">seq</span>(<span class="dv">1995</span>, <span class="dv">2020</span>, <span class="at">by =</span> <span class="dv">5</span>), <span class="dv">2024</span>)</span>
+<span id="cb29-49"><a href="#cb29-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-50"><a href="#cb29-50" aria-hidden="true" tabindex="-1"></a>ncvs <span class="sc">|&gt;</span></span>
+<span id="cb29-51"><a href="#cb29-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> )) <span class="sc">+</span></span>
+<span id="cb29-52"><a href="#cb29-52" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-53"><a href="#cb29-53" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1. Shade the gap (2005 to 2007). </span></span>
+<span id="cb29-54"><a href="#cb29-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;rect&quot;</span>, <span class="at">xmin =</span> <span class="dv">2005</span>, <span class="at">xmax =</span> <span class="dv">2007</span>, <span class="at">ymin =</span> <span class="sc">-</span><span class="cn">Inf</span>, <span class="at">ymax =</span> <span class="cn">Inf</span>, </span>
+<span id="cb29-55"><a href="#cb29-55" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="st">&quot;gray70&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb29-56"><a href="#cb29-56" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-57"><a href="#cb29-57" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 2. Add an explicit text label inside the shaded box</span></span>
+<span id="cb29-58"><a href="#cb29-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="fl">2007.5</span>, <span class="at">y =</span> <span class="dv">70</span>, </span>
+<span id="cb29-59"><a href="#cb29-59" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">&quot;Methodology Shifts</span><span class="sc">\n</span><span class="st">(Data Excluded)&quot;</span>, </span>
+<span id="cb29-60"><a href="#cb29-60" aria-hidden="true" tabindex="-1"></a>           <span class="at">size =</span> <span class="dv">4</span>, <span class="at">color =</span> <span class="st">&quot;gray30&quot;</span>, <span class="at">fontface =</span> <span class="st">&quot;italic&quot;</span>, <span class="at">hjust =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb29-61"><a href="#cb29-61" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-62"><a href="#cb29-62" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 3. Draw the main solid line and points</span></span>
+<span id="cb29-63"><a href="#cb29-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;#a22b21&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb29-64"><a href="#cb29-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&quot;#a22b21&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb29-65"><a href="#cb29-65" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-66"><a href="#cb29-66" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 4. Draw a specific dashed line just between 2005 and 2007</span></span>
+<span id="cb29-67"><a href="#cb29-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> ncvs <span class="sc">|&gt;</span> <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2005</span>, <span class="dv">2007</span>)), </span>
+<span id="cb29-68"><a href="#cb29-68" aria-hidden="true" tabindex="-1"></a>            <span class="at">linetype =</span> <span class="st">&quot;dotted&quot;</span>, <span class="at">color =</span> <span class="st">&quot;#a22b21&quot;</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb29-69"><a href="#cb29-69" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-70"><a href="#cb29-70" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 5. Axis labels</span></span>
+<span id="cb29-71"><a href="#cb29-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb29-72"><a href="#cb29-72" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb29-73"><a href="#cb29-73" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb29-74"><a href="#cb29-74" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb29-75"><a href="#cb29-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb29-76"><a href="#cb29-76" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> <span class="dv">1993</span><span class="sc">:</span><span class="dv">2024</span>, </span>
+<span id="cb29-77"><a href="#cb29-77" aria-hidden="true" tabindex="-1"></a>  <span class="at">labels =</span> \(x) <span class="fu">ifelse</span>(x <span class="sc">%in%</span> label_years, x, <span class="st">&quot;&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb29-78"><a href="#cb29-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">90</span>), <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">90</span>, <span class="at">by =</span> <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb29-79"><a href="#cb29-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span></span>
+<span id="cb29-80"><a href="#cb29-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">linewidth =</span> <span class="fl">0.4</span>))</span>
+<span id="cb29-81"><a href="#cb29-81" aria-hidden="true" tabindex="-1"></a>ucr <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;ucr_state_violent_crime_2024.csv&quot;</span>)</span>
+<span id="cb29-82"><a href="#cb29-82" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(ucr)</span>
+<span id="cb29-83"><a href="#cb29-83" aria-hidden="true" tabindex="-1"></a>us_states <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">&quot;state&quot;</span>)</span>
+<span id="cb29-84"><a href="#cb29-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-85"><a href="#cb29-85" aria-hidden="true" tabindex="-1"></a>ucr_map_data <span class="ot">&lt;-</span> ucr <span class="sc">|&gt;</span></span>
+<span id="cb29-86"><a href="#cb29-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(state <span class="sc">!=</span> <span class="st">&quot;United States&quot;</span>, state <span class="sc">!=</span> <span class="st">&quot;District of Columbia&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb29-87"><a href="#cb29-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">region =</span> <span class="fu">tolower</span>(state)) <span class="sc">|&gt;</span></span>
+<span id="cb29-88"><a href="#cb29-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(us_states, <span class="at">by =</span> <span class="st">&quot;region&quot;</span>)</span>
+<span id="cb29-89"><a href="#cb29-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-90"><a href="#cb29-90" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(ucr_map_data)</span>
+<span id="cb29-91"><a href="#cb29-91" aria-hidden="true" tabindex="-1"></a><span class="co"># Color palette</span></span>
+<span id="cb29-92"><a href="#cb29-92" aria-hidden="true" tabindex="-1"></a>my_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#d9aaa5&quot;</span>, <span class="st">&quot;#bd6a61&quot;</span>, <span class="st">&quot;#a12a1e&quot;</span>, <span class="st">&quot;#937291&quot;</span>, <span class="st">&quot;#3d203b&quot;</span>)</span>
+<span id="cb29-93"><a href="#cb29-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-94"><a href="#cb29-94" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ucr_map_data, <span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group, </span>
+<span id="cb29-95"><a href="#cb29-95" aria-hidden="true" tabindex="-1"></a>                         <span class="at">fill =</span> )) <span class="sc">+</span></span>
+<span id="cb29-96"><a href="#cb29-96" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb29-97"><a href="#cb29-97" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">default_crs =</span> <span class="dv">4326</span>, <span class="at">crs =</span> <span class="dv">9311</span>, <span class="at">clip =</span> <span class="st">&quot;off&quot;</span>) <span class="sc">+</span></span>
+<span id="cb29-98"><a href="#cb29-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradientn</span>(</span>
+<span id="cb29-99"><a href="#cb29-99" aria-hidden="true" tabindex="-1"></a>    <span class="at">colors =</span> <span class="fu">lighten</span>(my_colors, <span class="at">amount =</span> <span class="fl">0.1</span>), </span>
+<span id="cb29-100"><a href="#cb29-100" aria-hidden="true" tabindex="-1"></a>    <span class="at">guide =</span> <span class="fu">guide_colorbar</span>(<span class="at">barwidth =</span> <span class="dv">15</span>, <span class="at">barheight =</span> <span class="fl">0.5</span>)</span>
+<span id="cb29-101"><a href="#cb29-101" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb29-102"><a href="#cb29-102" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Rate per 100,000&quot;</span>) <span class="sc">+</span></span>
+<span id="cb29-103"><a href="#cb29-103" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb29-104"><a href="#cb29-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb29-105"><a href="#cb29-105" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb29-106"><a href="#cb29-106" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">t =</span> <span class="dv">5</span>, <span class="at">r =</span> <span class="dv">5</span>, <span class="at">b =</span> <span class="dv">5</span>, <span class="at">l =</span> <span class="dv">5</span>)</span>
+<span id="cb29-107"><a href="#cb29-107" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 

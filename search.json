@@ -32,7 +32,7 @@
     "href": "schedule.html#week-4-joins-import-exam-june-8---12",
     "title": "Course Schedule",
     "section": "Week 4 — Joins, Import, Exam (June 8 - 12)",
-    "text": "Week 4 — Joins, Import, Exam (June 8 - 12)\n\nWeek 4 schedule\n\n\n\n\n\n\n\n\nDate\nTopic\nRead before class\nDue\n\n\n\n\nMon Jun 8\nJoining tables: inner_join, left_join, anti-joins\nDC §11.1–11.3\nReading Quiz 4\n\n\nTue Jun 9\nImporting data: CSV, Excel, factors vs strings, cleaning\nDC §16.1–16.2, 16.4–16.5\nHW 4\n\n\nWed Jun 10\nExam review · practice problems in class\n—\n—\n\n\nThu Jun 11\nEXAM (in-class, on paper, closed book)\n—\n—\n\n\nFri Jun 12\nLight day · web scraping & HTML tables\nDC §16.3\nProject Checkpoint 1"
+    "text": "Week 4 — Joins, Import, Exam (June 8 - 12)\n\nWeek 4 schedule\n\n\n\n\n\n\n\n\nDate\nTopic\nRead before class\nDue\n\n\n\n\nMon Jun 8\nJoining tables: inner_join, left_join, anti-joins\nDC §11.1–11.3\n\n\n\nTue Jun 9\nImporting data: CSV, Excel, factors vs strings, cleaning\nDC §16.1–16.2, 16.4–16.5\nHW 4\n\n\nWed Jun 10\nExam review · practice problems in class\n—\n—\n\n\nThu Jun 11\nEXAM (in-class, on paper, closed book)\n—\n—\n\n\nFri Jun 12\nLight day · web scraping & HTML tables\nDC §16.3\nProject Checkpoint 1"
   },
   {
     "objectID": "schedule.html#week-5-functions-iteration-strings-june-15---19",
@@ -634,7 +634,7 @@
     "href": "weeks/week2/day8-activity.html#target-3-flipper-length-vs.-body-mass-with-continuous-color",
     "title": "Day 8 Activity: Plot-matching with penguins",
     "section": "Target 3 — Flipper length vs. body mass, with continuous color",
-    "text": "Target 3 — Flipper length vs. body mass, with continuous color\n\n\n\n\n\n\n\n\n\n\n# Your code:\n\nHint: this plot encodes four variables. The continuous color scale is from the viridis package — see the slide on continuous color.\nWhat does this plot reveal?\n[Write one sentence.]"
+    "text": "Target 3 — Flipper length vs. body mass, with continuous color\n\n\n\n\n\n\n\n\n\n\n# Your code:\n\n*Hint: this plot encodes four variables. The continuous color scale is from the viridis package.\nWhat does this plot reveal?\n[Write one sentence.]"
   },
   {
     "objectID": "weeks/week2/day8-activity.html#target-4-counts-of-penguins-by-island-and-species",
@@ -1586,7 +1586,7 @@
     "href": "weeks/week2/day8-multivariable-slides.html#quick-recap-from-wednesday",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Quick recap from Wednesday",
-    "text": "Quick recap from Wednesday\nWe covered the vocabulary (frame, glyph, aesthetic, scale, guide) and the mechanics (mapping vs. setting, layered geoms, stats, position adjustments).\nToday we extend that to plots with three, four, or more variables, and clean up two things we glossed over: the workflow for going from a question to a finished plot, and how to fine-tune axes once you have one.\n\n\n\n\n\n\n\n\nTip\n\n\nThe grammar of graphics is the vocabulary. The DC “specify a graph” steps are the grammar — the order you put the words in."
+    "text": "Quick recap from Wednesday\nWe covered the vocabulary (frame, glyph, aesthetic, scale, guide) and the mechanics (mapping vs. setting, layered geoms, stats, position adjustments).\nToday we extend that to plots with three, four, or more variables, and clean up two things we glossed over: the workflow for going from a question to a finished plot, and how to fine-tune axes once you have one.\n\n\n\n\n\n\n\n\nTip\n\n\nThe grammar of graphics is the vocabulary. The DC “specify a graph” steps are the grammar, or the order you put the words in."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-slides.html#todays-dataset-penguins",
@@ -1614,7 +1614,7 @@
     "href": "weeks/week2/day8-multivariable-slides.html#three-variables-with-color",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Three variables, with color",
-    "text": "Three variables, with color\nAdd species as the third variable via color:\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +\n  geom_point(na.rm = TRUE)\n\n\n\n\n\n\n\n\nThe negative trend we saw before was Simpson’s paradox — within each species, longer bills are deeper. The pooled trend ran the wrong way because Gentoos (long bills, shallow bills) are a separate cluster from the other species."
+    "text": "Three variables, with color\nAdd species as the third variable via color:\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +\n  geom_point(na.rm = TRUE)\n\n\n\n\n\n\n\n\nThe negative trend we saw before was Simpson’s paradox, i.e., within each species, longer bills are deeper. The pooled trend ran the wrong way because Gentoos (long bills, shallow bills) are a separate cluster from the other species."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-slides.html#three-variables-with-shape",
@@ -1628,14 +1628,14 @@
     "href": "weeks/week2/day8-multivariable-slides.html#four-variables-combine-color-and-shape",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Four variables: combine color and shape",
-    "text": "Four variables: combine color and shape\nMap two different variables to color and shape at once:\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm,\n                     color = species, shape = sex)) +\n  geom_point(size = 2, na.rm = TRUE)\n\n\n\n\n\n\n\n\nThis works — but readers have to track two legends and two mappings. The visual load gets heavy fast."
+    "text": "Four variables: combine color and shape\nMap two different variables to color and shape at once:\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm,\n                     color = species, shape = sex)) +\n  geom_point(size = 2, na.rm = TRUE)\n\n\n\n\n\n\n\n\nThis works, but readers have to track two legends and two mappings. The visual load gets heavy fast."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-slides.html#five-variables-add-a-facet",
     "href": "weeks/week2/day8-multivariable-slides.html#five-variables-add-a-facet",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Five variables: add a facet",
-    "text": "Five variables: add a facet\nWhen you’re tempted to map a 5th aesthetic, try faceting instead:\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm,\n                     color = species, shape = sex)) +\n  geom_point(size = 2, na.rm = TRUE) +\n  facet_wrap(~island)\n\n\n\n\n\n\n\n\nNow we can see species × sex × island all at once — and crucially, see that Gentoos only live on Biscoe and Adélies live everywhere."
+    "text": "Five variables: add a facet\nInstead of mapping a 5th aesthetic, try faceting instead:\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm,\n                     color = species, shape = sex)) +\n  geom_point(size = 2, na.rm = TRUE) +\n  facet_wrap(~island)\n\n\n\n\n\n\n\n\nNow we can see species × sex × island all at once and, crucially, see that Gentoos only live on Biscoe and Adélies live everywhere."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-slides.html#facet_wrap-vs-facet_grid",
@@ -1663,14 +1663,14 @@
     "href": "weeks/week2/day8-multivariable-slides.html#free-vs.-fixed-scales-in-facets",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Free vs. fixed scales in facets",
-    "text": "Free vs. fixed scales in facets\nBy default, every facet shares the same x and y scale. That’s almost always what you want for comparison.\nBut occasionally a facet has a very different range, and forcing them to share crushes the detail:\n\nggplot(penguins, aes(x = body_mass_g)) +\n  geom_histogram(bins = 15, na.rm = TRUE) +\n  facet_wrap(~species, scales = \"free\")\n\n\n\n\n\n\n\n\n\nscales = \"free_x\" — let x-axes differ across facets\nscales = \"free_y\" — let y-axes differ across facets\nscales = \"free\" — let both differ\n\n\n\n\n\n\n\nWarning\n\n\nFree scales make individual facets readable but make comparison across facets misleading. If your goal is comparison, leave scales fixed."
+    "text": "Free vs. fixed scales in facets\nBy default, every facet shares the same x and y scale. That’s almost always what you want for comparison.\nBut occasionally a facet has a very different range, and forcing them to share crushes the detail:\n\nggplot(penguins, aes(x = body_mass_g)) +\n  geom_histogram(bins = 15, na.rm = TRUE) +\n  facet_wrap(~species, scales = \"free\")\n\n\n\n\n\n\n\n\n\nscales = \"free_x\": let x-axes differ across facets\nscales = \"free_y\": let y-axes differ across facets\nscales = \"free\": let both differ\n\n\n\n\n\n\n\nWarning\n\n\nFree scales make individual facets readable but make comparison across facets misleading. If your goal is comparison, leave scales fixed."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-slides.html#when-to-facet-vs.-when-to-use-color",
     "href": "weeks/week2/day8-multivariable-slides.html#when-to-facet-vs.-when-to-use-color",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "When to facet vs. when to use color",
-    "text": "When to facet vs. when to use color\nA choice you’ll face constantly:\n\nColor or facet?\n\n\n\n\n\n\nUse color when…\nUse facets when…\n\n\n\n\nYou want all groups on one set of axes\nYou want each group’s structure visible\n\n\nThe trend is what matters\nEach group has its own substructure (clusters, outliers)\n\n\nYou have 2–4 categories\nYou have 3+ categories (color gets noisy)\n\n\nYou want to highlight a comparison\nYou want to compare patterns within\n\n\n\nFor larger datasets with overlap, facets almost always win — color blends together in dense regions."
+    "text": "When to facet vs. when to use color\n\nColor or facet?\n\n\n\n\n\n\nUse color when…\nUse facets when…\n\n\n\n\nYou want all groups on one set of axes\nYou want each group’s structure visible\n\n\nThe trend is what matters\nEach group has its own substructure (clusters, outliers)\n\n\nYou have 2–4 categories\nYou have 3+ categories (color gets noisy)\n\n\nYou want to highlight a comparison\nYou want to compare patterns within\n\n\n\nFor larger datasets with overlap, facets almost always win. Color blends together in dense regions."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-slides.html#the-dc-workflow",
@@ -1684,7 +1684,7 @@
     "href": "weeks/week2/day8-multivariable-slides.html#worked-example-bill-length-vs.-depth",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Worked example: bill length vs. depth",
-    "text": "Worked example: bill length vs. depth\nQuestion: How does the relationship between bill length and bill depth vary by species and sex?\nStep 1 — Define the frame. x and y are both numeric measurements:\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm))\n\nStep 2 — First layer: points. Map species to color, sex to shape:\n\n... + geom_point(aes(color = species, shape = sex), size = 2, na.rm = TRUE)\n\nStep 3 — Second layer: smoothers, one per species. No sex distinction here:\n\n... + geom_smooth(aes(color = species), method = \"lm\", se = FALSE)"
+    "text": "Worked example: bill length vs. depth\nQuestion: How does the relationship between bill length and bill depth vary by species and sex?\nStep 1: Define the frame. x and y are both numeric measurements:\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm))\n\nStep 2: First layer: points. Map species to color, sex to shape:\n\n... + geom_point(aes(color = species, shape = sex), size = 2, na.rm = TRUE)\n\nStep 3: Second layer: smoothers, one per species. No sex distinction here:\n\n... + geom_smooth(aes(color = species), method = \"lm\", se = FALSE)"
   },
   {
     "objectID": "weeks/week2/day8-multivariable-slides.html#putting-it-all-together",
@@ -1698,7 +1698,7 @@
     "href": "weeks/week2/day8-multivariable-slides.html#labels-are-not-optional",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Labels are not optional",
-    "text": "Labels are not optional\nThe single highest-impact, lowest-effort improvement you can make to any plot:\n\n... + labs(\n  x = \"Bill length (mm)\",\n  y = \"Bill depth (mm)\",\n  title = \"Within each species, longer bills are deeper\",\n  subtitle = \"Adélies, Chinstraps, and Gentoos sampled in 2007–2009\",\n  caption = \"Source: palmerpenguins package\",\n  color = \"Species\"\n)\n\nWhat goes where:\n\ntitle — what the plot shows\nsubtitle — the nuance or context the title leaves out\nx, y — what’s on the axis, with units\ncaption — data source, methodology notes\nlegend titles — name of the aesthetic mapping (color =, shape =, etc.)"
+    "text": "Labels are not optional\nThe single highest-impact, lowest-effort improvement you can make to any plot:\n\n... + labs(\n  x = \"Bill length (mm)\",\n  y = \"Bill depth (mm)\",\n  title = \"Within each species, longer bills are deeper\",\n  subtitle = \"Adélies, Chinstraps, and Gentoos sampled in 2007–2009\",\n  caption = \"Source: palmerpenguins package\",\n  color = \"Species\"\n)\n\nWhat goes where:\n\ntitle: what the plot shows\nsubtitle: the nuance or context the title leaves out\nx, y: what’s on the axis, with units\ncaption: data source, methodology notes\nlegend titles: name of the aesthetic mapping (color =, shape =, etc.)"
   },
   {
     "objectID": "weeks/week2/day8-multivariable-slides.html#dcs-axis-customization-toolkit",
@@ -1733,7 +1733,7 @@
     "href": "weeks/week2/day8-multivariable-slides.html#sequential-vs.-diverging-palettes",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Sequential vs. diverging palettes",
-    "text": "Sequential vs. diverging palettes\n\n\nSequential — for data that runs from low to high (or none → lots).\nscale_color_viridis_c(), scale_color_gradient(low, high)\nBody mass, age, count, distance from origin.\n\nDiverging — for data that runs above and below a meaningful midpoint.\nscale_color_gradient2(low, mid, high, midpoint = 0)\nTemperature anomaly, growth rate, correlation, vote margin.\n\n\n\n\n\n\n\nWarning\n\n\nThe classic mistake is using a diverging palette (red-white-blue) for sequential data, or vice versa. Diverging implies “above/below zero matters” — if your data has no meaningful midpoint, don’t use one."
+    "text": "Sequential vs. diverging palettes\n\n\nSequential: for data that runs from low to high (or none → lots).\nscale_color_viridis_c(), scale_color_gradient(low, high)\nBody mass, age, count, distance from origin.\n\nDiverging: for data that runs above and below a meaningful midpoint.\nscale_color_gradient2(low, mid, high, midpoint = 0)\nTemperature anomaly, growth rate, correlation, vote margin.\n\n\n\n\n\n\n\nWarning\n\n\nThe classic mistake is using a diverging palette (red-white-blue) for sequential data, or vice versa. Diverging implies “above/below zero matters”— if your data has no meaningful midpoint, don’t use one."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-slides.html#when-you-might-change-the-coord",
@@ -1754,21 +1754,21 @@
     "href": "weeks/week2/day8-multivariable-slides.html#where-we-are",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Where we are",
-    "text": "Where we are\nYou now have every layer of the ggplot2 template:\nggplot(data = &lt;DATA&gt;) +\n  &lt;GEOM_FUNCTION&gt;(\n    mapping = aes(&lt;MAPPINGS&gt;),\n    stat = &lt;STAT&gt;,\n    position = &lt;POSITION&gt;\n  ) +\n  &lt;COORDINATE_FUNCTION&gt; +\n  &lt;FACET_FUNCTION&gt; +\n  &lt;SCALE_FUNCTION&gt; +\n  labs(...)\nThe hard part isn’t the syntax — it’s deciding what to put in each slot to answer the question you actually have."
+    "text": "Where we are\nYou now have every layer of the ggplot2 template:\nggplot(data = &lt;DATA&gt;) +\n  &lt;GEOM_FUNCTION&gt;(\n    mapping = aes(&lt;MAPPINGS&gt;),\n    stat = &lt;STAT&gt;,\n    position = &lt;POSITION&gt;\n  ) +\n  &lt;COORDINATE_FUNCTION&gt; +\n  &lt;FACET_FUNCTION&gt; +\n  &lt;SCALE_FUNCTION&gt; +\n  labs(...)\nThe hard part isn’t the syntax, it’s deciding what to put in each slot to answer the question you actually have."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-slides.html#what-we-covered-today",
     "href": "weeks/week2/day8-multivariable-slides.html#what-we-covered-today",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "What we covered today",
-    "text": "What we covered today\n\nMultivariable plots: color + shape + facet for 3–5 variables; faceting beats piling on aesthetics\nFacets: facet_wrap vs facet_grid, the . placeholder, free vs fixed scales, when to put a variable on rows vs columns\nSpecifying a graph: frame → layer → refine\nAxes & labels: labs() is non-negotiable; xlim drops data, coord_cartesian doesn’t; log scales when data spans orders of magnitude\nColor scales: viridis for continuous, qualitative palettes for categorical, diverging only when there’s a meaningful midpoint\nCoordinate systems: flip, fixed, polar — useful for a few specific cases"
+    "text": "What we covered today\n\nMultivariable plots: color + shape + facet for 3–5 variables; faceting beats piling on aesthetics\nFacets: facet_wrap vs facet_grid, the . placeholder, free vs fixed scales, when to put a variable on rows vs columns\nSpecifying a graph: frame → layer → refine\nAxes & labels: labs() is non-negotiable; xlim drops data, coord_cartesian doesn’t; log scales when data spans orders of magnitude\nColor scales: viridis for continuous, qualitative palettes for categorical, diverging only when there’s a meaningful midpoint\nCoordinate systems: flip, fixed, polar. This is useful for a few specific cases"
   },
   {
     "objectID": "weeks/week2/day8-multivariable-slides.html#activity-plot-matching-with-penguins",
     "href": "weeks/week2/day8-multivariable-slides.html#activity-plot-matching-with-penguins",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Activity: plot-matching with penguins",
-    "text": "Activity: plot-matching with penguins\nRoughly 25 minutes. Working individually or with a neighbor.\n\nActivity Canvas Link\n\nFormat: I’ll give you four target plots showing different combinations of penguin variables. Your job is to recreate each one as closely as you can using ggplot2, then write one sentence per plot about what it reveals.\nThis is the highest-leverage exercise for cementing the layer-by-layer thinking: you have to look at a plot, identify its frame, identify its glyphs, identify each aesthetic mapping, and work out which functions to call.\nTo turn in: Save your .qmd and rendered HTML — we’ll check at the end of class."
+    "text": "Activity: plot-matching with penguins\nRoughly 25 minutes. Working individually or with a neighbor.\n\nActivity Canvas Link\n\nFormat: I’ll give you four target plots showing different combinations of penguin variables. Your job is to recreate each one as closely as you can using ggplot2, then write one sentence per plot about what it reveals.\nThis is the highest-leverage exercise for cementing the layer-by-layer thinking: you have to look at a plot, identify its frame, identify its glyphs, identify each aesthetic mapping, and work out which functions to call.\nTo turn in: Save your .qmd and rendered HTML."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-slides.html#wrap-up-looking-ahead",
@@ -1789,7 +1789,7 @@
     "href": "weeks/week2/day8-multivariable-page.html#quick-recap-from-wednesday",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Quick recap from Wednesday",
-    "text": "Quick recap from Wednesday\nWe covered the vocabulary (frame, glyph, aesthetic, scale, guide) and the mechanics (mapping vs. setting, layered geoms, stats, position adjustments).\nToday we extend that to plots with three, four, or more variables, and clean up two things we glossed over: the workflow for going from a question to a finished plot, and how to fine-tune axes once you have one.\n\n\n\n\n\n\n\nTip\n\n\n\nThe grammar of graphics is the vocabulary. The DC “specify a graph” steps are the grammar — the order you put the words in."
+    "text": "Quick recap from Wednesday\nWe covered the vocabulary (frame, glyph, aesthetic, scale, guide) and the mechanics (mapping vs. setting, layered geoms, stats, position adjustments).\nToday we extend that to plots with three, four, or more variables, and clean up two things we glossed over: the workflow for going from a question to a finished plot, and how to fine-tune axes once you have one.\n\n\n\n\n\n\n\nTip\n\n\n\nThe grammar of graphics is the vocabulary. The DC “specify a graph” steps are the grammar, or the order you put the words in."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-page.html#todays-dataset-penguins",
@@ -1817,7 +1817,7 @@
     "href": "weeks/week2/day8-multivariable-page.html#three-variables-with-color",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Three variables, with color",
-    "text": "Three variables, with color\nAdd species as the third variable via color:\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +\n  geom_point(na.rm = TRUE)\n\n\n\n\n\n\n\n\nThe negative trend we saw before was Simpson’s paradox — within each species, longer bills are deeper. The pooled trend ran the wrong way because Gentoos (long bills, shallow bills) are a separate cluster from the other species."
+    "text": "Three variables, with color\nAdd species as the third variable via color:\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +\n  geom_point(na.rm = TRUE)\n\n\n\n\n\n\n\n\nThe negative trend we saw before was Simpson’s paradox, i.e., within each species, longer bills are deeper. The pooled trend ran the wrong way because Gentoos (long bills, shallow bills) are a separate cluster from the other species."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-page.html#three-variables-with-shape",
@@ -1831,14 +1831,14 @@
     "href": "weeks/week2/day8-multivariable-page.html#four-variables-combine-color-and-shape",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Four variables: combine color and shape",
-    "text": "Four variables: combine color and shape\nMap two different variables to color and shape at once:\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm,\n                     color = species, shape = sex)) +\n  geom_point(size = 2, na.rm = TRUE)\n\n\n\n\n\n\n\n\nThis works — but readers have to track two legends and two mappings. The visual load gets heavy fast."
+    "text": "Four variables: combine color and shape\nMap two different variables to color and shape at once:\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm,\n                     color = species, shape = sex)) +\n  geom_point(size = 2, na.rm = TRUE)\n\n\n\n\n\n\n\n\nThis works, but readers have to track two legends and two mappings. The visual load gets heavy fast."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-page.html#five-variables-add-a-facet",
     "href": "weeks/week2/day8-multivariable-page.html#five-variables-add-a-facet",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Five variables: add a facet",
-    "text": "Five variables: add a facet\nWhen you’re tempted to map a 5th aesthetic, try faceting instead:\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm,\n                     color = species, shape = sex)) +\n  geom_point(size = 2, na.rm = TRUE) +\n  facet_wrap(~island)\n\n\n\n\n\n\n\n\nNow we can see species × sex × island all at once — and crucially, see that Gentoos only live on Biscoe and Adélies live everywhere."
+    "text": "Five variables: add a facet\nInstead of mapping a 5th aesthetic, try faceting instead:\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm,\n                     color = species, shape = sex)) +\n  geom_point(size = 2, na.rm = TRUE) +\n  facet_wrap(~island)\n\n\n\n\n\n\n\n\nNow we can see species × sex × island all at once and, crucially, see that Gentoos only live on Biscoe and Adélies live everywhere."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-page.html#facet_wrap-vs-facet_grid",
@@ -1866,14 +1866,14 @@
     "href": "weeks/week2/day8-multivariable-page.html#free-vs.-fixed-scales-in-facets",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Free vs. fixed scales in facets",
-    "text": "Free vs. fixed scales in facets\nBy default, every facet shares the same x and y scale. That’s almost always what you want for comparison.\nBut occasionally a facet has a very different range, and forcing them to share crushes the detail:\n\nggplot(penguins, aes(x = body_mass_g)) +\n  geom_histogram(bins = 15, na.rm = TRUE) +\n  facet_wrap(~species, scales = \"free\")\n\n\n\n\n\n\n\n\n\nscales = \"free_x\" — let x-axes differ across facets\nscales = \"free_y\" — let y-axes differ across facets\nscales = \"free\" — let both differ\n\n\n\n\n\n\n\nWarning\n\n\n\nFree scales make individual facets readable but make comparison across facets misleading. If your goal is comparison, leave scales fixed."
+    "text": "Free vs. fixed scales in facets\nBy default, every facet shares the same x and y scale. That’s almost always what you want for comparison.\nBut occasionally a facet has a very different range, and forcing them to share crushes the detail:\n\nggplot(penguins, aes(x = body_mass_g)) +\n  geom_histogram(bins = 15, na.rm = TRUE) +\n  facet_wrap(~species, scales = \"free\")\n\n\n\n\n\n\n\n\n\nscales = \"free_x\": let x-axes differ across facets\nscales = \"free_y\": let y-axes differ across facets\nscales = \"free\": let both differ\n\n\n\n\n\n\n\nWarning\n\n\n\nFree scales make individual facets readable but make comparison across facets misleading. If your goal is comparison, leave scales fixed."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-page.html#when-to-facet-vs.-when-to-use-color",
     "href": "weeks/week2/day8-multivariable-page.html#when-to-facet-vs.-when-to-use-color",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "When to facet vs. when to use color",
-    "text": "When to facet vs. when to use color\nA choice you’ll face constantly:\n\nColor or facet?\n\n\n\n\n\n\nUse color when…\nUse facets when…\n\n\n\n\nYou want all groups on one set of axes\nYou want each group’s structure visible\n\n\nThe trend is what matters\nEach group has its own substructure (clusters, outliers)\n\n\nYou have 2–4 categories\nYou have 3+ categories (color gets noisy)\n\n\nYou want to highlight a comparison\nYou want to compare patterns within\n\n\n\nFor larger datasets with overlap, facets almost always win — color blends together in dense regions."
+    "text": "When to facet vs. when to use color\n\nColor or facet?\n\n\n\n\n\n\nUse color when…\nUse facets when…\n\n\n\n\nYou want all groups on one set of axes\nYou want each group’s structure visible\n\n\nThe trend is what matters\nEach group has its own substructure (clusters, outliers)\n\n\nYou have 2–4 categories\nYou have 3+ categories (color gets noisy)\n\n\nYou want to highlight a comparison\nYou want to compare patterns within\n\n\n\nFor larger datasets with overlap, facets almost always win. Color blends together in dense regions."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-page.html#the-dc-workflow",
@@ -1887,7 +1887,7 @@
     "href": "weeks/week2/day8-multivariable-page.html#worked-example-bill-length-vs.-depth",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Worked example: bill length vs. depth",
-    "text": "Worked example: bill length vs. depth\nQuestion: How does the relationship between bill length and bill depth vary by species and sex?\nStep 1 — Define the frame. x and y are both numeric measurements:\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm))\n\nStep 2 — First layer: points. Map species to color, sex to shape:\n\n... + geom_point(aes(color = species, shape = sex), size = 2, na.rm = TRUE)\n\nStep 3 — Second layer: smoothers, one per species. No sex distinction here:\n\n... + geom_smooth(aes(color = species), method = \"lm\", se = FALSE)"
+    "text": "Worked example: bill length vs. depth\nQuestion: How does the relationship between bill length and bill depth vary by species and sex?\nStep 1: Define the frame. x and y are both numeric measurements:\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm))\n\nStep 2: First layer: points. Map species to color, sex to shape:\n\n... + geom_point(aes(color = species, shape = sex), size = 2, na.rm = TRUE)\n\nStep 3: Second layer: smoothers, one per species. No sex distinction here:\n\n... + geom_smooth(aes(color = species), method = \"lm\", se = FALSE)"
   },
   {
     "objectID": "weeks/week2/day8-multivariable-page.html#putting-it-all-together",
@@ -1901,7 +1901,7 @@
     "href": "weeks/week2/day8-multivariable-page.html#labels-are-not-optional",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Labels are not optional",
-    "text": "Labels are not optional\nThe single highest-impact, lowest-effort improvement you can make to any plot:\n\n... + labs(\n  x = \"Bill length (mm)\",\n  y = \"Bill depth (mm)\",\n  title = \"Within each species, longer bills are deeper\",\n  subtitle = \"Adélies, Chinstraps, and Gentoos sampled in 2007–2009\",\n  caption = \"Source: palmerpenguins package\",\n  color = \"Species\"\n)\n\nWhat goes where:\n\ntitle — what the plot shows\nsubtitle — the nuance or context the title leaves out\nx, y — what’s on the axis, with units\ncaption — data source, methodology notes\nlegend titles — name of the aesthetic mapping (color =, shape =, etc.)"
+    "text": "Labels are not optional\nThe single highest-impact, lowest-effort improvement you can make to any plot:\n\n... + labs(\n  x = \"Bill length (mm)\",\n  y = \"Bill depth (mm)\",\n  title = \"Within each species, longer bills are deeper\",\n  subtitle = \"Adélies, Chinstraps, and Gentoos sampled in 2007–2009\",\n  caption = \"Source: palmerpenguins package\",\n  color = \"Species\"\n)\n\nWhat goes where:\n\ntitle: what the plot shows\nsubtitle: the nuance or context the title leaves out\nx, y: what’s on the axis, with units\ncaption: data source, methodology notes\nlegend titles: name of the aesthetic mapping (color =, shape =, etc.)"
   },
   {
     "objectID": "weeks/week2/day8-multivariable-page.html#dcs-axis-customization-toolkit",
@@ -1936,7 +1936,7 @@
     "href": "weeks/week2/day8-multivariable-page.html#sequential-vs.-diverging-palettes",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Sequential vs. diverging palettes",
-    "text": "Sequential vs. diverging palettes\n\n\nSequential — for data that runs from low to high (or none → lots).\nscale_color_viridis_c(), scale_color_gradient(low, high)\nBody mass, age, count, distance from origin.\n\nDiverging — for data that runs above and below a meaningful midpoint.\nscale_color_gradient2(low, mid, high, midpoint = 0)\nTemperature anomaly, growth rate, correlation, vote margin.\n\n\n\n\n\n\n\n\nWarning\n\n\n\nThe classic mistake is using a diverging palette (red-white-blue) for sequential data, or vice versa. Diverging implies “above/below zero matters” — if your data has no meaningful midpoint, don’t use one."
+    "text": "Sequential vs. diverging palettes\n\n\nSequential: for data that runs from low to high (or none → lots).\nscale_color_viridis_c(), scale_color_gradient(low, high)\nBody mass, age, count, distance from origin.\n\nDiverging: for data that runs above and below a meaningful midpoint.\nscale_color_gradient2(low, mid, high, midpoint = 0)\nTemperature anomaly, growth rate, correlation, vote margin.\n\n\n\n\n\n\n\n\nWarning\n\n\n\nThe classic mistake is using a diverging palette (red-white-blue) for sequential data, or vice versa. Diverging implies “above/below zero matters”— if your data has no meaningful midpoint, don’t use one."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-page.html#when-you-might-change-the-coord",
@@ -1957,21 +1957,21 @@
     "href": "weeks/week2/day8-multivariable-page.html#where-we-are",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Where we are",
-    "text": "Where we are\nYou now have every layer of the ggplot2 template:\nggplot(data = &lt;DATA&gt;) +\n  &lt;GEOM_FUNCTION&gt;(\n    mapping = aes(&lt;MAPPINGS&gt;),\n    stat = &lt;STAT&gt;,\n    position = &lt;POSITION&gt;\n  ) +\n  &lt;COORDINATE_FUNCTION&gt; +\n  &lt;FACET_FUNCTION&gt; +\n  &lt;SCALE_FUNCTION&gt; +\n  labs(...)\nThe hard part isn’t the syntax — it’s deciding what to put in each slot to answer the question you actually have."
+    "text": "Where we are\nYou now have every layer of the ggplot2 template:\nggplot(data = &lt;DATA&gt;) +\n  &lt;GEOM_FUNCTION&gt;(\n    mapping = aes(&lt;MAPPINGS&gt;),\n    stat = &lt;STAT&gt;,\n    position = &lt;POSITION&gt;\n  ) +\n  &lt;COORDINATE_FUNCTION&gt; +\n  &lt;FACET_FUNCTION&gt; +\n  &lt;SCALE_FUNCTION&gt; +\n  labs(...)\nThe hard part isn’t the syntax, it’s deciding what to put in each slot to answer the question you actually have."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-page.html#what-we-covered-today",
     "href": "weeks/week2/day8-multivariable-page.html#what-we-covered-today",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "What we covered today",
-    "text": "What we covered today\n\nMultivariable plots: color + shape + facet for 3–5 variables; faceting beats piling on aesthetics\nFacets: facet_wrap vs facet_grid, the . placeholder, free vs fixed scales, when to put a variable on rows vs columns\nSpecifying a graph: frame → layer → refine\nAxes & labels: labs() is non-negotiable; xlim drops data, coord_cartesian doesn’t; log scales when data spans orders of magnitude\nColor scales: viridis for continuous, qualitative palettes for categorical, diverging only when there’s a meaningful midpoint\nCoordinate systems: flip, fixed, polar — useful for a few specific cases"
+    "text": "What we covered today\n\nMultivariable plots: color + shape + facet for 3–5 variables; faceting beats piling on aesthetics\nFacets: facet_wrap vs facet_grid, the . placeholder, free vs fixed scales, when to put a variable on rows vs columns\nSpecifying a graph: frame → layer → refine\nAxes & labels: labs() is non-negotiable; xlim drops data, coord_cartesian doesn’t; log scales when data spans orders of magnitude\nColor scales: viridis for continuous, qualitative palettes for categorical, diverging only when there’s a meaningful midpoint\nCoordinate systems: flip, fixed, polar. This is useful for a few specific cases"
   },
   {
     "objectID": "weeks/week2/day8-multivariable-page.html#activity-plot-matching-with-penguins",
     "href": "weeks/week2/day8-multivariable-page.html#activity-plot-matching-with-penguins",
     "title": "Multivariable graphics · specifying graphs · axes & labels",
     "section": "Activity: plot-matching with penguins",
-    "text": "Activity: plot-matching with penguins\nRoughly 25 minutes. Working individually or with a neighbor.\n\nActivity Canvas Link\n\nFormat: I’ll give you four target plots showing different combinations of penguin variables. Your job is to recreate each one as closely as you can using ggplot2, then write one sentence per plot about what it reveals.\nThis is the highest-leverage exercise for cementing the layer-by-layer thinking: you have to look at a plot, identify its frame, identify its glyphs, identify each aesthetic mapping, and work out which functions to call.\nTo turn in: Save your .qmd and rendered HTML — we’ll check at the end of class."
+    "text": "Activity: plot-matching with penguins\nRoughly 25 minutes. Working individually or with a neighbor.\n\nActivity Canvas Link\n\nFormat: I’ll give you four target plots showing different combinations of penguin variables. Your job is to recreate each one as closely as you can using ggplot2, then write one sentence per plot about what it reveals.\nThis is the highest-leverage exercise for cementing the layer-by-layer thinking: you have to look at a plot, identify its frame, identify its glyphs, identify each aesthetic mapping, and work out which functions to call.\nTo turn in: Save your .qmd and rendered HTML."
   },
   {
     "objectID": "weeks/week2/day8-multivariable-page.html#wrap-up-looking-ahead",
@@ -5016,7 +5016,7 @@
     "href": "weeks/week4/index.html",
     "title": "Week 4 — Joins, Import & Exam",
     "section": "",
-    "text": "Important\n\n\n\nExam is Thursday, June 11. In-class portion in the morning (closed book, no AI); take-home portion released after class and due 11:59 p.m. that evening.\nWe cover the last major data-handling tools — joining multiple tables and importing data from various sources — and then sit the exam. Friday is a light day with Project Checkpoint 1 due that night."
+    "text": "Important\n\n\n\nExam is Thursday, June 11.\nWe cover the last major data-handling tools — joining multiple tables and importing data from various sources — and then sit the exam. Friday is a light day with Project Checkpoint 1 due that night."
   },
   {
     "objectID": "weeks/week4/index.html#daily-plan",
