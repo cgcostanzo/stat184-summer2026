@@ -4596,7 +4596,7 @@
     "href": "weeks/week2/day9-ai-coding-page.html",
     "title": "Quiz 2 · responsible AI use for coding",
     "section": "",
-    "text": "NoteToday: Friday May 29\n\n\n\nBefore class\n\nNo Perusall assignment\n\nPlan for today\n\nQuiz 2 (first 20 minutes)\nWhy we’re spending a class on AI: the stakes\nA taxonomy of how AI gets coding wrong\nThree verification skills you should leave with\nIn-class activity: AI-assisted analysis, with verification\n\nHelpful links\n\nSyllabus · AI policy · Schedule · R4DS · DC · ggplot2 reference"
+    "text": "NoteToday: Friday May 29\n\n\n\nBefore class\n\nNo Perusall assignment\n\nPlan for today\n\nQuiz 2 (first 20 minutes)\nHow AI can get coding wrong\nThree verification skills\nIn-class activity: AI-assisted analysis, with verification\n\nHelpful links\n\nSyllabus · AI policy · Schedule · R4DS · DC · ggplot2 reference"
   },
   {
     "objectID": "weeks/week2/day9-ai-coding-page.html#quiz-2-20-minutes",
@@ -4606,39 +4606,39 @@
     "text": "Quiz 2: 20 minutes\n\nClosed-book, closed-notes, closed-internet, closed-AI.\nCovers everything from week 1 and the first half of week 2: data frames, dplyr pipes, ggplot2 basics, aesthetics, geoms, facets, stats, position adjustments.\nFive short questions. Show your work.\n\nWhen you finish, turn in your quiz up front and we’ll get started with the rest of class."
   },
   {
-    "objectID": "weeks/week2/day9-ai-coding-page.html#the-thing-we-have-to-talk-about",
-    "href": "weeks/week2/day9-ai-coding-page.html#the-thing-we-have-to-talk-about",
+    "objectID": "weeks/week2/day9-ai-coding-page.html#ai-use-in-this-course",
+    "href": "weeks/week2/day9-ai-coding-page.html#ai-use-in-this-course",
     "title": "Quiz 2 · responsible AI use for coding",
-    "section": "The thing we have to talk about",
-    "text": "The thing we have to talk about\nThe course AI policy is on the syllabus.\n\nAcademic Integrity & AI Policy\n\nAI tools are allowed for this course, with disclosure. But “allowed” doesn’t mean “use uncritically.” Today is about what responsible use looks like.\n\n\n\n\n\n\nTip\n\n\n\nThe goal isn’t to scare you off AI. When you code with AI’s help, you are still the one responsible for the code and you must be able to defend every line of it."
+    "section": "AI Use in this Course",
+    "text": "AI Use in this Course\nThe course AI policy is on the syllabus.\n\nAcademic Integrity & AI Policy\n\nAI tools are allowed for this course, with disclosure. But “allowed” doesn’t mean “use uncritically.”\n\n\n\n\n\n\nTip\n\n\n\nWhen you code with AI’s help, you are still the one responsible for the code and you must be able to explain/defend each line you (or AI) submits."
   },
   {
-    "objectID": "weeks/week2/day9-ai-coding-page.html#what-we-mean-by-ai-today",
-    "href": "weeks/week2/day9-ai-coding-page.html#what-we-mean-by-ai-today",
+    "objectID": "weeks/week2/day9-ai-coding-page.html#what-counts-as-ai",
+    "href": "weeks/week2/day9-ai-coding-page.html#what-counts-as-ai",
     "title": "Quiz 2 · responsible AI use for coding",
-    "section": "What we mean by “AI” today",
-    "text": "What we mean by “AI” today\nWhen I say “AI” today I mean things like:\n\nChatGPT, Claude, Gemini (general chat-based assistants)\nGitHub Copilot, Cursor, Codeium (in-editor code completion)\nThe “explain this code” / “fix this error” features inside RStudio extensions\n\nThe patterns we’ll discuss apply across all of them.\n\n\n\n\n\n\nNoteWhat today isn’t about\n\n\n\nWhether AI is “good” or “bad” in some philosophical sense, or whether it will take your job. It’s about how to use these tools without making mistakes you can’t catch."
+    "section": "What counts as “AI”",
+    "text": "What counts as “AI”\nWhen I say “AI” today I mean things like:\n\nChatGPT, Claude, Gemini (general chat-based assistants)\nGitHub Copilot, Cursor, Codeium (in-editor code completion)\nThe “explain this code” / “fix this error” features inside RStudio extensions\n\nThe patterns we’ll discuss apply across all of them. How can we use these tools without making mistakes we can’t catch?"
   },
   {
-    "objectID": "weeks/week2/day9-ai-coding-page.html#the-thing-that-makes-this-hard",
-    "href": "weeks/week2/day9-ai-coding-page.html#the-thing-that-makes-this-hard",
+    "objectID": "weeks/week2/day9-ai-coding-page.html#why-ai-use-can-be-particularly-risky",
+    "href": "weeks/week2/day9-ai-coding-page.html#why-ai-use-can-be-particularly-risky",
     "title": "Quiz 2 · responsible AI use for coding",
-    "section": "The thing that makes this hard",
-    "text": "The thing that makes this hard\nThe output of a good AI model looks correct even when it’s wrong.\n\nVariable names are sensible.\nSyntax compiles or runs.\nThe code resembles what a confident expert would write.\nIt “explains itself” fluently when asked.\n\nYou can’t catch a confident-sounding wrong answer by reading it the way you’d skim a textbook. You have to actively verify."
+    "section": "Why AI use can be particularly risky",
+    "text": "Why AI use can be particularly risky\nThe output of a good AI model looks correct even when it’s wrong.\n\nVariable names are sensible.\nSyntax compiles or runs.\nThe code resembles what a confident expert would write.\nIt “explains itself” fluently when asked.\n\nYou can’t catch a confident-sounding wrong answer by reading it the way you’d skim a textbook. You have to actively verify."
   },
   {
-    "objectID": "weeks/week2/day9-ai-coding-page.html#what-youre-actually-learning-in-stat-184",
-    "href": "weeks/week2/day9-ai-coding-page.html#what-youre-actually-learning-in-stat-184",
+    "objectID": "weeks/week2/day9-ai-coding-page.html#stat-184-skills",
+    "href": "weeks/week2/day9-ai-coding-page.html#stat-184-skills",
     "title": "Quiz 2 · responsible AI use for coding",
-    "section": "What you’re actually learning in STAT 184",
-    "text": "What you’re actually learning in STAT 184\nStop and consider: why are we still teaching coding in a world with AI?\n\nTwo reasons:\n\nYou have to be able to read code, which is even more important when you didn’t write it yourself.\nYou have to know what right looks like. AI will gladly generate plausible (but-wrong) code; you need the expertise to spot it.\n\nThe skills you’re building this summer (knowing what group_by does, how aes() works, what mean(x, na.rm = TRUE) means) are exactly the skills that let you catch AI mistakes."
+    "section": "STAT 184 Skills",
+    "text": "STAT 184 Skills\nHere’s why we are still teaching coding in a world with AI:\n\n\nYou have to be able to read code, which is even more important when you didn’t write it yourself.\nYou have to know what right looks like. AI will gladly generate plausible (but-wrong) code; you need the expertise to spot it.\n\nThe skills you’re building this summer (knowing what group_by does, how aes() works, what mean(x, na.rm = TRUE) means) are exactly the skills that let you catch AI mistakes."
   },
   {
-    "objectID": "weeks/week2/day9-ai-coding-page.html#a-taxonomy-of-ai-coding-failures",
-    "href": "weeks/week2/day9-ai-coding-page.html#a-taxonomy-of-ai-coding-failures",
+    "objectID": "weeks/week2/day9-ai-coding-page.html#common-ai-coding-failures",
+    "href": "weeks/week2/day9-ai-coding-page.html#common-ai-coding-failures",
     "title": "Quiz 2 · responsible AI use for coding",
-    "section": "A taxonomy of AI coding failures",
-    "text": "A taxonomy of AI coding failures\nI’ll walk through four categories. Each is something I’ve personally watched a student or colleague get burned by.\n\nHallucinated functions and packages: code that mentions things that don’t exist\nPlausible-but-wrong logic: code that runs and answers the wrong question\nOutdated APIs: code that worked five years ago but doesn’t now\nMisread context: AI assumes things about your data that aren’t true"
+    "section": "Common AI coding failures",
+    "text": "Common AI coding failures\nThis isn’t an exhaustive list, but here’s four general categories:\n\nHallucinated functions and packages: code that mentions things that don’t exist\nPlausible-but-wrong logic: code that runs and answers the wrong question\nOutdated knowledge: code that worked years ago but doesn’t now\nMisread context: AI assumes things about your data that aren’t true"
   },
   {
     "objectID": "weeks/week2/day9-ai-coding-page.html#failure-1-hallucinated-functions",
@@ -4652,49 +4652,49 @@
     "href": "weeks/week2/day9-ai-coding-page.html#failure-2-plausible-but-wrong-logic",
     "title": "Quiz 2 · responsible AI use for coding",
     "section": "Failure 2: Plausible-but-wrong logic",
-    "text": "Failure 2: Plausible-but-wrong logic\nYou ask: “What’s the average flipper length for each species, in mm?”\nAI produces:\n\npenguins |&gt;\n  group_by(species) |&gt;\n  summarize(avg_flipper = mean(flipper_length_mm))\n\n# A tibble: 3 × 2\n  species   avg_flipper\n  &lt;fct&gt;           &lt;dbl&gt;\n1 Adelie            NA \n2 Chinstrap        196.\n3 Gentoo            NA \n\n\nThat runs. It returns numbers. But all three numbers are NA.\nWhy? flipper_length_mm has missing values, and mean() returns NA by default if any input is NA. The right answer needs na.rm = TRUE. The AI knew about na.rm perfectly well, it just didn’t include it because you didn’t ask.\n\n\n\n\n\n\nWarning\n\n\n\nThe output table looks like an answer. If you copy the numbers into a report without running the code yourself, you’ll write “the average flipper length for Adélies is NA” and not notice."
+    "text": "Failure 2: Plausible-but-wrong logic\nYou ask: “What’s the average flipper length for each species, in mm?”\nAI produces:\n\npenguins |&gt;\n  group_by(species) |&gt;\n  summarize(avg_flipper = mean(flipper_length_mm))\n\n# A tibble: 3 × 2\n  species   avg_flipper\n  &lt;fct&gt;           &lt;dbl&gt;\n1 Adelie            NA \n2 Chinstrap        196.\n3 Gentoo            NA \n\n\nThat runs fine and gives you some numbers. But two values are NA.\nWhy? flipper_length_mm has missing values, and mean() returns NA by default if any input is NA. The right answer needs na.rm = TRUE. Since you didn’t explicitly ask for this setting, AI made a choice itself and did not implement this step (even though it definitely knows about na.rm).\n\n\n\n\n\n\nWarning\n\n\n\nThe potential issue here is that the output table looks like an answer. If you copy the numbers into a report without running the code yourself, you’ll write “the average flipper length for Adélies is NA” and not notice."
   },
   {
-    "objectID": "weeks/week2/day9-ai-coding-page.html#failure-3-outdated-apis",
-    "href": "weeks/week2/day9-ai-coding-page.html#failure-3-outdated-apis",
+    "objectID": "weeks/week2/day9-ai-coding-page.html#failure-3-outdated-knowledge",
+    "href": "weeks/week2/day9-ai-coding-page.html#failure-3-outdated-knowledge",
     "title": "Quiz 2 · responsible AI use for coding",
-    "section": "Failure 3: Outdated APIs",
-    "text": "Failure 3: Outdated APIs\nThe tidyverse changes. The palmerpenguins package changes. R itself changes. AI training data has a knowledge cutoff.\nYou ask: “How do I select multiple columns with a name pattern?”\nA model might give you:\n\npenguins |&gt;\n  select(one_of(\"species\", \"island\"))  # outdated; still works but discouraged\n\none_of() has been superseded by any_of() and all_of(). It still works (for now), but it’s not the modern recommended approach.\nWorse: some models will confidently use functions that were removed in a recent version. Run-time errors with no obvious cause."
+    "section": "Failure 3: Outdated knowledge",
+    "text": "Failure 3: Outdated knowledge\nThe tidyverse, the palmerpenguins`, and even R itself changes. However, AI training data has a knowledge cutoff.\nIf you ask: “How do I select multiple columns with a name pattern?”\nA model might give you:\n\npenguins |&gt;\n  select(one_of(\"species\", \"island\"))  # outdated; still works but discouraged\n\none_of() has been superseded by any_of() and all_of(). It still works (for now), but it’s not the modern recommended approach.\nA worse situation is a model confidently using functions that were removed in a recent version. This will likely throw errors with no obvious cause."
   },
   {
     "objectID": "weeks/week2/day9-ai-coding-page.html#failure-4-misread-context",
     "href": "weeks/week2/day9-ai-coding-page.html#failure-4-misread-context",
     "title": "Quiz 2 · responsible AI use for coding",
     "section": "Failure 4: Misread context",
-    "text": "Failure 4: Misread context\nYou upload a CSV and ask: “Plot the relationship between price and size.”\nAI cheerfully produces:\n\nggplot(data, aes(x = size, y = price)) +\n  geom_point()\n\nThe AI cannot see your data. It is guessing about:\n\nWhether data is even the right object name\nWhich column is “price” and which is “size” (what if they’re named $price or Price_USD or cost_dollars?)\nWhether either is actually numeric\nWhether size is a continuous variable or a category like S/M/L\n\nIt assumed all of these in a way that might match your data and might not."
+    "text": "Failure 4: Misread context\nYou upload a CSV and ask: “Plot the relationship between price and size.”\nAI produces:\n\nggplot(data, aes(x = size, y = price)) +\n  geom_point()\n\nThe AI cannot see your data. It is guessing about:\n\nWhether data is even the right object name\nWhich column is “price” and which is “size” (what if they’re named $price or Price_USD or cost_dollars?)\nWhether either is actually numeric\nWhether size is a continuous variable or a category like S/M/L\n\nIt assumed all of these in a way that might match your data and might not."
   },
   {
-    "objectID": "weeks/week2/day9-ai-coding-page.html#three-skills-you-should-never-skip",
-    "href": "weeks/week2/day9-ai-coding-page.html#three-skills-you-should-never-skip",
+    "objectID": "weeks/week2/day9-ai-coding-page.html#three-important-verification-skills",
+    "href": "weeks/week2/day9-ai-coding-page.html#three-important-verification-skills",
     "title": "Quiz 2 · responsible AI use for coding",
-    "section": "Three skills you should never skip",
-    "text": "Three skills you should never skip\nWhenever you use AI-generated code, you should be able to:\n\nRead it line by line and say what each line does. For example, not just “filters the data” but which rows, on which condition.\nVerify the result against the data, not just the code. Does the number make sense given what you know about the variable?\nHave a second (trustworthy) opinion ready, such as the documentation (?function_name), the original textbook, the actual data itself, etc."
+    "section": "Three important verification skills",
+    "text": "Three important verification skills\nWhenever you use AI-generated code, you should be able to:\n\nRead it line by line and say what each line does. For example, not just “filters the data” but which rows, on which condition.\nVerify the result against the data, not just the code. Does the number make sense given what you know about the variable?\nHave a second (trustworthy) opinion ready, such as the documentation (?function_name), the original textbook, the actual data itself, etc."
   },
   {
     "objectID": "weeks/week2/day9-ai-coding-page.html#skill-1-read-it-before-you-trust-it",
     "href": "weeks/week2/day9-ai-coding-page.html#skill-1-read-it-before-you-trust-it",
     "title": "Quiz 2 · responsible AI use for coding",
     "section": "Skill 1: Read it before you trust it",
-    "text": "Skill 1: Read it before you trust it\nIf the code has a function you’ve never seen, stop and look it up.\n\n?function_name in R\nThe package’s website (e.g., dplyr.tidyverse.org)\nThe function’s GitHub source if you’re feeling adventurous\n\nIf you can’t articulate what every line does to a classmate, you are not yet ready to submit it.\n\n\n\n\n\n\nTip\n\n\n\nA useful drill: take a chunk of AI code, delete all the comments, and write your own comments above each line. If you get stuck on a line, that’s the line to investigate."
+    "text": "Skill 1: Read it before you trust it\nIf the code has a function you’ve never seen, stop and look it up using a trustworthy resource.\n\n?function_name in R\nThe package’s website (e.g., dplyr.tidyverse.org)\n\nIf you can’t articulate what every line does to a classmate, you are not yet ready to submit it.\n\n\n\n\n\n\nTip\n\n\n\nOne thing you can try is taking a chunk of AI code, deleting all the comments, and writing your own comments above each line. If you get stuck on a line, that’s the line to investigate."
   },
   {
     "objectID": "weeks/week2/day9-ai-coding-page.html#skill-2-verify-against-the-data",
     "href": "weeks/week2/day9-ai-coding-page.html#skill-2-verify-against-the-data",
     "title": "Quiz 2 · responsible AI use for coding",
     "section": "Skill 2: Verify against the data",
-    "text": "Skill 2: Verify against the data\nBefore trusting summary numbers, sanity-check against what you already know.\nThe AI tells you the average penguin weighs 4200g.\n\nIs that reasonable? (A penguin? Yes, that’s about right.)\nDid all rows contribute? (nrow(penguins) vs the rows used in the calculation)\nAre there NAs being silently dropped or silently propagated?\n\nIf the AI gives you a plot with three lines and your data has four species, something is off.\n\n\n\n\n\n\nWarning\n\n\n\nThe single most common “AI gave me wrong numbers” failure mode I see is silent NA handling. Either na.rm = TRUE was used when it shouldn’t have been (treating missing data as if it didn’t exist) or it wasn’t used when it should have been (giving you NA when you wanted a number). Always check."
+    "text": "Skill 2: Verify against the data\nBefore trusting summary numbers, sanity-check against what you already know.\nThe AI tells you the average penguin weighs 4200g.\n\nIs that reasonable? (A penguin? Yes, that’s about right.)\nDid all rows contribute? (nrow(penguins) vs the rows used in the calculation)\nAre there NAs being silently dropped or silently propagated?\n\nIf the AI gives you a plot with three lines and your data has four species, something is off.\n\n\n\n\n\n\nWarning\n\n\n\nOne of the more common “AI gave me wrong numbers” failure modes is silent NA handling. Either na.rm = TRUE was used when it shouldn’t have been (treating missing data as if it didn’t exist) or it wasn’t used when it should have been (giving you NA when you wanted a number)."
   },
   {
     "objectID": "weeks/week2/day9-ai-coding-page.html#skill-3-have-a-second-opinion-ready",
     "href": "weeks/week2/day9-ai-coding-page.html#skill-3-have-a-second-opinion-ready",
     "title": "Quiz 2 · responsible AI use for coding",
     "section": "Skill 3: Have a second opinion ready",
-    "text": "Skill 3: Have a second opinion ready\nWhen the AI tells you something, ask: does another source agree?\n\nThe R help page (?function)\nThe R4DS / DataComputing textbooks\nA specific data source (the package documentation)\nThe actual data, computed a different way\n\nIf you cannot verify a claim with some independent source, you don’t actually know if it’s true.\n\n\n\n\n\n\nNote\n\n\n\nThis isn’t unique to AI. It’s just how you should treat any source you don’t fully trust. You wouldn’t paste a Stack Overflow answer into your homework without reading it; AI is similar but louder and more confident."
+    "text": "Skill 3: Have a second opinion ready\nWhen the AI tells you something, ask: does another source agree?\n\nThe R help page (?function)\nThe R4DS / DataComputing textbooks\nA specific data source (the package documentation)\nThe actual data, computed a different way\n\nIf you cannot verify a claim with some independent source, you don’t actually know if it’s true.\n\n\n\n\n\n\nNote\n\n\n\nThis isn’t unique to AI. It’s just how you should treat any source you don’t fully trust."
   },
   {
     "objectID": "weeks/week2/day9-ai-coding-page.html#what-disclosure-looks-like-in-this-course",
@@ -4708,28 +4708,28 @@
     "href": "weeks/week2/day9-ai-coding-page.html#what-counts-as-using-ai",
     "title": "Quiz 2 · responsible AI use for coding",
     "section": "What counts as “using AI”",
-    "text": "What counts as “using AI”\n\nAsking for a code snippet → yes, disclose\nAsking for an explanation of an error → yes, disclose\nAsking conceptual questions like “what’s the difference between filter and slice” → yes, disclose\nSpell-check / autocomplete in your editor → no\nSearching Google and reading Stack Overflow → no (that’s just research)\nReading the docs (?function) → no\n\nWhen in doubt, disclose. There’s no penalty for disclosing."
+    "text": "What counts as “using AI”\n\nAsking for a code snippet: yes, disclose\nAsking for an explanation of an error: yes, disclose\nAsking conceptual questions like “what’s the difference between filter and slice”: yes, disclose\nSpell-check / autocomplete in your editor: no\nSearching Google and reading Stack Overflow: no\nReading the docs (?function): no"
   },
   {
     "objectID": "weeks/week2/day9-ai-coding-page.html#activity-ai-assisted-analysis-with-verification",
     "href": "weeks/week2/day9-ai-coding-page.html#activity-ai-assisted-analysis-with-verification",
     "title": "Quiz 2 · responsible AI use for coding",
     "section": "Activity: AI-assisted analysis, with verification",
-    "text": "Activity: AI-assisted analysis, with verification\nRoughly 25 minutes. Working with a partner is recommended.\n\nActivity Canvas Link\n\nFormat: I’ll give you a moderately complex analysis question on a dataset. You’ll:\n\nTry to answer it with AI assistance. Use whatever AI tool you want.\nCheck the result. With your partner, find at least two things wrong, suspicious, or unverified about the AI’s output.\nFix what’s broken. Produce a verified, corrected version with documentation of what you found.\n\nYou must disclose what AI you used and how. The deliverable is graded on the quality of your verification, not on whether your first attempt was correct."
+    "text": "Activity: AI-assisted analysis, with verification\nRoughly 25 minutes\n\nActivity Canvas Link\n\nFormat: I’ll give you a moderately complex analysis question on a dataset. You’ll:\n\nTry to answer it with AI assistance. Use whatever AI tool you want.\nCheck the result. Find at least two things wrong, suspicious, or unverified about the AI’s output.\nFix what’s broken. Produce a verified, corrected version with documentation of what you found.\n\nYou must disclose what AI you used and how. The assignment is graded on the quality of your verification, not on whether your first attempt was correct."
   },
   {
     "objectID": "weeks/week2/day9-ai-coding-page.html#what-verification-looks-like",
     "href": "weeks/week2/day9-ai-coding-page.html#what-verification-looks-like",
     "title": "Quiz 2 · responsible AI use for coding",
     "section": "What verification looks like",
-    "text": "What verification looks like\nWhen you verify your own AI output, you’re looking for:\n\nHallucinated functions: does every function you used actually exist? Did you check ?function_name?\nSilent NA handling: were rows dropped? Were NAs propagated?\nWrong grouping: does the code group by what you actually wanted to group by?\nWrong filter — does the code keep what you wanted to keep?\nUnverified claims — does the AI’s interpretation of the result match what the numbers actually show?\nPlausible nonsense — does the result match what you’d expect given the data?\n\nWrite down what you found, what you changed, and why."
+    "text": "What verification looks like\nWhen you verify your own AI output, you’re looking for:\n\nHallucinated functions: does every function you used actually exist? Did you check ?function_name?\nSilent NA handling: were rows dropped? Were NAs propagated?\nWrong grouping: does the code group by what you actually wanted to group by?\nWrong filter: does the code keep what you wanted to keep?\nUnverified claims: does the AI’s interpretation of the result match what the numbers actually show?\nPlausible nonsense: does the result match what you’d expect given the data?\n\nWrite down what you found, what you changed, and why."
   },
   {
     "objectID": "weeks/week2/day9-ai-coding-page.html#wrap-up-looking-ahead",
     "href": "weeks/week2/day9-ai-coding-page.html#wrap-up-looking-ahead",
     "title": "Quiz 2 · responsible AI use for coding",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\nNext Monday: Week 3 starts. We move from making plots to wrangling data — joins, pivots, the full dplyr verb set.\n\n\n\n\n\n\nTip\n\n\n\nTake-home for the weekend: the next time you use AI for coding, try articulating to yourself what every line does before you run it. If you can’t, that’s the line to investigate.\n\n\n\n\nUpcoming Deadlines\n\nMon 6/1, before class: DC §7.1–7.7\nFri 5/29, 11:59 p.m. (Tonight): HW 2: Pipes, Plots & Reading Graphics\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS · DC · ggplot2 reference"
+    "text": "Wrap-up & looking ahead\nNext Monday: Week 3 starts. We move from making plots to wrangling data (joins, pivots, the full dplyr verb set).\n\n\n\n\n\n\nTip\n\n\n\nTake-home for the weekend: the next time you use AI for coding, try articulating to yourself what every line does before you run it. If you can’t, that’s the line to investigate further.\n\n\n\n\nUpcoming Deadlines\n\nMon 6/1, before class: DC §7.1–7.7\nFri 5/29, 11:59 p.m. (Tonight): HW 2: Pipes, Plots & Reading Graphics\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS · DC · ggplot2 reference"
   },
   {
     "objectID": "weeks/week2/day9-ai-coding-slides.html#quiz-2-20-minutes",
@@ -4739,39 +4739,39 @@
     "text": "Quiz 2: 20 minutes\n\nClosed-book, closed-notes, closed-internet, closed-AI.\nCovers everything from week 1 and the first half of week 2: data frames, dplyr pipes, ggplot2 basics, aesthetics, geoms, facets, stats, position adjustments.\nFive short questions. Show your work.\n\nWhen you finish, turn in your quiz up front and we’ll get started with the rest of class."
   },
   {
-    "objectID": "weeks/week2/day9-ai-coding-slides.html#the-thing-we-have-to-talk-about",
-    "href": "weeks/week2/day9-ai-coding-slides.html#the-thing-we-have-to-talk-about",
+    "objectID": "weeks/week2/day9-ai-coding-slides.html#ai-use-in-this-course",
+    "href": "weeks/week2/day9-ai-coding-slides.html#ai-use-in-this-course",
     "title": "Quiz 2 · responsible AI use for coding",
-    "section": "The thing we have to talk about",
-    "text": "The thing we have to talk about\nThe course AI policy is on the syllabus.\n\nAcademic Integrity & AI Policy\n\nAI tools are allowed for this course, with disclosure. But “allowed” doesn’t mean “use uncritically.” Today is about what responsible use looks like.\n\n\n\n\n\n\n\nTip\n\n\nThe goal isn’t to scare you off AI. When you code with AI’s help, you are still the one responsible for the code and you must be able to defend every line of it."
+    "section": "AI Use in this Course",
+    "text": "AI Use in this Course\nThe course AI policy is on the syllabus.\n\nAcademic Integrity & AI Policy\n\nAI tools are allowed for this course, with disclosure. But “allowed” doesn’t mean “use uncritically.”\n\n\n\n\n\n\n\nTip\n\n\nWhen you code with AI’s help, you are still the one responsible for the code and you must be able to explain/defend each line you (or AI) submits."
   },
   {
-    "objectID": "weeks/week2/day9-ai-coding-slides.html#what-we-mean-by-ai-today",
-    "href": "weeks/week2/day9-ai-coding-slides.html#what-we-mean-by-ai-today",
+    "objectID": "weeks/week2/day9-ai-coding-slides.html#what-counts-as-ai",
+    "href": "weeks/week2/day9-ai-coding-slides.html#what-counts-as-ai",
     "title": "Quiz 2 · responsible AI use for coding",
-    "section": "What we mean by “AI” today",
-    "text": "What we mean by “AI” today\nWhen I say “AI” today I mean things like:\n\nChatGPT, Claude, Gemini (general chat-based assistants)\nGitHub Copilot, Cursor, Codeium (in-editor code completion)\nThe “explain this code” / “fix this error” features inside RStudio extensions\n\nThe patterns we’ll discuss apply across all of them.\n\n\n\n\n\n\nWhat today isn’t about\n\n\nWhether AI is “good” or “bad” in some philosophical sense, or whether it will take your job. It’s about how to use these tools without making mistakes you can’t catch."
+    "section": "What counts as “AI”",
+    "text": "What counts as “AI”\nWhen I say “AI” today I mean things like:\n\nChatGPT, Claude, Gemini (general chat-based assistants)\nGitHub Copilot, Cursor, Codeium (in-editor code completion)\nThe “explain this code” / “fix this error” features inside RStudio extensions\n\nThe patterns we’ll discuss apply across all of them. How can we use these tools without making mistakes we can’t catch?"
   },
   {
-    "objectID": "weeks/week2/day9-ai-coding-slides.html#the-thing-that-makes-this-hard",
-    "href": "weeks/week2/day9-ai-coding-slides.html#the-thing-that-makes-this-hard",
+    "objectID": "weeks/week2/day9-ai-coding-slides.html#why-ai-use-can-be-particularly-risky",
+    "href": "weeks/week2/day9-ai-coding-slides.html#why-ai-use-can-be-particularly-risky",
     "title": "Quiz 2 · responsible AI use for coding",
-    "section": "The thing that makes this hard",
-    "text": "The thing that makes this hard\nThe output of a good AI model looks correct even when it’s wrong.\n\nVariable names are sensible.\nSyntax compiles or runs.\nThe code resembles what a confident expert would write.\nIt “explains itself” fluently when asked.\n\nYou can’t catch a confident-sounding wrong answer by reading it the way you’d skim a textbook. You have to actively verify."
+    "section": "Why AI use can be particularly risky",
+    "text": "Why AI use can be particularly risky\nThe output of a good AI model looks correct even when it’s wrong.\n\nVariable names are sensible.\nSyntax compiles or runs.\nThe code resembles what a confident expert would write.\nIt “explains itself” fluently when asked.\n\nYou can’t catch a confident-sounding wrong answer by reading it the way you’d skim a textbook. You have to actively verify."
   },
   {
-    "objectID": "weeks/week2/day9-ai-coding-slides.html#what-youre-actually-learning-in-stat-184",
-    "href": "weeks/week2/day9-ai-coding-slides.html#what-youre-actually-learning-in-stat-184",
+    "objectID": "weeks/week2/day9-ai-coding-slides.html#stat-184-skills",
+    "href": "weeks/week2/day9-ai-coding-slides.html#stat-184-skills",
     "title": "Quiz 2 · responsible AI use for coding",
-    "section": "What you’re actually learning in STAT 184",
-    "text": "What you’re actually learning in STAT 184\nStop and consider: why are we still teaching coding in a world with AI?\n\nTwo reasons:\n\nYou have to be able to read code, which is even more important when you didn’t write it yourself.\nYou have to know what right looks like. AI will gladly generate plausible (but-wrong) code; you need the expertise to spot it.\n\nThe skills you’re building this summer (knowing what group_by does, how aes() works, what mean(x, na.rm = TRUE) means) are exactly the skills that let you catch AI mistakes."
+    "section": "STAT 184 Skills",
+    "text": "STAT 184 Skills\nHere’s why we are still teaching coding in a world with AI:\n\n\nYou have to be able to read code, which is even more important when you didn’t write it yourself.\nYou have to know what right looks like. AI will gladly generate plausible (but-wrong) code; you need the expertise to spot it.\n\nThe skills you’re building this summer (knowing what group_by does, how aes() works, what mean(x, na.rm = TRUE) means) are exactly the skills that let you catch AI mistakes."
   },
   {
-    "objectID": "weeks/week2/day9-ai-coding-slides.html#a-taxonomy-of-ai-coding-failures",
-    "href": "weeks/week2/day9-ai-coding-slides.html#a-taxonomy-of-ai-coding-failures",
+    "objectID": "weeks/week2/day9-ai-coding-slides.html#common-ai-coding-failures",
+    "href": "weeks/week2/day9-ai-coding-slides.html#common-ai-coding-failures",
     "title": "Quiz 2 · responsible AI use for coding",
-    "section": "A taxonomy of AI coding failures",
-    "text": "A taxonomy of AI coding failures\nI’ll walk through four categories. Each is something I’ve personally watched a student or colleague get burned by.\n\nHallucinated functions and packages: code that mentions things that don’t exist\nPlausible-but-wrong logic: code that runs and answers the wrong question\nOutdated APIs: code that worked five years ago but doesn’t now\nMisread context: AI assumes things about your data that aren’t true"
+    "section": "Common AI coding failures",
+    "text": "Common AI coding failures\nThis isn’t an exhaustive list, but here’s four general categories:\n\nHallucinated functions and packages: code that mentions things that don’t exist\nPlausible-but-wrong logic: code that runs and answers the wrong question\nOutdated knowledge: code that worked years ago but doesn’t now\nMisread context: AI assumes things about your data that aren’t true"
   },
   {
     "objectID": "weeks/week2/day9-ai-coding-slides.html#failure-1-hallucinated-functions",
@@ -4785,49 +4785,49 @@
     "href": "weeks/week2/day9-ai-coding-slides.html#failure-2-plausible-but-wrong-logic",
     "title": "Quiz 2 · responsible AI use for coding",
     "section": "Failure 2: Plausible-but-wrong logic",
-    "text": "Failure 2: Plausible-but-wrong logic\nYou ask: “What’s the average flipper length for each species, in mm?”\nAI produces:\n\npenguins |&gt;\n  group_by(species) |&gt;\n  summarize(avg_flipper = mean(flipper_length_mm))\n\n# A tibble: 3 × 2\n  species   avg_flipper\n  &lt;fct&gt;           &lt;dbl&gt;\n1 Adelie            NA \n2 Chinstrap        196.\n3 Gentoo            NA \n\n\nThat runs. It returns numbers. But all three numbers are NA.\nWhy? flipper_length_mm has missing values, and mean() returns NA by default if any input is NA. The right answer needs na.rm = TRUE. The AI knew about na.rm perfectly well, it just didn’t include it because you didn’t ask.\n\n\n\n\n\n\nWarning\n\n\nThe output table looks like an answer. If you copy the numbers into a report without running the code yourself, you’ll write “the average flipper length for Adélies is NA” and not notice."
+    "text": "Failure 2: Plausible-but-wrong logic\nYou ask: “What’s the average flipper length for each species, in mm?”\nAI produces:\n\npenguins |&gt;\n  group_by(species) |&gt;\n  summarize(avg_flipper = mean(flipper_length_mm))\n\n# A tibble: 3 × 2\n  species   avg_flipper\n  &lt;fct&gt;           &lt;dbl&gt;\n1 Adelie            NA \n2 Chinstrap        196.\n3 Gentoo            NA \n\n\nThat runs fine and gives you some numbers. But two values are NA.\nWhy? flipper_length_mm has missing values, and mean() returns NA by default if any input is NA. The right answer needs na.rm = TRUE. Since you didn’t explicitly ask for this setting, AI made a choice itself and did not implement this step (even though it definitely knows about na.rm).\n\n\n\n\n\n\nWarning\n\n\nThe potential issue here is that the output table looks like an answer. If you copy the numbers into a report without running the code yourself, you’ll write “the average flipper length for Adélies is NA” and not notice."
   },
   {
-    "objectID": "weeks/week2/day9-ai-coding-slides.html#failure-3-outdated-apis",
-    "href": "weeks/week2/day9-ai-coding-slides.html#failure-3-outdated-apis",
+    "objectID": "weeks/week2/day9-ai-coding-slides.html#failure-3-outdated-knowledge",
+    "href": "weeks/week2/day9-ai-coding-slides.html#failure-3-outdated-knowledge",
     "title": "Quiz 2 · responsible AI use for coding",
-    "section": "Failure 3: Outdated APIs",
-    "text": "Failure 3: Outdated APIs\nThe tidyverse changes. The palmerpenguins package changes. R itself changes. AI training data has a knowledge cutoff.\nYou ask: “How do I select multiple columns with a name pattern?”\nA model might give you:\n\npenguins |&gt;\n  select(one_of(\"species\", \"island\"))  # outdated; still works but discouraged\n\none_of() has been superseded by any_of() and all_of(). It still works (for now), but it’s not the modern recommended approach.\nWorse: some models will confidently use functions that were removed in a recent version. Run-time errors with no obvious cause."
+    "section": "Failure 3: Outdated knowledge",
+    "text": "Failure 3: Outdated knowledge\nThe tidyverse, the palmerpenguins`, and even R itself changes. However, AI training data has a knowledge cutoff.\nIf you ask: “How do I select multiple columns with a name pattern?”\nA model might give you:\n\npenguins |&gt;\n  select(one_of(\"species\", \"island\"))  # outdated; still works but discouraged\n\none_of() has been superseded by any_of() and all_of(). It still works (for now), but it’s not the modern recommended approach.\nA worse situation is a model confidently using functions that were removed in a recent version. This will likely throw errors with no obvious cause."
   },
   {
     "objectID": "weeks/week2/day9-ai-coding-slides.html#failure-4-misread-context",
     "href": "weeks/week2/day9-ai-coding-slides.html#failure-4-misread-context",
     "title": "Quiz 2 · responsible AI use for coding",
     "section": "Failure 4: Misread context",
-    "text": "Failure 4: Misread context\nYou upload a CSV and ask: “Plot the relationship between price and size.”\nAI cheerfully produces:\n\nggplot(data, aes(x = size, y = price)) +\n  geom_point()\n\nThe AI cannot see your data. It is guessing about:\n\nWhether data is even the right object name\nWhich column is “price” and which is “size” (what if they’re named $price or Price_USD or cost_dollars?)\nWhether either is actually numeric\nWhether size is a continuous variable or a category like S/M/L\n\nIt assumed all of these in a way that might match your data and might not."
+    "text": "Failure 4: Misread context\nYou upload a CSV and ask: “Plot the relationship between price and size.”\nAI produces:\n\nggplot(data, aes(x = size, y = price)) +\n  geom_point()\n\nThe AI cannot see your data. It is guessing about:\n\nWhether data is even the right object name\nWhich column is “price” and which is “size” (what if they’re named $price or Price_USD or cost_dollars?)\nWhether either is actually numeric\nWhether size is a continuous variable or a category like S/M/L\n\nIt assumed all of these in a way that might match your data and might not."
   },
   {
-    "objectID": "weeks/week2/day9-ai-coding-slides.html#three-skills-you-should-never-skip",
-    "href": "weeks/week2/day9-ai-coding-slides.html#three-skills-you-should-never-skip",
+    "objectID": "weeks/week2/day9-ai-coding-slides.html#three-important-verification-skills",
+    "href": "weeks/week2/day9-ai-coding-slides.html#three-important-verification-skills",
     "title": "Quiz 2 · responsible AI use for coding",
-    "section": "Three skills you should never skip",
-    "text": "Three skills you should never skip\nWhenever you use AI-generated code, you should be able to:\n\nRead it line by line and say what each line does. For example, not just “filters the data” but which rows, on which condition.\nVerify the result against the data, not just the code. Does the number make sense given what you know about the variable?\nHave a second (trustworthy) opinion ready, such as the documentation (?function_name), the original textbook, the actual data itself, etc."
+    "section": "Three important verification skills",
+    "text": "Three important verification skills\nWhenever you use AI-generated code, you should be able to:\n\nRead it line by line and say what each line does. For example, not just “filters the data” but which rows, on which condition.\nVerify the result against the data, not just the code. Does the number make sense given what you know about the variable?\nHave a second (trustworthy) opinion ready, such as the documentation (?function_name), the original textbook, the actual data itself, etc."
   },
   {
     "objectID": "weeks/week2/day9-ai-coding-slides.html#skill-1-read-it-before-you-trust-it",
     "href": "weeks/week2/day9-ai-coding-slides.html#skill-1-read-it-before-you-trust-it",
     "title": "Quiz 2 · responsible AI use for coding",
     "section": "Skill 1: Read it before you trust it",
-    "text": "Skill 1: Read it before you trust it\nIf the code has a function you’ve never seen, stop and look it up.\n\n?function_name in R\nThe package’s website (e.g., dplyr.tidyverse.org)\nThe function’s GitHub source if you’re feeling adventurous\n\nIf you can’t articulate what every line does to a classmate, you are not yet ready to submit it.\n\n\n\n\n\n\nTip\n\n\nA useful drill: take a chunk of AI code, delete all the comments, and write your own comments above each line. If you get stuck on a line, that’s the line to investigate."
+    "text": "Skill 1: Read it before you trust it\nIf the code has a function you’ve never seen, stop and look it up using a trustworthy resource.\n\n?function_name in R\nThe package’s website (e.g., dplyr.tidyverse.org)\n\nIf you can’t articulate what every line does to a classmate, you are not yet ready to submit it.\n\n\n\n\n\n\nTip\n\n\nOne thing you can try is taking a chunk of AI code, deleting all the comments, and writing your own comments above each line. If you get stuck on a line, that’s the line to investigate."
   },
   {
     "objectID": "weeks/week2/day9-ai-coding-slides.html#skill-2-verify-against-the-data",
     "href": "weeks/week2/day9-ai-coding-slides.html#skill-2-verify-against-the-data",
     "title": "Quiz 2 · responsible AI use for coding",
     "section": "Skill 2: Verify against the data",
-    "text": "Skill 2: Verify against the data\nBefore trusting summary numbers, sanity-check against what you already know.\nThe AI tells you the average penguin weighs 4200g.\n\nIs that reasonable? (A penguin? Yes, that’s about right.)\nDid all rows contribute? (nrow(penguins) vs the rows used in the calculation)\nAre there NAs being silently dropped or silently propagated?\n\nIf the AI gives you a plot with three lines and your data has four species, something is off.\n\n\n\n\n\n\nWarning\n\n\nThe single most common “AI gave me wrong numbers” failure mode I see is silent NA handling. Either na.rm = TRUE was used when it shouldn’t have been (treating missing data as if it didn’t exist) or it wasn’t used when it should have been (giving you NA when you wanted a number). Always check."
+    "text": "Skill 2: Verify against the data\nBefore trusting summary numbers, sanity-check against what you already know.\nThe AI tells you the average penguin weighs 4200g.\n\nIs that reasonable? (A penguin? Yes, that’s about right.)\nDid all rows contribute? (nrow(penguins) vs the rows used in the calculation)\nAre there NAs being silently dropped or silently propagated?\n\nIf the AI gives you a plot with three lines and your data has four species, something is off.\n\n\n\n\n\n\nWarning\n\n\nOne of the more common “AI gave me wrong numbers” failure modes is silent NA handling. Either na.rm = TRUE was used when it shouldn’t have been (treating missing data as if it didn’t exist) or it wasn’t used when it should have been (giving you NA when you wanted a number)."
   },
   {
     "objectID": "weeks/week2/day9-ai-coding-slides.html#skill-3-have-a-second-opinion-ready",
     "href": "weeks/week2/day9-ai-coding-slides.html#skill-3-have-a-second-opinion-ready",
     "title": "Quiz 2 · responsible AI use for coding",
     "section": "Skill 3: Have a second opinion ready",
-    "text": "Skill 3: Have a second opinion ready\nWhen the AI tells you something, ask: does another source agree?\n\nThe R help page (?function)\nThe R4DS / DataComputing textbooks\nA specific data source (the package documentation)\nThe actual data, computed a different way\n\nIf you cannot verify a claim with some independent source, you don’t actually know if it’s true.\n\n\n\n\n\n\nNote\n\n\nThis isn’t unique to AI. It’s just how you should treat any source you don’t fully trust. You wouldn’t paste a Stack Overflow answer into your homework without reading it; AI is similar but louder and more confident."
+    "text": "Skill 3: Have a second opinion ready\nWhen the AI tells you something, ask: does another source agree?\n\nThe R help page (?function)\nThe R4DS / DataComputing textbooks\nA specific data source (the package documentation)\nThe actual data, computed a different way\n\nIf you cannot verify a claim with some independent source, you don’t actually know if it’s true.\n\n\n\n\n\n\nNote\n\n\nThis isn’t unique to AI. It’s just how you should treat any source you don’t fully trust."
   },
   {
     "objectID": "weeks/week2/day9-ai-coding-slides.html#what-disclosure-looks-like-in-this-course",
@@ -4841,28 +4841,28 @@
     "href": "weeks/week2/day9-ai-coding-slides.html#what-counts-as-using-ai",
     "title": "Quiz 2 · responsible AI use for coding",
     "section": "What counts as “using AI”",
-    "text": "What counts as “using AI”\n\nAsking for a code snippet → yes, disclose\nAsking for an explanation of an error → yes, disclose\nAsking conceptual questions like “what’s the difference between filter and slice” → yes, disclose\nSpell-check / autocomplete in your editor → no\nSearching Google and reading Stack Overflow → no (that’s just research)\nReading the docs (?function) → no\n\nWhen in doubt, disclose. There’s no penalty for disclosing."
+    "text": "What counts as “using AI”\n\nAsking for a code snippet: yes, disclose\nAsking for an explanation of an error: yes, disclose\nAsking conceptual questions like “what’s the difference between filter and slice”: yes, disclose\nSpell-check / autocomplete in your editor: no\nSearching Google and reading Stack Overflow: no\nReading the docs (?function): no"
   },
   {
     "objectID": "weeks/week2/day9-ai-coding-slides.html#activity-ai-assisted-analysis-with-verification",
     "href": "weeks/week2/day9-ai-coding-slides.html#activity-ai-assisted-analysis-with-verification",
     "title": "Quiz 2 · responsible AI use for coding",
     "section": "Activity: AI-assisted analysis, with verification",
-    "text": "Activity: AI-assisted analysis, with verification\nRoughly 25 minutes. Working with a partner is recommended.\n\nActivity Canvas Link\n\nFormat: I’ll give you a moderately complex analysis question on a dataset. You’ll:\n\nTry to answer it with AI assistance. Use whatever AI tool you want.\nCheck the result. With your partner, find at least two things wrong, suspicious, or unverified about the AI’s output.\nFix what’s broken. Produce a verified, corrected version with documentation of what you found.\n\nYou must disclose what AI you used and how. The deliverable is graded on the quality of your verification, not on whether your first attempt was correct."
+    "text": "Activity: AI-assisted analysis, with verification\nRoughly 25 minutes\n\nActivity Canvas Link\n\nFormat: I’ll give you a moderately complex analysis question on a dataset. You’ll:\n\nTry to answer it with AI assistance. Use whatever AI tool you want.\nCheck the result. Find at least two things wrong, suspicious, or unverified about the AI’s output.\nFix what’s broken. Produce a verified, corrected version with documentation of what you found.\n\nYou must disclose what AI you used and how. The assignment is graded on the quality of your verification, not on whether your first attempt was correct."
   },
   {
     "objectID": "weeks/week2/day9-ai-coding-slides.html#what-verification-looks-like",
     "href": "weeks/week2/day9-ai-coding-slides.html#what-verification-looks-like",
     "title": "Quiz 2 · responsible AI use for coding",
     "section": "What verification looks like",
-    "text": "What verification looks like\nWhen you verify your own AI output, you’re looking for:\n\nHallucinated functions: does every function you used actually exist? Did you check ?function_name?\nSilent NA handling: were rows dropped? Were NAs propagated?\nWrong grouping: does the code group by what you actually wanted to group by?\nWrong filter — does the code keep what you wanted to keep?\nUnverified claims — does the AI’s interpretation of the result match what the numbers actually show?\nPlausible nonsense — does the result match what you’d expect given the data?\n\nWrite down what you found, what you changed, and why."
+    "text": "What verification looks like\nWhen you verify your own AI output, you’re looking for:\n\nHallucinated functions: does every function you used actually exist? Did you check ?function_name?\nSilent NA handling: were rows dropped? Were NAs propagated?\nWrong grouping: does the code group by what you actually wanted to group by?\nWrong filter: does the code keep what you wanted to keep?\nUnverified claims: does the AI’s interpretation of the result match what the numbers actually show?\nPlausible nonsense: does the result match what you’d expect given the data?\n\nWrite down what you found, what you changed, and why."
   },
   {
     "objectID": "weeks/week2/day9-ai-coding-slides.html#wrap-up-looking-ahead",
     "href": "weeks/week2/day9-ai-coding-slides.html#wrap-up-looking-ahead",
     "title": "Quiz 2 · responsible AI use for coding",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\nNext Monday: Week 3 starts. We move from making plots to wrangling data — joins, pivots, the full dplyr verb set.\n\n\n\n\n\n\n\nTip\n\n\nTake-home for the weekend: the next time you use AI for coding, try articulating to yourself what every line does before you run it. If you can’t, that’s the line to investigate.\n\n\n\n\n\n\nUpcoming Deadlines\n\nMon 6/1, before class: DC §7.1–7.7\nFri 5/29, 11:59 p.m. (Tonight): HW 2: Pipes, Plots & Reading Graphics\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS · DC · ggplot2 reference"
+    "text": "Wrap-up & looking ahead\nNext Monday: Week 3 starts. We move from making plots to wrangling data (joins, pivots, the full dplyr verb set).\n\n\n\n\n\n\n\nTip\n\n\nTake-home for the weekend: the next time you use AI for coding, try articulating to yourself what every line does before you run it. If you can’t, that’s the line to investigate further.\n\n\n\n\n\n\nUpcoming Deadlines\n\nMon 6/1, before class: DC §7.1–7.7\nFri 5/29, 11:59 p.m. (Tonight): HW 2: Pipes, Plots & Reading Graphics\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS · DC · ggplot2 reference"
   },
   {
     "objectID": "weeks/week2/day9-activity.html",
