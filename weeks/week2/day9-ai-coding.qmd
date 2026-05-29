@@ -39,9 +39,8 @@ library(palmerpenguins)
 **Plan for today**
 
 - **Quiz 2** (first 20 minutes)
-- Why we're spending a class on AI: the stakes
-- A taxonomy of how AI gets coding wrong
-- Three verification skills you should leave with
+- How AI can get coding wrong
+- Three verification skills
 - In-class activity: AI-assisted analysis, with verification
 
 **Helpful links**
@@ -67,10 +66,10 @@ The course AI policy is on the syllabus.
 
 - [Academic Integrity & AI Policy](../../syllabus/academic-integrity-and-ai-policy.qmd)
 
-**AI tools are allowed for this course, with disclosure.** But "allowed" doesn't mean "use uncritically." Today is about what *responsible* use looks like.
+**AI tools are allowed for this course, with disclosure.** But "allowed" doesn't mean "use uncritically."
 
 ::: {.callout-tip style="font-size: 1.1em;"}
-The goal isn't to scare you off AI. When you code with AI's help, **you are still the one responsible for the code** and you must be able to defend every line of it.
+When you code with AI's help, **you are still the one responsible for the code** and you must be able to explain/defend every line of it.
 :::
 
 ## What we mean by "AI" today
@@ -81,14 +80,9 @@ When I say "AI" today I mean things like:
 - GitHub Copilot, Cursor, Codeium (in-editor code completion)
 - The "explain this code" / "fix this error" features inside RStudio extensions
 
-The patterns we'll discuss apply across all of them.
+The patterns we'll discuss apply across all of them. How can we use these tools without making mistakes we can't catch?
 
-::: {.callout-note}
-## What today isn't about
-Whether AI is "good" or "bad" in some philosophical sense, or whether it will take your job. It's about how to use these tools without making mistakes you can't catch.
-:::
-
-## The thing that makes this hard
+## Why this is tricky
 
 The output of a good AI model **looks correct** even when it's wrong.
 
@@ -99,12 +93,11 @@ The output of a good AI model **looks correct** even when it's wrong.
 
 You can't catch a confident-sounding wrong answer by reading it the way you'd skim a textbook. You have to **actively verify**.
 
-## What you're actually learning in STAT 184
+## STAT 184 Skills
 
-Stop and consider: why are we still teaching coding in a world with AI?
+Here's why we are still teaching coding in a world with AI:
 
 ::: {.fragment .fade-in}
-Two reasons:
 
 1. **You have to be able to read code**, which is even more important when you didn't write it yourself.
 2. **You have to know what right looks like.** AI will gladly generate plausible (but-wrong) code; you need the expertise to spot it.
@@ -116,7 +109,7 @@ The skills you're building this summer (knowing what `group_by` does, how `aes()
 
 ## A taxonomy of AI coding failures
 
-I'll walk through four categories. Each is something I've personally watched a student or colleague get burned by.
+I'll walk through four general categories. This isn't an exhaustive list!
 
 1. **Hallucinated functions and packages**: code that mentions things that don't exist
 2. **Plausible-but-wrong logic**: code that runs and answers the wrong question
@@ -157,19 +150,19 @@ penguins |>
   summarize(avg_flipper = mean(flipper_length_mm))
 ```
 
-That runs. It returns numbers. **But all three numbers are `NA`.**
+That runs fine and gives you some numbers. **But two values are `NA`.**
 
-Why? `flipper_length_mm` has missing values, and `mean()` returns `NA` by default if any input is `NA`. The right answer needs `na.rm = TRUE`. The AI knew about `na.rm` perfectly well, it just didn't include it because you didn't ask.
+Why? `flipper_length_mm` has missing values, and `mean()` returns `NA` by default if any input is `NA`. The right answer needs `na.rm = TRUE`. Since you didn't explicitly ask for this setting, AI made a choice itself and did not implement this step (even though it definitely knows about `na.rm`).
 
 ::: {.callout-warning}
-The output table *looks like an answer*. If you copy the numbers into a report without running the code yourself, you'll write "the average flipper length for Adélies is NA" and not notice.
+The potential issue here is that the output table *looks like an answer*. If you copy the numbers into a report without running the code yourself, you'll write "the average flipper length for Adélies is NA" and not notice.
 :::
 
 ## Failure 3: Outdated APIs
 
-The tidyverse changes. The `palmerpenguins` package changes. R itself changes. AI training data has a knowledge cutoff.
+The tidyverse, the palmerpenguins`, and even R itself changes. However, AI training data has a knowledge cutoff.
 
-You ask: *"How do I select multiple columns with a name pattern?"*
+If you ask: *"How do I select multiple columns with a name pattern?"*
 
 A model might give you:
 
@@ -182,13 +175,13 @@ penguins |>
 
 `one_of()` has been superseded by `any_of()` and `all_of()`. It still works (for now), but it's not the modern recommended approach.
 
-Worse: some models will confidently use functions that were *removed* in a recent version. Run-time errors with no obvious cause.
+What's worse is that some models will confidently use functions that were *removed* in a recent version. This gives run-time errors with no obvious cause.
 
 ## Failure 4: Misread context
 
 You upload a CSV and ask: *"Plot the relationship between price and size."*
 
-AI cheerfully produces:
+AI produces:
 
 ```{r}
 #| echo: TRUE
@@ -208,7 +201,7 @@ It assumed all of these in a way that *might* match your data and might not.
 
 # Verification skills {background-color="#001E44"}
 
-## Three skills you should never skip
+## Three important verification skills
 
 Whenever you use AI-generated code, you should be able to:
 
@@ -218,7 +211,7 @@ Whenever you use AI-generated code, you should be able to:
 
 ## Skill 1: Read it before you trust it
 
-If the code has a function you've never seen, **stop and look it up**.
+If the code has a function you've never seen, **stop and look it up** using a trustworthy resource.
 
 - `?function_name` in R
 - The package's website (e.g., `dplyr.tidyverse.org`)
@@ -243,7 +236,7 @@ The AI tells you the average penguin weighs 4200g.
 If the AI gives you a plot with three lines and your data has four species, **something is off**.
 
 ::: {.callout-warning}
-The single most common "AI gave me wrong numbers" failure mode I see is **silent NA handling**. Either `na.rm = TRUE` was used when it shouldn't have been (treating missing data as if it didn't exist) or it wasn't used when it should have been (giving you NA when you wanted a number). Always check.
+One of the more common "AI gave me wrong numbers" failure modes is **silent NA handling**. Either `na.rm = TRUE` was used when it shouldn't have been (treating missing data as if it didn't exist) or it wasn't used when it should have been (giving you NA when you wanted a number).
 :::
 
 ## Skill 3: Have a second opinion ready
@@ -287,30 +280,28 @@ A bad disclosure: leaving the box unchecked when you did use AI.
 
 ## What counts as "using AI"
 
-- **Asking for a code snippet** → yes, disclose
-- **Asking for an explanation of an error** → yes, disclose
-- **Asking conceptual questions like "what's the difference between filter and slice"** → yes, disclose
-- **Spell-check / autocomplete in your editor** → no
-- **Searching Google and reading Stack Overflow** → no (that's just research)
-- **Reading the docs (`?function`)** → no
-
-When in doubt, disclose. There's no penalty for disclosing.
+- **Asking for a code snippet**: yes, disclose
+- **Asking for an explanation of an error**: yes, disclose
+- **Asking conceptual questions like "what's the difference between filter and slice"**: yes, disclose
+- **Spell-check / autocomplete in your editor**: no
+- **Searching Google and reading Stack Overflow**: no (that's just research)
+- **Reading the docs (`?function`)**: no
 
 # Activity {background-color="#7C0A02"}
 
 ## Activity: AI-assisted analysis, with verification
 
-Roughly 25 minutes. Working with a partner is recommended.
+Roughly 25 minutes
 
 - [Activity Canvas Link](https://psu.instructure.com/courses/2487468/assignments/)
 
 **Format:** I'll give you a moderately complex analysis question on a dataset. You'll:
 
 1. **Try to answer it with AI assistance.** Use whatever AI tool you want.
-2. **Check the result.** With your partner, find at least two things wrong, suspicious, or unverified about the AI's output.
+2. **Check the result.** Find at least two things wrong, suspicious, or unverified about the AI's output.
 3. **Fix what's broken.** Produce a verified, corrected version with documentation of what you found.
 
-You **must** disclose what AI you used and how. The deliverable is graded on the quality of your verification, not on whether your first attempt was correct.
+You **must** disclose what AI you used and how. The assignment is graded on the quality of your verification, not on whether your first attempt was correct.
 
 ## What verification looks like
 
@@ -319,18 +310,18 @@ When you verify your own AI output, you're looking for:
 - **Hallucinated functions**: does every function you used actually exist? Did you check `?function_name`?
 - **Silent NA handling**: were rows dropped? Were NAs propagated?
 - **Wrong grouping**: does the code group by what you actually wanted to group by?
-- **Wrong filter** — does the code keep what you wanted to keep?
-- **Unverified claims** — does the AI's *interpretation* of the result match what the numbers actually show?
-- **Plausible nonsense** — does the result match what you'd expect given the data?
+- **Wrong filter**: does the code keep what you wanted to keep?
+- **Unverified claims**: does the AI's *interpretation* of the result match what the numbers actually show?
+- **Plausible nonsense**: does the result match what you'd expect given the data?
 
 Write down what you found, what you changed, and why.
 
 ## Wrap-up & looking ahead
 
-**Next Monday:** Week 3 starts. We move from making plots to **wrangling data** — joins, pivots, the full `dplyr` verb set.
+**Next Monday:** Week 3 starts. We move from making plots to **wrangling data** (joins, pivots, the full `dplyr` verb set).
 
 ::: {.callout-tip style="font-size: 1.1em;"}
-**Take-home for the weekend:** the next time you use AI for coding, try articulating to yourself what *every line* does before you run it. If you can't, that's the line to investigate.
+**Take-home for the weekend:** the next time you use AI for coding, try articulating to yourself what *every line* does before you run it. If you can't, that's the line to investigate further.
 :::
 
 :::: {.columns}

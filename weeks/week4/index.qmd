@@ -4,7 +4,7 @@ subtitle: "June 8 – 12, 2026"
 ---
 
 ::: callout-important
-**Exam is Thursday, June 11.** In-class portion in the morning (closed book, no AI); take-home portion released after class and due 11:59 p.m. that evening.
+**Exam is Thursday, June 11.**
 :::
 
 We cover the last major data-handling tools — joining multiple tables and importing data from various sources — and then sit the exam. Friday is a light day with Project Checkpoint 1 due that night.

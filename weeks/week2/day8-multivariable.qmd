@@ -56,7 +56,7 @@ Today we extend that to plots with **three, four, or more variables**, and clean
 
 ::: {.fragment .fade-in}
 ::: {.callout-tip style="font-size: 1.1em;"}
-The grammar of graphics is the *vocabulary*. The DC "specify a graph" steps are the *grammar* — the order you put the words in.
+The grammar of graphics is the *vocabulary*. The DC "specify a graph" steps are the *grammar*, or the order you put the words in.
 :::
 :::
 
@@ -97,7 +97,7 @@ Each additional aesthetic lets you encode another variable:
 Just because you *can* show 6 variables on one plot doesn't mean you *should*. Past 3–4, readers start losing track. Faceting is usually clearer than piling on aesthetics.
 :::
 
-## Two variables
+## Two variables {.scrollable .nostretch}
 
 The starting point. Just x and y.
 
@@ -114,7 +114,7 @@ ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
 This scatter looks like *longer bills are shallower*. We'll see in a minute why that's the opposite of the truth.
 :::
 
-## Three variables, with color
+## Three variables, with color {.scrollable .nostretch}
 
 Add `species` as the third variable via color:
 
@@ -126,9 +126,9 @@ ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
   geom_point(na.rm = TRUE)
 ```
 
-The negative trend we saw before was **Simpson's paradox** — *within* each species, longer bills are deeper. The pooled trend ran the wrong way because Gentoos (long bills, shallow bills) are a separate cluster from the other species.
+The negative trend we saw before was **Simpson's paradox**, i.e., *within* each species, longer bills are deeper. The pooled trend ran the wrong way because Gentoos (long bills, shallow bills) are a separate cluster from the other species.
 
-## Three variables, with shape
+## Three variables, with shape {.scrollable .nostretch}
 
 Same data, but using shape instead of color:
 
@@ -142,7 +142,7 @@ ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, shape = species)) +
 
 When is shape better than color? When your output might be **printed in black and white**, or when you specifically need color free for *another* variable.
 
-## Four variables: combine color and shape
+## Four variables: combine color and shape {.scrollable .nostretch}
 
 Map two different variables to color and shape at once:
 
@@ -155,11 +155,11 @@ ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm,
   geom_point(size = 2, na.rm = TRUE)
 ```
 
-This works — but readers have to track *two* legends and *two* mappings. The visual load gets heavy fast.
+This works, but readers have to track *two* legends and *two* mappings. The visual load gets heavy fast.
 
-## Five variables: add a facet
+## Five variables: add a facet {.scrollable .nostretch}
 
-When you're tempted to map a 5th aesthetic, try faceting instead:
+Instead of mapping a 5th aesthetic, try faceting instead:
 
 ```{r}
 #| echo: TRUE
@@ -171,11 +171,11 @@ ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm,
   facet_wrap(~island)
 ```
 
-Now we can see species × sex × island all at once — and crucially, see that Gentoos only live on Biscoe and Adélies live everywhere.
+Now we can see species × sex × island all at once and, crucially, see that Gentoos only live on Biscoe and Adélies live everywhere.
 
 # Facets in depth {background-color="#001E44"}
 
-## `facet_wrap()` vs `facet_grid()`
+## `facet_wrap()` vs `facet_grid()` {.scrollable .nostretch}
 
 Two related functions, different jobs:
 
@@ -213,7 +213,7 @@ ggplot(penguins,
 :::
 :::
 
-## The `.` placeholder in `facet_grid()`
+## The `.` placeholder in `facet_grid()` {.scrollable .nostretch}
 
 Use `.` when you only want to facet on one axis but still want `facet_grid`'s behavior:
 
@@ -229,7 +229,7 @@ Use `.` when you only want to facet on one axis but still want `facet_grid`'s be
 
 The first gives you one tall column of three plots stacked vertically; the second gives you one wide row of three plots side-by-side.
 
-## When rows beat columns (or vice versa)
+## When rows beat columns (or vice versa) {.scrollable .nostretch}
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -265,7 +265,7 @@ Same info, less obvious.
 
 Rule of thumb: facet so that the **comparison you care about** is along the **longer axis** of the panel.
 
-## Free vs. fixed scales in facets
+## Free vs. fixed scales in facets {.scrollable .nostretch}
 
 By default, every facet shares the same x and y scale. That's almost always what you want for comparison.
 
@@ -280,17 +280,15 @@ ggplot(penguins, aes(x = body_mass_g)) +
   facet_wrap(~species, scales = "free")
 ```
 
-- `scales = "free_x"` — let x-axes differ across facets
-- `scales = "free_y"` — let y-axes differ across facets
-- `scales = "free"` — let both differ
+- `scales = "free_x"`: let x-axes differ across facets
+- `scales = "free_y"`: let y-axes differ across facets
+- `scales = "free"`: let both differ
 
 ::: {.callout-warning}
 Free scales make individual facets readable but make *comparison* across facets misleading. If your goal is comparison, leave scales fixed.
 :::
 
-## When to facet vs. when to use color
-
-A choice you'll face constantly:
+## When to facet vs. when to use color {.scrollable .nostretch}
 
 | Use **color** when... | Use **facets** when... |
 |---|---|
@@ -301,11 +299,11 @@ A choice you'll face constantly:
 
 : Color or facet? {tbl-colwidths="[50,50]"}
 
-For larger datasets with overlap, **facets almost always win** — color blends together in dense regions.
+For larger datasets with overlap, **facets almost always win**. Color blends together in dense regions.
 
 # Specifying a graph {background-color="#001E44"}
 
-## The DC workflow
+## The DC workflow {.scrollable .nostretch}
 
 From DC §8.1, here's the process for building any ggplot:
 
@@ -318,11 +316,11 @@ From DC §8.1, here's the process for building any ggplot:
 
 This mirrors the function structure of ggplot2: `ggplot()` makes the frame, `geom_*()` adds layers, `aes()` does the mapping, `+` adds refinements.
 
-## Worked example: bill length vs. depth
+## Worked example: bill length vs. depth {.scrollable .nostretch}
 
 **Question:** How does the relationship between bill length and bill depth vary by species and sex?
 
-**Step 1 — Define the frame.** x and y are both numeric measurements:
+**Step 1: Define the frame.** x and y are both numeric measurements:
 
 ```{r}
 #| echo: TRUE
@@ -330,7 +328,7 @@ This mirrors the function structure of ggplot2: `ggplot()` makes the frame, `geo
 ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm))
 ```
 
-**Step 2 — First layer: points.** Map `species` to color, `sex` to shape:
+**Step 2: First layer: points.** Map `species` to color, `sex` to shape:
 
 ```{r}
 #| echo: TRUE
@@ -338,7 +336,7 @@ ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm))
 ... + geom_point(aes(color = species, shape = sex), size = 2, na.rm = TRUE)
 ```
 
-**Step 3 — Second layer: smoothers, one per species.** No sex distinction here:
+**Step 3: Second layer: smoothers, one per species.** No sex distinction here:
 
 ```{r}
 #| echo: TRUE
@@ -346,7 +344,7 @@ ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm))
 ... + geom_smooth(aes(color = species), method = "lm", se = FALSE)
 ```
 
-## Putting it all together
+## Putting it all together {.scrollable .nostretch}
 
 ```{r}
 #| echo: TRUE
@@ -365,7 +363,7 @@ ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
 
 # Axes, labels, and scales {background-color="#001E44"}
 
-## Labels are not optional
+## Labels are not optional {.scrollable .nostretch}
 
 The single highest-impact, lowest-effort improvement you can make to any plot:
 
@@ -384,13 +382,13 @@ The single highest-impact, lowest-effort improvement you can make to any plot:
 
 **What goes where:**
 
-- `title` — what the plot shows
-- `subtitle` — the nuance or context the title leaves out
-- `x`, `y` — what's on the axis, *with units*
-- `caption` — data source, methodology notes
-- legend titles — name of the aesthetic mapping (`color =`, `shape =`, etc.)
+- `title`: what the plot shows
+- `subtitle`: the nuance or context the title leaves out
+- `x`, `y`: what's on the axis, *with units*
+- `caption`: data source, methodology notes
+- legend titles: name of the aesthetic mapping (`color =`, `shape =`, etc.)
 
-## DC's axis-customization toolkit
+## DC's axis-customization toolkit {.scrollable .nostretch}
 
 From §8.2:
 
@@ -408,7 +406,7 @@ From §8.2:
 `ylim(0, 100)` **drops** any row with y outside that range. This affects smoothers, summary statistics, everything. Use `coord_cartesian(ylim = c(0, 100))` to just zoom the visible window.
 :::
 
-## When to log-transform an axis
+## When to log-transform an axis {.scrollable .nostretch}
 
 If a variable spans **several orders of magnitude**, the raw scale will squish everything together at the bottom:
 
@@ -422,7 +420,7 @@ ggplot(msleep, aes(x = bodywt, y = sleep_total)) +
 
 Everything is jammed against the left edge. The elephant ruins the plot.
 
-## Log axis fixes it
+## Log axis fixes it {.scrollable .nostretch}
 
 ```{r}
 #| echo: TRUE
@@ -440,7 +438,7 @@ Now you can see the actual relationship: heavier animals sleep less. The slope w
 **When to log:** ratios matter more than absolute differences (e.g., the difference between 1g and 10g matters about as much as 1kg vs 10kg); your data spans orders of magnitude; you're plotting counts/prices/populations.
 :::
 
-## Continuous color scales
+## Continuous color scales {.scrollable .nostretch}
 
 A categorical variable maps to a *qualitative* palette (distinct hues). A continuous one maps to a *gradient*.
 
@@ -457,11 +455,11 @@ ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm,
 
 `scale_color_viridis_c()` is the gold standard for continuous color: perceptually uniform, colorblind-friendly, prints fine in greyscale. The `_c` is for continuous; `_d` exists for discrete.
 
-## Sequential vs. diverging palettes
+## Sequential vs. diverging palettes {.scrollable .nostretch}
 
 ::: {.columns}
 ::: {.column width="50%"}
-**Sequential** — for data that runs from low to high (or none → lots).
+**Sequential**: for data that runs from low to high (or none → lots).
 
 `scale_color_viridis_c()`, `scale_color_gradient(low, high)`
 
@@ -469,7 +467,7 @@ Body mass, age, count, distance from origin.
 :::
 
 ::: {.column width="50%"}
-**Diverging** — for data that runs above and below a meaningful midpoint.
+**Diverging**: for data that runs above and below a meaningful midpoint.
 
 `scale_color_gradient2(low, mid, high, midpoint = 0)`
 
@@ -478,12 +476,12 @@ Temperature anomaly, growth rate, correlation, vote margin.
 :::
 
 ::: {.callout-warning}
-The classic mistake is using a diverging palette (red-white-blue) for sequential data, or vice versa. Diverging implies "above/below zero matters" — if your data has no meaningful midpoint, don't use one.
+The classic mistake is using a diverging palette (red-white-blue) for sequential data, or vice versa. Diverging implies "above/below zero matters"--- if your data has no meaningful midpoint, don't use one.
 :::
 
 # Coordinate systems (briefly) {background-color="#001E44"}
 
-## When you might change the coord
+## When you might change the coord {.scrollable .nostretch}
 
 Most plots use the default Cartesian coordinates. A few cases call for something else:
 
@@ -501,7 +499,7 @@ Most plots use the default Cartesian coordinates. A few cases call for something
 Pie charts are bar charts in polar coordinates. The reason pie charts are usually worse than bars is exactly because polar coordinates make length comparisons harder than the original Cartesian bar.
 :::
 
-## Long labels: swap x and y
+## Long labels: swap x and y {.scrollable .nostretch}
 
 ```{r}
 #| echo: TRUE
@@ -518,7 +516,7 @@ Modern ggplot2 lets you just swap the `x =` and `y =` mappings directly (which i
 
 # The big picture {background-color="#001E44"}
 
-## Where we are
+## Where we are {.scrollable .nostretch}
 
 You now have *every* layer of the ggplot2 template:
 
@@ -535,16 +533,16 @@ ggplot(data = <DATA>) +
   labs(...)
 ```
 
-The hard part isn't the syntax — it's deciding **what to put in each slot** to answer the question you actually have.
+The hard part isn't the syntax, it's deciding **what to put in each slot** to answer the question you actually have.
 
-## What we covered today
+## What we covered today {.scrollable .nostretch}
 
 - **Multivariable plots:** color + shape + facet for 3–5 variables; faceting beats piling on aesthetics
 - **Facets:** `facet_wrap` vs `facet_grid`, the `.` placeholder, free vs fixed scales, when to put a variable on rows vs columns
 - **Specifying a graph:** frame → layer → refine
 - **Axes & labels:** `labs()` is non-negotiable; `xlim` drops data, `coord_cartesian` doesn't; log scales when data spans orders of magnitude
 - **Color scales:** viridis for continuous, qualitative palettes for categorical, diverging *only* when there's a meaningful midpoint
-- **Coordinate systems:** flip, fixed, polar — useful for a few specific cases
+- **Coordinate systems:** flip, fixed, polar. This is useful for a few specific cases
 
 # Activity {background-color="#7C0A02"}
 
@@ -558,7 +556,7 @@ Roughly 25 minutes. Working individually or with a neighbor.
 
 This is the highest-leverage exercise for cementing the layer-by-layer thinking: you have to look at a plot, identify its frame, identify its glyphs, identify each aesthetic mapping, and work out which functions to call.
 
-**To turn in:** Save your `.qmd` and rendered HTML — we'll check at the end of class.
+**To turn in:** Save your `.qmd` and rendered HTML.
 
 ## Wrap-up & looking ahead
 

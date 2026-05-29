@@ -30,10 +30,10 @@ This schedule is tentative and subject to change. Substantive changes will be an
 | Date | Topic | Read before class | Due |
 |---|---|---|---|
 | Mon May 25 | **No class - Memorial Day** | --- | --- |
-| Tue May 26 | Data frames · intro to data graphics | [DC §5.1–5.6](https://psu.instructure.com/courses/2487468/assignments/18317722) | --- |
-| Wed May 27 | ggplot2 basics · frames, glyphs, scales, facets | [DC §6.1–6.5](https://psu.instructure.com/courses/2487468/assignments/18317724) | --- |
-| Thu May 28 | Multivariable graphics · specifying graphs · axes & labels | [DC §8.1–8.3](https://psu.instructure.com/courses/2487468/assignments/18317726) | --- |
-| Fri May 29 | **Quiz 2** · graphics critique activity | --- | [HW 2: Pipes, Plots & Reading Graphics](https://psu.instructure.com/courses/2487468/assignments/18318785) · Quiz 2 (in class) |
+| Tue May 26 | Data frames · tibbles · grammar of graphics | [DC §5.1–5.6](https://psu.instructure.com/courses/2487468/assignments/18317722) | --- |
+| Wed May 27 | ggplot2 basics · aesthetics · geoms | [DC §6.1–6.5](https://psu.instructure.com/courses/2487468/assignments/18317724) | --- |
+| Thu May 28 | Multivariable graphics · facets · scales | [DC §8.1–8.3](https://psu.instructure.com/courses/2487468/assignments/18317726) | --- |
+| Fri May 29 | **Quiz 2** · AI coding/critique activity | --- | [HW 2: Pipes, Plots & Reading Graphics](https://psu.instructure.com/courses/2487468/assignments/18318785) · Quiz 2 (in class) |
 
 : Week 2 schedule {tbl-colwidths="[10,35,25,30]"}
 
@@ -41,11 +41,11 @@ This schedule is tentative and subject to change. Substantive changes will be an
 
 | Date | Topic | Read before class | Due |
 |---|---|---|---|
-| Mon Jun 1 | Wrangling concepts · reduction & transformation · `group_by` | [DC §7.1–7.7]() | --- |
-| Tue Jun 2 | The data verbs: `select`, `filter`, `mutate`, `arrange` | [DC §10.1–10.6]() | [HW 3]() |
+| Mon Jun 1 | Wrangling concepts · reduction & transformation · `group_by` | [DC §7.1–7.7](https://psu.instructure.com/courses/2487468/assignments/18323235) | --- |
+| Tue Jun 2 | The data verbs: `select`, `filter`, `mutate`, `arrange` | [DC §10.1–10.6](https://psu.instructure.com/courses/2487468/assignments/18325370) | [HW 3]() |
 | Wed Jun 3 | Deeper practice with `group_by` and `summarize` | (Review Ch 7, 10) | --- |
-| Thu Jun 4 | Reshaping: `pivot_longer`, `pivot_wider` | [DC §12.1]() | [**Project: Team formation**]() |
-| Fri Jun 5 | **Quiz 3** · Git/GitHub for collaboration | [DC §9.1–9.2]() | Quiz 3 (in class) |
+| Thu Jun 4 | Reshaping: `pivot_longer`, `pivot_wider` | [DC §12.1]() | [**Project: Team formation**](https://psu.instructure.com/courses/2487468/assignments/18325371) |
+| Fri Jun 5 | **Quiz 3** · Git/GitHub for collaboration | [DC §9.1–9.2](https://psu.instructure.com/courses/2487468/assignments/18325372) | Quiz 3 (in class) |
 
 : Week 3 schedule {tbl-colwidths="[10,35,25,30]"}
 
@@ -55,11 +55,11 @@ This schedule is tentative and subject to change. Substantive changes will be an
 
 | Date | Topic | Read before class | Due |
 |---|---|---|---|
-| Mon Jun 8 | Joining tables: `inner_join`, `left_join`, anti-joins | [DC §11.1–11.3]() | [Reading Quiz 4]() |
-| Tue Jun 9 | Importing data: CSV, Excel, factors vs strings, cleaning | [DC §16.1–16.2, 16.4–16.5]() | [HW 4]() |
+| Mon Jun 8 | Joining tables: `inner_join`, `left_join`, anti-joins | [DC §11.1–11.3](https://psu.instructure.com/courses/2487468/assignments/18325373) | |
+| Tue Jun 9 | Importing data: CSV, Excel, factors vs strings, cleaning | [DC §16.1–16.2, 16.4–16.5](https://psu.instructure.com/courses/2487468/assignments/18325374) | [HW 4]() |
 | Wed Jun 10 | **Exam review** · practice problems in class | --- | --- |
 | **Thu Jun 11** | **EXAM (in-class, on paper, closed book)** | --- | --- |
-| Fri Jun 12 | Light day · web scraping & HTML tables | [DC §16.3]() | [**Project Checkpoint 1**]() |
+| Fri Jun 12 | Light day · web scraping & HTML tables | [DC §16.3](https://psu.instructure.com/courses/2487468/assignments/18325375) | [**Project Checkpoint 1**]() |
 
 : Week 4 schedule {tbl-colwidths="[10,35,25,30]"}
 
@@ -71,10 +71,10 @@ Week 5 covers material that *Data Computing* doesn't address in depth. Readings 
 
 | Date | Topic | Read before class | Due |
 |---|---|---|---|
-| Mon Jun 15 | Writing functions in R | [R4DS Ch 25 (Functions)](https://r4ds.hadley.nz/functions) | --- |
-| Tue Jun 16 | Control flow · `if/else`, `for`, `while` | [R4DS Ch 26 §26.1–26.3](https://r4ds.hadley.nz/iteration) | [HW 4]() |
-| Wed Jun 17 | Vectorized operations · `purrr::map` | [R4DS Ch 26 §26.4–26.5](https://r4ds.hadley.nz/iteration) | --- |
-| Thu Jun 18 | Strings, dates, and regex | [DC §17.1–17.2]() | **Project oral check-in #1** (during class) |
+| Mon Jun 15 | Writing functions in R | [R4DS Ch 25 (Functions)](https://psu.instructure.com/courses/2487468/assignments/18325376) | --- |
+| Tue Jun 16 | Control flow · `if/else`, `for`, `while` | [R4DS Ch 26 §26.1–26.3](https://psu.instructure.com/courses/2487468/assignments/18325377) | [HW 4]() |
+| Wed Jun 17 | Vectorized operations · `purrr::map` | [R4DS Ch 26 §26.4–26.5](https://psu.instructure.com/courses/2487468/assignments/18325378) | --- |
+| Thu Jun 18 | Strings, dates, and regex | [DC §17.1–17.2](https://psu.instructure.com/courses/2487468/assignments/18325379) | **Project oral check-in #1** (during class) |
 | Fri Jun 19 | **No class - Juneteenth** · Quiz 5 rescheduled to Mon Jun 22 | --- | --- |
 
 : Week 5 schedule {tbl-colwidths="[10,35,25,30]"}
@@ -83,8 +83,8 @@ Week 5 covers material that *Data Computing* doesn't address in depth. Readings 
 
 | Date | Topic | Read before class | Due |
 |---|---|---|---|
-| Mon Jun 22 | **Quiz 5 (rescheduled)** · unsupervised learning, clustering | [DC §18.2]() | Quiz 5 (in class) |
-| Tue Jun 23 | Decision trees / CART | [DC §18.3]() | [HW 5]() |
+| Mon Jun 22 | **Quiz 5 (rescheduled)** · unsupervised learning, clustering | [DC §18.2](https://psu.instructure.com/courses/2487468/assignments/18325380) | Quiz 5 (in class) |
+| Tue Jun 23 | Decision trees / CART | [DC §18.3](https://psu.instructure.com/courses/2487468/assignments/18325381) | [HW 5]() |
 | Wed Jun 24 | **Project work day** · oral check-in #1 makeups | --- | [**Project Checkpoint 2**]() |
 | Thu Jun 25 | **Project work day** · oral check-in #2 (final walkthrough) | --- | --- |
 | Fri Jun 26 | **Quiz 6** · short project presentations · course wrap-up | --- | Quiz 6 (in class) · [**Final project report due 11:59 p.m.**]() |

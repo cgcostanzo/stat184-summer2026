@@ -14,7 +14,6 @@ format:
         \usepackage[labelfont=bf, format=plain, labelsep=colon]{caption}
 execute:
   enabled: true
-  freeze: auto
 editor: source
 ---
 
@@ -33,9 +32,9 @@ editor: source
 
 ### Setup
 
-Run the chunk below to load the necessary packages. Make sure `tidyverse`, `palmerpenguins`, `nycflights13`, `maps`, and `colorspace` are installed before you start.
+Run the chunk below to load the necessary packages. Make sure `tidyverse`, `palmerpenguins`, `nycflights13`, `maps`, `colorspace`, and `sf` are installed before you start.
 
-- Run `install.packages(c("palmerpenguins", "nycflights13", "maps", "colorspace"))` in the **Console** once if you haven't already.
+- Run `install.packages(c("palmerpenguins", "nycflights13", "maps", "colorspace", "sf"))` in the **Console** once if you haven't already.
 
 *Note: we'll also use the `msleep` dataset, which comes pre-loaded with `ggplot2` (part of the tidyverse).*
 
@@ -45,6 +44,7 @@ library(palmerpenguins)
 library(nycflights13)
 library(maps)
 library(colorspace)
+library(sf)
 ```
 
 You will also need two data files for Question 4. Download them from Canvas and put them in the **same folder** as this `.qmd`:

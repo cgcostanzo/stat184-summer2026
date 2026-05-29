@@ -32,7 +32,7 @@ glimpse(penguins)
 
 Below are **four target plots**, generated for you in advance. Your job is to **recreate each one as closely as you can** using `ggplot2`, then write **one sentence** about what each plot reveals about the penguins.
 
-You won't get pixel-perfect matches — themes, exact colors, and tiny details may differ. Aim to match:
+You won't get perfect matches. Themes, exact colors, and tiny details may differ. Aim to match:
 
 - The frame (which variables are on x and y)
 - The glyph (which geom)
@@ -40,11 +40,9 @@ You won't get pixel-perfect matches — themes, exact colors, and tiny details m
 - Any axis transformations or labels
 - Anything else that's clearly *intentional* in the target
 
-Look closely. A target plot with three colors and three facets is showing you something different than one with three colors and no facets.
-
 ---
 
-## Target 1 — Bills, with species and a smoother
+## Target 1 --- Bills, with species and a smoother
 
 ```{r target1, echo=FALSE, fig.width=7, fig.height=4, warning=FALSE, message=FALSE}
 ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
@@ -70,7 +68,7 @@ ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) +
 
 ---
 
-## Target 2 — Body mass distribution by species and sex
+## Target 2 --- Body mass distribution by species and sex
 
 ```{r target2, echo=FALSE, fig.width=8, fig.height=4, warning=FALSE, message=FALSE}
 penguins |>
@@ -101,7 +99,7 @@ penguins |>
 
 ---
 
-## Target 3 — Flipper length vs. body mass, with continuous color
+## Target 3 --- Flipper length vs. body mass, with continuous color
 
 ```{r target3, echo=FALSE, fig.width=7, fig.height=4, warning=FALSE, message=FALSE}
 ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, color = bill_length_mm)) +
@@ -122,7 +120,7 @@ ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, color = bill_length
 
 ```
 
-*Hint: this plot encodes **four** variables. The continuous color scale is from the viridis package — see the slide on continuous color.*
+*Hint: this plot encodes **four** variables. The continuous color scale is from the viridis package.
 
 **What does this plot reveal?**
 
@@ -130,7 +128,7 @@ ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm, color = bill_length
 
 ---
 
-## Target 4 — Counts of penguins by island and species
+## Target 4 --- Counts of penguins by island and species
 
 ```{r target4, echo=FALSE, fig.width=7, fig.height=4, warning=FALSE, message=FALSE}
 ggplot(penguins, aes(x = island, fill = species)) +
@@ -159,7 +157,7 @@ ggplot(penguins, aes(x = island, fill = species)) +
 
 # Wrap-up
 
-Once you've matched all four, take a moment to reflect:
+Once you've matched all four, answer the following question:
 
 **Which target was hardest?** Was it the one with the most variables, or one with a subtler design choice?
 
