@@ -1079,7 +1079,7 @@ margin-right: 0; }
 <ul>
 <li>The wrangling <em>mindset</em>: start from the table you wish you had</li>
 <li>The three function families: <strong>reduction</strong>, <strong>transformation</strong>, <strong>data verb</strong></li>
-<li>Your first two data verbs: <code>summarise()</code> and <code>group_by()</code></li>
+<li>Your first two data verbs: <code>summarize()</code> and <code>group_by()</code></li>
 <li>The <code>na.rm</code> trap (we saw it bite the AI on Friday)</li>
 <li>Why every summary needs an <code>n()</code></li>
 </ul>
@@ -1110,15 +1110,15 @@ margin-right: 0; }
 </div>
 </div>
 </div>
-<p>Today is the conceptual backbone of the whole week. We won’t learn many <em>functions</em> today, instead we’ll build the <strong>mental model</strong> that every wrangling function hangs off of.</p>
+<p>Today we will build the <strong>mental model</strong> that every wrangling function hangs off of.</p>
 </section>
 <section id="a-note-on-the-pipe" class="slide level2">
 <h2>A note on the pipe</h2>
-<p>You learned <code>|&gt;</code> in week 1. Everything today chains with it: read it as the word <strong>“then.”</strong></p>
+<p>We’ve learned <code>|&gt;</code>. Read it as the word <strong>“then.”</strong></p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>penguins <span class="sc">|&gt;</span>           <span class="co"># take penguins, then</span></span>
 <span id="cb1-2"><a></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span> <span class="co">#   group it, then</span></span>
-<span id="cb1-3"><a></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>())   <span class="co">#   summarise it</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-3"><a></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>())   <span class="co">#   summarize it</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -1129,7 +1129,7 @@ margin-right: 0; }
 <p><strong>Note</strong></p>
 </div>
 <div class="callout-content">
-<p>The <em>DC</em> reading writes the pipe as <code>%&gt;%</code>. For everything we do this term, <code>|&gt;</code> and <code>%&gt;%</code> behave identically, so read them as the same word. We’ll use <code>|&gt;</code>.</p>
+<p>The <em>DC</em> reading writes the pipe as <code>%&gt;%</code>. <code>|&gt;</code> and <code>%&gt;%</code> behave identically, so read them as the same word. We’ll use <code>|&gt;</code>.</p>
 </div>
 </div>
 </div>
@@ -1139,11 +1139,11 @@ margin-right: 0; }
 <h1>The wrangling mindset</h1>
 
 </section>
-<section id="start-from-the-table-you-wish-you-had" class="slide level2">
-<h2>Start from the table you wish you had</h2>
+<section id="start-from-the-table-you-want" class="slide level2">
+<h2>Start from the table you want</h2>
 <p><em>DC</em> §7.1 gives the single most useful habit in this whole unit:</p>
 <blockquote>
-<p>Before touching the keyboard, sketch the <strong>glyph-ready table</strong> you need, then plan the steps to get there in <strong>plain English</strong>.</p>
+<p>Before any coding, sketch the <strong>glyph-ready table</strong> you need, then plan the steps to get there in <strong>plain English</strong>.</p>
 </blockquote>
 <p>For “how does average body mass differ by species?”, the table you <em>wish</em> you had is:</p>
 <table class="caption-top">
@@ -1168,7 +1168,7 @@ margin-right: 0; }
 </tr>
 </tbody>
 </table>
-<p>One row per species, one column for the number you want. <strong>The case is a species, not a penguin.</strong> That shift, many rows in becoming one row per group out, is what <code>summarise()</code> and <code>group_by()</code> do.</p>
+<p>Here we have one row per species and one column for the number you want. <strong>The case is a species, not a penguin.</strong> That shift in what one row represents is from <code>summarize()</code> and <code>group_by()</code>.</p>
 </section>
 <section id="plan-in-english-first" class="slide level2">
 <h2>Plan in English first</h2>
@@ -1179,7 +1179,7 @@ margin-right: 0; }
 <li>Split into groups by age-decade and sex.</li>
 <li>For each group, count people and count smokers; divide.</li>
 </ol>
-<p>Each sentence maps to <strong>one operation</strong>. Today we learn the vocabulary for sentences like #3 (<em>split into groups</em>) and #4 (<em>for each group, count / average</em>). The rest comes tomorrow.</p>
+<p>Each sentence maps to <strong>one operation</strong>. Today we learn the vocabulary for sentences like #3 (<em>split into groups</em>) and #4 (<em>for each group, count / average</em>).</p>
 </section></section>
 <section>
 <section id="a-framework-for-wrangling" class="title-slide slide level1 center" data-background-color="#001E44">
@@ -1194,9 +1194,8 @@ margin-right: 0; }
 <li>A <strong>variable</strong>: one column</li>
 <li>A <strong>scalar</strong>: a single value</li>
 </ul>
-<p>…and three families of functions, sorted by <strong>what goes in and what comes out</strong>:</p>
+<p>and three families of functions, sorted by <strong>what goes in and what comes out</strong>:</p>
 <table class="caption-top">
-<caption>The whole week, in one table.</caption>
 <colgroup>
 <col style="width: 22%">
 <col style="width: 33%">
@@ -1223,7 +1222,7 @@ margin-right: 0; }
 <tr class="odd">
 <td><strong>Data verb</strong></td>
 <td>data frame → data frame</td>
-<td><code>summarise()</code>, <code>group_by()</code>, <code>filter()</code>, <code>mutate()</code>, …</td>
+<td><code>summarize()</code>, <code>group_by()</code>, <code>filter()</code>, <code>mutate()</code>, …</td>
 </tr>
 </tbody>
 </table>
@@ -1237,7 +1236,7 @@ margin-right: 0; }
 <pre><code>[1] 4201.754</code></pre>
 </div>
 </div>
-<p>You already know most of them: <code>mean()</code>, <code>sum()</code>, <code>median()</code>, <code>sd()</code>, <code>min()</code>, <code>max()</code>. Two you might not:</p>
+<p>We’ve used many of these before: <code>mean()</code>, <code>sum()</code>, <code>median()</code>, <code>sd()</code>, <code>min()</code>, <code>max()</code>. Here are two new ones:</p>
 <ul>
 <li><code>n()</code> — how many cases (takes <strong>no</strong> arguments)</li>
 <li><code>n_distinct()</code> — how many <em>different</em> values</li>
@@ -1251,13 +1250,13 @@ margin-right: 0; }
 <p><strong>Note</strong></p>
 </div>
 <div class="callout-content">
-<p><code>n()</code> is special: it doesn’t look at any column, it just counts rows. It only works <em>inside</em> a data verb like <code>summarise()</code>, not on its own.</p>
+<p><code>n()</code> doesn’t look at any column, it simply counts rows. It only works <em>inside</em> a data verb like <code>summarize()</code>, not on its own.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="transformation-functions-column-column" class="slide level2">
-<h2>Transformation functions: column → column</h2>
+<section id="transformation-functions-column-to-column" class="slide level2">
+<h2>Transformation functions: column to column</h2>
 <p>A <strong>transformation</strong> runs once <em>per row</em> and hands back a column the same length as the input (<em>DC</em> §7.4).</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">head</span>(penguins<span class="sc">$</span>body_mass_g <span class="sc">/</span> <span class="dv">1000</span>)   <span class="co"># grams to kg, one value per row</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1281,21 +1280,21 @@ margin-right: 0; }
 <p><strong>Tip</strong></p>
 </div>
 <div class="callout-content">
-<p><strong>Reduction vs. transformation in one question:</strong> does it give back <em>one</em> number, or <em>one per row</em>? <code>mean()</code> → one. <code>round()</code> → one per row.</p>
+<p><strong>Reduction vs. transformation in one question:</strong> does it give back <em>one</em> number, or <em>one per row</em>? <code>mean()</code> to one. <code>round()</code> to one per row.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="data-verbs-data-frame-data-frame" class="slide level2">
-<h2>Data verbs: data frame → data frame</h2>
-<p>A <strong>data verb</strong> takes a whole data frame and returns a whole (new) data frame (<em>DC</em> §7.5). R4DS §3.1.3 says the same thing as three rules every dplyr verb obeys:</p>
+<section id="data-verbs-data-frame-to-data-frame" class="slide level2">
+<h2>Data verbs: data frame to data frame</h2>
+<p>A <strong>data verb</strong> takes a whole data frame and returns a whole (new) data frame (<em>DC</em> §7.5). Here are three rules every dplyr verb obeys:</p>
 <ol type="1">
 <li>The <strong>first argument is always a data frame</strong>.</li>
 <li>The other arguments name <strong>columns</strong>, unquoted.</li>
-<li>The <strong>output is always a new data frame</strong> — the input is never modified.</li>
+<li>The <strong>output is always a new data frame</strong>; the input is never modified.</li>
 </ol>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>penguins <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="at">avg =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>penguins <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="at">avg =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb8-2"><a></a><span class="co"># penguins itself is unchanged; you get a NEW data frame back</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-warning callout-titled callout-style-default">
@@ -1307,35 +1306,34 @@ margin-right: 0; }
 <p><strong>Warning</strong></p>
 </div>
 <div class="callout-content">
-<p>Because verbs never modify their input, <code>penguins |&gt; summarise(...)</code> on its own just <strong>prints</strong>. To keep a result, assign it: <code>out &lt;- penguins |&gt; summarise(...)</code>.</p>
+<p>Because verbs never modify their input, <code>penguins |&gt; summarize(...)</code> on its own just <strong>prints</strong>. To keep a result, assign it: <code>out &lt;- penguins |&gt; summarize(...)</code>.</p>
 </div>
 </div>
 </div>
 </section>
 <section id="each-step-one-verb-helpers" class="slide level2">
 <h2>Each step = one verb + helpers</h2>
-<p>The key sentence from <em>DC</em> §7.2:</p>
 <blockquote>
 <p>Each step in data wrangling involves a <strong>data verb</strong> and one or more <strong>reduction or transformation functions.</strong></p>
 </blockquote>
 <p>The verb is the <em>action on the table</em>; the reduction/transformation is the <em>detail of what to compute</em>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a></a>  <span class="fu">summarise</span>(<span class="at">avg_mass =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb9-2"><a></a>  <span class="fu">summarize</span>(<span class="at">avg_mass =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb9-3"><a></a><span class="co">#         └─ data verb ┘ └─ reduction function ┘</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section></section>
 <section>
-<section id="summarise" class="title-slide slide level1 center" data-background-color="#001E44">
-<h1>summarise()</h1>
+<section id="summarize" class="title-slide slide level1 center" data-background-color="#001E44">
+<h1>summarize()</h1>
 
 </section>
-<section id="summarise-collapse-a-table-to-a-summary" class="slide level2">
-<h2>summarise(): collapse a table to a summary</h2>
-<p><code>summarise()</code> turns many rows into <strong>one row</strong>, using reduction functions (<em>DC</em> §7.5, R4DS §3.5.2).</p>
+<section id="summarize-collapse-a-table-to-a-summary" class="slide level2">
+<h2>summarize(): collapse a table to a summary</h2>
+<p><code>summarize()</code> turns many rows into <strong>one row</strong>, using reduction functions.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a></a>  <span class="fu">summarise</span>(</span>
+<span id="cb10-2"><a></a>  <span class="fu">summarize</span>(</span>
 <span id="cb10-3"><a></a>    <span class="at">n        =</span> <span class="fu">n</span>(),</span>
 <span id="cb10-4"><a></a>    <span class="at">avg_mass =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
 <span id="cb10-5"><a></a>    <span class="at">max_mass =</span> <span class="fu">max</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
@@ -1358,7 +1356,7 @@ margin-right: 0; }
 <p>Watch what happens without <code>na.rm = TRUE</code>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a></a>  <span class="fu">summarise</span>(<span class="at">avg_mass =</span> <span class="fu">mean</span>(body_mass_g))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-2"><a></a>  <span class="fu">summarize</span>(<span class="at">avg_mass =</span> <span class="fu">mean</span>(body_mass_g))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 1
   avg_mass
@@ -1376,7 +1374,7 @@ margin-right: 0; }
 <p><strong>Warning</strong></p>
 </div>
 <div class="callout-content">
-<p>This is <strong>exactly</strong> the AI failure we dissected on Friday: code that runs, looks fine, and quietly returns <code>NA</code>. The fix is <code>na.rm = TRUE</code>, but the <em>skill</em> is noticing the <code>NA</code> in the first place.</p>
+<p>This is the AI failure we dissected on Friday: code that runs, looks fine, and quietly returns <code>NA</code>. The fix is <code>na.rm = TRUE</code>, but the <em>skill</em> is noticing the <code>NA</code> in the first place.</p>
 </div>
 </div>
 </div>
@@ -1386,13 +1384,13 @@ margin-right: 0; }
 <h1>group_by()</h1>
 
 </section>
-<section id="group_by-summarise-but-per-group" class="slide level2">
-<h2>group_by(): summarise, but per group</h2>
-<p><code>group_by()</code> doesn’t compute anything itself. It <strong>tags</strong> the data frame so the <em>next</em> verb runs once per group (<em>DC</em> §7.6, R4DS §3.5.1).</p>
+<section id="group_by-summarize-but-per-group" class="slide level2">
+<h2>group_by(): summarize, but per group</h2>
+<p><code>group_by()</code> doesn’t compute anything itself. It <strong>tags</strong> the data frame so the <em>next</em> verb runs once per group.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb14-2"><a></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
-<span id="cb14-3"><a></a>  <span class="fu">summarise</span>(</span>
+<span id="cb14-3"><a></a>  <span class="fu">summarize</span>(</span>
 <span id="cb14-4"><a></a>    <span class="at">n        =</span> <span class="fu">n</span>(),</span>
 <span id="cb14-5"><a></a>    <span class="at">avg_mass =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb14-6"><a></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1405,7 +1403,7 @@ margin-right: 0; }
 3 Gentoo      124    5076.</code></pre>
 </div>
 </div>
-<p>Same <code>summarise()</code> as before, now <strong>one row per species</strong> instead of one row total.</p>
+<p>Same <code>summarize()</code> as before, now <strong>one row per species</strong> instead of one row total.</p>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1422,11 +1420,11 @@ margin-right: 0; }
 </section>
 <section id="grouping-by-more-than-one-variable" class="slide level2 scrollable nostretch">
 <h2>Grouping by more than one variable</h2>
-<p>List several columns to get one row per <strong>combination</strong> (<em>DC</em> §7.6, R4DS §3.5.4):</p>
+<p>List several columns to get one row per <strong>combination</strong>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb16-2"><a></a>  <span class="fu">group_by</span>(species, sex) <span class="sc">|&gt;</span></span>
-<span id="cb16-3"><a></a>  <span class="fu">summarise</span>(</span>
+<span id="cb16-3"><a></a>  <span class="fu">summarize</span>(</span>
 <span id="cb16-4"><a></a>    <span class="at">n        =</span> <span class="fu">n</span>(),</span>
 <span id="cb16-5"><a></a>    <span class="at">avg_mass =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb16-6"><a></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1447,13 +1445,13 @@ margin-right: 0; }
 </div>
 <p>Two things worth a pause:</p>
 <ul>
-<li>There’s an <code>NA</code> row for <code>sex</code> — some penguins have missing sex. <code>group_by()</code> keeps them as their own group. (Dropping them needs <code>filter()</code>, which is <strong>tomorrow</strong>.)</li>
-<li>You may see a message about the output being <em>“regrouped”</em> — that’s R4DS §3.5.4. Harmless for us; add <code>.groups = &quot;drop&quot;</code> to silence it.</li>
+<li>There’s an <code>NA</code> row for <code>sex</code> indicating some penguins have missing sex. <code>group_by()</code> keeps them as their own group. (Dropping them needs <code>filter()</code>.)</li>
+<li>You may see a message about the output being <em>“regrouped”</em>. This is harmless for us, and we can add <code>.groups = &quot;drop&quot;</code> to silence it.</li>
 </ul>
 </section>
 <section id="how-group_by-changes-the-case" class="slide level2 scrollable nostretch">
 <h2>How <code>group_by()</code> changes the case</h2>
-<p>Remember the mindset slide: wrangling changes <strong>what one row means.</strong></p>
+<p>Wrangling changes <strong>what one row means.</strong></p>
 <table class="caption-top">
 <caption><code>group_by()</code> resets the meaning of a case.</caption>
 <colgroup>
@@ -1472,15 +1470,15 @@ margin-right: 0; }
 <td>one penguin</td>
 </tr>
 <tr class="even">
-<td><code>... |&gt; summarise(n = n())</code></td>
+<td><code>... |&gt; summarize(n = n())</code></td>
 <td>the whole dataset</td>
 </tr>
 <tr class="odd">
-<td><code>... |&gt; group_by(species) |&gt; summarise(...)</code></td>
+<td><code>... |&gt; group_by(species) |&gt; summarize(...)</code></td>
 <td>one species</td>
 </tr>
 <tr class="even">
-<td><code>... |&gt; group_by(species, sex) |&gt; summarise(...)</code></td>
+<td><code>... |&gt; group_by(species, sex) |&gt; summarize(...)</code></td>
 <td>one species × sex combo</td>
 </tr>
 </tbody>
@@ -1494,7 +1492,7 @@ margin-right: 0; }
 <p><strong>Tip</strong></p>
 </div>
 <div class="callout-content">
-<p>Before you run a <code>group_by() |&gt; summarise()</code>, predict <strong>how many rows</strong> the result has. It’s the number of distinct group combinations. If your prediction is wrong, you’ve learned something about your data.</p>
+<p>Before you run a <code>group_by() |&gt; summarize()</code>, predict <strong>how many rows</strong> the result has. It’s the number of distinct group combinations. If your prediction is wrong, you’ve learned something about your data.</p>
 </div>
 </div>
 </div>
@@ -1506,11 +1504,11 @@ margin-right: 0; }
 </section>
 <section id="always-include-an-n" class="slide level2">
 <h2>Always include an <code>n()</code></h2>
-<p>R4DS §3.6 makes the case with baseball, but penguins make the same point. Average mass by the finest grouping:</p>
+<p>Average mass by the finest grouping:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb18-2"><a></a>  <span class="fu">group_by</span>(species, island, sex) <span class="sc">|&gt;</span></span>
-<span id="cb18-3"><a></a>  <span class="fu">summarise</span>(</span>
+<span id="cb18-3"><a></a>  <span class="fu">summarize</span>(</span>
 <span id="cb18-4"><a></a>    <span class="at">n        =</span> <span class="fu">n</span>(),</span>
 <span id="cb18-5"><a></a>    <span class="at">avg_mass =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
 <span id="cb18-6"><a></a>    <span class="at">.groups  =</span> <span class="st">&quot;drop&quot;</span></span>
@@ -1536,8 +1534,8 @@ margin-right: 0; }
 </div>
 <p>Some groups have a handful of birds, others have dozens. <strong>A mean from a group of 3 is not the same kind of fact as a mean from a group of 60.</strong></p>
 </section>
-<section id="the-habit" class="slide level2">
-<h2>The habit</h2>
+<section id="good-habit" class="slide level2">
+<h2>Good habit</h2>
 <div class="callout callout-warning callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1560,22 +1558,22 @@ margin-right: 0; }
 </section>
 <section id="whats-next" class="slide level2">
 <h2>What’s next</h2>
-<p>Today: the framework + <code>summarise()</code> + <code>group_by()</code>. That’s already enough to answer a lot of “how many / what’s the average, by group” questions.</p>
-<p>Tomorrow (<em>DC</em> Ch. 10, R4DS §3.2–3.3) we add the four verbs that <em>DC</em> §7.7 promised:</p>
+<p>Today: the framework + <code>summarize()</code> + <code>group_by()</code>. That’s already enough to answer a lot of “how many / what’s the average, by group” questions.</p>
+<p>Tomorrow (<em>DC</em> Ch. 10) we add the four verbs:</p>
 <ul>
 <li><code>filter()</code> — keep some <strong>rows</strong> (e.g. drop the <code>NA</code> sexes)</li>
 <li><code>select()</code> — keep some <strong>columns</strong></li>
 <li><code>mutate()</code> — add a <strong>new column</strong> (this is where transformations live)</li>
 <li><code>arrange()</code> — <strong>reorder</strong> rows</li>
 </ul>
-<p>Chained with today’s two, these handle “take a messy CSV and produce a useful summary,” which is the whole point of the week.</p>
+<p>With the two we covered today, these handle “take a messy CSV and produce a useful summary.”</p>
 </section>
 <section id="what-we-covered-today" class="slide level2">
 <h2>What we covered today</h2>
 <ul>
 <li><strong>The mindset:</strong> sketch the glyph-ready table, plan in English, one sentence per operation</li>
 <li><strong>The framework:</strong> reduction (variable→scalar), transformation (variable→variable), data verb (frame→frame)</li>
-<li><strong><code>summarise()</code>:</strong> many rows → one; named args become columns; output is a data frame</li>
+<li><strong><code>summarize()</code>:</strong> many rows to one; named args become columns; output is a data frame</li>
 <li><strong><code>na.rm = TRUE</code>:</strong> one <code>NA</code> poisons a whole reduction; spotting it is the skill</li>
 <li><strong><code>group_by()</code>:</strong> tags the frame so the next verb runs per group; changes what a “case” means</li>
 <li><strong><code>n()</code>:</strong> include it in every summary so you never trust a mean from three rows</li>
@@ -1592,7 +1590,7 @@ margin-right: 0; }
 <ul>
 <li><a href="https://psu.instructure.com/courses/2487468/assignments/">Activity Canvas Link</a></li>
 </ul>
-<p><strong>Format:</strong> a short handout in four parts. You’ll classify functions into the three families, build up <code>summarise()</code> and <code>group_by()</code> pipelines on <code>penguins</code>, deliberately trip the <code>na.rm</code> trap, and practice predicting the <strong>shape</strong> of a grouped result before you run it.</p>
+<p>You’ll classify functions into the three families, build up <code>summarize()</code> and <code>group_by()</code> pipelines on <code>penguins</code>, deliberately trip the <code>na.rm</code> trap, and practice predicting the <strong>shape</strong> of a grouped result before you run it.</p>
 <p><strong>To turn in:</strong> save your <code>.qmd</code> and rendered HTML.</p>
 </section>
 <section id="wrap-up-looking-ahead" class="slide level2">
