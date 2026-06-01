@@ -1,0 +1,393 @@
+---
+title: "The data verbs: select · filter · mutate · arrange"
+subtitle: "Tuesday, June 2, 2026"
+lang: en
+editor: source
+engine: knitr
+format:
+  revealjs:
+    slide-number: true
+    embed-resources: true
+    smaller: true
+    highlight-style: a11y
+    output-file: "day11-data-verbs-slides.html"
+  html:
+    toc: true
+    embed-resources: true
+    highlight-style: a11y
+    axe: true
+    output-file: "day11-data-verbs-page.html"
+  pdf:
+    fig-pos: "H"
+---
+
+```{r}
+#| echo: FALSE
+#| message: FALSE
+#| warning: FALSE
+library(tidyverse)
+library(palmerpenguins)
+```
+
+::: {.callout-note style="font-size: 1.3em;"}
+## [Today: Tuesday June 2]{style="font-size: 1.3em;"}
+
+**Before class**
+
+- **Perusall Assignment**: [*DC* §10.1–10.6](https://psu.instructure.com/courses/2487468/assignments/18325370)
+
+**Plan for today**
+
+- Four new data verbs: `filter`, `arrange`, `select`, `mutate`
+- Sorting verbs by *what they touch*: rows vs. columns
+- Combining verbs with the pipe into real pipelines
+- Formatting pipelines so they stay readable
+- Paying off yesterday's IOU: dropping the `NA` penguins
+
+**Helpful links**
+
+- [Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*R4DS* Ch. 3](https://r4ds.hadley.nz/data-transform) · [*R4DS* Ch. 4](https://r4ds.hadley.nz/workflow-style) · [*DC* Ch. 10](https://dtkaplan.github.io/DataComputingEbook/chap-more-data-verbs.html#chap:more-data-verbs) · [dplyr reference](https://dplyr.tidyverse.org/reference)
+:::
+
+## Recap from yesterday
+
+You have the **framework** and your first two data verbs:
+
+| Family | Input → Output | The verb that uses it |
+|---|---|---|
+| Reduction | variable → scalar | `summarise()` |
+| Transformation | variable → variable | *...today: `mutate()`* |
+| Data verb | data frame → data frame | all of them |
+
+: Where we left off. {tbl-colwidths="[28,42,30]"}
+
+`summarise()` is the home of reduction functions. Today you meet `mutate()`, the home of **transformation** functions, plus three verbs that reshape *which* rows and columns you keep.
+
+## A map of the verbs
+
+R4DS §3.1.3 organizes dplyr by **what each verb operates on**:
+
+| Touches... | Verbs | What changes |
+|---|---|---|
+| **Rows** | `filter()`, `arrange()` | which rows, and their order |
+| **Columns** | `select()`, `mutate()` | which columns, and new ones |
+| **Groups** | `group_by()`, `summarise()` | *(yesterday)* |
+
+: The dplyr toolkit. {tbl-colwidths="[20,42,38]"}
+
+::: {.callout-tip style="font-size: 1.1em;"}
+Every one of these obeys the same three rules: **first argument is a data frame, you name columns without quotes, and the output is a brand-new data frame.**
+:::
+
+# Rows: filter() {background-color="#001E44"}
+
+## filter(): keep the rows you want {.scrollable .nostretch}
+
+`filter()` keeps only the rows that pass a test (*DC* §10.2, R4DS §3.2.1):
+
+```{r}
+#| echo: TRUE
+penguins |>
+  filter(species == "Gentoo")
+```
+
+The test is a **transformation** that returns `TRUE`/`FALSE` for each row; `filter()` keeps the `TRUE`s.
+
+## The comparison operators {.scrollable .nostretch}
+
+These are the tests you'll use inside `filter()` (*DC* Table 10.9):
+
+| Operator | Means | Example |
+|---|---|---|
+| `==` | equal to | `species == "Gentoo"` |
+| `!=` | not equal to | `sex != "male"` |
+| `>` `>=` | greater (or equal) | `body_mass_g >= 5000` |
+| `<` `<=` | less (or equal) | `flipper_length_mm < 190` |
+| `%in%` | is one of | `island %in% c("Dream", "Biscoe")` |
+
+: Comparisons for `filter()`. {tbl-colwidths="[18,32,50]"}
+
+::: {.callout-warning}
+Use `==` to **test** equality, not `=`. A single `=` means "assign," and dplyr will stop you: *"Did you mean `==`?"* This is a classic AI-generated bug too, exactly the kind of thing Friday's lesson said to read for.
+:::
+
+## Multiple conditions {.scrollable .nostretch}
+
+Separate tests with a comma (or `&`) for **AND**, a vertical bar `|` for **OR** (R4DS §3.2.1):
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+# AND: Adelies that are ALSO on Dream
+penguins |>
+  filter(species == "Adelie", island == "Dream")
+
+# OR: any penguin that is Adelie OR Gentoo
+penguins |>
+  filter(species == "Adelie" | species == "Gentoo")
+
+# %in% is the clean way to write a long OR
+penguins |>
+  filter(species %in% c("Adelie", "Gentoo"))
+```
+
+::: {.callout-note}
+Watch the English-trap: `filter(species == "Adelie" | "Gentoo")` does **not** work the way it reads. Each side of `|` must be a complete test.
+:::
+
+## Paying off yesterday's IOU {.scrollable .nostretch}
+
+Yesterday, `group_by(species, sex)` gave us an `NA` group because some penguins have a missing `sex`. Now we can drop them:
+
+```{r}
+#| echo: TRUE
+penguins |>
+  filter(!is.na(sex)) |>
+  group_by(species, sex) |>
+  summarise(n = n(), .groups = "drop")
+```
+
+`is.na(sex)` is `TRUE` for the missing ones; `!` flips it, so `!is.na(sex)` keeps the rows that **do** have a sex. No more `NA` group.
+
+# Rows: arrange() {background-color="#001E44"}
+
+## arrange(): set the order {.scrollable .nostretch}
+
+`arrange()` reorders rows without adding or removing any (*DC* §10.4, R4DS §3.2.3). Ascending by default:
+
+```{r}
+#| echo: TRUE
+penguins |>
+  arrange(body_mass_g)
+```
+
+Wrap a column in `desc()` for descending order, and list several columns to break ties:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+penguins |>
+  arrange(species, desc(body_mass_g))   # by species, then heaviest first
+```
+
+# Columns: select() {background-color="#001E44"}
+
+## select(): keep the columns you want {.scrollable .nostretch}
+
+`select()` is to columns what `filter()` is to rows (*DC* §10.1, R4DS §3.3.2):
+
+```{r}
+#| echo: TRUE
+penguins |>
+  select(species, island, body_mass_g)
+```
+
+You can grab a range, drop with `!`, or rename as you go:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+penguins |> select(species:bill_depth_mm)  # a range of columns
+penguins |> select(!year)                  # everything EXCEPT year
+penguins |> select(mass = body_mass_g)     # rename while selecting
+```
+
+::: {.callout-note}
+`penguins` has only 8 columns, so `select()` feels optional here. On a 19-column table like `flights` from HW2, or a 76-column one, it's the first thing you reach for.
+:::
+
+## select() helpers {.scrollable .nostretch}
+
+For wide tables, name columns by pattern instead of one-by-one (R4DS §3.3.2):
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+penguins |> select(starts_with("bill"))   # bill_length_mm, bill_depth_mm
+penguins |> select(ends_with("_mm"))       # all the millimetre measurements
+penguins |> select(where(is.numeric))      # every numeric column
+```
+
+# Columns: mutate() {background-color="#001E44"}
+
+## mutate(): add a new column {.scrollable .nostretch}
+
+`mutate()` adds columns computed from existing ones, keeping every row (*DC* §10.3, R4DS §3.3.1):
+
+```{r}
+#| echo: TRUE
+penguins |>
+  mutate(body_mass_kg = body_mass_g / 1000) |>
+  select(species, body_mass_g, body_mass_kg)
+```
+
+## mutate() is where transformations live {.scrollable .nostretch}
+
+This is the parallel *DC* §10.3 draws to yesterday:
+
+> `mutate()` **always** involves a *transformation* function, just as `summarise()` **always** involves a *reduction* function.
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+# transformation: one value per row → mutate()
+penguins |> mutate(bill_ratio = bill_length_mm / bill_depth_mm)
+
+# reduction: one value total → summarise()
+penguins |> summarise(avg_bill = mean(bill_length_mm, na.rm = TRUE))
+```
+
+::: {.callout-tip}
+Deciding between them is the same question from yesterday: does the calculation give **one value per row** (`mutate`) or **one value for the whole group** (`summarise`)?
+:::
+
+## A categorical column with ifelse() {.scrollable .nostretch}
+
+`ifelse()` (from *DC* §7.4) is a transformation that picks between two values per row, perfect inside `mutate()`:
+
+```{r}
+#| echo: TRUE
+penguins |>
+  mutate(size = ifelse(body_mass_g > 4000, "large", "small")) |>
+  select(species, body_mass_g, size)
+```
+
+# Combining verbs {background-color="#001E44"}
+
+## The pipe does the real work {.scrollable .nostretch}
+
+One verb does one thing. Real questions need several, chained with `|>` (R4DS §3.4):
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+penguins |>
+  filter(!is.na(sex)) |>
+  mutate(body_mass_kg = body_mass_g / 1000) |>
+  select(species, sex, body_mass_kg) |>
+  arrange(desc(body_mass_kg))
+```
+
+Read it top to bottom as English: take penguins, **then** drop missing sex, **then** add mass in kg, **then** keep three columns, **then** sort heaviest first.
+
+::: {.callout-tip}
+Because each verb returns a new data frame, the output of one is the input to the next. The verbs line up on the left so you can skim the *story* without reading the details.
+:::
+
+## Putting all six together {.scrollable .nostretch}
+
+Yesterday's verbs and today's verbs, in one pipeline that answers a real question, "what's the average mass of each species/sex, biggest first?":
+
+```{r}
+#| echo: TRUE
+penguins |>
+  filter(!is.na(sex)) |>
+  group_by(species, sex) |>
+  summarise(
+    n        = n(),
+    avg_mass = mean(body_mass_g, na.rm = TRUE),
+    .groups  = "drop"
+  ) |>
+  arrange(desc(avg_mass))
+```
+
+And because the result is just a data frame, pipe it straight into a plot (switching `|>` to `+`):
+
+```{r}
+#| echo: TRUE
+#| fig-height: 2.7
+#| warning: FALSE
+penguins |>
+  filter(!is.na(sex)) |>
+  ggplot(aes(x = species, y = body_mass_g, fill = sex)) +
+  geom_boxplot()
+```
+
+## Formatting your pipelines {.scrollable .nostretch}
+
+A multi-step pipeline is only readable if you format it. The rules that matter most (R4DS Ch. 4):
+
+- A space before `|>`, and let `|>` be the **last thing on the line**.
+- For verbs with **named arguments** (`mutate`, `summarise`), put each argument on its **own line**, indented two spaces.
+- Verbs without named arguments (`filter`, `select`, `arrange`) can stay on one line if they fit.
+- Name new columns in `snake_case`: `body_mass_kg`, not `BodyMassKG`.
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+# Strive for                          # Avoid
+penguins |>                           penguins|>filter(!is.na(sex))|>group_by(
+  filter(!is.na(sex)) |>              species)|>summarize(n=n(),avg=mean(
+  group_by(species) |>               body_mass_g,na.rm=TRUE))
+  summarise(
+    n   = n(),
+    avg = mean(body_mass_g, na.rm = TRUE)
+  )
+```
+
+::: {.callout-tip}
+Don't hand-format forever: the **`styler`** package reformats a whole file for you. In RStudio, `Cmd/Ctrl + Shift + P` → type "styler". Full guide: R4DS Ch. 4.
+:::
+
+## A shortcut you'll use constantly {.scrollable .nostretch}
+
+Counting rows per group is so common it has its own verb, `count()` (R4DS §3.2.4):
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+penguins |> count(species)
+
+# is exactly the same as
+penguins |>
+  group_by(species) |>
+  summarise(n = n())
+```
+
+::: {.callout-note}
+`count()` is just `group_by()` + `summarise(n = n())` bundled up. Add `sort = TRUE` to get the biggest groups first.
+:::
+
+## What we covered today {.scrollable .nostretch}
+
+- **`filter()`** — keep rows that pass a test; `==` not `=`; combine with `,`/`|`/`%in%`; `!is.na()` to drop missing
+- **`arrange()`** — reorder rows; `desc()` for descending; extra columns break ties
+- **`select()`** — keep/drop/rename columns; `starts_with()` & friends for wide tables
+- **`mutate()`** — add columns from transformations; the per-row twin of `summarise()`
+- **The pipe** — chain verbs into a readable top-to-bottom story; pipe results into ggplot
+- **Style** — space before `|>`, named args on their own lines, `snake_case`, let `styler` do the rest
+
+# Activity {background-color="#7C0A02"}
+
+## Activity: wrangling the penguins
+
+Roughly 25 minutes. Individually or with a neighbor.
+
+- [Activity Canvas Link](https://psu.instructure.com/courses/2487468/assignments/)
+
+**Format:** a handout that walks each verb, then asks you to chain them. You'll match tasks to verbs, write `filter`/`arrange`/`select`/`mutate` pipelines on `penguins`, debug a `=` vs `==` error, build one multi-verb pipeline that answers a question, and restyle a deliberately unreadable pipeline.
+
+**To turn in:** save your `.qmd` and rendered HTML.
+
+## Wrap-up & looking ahead
+
+**Tomorrow (Wednesday):** no new reading, we put all six verbs together on a messier dataset and turn raw rows into summary tables and plots.
+
+:::: {.columns}
+::: {.column width="55%"}
+**Upcoming Deadlines**
+
+- **Thu 6/4, before class**: [*DC* §12.1](https://psu.instructure.com/courses/2487468/assignments/18325371)
+- **Thu 6/4, 11:59 p.m.**: [Project: Team formation](https://psu.instructure.com/courses/2487468/assignments/)
+:::
+
+::: {.column width="45%"}
+**Reach out**
+
+Stuck? Office hours, or email me ([cgc5478@psu.edu](mailto:cgc5478@psu.edu)) or Xinyue ([xpw5228@psu.edu](mailto:xpw5228@psu.edu)).
+
+**Reference**
+
+[Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*R4DS* Ch. 3](https://r4ds.hadley.nz/data-transform) · [*R4DS* Ch. 4](https://r4ds.hadley.nz/workflow-style) · [*DC* Ch. 10](https://dtkaplan.github.io/DataComputingEbook/chap-more-data-verbs.html#chap:more-data-verbs) · [dplyr reference](https://dplyr.tidyverse.org/reference)
+:::
+::::

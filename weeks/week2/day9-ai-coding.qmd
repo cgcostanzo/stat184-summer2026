@@ -58,9 +58,9 @@ library(palmerpenguins)
 
 When you finish, turn in your quiz up front and we'll get started with the rest of class.
 
-# Why this class? {background-color="#001E44"}
+# AI Use {background-color="#001E44"}
 
-## The thing we have to talk about
+## AI Use in this Course
 
 The course AI policy is on the syllabus.
 
@@ -69,10 +69,10 @@ The course AI policy is on the syllabus.
 **AI tools are allowed for this course, with disclosure.** But "allowed" doesn't mean "use uncritically."
 
 ::: {.callout-tip style="font-size: 1.1em;"}
-When you code with AI's help, **you are still the one responsible for the code** and you must be able to explain/defend every line of it.
+When you code with AI's help, **you are still the one responsible for the code** and you must be able to explain/defend each line you (or AI) submits.
 :::
 
-## What we mean by "AI" today
+## What counts as "AI"
 
 When I say "AI" today I mean things like:
 
@@ -82,7 +82,7 @@ When I say "AI" today I mean things like:
 
 The patterns we'll discuss apply across all of them. How can we use these tools without making mistakes we can't catch?
 
-## Why this is tricky
+## Why AI use can be particularly risky
 
 The output of a good AI model **looks correct** even when it's wrong.
 
@@ -107,13 +107,13 @@ The skills you're building this summer (knowing what `group_by` does, how `aes()
 
 # How AI goes wrong {background-color="#001E44"}
 
-## A taxonomy of AI coding failures
+## Common AI coding failures
 
-I'll walk through four general categories. This isn't an exhaustive list!
+This isn't an exhaustive list, but here's four general categories:
 
 1. **Hallucinated functions and packages**: code that mentions things that don't exist
 2. **Plausible-but-wrong logic**: code that runs and answers the wrong question
-3. **Outdated APIs**: code that worked five years ago but doesn't now
+3. **Outdated knowledge**: code that worked years ago but doesn't now
 4. **Misread context**: AI assumes things about your data that aren't true
 
 ## Failure 1: Hallucinated functions
@@ -158,7 +158,7 @@ Why? `flipper_length_mm` has missing values, and `mean()` returns `NA` by defaul
 The potential issue here is that the output table *looks like an answer*. If you copy the numbers into a report without running the code yourself, you'll write "the average flipper length for Adélies is NA" and not notice.
 :::
 
-## Failure 3: Outdated APIs
+## Failure 3: Outdated knowledge
 
 The tidyverse, the palmerpenguins`, and even R itself changes. However, AI training data has a knowledge cutoff.
 
@@ -175,7 +175,7 @@ penguins |>
 
 `one_of()` has been superseded by `any_of()` and `all_of()`. It still works (for now), but it's not the modern recommended approach.
 
-What's worse is that some models will confidently use functions that were *removed* in a recent version. This gives run-time errors with no obvious cause.
+A worse situation is a model confidently using functions that were *removed* in a recent version. This will likely throw errors with no obvious cause.
 
 ## Failure 4: Misread context
 
@@ -215,12 +215,11 @@ If the code has a function you've never seen, **stop and look it up** using a tr
 
 - `?function_name` in R
 - The package's website (e.g., `dplyr.tidyverse.org`)
-- The function's GitHub source if you're feeling adventurous
 
 If you can't articulate what every line does to a classmate, **you are not yet ready to submit it**.
 
 ::: {.callout-tip}
-A useful drill: take a chunk of AI code, delete all the comments, and write your *own* comments above each line. If you get stuck on a line, that's the line to investigate.
+One thing you can try is taking a chunk of AI code, deleting all the comments, and writing your *own* comments above each line. If you get stuck on a line, that's the line to investigate.
 :::
 
 ## Skill 2: Verify against the data
@@ -251,7 +250,7 @@ When the AI tells you something, ask: **does another source agree?**
 If you cannot verify a claim with *some* independent source, you don't actually know if it's true.
 
 ::: {.callout-note}
-This isn't unique to AI. It's just how you should treat any source you don't fully trust. You wouldn't paste a Stack Overflow answer into your homework without reading it; AI is similar but louder and more confident.
+This isn't unique to AI. It's just how you should treat any source you don't fully trust.
 :::
 
 # Disclosure {background-color="#001E44"}
@@ -284,7 +283,7 @@ A bad disclosure: leaving the box unchecked when you did use AI.
 - **Asking for an explanation of an error**: yes, disclose
 - **Asking conceptual questions like "what's the difference between filter and slice"**: yes, disclose
 - **Spell-check / autocomplete in your editor**: no
-- **Searching Google and reading Stack Overflow**: no (that's just research)
+- **Searching Google and reading Stack Overflow**: no
 - **Reading the docs (`?function`)**: no
 
 # Activity {background-color="#7C0A02"}

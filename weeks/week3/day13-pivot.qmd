@@ -1,0 +1,303 @@
+---
+title: "Reshaping: pivot_longer · pivot_wider"
+subtitle: "Thursday, June 4, 2026"
+lang: en
+editor: source
+engine: knitr
+format:
+  revealjs:
+    slide-number: true
+    embed-resources: true
+    smaller: true
+    highlight-style: a11y
+    output-file: "day13-pivot-slides.html"
+  html:
+    toc: true
+    embed-resources: true
+    highlight-style: a11y
+    axe: true
+    output-file: "day13-pivot-page.html"
+  pdf:
+    fig-pos: "H"
+---
+
+```{r}
+#| echo: FALSE
+#| message: FALSE
+#| warning: FALSE
+library(tidyverse)
+library(palmerpenguins)
+```
+
+::: {.callout-note style="font-size: 1.3em;"}
+## [Today: Thursday June 4]{style="font-size: 1.3em;"}
+
+**Before class**
+
+- **Perusall Assignment**: [*DC* §12.1](https://psu.instructure.com/courses/2487468/assignments/18325371)
+
+**Plan for today**
+
+- What makes data **tidy**, and why the tidyverse wants it that way
+- **Wide** vs. **narrow (long)** layouts of the *same* data
+- Two new verbs: `pivot_longer()` and `pivot_wider()`
+- Choosing a shape to fit the task
+
+**Helpful links**
+
+- [Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*R4DS* Ch. 5](https://r4ds.hadley.nz/data-tidy) · [*DC* Ch. 12](https://dtkaplan.github.io/DataComputingEbook/chap-wide-vs-narrow.html#chap:wide-vs-narrow) · [tidyr reference](https://tidyr.tidyverse.org/reference)
+:::
+
+## Recap, and what's new
+
+All week you've manipulated data **within** its existing shape, choosing rows, columns, and groups. That worked because the data was already laid out sensibly.
+
+::: {.callout-tip style="font-size: 1.1em;"}
+Today is the first new verbs since Monday. `pivot_longer()` and `pivot_wider()` change the **shape** of the table itself, without changing any of the values.
+:::
+
+These come from **tidyr**, dplyr's sibling package (both load with `library(tidyverse)`).
+
+# Tidy data {background-color="#001E44"}
+
+## What "tidy" means {.scrollable .nostretch}
+
+R4DS §5.2 gives three rules. A dataset is **tidy** when:
+
+1. Each **variable** is a column.
+2. Each **observation** is a row.
+3. Each **value** is a cell.
+
+The same numbers can be stored many ways. Only one is tidy:
+
+```{r}
+#| echo: TRUE
+table1   # tidy: country, year, cases, population each a column
+```
+
+## The same data, untidy {.scrollable .nostretch}
+
+```{r}
+#| echo: TRUE
+table2   # cases and population are stacked into type/count
+```
+
+`table2` holds identical information, but `type`/`count` jams two variables into a name/value pair. Computing a rate is awkward here and natural in `table1`.
+
+::: {.callout-note}
+Why tidy? `dplyr`, `ggplot2`, and friends are **built** for it. Tidy data is the shape where `mutate()`, `group_by()`, and `aes()` all "just work."
+:::
+
+# Wide vs. narrow {background-color="#001E44"}
+
+## Two layouts of one dataset {.scrollable .nostretch}
+
+*DC* §12.1 frames reshaping as **wide ↔ narrow**. Blood pressure, wide:
+
+```{r}
+#| echo: TRUE
+bp_wide <- tribble(
+  ~subject, ~before, ~after,
+  "BHO",        160,    160,
+  "GWB",        115,    135,
+  "WJC",        105,    145
+)
+bp_wide
+```
+
+One row per **subject**; `before`/`after` are separate columns.
+
+## The same data, narrow {.scrollable .nostretch}
+
+```{r}
+#| echo: TRUE
+bp_narrow <- bp_wide |>
+  pivot_longer(
+    cols      = c(before, after),
+    names_to  = "when",
+    values_to = "sbp"
+  )
+bp_narrow
+```
+
+Now one row per **measurement occasion**: the case changed meaning, the numbers didn't.
+
+::: {.callout-tip}
+Each shape has strengths. *Wide* makes a before/after change a one-line `mutate(change = after - before)`. *Narrow* makes it easy to add more occasions or more variables, and it's what `ggplot2` usually wants.
+:::
+
+# pivot_longer() {background-color="#001E44"}
+
+## The idea {.scrollable .nostretch}
+
+`pivot_longer()` takes several columns and stacks them into **two** new columns: one holding the old **names**, one holding the old **values** (R4DS §5.3).
+
+Three arguments after the data:
+
+- `cols` — which columns to gather (uses `select()` syntax: `starts_with()`, ranges, `!`)
+- `names_to` — name for the new column that will hold the **old column names**
+- `values_to` — name for the new column that will hold the **cell values**
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+bp_wide |>
+  pivot_longer(cols = c(before, after), names_to = "when", values_to = "sbp")
+```
+
+::: {.callout-warning}
+`names_to` and `values_to` are **quoted** — they're names you're inventing, so they don't exist in the data yet.
+:::
+
+## A real one: when names ARE data {.scrollable .nostretch}
+
+The `billboard` data (in tidyr) has one column **per week** (`wk1`, `wk2`, ...). The week is a variable trapped in the column names:
+
+```{r}
+#| echo: TRUE
+billboard |>
+  pivot_longer(
+    cols      = starts_with("wk"),
+    names_to  = "week",
+    values_to = "rank",
+    values_drop_na = TRUE
+  )
+```
+
+`values_drop_na = TRUE` drops the empty weeks (songs that had already fallen off the chart).
+
+## Now it's plottable {.scrollable .nostretch}
+
+In wide form you *couldn't* put "week" on an axis, it wasn't a variable. After pivoting, it is:
+
+```{r}
+#| echo: TRUE
+#| fig-height: 3
+#| warning: FALSE
+billboard |>
+  pivot_longer(
+    cols = starts_with("wk"),
+    names_to = "week", values_to = "rank",
+    values_drop_na = TRUE
+  ) |>
+  mutate(week = parse_number(week)) |>     # "wk3" -> 3
+  ggplot(aes(x = week, y = rank, group = track)) +
+  geom_line(alpha = 0.25) +
+  scale_y_reverse()                        # rank 1 on top
+```
+
+::: {.callout-note}
+This is *why* we pivot: getting a variable out of the column names and into a real column is often the step that makes a plot possible. (`parse_number()` pulls the number out of `"wk3"`.)
+:::
+
+# pivot_wider() {background-color="#001E44"}
+
+## The opposite move {.scrollable .nostretch}
+
+`pivot_wider()` spreads one column's values across **new columns** (R4DS §5.4, *DC* §12.1). Its two key arguments are the mirror of before:
+
+- `names_from` — the column whose **values become new column names**
+- `values_from` — the column whose values **fill the new cells**
+
+```{r}
+#| echo: TRUE
+bp_narrow |>
+  pivot_wider(names_from = when, values_from = sbp)
+```
+
+We're back to `bp_wide`. **`pivot_longer()` and `pivot_wider()` are inverses.**
+
+## Where you'll actually reach for it {.scrollable .nostretch}
+
+Remember Wednesday: `group_by() |> summarise()` produces a **long** summary. Widening it makes a readable comparison table.
+
+```{r}
+#| echo: TRUE
+#| message: FALSE
+penguins |>
+  filter(!is.na(sex)) |>
+  group_by(species, sex) |>
+  summarise(avg_mass = mean(body_mass_g, na.rm = TRUE), .groups = "drop") |>
+  pivot_wider(names_from = sex, values_from = avg_mass)
+```
+
+## ...and comparison becomes a mutate {.scrollable .nostretch}
+
+With `female` and `male` now side by side in each row, the difference is one `mutate()`, exactly *DC*'s before/after point:
+
+```{r}
+#| echo: TRUE
+#| message: FALSE
+penguins |>
+  filter(!is.na(sex)) |>
+  group_by(species, sex) |>
+  summarise(avg_mass = mean(body_mass_g, na.rm = TRUE), .groups = "drop") |>
+  pivot_wider(names_from = sex, values_from = avg_mass) |>
+  mutate(diff = male - female)
+```
+
+::: {.callout-tip}
+Long form is for **computing and plotting across** a category; wide form is for **reading and comparing within** a row. Same data, you pick the shape that makes your next step a one-liner.
+:::
+
+# Choosing a shape {background-color="#001E44"}
+
+## Which way do I pivot? {.scrollable .nostretch}
+
+| Your goal | Shape you want | Verb to get there |
+|---|---|---|
+| Put a "trapped" variable on a plot axis | narrow / long | `pivot_longer()` |
+| Group or summarise over a category | narrow / long | `pivot_longer()` |
+| Compare two values **per row** (a − b) | wide | `pivot_wider()` |
+| A human-readable comparison table | wide | `pivot_wider()` |
+
+: Match the shape to the next step. {tbl-colwidths="[44,28,28]"}
+
+::: {.callout-note}
+R4DS §5.5: there isn't always one "tidy" shape, it depends what you're doing next. Don't be afraid to **untidy, transform, and re-tidy** as the task changes.
+:::
+
+## What we covered today {.scrollable .nostretch}
+
+- **Tidy data:** variables in columns, observations in rows, values in cells
+- **Wide vs. narrow:** the same values, different meaning of a "row"
+- **`pivot_longer()`:** gather many columns into `names_to` + `values_to`; the fix when a variable is hiding in column names
+- **`pivot_wider()`:** spread `names_from` + `values_from` into new columns; the way to a comparison table
+- **They're inverses**, and the right shape is whichever makes your *next* step easiest
+
+# Activity {background-color="#7C0A02"}
+
+## Activity: reshaping
+
+Roughly 25 minutes. Individually or with a neighbor.
+
+- [Activity Canvas Link](https://psu.instructure.com/courses/2487468/assignments/)
+
+**Format:** you'll diagnose whether tables are tidy/wide/narrow, pivot a tiny table by hand-prediction then check, pivot `billboard` longer and plot it, widen a `penguins` summary into a comparison table, confirm the two verbs undo each other, and debug a pivot that went "too narrow."
+
+**To turn in:** save your `.qmd` and rendered HTML.
+
+## Wrap-up & looking ahead
+
+**Tomorrow (Friday):** **Quiz 3** in the first 20 minutes, then version control, Git and GitHub concepts plus a live demo, so your project team can collaborate on shared code.
+
+:::: {.columns}
+::: {.column width="55%"}
+**Upcoming Deadlines**
+
+- **Tonight, Thu 6/4, 11:59 p.m.**: [Project: Team formation](https://psu.instructure.com/courses/2487468/assignments/)
+- **Fri 6/5, before class**: [*DC* §9.1–9.2](https://psu.instructure.com/courses/2487468/assignments/18325372)
+- **Fri 6/5, in class**: Quiz 3
+- **Fri 6/5, 11:59 p.m.**: HW 3
+:::
+
+::: {.column width="45%"}
+**Reach out**
+
+Stuck? Office hours, or email me ([cgc5478@psu.edu](mailto:cgc5478@psu.edu)) or Xinyue ([xpw5228@psu.edu](mailto:xpw5228@psu.edu)).
+
+**Reference**
+
+[Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*R4DS* Ch. 5](https://r4ds.hadley.nz/data-tidy) · [*DC* Ch. 12](https://dtkaplan.github.io/DataComputingEbook/chap-wide-vs-narrow.html#chap:wide-vs-narrow) · [tidyr reference](https://tidyr.tidyverse.org/reference)
+:::
+::::

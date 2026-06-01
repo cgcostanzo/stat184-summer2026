@@ -1,0 +1,178 @@
+---
+title: "Day 13 Activity: Reshaping data"
+subtitle: "Thursday, June 4, 2026"
+author: "Your Name Here"
+editor: source
+engine: knitr
+format:
+  html:
+    toc: TRUE
+    code-fold: FALSE
+    embed-resources: TRUE
+  pdf:
+    toc: FALSE
+---
+
+## Setup
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(palmerpenguins)
+```
+
+Today's verbs are `pivot_longer()` and `pivot_wider()`. We'll use a few small built-in tables plus `penguins`.
+
+---
+
+# Part 1 --- Tidy, wide, or narrow?
+
+Look at `table1` and `table2` (both built into tidyr):
+
+```{r}
+table1
+table2
+```
+
+**1a.** For each, describe what **one row** represents.
+
+[table1: ... ] — [table2: ... ]
+
+**1b.** Which one is **tidy** (each variable a column, each observation a row)? Which is the **narrower** of the two, and how can you tell?
+
+[Your answer.]
+
+---
+
+# Part 2 --- pivot_longer() on a tiny table
+
+Build this wide table by hand:
+
+```{r build-wide}
+bp_wide <- tribble(
+  ~subject, ~before, ~after,
+  "BHO",        160,    160,
+  "GWB",        115,    135,
+  "WJC",        105,    145
+)
+bp_wide
+```
+
+**2a. Predict first.** If you pivot `before` and `after` into a long form, how many **rows** will the result have? How many **columns**?
+
+Prediction: [ ... rows / ... columns ]
+
+**2b.** Now do it. Use `names_to = "when"` and `values_to = "sbp"`. Check against your prediction.
+
+```{r longer-bp}
+# Your code:
+
+```
+
+---
+
+# Part 3 --- pivot_longer() on real data
+
+The `billboard` data (in tidyr) has one column per chart week (`wk1`, `wk2`, ...).
+
+**3a.** Pivot all the `wk` columns into `week` / `rank`, dropping the empty weeks. (Hint: `cols = starts_with("wk")`, `values_drop_na = TRUE`.)
+
+```{r longer-billboard}
+# Your code:
+
+```
+
+**3b.** Add `mutate(week = parse_number(week))` so `"wk3"` becomes `3`, then plot `rank` (y) against `week` (x), one faint line per `track`. Use `scale_y_reverse()` so rank 1 sits on top.
+
+```{r billboard-plot}
+# Your code:
+
+```
+
+**One sentence:** what does the plot show about how long songs stay on the charts?
+
+[Your answer.]
+
+---
+
+# Part 4 --- pivot_wider() for comparison
+
+Start from a **long** summary (this is the kind of table you built on Wednesday):
+
+```{r long-summary, message=FALSE}
+penguin_summary <- penguins |>
+  filter(!is.na(sex)) |>
+  group_by(species, sex) |>
+  summarise(avg_mass = mean(body_mass_g, na.rm = TRUE), .groups = "drop")
+penguin_summary
+```
+
+**4a. Predict first.** If you widen this with `names_from = sex`, `values_from = avg_mass`, how many rows and columns will you get?
+
+Prediction: [ ... rows / ... columns ]
+
+**4b.** Do the pivot, then add a column `diff` = `male` − `female`.
+
+```{r wider-penguins}
+# Your code:
+
+```
+
+**Which species has the biggest mass gap between sexes?**
+
+[Your answer.]
+
+---
+
+# Part 5 --- The round trip, and a trap
+
+**5a.** Take your widened penguin table from Part 4 (before the `diff` column) and pivot it **back** to long form. Do you recover the original `penguin_summary`? (`pivot_longer()` and `pivot_wider()` are inverses.)
+
+```{r round-trip}
+# Your code:
+
+```
+
+**5b. Debug it.** Someone tries to make `bp_wide` longer like this and gets a strange result:
+
+```{r too-narrow}
+#| eval: false
+bp_wide |>
+  pivot_longer(
+    cols = c(subject, before, after),
+    names_to = "when",
+    values_to = "sbp"
+  )
+```
+
+Run it. Why is this "too narrow" / wrong? What single change to `cols` fixes it?
+
+[Your explanation and fix.]
+
+---
+
+# Part 6 --- Choose the shape
+
+For each goal, say whether you'd want the data **wide** or **narrow**, and which pivot gets you there. One sentence each.
+
+1. Plot each country's TB cases over time, one line per country.
+2. Compute, for each country, the change in cases from 1999 to 2000 as a single new column.
+3. Group by year and sum the cases across all countries.
+
+[1: ... ] — [2: ... ] — [3: ... ]
+
+---
+
+# Wrap-up
+
+**One-sentence reflection:** pivoting is the first thing this week that changed the *shape* of the table rather than its contents, what clicked, and what's still fuzzy?
+
+[Write one sentence.]
+
+---
+
+# Code appendix
+
+```{r ref.label=knitr::all_labels()}
+#| echo: TRUE
+#| eval: FALSE
+```

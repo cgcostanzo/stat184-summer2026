@@ -1,0 +1,200 @@
+---
+title: "Day 11 Activity: Wrangling the `penguins`"
+subtitle: "Tuesday, June 2, 2026"
+author: "Your Name Here"
+editor: source
+engine: knitr
+format:
+  html:
+    toc: TRUE
+    code-fold: FALSE
+    embed-resources: TRUE
+  pdf:
+    toc: FALSE
+---
+
+## Setup
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(palmerpenguins)
+```
+
+Today's activity uses the `penguins` dataset again. Glimpse it before you start:
+
+```{r}
+glimpse(penguins)
+```
+
+You now have all six verbs: yesterday's `group_by()` and `summarise()`, and today's `filter()`, `arrange()`, `select()`, and `mutate()`.
+
+---
+
+# Part 1 --- Match the verb
+
+Each task can be done with **one** verb (one task needs two). Name the verb(s) you'd use, no code yet.
+
+| # | Task | Verb(s) |
+|---|---|---|
+| 1 | Keep only the Gentoo penguins | |
+| 2 | Add a column of body mass in kilograms | |
+| 3 | Sort the penguins heaviest-first | |
+| 4 | Keep only the `species`, `island`, and `body_mass_g` columns | |
+| 5 | One row per species, each with its average body mass | |
+| 6 | Drop the penguins whose `sex` is missing | |
+
+: Fill in the third column. {tbl-colwidths="[8,62,30]"}
+
+---
+
+# Part 2 --- filter()
+
+Write a **single pipeline** for each. Run each one and glance at the number of rows.
+
+**2a.** Penguins heavier than 5000 g.
+
+```{r filter-a}
+# Your code:
+
+```
+
+**2b.** Adelie penguins that live on Dream island (both conditions).
+
+```{r filter-b}
+# Your code:
+
+```
+
+**2c.** Penguins that are Adelie *or* Gentoo. Write it **two ways**, once with `|` and once with `%in%`.
+
+```{r filter-c}
+# Your code:
+
+```
+
+**2d. Debug it.** This errors. What's the message, why does it happen, and what's the fix?
+
+```{r filter-d}
+#| eval: false
+penguins |>
+  filter(species = "Chinstrap")
+```
+
+[Your explanation and fix.]
+
+---
+
+# Part 3 --- mutate() and arrange()
+
+**3a.** Add a column `bill_ratio` = bill length ÷ bill depth. Then `arrange()` so the largest ratio is on top. (Which species ends up at the top?)
+
+```{r mutate-a}
+# Your code:
+
+```
+
+[Which species is on top?]
+
+**3b.** Add a column `size` that is `"large"` when `body_mass_g > 4000` and `"small"` otherwise. (Hint: `ifelse()`.)
+
+```{r mutate-b}
+# Your code:
+
+```
+
+**3c.** *Reduction or transformation?* You want the **single heaviest** body mass in the whole dataset. Does that belong in `mutate()` or `summarise()`? Write it, and say why.
+
+```{r mutate-c}
+# Your code:
+
+```
+
+[Why that verb?]
+
+---
+
+# Part 4 --- select()
+
+**4a.** Keep only `species`, `sex`, and the two bill columns.
+
+```{r select-a}
+# Your code:
+
+```
+
+**4b.** Do the same selection of the two bill columns using a **helper** (`starts_with()` or `ends_with()`) instead of naming them.
+
+```{r select-b}
+# Your code:
+
+```
+
+**4c.** Select `body_mass_g` but rename it to `mass_g` in the same step.
+
+```{r select-c}
+# Your code:
+
+```
+
+---
+
+# Part 5 --- Put it together
+
+Answer this in **one pipeline**: *Among penguins with a known sex, what is the average flipper length for each species/sex combination, and how many penguins is each average based on? Show the longest-flippered group first.*
+
+Before you run it, **predict** how many rows the result has.
+
+Prediction (rows): [ ... ]
+
+```{r together}
+# Your pipeline (filter -> group_by -> summarise -> arrange):
+
+```
+
+Now turn the same filtered data into a plot of `body_mass_g` by `species`, filled by `sex`:
+
+```{r together-plot}
+# Your plot (remember: switch |> to + when you reach ggplot):
+
+```
+
+**One or two sentences:** what does the table or plot show?
+
+[Your answer.]
+
+---
+
+# Part 6 --- Restyle it
+
+The pipeline below works, but it's unreadable. Rewrite it following the style guide: a space before each `|>`, `|>` at the end of the line, each named argument of `summarise()` on its own line indented two spaces, and the closing `)` on its own line.
+
+```{r restyle}
+#| eval: false
+penguins|>filter(!is.na(sex))|>group_by(species,sex)|>summarize(n=n(),avg_mass=mean(body_mass_g,na.rm=TRUE))|>arrange(desc(avg_mass))
+```
+
+```{r restyle-fixed}
+# Your restyled version:
+
+```
+
+::: {.callout-tip}
+Once you've done it by hand, try the `styler` package: `Cmd/Ctrl + Shift + P`, then type "styler" and pick *"Style active file."* Did it match yours?
+:::
+
+---
+
+# Wrap-up
+
+**One-sentence reflection:** of the four verbs today, which felt most natural and which will you have to look up again next week?
+
+[Write one sentence.]
+
+---
+
+# Code appendix
+
+```{r ref.label=knitr::all_labels()}
+#| echo: TRUE
+#| eval: FALSE
+```

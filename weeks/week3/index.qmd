@@ -1,33 +1,32 @@
 ---
-title: "Week 3 — Data Wrangling"
-subtitle: "June 1 – 5, 2026"
+title: "Week 3 - Data Wrangling"
+subtitle: "June 1 - 5, 2026"
 ---
 
-The core week. We cover the dplyr verbs you'll use on nearly every project — `filter`, `select`, `mutate`, `arrange`, `group_by`, `summarize`, plus `pivot_longer` and `pivot_wider`. By Friday you should be able to take a messy CSV and produce useful summaries. Friday also introduces Git/GitHub, in time to use it for your project teamwork.
+We cover the dplyr verbs `filter`, `select`, `mutate`, `arrange`, `group_by`, `summarize`, plus `pivot_longer` and `pivot_wider`. By Friday you should be able to take a messy CSV and produce useful summaries. Friday also introduces Git/GitHub, in time to use it for your project teamwork.
 
 ## Daily plan
 
-| Date | Topic | Files |
-|---|---|---|
-| Mon Jun 1 | [Wrangling concepts · `group_by`](day1-wrangling-concepts.qmd) | slides, in-class code |
-| Tue Jun 2 | [The data verbs: select, filter, mutate, arrange](day2-data-verbs.qmd) | slides, in-class code |
-| Wed Jun 3 | [Deeper practice with `group_by` and `summarize`](day3-group-summarize.qmd) | slides, in-class code |
-| Thu Jun 4 | [Reshaping: `pivot_longer`, `pivot_wider`](day4-pivot.qmd) | slides, in-class code |
-| Fri Jun 5 | [**Quiz 3** · Git/GitHub for collaboration](day5-quiz-git.qmd) | quiz, slides |
+| Date | Topic | Slides & Notes | Code & Data |
+|---|---|---|---|
+| Mon Jun 1 | Wrangling framework · summarise + group_by | [Slides](day10-wrangling-slides.html) · [Page](day10-wrangling-page.html) · [PDF](day10-wrangling.pdf) | [day10-activity.R](day10-activity.qmd){download="day10-activity.qmd"} |
+| Tue Jun 2 | select, filter, mutate, arrange | [Slides](day11-data-verbs-slides.html) · [Page](day11-data-verbs-page.html) · [PDF](day11-data-verbs.pdf) | [day11-activity.R](day11-activity.R){download="day11-activity.R"} |
+| Wed Jun 3 | Putting it together: messy CSV → summary table | [Slides](day12-group-summmarize-slides.html) · [Page](day12-group-summmarize-page.html) · [PDF](day12-group-summmarize.pdf) | [day12-activity.R](day12-activity.R){download="day12-activity.R"} |
+| Thu Jun 4 | Reshaping: `pivot_longer`, `pivot_wider` | [Slides](day13-pivot-slides.html) · [Page](day13-pivot-page.html) · [PDF](day13-pivot.pdf) | [day13-activity.R](day13-activity.R){download="day13-activity.R"} |
+| Fri Jun 5 | **Quiz 3** · Git/GitHub concepts + demo | [Slides](day14-git-slides.html) · [Page](day14-git-page.html) · [PDF](day14-git.pdf) | [day14-activity.R](day14-activity.R){download="day14-activity.R"} |
 
 ## Readings due this week
 
-- Before Mon: *Data Computing* Ch 7 (§7.1–7.7) — wrangling concepts, `group_by`
-- Before Tue: *Data Computing* Ch 10 (§10.1–10.6) — the data verbs
-- Before Thu: *Data Computing* Ch 12 (§12.1) — reshaping
-- Before Fri: *Data Computing* Ch 9 (§9.1–9.2) — Git, GitHub, RStudio integration
+- Before Mon: *Data Computing* Ch 7 ([DC §7.1-7.7](https://psu.instructure.com/courses/2487468/assignments/18323235)): data wrangling
+- Before Tue: *Data Computing* Ch 10 ([DC §10.1-10.6](https://psu.instructure.com/courses/2487468/assignments/18325370)): more data verbs
+- Before Thu: *Data Computing* Ch 12 ([DC §12.1](https://psu.instructure.com/courses/2487468/assignments/18325371)): wide vs. narrow data
+- Before Fri: *Data Computing* Ch 9 ([DC §9.1-9.2](https://psu.instructure.com/courses/2487468/assignments/18325372)): collaboration and reproducibility with git
 
 ## Assignments due this week
 
-- **Reading Quiz 3** — due before Monday's class (Canvas)
-- **HW 2** — due Tuesday Jun 2, 11:59 p.m.
-- **Project: Team formation** — due Thursday Jun 4, 11:59 p.m.
-- **Quiz 3** — in class Friday Jun 5
+- **HW 3**: due Friday Jun 5, 11:59 p.m.
+- **Project Team formation**: due Thursday Jun 4, 11:59 p.m.
+- **Quiz 3**: in class Friday Jun 5
 
 ## Heads up for the weekend
 

@@ -1,0 +1,184 @@
+---
+title: "Day 10 Activity: Summarizing the `penguins`"
+subtitle: "Monday, June 1, 2026"
+author: "Your Name Here"
+editor: source
+engine: knitr
+format:
+  html:
+    toc: TRUE
+    code-fold: FALSE
+    embed-resources: TRUE
+  pdf:
+    toc: FALSE
+---
+
+## Setup
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(palmerpenguins)
+```
+
+Today's activity uses the `penguins` dataset (`palmerpenguins` package). Glimpse it before you start:
+
+```{r}
+glimpse(penguins)
+```
+
+We will practice using **two data verbs**, `summarize()` and `group_by()`, as well as reduction functions like `n()` and `mean()`.
+
+---
+
+# Part 1
+
+For each operation below, say which family it belongs to: **reduction** (variable to one number), **transformation** (variable to one value *per row*), or **neither** (a whole-table data verb).
+
+| # | Operation | Family |
+|---|---|---|
+| 1 | The largest body mass in the dataset | |
+| 2 | Body mass converted from grams to kilograms | |
+| 3 | The number of penguins | |
+| 4 | Whether each penguin weighs more than 4000 g | |
+| 5 | The number of *distinct* islands | |
+| 6 | Labeling each penguin `"heavy"` or `"light"` | |
+| 7 | Keeping only the Gentoo penguins | |
+| 8 | The standard deviation of flipper length | |
+
+: Fill in the third column. {tbl-colwidths="[8,62,30]"}
+
+::: {.callout-tip}
+The fastest test: does it return **one** number (reduction), **one per row** (transformation), or a **whole new table** (neither, that's a data verb)? Number 7 is tricky.
+:::
+
+---
+
+# Part 2
+
+**2a.** Write a single `summarize()` that returns the number of penguins, the mean body mass, and the mean flipper length.
+
+```{r summary-1}
+# Your code:
+
+```
+
+**2b.** Run this, then explain in one sentence *why* the result is what it is:
+
+```{r summary-2}
+penguins |>
+  summarize(avg_mass = mean(body_mass_g))
+```
+
+[Your explanation here.]
+
+**2c.** Fix 2b so it returns a real number. What one change did you make, and why does it work?
+
+```{r summary-3}
+# Your fixed code:
+
+```
+
+[Your explanation here.]
+
+---
+
+# Part 3
+
+For **3a–3d**, first **write down your prediction** for how many rows the result will have and which columns it will contain. *Then* run it and check.
+
+**3a.**
+
+```{r group-a}
+#| eval: false
+penguins |>
+  group_by(species) |>
+  summarize(n = n(), avg_mass = mean(body_mass_g, na.rm = TRUE))
+```
+
+Prediction (rows / columns): [ ... ] - Actual: [ ... ]
+
+**3b.**
+
+```{r group-b}
+#| eval: false
+penguins |>
+  group_by(species, sex) |>
+  summarize(n = n(), avg_mass = mean(body_mass_g, na.rm = TRUE),
+            .groups = "drop")
+```
+
+Prediction (rows / columns): [ ... ] - Actual: [ ... ]
+
+Did anything about the **number of rows** surprise you? (Look closely at the `sex` column.)
+
+[Your answer.]
+
+**3c.** This one is a trap. Predict *before* you run it, then run it:
+
+```{r group-c}
+#| eval: false
+penguins |>
+  group_by(body_mass_g) |>
+  summarize(n = n(), .groups = "drop")
+```
+
+Prediction (rows): [ ... ] - Actual: [ ... ]
+
+What went wrong, and what does it tell you about which *kinds* of variables you should group by?
+
+[Your answer.]
+
+**3d.** Without grouping at all:
+
+```{r group-d}
+#| eval: false
+penguins |>
+  summarize(n = n())
+```
+
+Prediction (rows): [ ... ] - Actual: [ ... ]
+
+Explain the relationship between 3a, 3b, and 3d in terms of "what does one row of the output represent?"
+
+[Your answer.]
+
+---
+
+# Part 4 --- Don't trust a mean without its `n()`
+
+Run the finest grouping we can make from these three variables:
+
+```{r trust}
+#| eval: false
+penguins |>
+  group_by(species, island, sex) |>
+  summarize(n = n(), avg_mass = mean(body_mass_g, na.rm = TRUE),
+            .groups = "drop")
+```
+
+**4a.** Which group has the **fewest** penguins? Would you be comfortable quoting that group's `avg_mass` in a report? Why or why not?
+
+[Your answer.]
+
+**4b.** In one or two sentences: why is `n = n()` worth adding to *every* group summary you write, even when nobody asked for a count?
+
+[Your answer.]
+
+---
+
+# Wrap-up
+
+You now have the two verbs that change *what a row means*. Tomorrow we add the four verbs that change *which rows and columns are present*.
+
+**One-sentence reflection:** what was the single most useful idea from today, the framework, the `na.rm` trap, or predicting the shape of a grouped result?
+
+[Write one sentence.]
+
+---
+
+# Code appendix
+
+```{r ref.label=knitr::all_labels()}
+#| echo: TRUE
+#| eval: FALSE
+```

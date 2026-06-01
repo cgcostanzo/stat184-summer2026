@@ -1,0 +1,167 @@
+---
+title: "Day 12 Activity: A `flights` investigation"
+subtitle: "Wednesday, June 3, 2026"
+author: "Your Name Here"
+editor: source
+engine: knitr
+format:
+  html:
+    toc: TRUE
+    code-fold: FALSE
+    embed-resources: TRUE
+  pdf:
+    toc: FALSE
+---
+
+## Setup
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(nycflights13)
+```
+
+Today we use `flights`, every flight out of NYC in 2013. Glimpse it, and note the mess: cancelled flights have **missing** `dep_delay` / `arr_delay`.
+
+```{r}
+glimpse(flights)
+```
+
+No new verbs today. You have all six (`filter`, `arrange`, `select`, `mutate`, `group_by`, `summarise`), plus `count()` and the pipe. The goal is **sequencing them and checking your work.**
+
+---
+
+# Part 1 --- Plan before you code
+
+For this question: *Which of the three NYC airports (`origin`) sent out the most flights in 2013?*
+
+**1a.** First, write the **English plan**, one sentence per step. Which verbs, in what order? What does one row of your target table represent?
+
+[Your plan here.]
+
+**1b.** Now write it. (Hint: this is a one-liner with `count()`, *or* a `group_by()` + `summarise()`.)
+
+```{r part1}
+# Your code:
+
+```
+
+---
+
+# Part 2 --- Build a pipeline
+
+*Which carrier had the worst average arrival delay, among carriers with at least 1,000 flights?*
+
+Build it step by step: filter is **not** needed on the raw rows here, but you'll need it on the **summary table** to drop small carriers. Include `n = n()`.
+
+```{r part2}
+# Your code:
+
+```
+
+**Which carrier is it, and how many flights is that average based on?**
+
+[Your answer. We only have the 2-letter code today; turning it into the airline's name needs a *join*, which is coming later.]
+
+---
+
+# Part 3 --- mutate(), then plot
+
+**3a.** Create a label `time_of_day` that is `"morning"` when `dep_time < 1200` and `"afternoon/evening"` otherwise. Then find the average departure delay for each, with a count.
+
+```{r part3a}
+# Your code:
+
+```
+
+**3b.** Pipe a version of that summary into a `geom_col()` plot of average delay by `time_of_day`. (Remember to switch `|>` to `+` at `ggplot()`.)
+
+```{r part3b}
+# Your code:
+
+```
+
+**One sentence:** what does it show?
+
+[Your answer.]
+
+---
+
+# Part 4 --- Don't get fooled
+
+**4a. Order matters.** These two pipelines run without error but answer **different questions**. Run both, then explain in one or two sentences how the questions differ.
+
+```{r part4a-i}
+#| eval: false
+# Pipeline A
+flights |>
+  filter(dest == "BOS") |>
+  summarise(avg = mean(arr_delay, na.rm = TRUE))
+```
+
+```{r part4a-ii}
+#| eval: false
+# Pipeline B
+flights |>
+  group_by(dest) |>
+  summarise(avg = mean(arr_delay, na.rm = TRUE)) |>
+  filter(dest == "BOS")
+```
+
+[How do the questions differ? Do the numbers match? Should they?]
+
+**4b. Spot the silent `NA`.** This returns `NA` for some carriers. Why? What single change fixes it?
+
+```{r part4b}
+#| eval: false
+flights |>
+  group_by(carrier) |>
+  summarise(avg_delay = mean(dep_delay))
+```
+
+[Your explanation and fix.]
+
+---
+
+# Part 5 --- Open investigation
+
+Pick **one** of these questions (or invent your own), and answer it with a pipeline:
+
+- Which destination has the most *variable* arrival delays? (Hint: `sd()` is a reduction, like `mean()`.)
+- Do flights later in the day make up time in the air more than morning flights?
+- Which day of the week (you'd need `month`/`day`...) is worst to fly? *(Stick to month if day-of-week is too much.)*
+
+**5a.** State your question and your English plan.
+
+[Question + plan.]
+
+**5b.** Your pipeline:
+
+```{r part5}
+# Your code:
+
+```
+
+**5c. Required: report your checks.** Answer all three:
+
+- How did you handle missing values?
+- What's the smallest `n` in your result, and is it big enough to trust?
+- Does the answer pass a smell test (does it match what you'd expect)?
+
+[Your three checks.]
+
+---
+
+# Wrap-up
+
+**One-sentence reflection:** what's one mistake you almost made today (wrong order, forgotten `na.rm`, a tiny group) that a quick check caught?
+
+[Write one sentence.]
+
+---
+
+# Code appendix
+
+```{r ref.label=knitr::all_labels()}
+#| echo: TRUE
+#| eval: FALSE
+```
