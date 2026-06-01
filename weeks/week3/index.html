@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 3 — Data Wrangling – STAT 184 — Summer 2026</title>
+<title>Week 3 - Data Wrangling – STAT 184 — Summer 2026</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -369,8 +369,8 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 3 — Data Wrangling</h1>
-<p class="subtitle lead">June 1 – 5, 2026</p>
+<h1 class="title">Week 3 - Data Wrangling</h1>
+<p class="subtitle lead">June 1 - 5, 2026</p>
 </div>
 
 
@@ -387,7 +387,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>The core week. We cover the dplyr verbs you’ll use on nearly every project — <code>filter</code>, <code>select</code>, <code>mutate</code>, <code>arrange</code>, <code>group_by</code>, <code>summarize</code>, plus <code>pivot_longer</code> and <code>pivot_wider</code>. By Friday you should be able to take a messy CSV and produce useful summaries. Friday also introduces Git/GitHub, in time to use it for your project teamwork.</p>
+<p>We cover the dplyr verbs <code>filter</code>, <code>select</code>, <code>mutate</code>, <code>arrange</code>, <code>group_by</code>, <code>summarize</code>, plus <code>pivot_longer</code> and <code>pivot_wider</code>. By Friday you should be able to take a messy CSV and produce useful summaries. Friday also introduces Git/GitHub, in time to use it for your project teamwork.</p>
 <section id="daily-plan" class="level2">
 <h2 class="anchored" data-anchor-id="daily-plan">Daily plan</h2>
 <table class="caption-top table">
@@ -395,34 +395,40 @@ ul.task-list li input[type="checkbox"] {
 <tr class="header">
 <th>Date</th>
 <th>Topic</th>
-<th>Files</th>
+<th>Slides &amp; Notes</th>
+<th>Code &amp; Data</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>Mon Jun 1</td>
-<td><a href="../../weeks/week3/day1-wrangling-concepts.html">Wrangling concepts · <code>group_by</code></a></td>
-<td>slides, in-class code</td>
+<td>Wrangling framework · summarise + group_by</td>
+<td><a href="day10-wrangling-slides.html">Slides</a> · <a href="day10-wrangling-page.html">Page</a> · <a href="day10-wrangling.pdf">PDF</a></td>
+<td><a href="../../weeks/week3/day10-activity.html" download="day10-activity.qmd">day10-activity.R</a></td>
 </tr>
 <tr class="even">
 <td>Tue Jun 2</td>
-<td><a href="../../weeks/week3/day2-data-verbs.html">The data verbs: select, filter, mutate, arrange</a></td>
-<td>slides, in-class code</td>
+<td>select, filter, mutate, arrange</td>
+<td><a href="day11-data-verbs-slides.html">Slides</a> · <a href="day11-data-verbs-page.html">Page</a> · <a href="day11-data-verbs.pdf">PDF</a></td>
+<td><a href="day11-activity.R" download="day11-activity.R">day11-activity.R</a></td>
 </tr>
 <tr class="odd">
 <td>Wed Jun 3</td>
-<td><a href="../../weeks/week3/day3-group-summarize.html">Deeper practice with <code>group_by</code> and <code>summarize</code></a></td>
-<td>slides, in-class code</td>
+<td>Putting it together: messy CSV → summary table</td>
+<td><a href="day12-group-summmarize-slides.html">Slides</a> · <a href="day12-group-summmarize-page.html">Page</a> · <a href="day12-group-summmarize.pdf">PDF</a></td>
+<td><a href="day12-activity.R" download="day12-activity.R">day12-activity.R</a></td>
 </tr>
 <tr class="even">
 <td>Thu Jun 4</td>
-<td><a href="../../weeks/week3/day4-pivot.html">Reshaping: <code>pivot_longer</code>, <code>pivot_wider</code></a></td>
-<td>slides, in-class code</td>
+<td>Reshaping: <code>pivot_longer</code>, <code>pivot_wider</code></td>
+<td><a href="day13-pivot-slides.html">Slides</a> · <a href="day13-pivot-page.html">Page</a> · <a href="day13-pivot.pdf">PDF</a></td>
+<td><a href="day13-activity.R" download="day13-activity.R">day13-activity.R</a></td>
 </tr>
 <tr class="odd">
 <td>Fri Jun 5</td>
-<td><a href="../../weeks/week3/day5-quiz-git.html"><strong>Quiz 3</strong> · Git/GitHub for collaboration</a></td>
-<td>quiz, slides</td>
+<td><strong>Quiz 3</strong> · Git/GitHub concepts + demo</td>
+<td><a href="day14-git-slides.html">Slides</a> · <a href="day14-git-page.html">Page</a> · <a href="day14-git.pdf">PDF</a></td>
+<td><a href="day14-activity.R" download="day14-activity.R">day14-activity.R</a></td>
 </tr>
 </tbody>
 </table>
@@ -430,19 +436,18 @@ ul.task-list li input[type="checkbox"] {
 <section id="readings-due-this-week" class="level2">
 <h2 class="anchored" data-anchor-id="readings-due-this-week">Readings due this week</h2>
 <ul>
-<li>Before Mon: <em>Data Computing</em> Ch 7 (§7.1–7.7) — wrangling concepts, <code>group_by</code></li>
-<li>Before Tue: <em>Data Computing</em> Ch 10 (§10.1–10.6) — the data verbs</li>
-<li>Before Thu: <em>Data Computing</em> Ch 12 (§12.1) — reshaping</li>
-<li>Before Fri: <em>Data Computing</em> Ch 9 (§9.1–9.2) — Git, GitHub, RStudio integration</li>
+<li>Before Mon: <em>Data Computing</em> Ch 7 (<a href="https://psu.instructure.com/courses/2487468/assignments/18323235">DC §7.1-7.7</a>): data wrangling</li>
+<li>Before Tue: <em>Data Computing</em> Ch 10 (<a href="https://psu.instructure.com/courses/2487468/assignments/18325370">DC §10.1-10.6</a>): more data verbs</li>
+<li>Before Thu: <em>Data Computing</em> Ch 12 (<a href="https://psu.instructure.com/courses/2487468/assignments/18325371">DC §12.1</a>): wide vs.&nbsp;narrow data</li>
+<li>Before Fri: <em>Data Computing</em> Ch 9 (<a href="https://psu.instructure.com/courses/2487468/assignments/18325372">DC §9.1-9.2</a>): collaboration and reproducibility with git</li>
 </ul>
 </section>
 <section id="assignments-due-this-week" class="level2">
 <h2 class="anchored" data-anchor-id="assignments-due-this-week">Assignments due this week</h2>
 <ul>
-<li><strong>Reading Quiz 3</strong> — due before Monday’s class (Canvas)</li>
-<li><strong>HW 2</strong> — due Tuesday Jun 2, 11:59 p.m.</li>
-<li><strong>Project: Team formation</strong> — due Thursday Jun 4, 11:59 p.m.</li>
-<li><strong>Quiz 3</strong> — in class Friday Jun 5</li>
+<li><strong>HW 3</strong>: due Friday Jun 5, 11:59 p.m.</li>
+<li><strong>Project Team formation</strong>: due Thursday Jun 4, 11:59 p.m.</li>
+<li><strong>Quiz 3</strong>: in class Friday Jun 5</li>
 </ul>
 </section>
 <section id="heads-up-for-the-weekend" class="level2">
