@@ -36,14 +36,14 @@ For each operation below, say which family it belongs to: **reduction** (variabl
 
 | # | Operation | Family |
 |---|---|---|
-| 1 | The largest body mass in the dataset | |
-| 2 | Body mass converted from grams to kilograms | |
-| 3 | The number of penguins | |
-| 4 | Whether each penguin weighs more than 4000 g | |
-| 5 | The number of *distinct* islands | |
-| 6 | Labeling each penguin `"heavy"` or `"light"` | |
-| 7 | Keeping only the Gentoo penguins | |
-| 8 | The standard deviation of flipper length | |
+| 1 | The largest body mass in the dataset | [Your answer.] |
+| 2 | Body mass converted from grams to kilograms | [Your answer.] |
+| 3 | The number of penguins | [Your answer.] |
+| 4 | Whether each penguin weighs more than 4000 g | [Your answer.] |
+| 5 | The number of *distinct* islands | [Your answer.] |
+| 6 | Labeling each penguin `"heavy"` or `"light"` | [Your answer.] |
+| 7 | Keeping only the Gentoo penguins | [Your answer.] |
+| 8 | The standard deviation of flipper length | [Your answer.] |
 
 : Fill in the third column. {tbl-colwidths="[8,62,30]"}
 
@@ -95,7 +95,9 @@ penguins |>
   summarize(n = n(), avg_mass = mean(body_mass_g, na.rm = TRUE))
 ```
 
-Prediction (rows / columns): [ ... ] - Actual: [ ... ]
+Prediction (rows / columns): [Your answer.]
+
+Actual: [Your answer.]
 
 **3b.**
 
@@ -107,7 +109,9 @@ penguins |>
             .groups = "drop")
 ```
 
-Prediction (rows / columns): [ ... ] - Actual: [ ... ]
+Prediction (rows / columns): [Your answer.]
+
+Actual: [Your answer.]
 
 Did anything about the **number of rows** surprise you? (Look closely at the `sex` column.)
 
@@ -122,7 +126,9 @@ penguins |>
   summarize(n = n(), .groups = "drop")
 ```
 
-Prediction (rows): [ ... ] - Actual: [ ... ]
+Prediction (rows / columns): [Your answer.]
+
+Actual: [Your answer.]
 
 What went wrong, and what does it tell you about which *kinds* of variables you should group by?
 
@@ -136,7 +142,9 @@ penguins |>
   summarize(n = n())
 ```
 
-Prediction (rows): [ ... ] - Actual: [ ... ]
+Prediction (rows / columns): [Your answer.]
+
+Actual: [Your answer.]
 
 Explain the relationship between 3a, 3b, and 3d in terms of "what does one row of the output represent?"
 

@@ -38,11 +38,11 @@ library(palmerpenguins)
 
 **Plan for today**
 
-- The wrangling *mindset*: start from the table you wish you had
+- The wrangling *mindset*: start from the table you want
 - The three function families: **reduction**, **transformation**, **data verb**
-- Your first two data verbs: `summarize()` and `group_by()`
-- The `na.rm` trap (we saw it bite the AI on Friday)
-- Why every summary needs an `n()`
+- First two data verbs: `summarize()` and `group_by()`
+- The `na.rm` trap
+- The usefulness of `n()` in summaries
 
 **Helpful links**
 
@@ -59,7 +59,7 @@ Real data almost never arrives glyph-ready. This week is about **getting it ther
 
 Today we will build the **mental model** that every wrangling function hangs off of.
 
-## A note on the pipe
+## Reading the pipe
 
 We've learned `|>`. Read it as the word **"then."**
 
@@ -75,7 +75,7 @@ penguins |>           # take penguins, then
 The *DC* reading writes the pipe as `%>%`. `|>` and `%>%` behave identically, so read them as the same word. We'll use `|>`.
 :::
 
-# The wrangling mindset {background-color="#001E44"}
+# Wrangling mindset {background-color="#001E44"}
 
 ## Start from the table you want
 
