@@ -4373,8 +4373,7 @@ margin-bottom: 1.5rem;
   <li><a href="#part-3-mutate-and-arrange" id="toc-part-3-mutate-and-arrange" class="nav-link" data-scroll-target="#part-3-mutate-and-arrange">Part 3 — mutate() and arrange()</a></li>
   <li><a href="#part-4-select" id="toc-part-4-select" class="nav-link" data-scroll-target="#part-4-select">Part 4 — select()</a></li>
   <li><a href="#part-5-put-it-together" id="toc-part-5-put-it-together" class="nav-link" data-scroll-target="#part-5-put-it-together">Part 5 — Put it together</a></li>
-  <li><a href="#part-6-restyle-it" id="toc-part-6-restyle-it" class="nav-link" data-scroll-target="#part-6-restyle-it">Part 6 — Restyle it</a></li>
-  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap-up</a></li>
+  <li><a href="#part-6-readability" id="toc-part-6-readability" class="nav-link" data-scroll-target="#part-6-readability">Part 6 — Readability</a></li>
   <li><a href="#code-appendix" id="toc-code-appendix" class="nav-link" data-scroll-target="#code-appendix">Code appendix</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="day11-activity.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -4431,12 +4430,12 @@ $ sex               &lt;fct&gt; male, female, female, NA, female, male, female, 
 $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…</code></pre>
 </div>
 </div>
-<p>You now have all six verbs: yesterday’s <code>group_by()</code> and <code>summarise()</code>, and today’s <code>filter()</code>, <code>arrange()</code>, <code>select()</code>, and <code>mutate()</code>.</p>
+<p>We’ll practice using the six verbs we’ve learned: yesterday’s <code>group_by()</code> and <code>summarise()</code>, and today’s <code>filter()</code>, <code>arrange()</code>, <code>select()</code>, and <code>mutate()</code>.</p>
 <hr>
 </section>
 <section id="part-1-match-the-verb" class="level1">
 <h1>Part 1 — Match the verb</h1>
-<p>Each task can be done with <strong>one</strong> verb (one task needs two). Name the verb(s) you’d use, no code yet.</p>
+<p>Each task can be done with <strong>one</strong> verb (one task needs two). Name the verb(s) you’d use, without writing any code.</p>
 <table class="caption-top table">
 <caption>Fill in the third column.</caption>
 <colgroup>
@@ -4455,32 +4454,32 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <tr class="odd">
 <td>1</td>
 <td>Keep only the Gentoo penguins</td>
-<td></td>
+<td>[Your answer.]</td>
 </tr>
 <tr class="even">
 <td>2</td>
 <td>Add a column of body mass in kilograms</td>
-<td></td>
+<td>[Your answer.]</td>
 </tr>
 <tr class="odd">
 <td>3</td>
 <td>Sort the penguins heaviest-first</td>
-<td></td>
+<td>[Your answer.]</td>
 </tr>
 <tr class="even">
 <td>4</td>
 <td>Keep only the <code>species</code>, <code>island</code>, and <code>body_mass_g</code> columns</td>
-<td></td>
+<td>[Your answer.]</td>
 </tr>
 <tr class="odd">
 <td>5</td>
 <td>One row per species, each with its average body mass</td>
-<td></td>
+<td>[Your answer.]</td>
 </tr>
 <tr class="even">
 <td>6</td>
 <td>Drop the penguins whose <code>sex</code> is missing</td>
-<td></td>
+<td>[Your answer.]</td>
 </tr>
 </tbody>
 </table>
@@ -4488,7 +4487,7 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 </section>
 <section id="part-2-filter" class="level1">
 <h1>Part 2 — filter()</h1>
-<p>Write a <strong>single pipeline</strong> for each. Run each one and glance at the number of rows.</p>
+<p>Write a <strong>single pipeline</strong> for each. Run each one and take a look at the number of rows.</p>
 <p><strong>2a.</strong> Penguins heavier than 5000 g.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -4511,7 +4510,7 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 </section>
 <section id="part-3-mutate-and-arrange" class="level1">
 <h1>Part 3 — mutate() and arrange()</h1>
-<p><strong>3a.</strong> Add a column <code>bill_ratio</code> = bill length ÷ bill depth. Then <code>arrange()</code> so the largest ratio is on top. (Which species ends up at the top?)</p>
+<p><strong>3a.</strong> Add a column <code>bill_ratio</code> = bill length ÷ bill depth. Then <code>arrange()</code> so the largest ratio is on top. Which species ends up at the top?</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -4520,7 +4519,7 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><strong>3c.</strong> <em>Reduction or transformation?</em> You want the <strong>single heaviest</strong> body mass in the whole dataset. Does that belong in <code>mutate()</code> or <code>summarise()</code>? Write it, and say why.</p>
+<p><strong>3c.</strong> <em>Reduction or transformation?</em> You want the <strong>single heaviest</strong> body mass in the whole dataset. Does that belong in <code>mutate()</code> or <code>summarise()</code>? Write the pipeline to compute the heaviest body mass, and explain why.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -4533,7 +4532,7 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><strong>4b.</strong> Do the same selection of the two bill columns using a <strong>helper</strong> (<code>starts_with()</code> or <code>ends_with()</code>) instead of naming them.</p>
+<p><strong>4b.</strong> Do the same selection of the two bill columns using a <strong>helper</strong> (<code>starts_with()</code> or <code>ends_with()</code>) rather than explicitly naming them.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -4546,7 +4545,7 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <section id="part-5-put-it-together" class="level1">
 <h1>Part 5 — Put it together</h1>
 <p>Answer this in <strong>one pipeline</strong>: <em>Among penguins with a known sex, what is the average flipper length for each species/sex combination, and how many penguins is each average based on? Show the longest-flippered group first.</em></p>
-<p>Before you run it, <strong>predict</strong> how many rows the result has.</p>
+<p>Before you write the code, <strong>predict</strong> how many rows the result has.</p>
 <p>Prediction (rows): [ … ]</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your pipeline (filter -&gt; group_by -&gt; summarise -&gt; arrange):</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -4555,18 +4554,39 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your plot (remember: switch |&gt; to + when you reach ggplot):</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><strong>One or two sentences:</strong> what does the table or plot show?</p>
+<p><strong>In one or two sentences:</strong> what does the table or plot show?</p>
 <p>[Your answer.]</p>
 <hr>
 </section>
-<section id="part-6-restyle-it" class="level1">
-<h1>Part 6 — Restyle it</h1>
-<p>The pipeline below works, but it’s unreadable. Rewrite it following the style guide: a space before each <code>|&gt;</code>, <code>|&gt;</code> at the end of the line, each named argument of <code>summarise()</code> on its own line indented two spaces, and the closing <code>)</code> on its own line.</p>
+<section id="part-6-readability" class="level1">
+<h1>Part 6 — Readability</h1>
+<p>The pipeline below works, but it’s unreadable. Rewrite it following the following style guidelines: a space before each <code>|&gt;</code>, <code>|&gt;</code> at the end of the line, each named argument of <code>summarise()</code> on its own line indented two spaces, and the closing <code>)</code> on its own line.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>penguins<span class="sc">|&gt;</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex))<span class="sc">|&gt;</span><span class="fu">group_by</span>(species,sex)<span class="sc">|&gt;</span><span class="fu">summarize</span>(<span class="at">n=</span><span class="fu">n</span>(),<span class="at">avg_mass=</span><span class="fu">mean</span>(body_mass_g,<span class="at">na.rm=</span><span class="cn">TRUE</span>))<span class="sc">|&gt;</span><span class="fu">arrange</span>(<span class="fu">desc</span>(avg_mass))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your restyled version:</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your restyled version:</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>penguins<span class="sc">|&gt;</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex))<span class="sc">|&gt;</span><span class="fu">group_by</span>(species,sex)<span class="sc">|&gt;</span><span class="fu">summarize</span>(<span class="at">n=</span><span class="fu">n</span>(),<span class="at">avg_mass=</span><span class="fu">mean</span>(body_mass_g,<span class="at">na.rm=</span><span class="cn">TRUE</span>))<span class="sc">|&gt;</span><span class="fu">arrange</span>(<span class="fu">desc</span>(avg_mass))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has regrouped the output.
+ℹ Summaries were computed grouped by species and sex.
+ℹ Output is grouped by species.
+ℹ Use `summarise(.groups = &quot;drop_last&quot;)` to silence this message.
+ℹ Use `summarise(.by = c(species, sex))` for per-operation grouping
+  (`?dplyr::dplyr_by`) instead.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+# Groups:   species [3]
+  species   sex        n avg_mass
+  &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;    &lt;dbl&gt;
+1 Gentoo    male      61    5485.
+2 Gentoo    female    58    4680.
+3 Adelie    male      73    4043.
+4 Chinstrap male      34    3939.
+5 Chinstrap female    34    3527.
+6 Adelie    female    73    3369.</code></pre>
+</div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -4578,49 +4598,44 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Once you’ve done it by hand, try the <code>styler</code> package: <code>Cmd/Ctrl + Shift + P</code>, then type “styler” and pick <em>“Style active file.”</em> Did it match yours?</p>
+<p>Once you’ve done it by hand, try the <code>styler</code> package: First, highlight the messy, unreadable version, then hit <code>Cmd/Ctrl + Shift + P</code>, type “styler”, and pick <em>“Style selection.”</em> Does it match what you wrote?</p>
 </div>
 </div>
-<hr>
-</section>
-<section id="wrap-up" class="level1">
-<h1>Wrap-up</h1>
-<p><strong>One-sentence reflection:</strong> of the four verbs today, which felt most natural and which will you have to look up again next week?</p>
-<p>[Write one sentence.]</p>
 <hr>
 </section>
 <section id="code-appendix" class="level1">
 <h1>Code appendix</h1>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(penguins)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="at">species =</span> <span class="st">&quot;Chinstrap&quot;</span>)</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span>
-<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Your pipeline (filter -&gt; group_by -&gt; summarise -&gt; arrange):</span></span>
-<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Your plot (remember: switch |&gt; to + when you reach ggplot):</span></span>
-<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>penguins<span class="sc">|&gt;</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex))<span class="sc">|&gt;</span><span class="fu">group_by</span>(species,sex)<span class="sc">|&gt;</span><span class="fu">summarize</span>(<span class="at">n=</span><span class="fu">n</span>(),<span class="at">avg_mass=</span><span class="fu">mean</span>(body_mass_g,<span class="at">na.rm=</span><span class="cn">TRUE</span>))<span class="sc">|&gt;</span><span class="fu">arrange</span>(<span class="fu">desc</span>(avg_mass))</span>
-<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Your restyled version:</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(penguins)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="at">species =</span> <span class="st">&quot;Chinstrap&quot;</span>)</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Your pipeline (filter -&gt; group_by -&gt; summarise -&gt; arrange):</span></span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Your plot (remember: switch |&gt; to + when you reach ggplot):</span></span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>penguins<span class="sc">|&gt;</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex))<span class="sc">|&gt;</span><span class="fu">group_by</span>(species,sex)<span class="sc">|&gt;</span><span class="fu">summarize</span>(<span class="at">n=</span><span class="fu">n</span>(),<span class="at">avg_mass=</span><span class="fu">mean</span>(body_mass_g,<span class="at">na.rm=</span><span class="cn">TRUE</span>))<span class="sc">|&gt;</span><span class="fu">arrange</span>(<span class="fu">desc</span>(avg_mass))</span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Your restyled version:</span></span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>penguins<span class="sc">|&gt;</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex))<span class="sc">|&gt;</span><span class="fu">group_by</span>(species,sex)<span class="sc">|&gt;</span><span class="fu">summarize</span>(<span class="at">n=</span><span class="fu">n</span>(),<span class="at">avg_mass=</span><span class="fu">mean</span>(body_mass_g,<span class="at">na.rm=</span><span class="cn">TRUE</span>))<span class="sc">|&gt;</span><span class="fu">arrange</span>(<span class="fu">desc</span>(avg_mass))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 

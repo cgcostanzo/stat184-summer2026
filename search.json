@@ -795,14 +795,14 @@
     "href": "weeks/week3/day11-data-verbs-slides.html#recap-from-yesterday",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "Recap from yesterday",
-    "text": "Recap from yesterday\nYou have the framework and your first two data verbs:\n\nWhere we left off.\n\n\n\n\n\n\n\nFamily\nInput → Output\nThe verb that uses it\n\n\n\n\nReduction\nvariable → scalar\nsummarise()\n\n\nTransformation\nvariable → variable\n…today: mutate()\n\n\nData verb\ndata frame → data frame\nall of them\n\n\n\nsummarise() is the home of reduction functions. Today you meet mutate(), the home of transformation functions, plus three verbs that reshape which rows and columns you keep."
+    "text": "Recap from yesterday\nWe discussed the overarching framework and two data verbs:\n\n\n\n\n\n\n\n\nFamily\nInput → Output\nThe verb that uses it\n\n\n\n\nReduction\nvariable → scalar\nsummarise()\n\n\nTransformation\nvariable → variable\n…today: mutate()\n\n\nData verb\ndata frame → data frame\nall of them\n\n\n\nWe write reduction functions inside of summarise(). Today we will cover mutate(), which contains transformation functions, plus three verbs that reshape which rows and columns you keep."
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-slides.html#a-map-of-the-verbs",
     "href": "weeks/week3/day11-data-verbs-slides.html#a-map-of-the-verbs",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "A map of the verbs",
-    "text": "A map of the verbs\nR4DS §3.1.3 organizes dplyr by what each verb operates on:\n\nThe dplyr toolkit.\n\n\n\n\n\n\n\nTouches…\nVerbs\nWhat changes\n\n\n\n\nRows\nfilter(), arrange()\nwhich rows, and their order\n\n\nColumns\nselect(), mutate()\nwhich columns, and new ones\n\n\nGroups\ngroup_by(), summarise()\n(yesterday)\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nEvery one of these obeys the same three rules: first argument is a data frame, you name columns without quotes, and the output is a brand-new data frame."
+    "text": "A map of the verbs\nWe can organize dplyr by what each verb operates on:\n\nThe dplyr toolkit.\n\n\n\n\n\n\n\nTouches…\nVerbs\nWhat changes\n\n\n\n\nRows\nfilter(), arrange()\nwhich rows, and their order\n\n\nColumns\nselect(), mutate()\nwhich columns, and new ones\n\n\nGroups\ngroup_by(), summarise()\n(yesterday)\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nThese all follow the same three rules: first argument is a data frame, you name columns without quotes, and the output is a brand-new data frame."
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-slides.html#filter-keep-the-rows-you-want",
@@ -816,98 +816,98 @@
     "href": "weeks/week3/day11-data-verbs-slides.html#the-comparison-operators",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "The comparison operators",
-    "text": "The comparison operators\nThese are the tests you’ll use inside filter() (DC Table 10.9):\n\nComparisons for filter().\n\n\n\n\n\n\n\nOperator\nMeans\nExample\n\n\n\n\n==\nequal to\nspecies == \"Gentoo\"\n\n\n!=\nnot equal to\nsex != \"male\"\n\n\n&gt; &gt;=\ngreater (or equal)\nbody_mass_g &gt;= 5000\n\n\n&lt; &lt;=\nless (or equal)\nflipper_length_mm &lt; 190\n\n\n%in%\nis one of\nisland %in% c(\"Dream\", \"Biscoe\")\n\n\n\n\n\n\n\n\n\nWarning\n\n\nUse == to test equality, not =. A single = means “assign,” and dplyr will stop you: “Did you mean ==?” This is a classic AI-generated bug too, exactly the kind of thing Friday’s lesson said to read for."
+    "text": "The comparison operators\nThese are the tests you’ll use inside filter() (DC Table 10.9):\n\nComparisons for filter().\n\n\n\n\n\n\n\nOperator\nMeans\nExample\n\n\n\n\n==\nequal to\nspecies == \"Gentoo\"\n\n\n!=\nnot equal to\nsex != \"male\"\n\n\n&gt; &gt;=\ngreater (or equal)\nbody_mass_g &gt;= 5000\n\n\n&lt; &lt;=\nless (or equal)\nflipper_length_mm &lt; 190\n\n\n%in%\nis one of\nisland %in% c(\"Dream\", \"Biscoe\")\n\n\n\n\n\n\n\n\n\nWarning\n\n\nUse == to test equality, not =. A single = means “assign,” not “test equality”."
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-slides.html#multiple-conditions",
     "href": "weeks/week3/day11-data-verbs-slides.html#multiple-conditions",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "Multiple conditions",
-    "text": "Multiple conditions\nSeparate tests with a comma (or &) for AND, a vertical bar | for OR (R4DS §3.2.1):\n\n# AND: Adelies that are ALSO on Dream\npenguins |&gt;\n  filter(species == \"Adelie\", island == \"Dream\")\n\n# OR: any penguin that is Adelie OR Gentoo\npenguins |&gt;\n  filter(species == \"Adelie\" | species == \"Gentoo\")\n\n# %in% is the clean way to write a long OR\npenguins |&gt;\n  filter(species %in% c(\"Adelie\", \"Gentoo\"))\n\n\n\n\n\n\n\nNote\n\n\nWatch the English-trap: filter(species == \"Adelie\" | \"Gentoo\") does not work the way it reads. Each side of | must be a complete test."
+    "text": "Multiple conditions\nSeparate tests with a comma (or &) for AND, a vertical bar | for OR (R4DS §3.2.1):\n\n# AND: Adelies that are ALSO on Dream\npenguins |&gt;\n  filter(species == \"Adelie\", island == \"Dream\")\n\n# OR: any penguin that is Adelie OR Gentoo\npenguins |&gt;\n  filter(species == \"Adelie\" | species == \"Gentoo\")\n\n# %in% is the clean way to write a long OR\npenguins |&gt;\n  filter(species %in% c(\"Adelie\", \"Gentoo\"))\n\n\n\n\n\n\n\nNote\n\n\nfilter(species == \"Adelie\" | \"Gentoo\") does not work the way it reads. Each side of | must be a complete test."
   },
   {
-    "objectID": "weeks/week3/day11-data-verbs-slides.html#paying-off-yesterdays-iou",
-    "href": "weeks/week3/day11-data-verbs-slides.html#paying-off-yesterdays-iou",
+    "objectID": "weeks/week3/day11-data-verbs-slides.html#dropping-nas",
+    "href": "weeks/week3/day11-data-verbs-slides.html#dropping-nas",
     "title": "The data verbs: select · filter · mutate · arrange",
-    "section": "Paying off yesterday’s IOU",
-    "text": "Paying off yesterday’s IOU\nYesterday, group_by(species, sex) gave us an NA group because some penguins have a missing sex. Now we can drop them:\n\npenguins |&gt;\n  filter(!is.na(sex)) |&gt;\n  group_by(species, sex) |&gt;\n  summarise(n = n(), .groups = \"drop\")\n\n# A tibble: 6 × 3\n  species   sex        n\n  &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;\n1 Adelie    female    73\n2 Adelie    male      73\n3 Chinstrap female    34\n4 Chinstrap male      34\n5 Gentoo    female    58\n6 Gentoo    male      61\n\n\nis.na(sex) is TRUE for the missing ones; ! flips it, so !is.na(sex) keeps the rows that do have a sex. No more NA group."
+    "section": "Dropping NAs",
+    "text": "Dropping NAs\nYesterday, group_by(species, sex) gave us an NA group because some penguins have a missing sex. Now we can drop them:\n\npenguins |&gt;\n  filter(!is.na(sex)) |&gt;\n  group_by(species, sex) |&gt;\n  summarise(n = n(), .groups = \"drop\")\n\n# A tibble: 6 × 3\n  species   sex        n\n  &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;\n1 Adelie    female    73\n2 Adelie    male      73\n3 Chinstrap female    34\n4 Chinstrap male      34\n5 Gentoo    female    58\n6 Gentoo    male      61\n\n\nis.na(sex) is TRUE for the missing ones; ! flips it, so !is.na(sex) keeps the rows that do have a sex. This removes the NA group."
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-slides.html#arrange-set-the-order",
     "href": "weeks/week3/day11-data-verbs-slides.html#arrange-set-the-order",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "arrange(): set the order",
-    "text": "arrange(): set the order\narrange() reorders rows without adding or removing any (DC §10.4, R4DS §3.2.3). Ascending by default:\n\npenguins |&gt;\n  arrange(body_mass_g)\n\n# A tibble: 344 × 8\n   species   island   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;     &lt;fct&gt;             &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Chinstrap Dream              46.9          16.6               192        2700\n 2 Adelie    Biscoe             36.5          16.6               181        2850\n 3 Adelie    Biscoe             36.4          17.1               184        2850\n 4 Adelie    Biscoe             34.5          18.1               187        2900\n 5 Adelie    Dream              33.1          16.1               178        2900\n 6 Adelie    Torgers…           38.6          17                 188        2900\n 7 Chinstrap Dream              43.2          16.6               187        2900\n 8 Adelie    Biscoe             37.9          18.6               193        2925\n 9 Adelie    Dream              37.5          18.9               179        2975\n10 Adelie    Dream              37            16.9               185        3000\n# ℹ 334 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nWrap a column in desc() for descending order, and list several columns to break ties:\n\npenguins |&gt;\n  arrange(species, desc(body_mass_g))   # by species, then heaviest first"
+    "text": "arrange(): set the order\narrange() reorders rows without adding or removing any. This function gives the result in ascending order by default:\n\npenguins |&gt;\n  arrange(body_mass_g)\n\n# A tibble: 344 × 8\n   species   island   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;     &lt;fct&gt;             &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Chinstrap Dream              46.9          16.6               192        2700\n 2 Adelie    Biscoe             36.5          16.6               181        2850\n 3 Adelie    Biscoe             36.4          17.1               184        2850\n 4 Adelie    Biscoe             34.5          18.1               187        2900\n 5 Adelie    Dream              33.1          16.1               178        2900\n 6 Adelie    Torgers…           38.6          17                 188        2900\n 7 Chinstrap Dream              43.2          16.6               187        2900\n 8 Adelie    Biscoe             37.9          18.6               193        2925\n 9 Adelie    Dream              37.5          18.9               179        2975\n10 Adelie    Dream              37            16.9               185        3000\n# ℹ 334 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nYou can wrap a column in desc() if you want descending order. If there are ties, to break them you can list several columns:\n\npenguins |&gt;\n  arrange(species, desc(body_mass_g))   # by species, then heaviest first"
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-slides.html#select-keep-the-columns-you-want",
     "href": "weeks/week3/day11-data-verbs-slides.html#select-keep-the-columns-you-want",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "select(): keep the columns you want",
-    "text": "select(): keep the columns you want\nselect() is to columns what filter() is to rows (DC §10.1, R4DS §3.3.2):\n\npenguins |&gt;\n  select(species, island, body_mass_g)\n\n# A tibble: 344 × 3\n   species island    body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;           &lt;int&gt;\n 1 Adelie  Torgersen        3750\n 2 Adelie  Torgersen        3800\n 3 Adelie  Torgersen        3250\n 4 Adelie  Torgersen          NA\n 5 Adelie  Torgersen        3450\n 6 Adelie  Torgersen        3650\n 7 Adelie  Torgersen        3625\n 8 Adelie  Torgersen        4675\n 9 Adelie  Torgersen        3475\n10 Adelie  Torgersen        4250\n# ℹ 334 more rows\n\n\nYou can grab a range, drop with !, or rename as you go:\n\npenguins |&gt; select(species:bill_depth_mm)  # a range of columns\npenguins |&gt; select(!year)                  # everything EXCEPT year\npenguins |&gt; select(mass = body_mass_g)     # rename while selecting\n\n\n\n\n\n\n\nNote\n\n\npenguins has only 8 columns, so select() feels optional here. On a 19-column table like flights from HW2, or a 76-column one, it’s the first thing you reach for."
+    "text": "select(): keep the columns you want\nselect() is to columns what filter() is to rows:\n\npenguins |&gt;\n  select(species, island, body_mass_g)\n\n# A tibble: 344 × 3\n   species island    body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;           &lt;int&gt;\n 1 Adelie  Torgersen        3750\n 2 Adelie  Torgersen        3800\n 3 Adelie  Torgersen        3250\n 4 Adelie  Torgersen          NA\n 5 Adelie  Torgersen        3450\n 6 Adelie  Torgersen        3650\n 7 Adelie  Torgersen        3625\n 8 Adelie  Torgersen        4675\n 9 Adelie  Torgersen        3475\n10 Adelie  Torgersen        4250\n# ℹ 334 more rows\n\n\nYou can grab a range, drop with !, or rename as you go:\n\npenguins |&gt; select(species:bill_depth_mm)  # a range of columns\npenguins |&gt; select(!year)                  # everything EXCEPT year\npenguins |&gt; select(mass = body_mass_g)     # rename while selecting\n\n\n\n\n\n\n\nNote\n\n\npenguins has only 8 columns, so select() feels optional here. On a 19-column table like flights from HW2, or a 76-column one, it’s one of the first things you might want to try."
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-slides.html#select-helpers",
     "href": "weeks/week3/day11-data-verbs-slides.html#select-helpers",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "select() helpers",
-    "text": "select() helpers\nFor wide tables, name columns by pattern instead of one-by-one (R4DS §3.3.2):\n\npenguins |&gt; select(starts_with(\"bill\"))   # bill_length_mm, bill_depth_mm\npenguins |&gt; select(ends_with(\"_mm\"))       # all the millimetre measurements\npenguins |&gt; select(where(is.numeric))      # every numeric column"
+    "text": "select() helpers\nFor wide tables, name columns by pattern instead of one-by-one:\n\npenguins |&gt; select(starts_with(\"bill\"))    # bill_length_mm, bill_depth_mm\npenguins |&gt; select(ends_with(\"_mm\"))       # all the millimetre measurements\npenguins |&gt; select(where(is.numeric))      # every numeric column"
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-slides.html#mutate-add-a-new-column",
     "href": "weeks/week3/day11-data-verbs-slides.html#mutate-add-a-new-column",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "mutate(): add a new column",
-    "text": "mutate(): add a new column\nmutate() adds columns computed from existing ones, keeping every row (DC §10.3, R4DS §3.3.1):\n\npenguins |&gt;\n  mutate(body_mass_kg = body_mass_g / 1000) |&gt;\n  select(species, body_mass_g, body_mass_kg)\n\n# A tibble: 344 × 3\n   species body_mass_g body_mass_kg\n   &lt;fct&gt;         &lt;int&gt;        &lt;dbl&gt;\n 1 Adelie         3750         3.75\n 2 Adelie         3800         3.8 \n 3 Adelie         3250         3.25\n 4 Adelie           NA        NA   \n 5 Adelie         3450         3.45\n 6 Adelie         3650         3.65\n 7 Adelie         3625         3.62\n 8 Adelie         4675         4.68\n 9 Adelie         3475         3.48\n10 Adelie         4250         4.25\n# ℹ 334 more rows"
+    "text": "mutate(): add a new column\nmutate() adds columns computed from existing ones, keeping every row:\n\npenguins |&gt;\n  mutate(body_mass_kg = body_mass_g / 1000) |&gt;\n  select(species, body_mass_g, body_mass_kg)\n\n# A tibble: 344 × 3\n   species body_mass_g body_mass_kg\n   &lt;fct&gt;         &lt;int&gt;        &lt;dbl&gt;\n 1 Adelie         3750         3.75\n 2 Adelie         3800         3.8 \n 3 Adelie         3250         3.25\n 4 Adelie           NA        NA   \n 5 Adelie         3450         3.45\n 6 Adelie         3650         3.65\n 7 Adelie         3625         3.62\n 8 Adelie         4675         4.68\n 9 Adelie         3475         3.48\n10 Adelie         4250         4.25\n# ℹ 334 more rows"
   },
   {
-    "objectID": "weeks/week3/day11-data-verbs-slides.html#mutate-is-where-transformations-live",
-    "href": "weeks/week3/day11-data-verbs-slides.html#mutate-is-where-transformations-live",
+    "objectID": "weeks/week3/day11-data-verbs-slides.html#mutate-contains-transformation-functions",
+    "href": "weeks/week3/day11-data-verbs-slides.html#mutate-contains-transformation-functions",
     "title": "The data verbs: select · filter · mutate · arrange",
-    "section": "mutate() is where transformations live",
-    "text": "mutate() is where transformations live\nThis is the parallel DC §10.3 draws to yesterday:\n\nmutate() always involves a transformation function, just as summarise() always involves a reduction function.\n\n\n# transformation: one value per row → mutate()\npenguins |&gt; mutate(bill_ratio = bill_length_mm / bill_depth_mm)\n\n# reduction: one value total → summarise()\npenguins |&gt; summarise(avg_bill = mean(bill_length_mm, na.rm = TRUE))\n\n\n\n\n\n\n\nTip\n\n\nDeciding between them is the same question from yesterday: does the calculation give one value per row (mutate) or one value for the whole group (summarise)?"
+    "section": "mutate() contains transformation functions",
+    "text": "mutate() contains transformation functions\n\nmutate() always involves a transformation function, just as summarise() always involves a reduction function.\n\n\n# transformation: one value per row → mutate()\npenguins |&gt; mutate(bill_ratio = bill_length_mm / bill_depth_mm)\n\n# reduction: one value total → summarise()\npenguins |&gt; summarise(avg_bill = mean(bill_length_mm, na.rm = TRUE))\n\n\n\n\n\n\n\nTip\n\n\nDeciding between them is the same question from yesterday: does the calculation give one value per row (mutate) or one value for the whole group (summarise)?"
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-slides.html#a-categorical-column-with-ifelse",
     "href": "weeks/week3/day11-data-verbs-slides.html#a-categorical-column-with-ifelse",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "A categorical column with ifelse()",
-    "text": "A categorical column with ifelse()\nifelse() (from DC §7.4) is a transformation that picks between two values per row, perfect inside mutate():\n\npenguins |&gt;\n  mutate(size = ifelse(body_mass_g &gt; 4000, \"large\", \"small\")) |&gt;\n  select(species, body_mass_g, size)\n\n# A tibble: 344 × 3\n   species body_mass_g size \n   &lt;fct&gt;         &lt;int&gt; &lt;chr&gt;\n 1 Adelie         3750 small\n 2 Adelie         3800 small\n 3 Adelie         3250 small\n 4 Adelie           NA &lt;NA&gt; \n 5 Adelie         3450 small\n 6 Adelie         3650 small\n 7 Adelie         3625 small\n 8 Adelie         4675 large\n 9 Adelie         3475 small\n10 Adelie         4250 large\n# ℹ 334 more rows"
+    "text": "A categorical column with ifelse()\nifelse() is a transformation that picks between two values per row, perfect inside mutate():\n\npenguins |&gt;\n  mutate(size = ifelse(body_mass_g &gt; 4000, \"large\", \"small\")) |&gt;\n  select(species, body_mass_g, size)\n\n# A tibble: 344 × 3\n   species body_mass_g size \n   &lt;fct&gt;         &lt;int&gt; &lt;chr&gt;\n 1 Adelie         3750 small\n 2 Adelie         3800 small\n 3 Adelie         3250 small\n 4 Adelie           NA &lt;NA&gt; \n 5 Adelie         3450 small\n 6 Adelie         3650 small\n 7 Adelie         3625 small\n 8 Adelie         4675 large\n 9 Adelie         3475 small\n10 Adelie         4250 large\n# ℹ 334 more rows"
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-slides.html#the-pipe-does-the-real-work",
     "href": "weeks/week3/day11-data-verbs-slides.html#the-pipe-does-the-real-work",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "The pipe does the real work",
-    "text": "The pipe does the real work\nOne verb does one thing. Real questions need several, chained with |&gt; (R4DS §3.4):\n\npenguins |&gt;\n  filter(!is.na(sex)) |&gt;\n  mutate(body_mass_kg = body_mass_g / 1000) |&gt;\n  select(species, sex, body_mass_kg) |&gt;\n  arrange(desc(body_mass_kg))\n\nRead it top to bottom as English: take penguins, then drop missing sex, then add mass in kg, then keep three columns, then sort heaviest first.\n\n\n\n\n\n\nTip\n\n\nBecause each verb returns a new data frame, the output of one is the input to the next. The verbs line up on the left so you can skim the story without reading the details."
+    "text": "The pipe does the real work\nOne verb does one thing. For most questions, we will need several, chained together with |&gt;:\n\npenguins |&gt;\n  filter(!is.na(sex)) |&gt;\n  mutate(body_mass_kg = body_mass_g / 1000) |&gt;\n  select(species, sex, body_mass_kg) |&gt;\n  arrange(desc(body_mass_kg))\n\nThis can be read in English as: take penguins, then drop missing sex, then add mass in kg, then keep three columns, then sort heaviest first.\n\n\n\n\n\n\nTip\n\n\nBecause each verb returns a new data frame, the output of one is the input to the next. The verbs line up on the left so you can quickly skim to understand what’s going on."
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-slides.html#putting-all-six-together",
     "href": "weeks/week3/day11-data-verbs-slides.html#putting-all-six-together",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "Putting all six together",
-    "text": "Putting all six together\nYesterday’s verbs and today’s verbs, in one pipeline that answers a real question, “what’s the average mass of each species/sex, biggest first?”:\n\npenguins |&gt;\n  filter(!is.na(sex)) |&gt;\n  group_by(species, sex) |&gt;\n  summarise(\n    n        = n(),\n    avg_mass = mean(body_mass_g, na.rm = TRUE),\n    .groups  = \"drop\"\n  ) |&gt;\n  arrange(desc(avg_mass))\n\n# A tibble: 6 × 4\n  species   sex        n avg_mass\n  &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;    &lt;dbl&gt;\n1 Gentoo    male      61    5485.\n2 Gentoo    female    58    4680.\n3 Adelie    male      73    4043.\n4 Chinstrap male      34    3939.\n5 Chinstrap female    34    3527.\n6 Adelie    female    73    3369.\n\n\nAnd because the result is just a data frame, pipe it straight into a plot (switching |&gt; to +):\n\npenguins |&gt;\n  filter(!is.na(sex)) |&gt;\n  ggplot(aes(x = species, y = body_mass_g, fill = sex)) +\n  geom_boxplot()"
+    "text": "Putting all six together\nWe can use all six verbs to answer the question, “what’s the average mass of each species/sex, biggest first?”:\n\npenguins |&gt;\n  filter(!is.na(sex)) |&gt;\n  group_by(species, sex) |&gt;\n  summarise(\n    n        = n(),\n    avg_mass = mean(body_mass_g, na.rm = TRUE),\n    .groups  = \"drop\"\n  ) |&gt;\n  arrange(desc(avg_mass))\n\n# A tibble: 6 × 4\n  species   sex        n avg_mass\n  &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;    &lt;dbl&gt;\n1 Gentoo    male      61    5485.\n2 Gentoo    female    58    4680.\n3 Adelie    male      73    4043.\n4 Chinstrap male      34    3939.\n5 Chinstrap female    34    3527.\n6 Adelie    female    73    3369.\n\n\nAnd because the result is just a data frame, you can pipe it straight into a plot (switching |&gt; to +):\n\npenguins |&gt;\n  filter(!is.na(sex)) |&gt;\n  ggplot(aes(x = species, y = body_mass_g, fill = sex)) +\n  geom_boxplot()"
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-slides.html#formatting-your-pipelines",
     "href": "weeks/week3/day11-data-verbs-slides.html#formatting-your-pipelines",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "Formatting your pipelines",
-    "text": "Formatting your pipelines\nA multi-step pipeline is only readable if you format it. The rules that matter most (R4DS Ch. 4):\n\nA space before |&gt;, and let |&gt; be the last thing on the line.\nFor verbs with named arguments (mutate, summarise), put each argument on its own line, indented two spaces.\nVerbs without named arguments (filter, select, arrange) can stay on one line if they fit.\nName new columns in snake_case: body_mass_kg, not BodyMassKG.\n\n\n# Strive for                          # Avoid\npenguins |&gt;                           penguins|&gt;filter(!is.na(sex))|&gt;group_by(\n  filter(!is.na(sex)) |&gt;              species)|&gt;summarize(n=n(),avg=mean(\n  group_by(species) |&gt;               body_mass_g,na.rm=TRUE))\n  summarise(\n    n   = n(),\n    avg = mean(body_mass_g, na.rm = TRUE)\n  )\n\n\n\n\n\n\n\nTip\n\n\nDon’t hand-format forever: the styler package reformats a whole file for you. In RStudio, Cmd/Ctrl + Shift + P → type “styler”. Full guide: R4DS Ch. 4."
+    "text": "Formatting your pipelines\nA multi-step pipeline is only readable if you format it. The rules that matter most:\n\nA space before |&gt;, and let |&gt; be the last thing on the line.\nFor verbs with named arguments (mutate, summarise), put each argument on its own line, indented two spaces.\nVerbs without named arguments (filter, select, arrange) can stay on one line if they fit.\nName new columns in snake_case: body_mass_kg, not BodyMassKG.\n\n\n# Strive for                          # Avoid\npenguins |&gt;                           penguins|&gt;filter(!is.na(sex))|&gt;group_by(\n  filter(!is.na(sex)) |&gt;              species)|&gt;summarize(n=n(),avg=mean(\n  group_by(species) |&gt;                body_mass_g,na.rm=TRUE))\n  summarise(\n    n   = n(),\n    avg = mean(body_mass_g, na.rm = TRUE)\n  )\n\n\n\n\n\n\n\nTip\n\n\nDon’t hand-format forever: the styler package reformats a whole file for you. In RStudio, Cmd/Ctrl + Shift + P → type “styler”. Full guide: R4DS Ch. 4."
   },
   {
-    "objectID": "weeks/week3/day11-data-verbs-slides.html#a-shortcut-youll-use-constantly",
-    "href": "weeks/week3/day11-data-verbs-slides.html#a-shortcut-youll-use-constantly",
+    "objectID": "weeks/week3/day11-data-verbs-slides.html#a-helpful-shortcut",
+    "href": "weeks/week3/day11-data-verbs-slides.html#a-helpful-shortcut",
     "title": "The data verbs: select · filter · mutate · arrange",
-    "section": "A shortcut you’ll use constantly",
-    "text": "A shortcut you’ll use constantly\nCounting rows per group is so common it has its own verb, count() (R4DS §3.2.4):\n\npenguins |&gt; count(species)\n\n# is exactly the same as\npenguins |&gt;\n  group_by(species) |&gt;\n  summarise(n = n())\n\n\n\n\n\n\n\nNote\n\n\ncount() is just group_by() + summarise(n = n()) bundled up. Add sort = TRUE to get the biggest groups first."
+    "section": "A helpful shortcut",
+    "text": "A helpful shortcut\nCounting rows per group is so common it has its own verb, count():\n\npenguins |&gt; count(species)\n\n# is exactly the same as\npenguins |&gt;\n  group_by(species) |&gt;\n  summarise(n = n())\n\n\n\n\n\n\n\nNote\n\n\ncount() is just group_by() + summarise(n = n()) bundled up. Add sort = TRUE to get the biggest groups first."
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-slides.html#what-we-covered-today",
     "href": "weeks/week3/day11-data-verbs-slides.html#what-we-covered-today",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "What we covered today",
-    "text": "What we covered today\n\nfilter() — keep rows that pass a test; == not =; combine with ,/|/%in%; !is.na() to drop missing\narrange() — reorder rows; desc() for descending; extra columns break ties\nselect() — keep/drop/rename columns; starts_with() & friends for wide tables\nmutate() — add columns from transformations; the per-row twin of summarise()\nThe pipe — chain verbs into a readable top-to-bottom story; pipe results into ggplot\nStyle — space before |&gt;, named args on their own lines, snake_case, let styler do the rest"
+    "text": "What we covered today\n\nfilter(): keep rows that pass a test; == not =; combine with ,/|/%in%; !is.na() to drop missing\narrange(): reorder rows; desc() for descending; extra columns break ties\nselect(): keep/drop/rename columns; starts_with() & friends for wide tables\nmutate(): add columns from transformations; the per-row twin of summarise()\nThe pipe: chain verbs into a readable top-to-bottom story; pipe results into ggplot\nStyle: space before |&gt;, named args on their own lines, snake_case, let styler do the rest"
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-slides.html#activity-wrangling-the-penguins",
@@ -921,28 +921,28 @@
     "href": "weeks/week3/day11-data-verbs-slides.html#wrap-up-looking-ahead",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\nTomorrow (Wednesday): no new reading, we put all six verbs together on a messier dataset and turn raw rows into summary tables and plots.\n\n\nUpcoming Deadlines\n\nThu 6/4, before class: DC §12.1\nThu 6/4, 11:59 p.m.: Project: Team formation\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 3 · R4DS Ch. 4 · DC Ch. 10 · dplyr reference"
+    "text": "Wrap-up & looking ahead\nTomorrow (Wednesday): no new reading, we put all six verbs together on a messier dataset and turn raw rows into summary tables and plots.\n\n\nUpcoming Deadlines\n\nThu 6/4, before class: DC §12.1\nThu 6/4, 11:59 p.m.: Project: Team formation\nFri 6/5, 11:59 p.m.: Homework 3: Data Wrangling & Reshaping\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 3 · R4DS Ch. 4 · DC Ch. 10 · dplyr reference"
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-page.html",
     "href": "weeks/week3/day11-data-verbs-page.html",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "",
-    "text": "NoteToday: Tuesday June 2\n\n\n\nBefore class\n\nPerusall Assignment: DC §10.1–10.6\n\nPlan for today\n\nFour new data verbs: filter, arrange, select, mutate\nSorting verbs by what they touch: rows vs. columns\nCombining verbs with the pipe into real pipelines\nFormatting pipelines so they stay readable\nPaying off yesterday’s IOU: dropping the NA penguins\n\nHelpful links\n\nSyllabus · AI policy · Schedule · R4DS Ch. 3 · R4DS Ch. 4 · DC Ch. 10 · dplyr reference"
+    "text": "NoteToday: Tuesday June 2\n\n\n\nBefore class\n\nPerusall Assignment: DC §10.1–10.6\n\nPlan for today\n\nFour new data verbs: filter, arrange, select, mutate\nSorting verbs by what they touch: rows vs. columns\nCombining verbs with the pipe into real pipelines\nFormatting pipelines so they stay readable\n\nHelpful links\n\nSyllabus · AI policy · Schedule · R4DS Ch. 3 · R4DS Ch. 4 · DC Ch. 10 · dplyr reference"
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-page.html#recap-from-yesterday",
     "href": "weeks/week3/day11-data-verbs-page.html#recap-from-yesterday",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "Recap from yesterday",
-    "text": "Recap from yesterday\nYou have the framework and your first two data verbs:\n\nWhere we left off.\n\n\n\n\n\n\n\nFamily\nInput → Output\nThe verb that uses it\n\n\n\n\nReduction\nvariable → scalar\nsummarise()\n\n\nTransformation\nvariable → variable\n…today: mutate()\n\n\nData verb\ndata frame → data frame\nall of them\n\n\n\nsummarise() is the home of reduction functions. Today you meet mutate(), the home of transformation functions, plus three verbs that reshape which rows and columns you keep."
+    "text": "Recap from yesterday\nWe discussed the overarching framework and two data verbs:\n\n\n\n\n\n\n\n\nFamily\nInput → Output\nThe verb that uses it\n\n\n\n\nReduction\nvariable → scalar\nsummarise()\n\n\nTransformation\nvariable → variable\n…today: mutate()\n\n\nData verb\ndata frame → data frame\nall of them\n\n\n\nWe write reduction functions inside of summarise(). Today we will cover mutate(), which contains transformation functions, plus three verbs that reshape which rows and columns you keep."
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-page.html#a-map-of-the-verbs",
     "href": "weeks/week3/day11-data-verbs-page.html#a-map-of-the-verbs",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "A map of the verbs",
-    "text": "A map of the verbs\nR4DS §3.1.3 organizes dplyr by what each verb operates on:\n\nThe dplyr toolkit.\n\n\n\n\n\n\n\nTouches…\nVerbs\nWhat changes\n\n\n\n\nRows\nfilter(), arrange()\nwhich rows, and their order\n\n\nColumns\nselect(), mutate()\nwhich columns, and new ones\n\n\nGroups\ngroup_by(), summarise()\n(yesterday)\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nEvery one of these obeys the same three rules: first argument is a data frame, you name columns without quotes, and the output is a brand-new data frame."
+    "text": "A map of the verbs\nWe can organize dplyr by what each verb operates on:\n\nThe dplyr toolkit.\n\n\n\n\n\n\n\nTouches…\nVerbs\nWhat changes\n\n\n\n\nRows\nfilter(), arrange()\nwhich rows, and their order\n\n\nColumns\nselect(), mutate()\nwhich columns, and new ones\n\n\nGroups\ngroup_by(), summarise()\n(yesterday)\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nThese all follow the same three rules: first argument is a data frame, you name columns without quotes, and the output is a brand-new data frame."
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-page.html#filter-keep-the-rows-you-want",
@@ -956,98 +956,98 @@
     "href": "weeks/week3/day11-data-verbs-page.html#the-comparison-operators",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "The comparison operators",
-    "text": "The comparison operators\nThese are the tests you’ll use inside filter() (DC Table 10.9):\n\nComparisons for filter().\n\n\n\n\n\n\n\nOperator\nMeans\nExample\n\n\n\n\n==\nequal to\nspecies == \"Gentoo\"\n\n\n!=\nnot equal to\nsex != \"male\"\n\n\n&gt; &gt;=\ngreater (or equal)\nbody_mass_g &gt;= 5000\n\n\n&lt; &lt;=\nless (or equal)\nflipper_length_mm &lt; 190\n\n\n%in%\nis one of\nisland %in% c(\"Dream\", \"Biscoe\")\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\nUse == to test equality, not =. A single = means “assign,” and dplyr will stop you: “Did you mean ==?” This is a classic AI-generated bug too, exactly the kind of thing Friday’s lesson said to read for."
+    "text": "The comparison operators\nThese are the tests you’ll use inside filter() (DC Table 10.9):\n\nComparisons for filter().\n\n\n\n\n\n\n\nOperator\nMeans\nExample\n\n\n\n\n==\nequal to\nspecies == \"Gentoo\"\n\n\n!=\nnot equal to\nsex != \"male\"\n\n\n&gt; &gt;=\ngreater (or equal)\nbody_mass_g &gt;= 5000\n\n\n&lt; &lt;=\nless (or equal)\nflipper_length_mm &lt; 190\n\n\n%in%\nis one of\nisland %in% c(\"Dream\", \"Biscoe\")\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\nUse == to test equality, not =. A single = means “assign,” not “test equality”."
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-page.html#multiple-conditions",
     "href": "weeks/week3/day11-data-verbs-page.html#multiple-conditions",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "Multiple conditions",
-    "text": "Multiple conditions\nSeparate tests with a comma (or &) for AND, a vertical bar | for OR (R4DS §3.2.1):\n\n# AND: Adelies that are ALSO on Dream\npenguins |&gt;\n  filter(species == \"Adelie\", island == \"Dream\")\n\n# OR: any penguin that is Adelie OR Gentoo\npenguins |&gt;\n  filter(species == \"Adelie\" | species == \"Gentoo\")\n\n# %in% is the clean way to write a long OR\npenguins |&gt;\n  filter(species %in% c(\"Adelie\", \"Gentoo\"))\n\n\n\n\n\n\n\nNote\n\n\n\nWatch the English-trap: filter(species == \"Adelie\" | \"Gentoo\") does not work the way it reads. Each side of | must be a complete test."
+    "text": "Multiple conditions\nSeparate tests with a comma (or &) for AND, a vertical bar | for OR (R4DS §3.2.1):\n\n# AND: Adelies that are ALSO on Dream\npenguins |&gt;\n  filter(species == \"Adelie\", island == \"Dream\")\n\n# OR: any penguin that is Adelie OR Gentoo\npenguins |&gt;\n  filter(species == \"Adelie\" | species == \"Gentoo\")\n\n# %in% is the clean way to write a long OR\npenguins |&gt;\n  filter(species %in% c(\"Adelie\", \"Gentoo\"))\n\n\n\n\n\n\n\nNote\n\n\n\nfilter(species == \"Adelie\" | \"Gentoo\") does not work the way it reads. Each side of | must be a complete test."
   },
   {
-    "objectID": "weeks/week3/day11-data-verbs-page.html#paying-off-yesterdays-iou",
-    "href": "weeks/week3/day11-data-verbs-page.html#paying-off-yesterdays-iou",
+    "objectID": "weeks/week3/day11-data-verbs-page.html#dropping-nas",
+    "href": "weeks/week3/day11-data-verbs-page.html#dropping-nas",
     "title": "The data verbs: select · filter · mutate · arrange",
-    "section": "Paying off yesterday’s IOU",
-    "text": "Paying off yesterday’s IOU\nYesterday, group_by(species, sex) gave us an NA group because some penguins have a missing sex. Now we can drop them:\n\npenguins |&gt;\n  filter(!is.na(sex)) |&gt;\n  group_by(species, sex) |&gt;\n  summarise(n = n(), .groups = \"drop\")\n\n# A tibble: 6 × 3\n  species   sex        n\n  &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;\n1 Adelie    female    73\n2 Adelie    male      73\n3 Chinstrap female    34\n4 Chinstrap male      34\n5 Gentoo    female    58\n6 Gentoo    male      61\n\n\nis.na(sex) is TRUE for the missing ones; ! flips it, so !is.na(sex) keeps the rows that do have a sex. No more NA group."
+    "section": "Dropping NAs",
+    "text": "Dropping NAs\nYesterday, group_by(species, sex) gave us an NA group because some penguins have a missing sex. Now we can drop them:\n\npenguins |&gt;\n  filter(!is.na(sex)) |&gt;\n  group_by(species, sex) |&gt;\n  summarise(n = n(), .groups = \"drop\")\n\n# A tibble: 6 × 3\n  species   sex        n\n  &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;\n1 Adelie    female    73\n2 Adelie    male      73\n3 Chinstrap female    34\n4 Chinstrap male      34\n5 Gentoo    female    58\n6 Gentoo    male      61\n\n\nis.na(sex) is TRUE for the missing ones; ! flips it, so !is.na(sex) keeps the rows that do have a sex. This removes the NA group."
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-page.html#arrange-set-the-order",
     "href": "weeks/week3/day11-data-verbs-page.html#arrange-set-the-order",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "arrange(): set the order",
-    "text": "arrange(): set the order\narrange() reorders rows without adding or removing any (DC §10.4, R4DS §3.2.3). Ascending by default:\n\npenguins |&gt;\n  arrange(body_mass_g)\n\n# A tibble: 344 × 8\n   species   island   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;     &lt;fct&gt;             &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Chinstrap Dream              46.9          16.6               192        2700\n 2 Adelie    Biscoe             36.5          16.6               181        2850\n 3 Adelie    Biscoe             36.4          17.1               184        2850\n 4 Adelie    Biscoe             34.5          18.1               187        2900\n 5 Adelie    Dream              33.1          16.1               178        2900\n 6 Adelie    Torgers…           38.6          17                 188        2900\n 7 Chinstrap Dream              43.2          16.6               187        2900\n 8 Adelie    Biscoe             37.9          18.6               193        2925\n 9 Adelie    Dream              37.5          18.9               179        2975\n10 Adelie    Dream              37            16.9               185        3000\n# ℹ 334 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nWrap a column in desc() for descending order, and list several columns to break ties:\n\npenguins |&gt;\n  arrange(species, desc(body_mass_g))   # by species, then heaviest first"
+    "text": "arrange(): set the order\narrange() reorders rows without adding or removing any. This function gives the result in ascending order by default:\n\npenguins |&gt;\n  arrange(body_mass_g)\n\n# A tibble: 344 × 8\n   species   island   bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n   &lt;fct&gt;     &lt;fct&gt;             &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n 1 Chinstrap Dream              46.9          16.6               192        2700\n 2 Adelie    Biscoe             36.5          16.6               181        2850\n 3 Adelie    Biscoe             36.4          17.1               184        2850\n 4 Adelie    Biscoe             34.5          18.1               187        2900\n 5 Adelie    Dream              33.1          16.1               178        2900\n 6 Adelie    Torgers…           38.6          17                 188        2900\n 7 Chinstrap Dream              43.2          16.6               187        2900\n 8 Adelie    Biscoe             37.9          18.6               193        2925\n 9 Adelie    Dream              37.5          18.9               179        2975\n10 Adelie    Dream              37            16.9               185        3000\n# ℹ 334 more rows\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;\n\n\nYou can wrap a column in desc() if you want descending order. If there are ties, to break them you can list several columns:\n\npenguins |&gt;\n  arrange(species, desc(body_mass_g))   # by species, then heaviest first"
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-page.html#select-keep-the-columns-you-want",
     "href": "weeks/week3/day11-data-verbs-page.html#select-keep-the-columns-you-want",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "select(): keep the columns you want",
-    "text": "select(): keep the columns you want\nselect() is to columns what filter() is to rows (DC §10.1, R4DS §3.3.2):\n\npenguins |&gt;\n  select(species, island, body_mass_g)\n\n# A tibble: 344 × 3\n   species island    body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;           &lt;int&gt;\n 1 Adelie  Torgersen        3750\n 2 Adelie  Torgersen        3800\n 3 Adelie  Torgersen        3250\n 4 Adelie  Torgersen          NA\n 5 Adelie  Torgersen        3450\n 6 Adelie  Torgersen        3650\n 7 Adelie  Torgersen        3625\n 8 Adelie  Torgersen        4675\n 9 Adelie  Torgersen        3475\n10 Adelie  Torgersen        4250\n# ℹ 334 more rows\n\n\nYou can grab a range, drop with !, or rename as you go:\n\npenguins |&gt; select(species:bill_depth_mm)  # a range of columns\npenguins |&gt; select(!year)                  # everything EXCEPT year\npenguins |&gt; select(mass = body_mass_g)     # rename while selecting\n\n\n\n\n\n\n\nNote\n\n\n\npenguins has only 8 columns, so select() feels optional here. On a 19-column table like flights from HW2, or a 76-column one, it’s the first thing you reach for."
+    "text": "select(): keep the columns you want\nselect() is to columns what filter() is to rows:\n\npenguins |&gt;\n  select(species, island, body_mass_g)\n\n# A tibble: 344 × 3\n   species island    body_mass_g\n   &lt;fct&gt;   &lt;fct&gt;           &lt;int&gt;\n 1 Adelie  Torgersen        3750\n 2 Adelie  Torgersen        3800\n 3 Adelie  Torgersen        3250\n 4 Adelie  Torgersen          NA\n 5 Adelie  Torgersen        3450\n 6 Adelie  Torgersen        3650\n 7 Adelie  Torgersen        3625\n 8 Adelie  Torgersen        4675\n 9 Adelie  Torgersen        3475\n10 Adelie  Torgersen        4250\n# ℹ 334 more rows\n\n\nYou can grab a range, drop with !, or rename as you go:\n\npenguins |&gt; select(species:bill_depth_mm)  # a range of columns\npenguins |&gt; select(!year)                  # everything EXCEPT year\npenguins |&gt; select(mass = body_mass_g)     # rename while selecting\n\n\n\n\n\n\n\nNote\n\n\n\npenguins has only 8 columns, so select() feels optional here. On a 19-column table like flights from HW2, or a 76-column one, it’s one of the first things you might want to try."
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-page.html#select-helpers",
     "href": "weeks/week3/day11-data-verbs-page.html#select-helpers",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "select() helpers",
-    "text": "select() helpers\nFor wide tables, name columns by pattern instead of one-by-one (R4DS §3.3.2):\n\npenguins |&gt; select(starts_with(\"bill\"))   # bill_length_mm, bill_depth_mm\npenguins |&gt; select(ends_with(\"_mm\"))       # all the millimetre measurements\npenguins |&gt; select(where(is.numeric))      # every numeric column"
+    "text": "select() helpers\nFor wide tables, name columns by pattern instead of one-by-one:\n\npenguins |&gt; select(starts_with(\"bill\"))    # bill_length_mm, bill_depth_mm\npenguins |&gt; select(ends_with(\"_mm\"))       # all the millimetre measurements\npenguins |&gt; select(where(is.numeric))      # every numeric column"
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-page.html#mutate-add-a-new-column",
     "href": "weeks/week3/day11-data-verbs-page.html#mutate-add-a-new-column",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "mutate(): add a new column",
-    "text": "mutate(): add a new column\nmutate() adds columns computed from existing ones, keeping every row (DC §10.3, R4DS §3.3.1):\n\npenguins |&gt;\n  mutate(body_mass_kg = body_mass_g / 1000) |&gt;\n  select(species, body_mass_g, body_mass_kg)\n\n# A tibble: 344 × 3\n   species body_mass_g body_mass_kg\n   &lt;fct&gt;         &lt;int&gt;        &lt;dbl&gt;\n 1 Adelie         3750         3.75\n 2 Adelie         3800         3.8 \n 3 Adelie         3250         3.25\n 4 Adelie           NA        NA   \n 5 Adelie         3450         3.45\n 6 Adelie         3650         3.65\n 7 Adelie         3625         3.62\n 8 Adelie         4675         4.68\n 9 Adelie         3475         3.48\n10 Adelie         4250         4.25\n# ℹ 334 more rows"
+    "text": "mutate(): add a new column\nmutate() adds columns computed from existing ones, keeping every row:\n\npenguins |&gt;\n  mutate(body_mass_kg = body_mass_g / 1000) |&gt;\n  select(species, body_mass_g, body_mass_kg)\n\n# A tibble: 344 × 3\n   species body_mass_g body_mass_kg\n   &lt;fct&gt;         &lt;int&gt;        &lt;dbl&gt;\n 1 Adelie         3750         3.75\n 2 Adelie         3800         3.8 \n 3 Adelie         3250         3.25\n 4 Adelie           NA        NA   \n 5 Adelie         3450         3.45\n 6 Adelie         3650         3.65\n 7 Adelie         3625         3.62\n 8 Adelie         4675         4.68\n 9 Adelie         3475         3.48\n10 Adelie         4250         4.25\n# ℹ 334 more rows"
   },
   {
-    "objectID": "weeks/week3/day11-data-verbs-page.html#mutate-is-where-transformations-live",
-    "href": "weeks/week3/day11-data-verbs-page.html#mutate-is-where-transformations-live",
+    "objectID": "weeks/week3/day11-data-verbs-page.html#mutate-contains-transformation-functions",
+    "href": "weeks/week3/day11-data-verbs-page.html#mutate-contains-transformation-functions",
     "title": "The data verbs: select · filter · mutate · arrange",
-    "section": "mutate() is where transformations live",
-    "text": "mutate() is where transformations live\nThis is the parallel DC §10.3 draws to yesterday:\n\nmutate() always involves a transformation function, just as summarise() always involves a reduction function.\n\n\n# transformation: one value per row → mutate()\npenguins |&gt; mutate(bill_ratio = bill_length_mm / bill_depth_mm)\n\n# reduction: one value total → summarise()\npenguins |&gt; summarise(avg_bill = mean(bill_length_mm, na.rm = TRUE))\n\n\n\n\n\n\n\nTip\n\n\n\nDeciding between them is the same question from yesterday: does the calculation give one value per row (mutate) or one value for the whole group (summarise)?"
+    "section": "mutate() contains transformation functions",
+    "text": "mutate() contains transformation functions\n\nmutate() always involves a transformation function, just as summarise() always involves a reduction function.\n\n\n# transformation: one value per row → mutate()\npenguins |&gt; mutate(bill_ratio = bill_length_mm / bill_depth_mm)\n\n# reduction: one value total → summarise()\npenguins |&gt; summarise(avg_bill = mean(bill_length_mm, na.rm = TRUE))\n\n\n\n\n\n\n\nTip\n\n\n\nDeciding between them is the same question from yesterday: does the calculation give one value per row (mutate) or one value for the whole group (summarise)?"
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-page.html#a-categorical-column-with-ifelse",
     "href": "weeks/week3/day11-data-verbs-page.html#a-categorical-column-with-ifelse",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "A categorical column with ifelse()",
-    "text": "A categorical column with ifelse()\nifelse() (from DC §7.4) is a transformation that picks between two values per row, perfect inside mutate():\n\npenguins |&gt;\n  mutate(size = ifelse(body_mass_g &gt; 4000, \"large\", \"small\")) |&gt;\n  select(species, body_mass_g, size)\n\n# A tibble: 344 × 3\n   species body_mass_g size \n   &lt;fct&gt;         &lt;int&gt; &lt;chr&gt;\n 1 Adelie         3750 small\n 2 Adelie         3800 small\n 3 Adelie         3250 small\n 4 Adelie           NA &lt;NA&gt; \n 5 Adelie         3450 small\n 6 Adelie         3650 small\n 7 Adelie         3625 small\n 8 Adelie         4675 large\n 9 Adelie         3475 small\n10 Adelie         4250 large\n# ℹ 334 more rows"
+    "text": "A categorical column with ifelse()\nifelse() is a transformation that picks between two values per row, perfect inside mutate():\n\npenguins |&gt;\n  mutate(size = ifelse(body_mass_g &gt; 4000, \"large\", \"small\")) |&gt;\n  select(species, body_mass_g, size)\n\n# A tibble: 344 × 3\n   species body_mass_g size \n   &lt;fct&gt;         &lt;int&gt; &lt;chr&gt;\n 1 Adelie         3750 small\n 2 Adelie         3800 small\n 3 Adelie         3250 small\n 4 Adelie           NA &lt;NA&gt; \n 5 Adelie         3450 small\n 6 Adelie         3650 small\n 7 Adelie         3625 small\n 8 Adelie         4675 large\n 9 Adelie         3475 small\n10 Adelie         4250 large\n# ℹ 334 more rows"
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-page.html#the-pipe-does-the-real-work",
     "href": "weeks/week3/day11-data-verbs-page.html#the-pipe-does-the-real-work",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "The pipe does the real work",
-    "text": "The pipe does the real work\nOne verb does one thing. Real questions need several, chained with |&gt; (R4DS §3.4):\n\npenguins |&gt;\n  filter(!is.na(sex)) |&gt;\n  mutate(body_mass_kg = body_mass_g / 1000) |&gt;\n  select(species, sex, body_mass_kg) |&gt;\n  arrange(desc(body_mass_kg))\n\nRead it top to bottom as English: take penguins, then drop missing sex, then add mass in kg, then keep three columns, then sort heaviest first.\n\n\n\n\n\n\nTip\n\n\n\nBecause each verb returns a new data frame, the output of one is the input to the next. The verbs line up on the left so you can skim the story without reading the details."
+    "text": "The pipe does the real work\nOne verb does one thing. For most questions, we will need several, chained together with |&gt;:\n\npenguins |&gt;\n  filter(!is.na(sex)) |&gt;\n  mutate(body_mass_kg = body_mass_g / 1000) |&gt;\n  select(species, sex, body_mass_kg) |&gt;\n  arrange(desc(body_mass_kg))\n\nThis can be read in English as: take penguins, then drop missing sex, then add mass in kg, then keep three columns, then sort heaviest first.\n\n\n\n\n\n\nTip\n\n\n\nBecause each verb returns a new data frame, the output of one is the input to the next. The verbs line up on the left so you can quickly skim to understand what’s going on."
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-page.html#putting-all-six-together",
     "href": "weeks/week3/day11-data-verbs-page.html#putting-all-six-together",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "Putting all six together",
-    "text": "Putting all six together\nYesterday’s verbs and today’s verbs, in one pipeline that answers a real question, “what’s the average mass of each species/sex, biggest first?”:\n\npenguins |&gt;\n  filter(!is.na(sex)) |&gt;\n  group_by(species, sex) |&gt;\n  summarise(\n    n        = n(),\n    avg_mass = mean(body_mass_g, na.rm = TRUE),\n    .groups  = \"drop\"\n  ) |&gt;\n  arrange(desc(avg_mass))\n\n# A tibble: 6 × 4\n  species   sex        n avg_mass\n  &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;    &lt;dbl&gt;\n1 Gentoo    male      61    5485.\n2 Gentoo    female    58    4680.\n3 Adelie    male      73    4043.\n4 Chinstrap male      34    3939.\n5 Chinstrap female    34    3527.\n6 Adelie    female    73    3369.\n\n\nAnd because the result is just a data frame, pipe it straight into a plot (switching |&gt; to +):\n\npenguins |&gt;\n  filter(!is.na(sex)) |&gt;\n  ggplot(aes(x = species, y = body_mass_g, fill = sex)) +\n  geom_boxplot()"
+    "text": "Putting all six together\nWe can use all six verbs to answer the question, “what’s the average mass of each species/sex, biggest first?”:\n\npenguins |&gt;\n  filter(!is.na(sex)) |&gt;\n  group_by(species, sex) |&gt;\n  summarise(\n    n        = n(),\n    avg_mass = mean(body_mass_g, na.rm = TRUE),\n    .groups  = \"drop\"\n  ) |&gt;\n  arrange(desc(avg_mass))\n\n# A tibble: 6 × 4\n  species   sex        n avg_mass\n  &lt;fct&gt;     &lt;fct&gt;  &lt;int&gt;    &lt;dbl&gt;\n1 Gentoo    male      61    5485.\n2 Gentoo    female    58    4680.\n3 Adelie    male      73    4043.\n4 Chinstrap male      34    3939.\n5 Chinstrap female    34    3527.\n6 Adelie    female    73    3369.\n\n\nAnd because the result is just a data frame, you can pipe it straight into a plot (switching |&gt; to +):\n\npenguins |&gt;\n  filter(!is.na(sex)) |&gt;\n  ggplot(aes(x = species, y = body_mass_g, fill = sex)) +\n  geom_boxplot()"
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-page.html#formatting-your-pipelines",
     "href": "weeks/week3/day11-data-verbs-page.html#formatting-your-pipelines",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "Formatting your pipelines",
-    "text": "Formatting your pipelines\nA multi-step pipeline is only readable if you format it. The rules that matter most (R4DS Ch. 4):\n\nA space before |&gt;, and let |&gt; be the last thing on the line.\nFor verbs with named arguments (mutate, summarise), put each argument on its own line, indented two spaces.\nVerbs without named arguments (filter, select, arrange) can stay on one line if they fit.\nName new columns in snake_case: body_mass_kg, not BodyMassKG.\n\n\n# Strive for                          # Avoid\npenguins |&gt;                           penguins|&gt;filter(!is.na(sex))|&gt;group_by(\n  filter(!is.na(sex)) |&gt;              species)|&gt;summarize(n=n(),avg=mean(\n  group_by(species) |&gt;               body_mass_g,na.rm=TRUE))\n  summarise(\n    n   = n(),\n    avg = mean(body_mass_g, na.rm = TRUE)\n  )\n\n\n\n\n\n\n\nTip\n\n\n\nDon’t hand-format forever: the styler package reformats a whole file for you. In RStudio, Cmd/Ctrl + Shift + P → type “styler”. Full guide: R4DS Ch. 4."
+    "text": "Formatting your pipelines\nA multi-step pipeline is only readable if you format it. The rules that matter most:\n\nA space before |&gt;, and let |&gt; be the last thing on the line.\nFor verbs with named arguments (mutate, summarise), put each argument on its own line, indented two spaces.\nVerbs without named arguments (filter, select, arrange) can stay on one line if they fit.\nName new columns in snake_case: body_mass_kg, not BodyMassKG.\n\n\n# Strive for                          # Avoid\npenguins |&gt;                           penguins|&gt;filter(!is.na(sex))|&gt;group_by(\n  filter(!is.na(sex)) |&gt;              species)|&gt;summarize(n=n(),avg=mean(\n  group_by(species) |&gt;                body_mass_g,na.rm=TRUE))\n  summarise(\n    n   = n(),\n    avg = mean(body_mass_g, na.rm = TRUE)\n  )\n\n\n\n\n\n\n\nTip\n\n\n\nDon’t hand-format forever: the styler package reformats a whole file for you. In RStudio, Cmd/Ctrl + Shift + P → type “styler”. Full guide: R4DS Ch. 4."
   },
   {
-    "objectID": "weeks/week3/day11-data-verbs-page.html#a-shortcut-youll-use-constantly",
-    "href": "weeks/week3/day11-data-verbs-page.html#a-shortcut-youll-use-constantly",
+    "objectID": "weeks/week3/day11-data-verbs-page.html#a-helpful-shortcut",
+    "href": "weeks/week3/day11-data-verbs-page.html#a-helpful-shortcut",
     "title": "The data verbs: select · filter · mutate · arrange",
-    "section": "A shortcut you’ll use constantly",
-    "text": "A shortcut you’ll use constantly\nCounting rows per group is so common it has its own verb, count() (R4DS §3.2.4):\n\npenguins |&gt; count(species)\n\n# is exactly the same as\npenguins |&gt;\n  group_by(species) |&gt;\n  summarise(n = n())\n\n\n\n\n\n\n\nNote\n\n\n\ncount() is just group_by() + summarise(n = n()) bundled up. Add sort = TRUE to get the biggest groups first."
+    "section": "A helpful shortcut",
+    "text": "A helpful shortcut\nCounting rows per group is so common it has its own verb, count():\n\npenguins |&gt; count(species)\n\n# is exactly the same as\npenguins |&gt;\n  group_by(species) |&gt;\n  summarise(n = n())\n\n\n\n\n\n\n\nNote\n\n\n\ncount() is just group_by() + summarise(n = n()) bundled up. Add sort = TRUE to get the biggest groups first."
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-page.html#what-we-covered-today",
     "href": "weeks/week3/day11-data-verbs-page.html#what-we-covered-today",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "What we covered today",
-    "text": "What we covered today\n\nfilter() — keep rows that pass a test; == not =; combine with ,/|/%in%; !is.na() to drop missing\narrange() — reorder rows; desc() for descending; extra columns break ties\nselect() — keep/drop/rename columns; starts_with() & friends for wide tables\nmutate() — add columns from transformations; the per-row twin of summarise()\nThe pipe — chain verbs into a readable top-to-bottom story; pipe results into ggplot\nStyle — space before |&gt;, named args on their own lines, snake_case, let styler do the rest"
+    "text": "What we covered today\n\nfilter(): keep rows that pass a test; == not =; combine with ,/|/%in%; !is.na() to drop missing\narrange(): reorder rows; desc() for descending; extra columns break ties\nselect(): keep/drop/rename columns; starts_with() & friends for wide tables\nmutate(): add columns from transformations; the per-row twin of summarise()\nThe pipe: chain verbs into a readable top-to-bottom story; pipe results into ggplot\nStyle: space before |&gt;, named args on their own lines, snake_case, let styler do the rest"
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-page.html#activity-wrangling-the-penguins",
@@ -1061,7 +1061,7 @@
     "href": "weeks/week3/day11-data-verbs-page.html#wrap-up-looking-ahead",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\nTomorrow (Wednesday): no new reading, we put all six verbs together on a messier dataset and turn raw rows into summary tables and plots.\n\n\nUpcoming Deadlines\n\nThu 6/4, before class: DC §12.1\nThu 6/4, 11:59 p.m.: Project: Team formation\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 3 · R4DS Ch. 4 · DC Ch. 10 · dplyr reference"
+    "text": "Wrap-up & looking ahead\nTomorrow (Wednesday): no new reading, we put all six verbs together on a messier dataset and turn raw rows into summary tables and plots.\n\n\nUpcoming Deadlines\n\nThu 6/4, before class: DC §12.1\nThu 6/4, 11:59 p.m.: Project: Team formation\nFri 6/5, 11:59 p.m.: Homework 3: Data Wrangling & Reshaping\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 3 · R4DS Ch. 4 · DC Ch. 10 · dplyr reference"
   },
   {
     "objectID": "weeks/week4/day2-import.html",
@@ -5765,14 +5765,14 @@
     "href": "weeks/week3/day11-activity.html",
     "title": "Day 11 Activity: Wrangling the penguins",
     "section": "",
-    "text": "library(tidyverse)\nlibrary(palmerpenguins)\n\nToday’s activity uses the penguins dataset again. Glimpse it before you start:\n\nglimpse(penguins)\n\nRows: 344\nColumns: 8\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\nYou now have all six verbs: yesterday’s group_by() and summarise(), and today’s filter(), arrange(), select(), and mutate()."
+    "text": "library(tidyverse)\nlibrary(palmerpenguins)\n\nToday’s activity uses the penguins dataset again. Glimpse it before you start:\n\nglimpse(penguins)\n\nRows: 344\nColumns: 8\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\nWe’ll practice using the six verbs we’ve learned: yesterday’s group_by() and summarise(), and today’s filter(), arrange(), select(), and mutate()."
   },
   {
     "objectID": "weeks/week3/day11-activity.html#setup",
     "href": "weeks/week3/day11-activity.html#setup",
     "title": "Day 11 Activity: Wrangling the penguins",
     "section": "",
-    "text": "library(tidyverse)\nlibrary(palmerpenguins)\n\nToday’s activity uses the penguins dataset again. Glimpse it before you start:\n\nglimpse(penguins)\n\nRows: 344\nColumns: 8\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\nYou now have all six verbs: yesterday’s group_by() and summarise(), and today’s filter(), arrange(), select(), and mutate()."
+    "text": "library(tidyverse)\nlibrary(palmerpenguins)\n\nToday’s activity uses the penguins dataset again. Glimpse it before you start:\n\nglimpse(penguins)\n\nRows: 344\nColumns: 8\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\nWe’ll practice using the six verbs we’ve learned: yesterday’s group_by() and summarise(), and today’s filter(), arrange(), select(), and mutate()."
   },
   {
     "objectID": "weeks/week3/day10-wrangling-page.html",
@@ -5919,7 +5919,7 @@
     "href": "weeks/week3/day10-wrangling-page.html#wrap-up-looking-ahead",
     "title": "Wrangling concepts · reduction & transformation · group_by",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\nTomorrow (Tuesday): the row and column verbs, filter, select, mutate, arrange, the rest of the dplyr toolkit.\n\n\nUpcoming Deadlines\n\nTue 6/2, before class: DC §10.1–10.6\nThu 6/4, 11:59 p.m.: Project: Team formation\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 3 · DC Ch. 7 · dplyr reference"
+    "text": "Wrap-up & looking ahead\nTomorrow (Tuesday): the row and column verbs, filter, select, mutate, arrange, the rest of the dplyr toolkit.\n\n\nUpcoming Deadlines\n\nTue 6/2, before class: DC §10.1–10.6\nThu 6/4, 11:59 p.m.: Project: Team formation\nFri 6/5, 11:59 p.m.: Homework 3: Data Wrangling & Reshaping\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 3 · DC Ch. 7 · dplyr reference"
   },
   {
     "objectID": "weeks/week3/day10-wrangling-slides.html#where-we-are",
@@ -6059,7 +6059,7 @@
     "href": "weeks/week3/day10-wrangling-slides.html#wrap-up-looking-ahead",
     "title": "Wrangling concepts · reduction & transformation · group_by",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\nTomorrow (Tuesday): the row and column verbs, filter, select, mutate, arrange, the rest of the dplyr toolkit.\n\n\nUpcoming Deadlines\n\nTue 6/2, before class: DC §10.1–10.6\nThu 6/4, 11:59 p.m.: Project: Team formation\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 3 · DC Ch. 7 · dplyr reference"
+    "text": "Wrap-up & looking ahead\nTomorrow (Tuesday): the row and column verbs, filter, select, mutate, arrange, the rest of the dplyr toolkit.\n\n\nUpcoming Deadlines\n\nTue 6/2, before class: DC §10.1–10.6\nThu 6/4, 11:59 p.m.: Project: Team formation\nFri 6/5, 11:59 p.m.: Homework 3: Data Wrangling & Reshaping\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 3 · DC Ch. 7 · dplyr reference"
   },
   {
     "objectID": "weeks/week3/day12-integration-page.html",

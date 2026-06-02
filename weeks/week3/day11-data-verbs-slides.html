@@ -1081,7 +1081,6 @@ margin-right: 0; }
 <li>Sorting verbs by <em>what they touch</em>: rows vs. columns</li>
 <li>Combining verbs with the pipe into real pipelines</li>
 <li>Formatting pipelines so they stay readable</li>
-<li>Paying off yesterday’s IOU: dropping the <code>NA</code> penguins</li>
 </ul>
 <p><strong>Helpful links</strong></p>
 <ul>
@@ -1094,9 +1093,8 @@ margin-right: 0; }
 </section>
 <section id="recap-from-yesterday" class="slide level2">
 <h2>Recap from yesterday</h2>
-<p>You have the <strong>framework</strong> and your first two data verbs:</p>
+<p>We discussed the overarching <strong>framework</strong> and two data verbs:</p>
 <table class="caption-top">
-<caption>Where we left off.</caption>
 <colgroup>
 <col style="width: 28%">
 <col style="width: 42%">
@@ -1127,11 +1125,11 @@ margin-right: 0; }
 </tr>
 </tbody>
 </table>
-<p><code>summarise()</code> is the home of reduction functions. Today you meet <code>mutate()</code>, the home of <strong>transformation</strong> functions, plus three verbs that reshape <em>which</em> rows and columns you keep.</p>
+<p>We write reduction functions inside of <code>summarise()</code>. Today we will cover <code>mutate()</code>, which contains <strong>transformation</strong> functions, plus three verbs that reshape <em>which</em> rows and columns you keep.</p>
 </section>
 <section id="a-map-of-the-verbs" class="slide level2">
 <h2>A map of the verbs</h2>
-<p>R4DS §3.1.3 organizes dplyr by <strong>what each verb operates on</strong>:</p>
+<p>We can organize dplyr by <strong>what each verb operates on</strong>:</p>
 <table class="caption-top">
 <caption>The dplyr toolkit.</caption>
 <colgroup>
@@ -1174,7 +1172,7 @@ margin-right: 0; }
 <p><strong>Tip</strong></p>
 </div>
 <div class="callout-content">
-<p>Every one of these obeys the same three rules: <strong>first argument is a data frame, you name columns without quotes, and the output is a brand-new data frame.</strong></p>
+<p>These all follow the same three rules: <strong>first argument is a data frame, you name columns without quotes, and the output is a brand-new data frame.</strong></p>
 </div>
 </div>
 </div>
@@ -1265,7 +1263,7 @@ margin-right: 0; }
 <p><strong>Warning</strong></p>
 </div>
 <div class="callout-content">
-<p>Use <code>==</code> to <strong>test</strong> equality, not <code>=</code>. A single <code>=</code> means “assign,” and dplyr will stop you: <em>“Did you mean <code>==</code>?”</em> This is a classic AI-generated bug too, exactly the kind of thing Friday’s lesson said to read for.</p>
+<p>Use <code>==</code> to <strong>test</strong> equality, not <code>=</code>. A single <code>=</code> means “assign,” not “test equality”.</p>
 </div>
 </div>
 </div>
@@ -1295,13 +1293,13 @@ margin-right: 0; }
 <p><strong>Note</strong></p>
 </div>
 <div class="callout-content">
-<p>Watch the English-trap: <code>filter(species == &quot;Adelie&quot; | &quot;Gentoo&quot;)</code> does <strong>not</strong> work the way it reads. Each side of <code>|</code> must be a complete test.</p>
+<p><code>filter(species == &quot;Adelie&quot; | &quot;Gentoo&quot;)</code> does <strong>not</strong> work the way it reads. Each side of <code>|</code> must be a complete test.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="paying-off-yesterdays-iou" class="slide level2 scrollable nostretch">
-<h2>Paying off yesterday’s IOU</h2>
+<section id="dropping-nas" class="slide level2 scrollable nostretch">
+<h2>Dropping <code>NA</code>s</h2>
 <p>Yesterday, <code>group_by(species, sex)</code> gave us an <code>NA</code> group because some penguins have a missing <code>sex</code>. Now we can drop them:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>penguins <span class="sc">|&gt;</span></span>
@@ -1320,7 +1318,7 @@ margin-right: 0; }
 6 Gentoo    male      61</code></pre>
 </div>
 </div>
-<p><code>is.na(sex)</code> is <code>TRUE</code> for the missing ones; <code>!</code> flips it, so <code>!is.na(sex)</code> keeps the rows that <strong>do</strong> have a sex. No more <code>NA</code> group.</p>
+<p><code>is.na(sex)</code> is <code>TRUE</code> for the missing ones; <code>!</code> flips it, so <code>!is.na(sex)</code> keeps the rows that <strong>do</strong> have a sex. This removes the <code>NA</code> group.</p>
 </section></section>
 <section>
 <section id="rows-arrange" class="title-slide slide level1 center" data-background-color="#001E44">
@@ -1329,7 +1327,7 @@ margin-right: 0; }
 </section>
 <section id="arrange-set-the-order" class="slide level2 scrollable nostretch">
 <h2>arrange(): set the order</h2>
-<p><code>arrange()</code> reorders rows without adding or removing any (<em>DC</em> §10.4, R4DS §3.2.3). Ascending by default:</p>
+<p><code>arrange()</code> reorders rows without adding or removing any. This function gives the result in ascending order by default:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb6-2"><a></a>  <span class="fu">arrange</span>(body_mass_g)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1351,7 +1349,7 @@ margin-right: 0; }
 # ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
 </div>
 </div>
-<p>Wrap a column in <code>desc()</code> for descending order, and list several columns to break ties:</p>
+<p>You can wrap a column in <code>desc()</code> if you want descending order. If there are ties, to break them you can list several columns:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb8-2"><a></a>  <span class="fu">arrange</span>(species, <span class="fu">desc</span>(body_mass_g))   <span class="co"># by species, then heaviest first</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1364,7 +1362,7 @@ margin-right: 0; }
 </section>
 <section id="select-keep-the-columns-you-want" class="slide level2 scrollable nostretch">
 <h2>select(): keep the columns you want</h2>
-<p><code>select()</code> is to columns what <code>filter()</code> is to rows (<em>DC</em> §10.1, R4DS §3.3.2):</p>
+<p><code>select()</code> is to columns what <code>filter()</code> is to rows:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb9-2"><a></a>  <span class="fu">select</span>(species, island, body_mass_g)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1400,16 +1398,16 @@ margin-right: 0; }
 <p><strong>Note</strong></p>
 </div>
 <div class="callout-content">
-<p><code>penguins</code> has only 8 columns, so <code>select()</code> feels optional here. On a 19-column table like <code>flights</code> from HW2, or a 76-column one, it’s the first thing you reach for.</p>
+<p><code>penguins</code> has only 8 columns, so <code>select()</code> feels optional here. On a 19-column table like <code>flights</code> from HW2, or a 76-column one, it’s one of the first things you might want to try.</p>
 </div>
 </div>
 </div>
 </section>
 <section id="select-helpers" class="slide level2 scrollable nostretch">
 <h2>select() helpers</h2>
-<p>For wide tables, name columns by pattern instead of one-by-one (R4DS §3.3.2):</p>
+<p>For wide tables, name columns by pattern instead of one-by-one:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>penguins <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;bill&quot;</span>))   <span class="co"># bill_length_mm, bill_depth_mm</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>penguins <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="fu">starts_with</span>(<span class="st">&quot;bill&quot;</span>))    <span class="co"># bill_length_mm, bill_depth_mm</span></span>
 <span id="cb12-2"><a></a>penguins <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="fu">ends_with</span>(<span class="st">&quot;_mm&quot;</span>))       <span class="co"># all the millimetre measurements</span></span>
 <span id="cb12-3"><a></a>penguins <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="fu">where</span>(is.numeric))      <span class="co"># every numeric column</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -1421,7 +1419,7 @@ margin-right: 0; }
 </section>
 <section id="mutate-add-a-new-column" class="slide level2 scrollable nostretch">
 <h2>mutate(): add a new column</h2>
-<p><code>mutate()</code> adds columns computed from existing ones, keeping every row (<em>DC</em> §10.3, R4DS §3.3.1):</p>
+<p><code>mutate()</code> adds columns computed from existing ones, keeping every row:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb13-2"><a></a>  <span class="fu">mutate</span>(<span class="at">body_mass_kg =</span> body_mass_g <span class="sc">/</span> <span class="dv">1000</span>) <span class="sc">|&gt;</span></span>
@@ -1444,9 +1442,8 @@ margin-right: 0; }
 </div>
 </div>
 </section>
-<section id="mutate-is-where-transformations-live" class="slide level2 scrollable nostretch">
-<h2>mutate() is where transformations live</h2>
-<p>This is the parallel <em>DC</em> §10.3 draws to yesterday:</p>
+<section id="mutate-contains-transformation-functions" class="slide level2 scrollable nostretch">
+<h2>mutate() contains transformation functions</h2>
 <blockquote>
 <p><code>mutate()</code> <strong>always</strong> involves a <em>transformation</em> function, just as <code>summarise()</code> <strong>always</strong> involves a <em>reduction</em> function.</p>
 </blockquote>
@@ -1473,7 +1470,7 @@ margin-right: 0; }
 </section>
 <section id="a-categorical-column-with-ifelse" class="slide level2 scrollable nostretch">
 <h2>A categorical column with ifelse()</h2>
-<p><code>ifelse()</code> (from <em>DC</em> §7.4) is a transformation that picks between two values per row, perfect inside <code>mutate()</code>:</p>
+<p><code>ifelse()</code> is a transformation that picks between two values per row, perfect inside <code>mutate()</code>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb16-2"><a></a>  <span class="fu">mutate</span>(<span class="at">size =</span> <span class="fu">ifelse</span>(body_mass_g <span class="sc">&gt;</span> <span class="dv">4000</span>, <span class="st">&quot;large&quot;</span>, <span class="st">&quot;small&quot;</span>)) <span class="sc">|&gt;</span></span>
@@ -1503,7 +1500,7 @@ margin-right: 0; }
 </section>
 <section id="the-pipe-does-the-real-work" class="slide level2 scrollable nostretch">
 <h2>The pipe does the real work</h2>
-<p>One verb does one thing. Real questions need several, chained with <code>|&gt;</code> (R4DS §3.4):</p>
+<p>One verb does one thing. For most questions, we will need several, chained together with <code>|&gt;</code>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb18-2"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">|&gt;</span></span>
@@ -1511,7 +1508,7 @@ margin-right: 0; }
 <span id="cb18-4"><a></a>  <span class="fu">select</span>(species, sex, body_mass_kg) <span class="sc">|&gt;</span></span>
 <span id="cb18-5"><a></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(body_mass_kg))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Read it top to bottom as English: take penguins, <strong>then</strong> drop missing sex, <strong>then</strong> add mass in kg, <strong>then</strong> keep three columns, <strong>then</strong> sort heaviest first.</p>
+<p>This can be read in English as: take penguins, <strong>then</strong> drop missing sex, <strong>then</strong> add mass in kg, <strong>then</strong> keep three columns, <strong>then</strong> sort heaviest first.</p>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1521,14 +1518,14 @@ margin-right: 0; }
 <p><strong>Tip</strong></p>
 </div>
 <div class="callout-content">
-<p>Because each verb returns a new data frame, the output of one is the input to the next. The verbs line up on the left so you can skim the <em>story</em> without reading the details.</p>
+<p>Because each verb returns a new data frame, the output of one is the input to the next. The verbs line up on the left so you can quickly skim to understand what’s going on.</p>
 </div>
 </div>
 </div>
 </section>
 <section id="putting-all-six-together" class="slide level2 scrollable nostretch">
 <h2>Putting all six together</h2>
-<p>Yesterday’s verbs and today’s verbs, in one pipeline that answers a real question, “what’s the average mass of each species/sex, biggest first?”:</p>
+<p>We can use all six verbs to answer the question, “what’s the average mass of each species/sex, biggest first?”:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb19-2"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">|&gt;</span></span>
@@ -1551,7 +1548,7 @@ margin-right: 0; }
 6 Adelie    female    73    3369.</code></pre>
 </div>
 </div>
-<p>And because the result is just a data frame, pipe it straight into a plot (switching <code>|&gt;</code> to <code>+</code>):</p>
+<p>And because the result is just a data frame, you can pipe it straight into a plot (switching <code>|&gt;</code> to <code>+</code>):</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb21-2"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">|&gt;</span></span>
@@ -1568,7 +1565,7 @@ margin-right: 0; }
 </section>
 <section id="formatting-your-pipelines" class="slide level2 scrollable nostretch">
 <h2>Formatting your pipelines</h2>
-<p>A multi-step pipeline is only readable if you format it. The rules that matter most (R4DS Ch. 4):</p>
+<p>A multi-step pipeline is only readable if you format it. The rules that matter most:</p>
 <ul>
 <li>A space before <code>|&gt;</code>, and let <code>|&gt;</code> be the <strong>last thing on the line</strong>.</li>
 <li>For verbs with <strong>named arguments</strong> (<code>mutate</code>, <code>summarise</code>), put each argument on its <strong>own line</strong>, indented two spaces.</li>
@@ -1579,7 +1576,7 @@ margin-right: 0; }
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="co"># Strive for                          # Avoid</span></span>
 <span id="cb22-2"><a></a>penguins <span class="sc">|&gt;</span>                           penguins<span class="sc">|&gt;</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex))<span class="sc">|&gt;</span><span class="fu">group_by</span>(</span>
 <span id="cb22-3"><a></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">|&gt;</span>              species)<span class="sc">|&gt;</span><span class="fu">summarize</span>(<span class="at">n=</span><span class="fu">n</span>(),<span class="at">avg=</span><span class="fu">mean</span>(</span>
-<span id="cb22-4"><a></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span>               body_mass_g,<span class="at">na.rm=</span><span class="cn">TRUE</span>))</span>
+<span id="cb22-4"><a></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span>                body_mass_g,<span class="at">na.rm=</span><span class="cn">TRUE</span>))</span>
 <span id="cb22-5"><a></a>  <span class="fu">summarise</span>(</span>
 <span id="cb22-6"><a></a>    <span class="at">n   =</span> <span class="fu">n</span>(),</span>
 <span id="cb22-7"><a></a>    <span class="at">avg =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
@@ -1599,9 +1596,9 @@ margin-right: 0; }
 </div>
 </div>
 </section>
-<section id="a-shortcut-youll-use-constantly" class="slide level2 scrollable nostretch">
-<h2>A shortcut you’ll use constantly</h2>
-<p>Counting rows per group is so common it has its own verb, <code>count()</code> (R4DS §3.2.4):</p>
+<section id="a-helpful-shortcut" class="slide level2 scrollable nostretch">
+<h2>A helpful shortcut</h2>
+<p>Counting rows per group is so common it has its own verb, <code>count()</code>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>penguins <span class="sc">|&gt;</span> <span class="fu">count</span>(species)</span>
 <span id="cb23-2"><a></a></span>
@@ -1627,12 +1624,12 @@ margin-right: 0; }
 <section id="what-we-covered-today" class="slide level2 scrollable nostretch">
 <h2>What we covered today</h2>
 <ul>
-<li><strong><code>filter()</code></strong> — keep rows that pass a test; <code>==</code> not <code>=</code>; combine with <code>,</code>/<code>|</code>/<code>%in%</code>; <code>!is.na()</code> to drop missing</li>
-<li><strong><code>arrange()</code></strong> — reorder rows; <code>desc()</code> for descending; extra columns break ties</li>
-<li><strong><code>select()</code></strong> — keep/drop/rename columns; <code>starts_with()</code> &amp; friends for wide tables</li>
-<li><strong><code>mutate()</code></strong> — add columns from transformations; the per-row twin of <code>summarise()</code></li>
-<li><strong>The pipe</strong> — chain verbs into a readable top-to-bottom story; pipe results into ggplot</li>
-<li><strong>Style</strong> — space before <code>|&gt;</code>, named args on their own lines, <code>snake_case</code>, let <code>styler</code> do the rest</li>
+<li><strong><code>filter()</code></strong>: keep rows that pass a test; <code>==</code> not <code>=</code>; combine with <code>,</code>/<code>|</code>/<code>%in%</code>; <code>!is.na()</code> to drop missing</li>
+<li><strong><code>arrange()</code></strong>: reorder rows; <code>desc()</code> for descending; extra columns break ties</li>
+<li><strong><code>select()</code></strong>: keep/drop/rename columns; <code>starts_with()</code> &amp; friends for wide tables</li>
+<li><strong><code>mutate()</code></strong>: add columns from transformations; the per-row twin of <code>summarise()</code></li>
+<li><strong>The pipe</strong>: chain verbs into a readable top-to-bottom story; pipe results into ggplot</li>
+<li><strong>Style</strong>: space before <code>|&gt;</code>, named args on their own lines, <code>snake_case</code>, let <code>styler</code> do the rest</li>
 </ul>
 </section></section>
 <section>
@@ -1658,6 +1655,7 @@ margin-right: 0; }
 <ul>
 <li><strong>Thu 6/4, before class</strong>: <a href="https://psu.instructure.com/courses/2487468/assignments/18325371"><em>DC</em> §12.1</a></li>
 <li><strong>Thu 6/4, 11:59 p.m.</strong>: <a href="https://psu.instructure.com/courses/2487468/assignments/">Project: Team formation</a></li>
+<li><strong>Fri 6/5, 11:59 p.m.</strong>: <a href="https://psu.instructure.com/courses/2487468/assignments/18327019">Homework 3: Data Wrangling &amp; Reshaping</a></li>
 </ul>
 </div><div class="column" style="width:45%;">
 <p><strong>Reach out</strong></p>
