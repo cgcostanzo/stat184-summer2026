@@ -4520,9 +4520,9 @@ margin-bottom: 1.5rem;
   <li><a href="#part-a-pivot_wider-to-compare-two-years" id="toc-part-a-pivot_wider-to-compare-two-years" class="nav-link" data-scroll-target="#part-a-pivot_wider-to-compare-two-years">Part (a): pivot_wider to compare two years</a></li>
   <li><a href="#part-b-pivot_longer-to-tidy-a-wide-table" id="toc-part-b-pivot_longer-to-tidy-a-wide-table" class="nav-link" data-scroll-target="#part-b-pivot_longer-to-tidy-a-wide-table">Part (b): pivot_longer to tidy a wide table</a></li>
   <li><a href="#part-c-choose-the-shape" id="toc-part-c-choose-the-shape" class="nav-link" data-scroll-target="#part-c-choose-the-shape">Part (c): choose the shape</a></li>
-  <li><a href="#part-d-challenge-optional" id="toc-part-d-challenge-optional" class="nav-link" data-scroll-target="#part-d-challenge-optional">Part (d): CHALLENGE (optional)</a></li>
+  <li><a href="#part-d" id="toc-part-d" class="nav-link" data-scroll-target="#part-d">Part (d):</a></li>
   </ul></li>
-  <li><a href="#question-3---trust-but-verify" id="toc-question-3---trust-but-verify" class="nav-link" data-scroll-target="#question-3---trust-but-verify">Question 3 - Trust, but verify</a>
+  <li><a href="#question-3---verify" id="toc-question-3---verify" class="nav-link" data-scroll-target="#question-3---verify">Question 3 - Verify</a>
   <ul class="collapse">
   <li><a href="#part-a-make-it-run-then-find-the-problems" id="toc-part-a-make-it-run-then-find-the-problems" class="nav-link" data-scroll-target="#part-a-make-it-run-then-find-the-problems">Part (a): make it run, then find the problems</a></li>
   <li><a href="#part-b-the-verified-version" id="toc-part-b-the-verified-version" class="nav-link" data-scroll-target="#part-b-the-verified-version">Part (b): the verified version</a></li>
@@ -4532,7 +4532,6 @@ margin-bottom: 1.5rem;
   <li><a href="#part-a-the-naive-average" id="toc-part-a-the-naive-average" class="nav-link" data-scroll-target="#part-a-the-naive-average">Part (a): the naive average</a></li>
   <li><a href="#part-b-the-population-weighted-average" id="toc-part-b-the-population-weighted-average" class="nav-link" data-scroll-target="#part-b-the-population-weighted-average">Part (b): the population-weighted average</a></li>
   <li><a href="#part-c-put-them-side-by-side" id="toc-part-c-put-them-side-by-side" class="nav-link" data-scroll-target="#part-c-put-them-side-by-side">Part (c): put them side by side</a></li>
-  <li><a href="#part-d-show-it" id="toc-part-d-show-it" class="nav-link" data-scroll-target="#part-d-show-it">Part (d): show it</a></li>
   <li><a href="#part-e-which-would-you-report" id="toc-part-e-which-would-you-report" class="nav-link" data-scroll-target="#part-e-which-would-you-report">Part (e): which would you report?</a></li>
   </ul></li>
   <li><a href="#code-appendix" id="toc-code-appendix" class="nav-link" data-scroll-target="#code-appendix">Code appendix</a></li>
@@ -4604,24 +4603,24 @@ $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372
 $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …</code></pre>
 </div>
 </div>
-<p>Throughout, you’ll be turning this raw table into answers, and, just as importantly, <strong>checking that your answers are real</strong>.</p>
+<p>Throughout, you’ll be turning this raw table into answers, and, just as importantly, <strong>verify your answers are actually answering the intended question</strong>.</p>
 <hr>
 </section>
 <section id="question-1---the-six-verbs" class="level2">
 <h2 class="anchored" data-anchor-id="question-1---the-six-verbs">Question 1 - The six verbs</h2>
-<p>This question walks the data verbs from this week. Everything chains with the pipe (<code>|&gt;</code>), one verb per line.</p>
+<p>This question walks the data verbs from this week. Everything chains with the pipe (<code>|&gt;</code>) (write only one verb per line.)</p>
 <section id="part-a-filter-arrange" class="level3">
 <h3 class="anchored" data-anchor-id="part-a-filter-arrange">Part (a): filter + arrange</h3>
 <p>In a <strong>single pipeline</strong>, find the <strong>10 countries with the highest life expectancy in 2007</strong>. Keep all columns, just the right rows in the right order. (Hint: <code>filter()</code> to 2007, <code>arrange()</code> by <code>lifeExp</code> descending, <code>head(10)</code>.)</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>In one sentence: which continent dominates the top 10, and is anything about that list surprising?</p>
-<p>[Write your one-sentence answer here.]</p>
+<p>In one sentence: which continent(s) dominate the top 10, and is anything about that list surprising?</p>
+<p>[Write your answer here.]</p>
 </section>
 <section id="part-b-mutate" class="level3">
 <h3 class="anchored" data-anchor-id="part-b-mutate">Part (b): mutate</h3>
-<p><code>gdpPercap</code> is GDP <em>per person</em>. The country’s <strong>total</strong> GDP is population times GDP per capita. Add a new column <code>gdp_total = pop * gdpPercap</code>, then <code>select()</code> down to <code>country</code>, <code>year</code>, <code>pop</code>, <code>gdpPercap</code>, and your new <code>gdp_total</code> column. Show the <code>head()</code>.</p>
+<p><code>gdpPercap</code> is GDP <em>per person</em>. The country’s <strong>total</strong> GDP is population times GDP per capita. Add a new column <code>gdp_total</code> by multiplying the total population <code>pop</code> by the GDP per capita <code>gdpPercap</code>, then <code>select()</code> down to <code>country</code>, <code>year</code>, <code>pop</code>, <code>gdpPercap</code>, and your new <code>gdp_total</code> column. Show the <code>head()</code>. Your first six rows outputted by <code>head()</code> should be the same country since we are not filtering by year.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -4632,19 +4631,6 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>If you see a message about <code>summarise()</code> having “regrouped” the output, that’s informational, not an error. Add <code>.groups = &quot;drop&quot;</code> inside <code>summarise()</code> to silence it.</p>
-</div>
-</div>
 </section>
 <section id="part-d-a-full-pipeline" class="level3">
 <h3 class="anchored" data-anchor-id="part-d-a-full-pipeline">Part (d): a full pipeline</h3>
@@ -4653,7 +4639,7 @@ Tip
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In one sentence, what do you notice about that list?</p>
-<p>[Write your one-sentence answer here.]</p>
+<p>[Write your answer here.]</p>
 </section>
 <section id="part-e-spot-the-errors" class="level3">
 <h3 class="anchored" data-anchor-id="part-e-spot-the-errors">Part (e): spot the errors</h3>
@@ -4668,21 +4654,21 @@ Tip
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your fixed version:</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>[Write your explanation of the two errors here.]</p>
+<p>[Write your answer here.]</p>
 <hr>
 </section>
 </section>
 <section id="question-2---reshaping" class="level2">
 <h2 class="anchored" data-anchor-id="question-2---reshaping">Question 2 - Reshaping</h2>
-<p>Reshaping changes the <em>shape</em> of a table without changing its values. This question goes both directions.</p>
+<p>Reshaping changes the <em>shape</em> of a table without changing its values. This question asks you to practice both directions: going from a .</p>
 <section id="part-a-pivot_wider-to-compare-two-years" class="level3">
 <h3 class="anchored" data-anchor-id="part-a-pivot_wider-to-compare-two-years">Part (a): pivot_wider to compare two years</h3>
 <p>Build a table with one row per country and <strong>separate columns for life expectancy in 1952 and in 2007</strong>, then compute the change.</p>
 <ol type="1">
 <li><code>filter()</code> to the years 1952 and 2007.</li>
 <li><code>select()</code> <code>country</code>, <code>continent</code>, <code>year</code>, <code>lifeExp</code>.</li>
-<li><code>pivot_wider()</code> with <code>names_from = year</code>, <code>values_from = lifeExp</code>.</li>
-<li><code>mutate()</code> a <code>change</code> column, and <code>arrange()</code> so the biggest gain is on top. Show the <code>head(10)</code>.</li>
+<li><code>pivot_wider()</code> with appropriate variables fed to <code>names_from =</code>, <code>values_from =</code>.</li>
+<li><code>mutate()</code> to create a new <code>change</code> column using an appropriate transformation, and <code>arrange()</code> so the biggest gain is on top. Show the <code>head(10)</code>.</li>
 </ol>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -4694,7 +4680,7 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>After pivoting, your new columns are named <code>1952</code> and <code>2007</code>. Because those names <strong>start with a digit</strong>, you must wrap them in backticks to use them: <code>`2007` - `1952`</code>.</p>
+<p>After pivoting, your new columns are named <code>1952</code> and <code>2007</code>. Because those names <strong>start with a digit</strong>, you must wrap them in backticks to use them in <code>mutate()</code>: `<code>e.g.,</code>2007```.</p>
 </div>
 </div>
 <div class="cell">
@@ -4708,10 +4694,10 @@ Warning
 <p>Here is a small <strong>wide</strong> table of (rounded) GDP per capita, with one column per year:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gdp_wide <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>country,         <span class="sc">~</span>y1952, <span class="sc">~</span>y1977, <span class="sc">~</span>y2007,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;China&quot;</span>,             <span class="dv">400</span>,    <span class="dv">741</span>,   <span class="dv">4959</span>,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;India&quot;</span>,             <span class="dv">547</span>,    <span class="dv">813</span>,   <span class="dv">2452</span>,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;United States&quot;</span>,   <span class="dv">13990</span>,  <span class="dv">25524</span>,  <span class="dv">42952</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>country, <span class="sc">~</span>y1952, <span class="sc">~</span>y1977, <span class="sc">~</span>y2007,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;China&quot;</span>, <span class="dv">400</span>, <span class="dv">741</span>, <span class="dv">4959</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;India&quot;</span>, <span class="dv">547</span>, <span class="dv">813</span>, <span class="dv">2452</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;United States&quot;</span>, <span class="dv">13990</span>, <span class="dv">25524</span>, <span class="dv">42952</span></span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>gdp_wide</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -4724,7 +4710,7 @@ Warning
 </div>
 </div>
 <p><strong>Before you write any code, predict:</strong> if you pivot the three <code>y####</code> columns into a long form, how many <strong>rows</strong> and how many <strong>columns</strong> will the result have?</p>
-<p>Prediction: [ … rows / … columns ]</p>
+<p>Prediction: <strong>9 rows, 2 columns</strong></p>
 <p>Now pivot it longer, gathering the year columns into <code>year</code> / <code>gdpPercap</code>. (Hint: <code>cols = !country</code>.) Then add a <code>mutate()</code> that turns <code>&quot;y1952&quot;</code> into the number <code>1952</code> using <code>parse_number()</code>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -4734,16 +4720,23 @@ Warning
 </section>
 <section id="part-c-choose-the-shape" class="level3">
 <h3 class="anchored" data-anchor-id="part-c-choose-the-shape">Part (c): choose the shape</h3>
-<p>For each task, say whether you’d want the data <strong>wide</strong> or <strong>long</strong>, and which pivot gets you there. One sentence each, no code.</p>
+<p>For each of the following tasks involving Gapminder data, identify the ideal final shape of the dataset.</p>
+<ul>
+<li><p>State whether you need the data to be <strong>wide</strong> or <strong>long</strong> to perform the operation easily.</p></li>
+<li><p>Assuming your starting data is in the opposite format, state which pivot operation you would use to reach that ideal shape.</p></li>
+<li><p>(You do not need to write any code. Focus purely on the data shape and the transformation concept.)</p></li>
+</ul>
 <ol type="1">
 <li>Plot each country’s life expectancy over time, one line per country.</li>
 <li>Compute, for each country, the difference in population between 1952 and 2007 as a single new column.</li>
 <li>Group by continent and year to get an average life expectancy for each combination.</li>
 </ol>
-<p>[1: … ] — [2: … ] — [3: … ]</p>
+<p>1: [Write your answer here.]</p>
+<p>2: [Write your answer here.]</p>
+<p>3: [Write your answer here.]</p>
 </section>
-<section id="part-d-challenge-optional" class="level3">
-<h3 class="anchored" data-anchor-id="part-d-challenge-optional">Part (d): CHALLENGE (optional)</h3>
+<section id="part-d" class="level3">
+<h3 class="anchored" data-anchor-id="part-d">Part (d):</h3>
 <p>This wide table crams <strong>two</strong> variables (<code>lifeExp</code>, <code>pop</code>) and a year into each column name:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mixed_wide <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
@@ -4762,20 +4755,20 @@ Warning
 </div>
 <p>Using a <strong>single</strong> <code>pivot_longer()</code>, reshape this so the result has columns <code>country</code>, <code>year</code>, <code>lifeExp</code>, and <code>pop</code>. (Hint: see R4DS §5.3.3-5.3.4, you’ll need <code>names_to = c(&quot;.value&quot;, &quot;year&quot;)</code> and <code>names_sep = &quot;_&quot;</code>.)</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code (optional):</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
 </section>
 </section>
-<section id="question-3---trust-but-verify" class="level2">
-<h2 class="anchored" data-anchor-id="question-3---trust-but-verify">Question 3 - Trust, but verify</h2>
-<p>A classmate asked an AI assistant this question:</p>
+<section id="question-3---verify" class="level2">
+<h2 class="anchored" data-anchor-id="question-3---verify">Question 3 - Verify</h2>
+<p>A classmate provided an answer to the following question:</p>
 <blockquote class="blockquote">
 <p><em>“For flights leaving JFK in summer, which airline (<code>carrier</code>) had the worst average arrival delay?”</em></p>
 </blockquote>
-<p>The AI produced the code below. It does <strong>not</strong> run as written, and even once it runs, it has problems.</p>
+<p>Your classmate produced the code below. It does <strong>not</strong> run as written, and even once it runs, it has problems.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># AI-generated answer (do not trust yet):</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Classmate&#39;s answer:</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="at">origin =</span> <span class="st">&quot;JFK&quot;</span>, month <span class="sc">&gt;</span> <span class="dv">6</span> <span class="sc">&amp;</span> month <span class="sc">&lt;</span> <span class="dv">9</span>) <span class="sc">|&gt;</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(carrier) <span class="sc">|&gt;</span></span>
@@ -4796,64 +4789,76 @@ Warning
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Does it define “summer” correctly? Which months did it actually keep?</li>
+<li>Does the code define “summer” correctly? Which months did it actually keep?</li>
 <li><code>arr_delay</code> has missing values (cancelled flights). What does <code>mean()</code> do with those by default?</li>
-<li>Is the “worst” carrier based on enough flights to believe? What’s missing from the output that would tell you?</li>
+<li>All means aren’t created equal. Means that are calculated using more data are more trustworthy. Does the current pipeline show how many flights went into each mean calculation?</li>
 </ul>
 </div>
 </div>
-<p><strong>Problem 1</strong> — what / how found / fix:</p>
-<p>[Describe.]</p>
-<p><strong>Problem 2</strong> — what / how found / fix:</p>
-<p>[Describe.]</p>
+<p><strong>Problem 1</strong>: what / fix:</p>
+<p>[Write your answer here.]</p>
+<p><strong>Problem 2</strong>: what / fix:</p>
+<p>[Write your answer here.]</p>
 <p><strong>Problem 3 (if you found one):</strong></p>
-<p>[Describe.]</p>
+<p>[Write your answer here.]</p>
 </section>
 <section id="part-b-the-verified-version" class="level3">
 <h3 class="anchored" data-anchor-id="part-b-the-verified-version">Part (b): the verified version</h3>
-<p>Write <strong>your own</strong> corrected pipeline that you can stand behind. It should define summer as June–August, handle the missing values, and include a count so a tiny carrier can’t top the list by accident. Then keep only carriers with a reasonable number of flights.</p>
+<p>Write <strong>your own</strong> pipeline. It should define summer as June–August, handle the missing values, and include a count so we know how many flights went into each mean. Then filter carriers with an average delay of at least 10 minutes (inclusive).</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your verified pipeline:</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your pipeline:</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>In one or two sentences: which carrier is <em>actually</em> the worst out of JFK in summer, on how many flights, and how confident are you?</p>
+<p>In one or two sentences: which carrier do you think is the worst out of JFK in summer. This is a somewhat subjective question; there’s not one “correct” answer, but all answers should be justified using the results of your data analysis.</p>
 <p>[Write your answer here.]</p>
 <hr>
 </section>
 </section>
 <section id="question-4---average-over-what" class="level2">
 <h2 class="anchored" data-anchor-id="question-4---average-over-what">Question 4 - Average over what?</h2>
-<p>Newspapers love a sentence like <em>“the average life expectancy in Asia is 70 years.”</em> But an average is meaningless until you say <strong>average over what</strong>. Averaging the 33 Asian <em>countries</em> treats tiny Bhutan the same as enormous China. Averaging over <em>people</em> is a different number entirely.</p>
+<p>Newspapers love a sentence like <em>“the average life expectancy in Asia is 70 years.”</em> But an average is meaningless until you say <strong>average over what</strong>. Averaging the 33 Asian <em>countries</em> treats a smaller country like Bhutan the same as a large country like China. Averaging over <em>people</em> is a different number entirely.</p>
 <p>In survey and demographic work this is the difference between an <strong>unweighted</strong> and a <strong>population-weighted</strong> estimate, and the two can disagree a lot.</p>
 <section id="part-a-the-naive-average" class="level3">
 <h3 class="anchored" data-anchor-id="part-a-the-naive-average">Part (a): the naive average</h3>
 <p>For <strong>2007</strong>, compute one row per continent with the <strong>unweighted</strong> mean of <code>lifeExp</code> (the “average country”) and the number of countries.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent) <span class="sc">|&gt;</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(lifeExp),</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">n =</span> <span class="fu">n</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+  continent  mean     n
+  &lt;fct&gt;     &lt;dbl&gt; &lt;int&gt;
+1 Africa     54.8    52
+2 Americas   73.6    25
+3 Asia       70.7    33
+4 Europe     77.6    30
+5 Oceania    80.7     2</code></pre>
+</div>
 </div>
 </section>
 <section id="part-b-the-population-weighted-average" class="level3">
 <h3 class="anchored" data-anchor-id="part-b-the-population-weighted-average">Part (b): the population-weighted average</h3>
-<p>Now compute the <strong>population-weighted</strong> mean for each continent: the “average person’s” life expectancy. The formula is</p>
+<p>Now compute the <strong>population-weighted</strong> mean for each continent in 2007: the “average person’s” life expectancy. The formula is</p>
 <p><span class="math display">\[\text{weighted mean} = \frac{\sum (\text{lifeExp} \times \text{pop})}{\sum \text{pop}}\]</span></p>
 <p>which you can write inside <code>summarise()</code> using only <code>sum()</code>: <code>sum(lifeExp * pop) / sum(pop)</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="part-c-put-them-side-by-side" class="level3">
 <h3 class="anchored" data-anchor-id="part-c-put-them-side-by-side">Part (c): put them side by side</h3>
-<p>In a single pipeline, build a table for 2007 with <strong>both</strong> estimates per continent, the number of countries, and a <code>diff</code> column (<code>weighted_mean - naive_mean</code>). Arrange by <code>diff</code>.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>In <strong>2-3 sentences</strong>: which continent shows the biggest gap between the two estimates, and <em>why</em>? (Think about which countries are huge and whether they’re typical of their continent.)</p>
-<p>[Write your answer here.]</p>
-</section>
-<section id="part-d-show-it" class="level3">
-<h3 class="anchored" data-anchor-id="part-d-show-it">Part (d): show it</h3>
-<p>Take your table from part (c), <code>pivot_longer()</code> the two mean columns into one <code>estimate_type</code> / <code>value</code> pair, and make a plot comparing the naive and weighted estimates across continents. (A grouped/colored point or column chart both work. Label your axes.)</p>
+<p>In a single pipeline, build a table for 2007 with <strong>both</strong> estimates per continent, the number of countries, and a <code>diff</code> column (weighted minus unweighted). Arrange by <code>diff</code> in descending order.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>In <strong>2-3 sentences</strong>: which continent shows the biggest gap between the two estimates.</p>
+<p>[Write your answer here.]</p>
+<p>Take your table from part (c), <code>pivot_longer()</code> the two mean columns into one <code>estimate_type</code> / <code>value</code> pair, and make a plot comparing the naive and weighted estimates across continents. (A grouped/colored point or column chart both work. Label your axes.)</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In one sentence, what does the plot make visible that the raw numbers didn’t?</p>
 <p>[Write your answer here.]</p>
@@ -4868,47 +4873,52 @@ Warning
 <section id="code-appendix" class="level1">
 <h1>Code appendix</h1>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(gapminder)</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Original (broken):</span></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="at">continent =</span> <span class="st">&quot;Asia&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gapminder, year) <span class="sc">|&gt;</span></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_life =</span> <span class="fu">mean</span>(lifeExp))</span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Your fixed version:</span></span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>gdp_wide <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>country,         <span class="sc">~</span>y1952, <span class="sc">~</span>y1977, <span class="sc">~</span>y2007,</span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;China&quot;</span>,             <span class="dv">400</span>,    <span class="dv">741</span>,   <span class="dv">4959</span>,</span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;India&quot;</span>,             <span class="dv">547</span>,    <span class="dv">813</span>,   <span class="dv">2452</span>,</span>
-<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;United States&quot;</span>,   <span class="dv">13990</span>,  <span class="dv">25524</span>,  <span class="dv">42952</span></span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>gdp_wide</span>
-<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
-<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>mixed_wide <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>country,   <span class="sc">~</span>lifeExp_1952, <span class="sc">~</span>pop_1952, <span class="sc">~</span>lifeExp_2007, <span class="sc">~</span>pop_2007,</span>
-<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Brazil&quot;</span>,          <span class="fl">50.9</span>,   <span class="dv">56602560</span>,         <span class="fl">72.4</span>,  <span class="dv">190010647</span>,</span>
-<span id="cb23-27"><a href="#cb23-27" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Japan&quot;</span>,           <span class="fl">63.0</span>,   <span class="dv">86459025</span>,         <span class="fl">82.6</span>,  <span class="dv">127467972</span></span>
-<span id="cb23-28"><a href="#cb23-28" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb23-29"><a href="#cb23-29" aria-hidden="true" tabindex="-1"></a>mixed_wide</span>
-<span id="cb23-30"><a href="#cb23-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code (optional):</span></span>
-<span id="cb23-31"><a href="#cb23-31" aria-hidden="true" tabindex="-1"></a><span class="co"># AI-generated answer (do not trust yet):</span></span>
-<span id="cb23-32"><a href="#cb23-32" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
-<span id="cb23-33"><a href="#cb23-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="at">origin =</span> <span class="st">&quot;JFK&quot;</span>, month <span class="sc">&gt;</span> <span class="dv">6</span> <span class="sc">&amp;</span> month <span class="sc">&lt;</span> <span class="dv">9</span>) <span class="sc">|&gt;</span></span>
-<span id="cb23-34"><a href="#cb23-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(carrier) <span class="sc">|&gt;</span></span>
-<span id="cb23-35"><a href="#cb23-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_delay =</span> <span class="fu">mean</span>(arr_delay)) <span class="sc">|&gt;</span></span>
-<span id="cb23-36"><a href="#cb23-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_delay))</span>
-<span id="cb23-37"><a href="#cb23-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Your verified pipeline:</span></span>
-<span id="cb23-38"><a href="#cb23-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
-<span id="cb23-39"><a href="#cb23-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
-<span id="cb23-40"><a href="#cb23-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
-<span id="cb23-41"><a href="#cb23-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(gapminder)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Original (broken):</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="at">continent =</span> <span class="st">&quot;Asia&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(gapminder, year) <span class="sc">|&gt;</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_life =</span> <span class="fu">mean</span>(lifeExp))</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Your fixed version:</span></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>gdp_wide <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>country, <span class="sc">~</span>y1952, <span class="sc">~</span>y1977, <span class="sc">~</span>y2007,</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;China&quot;</span>, <span class="dv">400</span>, <span class="dv">741</span>, <span class="dv">4959</span>,</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;India&quot;</span>, <span class="dv">547</span>, <span class="dv">813</span>, <span class="dv">2452</span>,</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;United States&quot;</span>, <span class="dv">13990</span>, <span class="dv">25524</span>, <span class="dv">42952</span></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>gdp_wide</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>mixed_wide <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>country,   <span class="sc">~</span>lifeExp_1952, <span class="sc">~</span>pop_1952, <span class="sc">~</span>lifeExp_2007, <span class="sc">~</span>pop_2007,</span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Brazil&quot;</span>,          <span class="fl">50.9</span>,   <span class="dv">56602560</span>,         <span class="fl">72.4</span>,  <span class="dv">190010647</span>,</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Japan&quot;</span>,           <span class="fl">63.0</span>,   <span class="dv">86459025</span>,         <span class="fl">82.6</span>,  <span class="dv">127467972</span></span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>mixed_wide</span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Classmate&#39;s answer:</span></span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="at">origin =</span> <span class="st">&quot;JFK&quot;</span>, month <span class="sc">&gt;</span> <span class="dv">6</span> <span class="sc">&amp;</span> month <span class="sc">&lt;</span> <span class="dv">9</span>) <span class="sc">|&gt;</span></span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(carrier) <span class="sc">|&gt;</span></span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_delay =</span> <span class="fu">mean</span>(arr_delay)) <span class="sc">|&gt;</span></span>
+<span id="cb24-36"><a href="#cb24-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(avg_delay))</span>
+<span id="cb24-37"><a href="#cb24-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Your pipeline:</span></span>
+<span id="cb24-38"><a href="#cb24-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
+<span id="cb24-39"><a href="#cb24-39" aria-hidden="true" tabindex="-1"></a>gapminder <span class="sc">|&gt;</span></span>
+<span id="cb24-40"><a href="#cb24-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">|&gt;</span></span>
+<span id="cb24-41"><a href="#cb24-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent) <span class="sc">|&gt;</span></span>
+<span id="cb24-42"><a href="#cb24-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean =</span> <span class="fu">mean</span>(lifeExp),</span>
+<span id="cb24-43"><a href="#cb24-43" aria-hidden="true" tabindex="-1"></a>            <span class="at">n =</span> <span class="fu">n</span>())</span>
+<span id="cb24-44"><a href="#cb24-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
+<span id="cb24-45"><a href="#cb24-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span>
+<span id="cb24-46"><a href="#cb24-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 

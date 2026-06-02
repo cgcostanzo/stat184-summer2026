@@ -4372,7 +4372,6 @@ margin-bottom: 1.5rem;
   <li><a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a></li>
   <li><a href="#part-3" id="toc-part-3" class="nav-link" data-scroll-target="#part-3">Part 3</a></li>
   <li><a href="#part-4-dont-trust-a-mean-without-its-n" id="toc-part-4-dont-trust-a-mean-without-its-n" class="nav-link" data-scroll-target="#part-4-dont-trust-a-mean-without-its-n">Part 4 — Don’t trust a mean without its <code>n()</code></a></li>
-  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap-up</a></li>
   <li><a href="#code-appendix" id="toc-code-appendix" class="nav-link" data-scroll-target="#code-appendix">Code appendix</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="day10-activity.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -4453,42 +4452,42 @@ $ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 
 <tr class="odd">
 <td>1</td>
 <td>The largest body mass in the dataset</td>
-<td></td>
+<td>[Your answer.]</td>
 </tr>
 <tr class="even">
 <td>2</td>
 <td>Body mass converted from grams to kilograms</td>
-<td></td>
+<td>[Your answer.]</td>
 </tr>
 <tr class="odd">
 <td>3</td>
 <td>The number of penguins</td>
-<td></td>
+<td>[Your answer.]</td>
 </tr>
 <tr class="even">
 <td>4</td>
 <td>Whether each penguin weighs more than 4000 g</td>
-<td></td>
+<td>[Your answer.]</td>
 </tr>
 <tr class="odd">
 <td>5</td>
 <td>The number of <em>distinct</em> islands</td>
-<td></td>
+<td>[Your answer.]</td>
 </tr>
 <tr class="even">
 <td>6</td>
 <td>Labeling each penguin <code>&quot;heavy&quot;</code> or <code>&quot;light&quot;</code></td>
-<td></td>
+<td>[Your answer.]</td>
 </tr>
 <tr class="odd">
 <td>7</td>
 <td>Keeping only the Gentoo penguins</td>
-<td></td>
+<td>[Your answer.]</td>
 </tr>
 <tr class="even">
 <td>8</td>
 <td>The standard deviation of flipper length</td>
-<td></td>
+<td>[Your answer.]</td>
 </tr>
 </tbody>
 </table>
@@ -4541,7 +4540,8 @@ Tip
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">avg_mass =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Prediction (rows / columns): [ … ] - Actual: [ … ]</p>
+<p>Prediction (rows / columns): [Your answer.]</p>
+<p>Actual: [Your answer.]</p>
 <p><strong>3b.</strong></p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
@@ -4549,7 +4549,8 @@ Tip
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">avg_mass =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Prediction (rows / columns): [ … ] - Actual: [ … ]</p>
+<p>Prediction (rows / columns): [Your answer.]</p>
+<p>Actual: [Your answer.]</p>
 <p>Did anything about the <strong>number of rows</strong> surprise you? (Look closely at the <code>sex</code> column.)</p>
 <p>[Your answer.]</p>
 <p><strong>3c.</strong> This one is a trap. Predict <em>before</em> you run it, then run it:</p>
@@ -4558,7 +4559,8 @@ Tip
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(body_mass_g) <span class="sc">|&gt;</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Prediction (rows): [ … ] - Actual: [ … ]</p>
+<p>Prediction (rows / columns): [Your answer.]</p>
+<p>Actual: [Your answer.]</p>
 <p>What went wrong, and what does it tell you about which <em>kinds</em> of variables you should group by?</p>
 <p>[Your answer.]</p>
 <p><strong>3d.</strong> Without grouping at all:</p>
@@ -4566,7 +4568,8 @@ Tip
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n =</span> <span class="fu">n</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Prediction (rows): [ … ] - Actual: [ … ]</p>
+<p>Prediction (rows / columns): [Your answer.]</p>
+<p>Actual: [Your answer.]</p>
 <p>Explain the relationship between 3a, 3b, and 3d in terms of “what does one row of the output represent?”</p>
 <p>[Your answer.]</p>
 <hr>
@@ -4584,13 +4587,6 @@ Tip
 <p>[Your answer.]</p>
 <p><strong>4b.</strong> In one or two sentences: why is <code>n = n()</code> worth adding to <em>every</em> group summary you write, even when nobody asked for a count?</p>
 <p>[Your answer.]</p>
-<hr>
-</section>
-<section id="wrap-up" class="level1">
-<h1>Wrap-up</h1>
-<p>You now have the two verbs that change <em>what a row means</em>. Tomorrow we add the four verbs that change <em>which rows and columns are present</em>.</p>
-<p><strong>One-sentence reflection:</strong> what was the single most useful idea from today, the framework, the <code>na.rm</code> trap, or predicting the shape of a grouped result?</p>
-<p>[Write one sentence.]</p>
 <hr>
 </section>
 <section id="code-appendix" class="level1">
