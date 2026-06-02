@@ -41,11 +41,11 @@ This schedule is tentative and subject to change. Substantive changes will be an
 
 | Date | Topic | Read before class | Due |
 |---|---|---|---|
-| Mon Jun 1 | Wrangling concepts · reduction & transformation · `group_by` | [DC §7.1–7.7](https://psu.instructure.com/courses/2487468/assignments/18323235) | --- |
-| Tue Jun 2 | The data verbs: `select`, `filter`, `mutate`, `arrange` | [DC §10.1–10.6](https://psu.instructure.com/courses/2487468/assignments/18325370) | [HW 3]() |
-| Wed Jun 3 | Deeper practice with `group_by` and `summarize` | (Review Ch 7, 10) | --- |
-| Thu Jun 4 | Reshaping: `pivot_longer`, `pivot_wider` | [DC §12.1]() | [**Project: Team formation**](https://psu.instructure.com/courses/2487468/assignments/18325371) |
-| Fri Jun 5 | **Quiz 3** · Git/GitHub for collaboration | [DC §9.1–9.2](https://psu.instructure.com/courses/2487468/assignments/18325372) | Quiz 3 (in class) |
+| Mon Jun 1 | Wrangling framework · summarise + group_by | [DC §7.1–7.7](https://psu.instructure.com/courses/2487468/assignments/18323235) | --- |
+| Tue Jun 2 | select, filter, mutate, arrange | [DC §10.1–10.6](https://psu.instructure.com/courses/2487468/assignments/18325370) | --- |
+| Wed Jun 3 | Putting it together: from messy CSV to summary table | (Review Ch 7, 10) | --- |
+| Thu Jun 4 | Reshaping: `pivot_longer`, `pivot_wider` | [DC §12.1](https://psu.instructure.com/courses/2487468/assignments/18325371) | [**Project: Team formation**](https://psu.instructure.com/courses/2487468/discussion_topics/17435844) |
+| Fri Jun 5 | **Quiz 3** · Git/GitHub concepts + demo | [DC §9.1–9.2](https://psu.instructure.com/courses/2487468/assignments/18325372) | [Homework 3: Data Wrangling & Reshaping](https://psu.instructure.com/courses/2487468/assignments/18327019) · Quiz 3 (in class) |
 
 : Week 3 schedule {tbl-colwidths="[10,35,25,30]"}
 

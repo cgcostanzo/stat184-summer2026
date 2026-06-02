@@ -366,6 +366,7 @@ You'll classify functions into the three families, build up `summarize()` and `g
 
 - **Tue 6/2, before class**: [*DC* §10.1–10.6](https://psu.instructure.com/courses/2487468/assignments/18325370)
 - **Thu 6/4, 11:59 p.m.**: [Project: Team formation](https://psu.instructure.com/courses/2487468/assignments/)
+- **Fri 6/5, 11:59 p.m.**: [Homework 3: Data Wrangling & Reshaping](https://psu.instructure.com/courses/2487468/assignments/18327019)
 :::
 
 ::: {.column width="45%"}

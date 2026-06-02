@@ -42,7 +42,6 @@ library(palmerpenguins)
 - Sorting verbs by *what they touch*: rows vs. columns
 - Combining verbs with the pipe into real pipelines
 - Formatting pipelines so they stay readable
-- Paying off yesterday's IOU: dropping the `NA` penguins
 
 **Helpful links**
 
@@ -51,7 +50,7 @@ library(palmerpenguins)
 
 ## Recap from yesterday
 
-You have the **framework** and your first two data verbs:
+We discussed the overarching **framework** and two data verbs:
 
 | Family | Input → Output | The verb that uses it |
 |---|---|---|
@@ -59,13 +58,13 @@ You have the **framework** and your first two data verbs:
 | Transformation | variable → variable | *...today: `mutate()`* |
 | Data verb | data frame → data frame | all of them |
 
-: Where we left off. {tbl-colwidths="[28,42,30]"}
+: {tbl-colwidths="[28,42,30]"}
 
-`summarise()` is the home of reduction functions. Today you meet `mutate()`, the home of **transformation** functions, plus three verbs that reshape *which* rows and columns you keep.
+We write reduction functions inside of `summarise()`. Today we will cover `mutate()`, which contains **transformation** functions, plus three verbs that reshape *which* rows and columns you keep.
 
 ## A map of the verbs
 
-R4DS §3.1.3 organizes dplyr by **what each verb operates on**:
+We can organize dplyr by **what each verb operates on**:
 
 | Touches... | Verbs | What changes |
 |---|---|---|
@@ -76,7 +75,7 @@ R4DS §3.1.3 organizes dplyr by **what each verb operates on**:
 : The dplyr toolkit. {tbl-colwidths="[20,42,38]"}
 
 ::: {.callout-tip style="font-size: 1.1em;"}
-Every one of these obeys the same three rules: **first argument is a data frame, you name columns without quotes, and the output is a brand-new data frame.**
+These all follow the same three rules: **first argument is a data frame, you name columns without quotes, and the output is a brand-new data frame.**
 :::
 
 # Rows: filter() {background-color="#001E44"}
@@ -108,7 +107,7 @@ These are the tests you'll use inside `filter()` (*DC* Table 10.9):
 : Comparisons for `filter()`. {tbl-colwidths="[18,32,50]"}
 
 ::: {.callout-warning}
-Use `==` to **test** equality, not `=`. A single `=` means "assign," and dplyr will stop you: *"Did you mean `==`?"* This is a classic AI-generated bug too, exactly the kind of thing Friday's lesson said to read for.
+Use `==` to **test** equality, not `=`. A single `=` means "assign," not "test equality".
 :::
 
 ## Multiple conditions {.scrollable .nostretch}
@@ -132,10 +131,10 @@ penguins |>
 ```
 
 ::: {.callout-note}
-Watch the English-trap: `filter(species == "Adelie" | "Gentoo")` does **not** work the way it reads. Each side of `|` must be a complete test.
+`filter(species == "Adelie" | "Gentoo")` does **not** work the way it reads. Each side of `|` must be a complete test.
 :::
 
-## Paying off yesterday's IOU {.scrollable .nostretch}
+## Dropping `NA`s {.scrollable .nostretch}
 
 Yesterday, `group_by(species, sex)` gave us an `NA` group because some penguins have a missing `sex`. Now we can drop them:
 
@@ -147,13 +146,13 @@ penguins |>
   summarise(n = n(), .groups = "drop")
 ```
 
-`is.na(sex)` is `TRUE` for the missing ones; `!` flips it, so `!is.na(sex)` keeps the rows that **do** have a sex. No more `NA` group.
+`is.na(sex)` is `TRUE` for the missing ones; `!` flips it, so `!is.na(sex)` keeps the rows that **do** have a sex. This removes the `NA` group.
 
 # Rows: arrange() {background-color="#001E44"}
 
 ## arrange(): set the order {.scrollable .nostretch}
 
-`arrange()` reorders rows without adding or removing any (*DC* §10.4, R4DS §3.2.3). Ascending by default:
+`arrange()` reorders rows without adding or removing any. This function gives the result in ascending order by default:
 
 ```{r}
 #| echo: TRUE
@@ -161,7 +160,7 @@ penguins |>
   arrange(body_mass_g)
 ```
 
-Wrap a column in `desc()` for descending order, and list several columns to break ties:
+You can wrap a column in `desc()` if you want descending order. If there are ties, to break them you can list several columns:
 
 ```{r}
 #| echo: TRUE
@@ -174,7 +173,7 @@ penguins |>
 
 ## select(): keep the columns you want {.scrollable .nostretch}
 
-`select()` is to columns what `filter()` is to rows (*DC* §10.1, R4DS §3.3.2):
+`select()` is to columns what `filter()` is to rows:
 
 ```{r}
 #| echo: TRUE
@@ -193,17 +192,17 @@ penguins |> select(mass = body_mass_g)     # rename while selecting
 ```
 
 ::: {.callout-note}
-`penguins` has only 8 columns, so `select()` feels optional here. On a 19-column table like `flights` from HW2, or a 76-column one, it's the first thing you reach for.
+`penguins` has only 8 columns, so `select()` feels optional here. On a 19-column table like `flights` from HW2, or a 76-column one, it's one of the first things you might want to try.
 :::
 
 ## select() helpers {.scrollable .nostretch}
 
-For wide tables, name columns by pattern instead of one-by-one (R4DS §3.3.2):
+For wide tables, name columns by pattern instead of one-by-one:
 
 ```{r}
 #| echo: TRUE
 #| eval: FALSE
-penguins |> select(starts_with("bill"))   # bill_length_mm, bill_depth_mm
+penguins |> select(starts_with("bill"))    # bill_length_mm, bill_depth_mm
 penguins |> select(ends_with("_mm"))       # all the millimetre measurements
 penguins |> select(where(is.numeric))      # every numeric column
 ```
@@ -212,7 +211,7 @@ penguins |> select(where(is.numeric))      # every numeric column
 
 ## mutate(): add a new column {.scrollable .nostretch}
 
-`mutate()` adds columns computed from existing ones, keeping every row (*DC* §10.3, R4DS §3.3.1):
+`mutate()` adds columns computed from existing ones, keeping every row:
 
 ```{r}
 #| echo: TRUE
@@ -221,9 +220,7 @@ penguins |>
   select(species, body_mass_g, body_mass_kg)
 ```
 
-## mutate() is where transformations live {.scrollable .nostretch}
-
-This is the parallel *DC* §10.3 draws to yesterday:
+## mutate() contains transformation functions {.scrollable .nostretch}
 
 > `mutate()` **always** involves a *transformation* function, just as `summarise()` **always** involves a *reduction* function.
 
@@ -243,7 +240,7 @@ Deciding between them is the same question from yesterday: does the calculation 
 
 ## A categorical column with ifelse() {.scrollable .nostretch}
 
-`ifelse()` (from *DC* §7.4) is a transformation that picks between two values per row, perfect inside `mutate()`:
+`ifelse()` is a transformation that picks between two values per row, perfect inside `mutate()`:
 
 ```{r}
 #| echo: TRUE
@@ -256,7 +253,7 @@ penguins |>
 
 ## The pipe does the real work {.scrollable .nostretch}
 
-One verb does one thing. Real questions need several, chained with `|>` (R4DS §3.4):
+One verb does one thing. For most questions, we will need several, chained together with `|>`:
 
 ```{r}
 #| echo: TRUE
@@ -268,15 +265,15 @@ penguins |>
   arrange(desc(body_mass_kg))
 ```
 
-Read it top to bottom as English: take penguins, **then** drop missing sex, **then** add mass in kg, **then** keep three columns, **then** sort heaviest first.
+This can be read in English as: take penguins, **then** drop missing sex, **then** add mass in kg, **then** keep three columns, **then** sort heaviest first.
 
 ::: {.callout-tip}
-Because each verb returns a new data frame, the output of one is the input to the next. The verbs line up on the left so you can skim the *story* without reading the details.
+Because each verb returns a new data frame, the output of one is the input to the next. The verbs line up on the left so you can quickly skim to understand what's going on.
 :::
 
 ## Putting all six together {.scrollable .nostretch}
 
-Yesterday's verbs and today's verbs, in one pipeline that answers a real question, "what's the average mass of each species/sex, biggest first?":
+We can use all six verbs to answer the question, "what's the average mass of each species/sex, biggest first?":
 
 ```{r}
 #| echo: TRUE
@@ -291,7 +288,7 @@ penguins |>
   arrange(desc(avg_mass))
 ```
 
-And because the result is just a data frame, pipe it straight into a plot (switching `|>` to `+`):
+And because the result is just a data frame, you can pipe it straight into a plot (switching `|>` to `+`):
 
 ```{r}
 #| echo: TRUE
@@ -305,7 +302,7 @@ penguins |>
 
 ## Formatting your pipelines {.scrollable .nostretch}
 
-A multi-step pipeline is only readable if you format it. The rules that matter most (R4DS Ch. 4):
+A multi-step pipeline is only readable if you format it. The rules that matter most:
 
 - A space before `|>`, and let `|>` be the **last thing on the line**.
 - For verbs with **named arguments** (`mutate`, `summarise`), put each argument on its **own line**, indented two spaces.
@@ -318,7 +315,7 @@ A multi-step pipeline is only readable if you format it. The rules that matter m
 # Strive for                          # Avoid
 penguins |>                           penguins|>filter(!is.na(sex))|>group_by(
   filter(!is.na(sex)) |>              species)|>summarize(n=n(),avg=mean(
-  group_by(species) |>               body_mass_g,na.rm=TRUE))
+  group_by(species) |>                body_mass_g,na.rm=TRUE))
   summarise(
     n   = n(),
     avg = mean(body_mass_g, na.rm = TRUE)
@@ -329,9 +326,9 @@ penguins |>                           penguins|>filter(!is.na(sex))|>group_by(
 Don't hand-format forever: the **`styler`** package reformats a whole file for you. In RStudio, `Cmd/Ctrl + Shift + P` → type "styler". Full guide: R4DS Ch. 4.
 :::
 
-## A shortcut you'll use constantly {.scrollable .nostretch}
+## A helpful shortcut {.scrollable .nostretch}
 
-Counting rows per group is so common it has its own verb, `count()` (R4DS §3.2.4):
+Counting rows per group is so common it has its own verb, `count()`:
 
 ```{r}
 #| echo: TRUE
@@ -350,12 +347,12 @@ penguins |>
 
 ## What we covered today {.scrollable .nostretch}
 
-- **`filter()`** — keep rows that pass a test; `==` not `=`; combine with `,`/`|`/`%in%`; `!is.na()` to drop missing
-- **`arrange()`** — reorder rows; `desc()` for descending; extra columns break ties
-- **`select()`** — keep/drop/rename columns; `starts_with()` & friends for wide tables
-- **`mutate()`** — add columns from transformations; the per-row twin of `summarise()`
-- **The pipe** — chain verbs into a readable top-to-bottom story; pipe results into ggplot
-- **Style** — space before `|>`, named args on their own lines, `snake_case`, let `styler` do the rest
+- **`filter()`**: keep rows that pass a test; `==` not `=`; combine with `,`/`|`/`%in%`; `!is.na()` to drop missing
+- **`arrange()`**: reorder rows; `desc()` for descending; extra columns break ties
+- **`select()`**: keep/drop/rename columns; `starts_with()` & friends for wide tables
+- **`mutate()`**: add columns from transformations; the per-row twin of `summarise()`
+- **The pipe**: chain verbs into a readable top-to-bottom story; pipe results into ggplot
+- **Style**: space before `|>`, named args on their own lines, `snake_case`, let `styler` do the rest
 
 # Activity {background-color="#7C0A02"}
 
@@ -379,6 +376,7 @@ Roughly 25 minutes. Individually or with a neighbor.
 
 - **Thu 6/4, before class**: [*DC* §12.1](https://psu.instructure.com/courses/2487468/assignments/18325371)
 - **Thu 6/4, 11:59 p.m.**: [Project: Team formation](https://psu.instructure.com/courses/2487468/assignments/)
+- **Fri 6/5, 11:59 p.m.**: [Homework 3: Data Wrangling & Reshaping](https://psu.instructure.com/courses/2487468/assignments/18327019)
 :::
 
 ::: {.column width="45%"}

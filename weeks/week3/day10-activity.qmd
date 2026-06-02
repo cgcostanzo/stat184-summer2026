@@ -174,16 +174,6 @@ penguins |>
 
 ---
 
-# Wrap-up
-
-You now have the two verbs that change *what a row means*. Tomorrow we add the four verbs that change *which rows and columns are present*.
-
-**One-sentence reflection:** what was the single most useful idea from today, the framework, the `na.rm` trap, or predicting the shape of a grouped result?
-
-[Write one sentence.]
-
----
-
 # Code appendix
 
 ```{r ref.label=knitr::all_labels()}

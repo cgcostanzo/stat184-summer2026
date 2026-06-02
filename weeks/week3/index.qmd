@@ -11,7 +11,7 @@ We cover the dplyr verbs `filter`, `select`, `mutate`, `arrange`, `group_by`, `s
 |---|---|---|---|
 | Mon Jun 1 | Wrangling framework · summarise + group_by | [Slides](day10-wrangling-slides.html) · [Page](day10-wrangling-page.html) · [PDF](day10-wrangling.pdf) | [day10-activity.R](day10-activity.qmd){download="day10-activity.qmd"} |
 | Tue Jun 2 | select, filter, mutate, arrange | [Slides](day11-data-verbs-slides.html) · [Page](day11-data-verbs-page.html) · [PDF](day11-data-verbs.pdf) | [day11-activity.R](day11-activity.R){download="day11-activity.R"} |
-| Wed Jun 3 | Putting it together: messy CSV → summary table | [Slides](day12-integration-slides.html) · [Page](day12-integration-page.html) · [PDF](day12-integration.pdf) | [day12-activity.R](day12-activity.R){download="day12-activity.R"} |
+| Wed Jun 3 | Putting it together: from messy CSV to summary table | [Slides](day12-integration-slides.html) · [Page](day12-integration-page.html) · [PDF](day12-integration.pdf) | [day12-activity.R](day12-activity.R){download="day12-activity.R"} |
 | Thu Jun 4 | Reshaping: `pivot_longer`, `pivot_wider` | [Slides](day13-pivot-slides.html) · [Page](day13-pivot-page.html) · [PDF](day13-pivot.pdf) | [day13-activity.R](day13-activity.R){download="day13-activity.R"} |
 | Fri Jun 5 | **Quiz 3** · Git/GitHub concepts + demo | [Slides](day14-git-slides.html) · [Page](day14-git-page.html) · [PDF](day14-git.pdf) | [day14-activity.R](day14-activity.R){download="day14-activity.R"} |
 
