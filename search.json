@@ -795,7 +795,7 @@
     "href": "weeks/week3/day11-data-verbs-slides.html#recap-from-yesterday",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "Recap from yesterday",
-    "text": "Recap from yesterday\nWe discussed the overarching framework and two data verbs:\n\n\n\n\n\n\n\n\nFamily\nInput → Output\nThe verb that uses it\n\n\n\n\nReduction\nvariable → scalar\nsummarise()\n\n\nTransformation\nvariable → variable\n…today: mutate()\n\n\nData verb\ndata frame → data frame\nall of them\n\n\n\nWe write reduction functions inside of summarise(). Today we will cover mutate(), which contains transformation functions, plus three verbs that reshape which rows and columns you keep."
+    "text": "Recap from yesterday\nWe discussed the overarching framework and two data verbs:\n\n\n\n\n\n\n\n\nFamily\nInput to Output\nThe verb that uses it\n\n\n\n\nReduction\nvariable to scalar\nsummarise()\n\n\nTransformation\nvariable to variable\n…today: mutate()\n\n\nData verb\ndata frame to data frame\nall of them\n\n\n\nWe write reduction functions inside of summarise(). Today we will cover mutate(), which contains transformation functions, plus three verbs that reshape which rows and columns you keep."
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-slides.html#a-map-of-the-verbs",
@@ -865,7 +865,7 @@
     "href": "weeks/week3/day11-data-verbs-slides.html#mutate-contains-transformation-functions",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "mutate() contains transformation functions",
-    "text": "mutate() contains transformation functions\n\nmutate() always involves a transformation function, just as summarise() always involves a reduction function.\n\n\n# transformation: one value per row → mutate()\npenguins |&gt; mutate(bill_ratio = bill_length_mm / bill_depth_mm)\n\n# reduction: one value total → summarise()\npenguins |&gt; summarise(avg_bill = mean(bill_length_mm, na.rm = TRUE))\n\n\n\n\n\n\n\nTip\n\n\nDeciding between them is the same question from yesterday: does the calculation give one value per row (mutate) or one value for the whole group (summarise)?"
+    "text": "mutate() contains transformation functions\n\nmutate() always involves a transformation function, just as summarise() always involves a reduction function.\n\n\n# transformation: one value per row to mutate()\npenguins |&gt; mutate(bill_ratio = bill_length_mm / bill_depth_mm)\n\n# reduction: one value total to summarise()\npenguins |&gt; summarise(avg_bill = mean(bill_length_mm, na.rm = TRUE))\n\n\n\n\n\n\n\nTip\n\n\nDeciding between them is the same question from yesterday: does the calculation give one value per row (mutate) or one value for the whole group (summarise)?"
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-slides.html#a-categorical-column-with-ifelse",
@@ -893,7 +893,7 @@
     "href": "weeks/week3/day11-data-verbs-slides.html#formatting-your-pipelines",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "Formatting your pipelines",
-    "text": "Formatting your pipelines\nA multi-step pipeline is only readable if you format it. The rules that matter most:\n\nA space before |&gt;, and let |&gt; be the last thing on the line.\nFor verbs with named arguments (mutate, summarise), put each argument on its own line, indented two spaces.\nVerbs without named arguments (filter, select, arrange) can stay on one line if they fit.\nName new columns in snake_case: body_mass_kg, not BodyMassKG.\n\n\n# Strive for                          # Avoid\npenguins |&gt;                           penguins|&gt;filter(!is.na(sex))|&gt;group_by(\n  filter(!is.na(sex)) |&gt;              species)|&gt;summarize(n=n(),avg=mean(\n  group_by(species) |&gt;                body_mass_g,na.rm=TRUE))\n  summarise(\n    n   = n(),\n    avg = mean(body_mass_g, na.rm = TRUE)\n  )\n\n\n\n\n\n\n\nTip\n\n\nDon’t hand-format forever: the styler package reformats a whole file for you. In RStudio, Cmd/Ctrl + Shift + P → type “styler”. Full guide: R4DS Ch. 4."
+    "text": "Formatting your pipelines\nA multi-step pipeline is only readable if you format it. The rules that matter most:\n\nA space before |&gt;, and let |&gt; be the last thing on the line.\nFor verbs with named arguments (mutate, summarise), put each argument on its own line, indented two spaces.\nVerbs without named arguments (filter, select, arrange) can stay on one line if they fit.\nName new columns in snake_case: body_mass_kg, not BodyMassKG.\n\n\n# Strive for                          # Avoid\npenguins |&gt;                           penguins|&gt;filter(!is.na(sex))|&gt;group_by(\n  filter(!is.na(sex)) |&gt;              species)|&gt;summarize(n=n(),avg=mean(\n  group_by(species) |&gt;                body_mass_g,na.rm=TRUE))\n  summarise(\n    n   = n(),\n    avg = mean(body_mass_g, na.rm = TRUE)\n  )\n\n\n\n\n\n\n\nTip\n\n\nDon’t hand-format forever: the styler package reformats a whole file for you. In RStudio, Cmd/Ctrl + Shift + P then type “styler”. Full guide: R4DS Ch. 4."
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-slides.html#a-helpful-shortcut",
@@ -935,7 +935,7 @@
     "href": "weeks/week3/day11-data-verbs-page.html#recap-from-yesterday",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "Recap from yesterday",
-    "text": "Recap from yesterday\nWe discussed the overarching framework and two data verbs:\n\n\n\n\n\n\n\n\nFamily\nInput → Output\nThe verb that uses it\n\n\n\n\nReduction\nvariable → scalar\nsummarise()\n\n\nTransformation\nvariable → variable\n…today: mutate()\n\n\nData verb\ndata frame → data frame\nall of them\n\n\n\nWe write reduction functions inside of summarise(). Today we will cover mutate(), which contains transformation functions, plus three verbs that reshape which rows and columns you keep."
+    "text": "Recap from yesterday\nWe discussed the overarching framework and two data verbs:\n\n\n\n\n\n\n\n\nFamily\nInput to Output\nThe verb that uses it\n\n\n\n\nReduction\nvariable to scalar\nsummarise()\n\n\nTransformation\nvariable to variable\n…today: mutate()\n\n\nData verb\ndata frame to data frame\nall of them\n\n\n\nWe write reduction functions inside of summarise(). Today we will cover mutate(), which contains transformation functions, plus three verbs that reshape which rows and columns you keep."
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-page.html#a-map-of-the-verbs",
@@ -1005,7 +1005,7 @@
     "href": "weeks/week3/day11-data-verbs-page.html#mutate-contains-transformation-functions",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "mutate() contains transformation functions",
-    "text": "mutate() contains transformation functions\n\nmutate() always involves a transformation function, just as summarise() always involves a reduction function.\n\n\n# transformation: one value per row → mutate()\npenguins |&gt; mutate(bill_ratio = bill_length_mm / bill_depth_mm)\n\n# reduction: one value total → summarise()\npenguins |&gt; summarise(avg_bill = mean(bill_length_mm, na.rm = TRUE))\n\n\n\n\n\n\n\nTip\n\n\n\nDeciding between them is the same question from yesterday: does the calculation give one value per row (mutate) or one value for the whole group (summarise)?"
+    "text": "mutate() contains transformation functions\n\nmutate() always involves a transformation function, just as summarise() always involves a reduction function.\n\n\n# transformation: one value per row to mutate()\npenguins |&gt; mutate(bill_ratio = bill_length_mm / bill_depth_mm)\n\n# reduction: one value total to summarise()\npenguins |&gt; summarise(avg_bill = mean(bill_length_mm, na.rm = TRUE))\n\n\n\n\n\n\n\nTip\n\n\n\nDeciding between them is the same question from yesterday: does the calculation give one value per row (mutate) or one value for the whole group (summarise)?"
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-page.html#a-categorical-column-with-ifelse",
@@ -1033,7 +1033,7 @@
     "href": "weeks/week3/day11-data-verbs-page.html#formatting-your-pipelines",
     "title": "The data verbs: select · filter · mutate · arrange",
     "section": "Formatting your pipelines",
-    "text": "Formatting your pipelines\nA multi-step pipeline is only readable if you format it. The rules that matter most:\n\nA space before |&gt;, and let |&gt; be the last thing on the line.\nFor verbs with named arguments (mutate, summarise), put each argument on its own line, indented two spaces.\nVerbs without named arguments (filter, select, arrange) can stay on one line if they fit.\nName new columns in snake_case: body_mass_kg, not BodyMassKG.\n\n\n# Strive for                          # Avoid\npenguins |&gt;                           penguins|&gt;filter(!is.na(sex))|&gt;group_by(\n  filter(!is.na(sex)) |&gt;              species)|&gt;summarize(n=n(),avg=mean(\n  group_by(species) |&gt;                body_mass_g,na.rm=TRUE))\n  summarise(\n    n   = n(),\n    avg = mean(body_mass_g, na.rm = TRUE)\n  )\n\n\n\n\n\n\n\nTip\n\n\n\nDon’t hand-format forever: the styler package reformats a whole file for you. In RStudio, Cmd/Ctrl + Shift + P → type “styler”. Full guide: R4DS Ch. 4."
+    "text": "Formatting your pipelines\nA multi-step pipeline is only readable if you format it. The rules that matter most:\n\nA space before |&gt;, and let |&gt; be the last thing on the line.\nFor verbs with named arguments (mutate, summarise), put each argument on its own line, indented two spaces.\nVerbs without named arguments (filter, select, arrange) can stay on one line if they fit.\nName new columns in snake_case: body_mass_kg, not BodyMassKG.\n\n\n# Strive for                          # Avoid\npenguins |&gt;                           penguins|&gt;filter(!is.na(sex))|&gt;group_by(\n  filter(!is.na(sex)) |&gt;              species)|&gt;summarize(n=n(),avg=mean(\n  group_by(species) |&gt;                body_mass_g,na.rm=TRUE))\n  summarise(\n    n   = n(),\n    avg = mean(body_mass_g, na.rm = TRUE)\n  )\n\n\n\n\n\n\n\nTip\n\n\n\nDon’t hand-format forever: the styler package reformats a whole file for you. In RStudio, Cmd/Ctrl + Shift + P then type “styler”. Full guide: R4DS Ch. 4."
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-page.html#a-helpful-shortcut",
@@ -6064,233 +6064,247 @@
   {
     "objectID": "weeks/week3/day12-integration-page.html",
     "href": "weeks/week3/day12-integration-page.html",
-    "title": "Putting it together: messy data → summary table",
+    "title": "Putting it together: from messy data to a summary table",
     "section": "",
-    "text": "NoteToday: Wednesday June 3\n\n\n\nBefore class\n\nNo new reading — bring the six verbs from Monday and Tuesday\n\nPlan for today\n\nNo new verbs. Today is about combining and sequencing them\nThe workflow: question → target table → plan → build → check\nWorking on a genuinely messy dataset (flights)\nNot getting fooled: missing values, tiny groups, wrong order\n\nHelpful links\n\nSyllabus · AI policy · Schedule · R4DS Ch. 3 · DC Ch. 7 · DC Ch. 10 · dplyr reference"
+    "text": "NoteToday: Wednesday June 3\n\n\n\nBefore class\n\nNo new reading\n\nPlan for today\n\nNo new verbs. Today is about combining and sequencing them\nThe workflow: question –&gt; target table –&gt; plan –&gt; build –&gt; check\nWorking on a genuinely messy dataset (flights)\nHandling missing values, small groups, wrong order\n\nHelpful links\n\nSyllabus · AI policy · Schedule · R4DS Ch. 3 · DC Ch. 7 · DC Ch. 10 · dplyr reference"
   },
   {
     "objectID": "weeks/week3/day12-integration-page.html#what-you-already-have",
     "href": "weeks/week3/day12-integration-page.html#what-you-already-have",
-    "title": "Putting it together: messy data → summary table",
+    "title": "Putting it together: from messy data to a summary table",
     "section": "What you already have",
-    "text": "What you already have\nTwo days in, you have the whole single-table toolkit:\n\nSix verbs, plus count() and the pipe.\n\n\n\n\n\n\nTouches…\nVerbs\n\n\n\n\nRows\nfilter(), arrange()\n\n\nColumns\nselect(), mutate()\n\n\nGroups\ngroup_by(), summarise()\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nToday there is nothing new to memorize. The skill we’re building is choosing which verb, in what order, and checking that the answer is real."
+    "text": "What you already have\nSingle-table toolkit:\n\nSix verbs, plus count() and the pipe.\n\n\nTouches\nVerbs\n\n\n\n\nRows\nfilter(), arrange()\n\n\nColumns\nselect(), mutate()\n\n\nGroups\ngroup_by(), summarise()\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nToday we will practice choosing which verb, in what order, and checking that the answer is trustworthy and rigorous."
   },
   {
-    "objectID": "weeks/week3/day12-integration-page.html#the-workflow",
-    "href": "weeks/week3/day12-integration-page.html#the-workflow",
-    "title": "Putting it together: messy data → summary table",
-    "section": "The workflow",
-    "text": "The workflow\nThis is Monday’s habit (DC §7.1), now run end to end:\n\nState the question in plain English.\nSketch the target table: what does one row represent? what columns?\nPlan the verbs as English sentences, one per step.\nBuild the pipeline one verb at a time, looking at the output each time.\nCheck it. Does the count make sense? Are missing values handled? Does the number pass a smell test?\n\n\n\n\n\n\n\nNote\n\n\n\nStep 5 is the one people skip, and it’s the one Friday’s AI lesson was about. A pipeline that runs is not the same as a pipeline that’s right."
+    "objectID": "weeks/week3/day12-integration-page.html#workflow",
+    "href": "weeks/week3/day12-integration-page.html#workflow",
+    "title": "Putting it together: from messy data to a summary table",
+    "section": "Workflow",
+    "text": "Workflow\n\nState the question in plain English.\nSketch the target table: what does one row represent? what columns?\nPlan the verbs as English sentences, writing one sentence per step.\nBuild the pipeline one verb at a time, looking at the output each time.\nCheck it. Does the count make sense? Are missing values handled? Does the result match your intuition/pass a sanity check?\n\n\n\n\n\n\n\nNote\n\n\n\nMake sure not to skip Step 5. A pipeline that runs is not the same as a pipeline that’s correct."
   },
   {
-    "objectID": "weeks/week3/day12-integration-page.html#meet-flights",
-    "href": "weeks/week3/day12-integration-page.html#meet-flights",
-    "title": "Putting it together: messy data → summary table",
-    "section": "Meet flights",
-    "text": "Meet flights\nYou saw flights on HW2 and Friday; it’s also the running example in R4DS Ch. 3. Every flight out of NYC in 2013:\n\nglimpse(flights)\n\nRows: 336,776\nColumns: 19\n$ year           &lt;int&gt; 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2…\n$ month          &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ day            &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ dep_time       &lt;int&gt; 517, 533, 542, 544, 554, 554, 555, 557, 557, 558, 558, …\n$ sched_dep_time &lt;int&gt; 515, 529, 540, 545, 600, 558, 600, 600, 600, 600, 600, …\n$ dep_delay      &lt;dbl&gt; 2, 4, 2, -1, -6, -4, -5, -3, -3, -2, -2, -2, -2, -2, -1…\n$ arr_time       &lt;int&gt; 830, 850, 923, 1004, 812, 740, 913, 709, 838, 753, 849,…\n$ sched_arr_time &lt;int&gt; 819, 830, 850, 1022, 837, 728, 854, 723, 846, 745, 851,…\n$ arr_delay      &lt;dbl&gt; 11, 20, 33, -18, -25, 12, 19, -14, -8, 8, -2, -3, 7, -1…\n$ carrier        &lt;chr&gt; \"UA\", \"UA\", \"AA\", \"B6\", \"DL\", \"UA\", \"B6\", \"EV\", \"B6\", \"…\n$ flight         &lt;int&gt; 1545, 1714, 1141, 725, 461, 1696, 507, 5708, 79, 301, 4…\n$ tailnum        &lt;chr&gt; \"N14228\", \"N24211\", \"N619AA\", \"N804JB\", \"N668DN\", \"N394…\n$ origin         &lt;chr&gt; \"EWR\", \"LGA\", \"JFK\", \"JFK\", \"LGA\", \"EWR\", \"EWR\", \"LGA\",…\n$ dest           &lt;chr&gt; \"IAH\", \"IAH\", \"MIA\", \"BQN\", \"ATL\", \"ORD\", \"FLL\", \"IAD\",…\n$ air_time       &lt;dbl&gt; 227, 227, 160, 183, 116, 150, 158, 53, 140, 138, 149, 1…\n$ distance       &lt;dbl&gt; 1400, 1416, 1089, 1576, 762, 719, 1065, 229, 944, 733, …\n$ hour           &lt;dbl&gt; 5, 5, 5, 5, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6, 6…\n$ minute         &lt;dbl&gt; 15, 29, 40, 45, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 0…\n$ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-01 0…"
+    "objectID": "weeks/week3/day12-integration-page.html#flights",
+    "href": "weeks/week3/day12-integration-page.html#flights",
+    "title": "Putting it together: from messy data to a summary table",
+    "section": "flights",
+    "text": "flights\nYou saw flights on HW2 and Friday; it’s also the running example in R4DS Ch. 3. It contains data on every flight out of NYC area airports in 2013:\n\nglimpse(flights)\n\nRows: 336,776\nColumns: 19\n$ year           &lt;int&gt; 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2…\n$ month          &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ day            &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ dep_time       &lt;int&gt; 517, 533, 542, 544, 554, 554, 555, 557, 557, 558, 558, …\n$ sched_dep_time &lt;int&gt; 515, 529, 540, 545, 600, 558, 600, 600, 600, 600, 600, …\n$ dep_delay      &lt;dbl&gt; 2, 4, 2, -1, -6, -4, -5, -3, -3, -2, -2, -2, -2, -2, -1…\n$ arr_time       &lt;int&gt; 830, 850, 923, 1004, 812, 740, 913, 709, 838, 753, 849,…\n$ sched_arr_time &lt;int&gt; 819, 830, 850, 1022, 837, 728, 854, 723, 846, 745, 851,…\n$ arr_delay      &lt;dbl&gt; 11, 20, 33, -18, -25, 12, 19, -14, -8, 8, -2, -3, 7, -1…\n$ carrier        &lt;chr&gt; \"UA\", \"UA\", \"AA\", \"B6\", \"DL\", \"UA\", \"B6\", \"EV\", \"B6\", \"…\n$ flight         &lt;int&gt; 1545, 1714, 1141, 725, 461, 1696, 507, 5708, 79, 301, 4…\n$ tailnum        &lt;chr&gt; \"N14228\", \"N24211\", \"N619AA\", \"N804JB\", \"N668DN\", \"N394…\n$ origin         &lt;chr&gt; \"EWR\", \"LGA\", \"JFK\", \"JFK\", \"LGA\", \"EWR\", \"EWR\", \"LGA\",…\n$ dest           &lt;chr&gt; \"IAH\", \"IAH\", \"MIA\", \"BQN\", \"ATL\", \"ORD\", \"FLL\", \"IAD\",…\n$ air_time       &lt;dbl&gt; 227, 227, 160, 183, 116, 150, 158, 53, 140, 138, 149, 1…\n$ distance       &lt;dbl&gt; 1400, 1416, 1089, 1576, 762, 719, 1065, 229, 944, 733, …\n$ hour           &lt;dbl&gt; 5, 5, 5, 5, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6, 6…\n$ minute         &lt;dbl&gt; 15, 29, 40, 45, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 0…\n$ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-01 0…"
   },
   {
-    "objectID": "weeks/week3/day12-integration-page.html#where-the-mess-hides",
-    "href": "weeks/week3/day12-integration-page.html#where-the-mess-hides",
-    "title": "Putting it together: messy data → summary table",
-    "section": "Where the mess hides",
-    "text": "Where the mess hides\nThis is what real data looks like after read_csv(\"something.csv\"):\n\n336,776 rows, 19 columns — select() and n() earn their keep here in a way they didn’t on penguins.\nMissing values that mean something: cancelled flights have NA for dep_delay and arr_delay.\nCodes, not labels: carrier is \"UA\", not \"United\". (Turning codes into names needs a join, which is later, so today we’ll live with the codes.)\n\n\nflights |&gt;\n  summarise(\n    n          = n(),\n    missing_dep = sum(is.na(dep_delay))\n  )\n\n# A tibble: 1 × 2\n       n missing_dep\n   &lt;int&gt;       &lt;int&gt;\n1 336776        8255\n\n\n\n\n\n\n\n\nWarning\n\n\n\nOver 8,000 rows have a missing departure delay. Every average we compute has to decide what to do with them, or it silently returns NA."
+    "objectID": "weeks/week3/day12-integration-page.html#dirty-data",
+    "href": "weeks/week3/day12-integration-page.html#dirty-data",
+    "title": "Putting it together: from messy data to a summary table",
+    "section": "Dirty data",
+    "text": "Dirty data\nThis is a common example of what a real dataset often looks like immediately after you load it into R, before you’ve done any data cleaning:\n\n336,776 rows, 19 columns: select() and n() are much more relevant here compared to a smaller dataset like penguins.\nMeaningful missing values: cancelled flights have NA for dep_delay and arr_delay.\nCodes, rather than long-form labels: here, carrier is \"UA\", not \"United\". (Turning codes into names requires a join, which is later, so today we’ll stick to the codes.)\n\n\nflights |&gt;\n  summarise(\n    n           = n(),\n    missing_dep = sum(is.na(dep_delay))\n  )\n\n# A tibble: 1 × 2\n       n missing_dep\n   &lt;int&gt;       &lt;int&gt;\n1 336776        8255\n\n\n\n\n\n\n\n\nWarning\n\n\n\nThe above result tells us that there are 8,000 rows with a missing departure delay. Every average we compute has to decide what to do with them, or it silently returns NA."
   },
   {
     "objectID": "weeks/week3/day12-integration-page.html#q-which-months-had-the-worst-delays",
     "href": "weeks/week3/day12-integration-page.html#q-which-months-had-the-worst-delays",
-    "title": "Putting it together: messy data → summary table",
+    "title": "Putting it together: from messy data to a summary table",
     "section": "Q: which months had the worst delays?",
-    "text": "Q: which months had the worst delays?\nEnglish plan:\n\nOne row per month, with its average departure delay and a count.\nGroup by month, then summarise the mean and n(), then arrange worst-first.\n\nTarget table: month | avg_delay | n — twelve rows.\n\nflights |&gt;\n  group_by(month) |&gt;\n  summarise(\n    avg_delay = mean(dep_delay, na.rm = TRUE),\n    n         = n(),\n    .groups   = \"drop\"\n  ) |&gt;\n  arrange(desc(avg_delay))\n\n# A tibble: 12 × 3\n   month avg_delay     n\n   &lt;int&gt;     &lt;dbl&gt; &lt;int&gt;\n 1     7     21.7  29425\n 2     6     20.8  28243\n 3    12     16.6  28135\n 4     4     13.9  28330\n 5     3     13.2  28834\n 6     5     13.0  28796\n 7     8     12.6  29327\n 8     2     10.8  24951\n 9     1     10.0  27004\n10     9      6.72 27574\n11    10      6.24 28889\n12    11      5.44 27268"
+    "text": "Q: which months had the worst delays?\nPlan:\n\nWe want one row per month, with its average departure delay and a count.\nGroup by month, then summarise the mean and n(), then arrange worst-first.\n\nTarget table: month | avg_delay | n, which should have twelve rows.\n\nflights |&gt;\n  group_by(month) |&gt;\n  summarise(\n    avg_delay = mean(dep_delay, na.rm = TRUE),\n    n         = n(),\n    .groups   = \"drop\"\n  ) |&gt;\n  arrange(desc(avg_delay))\n\n# A tibble: 12 × 3\n   month avg_delay     n\n   &lt;int&gt;     &lt;dbl&gt; &lt;int&gt;\n 1     7     21.7  29425\n 2     6     20.8  28243\n 3    12     16.6  28135\n 4     4     13.9  28330\n 5     3     13.2  28834\n 6     5     13.0  28796\n 7     8     12.6  29327\n 8     2     10.8  24951\n 9     1     10.0  27004\n10     9      6.72 27574\n11    10      6.24 28889\n12    11      5.44 27268"
   },
   {
     "objectID": "weeks/week3/day12-integration-page.html#what-just-happened",
     "href": "weeks/week3/day12-integration-page.html#what-just-happened",
-    "title": "Putting it together: messy data → summary table",
+    "title": "Putting it together: from messy data to a summary table",
     "section": "What just happened",
-    "text": "What just happened\nWe used three verbs in sequence, and two safety habits from this week:\n\nna.rm = TRUE so the cancelled flights don’t poison the mean (Monday)\nn = n() so we can see each average rests on ~25,000 flights, not a handful (Monday)\n\n\n\n\n\n\n\nTip\n\n\n\nSummer months (6, 7) and December rise to the top — which matches what you’d expect from thunderstorms and holiday travel. That agreement is the smell test passing. If January had come out worst by a mile, you’d go looking for a bug."
+    "text": "What just happened\nWe used three verbs in sequence, and two safety habits from this week:\n\nna.rm = TRUE so the cancelled flights don’t give NAs for the means.\nn = n() so we can see each average rests on around 25,000 flights at least, rather than a small number.\n\n\n\n\n\n\n\nTip\n\n\n\nSummer months (6, 7) and December rise to the top, which matches what you’d expect from thunderstorms and holiday travel. This is a good place to think about common sense/sanity checking; if January had come out worst by a mile (no thunderstorms and little holiday travel), it might suggest something is wrong with your code. At the very least, it’s a signal to double check your code/investigate further."
   },
   {
     "objectID": "weeks/week3/day12-integration-page.html#q-worst-jfk-summer-destinations",
     "href": "weeks/week3/day12-integration-page.html#q-worst-jfk-summer-destinations",
-    "title": "Putting it together: messy data → summary table",
+    "title": "Putting it together: from messy data to a summary table",
     "section": "Q: worst JFK summer destinations?",
-    "text": "Q: worst JFK summer destinations?\nQuestion: for flights leaving JFK in summer, which destination had the worst average arrival delay, among destinations with enough flights to trust?\nEnglish plan:\n\nFilter to JFK, summer months.\nGroup by destination, summarise mean arrival delay + n().\nFilter again to drop tiny destinations.\nArrange worst-first."
+    "text": "Q: worst JFK summer destinations?\nQuestion: for flights leaving JFK in summer, which destination had the worst average arrival delay, among destinations with enough flights to trust the result? Let’s set an arbitrary cutoff at 100 flights for simplicity.\nPlan:\n\nFilter to JFK, summer months.\nGroup by destination, summarise mean arrival delay + n().\nFilter again to drop tiny destinations.\nArrange worst-first."
   },
   {
-    "objectID": "weeks/week3/day12-integration-page.html#build-it-one-verb-at-a-time",
-    "href": "weeks/week3/day12-integration-page.html#build-it-one-verb-at-a-time",
-    "title": "Putting it together: messy data → summary table",
-    "section": "Build it one verb at a time",
-    "text": "Build it one verb at a time\n\nflights |&gt;\n  filter(origin == \"JFK\", month %in% c(6, 7, 8)) |&gt;\n  group_by(dest) |&gt;\n  summarise(\n    avg_arr_delay = mean(arr_delay, na.rm = TRUE),\n    n             = n(),\n    .groups       = \"drop\"\n  ) |&gt;\n  filter(n &gt;= 100) |&gt;\n  arrange(desc(avg_arr_delay))\n\n# A tibble: 49 × 3\n   dest  avg_arr_delay     n\n   &lt;chr&gt;         &lt;dbl&gt; &lt;int&gt;\n 1 CMH            44.4   194\n 2 CVG            39.4   267\n 3 IND            30.8   144\n 4 PDX            29.6   265\n 5 BNA            28.8   184\n 6 DEN            28.6   184\n 7 CLE            28.2   199\n 8 ORF            26.7   128\n 9 PBI            25.9   368\n10 JAX            22.1   365\n# ℹ 39 more rows\n\n\n\n\n\n\n\n\nNote\n\n\n\nNotice filter() appears twice, and it’s the same verb doing two different jobs: once on the raw rows (which flights), once on the summary table (which destinations are big enough to believe). Same tool, different point in the pipeline."
+    "objectID": "weeks/week3/day12-integration-page.html#execution",
+    "href": "weeks/week3/day12-integration-page.html#execution",
+    "title": "Putting it together: from messy data to a summary table",
+    "section": "Execution",
+    "text": "Execution\n\nflights |&gt;\n  filter(origin == \"JFK\", month %in% c(6, 7, 8)) |&gt;\n  group_by(dest) |&gt;\n  summarise(\n    avg_arr_delay = mean(arr_delay, na.rm = TRUE),\n    n             = n(),\n    .groups       = \"drop\" # &lt;-- removes grouping metadata from your data frame\n  ) |&gt;\n  filter(n &gt;= 100) |&gt;\n  arrange(desc(avg_arr_delay))\n\n# A tibble: 49 × 3\n   dest  avg_arr_delay     n\n   &lt;chr&gt;         &lt;dbl&gt; &lt;int&gt;\n 1 CMH            44.4   194\n 2 CVG            39.4   267\n 3 IND            30.8   144\n 4 PDX            29.6   265\n 5 BNA            28.8   184\n 6 DEN            28.6   184\n 7 CLE            28.2   199\n 8 ORF            26.7   128\n 9 PBI            25.9   368\n10 JAX            22.1   365\n# ℹ 39 more rows\n\n\n\n\n\n\n\n\nNote\n\n\n\nNotice that filter() appears twice, operating once on the raw rows (which flights), and once on the summary table (which destinations are “big enough”)."
   },
   {
-    "objectID": "weeks/week3/day12-integration-page.html#why-the-second-filter-matters",
-    "href": "weeks/week3/day12-integration-page.html#why-the-second-filter-matters",
-    "title": "Putting it together: messy data → summary table",
-    "section": "Why the second filter matters",
-    "text": "Why the second filter matters\nWithout filter(n &gt;= 100), the “worst destination” is whichever one had a single very-late flight. That’s exactly Monday’s lesson: a mean from a group of 3 is not a fact.\n\n# Drop the n &gt;= 100 line and the top of the list is full of\n# destinations with n = 1 or n = 2. Impressive-looking, meaningless.\n\nThis is also a verification move: the count column is how you catch the problem before it ends up in a report."
+    "objectID": "weeks/week3/day12-integration-page.html#the-necessity-of-the-second-filter-.scrollable-.nostretch",
+    "href": "weeks/week3/day12-integration-page.html#the-necessity-of-the-second-filter-.scrollable-.nostretch",
+    "title": "Putting it together: from messy data to a summary table",
+    "section": "The necessity of the second filter ().scrollable .nostretch}",
+    "text": "The necessity of the second filter ().scrollable .nostretch}\nWithout filter(n &gt;= 100), the “worst destination” could be whichever one had a single very-late flight (isn’t necessarily a problem with this dataset, but we got lucky). A mean from a group of 3 is not very reliable.\n\nIf we gained more samples, the answer is much more likely to shift significantly in the case of a small sample size.\n\nIt’s a good idea to have verification steps built-in to all of your pipelines when possible; always including the count column is how you catch the problem before it ends up in a report that you have to retract later."
   },
   {
     "objectID": "weeks/week3/day12-integration-page.html#q-do-long-hauls-leave-later",
     "href": "weeks/week3/day12-integration-page.html#q-do-long-hauls-leave-later",
-    "title": "Putting it together: messy data → summary table",
+    "title": "Putting it together: from messy data to a summary table",
     "section": "Q: do long hauls leave later?",
-    "text": "Q: do long hauls leave later?\nNow bring in mutate() and end with a plot.\nEnglish plan: mutate a long/short label from distance, group by it, summarise the average delay, then plot the summary table.\n\nflights |&gt;\n  mutate(haul = ifelse(distance &gt; 1000, \"long\", \"short\")) |&gt;\n  group_by(haul) |&gt;\n  summarise(\n    avg_delay = mean(dep_delay, na.rm = TRUE),\n    n         = n(),\n    .groups   = \"drop\"\n  )\n\n# A tibble: 2 × 3\n  haul  avg_delay      n\n  &lt;chr&gt;     &lt;dbl&gt;  &lt;int&gt;\n1 long       11.5 147105\n2 short      13.5 189671"
+    "text": "Q: do long hauls leave later?\nNow we can leverage mutate() before piping our transformed data into a plot.\nEnglish plan: mutate a long/short label from distance, group by it, summarise the average delay, then plot the summary table.\n\nflights |&gt;\n  mutate(haul = ifelse(distance &gt; 1000, \"long\", \"short\")) |&gt;\n  group_by(haul) |&gt;\n  summarise(\n    avg_delay = mean(dep_delay, na.rm = TRUE),\n    n         = n(),\n    .groups   = \"drop\"\n  )\n\n# A tibble: 2 × 3\n  haul  avg_delay      n\n  &lt;chr&gt;     &lt;dbl&gt;  &lt;int&gt;\n1 long       11.5 147105\n2 short      13.5 189671"
   },
   {
     "objectID": "weeks/week3/day12-integration-page.html#from-summary-table-to-plot",
     "href": "weeks/week3/day12-integration-page.html#from-summary-table-to-plot",
-    "title": "Putting it together: messy data → summary table",
+    "title": "Putting it together: from messy data to a summary table",
     "section": "From summary table to plot",
-    "text": "From summary table to plot\nBecause the summary is just a (tiny) data frame, it’s already glyph-ready, pipe it into ggplot(), switching |&gt; to +:\n\nflights |&gt;\n  mutate(haul = ifelse(distance &gt; 1000, \"long\", \"short\")) |&gt;\n  group_by(haul) |&gt;\n  summarise(avg_delay = mean(dep_delay, na.rm = TRUE), .groups = \"drop\") |&gt;\n  ggplot(aes(x = haul, y = avg_delay)) +\n  geom_col()\n\n\n\n\n\n\n\n\nThis is the full arc of the week: raw rows → wrangle to a glyph-ready table → graph it."
+    "text": "From summary table to plot\nBecause the summary is just a (tiny) data frame, it’s already glyph-ready, so we can pipe it into ggplot():\n\nflights |&gt;\n  mutate(haul = ifelse(distance &gt; 1000, \"long\", \"short\")) |&gt;\n  group_by(haul) |&gt;\n  summarise(avg_delay = mean(dep_delay, na.rm = TRUE), .groups = \"drop\") |&gt;\n  ggplot(aes(x = haul, y = avg_delay)) +\n  geom_col()"
   },
   {
     "objectID": "weeks/week3/day12-integration-page.html#order-matters",
     "href": "weeks/week3/day12-integration-page.html#order-matters",
-    "title": "Putting it together: messy data → summary table",
+    "title": "Putting it together: from messy data to a summary table",
     "section": "Order matters",
-    "text": "Order matters\nThe same verbs in a different order answer different questions:\n\n\nFilter, then summarise\n“Average delay of JFK flights.”\n\nflights |&gt;\n  filter(origin == \"JFK\") |&gt;\n  summarise(\n    avg = mean(dep_delay,\n               na.rm = TRUE)\n  )\n\n\nSummarise, then filter\n“Of the per-origin averages, keep JFK’s.”\n\nflights |&gt;\n  group_by(origin) |&gt;\n  summarise(\n    avg = mean(dep_delay,\n               na.rm = TRUE)\n  ) |&gt;\n  filter(origin == \"JFK\")\n\n\n\nBoth are valid. The trick is knowing which question you’re actually asking before you write it."
+    "text": "Order matters\nThe same verbs in a different order answer different questions:\n\n\nFilter, then summarise\n“Average delay of JFK flights.” (This is more computationally efficient)\n\nflights |&gt;\n  filter(origin == \"JFK\") |&gt;\n  summarise(\n    avg = mean(dep_delay,\n               na.rm = TRUE)\n  )\n\n\nSummarise, then filter\n“Of the per-origin averages, keep JFK’s.”\n\nflights |&gt;\n  group_by(origin) |&gt;\n  summarise(\n    avg = mean(dep_delay,\n               na.rm = TRUE)\n  ) |&gt;\n  filter(origin == \"JFK\")\n\n\n\nBoth are valid, and both give the same number in this case. However, they won’t always be. The trick is knowing which question you’re actually asking before you write it."
+  },
+  {
+    "objectID": "weeks/week3/day12-integration-page.html#a-case-when-the-output-changes-with-order",
+    "href": "weeks/week3/day12-integration-page.html#a-case-when-the-output-changes-with-order",
+    "title": "Putting it together: from messy data to a summary table",
+    "section": "A case when the output changes with order",
+    "text": "A case when the output changes with order\n\nflights |&gt;\n  filter(dep_delay &gt; 60) |&gt; \n  summarise(avg_delay = mean(arr_delay, na.rm = TRUE))\n\n# A tibble: 1 × 1\n  avg_delay\n      &lt;dbl&gt;\n1      119.\n\nflights |&gt;\n  summarise(avg_delay = mean(arr_delay, na.rm = TRUE)) |&gt;\n  filter(avg_delay &gt; 60)\n\n# A tibble: 0 × 1\n# ℹ 1 variable: avg_delay &lt;dbl&gt;"
   },
   {
     "objectID": "weeks/week3/day12-integration-page.html#the-three-checks",
     "href": "weeks/week3/day12-integration-page.html#the-three-checks",
-    "title": "Putting it together: messy data → summary table",
+    "title": "Putting it together: from messy data to a summary table",
     "section": "The three checks",
-    "text": "The three checks\nBefore you believe any wrangled result, run the checklist that’s been building all week:\n\nYour verification checklist.\n\n\n\n\n\n\n\nCheck\nThe verb/habit\nFirst seen\n\n\n\n\nDid missing values get handled?\nna.rm, !is.na()\nMon / Tue\n\n\nIs each number based on enough rows?\nn = n()\nMonday\n\n\nDoes the answer pass a smell test?\ncompare to what you know\nFriday\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\nA pipeline that runs without error has cleared the lowest bar. These three checks are what separate “it ran” from “it’s right.”"
+    "text": "The three checks\nBefore trusting any wrangled result, run this checklist:\n\nYour verification checklist.\n\n\nCheck\nThe verb/habit\n\n\n\n\nDid missing values get handled?\nna.rm, !is.na()\n\n\nIs each number based on enough rows?\nn = n()\n\n\nDoes the answer pass a smell test?\ncompare to what you know\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\nA pipeline that runs without error has cleared the lowest bar; that doesn’t necessarily mean everything is fine."
   },
   {
     "objectID": "weeks/week3/day12-integration-page.html#what-we-did-today",
     "href": "weeks/week3/day12-integration-page.html#what-we-did-today",
-    "title": "Putting it together: messy data → summary table",
+    "title": "Putting it together: from messy data to a summary table",
     "section": "What we did today",
-    "text": "What we did today\n\nNo new verbs — just the six from Monday and Tuesday, sequenced\nThe workflow: question → target table → English plan → build incrementally → check\nReal mess: missing delays, code-not-name columns, tiny groups\nfilter() in two roles: subsetting raw rows and trimming a summary table\nOrder matters: filter-then-summarise ≠ summarise-then-filter\nThe full arc: raw rows → glyph-ready summary → plot"
+    "text": "What we did today\n\nNo new verbs: just the six from Monday and Tuesday, sequenced\nThe workflow: question –&gt; target table –&gt; English plan –&gt; build incrementally –&gt; check\nReal mess: missing delays, code-not-name columns, tiny groups\nfilter() in two roles: subsetting raw rows and trimming a summary table\nOrder matters: filter-then-summarise =/= summarise-then-filter\nThe full arc: raw rows –&gt; glyph-ready summary –&gt; plot"
   },
   {
     "objectID": "weeks/week3/day12-integration-page.html#activity-a-flights-investigation",
     "href": "weeks/week3/day12-integration-page.html#activity-a-flights-investigation",
-    "title": "Putting it together: messy data → summary table",
+    "title": "Putting it together: from messy data to a summary table",
     "section": "Activity: a flights investigation",
-    "text": "Activity: a flights investigation\nRoughly 25 minutes. Individually or with a neighbor.\n\nActivity Canvas Link\n\nFormat: you’ll answer a series of questions about flights by building pipelines, but each one starts with writing the English plan first. You’ll compare two pipelines that look alike but answer different questions, catch a silently-dropped NA, and finish with one open-ended question where you choose the verbs and report your sanity checks.\nTo turn in: save your .qmd and rendered HTML."
+    "text": "Activity: a flights investigation\nRoughly 25 minutes. Individually or with a neighbor.\n\nActivity Canvas Link\n\nFormat: you’ll answer a series of questions about flights by building pipelines, but each one starts with writing the plan in words first. You’ll compare two pipelines that look alike but answer different questions, catch a silently-dropped NA, and finish with one open-ended question where you choose the verbs and report your sanity checks.\nTo turn in: save your .qmd and rendered HTML."
   },
   {
     "objectID": "weeks/week3/day12-integration-page.html#wrap-up-looking-ahead",
     "href": "weeks/week3/day12-integration-page.html#wrap-up-looking-ahead",
-    "title": "Putting it together: messy data → summary table",
+    "title": "Putting it together: from messy data to a summary table",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\nTomorrow (Thursday): new reading and new content, reshaping data between wide and narrow with pivot_longer() and pivot_wider().\n\n\nUpcoming Deadlines\n\nThu 6/4, before class: DC §12.1\nThu 6/4, 11:59 p.m.: Project: Team formation\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 3 · DC Ch. 10 · dplyr reference"
+    "text": "Wrap-up & looking ahead\nTomorrow (Thursday): new reading and new content, reshaping data between wide and narrow with pivot_longer() and pivot_wider().\n\n\nUpcoming Deadlines\n\nThu 6/4, before class: DC §12.1\nThu 6/4, 11:59 p.m.: Project: Team formation\nFri 6/5, 11:59 p.m.: Homework 3: Data Wrangling & Reshaping\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 3 · DC Ch. 10 · dplyr reference"
   },
   {
     "objectID": "weeks/week3/day12-integration-slides.html#what-you-already-have",
     "href": "weeks/week3/day12-integration-slides.html#what-you-already-have",
-    "title": "Putting it together: messy data → summary table",
+    "title": "Putting it together: from messy data to a summary table",
     "section": "What you already have",
-    "text": "What you already have\nTwo days in, you have the whole single-table toolkit:\n\nSix verbs, plus count() and the pipe.\n\n\n\n\n\n\nTouches…\nVerbs\n\n\n\n\nRows\nfilter(), arrange()\n\n\nColumns\nselect(), mutate()\n\n\nGroups\ngroup_by(), summarise()\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nToday there is nothing new to memorize. The skill we’re building is choosing which verb, in what order, and checking that the answer is real."
+    "text": "What you already have\nSingle-table toolkit:\n\nSix verbs, plus count() and the pipe.\n\n\nTouches\nVerbs\n\n\n\n\nRows\nfilter(), arrange()\n\n\nColumns\nselect(), mutate()\n\n\nGroups\ngroup_by(), summarise()\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nToday we will practice choosing which verb, in what order, and checking that the answer is trustworthy and rigorous."
   },
   {
-    "objectID": "weeks/week3/day12-integration-slides.html#the-workflow",
-    "href": "weeks/week3/day12-integration-slides.html#the-workflow",
-    "title": "Putting it together: messy data → summary table",
-    "section": "The workflow",
-    "text": "The workflow\nThis is Monday’s habit (DC §7.1), now run end to end:\n\nState the question in plain English.\nSketch the target table: what does one row represent? what columns?\nPlan the verbs as English sentences, one per step.\nBuild the pipeline one verb at a time, looking at the output each time.\nCheck it. Does the count make sense? Are missing values handled? Does the number pass a smell test?\n\n\n\n\n\n\n\nNote\n\n\nStep 5 is the one people skip, and it’s the one Friday’s AI lesson was about. A pipeline that runs is not the same as a pipeline that’s right."
+    "objectID": "weeks/week3/day12-integration-slides.html#workflow",
+    "href": "weeks/week3/day12-integration-slides.html#workflow",
+    "title": "Putting it together: from messy data to a summary table",
+    "section": "Workflow",
+    "text": "Workflow\n\nState the question in plain English.\nSketch the target table: what does one row represent? what columns?\nPlan the verbs as English sentences, writing one sentence per step.\nBuild the pipeline one verb at a time, looking at the output each time.\nCheck it. Does the count make sense? Are missing values handled? Does the result match your intuition/pass a sanity check?\n\n\n\n\n\n\n\nNote\n\n\nMake sure not to skip Step 5. A pipeline that runs is not the same as a pipeline that’s correct."
   },
   {
-    "objectID": "weeks/week3/day12-integration-slides.html#meet-flights",
-    "href": "weeks/week3/day12-integration-slides.html#meet-flights",
-    "title": "Putting it together: messy data → summary table",
-    "section": "Meet flights",
-    "text": "Meet flights\nYou saw flights on HW2 and Friday; it’s also the running example in R4DS Ch. 3. Every flight out of NYC in 2013:\n\nglimpse(flights)\n\nRows: 336,776\nColumns: 19\n$ year           &lt;int&gt; 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2…\n$ month          &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ day            &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ dep_time       &lt;int&gt; 517, 533, 542, 544, 554, 554, 555, 557, 557, 558, 558, …\n$ sched_dep_time &lt;int&gt; 515, 529, 540, 545, 600, 558, 600, 600, 600, 600, 600, …\n$ dep_delay      &lt;dbl&gt; 2, 4, 2, -1, -6, -4, -5, -3, -3, -2, -2, -2, -2, -2, -1…\n$ arr_time       &lt;int&gt; 830, 850, 923, 1004, 812, 740, 913, 709, 838, 753, 849,…\n$ sched_arr_time &lt;int&gt; 819, 830, 850, 1022, 837, 728, 854, 723, 846, 745, 851,…\n$ arr_delay      &lt;dbl&gt; 11, 20, 33, -18, -25, 12, 19, -14, -8, 8, -2, -3, 7, -1…\n$ carrier        &lt;chr&gt; \"UA\", \"UA\", \"AA\", \"B6\", \"DL\", \"UA\", \"B6\", \"EV\", \"B6\", \"…\n$ flight         &lt;int&gt; 1545, 1714, 1141, 725, 461, 1696, 507, 5708, 79, 301, 4…\n$ tailnum        &lt;chr&gt; \"N14228\", \"N24211\", \"N619AA\", \"N804JB\", \"N668DN\", \"N394…\n$ origin         &lt;chr&gt; \"EWR\", \"LGA\", \"JFK\", \"JFK\", \"LGA\", \"EWR\", \"EWR\", \"LGA\",…\n$ dest           &lt;chr&gt; \"IAH\", \"IAH\", \"MIA\", \"BQN\", \"ATL\", \"ORD\", \"FLL\", \"IAD\",…\n$ air_time       &lt;dbl&gt; 227, 227, 160, 183, 116, 150, 158, 53, 140, 138, 149, 1…\n$ distance       &lt;dbl&gt; 1400, 1416, 1089, 1576, 762, 719, 1065, 229, 944, 733, …\n$ hour           &lt;dbl&gt; 5, 5, 5, 5, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6, 6…\n$ minute         &lt;dbl&gt; 15, 29, 40, 45, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 0…\n$ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-01 0…"
+    "objectID": "weeks/week3/day12-integration-slides.html#flights",
+    "href": "weeks/week3/day12-integration-slides.html#flights",
+    "title": "Putting it together: from messy data to a summary table",
+    "section": "flights",
+    "text": "flights\nYou saw flights on HW2 and Friday; it’s also the running example in R4DS Ch. 3. It contains data on every flight out of NYC area airports in 2013:\n\nglimpse(flights)\n\nRows: 336,776\nColumns: 19\n$ year           &lt;int&gt; 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2…\n$ month          &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ day            &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ dep_time       &lt;int&gt; 517, 533, 542, 544, 554, 554, 555, 557, 557, 558, 558, …\n$ sched_dep_time &lt;int&gt; 515, 529, 540, 545, 600, 558, 600, 600, 600, 600, 600, …\n$ dep_delay      &lt;dbl&gt; 2, 4, 2, -1, -6, -4, -5, -3, -3, -2, -2, -2, -2, -2, -1…\n$ arr_time       &lt;int&gt; 830, 850, 923, 1004, 812, 740, 913, 709, 838, 753, 849,…\n$ sched_arr_time &lt;int&gt; 819, 830, 850, 1022, 837, 728, 854, 723, 846, 745, 851,…\n$ arr_delay      &lt;dbl&gt; 11, 20, 33, -18, -25, 12, 19, -14, -8, 8, -2, -3, 7, -1…\n$ carrier        &lt;chr&gt; \"UA\", \"UA\", \"AA\", \"B6\", \"DL\", \"UA\", \"B6\", \"EV\", \"B6\", \"…\n$ flight         &lt;int&gt; 1545, 1714, 1141, 725, 461, 1696, 507, 5708, 79, 301, 4…\n$ tailnum        &lt;chr&gt; \"N14228\", \"N24211\", \"N619AA\", \"N804JB\", \"N668DN\", \"N394…\n$ origin         &lt;chr&gt; \"EWR\", \"LGA\", \"JFK\", \"JFK\", \"LGA\", \"EWR\", \"EWR\", \"LGA\",…\n$ dest           &lt;chr&gt; \"IAH\", \"IAH\", \"MIA\", \"BQN\", \"ATL\", \"ORD\", \"FLL\", \"IAD\",…\n$ air_time       &lt;dbl&gt; 227, 227, 160, 183, 116, 150, 158, 53, 140, 138, 149, 1…\n$ distance       &lt;dbl&gt; 1400, 1416, 1089, 1576, 762, 719, 1065, 229, 944, 733, …\n$ hour           &lt;dbl&gt; 5, 5, 5, 5, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6, 6…\n$ minute         &lt;dbl&gt; 15, 29, 40, 45, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 0…\n$ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-01 0…"
   },
   {
-    "objectID": "weeks/week3/day12-integration-slides.html#where-the-mess-hides",
-    "href": "weeks/week3/day12-integration-slides.html#where-the-mess-hides",
-    "title": "Putting it together: messy data → summary table",
-    "section": "Where the mess hides",
-    "text": "Where the mess hides\nThis is what real data looks like after read_csv(\"something.csv\"):\n\n336,776 rows, 19 columns — select() and n() earn their keep here in a way they didn’t on penguins.\nMissing values that mean something: cancelled flights have NA for dep_delay and arr_delay.\nCodes, not labels: carrier is \"UA\", not \"United\". (Turning codes into names needs a join, which is later, so today we’ll live with the codes.)\n\n\nflights |&gt;\n  summarise(\n    n          = n(),\n    missing_dep = sum(is.na(dep_delay))\n  )\n\n# A tibble: 1 × 2\n       n missing_dep\n   &lt;int&gt;       &lt;int&gt;\n1 336776        8255\n\n\n\n\n\n\n\n\nWarning\n\n\nOver 8,000 rows have a missing departure delay. Every average we compute has to decide what to do with them, or it silently returns NA."
+    "objectID": "weeks/week3/day12-integration-slides.html#dirty-data",
+    "href": "weeks/week3/day12-integration-slides.html#dirty-data",
+    "title": "Putting it together: from messy data to a summary table",
+    "section": "Dirty data",
+    "text": "Dirty data\nThis is a common example of what a real dataset often looks like immediately after you load it into R, before you’ve done any data cleaning:\n\n336,776 rows, 19 columns: select() and n() are much more relevant here compared to a smaller dataset like penguins.\nMeaningful missing values: cancelled flights have NA for dep_delay and arr_delay.\nCodes, rather than long-form labels: here, carrier is \"UA\", not \"United\". (Turning codes into names requires a join, which is later, so today we’ll stick to the codes.)\n\n\nflights |&gt;\n  summarise(\n    n           = n(),\n    missing_dep = sum(is.na(dep_delay))\n  )\n\n# A tibble: 1 × 2\n       n missing_dep\n   &lt;int&gt;       &lt;int&gt;\n1 336776        8255\n\n\n\n\n\n\n\n\nWarning\n\n\nThe above result tells us that there are 8,000 rows with a missing departure delay. Every average we compute has to decide what to do with them, or it silently returns NA."
   },
   {
     "objectID": "weeks/week3/day12-integration-slides.html#q-which-months-had-the-worst-delays",
     "href": "weeks/week3/day12-integration-slides.html#q-which-months-had-the-worst-delays",
-    "title": "Putting it together: messy data → summary table",
+    "title": "Putting it together: from messy data to a summary table",
     "section": "Q: which months had the worst delays?",
-    "text": "Q: which months had the worst delays?\nEnglish plan:\n\nOne row per month, with its average departure delay and a count.\nGroup by month, then summarise the mean and n(), then arrange worst-first.\n\nTarget table: month | avg_delay | n — twelve rows.\n\nflights |&gt;\n  group_by(month) |&gt;\n  summarise(\n    avg_delay = mean(dep_delay, na.rm = TRUE),\n    n         = n(),\n    .groups   = \"drop\"\n  ) |&gt;\n  arrange(desc(avg_delay))\n\n# A tibble: 12 × 3\n   month avg_delay     n\n   &lt;int&gt;     &lt;dbl&gt; &lt;int&gt;\n 1     7     21.7  29425\n 2     6     20.8  28243\n 3    12     16.6  28135\n 4     4     13.9  28330\n 5     3     13.2  28834\n 6     5     13.0  28796\n 7     8     12.6  29327\n 8     2     10.8  24951\n 9     1     10.0  27004\n10     9      6.72 27574\n11    10      6.24 28889\n12    11      5.44 27268"
+    "text": "Q: which months had the worst delays?\nPlan:\n\nWe want one row per month, with its average departure delay and a count.\nGroup by month, then summarise the mean and n(), then arrange worst-first.\n\nTarget table: month | avg_delay | n, which should have twelve rows.\n\nflights |&gt;\n  group_by(month) |&gt;\n  summarise(\n    avg_delay = mean(dep_delay, na.rm = TRUE),\n    n         = n(),\n    .groups   = \"drop\"\n  ) |&gt;\n  arrange(desc(avg_delay))\n\n# A tibble: 12 × 3\n   month avg_delay     n\n   &lt;int&gt;     &lt;dbl&gt; &lt;int&gt;\n 1     7     21.7  29425\n 2     6     20.8  28243\n 3    12     16.6  28135\n 4     4     13.9  28330\n 5     3     13.2  28834\n 6     5     13.0  28796\n 7     8     12.6  29327\n 8     2     10.8  24951\n 9     1     10.0  27004\n10     9      6.72 27574\n11    10      6.24 28889\n12    11      5.44 27268"
   },
   {
     "objectID": "weeks/week3/day12-integration-slides.html#what-just-happened",
     "href": "weeks/week3/day12-integration-slides.html#what-just-happened",
-    "title": "Putting it together: messy data → summary table",
+    "title": "Putting it together: from messy data to a summary table",
     "section": "What just happened",
-    "text": "What just happened\nWe used three verbs in sequence, and two safety habits from this week:\n\nna.rm = TRUE so the cancelled flights don’t poison the mean (Monday)\nn = n() so we can see each average rests on ~25,000 flights, not a handful (Monday)\n\n\n\n\n\n\n\nTip\n\n\nSummer months (6, 7) and December rise to the top — which matches what you’d expect from thunderstorms and holiday travel. That agreement is the smell test passing. If January had come out worst by a mile, you’d go looking for a bug."
+    "text": "What just happened\nWe used three verbs in sequence, and two safety habits from this week:\n\nna.rm = TRUE so the cancelled flights don’t give NAs for the means.\nn = n() so we can see each average rests on around 25,000 flights at least, rather than a small number.\n\n\n\n\n\n\n\nTip\n\n\nSummer months (6, 7) and December rise to the top, which matches what you’d expect from thunderstorms and holiday travel. This is a good place to think about common sense/sanity checking; if January had come out worst by a mile (no thunderstorms and little holiday travel), it might suggest something is wrong with your code. At the very least, it’s a signal to double check your code/investigate further."
   },
   {
     "objectID": "weeks/week3/day12-integration-slides.html#q-worst-jfk-summer-destinations",
     "href": "weeks/week3/day12-integration-slides.html#q-worst-jfk-summer-destinations",
-    "title": "Putting it together: messy data → summary table",
+    "title": "Putting it together: from messy data to a summary table",
     "section": "Q: worst JFK summer destinations?",
-    "text": "Q: worst JFK summer destinations?\nQuestion: for flights leaving JFK in summer, which destination had the worst average arrival delay, among destinations with enough flights to trust?\nEnglish plan:\n\nFilter to JFK, summer months.\nGroup by destination, summarise mean arrival delay + n().\nFilter again to drop tiny destinations.\nArrange worst-first."
+    "text": "Q: worst JFK summer destinations?\nQuestion: for flights leaving JFK in summer, which destination had the worst average arrival delay, among destinations with enough flights to trust the result? Let’s set an arbitrary cutoff at 100 flights for simplicity.\nPlan:\n\nFilter to JFK, summer months.\nGroup by destination, summarise mean arrival delay + n().\nFilter again to drop tiny destinations.\nArrange worst-first."
   },
   {
-    "objectID": "weeks/week3/day12-integration-slides.html#build-it-one-verb-at-a-time",
-    "href": "weeks/week3/day12-integration-slides.html#build-it-one-verb-at-a-time",
-    "title": "Putting it together: messy data → summary table",
-    "section": "Build it one verb at a time",
-    "text": "Build it one verb at a time\n\nflights |&gt;\n  filter(origin == \"JFK\", month %in% c(6, 7, 8)) |&gt;\n  group_by(dest) |&gt;\n  summarise(\n    avg_arr_delay = mean(arr_delay, na.rm = TRUE),\n    n             = n(),\n    .groups       = \"drop\"\n  ) |&gt;\n  filter(n &gt;= 100) |&gt;\n  arrange(desc(avg_arr_delay))\n\n# A tibble: 49 × 3\n   dest  avg_arr_delay     n\n   &lt;chr&gt;         &lt;dbl&gt; &lt;int&gt;\n 1 CMH            44.4   194\n 2 CVG            39.4   267\n 3 IND            30.8   144\n 4 PDX            29.6   265\n 5 BNA            28.8   184\n 6 DEN            28.6   184\n 7 CLE            28.2   199\n 8 ORF            26.7   128\n 9 PBI            25.9   368\n10 JAX            22.1   365\n# ℹ 39 more rows\n\n\n\n\n\n\n\n\nNote\n\n\nNotice filter() appears twice, and it’s the same verb doing two different jobs: once on the raw rows (which flights), once on the summary table (which destinations are big enough to believe). Same tool, different point in the pipeline."
+    "objectID": "weeks/week3/day12-integration-slides.html#execution",
+    "href": "weeks/week3/day12-integration-slides.html#execution",
+    "title": "Putting it together: from messy data to a summary table",
+    "section": "Execution",
+    "text": "Execution\n\nflights |&gt;\n  filter(origin == \"JFK\", month %in% c(6, 7, 8)) |&gt;\n  group_by(dest) |&gt;\n  summarise(\n    avg_arr_delay = mean(arr_delay, na.rm = TRUE),\n    n             = n(),\n    .groups       = \"drop\" # &lt;-- removes grouping metadata from your data frame\n  ) |&gt;\n  filter(n &gt;= 100) |&gt;\n  arrange(desc(avg_arr_delay))\n\n# A tibble: 49 × 3\n   dest  avg_arr_delay     n\n   &lt;chr&gt;         &lt;dbl&gt; &lt;int&gt;\n 1 CMH            44.4   194\n 2 CVG            39.4   267\n 3 IND            30.8   144\n 4 PDX            29.6   265\n 5 BNA            28.8   184\n 6 DEN            28.6   184\n 7 CLE            28.2   199\n 8 ORF            26.7   128\n 9 PBI            25.9   368\n10 JAX            22.1   365\n# ℹ 39 more rows\n\n\n\n\n\n\n\n\nNote\n\n\nNotice that filter() appears twice, operating once on the raw rows (which flights), and once on the summary table (which destinations are “big enough”)."
   },
   {
-    "objectID": "weeks/week3/day12-integration-slides.html#why-the-second-filter-matters",
-    "href": "weeks/week3/day12-integration-slides.html#why-the-second-filter-matters",
-    "title": "Putting it together: messy data → summary table",
-    "section": "Why the second filter matters",
-    "text": "Why the second filter matters\nWithout filter(n &gt;= 100), the “worst destination” is whichever one had a single very-late flight. That’s exactly Monday’s lesson: a mean from a group of 3 is not a fact.\n\n# Drop the n &gt;= 100 line and the top of the list is full of\n# destinations with n = 1 or n = 2. Impressive-looking, meaningless.\n\nThis is also a verification move: the count column is how you catch the problem before it ends up in a report."
+    "objectID": "weeks/week3/day12-integration-slides.html#the-necessity-of-the-second-filter-.scrollable-.nostretch",
+    "href": "weeks/week3/day12-integration-slides.html#the-necessity-of-the-second-filter-.scrollable-.nostretch",
+    "title": "Putting it together: from messy data to a summary table",
+    "section": "The necessity of the second filter ().scrollable .nostretch}",
+    "text": "The necessity of the second filter ().scrollable .nostretch}\nWithout filter(n &gt;= 100), the “worst destination” could be whichever one had a single very-late flight (isn’t necessarily a problem with this dataset, but we got lucky). A mean from a group of 3 is not very reliable.\n\nIf we gained more samples, the answer is much more likely to shift significantly in the case of a small sample size.\n\nIt’s a good idea to have verification steps built-in to all of your pipelines when possible; always including the count column is how you catch the problem before it ends up in a report that you have to retract later."
   },
   {
     "objectID": "weeks/week3/day12-integration-slides.html#q-do-long-hauls-leave-later",
     "href": "weeks/week3/day12-integration-slides.html#q-do-long-hauls-leave-later",
-    "title": "Putting it together: messy data → summary table",
+    "title": "Putting it together: from messy data to a summary table",
     "section": "Q: do long hauls leave later?",
-    "text": "Q: do long hauls leave later?\nNow bring in mutate() and end with a plot.\nEnglish plan: mutate a long/short label from distance, group by it, summarise the average delay, then plot the summary table.\n\nflights |&gt;\n  mutate(haul = ifelse(distance &gt; 1000, \"long\", \"short\")) |&gt;\n  group_by(haul) |&gt;\n  summarise(\n    avg_delay = mean(dep_delay, na.rm = TRUE),\n    n         = n(),\n    .groups   = \"drop\"\n  )\n\n# A tibble: 2 × 3\n  haul  avg_delay      n\n  &lt;chr&gt;     &lt;dbl&gt;  &lt;int&gt;\n1 long       11.5 147105\n2 short      13.5 189671"
+    "text": "Q: do long hauls leave later?\nNow we can leverage mutate() before piping our transformed data into a plot.\nEnglish plan: mutate a long/short label from distance, group by it, summarise the average delay, then plot the summary table.\n\nflights |&gt;\n  mutate(haul = ifelse(distance &gt; 1000, \"long\", \"short\")) |&gt;\n  group_by(haul) |&gt;\n  summarise(\n    avg_delay = mean(dep_delay, na.rm = TRUE),\n    n         = n(),\n    .groups   = \"drop\"\n  )\n\n# A tibble: 2 × 3\n  haul  avg_delay      n\n  &lt;chr&gt;     &lt;dbl&gt;  &lt;int&gt;\n1 long       11.5 147105\n2 short      13.5 189671"
   },
   {
     "objectID": "weeks/week3/day12-integration-slides.html#from-summary-table-to-plot",
     "href": "weeks/week3/day12-integration-slides.html#from-summary-table-to-plot",
-    "title": "Putting it together: messy data → summary table",
+    "title": "Putting it together: from messy data to a summary table",
     "section": "From summary table to plot",
-    "text": "From summary table to plot\nBecause the summary is just a (tiny) data frame, it’s already glyph-ready, pipe it into ggplot(), switching |&gt; to +:\n\nflights |&gt;\n  mutate(haul = ifelse(distance &gt; 1000, \"long\", \"short\")) |&gt;\n  group_by(haul) |&gt;\n  summarise(avg_delay = mean(dep_delay, na.rm = TRUE), .groups = \"drop\") |&gt;\n  ggplot(aes(x = haul, y = avg_delay)) +\n  geom_col()\n\n\n\n\n\n\n\n\nThis is the full arc of the week: raw rows → wrangle to a glyph-ready table → graph it."
+    "text": "From summary table to plot\nBecause the summary is just a (tiny) data frame, it’s already glyph-ready, so we can pipe it into ggplot():\n\nflights |&gt;\n  mutate(haul = ifelse(distance &gt; 1000, \"long\", \"short\")) |&gt;\n  group_by(haul) |&gt;\n  summarise(avg_delay = mean(dep_delay, na.rm = TRUE), .groups = \"drop\") |&gt;\n  ggplot(aes(x = haul, y = avg_delay)) +\n  geom_col()"
   },
   {
     "objectID": "weeks/week3/day12-integration-slides.html#order-matters",
     "href": "weeks/week3/day12-integration-slides.html#order-matters",
-    "title": "Putting it together: messy data → summary table",
+    "title": "Putting it together: from messy data to a summary table",
     "section": "Order matters",
-    "text": "Order matters\nThe same verbs in a different order answer different questions:\n\n\nFilter, then summarise\n“Average delay of JFK flights.”\n\nflights |&gt;\n  filter(origin == \"JFK\") |&gt;\n  summarise(\n    avg = mean(dep_delay,\n               na.rm = TRUE)\n  )\n\n\nSummarise, then filter\n“Of the per-origin averages, keep JFK’s.”\n\nflights |&gt;\n  group_by(origin) |&gt;\n  summarise(\n    avg = mean(dep_delay,\n               na.rm = TRUE)\n  ) |&gt;\n  filter(origin == \"JFK\")\n\n\nBoth are valid. The trick is knowing which question you’re actually asking before you write it."
+    "text": "Order matters\nThe same verbs in a different order answer different questions:\n\n\nFilter, then summarise\n“Average delay of JFK flights.” (This is more computationally efficient)\n\nflights |&gt;\n  filter(origin == \"JFK\") |&gt;\n  summarise(\n    avg = mean(dep_delay,\n               na.rm = TRUE)\n  )\n\n\nSummarise, then filter\n“Of the per-origin averages, keep JFK’s.”\n\nflights |&gt;\n  group_by(origin) |&gt;\n  summarise(\n    avg = mean(dep_delay,\n               na.rm = TRUE)\n  ) |&gt;\n  filter(origin == \"JFK\")\n\n\nBoth are valid, and both give the same number in this case. However, they won’t always be. The trick is knowing which question you’re actually asking before you write it."
+  },
+  {
+    "objectID": "weeks/week3/day12-integration-slides.html#a-case-when-the-output-changes-with-order",
+    "href": "weeks/week3/day12-integration-slides.html#a-case-when-the-output-changes-with-order",
+    "title": "Putting it together: from messy data to a summary table",
+    "section": "A case when the output changes with order",
+    "text": "A case when the output changes with order\n\nflights |&gt;\n  filter(dep_delay &gt; 60) |&gt; \n  summarise(avg_delay = mean(arr_delay, na.rm = TRUE))\n\n# A tibble: 1 × 1\n  avg_delay\n      &lt;dbl&gt;\n1      119.\n\nflights |&gt;\n  summarise(avg_delay = mean(arr_delay, na.rm = TRUE)) |&gt;\n  filter(avg_delay &gt; 60)\n\n# A tibble: 0 × 1\n# ℹ 1 variable: avg_delay &lt;dbl&gt;"
   },
   {
     "objectID": "weeks/week3/day12-integration-slides.html#the-three-checks",
     "href": "weeks/week3/day12-integration-slides.html#the-three-checks",
-    "title": "Putting it together: messy data → summary table",
+    "title": "Putting it together: from messy data to a summary table",
     "section": "The three checks",
-    "text": "The three checks\nBefore you believe any wrangled result, run the checklist that’s been building all week:\n\nYour verification checklist.\n\n\n\n\n\n\n\nCheck\nThe verb/habit\nFirst seen\n\n\n\n\nDid missing values get handled?\nna.rm, !is.na()\nMon / Tue\n\n\nIs each number based on enough rows?\nn = n()\nMonday\n\n\nDoes the answer pass a smell test?\ncompare to what you know\nFriday\n\n\n\n\n\n\n\n\n\nWarning\n\n\nA pipeline that runs without error has cleared the lowest bar. These three checks are what separate “it ran” from “it’s right.”"
+    "text": "The three checks\nBefore trusting any wrangled result, run this checklist:\n\nYour verification checklist.\n\n\nCheck\nThe verb/habit\n\n\n\n\nDid missing values get handled?\nna.rm, !is.na()\n\n\nIs each number based on enough rows?\nn = n()\n\n\nDoes the answer pass a smell test?\ncompare to what you know\n\n\n\n\n\n\n\n\n\nWarning\n\n\nA pipeline that runs without error has cleared the lowest bar; that doesn’t necessarily mean everything is fine."
   },
   {
     "objectID": "weeks/week3/day12-integration-slides.html#what-we-did-today",
     "href": "weeks/week3/day12-integration-slides.html#what-we-did-today",
-    "title": "Putting it together: messy data → summary table",
+    "title": "Putting it together: from messy data to a summary table",
     "section": "What we did today",
-    "text": "What we did today\n\nNo new verbs — just the six from Monday and Tuesday, sequenced\nThe workflow: question → target table → English plan → build incrementally → check\nReal mess: missing delays, code-not-name columns, tiny groups\nfilter() in two roles: subsetting raw rows and trimming a summary table\nOrder matters: filter-then-summarise ≠ summarise-then-filter\nThe full arc: raw rows → glyph-ready summary → plot"
+    "text": "What we did today\n\nNo new verbs: just the six from Monday and Tuesday, sequenced\nThe workflow: question –&gt; target table –&gt; English plan –&gt; build incrementally –&gt; check\nReal mess: missing delays, code-not-name columns, tiny groups\nfilter() in two roles: subsetting raw rows and trimming a summary table\nOrder matters: filter-then-summarise =/= summarise-then-filter\nThe full arc: raw rows –&gt; glyph-ready summary –&gt; plot"
   },
   {
     "objectID": "weeks/week3/day12-integration-slides.html#activity-a-flights-investigation",
     "href": "weeks/week3/day12-integration-slides.html#activity-a-flights-investigation",
-    "title": "Putting it together: messy data → summary table",
+    "title": "Putting it together: from messy data to a summary table",
     "section": "Activity: a flights investigation",
-    "text": "Activity: a flights investigation\nRoughly 25 minutes. Individually or with a neighbor.\n\nActivity Canvas Link\n\nFormat: you’ll answer a series of questions about flights by building pipelines, but each one starts with writing the English plan first. You’ll compare two pipelines that look alike but answer different questions, catch a silently-dropped NA, and finish with one open-ended question where you choose the verbs and report your sanity checks.\nTo turn in: save your .qmd and rendered HTML."
+    "text": "Activity: a flights investigation\nRoughly 25 minutes. Individually or with a neighbor.\n\nActivity Canvas Link\n\nFormat: you’ll answer a series of questions about flights by building pipelines, but each one starts with writing the plan in words first. You’ll compare two pipelines that look alike but answer different questions, catch a silently-dropped NA, and finish with one open-ended question where you choose the verbs and report your sanity checks.\nTo turn in: save your .qmd and rendered HTML."
   },
   {
     "objectID": "weeks/week3/day12-integration-slides.html#wrap-up-looking-ahead",
     "href": "weeks/week3/day12-integration-slides.html#wrap-up-looking-ahead",
-    "title": "Putting it together: messy data → summary table",
+    "title": "Putting it together: from messy data to a summary table",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\nTomorrow (Thursday): new reading and new content, reshaping data between wide and narrow with pivot_longer() and pivot_wider().\n\n\nUpcoming Deadlines\n\nThu 6/4, before class: DC §12.1\nThu 6/4, 11:59 p.m.: Project: Team formation\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 3 · DC Ch. 10 · dplyr reference"
+    "text": "Wrap-up & looking ahead\nTomorrow (Thursday): new reading and new content, reshaping data between wide and narrow with pivot_longer() and pivot_wider().\n\n\nUpcoming Deadlines\n\nThu 6/4, before class: DC §12.1\nThu 6/4, 11:59 p.m.: Project: Team formation\nFri 6/5, 11:59 p.m.: Homework 3: Data Wrangling & Reshaping\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 3 · DC Ch. 10 · dplyr reference"
   },
   {
     "objectID": "weeks/week3/day14-activity.html",
@@ -6304,14 +6318,14 @@
     "href": "weeks/week3/day12-activity.html",
     "title": "Day 12 Activity: A flights investigation",
     "section": "",
-    "text": "library(tidyverse)\nlibrary(nycflights13)\n\nToday we use flights, every flight out of NYC in 2013. Glimpse it, and note the mess: cancelled flights have missing dep_delay / arr_delay.\n\nglimpse(flights)\n\nRows: 336,776\nColumns: 19\n$ year           &lt;int&gt; 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2…\n$ month          &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ day            &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ dep_time       &lt;int&gt; 517, 533, 542, 544, 554, 554, 555, 557, 557, 558, 558, …\n$ sched_dep_time &lt;int&gt; 515, 529, 540, 545, 600, 558, 600, 600, 600, 600, 600, …\n$ dep_delay      &lt;dbl&gt; 2, 4, 2, -1, -6, -4, -5, -3, -3, -2, -2, -2, -2, -2, -1…\n$ arr_time       &lt;int&gt; 830, 850, 923, 1004, 812, 740, 913, 709, 838, 753, 849,…\n$ sched_arr_time &lt;int&gt; 819, 830, 850, 1022, 837, 728, 854, 723, 846, 745, 851,…\n$ arr_delay      &lt;dbl&gt; 11, 20, 33, -18, -25, 12, 19, -14, -8, 8, -2, -3, 7, -1…\n$ carrier        &lt;chr&gt; \"UA\", \"UA\", \"AA\", \"B6\", \"DL\", \"UA\", \"B6\", \"EV\", \"B6\", \"…\n$ flight         &lt;int&gt; 1545, 1714, 1141, 725, 461, 1696, 507, 5708, 79, 301, 4…\n$ tailnum        &lt;chr&gt; \"N14228\", \"N24211\", \"N619AA\", \"N804JB\", \"N668DN\", \"N394…\n$ origin         &lt;chr&gt; \"EWR\", \"LGA\", \"JFK\", \"JFK\", \"LGA\", \"EWR\", \"EWR\", \"LGA\",…\n$ dest           &lt;chr&gt; \"IAH\", \"IAH\", \"MIA\", \"BQN\", \"ATL\", \"ORD\", \"FLL\", \"IAD\",…\n$ air_time       &lt;dbl&gt; 227, 227, 160, 183, 116, 150, 158, 53, 140, 138, 149, 1…\n$ distance       &lt;dbl&gt; 1400, 1416, 1089, 1576, 762, 719, 1065, 229, 944, 733, …\n$ hour           &lt;dbl&gt; 5, 5, 5, 5, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6, 6…\n$ minute         &lt;dbl&gt; 15, 29, 40, 45, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 0…\n$ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-01 0…\n\n\nNo new verbs today. You have all six (filter, arrange, select, mutate, group_by, summarise), plus count() and the pipe. The goal is sequencing them and checking your work."
+    "text": "library(tidyverse)\nlibrary(nycflights13)\n\nToday we use flights, every flight out of NYC in 2013. Glimpse it, and note that cancelled flights are denoted using NA missing values in the dep_delay and arr_delay columns.\n\nglimpse(flights)\n\nRows: 336,776\nColumns: 19\n$ year           &lt;int&gt; 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2…\n$ month          &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ day            &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ dep_time       &lt;int&gt; 517, 533, 542, 544, 554, 554, 555, 557, 557, 558, 558, …\n$ sched_dep_time &lt;int&gt; 515, 529, 540, 545, 600, 558, 600, 600, 600, 600, 600, …\n$ dep_delay      &lt;dbl&gt; 2, 4, 2, -1, -6, -4, -5, -3, -3, -2, -2, -2, -2, -2, -1…\n$ arr_time       &lt;int&gt; 830, 850, 923, 1004, 812, 740, 913, 709, 838, 753, 849,…\n$ sched_arr_time &lt;int&gt; 819, 830, 850, 1022, 837, 728, 854, 723, 846, 745, 851,…\n$ arr_delay      &lt;dbl&gt; 11, 20, 33, -18, -25, 12, 19, -14, -8, 8, -2, -3, 7, -1…\n$ carrier        &lt;chr&gt; \"UA\", \"UA\", \"AA\", \"B6\", \"DL\", \"UA\", \"B6\", \"EV\", \"B6\", \"…\n$ flight         &lt;int&gt; 1545, 1714, 1141, 725, 461, 1696, 507, 5708, 79, 301, 4…\n$ tailnum        &lt;chr&gt; \"N14228\", \"N24211\", \"N619AA\", \"N804JB\", \"N668DN\", \"N394…\n$ origin         &lt;chr&gt; \"EWR\", \"LGA\", \"JFK\", \"JFK\", \"LGA\", \"EWR\", \"EWR\", \"LGA\",…\n$ dest           &lt;chr&gt; \"IAH\", \"IAH\", \"MIA\", \"BQN\", \"ATL\", \"ORD\", \"FLL\", \"IAD\",…\n$ air_time       &lt;dbl&gt; 227, 227, 160, 183, 116, 150, 158, 53, 140, 138, 149, 1…\n$ distance       &lt;dbl&gt; 1400, 1416, 1089, 1576, 762, 719, 1065, 229, 944, 733, …\n$ hour           &lt;dbl&gt; 5, 5, 5, 5, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6, 6…\n$ minute         &lt;dbl&gt; 15, 29, 40, 45, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 0…\n$ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-01 0…\n\n\nToday, we will practice using the six verbs (filter, arrange, select, mutate, group_by, summarise), plus count() and the pipe to chain them together."
   },
   {
     "objectID": "weeks/week3/day12-activity.html#setup",
     "href": "weeks/week3/day12-activity.html#setup",
     "title": "Day 12 Activity: A flights investigation",
     "section": "",
-    "text": "library(tidyverse)\nlibrary(nycflights13)\n\nToday we use flights, every flight out of NYC in 2013. Glimpse it, and note the mess: cancelled flights have missing dep_delay / arr_delay.\n\nglimpse(flights)\n\nRows: 336,776\nColumns: 19\n$ year           &lt;int&gt; 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2…\n$ month          &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ day            &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ dep_time       &lt;int&gt; 517, 533, 542, 544, 554, 554, 555, 557, 557, 558, 558, …\n$ sched_dep_time &lt;int&gt; 515, 529, 540, 545, 600, 558, 600, 600, 600, 600, 600, …\n$ dep_delay      &lt;dbl&gt; 2, 4, 2, -1, -6, -4, -5, -3, -3, -2, -2, -2, -2, -2, -1…\n$ arr_time       &lt;int&gt; 830, 850, 923, 1004, 812, 740, 913, 709, 838, 753, 849,…\n$ sched_arr_time &lt;int&gt; 819, 830, 850, 1022, 837, 728, 854, 723, 846, 745, 851,…\n$ arr_delay      &lt;dbl&gt; 11, 20, 33, -18, -25, 12, 19, -14, -8, 8, -2, -3, 7, -1…\n$ carrier        &lt;chr&gt; \"UA\", \"UA\", \"AA\", \"B6\", \"DL\", \"UA\", \"B6\", \"EV\", \"B6\", \"…\n$ flight         &lt;int&gt; 1545, 1714, 1141, 725, 461, 1696, 507, 5708, 79, 301, 4…\n$ tailnum        &lt;chr&gt; \"N14228\", \"N24211\", \"N619AA\", \"N804JB\", \"N668DN\", \"N394…\n$ origin         &lt;chr&gt; \"EWR\", \"LGA\", \"JFK\", \"JFK\", \"LGA\", \"EWR\", \"EWR\", \"LGA\",…\n$ dest           &lt;chr&gt; \"IAH\", \"IAH\", \"MIA\", \"BQN\", \"ATL\", \"ORD\", \"FLL\", \"IAD\",…\n$ air_time       &lt;dbl&gt; 227, 227, 160, 183, 116, 150, 158, 53, 140, 138, 149, 1…\n$ distance       &lt;dbl&gt; 1400, 1416, 1089, 1576, 762, 719, 1065, 229, 944, 733, …\n$ hour           &lt;dbl&gt; 5, 5, 5, 5, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6, 6…\n$ minute         &lt;dbl&gt; 15, 29, 40, 45, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 0…\n$ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-01 0…\n\n\nNo new verbs today. You have all six (filter, arrange, select, mutate, group_by, summarise), plus count() and the pipe. The goal is sequencing them and checking your work."
+    "text": "library(tidyverse)\nlibrary(nycflights13)\n\nToday we use flights, every flight out of NYC in 2013. Glimpse it, and note that cancelled flights are denoted using NA missing values in the dep_delay and arr_delay columns.\n\nglimpse(flights)\n\nRows: 336,776\nColumns: 19\n$ year           &lt;int&gt; 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2013, 2…\n$ month          &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ day            &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1…\n$ dep_time       &lt;int&gt; 517, 533, 542, 544, 554, 554, 555, 557, 557, 558, 558, …\n$ sched_dep_time &lt;int&gt; 515, 529, 540, 545, 600, 558, 600, 600, 600, 600, 600, …\n$ dep_delay      &lt;dbl&gt; 2, 4, 2, -1, -6, -4, -5, -3, -3, -2, -2, -2, -2, -2, -1…\n$ arr_time       &lt;int&gt; 830, 850, 923, 1004, 812, 740, 913, 709, 838, 753, 849,…\n$ sched_arr_time &lt;int&gt; 819, 830, 850, 1022, 837, 728, 854, 723, 846, 745, 851,…\n$ arr_delay      &lt;dbl&gt; 11, 20, 33, -18, -25, 12, 19, -14, -8, 8, -2, -3, 7, -1…\n$ carrier        &lt;chr&gt; \"UA\", \"UA\", \"AA\", \"B6\", \"DL\", \"UA\", \"B6\", \"EV\", \"B6\", \"…\n$ flight         &lt;int&gt; 1545, 1714, 1141, 725, 461, 1696, 507, 5708, 79, 301, 4…\n$ tailnum        &lt;chr&gt; \"N14228\", \"N24211\", \"N619AA\", \"N804JB\", \"N668DN\", \"N394…\n$ origin         &lt;chr&gt; \"EWR\", \"LGA\", \"JFK\", \"JFK\", \"LGA\", \"EWR\", \"EWR\", \"LGA\",…\n$ dest           &lt;chr&gt; \"IAH\", \"IAH\", \"MIA\", \"BQN\", \"ATL\", \"ORD\", \"FLL\", \"IAD\",…\n$ air_time       &lt;dbl&gt; 227, 227, 160, 183, 116, 150, 158, 53, 140, 138, 149, 1…\n$ distance       &lt;dbl&gt; 1400, 1416, 1089, 1576, 762, 719, 1065, 229, 944, 733, …\n$ hour           &lt;dbl&gt; 5, 5, 5, 5, 6, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 5, 6, 6, 6…\n$ minute         &lt;dbl&gt; 15, 29, 40, 45, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 59, 0…\n$ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-01 0…\n\n\nToday, we will practice using the six verbs (filter, arrange, select, mutate, group_by, summarise), plus count() and the pipe to chain them together."
   },
   {
     "objectID": "syllabus/academic-integrity-and-ai-policy.html",

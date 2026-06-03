@@ -1103,24 +1103,24 @@ margin-right: 0; }
 <thead>
 <tr class="header">
 <th>Family</th>
-<th>Input → Output</th>
+<th>Input to Output</th>
 <th>The verb that uses it</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>Reduction</td>
-<td>variable → scalar</td>
+<td>variable to scalar</td>
 <td><code>summarise()</code></td>
 </tr>
 <tr class="even">
 <td>Transformation</td>
-<td>variable → variable</td>
+<td>variable to variable</td>
 <td><em>…today: <code>mutate()</code></em></td>
 </tr>
 <tr class="odd">
 <td>Data verb</td>
-<td>data frame → data frame</td>
+<td>data frame to data frame</td>
 <td>all of them</td>
 </tr>
 </tbody>
@@ -1448,10 +1448,10 @@ margin-right: 0; }
 <p><code>mutate()</code> <strong>always</strong> involves a <em>transformation</em> function, just as <code>summarise()</code> <strong>always</strong> involves a <em>reduction</em> function.</p>
 </blockquote>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="co"># transformation: one value per row → mutate()</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="co"># transformation: one value per row to mutate()</span></span>
 <span id="cb15-2"><a></a>penguins <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">bill_ratio =</span> bill_length_mm <span class="sc">/</span> bill_depth_mm)</span>
 <span id="cb15-3"><a></a></span>
-<span id="cb15-4"><a></a><span class="co"># reduction: one value total → summarise()</span></span>
+<span id="cb15-4"><a></a><span class="co"># reduction: one value total to summarise()</span></span>
 <span id="cb15-5"><a></a>penguins <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="at">avg_bill =</span> <span class="fu">mean</span>(bill_length_mm, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-tip callout-titled callout-style-default">
@@ -1591,7 +1591,7 @@ margin-right: 0; }
 <p><strong>Tip</strong></p>
 </div>
 <div class="callout-content">
-<p>Don’t hand-format forever: the <strong><code>styler</code></strong> package reformats a whole file for you. In RStudio, <code>Cmd/Ctrl + Shift + P</code> → type “styler”. Full guide: R4DS Ch. 4.</p>
+<p>Don’t hand-format forever: the <strong><code>styler</code></strong> package reformats a whole file for you. In RStudio, <code>Cmd/Ctrl + Shift + P</code> then type “styler”. Full guide: R4DS Ch. 4.</p>
 </div>
 </div>
 </div>

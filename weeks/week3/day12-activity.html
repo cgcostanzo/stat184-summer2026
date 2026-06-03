@@ -4373,7 +4373,6 @@ margin-bottom: 1.5rem;
   <li><a href="#part-3-mutate-then-plot" id="toc-part-3-mutate-then-plot" class="nav-link" data-scroll-target="#part-3-mutate-then-plot">Part 3 — mutate(), then plot</a></li>
   <li><a href="#part-4-dont-get-fooled" id="toc-part-4-dont-get-fooled" class="nav-link" data-scroll-target="#part-4-dont-get-fooled">Part 4 — Don’t get fooled</a></li>
   <li><a href="#part-5-open-investigation" id="toc-part-5-open-investigation" class="nav-link" data-scroll-target="#part-5-open-investigation">Part 5 — Open investigation</a></li>
-  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap-up</a></li>
   <li><a href="#code-appendix" id="toc-code-appendix" class="nav-link" data-scroll-target="#code-appendix">Code appendix</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="day12-activity.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -4414,7 +4413,7 @@ margin-bottom: 1.5rem;
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Today we use <code>flights</code>, every flight out of NYC in 2013. Glimpse it, and note the mess: cancelled flights have <strong>missing</strong> <code>dep_delay</code> / <code>arr_delay</code>.</p>
+<p>Today we use <code>flights</code>, every flight out of NYC in 2013. Glimpse it, and note that cancelled flights are denoted using <code>NA</code> missing values in the <code>dep_delay</code> and <code>arr_delay</code> columns.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(flights)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -4441,15 +4440,21 @@ $ minute         &lt;dbl&gt; 15, 29, 40, 45, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5
 $ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-01 0…</code></pre>
 </div>
 </div>
-<p>No new verbs today. You have all six (<code>filter</code>, <code>arrange</code>, <code>select</code>, <code>mutate</code>, <code>group_by</code>, <code>summarise</code>), plus <code>count()</code> and the pipe. The goal is <strong>sequencing them and checking your work.</strong></p>
+<p>Today, we will practice using the six verbs (<code>filter</code>, <code>arrange</code>, <code>select</code>, <code>mutate</code>, <code>group_by</code>, <code>summarise</code>), plus <code>count()</code> and the pipe to chain them together.</p>
 <hr>
 </section>
 <section id="part-1-plan-before-you-code" class="level1">
 <h1>Part 1 — Plan before you code</h1>
 <p>For this question: <em>Which of the three NYC airports (<code>origin</code>) sent out the most flights in 2013?</em></p>
-<p><strong>1a.</strong> First, write the <strong>English plan</strong>, one sentence per step. Which verbs, in what order? What does one row of your target table represent?</p>
-<p>[Your plan here.]</p>
-<p><strong>1b.</strong> Now write it. (Hint: this is a one-liner with <code>count()</code>, <em>or</em> a <code>group_by()</code> + <code>summarise()</code>.)</p>
+<p><strong>1a.</strong> First, write out your plan in English using one sentence per step. Answer the following questions:</p>
+<ol type="1">
+<li><p>Which verbs will you need to use, and in what order?</p></li>
+<li><p>What does one row of your target table represent?</p></li>
+</ol>
+<blockquote class="blockquote">
+<p>[Write your plan here.]</p>
+</blockquote>
+<p><strong>1b.</strong> Now implement your plan with code. (Recall: <code>count()</code> is a shortcut for a <code>group_by()</code> + <code>summarise()</code>. Both give the same result.)</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -4458,26 +4463,30 @@ $ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-
 <section id="part-2-build-a-pipeline" class="level1">
 <h1>Part 2 — Build a pipeline</h1>
 <p><em>Which carrier had the worst average arrival delay, among carriers with at least 1,000 flights?</em></p>
-<p>Build it step by step: filter is <strong>not</strong> needed on the raw rows here, but you’ll need it on the <strong>summary table</strong> to drop small carriers. Include <code>n = n()</code>.</p>
+<p>Build a pipeline step by step; filter is <strong>not</strong> needed on the raw rows here, but you’ll need it on the <strong>summary table</strong> to drop small carriers. Include <code>n = n()</code>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Which carrier is it, and how many flights is that average based on?</strong></p>
-<p>[Your answer. We only have the 2-letter code today; turning it into the airline’s name needs a <em>join</em>, which is coming later.]</p>
+<blockquote class="blockquote">
+<p>[Write your answer here. Note that we only have the 2-letter code for carrier in today’s data; turning it into the airline’s name needs a <em>join</em>, which we’ve seen but haven’t covered in detail yet.]</p>
+</blockquote>
 <hr>
 </section>
 <section id="part-3-mutate-then-plot" class="level1">
 <h1>Part 3 — mutate(), then plot</h1>
-<p><strong>3a.</strong> Create a label <code>time_of_day</code> that is <code>&quot;morning&quot;</code> when <code>dep_time &lt; 1200</code> and <code>&quot;afternoon/evening&quot;</code> otherwise. Then find the average departure delay for each, with a count.</p>
+<p><strong>3a.</strong> Create a new variable <code>time_of_day</code> that takes on the value <code>&quot;morning&quot;</code> when <code>dep_time &lt; 1200</code> and <code>&quot;afternoon/evening&quot;</code> otherwise. Then find the average departure delay for each, with a count.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><strong>3b.</strong> Pipe a version of that summary into a <code>geom_col()</code> plot of average delay by <code>time_of_day</code>. (Remember to switch <code>|&gt;</code> to <code>+</code> at <code>ggplot()</code>.)</p>
+<p><strong>3b.</strong> Pipe a version of that summary into a <code>geom_col()</code> plot of average delay by <code>time_of_day</code>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><strong>One sentence:</strong> what does it show?</p>
-<p>[Your answer.]</p>
+<p>In one sentence, explain what your plot shows:</p>
+<blockquote class="blockquote">
+<p>[Write your answer here.]</p>
+</blockquote>
 <hr>
 </section>
 <section id="part-4-dont-get-fooled" class="level1">
@@ -4496,14 +4505,18 @@ $ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg =</span> <span class="fu">mean</span>(arr_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dest <span class="sc">==</span> <span class="st">&quot;BOS&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>[How do the questions differ? Do the numbers match? Should they?]</p>
+<blockquote class="blockquote">
+<p>[Write your answer here. Address the following: how do the questions differ? Do the numbers match? Should they?]</p>
+</blockquote>
 <p><strong>4b. Spot the silent <code>NA</code>.</strong> This returns <code>NA</code> for some carriers. Why? What single change fixes it?</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(carrier) <span class="sc">|&gt;</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_delay =</span> <span class="fu">mean</span>(dep_delay))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>[Your explanation and fix.]</p>
+<blockquote class="blockquote">
+<p>[Write your explanation and the fix in words here.]</p>
+</blockquote>
 <hr>
 </section>
 <section id="part-5-open-investigation" class="level1">
@@ -4512,27 +4525,29 @@ $ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-
 <ul>
 <li>Which destination has the most <em>variable</em> arrival delays? (Hint: <code>sd()</code> is a reduction, like <code>mean()</code>.)</li>
 <li>Do flights later in the day make up time in the air more than morning flights?</li>
-<li>Which day of the week (you’d need <code>month</code>/<code>day</code>…) is worst to fly? <em>(Stick to month if day-of-week is too much.)</em></li>
+<li>Which day of the week (you would needthe <code>month</code> and <code>day</code> variables) is worst to fly? <em>(Stick to month if day of the week is too much.)</em></li>
 </ul>
 <p><strong>5a.</strong> State your question and your English plan.</p>
-<p>[Question + plan.]</p>
+<blockquote class="blockquote">
+<p>[Write your question &amp; plan here.]</p>
+</blockquote>
 <p><strong>5b.</strong> Your pipeline:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><strong>5c. Required: report your checks.</strong> Answer all three:</p>
-<ul>
+<p><strong>5c. Report your checks.</strong> Answer the following three questions:</p>
+<ol type="1">
 <li>How did you handle missing values?</li>
-<li>What’s the smallest <code>n</code> in your result, and is it big enough to trust?</li>
-<li>Does the answer pass a smell test (does it match what you’d expect)?</li>
-</ul>
-<p>[Your three checks.]</p>
-<hr>
-</section>
-<section id="wrap-up" class="level1">
-<h1>Wrap-up</h1>
-<p><strong>One-sentence reflection:</strong> what’s one mistake you almost made today (wrong order, forgotten <code>na.rm</code>, a tiny group) that a quick check caught?</p>
-<p>[Write one sentence.]</p>
+<li>What’s the smallest sample size <code>n</code> in your result, and is it big enough to trust?</li>
+<li>Does the answer match your intuition (what you would expect)?</li>
+</ol>
+<blockquote class="blockquote">
+<ol type="1">
+<li><p>[Write your answer here.]</p></li>
+<li><p>[Write your answer here.]</p></li>
+<li><p>[Write your answer here.]</p></li>
+</ol>
+</blockquote>
 <hr>
 </section>
 <section id="code-appendix" class="level1">
