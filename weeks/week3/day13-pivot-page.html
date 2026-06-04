@@ -4377,7 +4377,7 @@ margin-bottom: 1.5rem;
   <li><a href="#wide-vs.-narrow" id="toc-wide-vs.-narrow" class="nav-link" data-scroll-target="#wide-vs.-narrow">Wide vs. narrow</a>
   <ul class="collapse">
   <li><a href="#two-layouts-of-one-dataset" id="toc-two-layouts-of-one-dataset" class="nav-link" data-scroll-target="#two-layouts-of-one-dataset">Two layouts of one dataset</a></li>
-  <li><a href="#the-same-data-narrow" id="toc-the-same-data-narrow" class="nav-link" data-scroll-target="#the-same-data-narrow">The same data, narrow</a></li>
+  <li><a href="#the-same-bp-data-narrow" id="toc-the-same-bp-data-narrow" class="nav-link" data-scroll-target="#the-same-bp-data-narrow">The same BP data, narrow</a></li>
   </ul></li>
   <li><a href="#pivot_longer" id="toc-pivot_longer" class="nav-link" data-scroll-target="#pivot_longer">pivot_longer()</a>
   <ul class="collapse">
@@ -4388,8 +4388,8 @@ margin-bottom: 1.5rem;
   <li><a href="#pivot_wider" id="toc-pivot_wider" class="nav-link" data-scroll-target="#pivot_wider">pivot_wider()</a>
   <ul class="collapse">
   <li><a href="#the-opposite-move" id="toc-the-opposite-move" class="nav-link" data-scroll-target="#the-opposite-move">The opposite move</a></li>
-  <li><a href="#where-youll-actually-reach-for-it" id="toc-where-youll-actually-reach-for-it" class="nav-link" data-scroll-target="#where-youll-actually-reach-for-it">Where you’ll actually reach for it</a></li>
-  <li><a href="#and-comparison-becomes-a-mutate" id="toc-and-comparison-becomes-a-mutate" class="nav-link" data-scroll-target="#and-comparison-becomes-a-mutate">…and comparison becomes a mutate</a></li>
+  <li><a href="#when-you-might-use-it" id="toc-when-you-might-use-it" class="nav-link" data-scroll-target="#when-you-might-use-it">When you might use it</a></li>
+  <li><a href="#comparison-becomes-a-mutate-operation" id="toc-comparison-becomes-a-mutate-operation" class="nav-link" data-scroll-target="#comparison-becomes-a-mutate-operation">Comparison becomes a mutate operation</a></li>
   </ul></li>
   <li><a href="#choosing-a-shape" id="toc-choosing-a-shape" class="nav-link" data-scroll-target="#choosing-a-shape">Choosing a shape</a>
   <ul class="collapse">
@@ -4446,7 +4446,7 @@ margin-bottom: 1.5rem;
 <ul>
 <li>What makes data <strong>tidy</strong>, and why the tidyverse wants it that way</li>
 <li><strong>Wide</strong> vs. <strong>narrow (long)</strong> layouts of the <em>same</em> data</li>
-<li>Two new verbs: <code>pivot_longer()</code> and <code>pivot_wider()</code></li>
+<li><code>pivot_longer()</code> and <code>pivot_wider()</code></li>
 <li>Choosing a shape to fit the task</li>
 </ul>
 <p><strong>Helpful links</strong></p>
@@ -4457,7 +4457,7 @@ margin-bottom: 1.5rem;
 </div>
 <section id="recap-and-whats-new" class="level2">
 <h2 class="anchored" data-anchor-id="recap-and-whats-new">Recap, and what’s new</h2>
-<p>All week you’ve manipulated data <strong>within</strong> its existing shape, choosing rows, columns, and groups. That worked because the data was already laid out sensibly.</p>
+<p>All week you’ve manipulated data <strong>within</strong> its existing shape, choosing rows, columns, and groups.</p>
 <div class="callout callout-style-default callout-tip callout-titled" style="font-size: 1.1em;">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -4468,7 +4468,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Today is the first new verbs since Monday. <code>pivot_longer()</code> and <code>pivot_wider()</code> change the <strong>shape</strong> of the table itself, without changing any of the values.</p>
+<p><code>pivot_longer()</code> and <code>pivot_wider()</code> change the <strong>shape</strong> of the table itself, without changing any of the values.</p>
 </div>
 </div>
 <p>These come from <strong>tidyr</strong>, dplyr’s sibling package (both load with <code>library(tidyverse)</code>).</p>
@@ -4477,13 +4477,12 @@ Tip
 <h1 data-background-color="#001E44">Tidy data</h1>
 <section id="what-tidy-means" class="level2 scrollable nostretch">
 <h2 class="scrollable nostretch anchored" data-anchor-id="what-tidy-means">What “tidy” means</h2>
-<p>R4DS §5.2 gives three rules. A dataset is <strong>tidy</strong> when:</p>
+<p>A dataset is <strong>tidy</strong> when:</p>
 <ol type="1">
 <li>Each <strong>variable</strong> is a column.</li>
 <li>Each <strong>observation</strong> is a row.</li>
-<li>Each <strong>value</strong> is a cell.</li>
 </ol>
-<p>The same numbers can be stored many ways. Only one is tidy:</p>
+<p>The same numbers can be stored many different ways. Only one of the following is tidy:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>table1   <span class="co"># tidy: country, year, cases, population each a column</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -4522,6 +4521,7 @@ Tip
 </div>
 </div>
 <p><code>table2</code> holds identical information, but <code>type</code>/<code>count</code> jams two variables into a name/value pair. Computing a rate is awkward here and natural in <code>table1</code>.</p>
+<p>The dead giveaway that the data is <strong>not</strong> tidy here is that there are multiple rows corresponding to the same country / year observation.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -4532,7 +4532,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Why tidy? <code>dplyr</code>, <code>ggplot2</code>, and friends are <strong>built</strong> for it. Tidy data is the shape where <code>mutate()</code>, <code>group_by()</code>, and <code>aes()</code> all “just work.”</p>
+<p>Why tidy? <code>dplyr</code>, <code>ggplot2</code>, and friends are built for tidy data. Tidy data is the shape where <code>mutate()</code>, <code>group_by()</code>, and <code>aes()</code> work without needing to change the shape of the data first.</p>
 </div>
 </div>
 </section>
@@ -4541,7 +4541,7 @@ Note
 <h1 data-background-color="#001E44">Wide vs. narrow</h1>
 <section id="two-layouts-of-one-dataset" class="level2 scrollable nostretch">
 <h2 class="scrollable nostretch anchored" data-anchor-id="two-layouts-of-one-dataset">Two layouts of one dataset</h2>
-<p><em>DC</em> §12.1 frames reshaping as <strong>wide ↔︎ narrow</strong>. Blood pressure, wide:</p>
+<p>Reshaping refers to moving back and forth between <strong>wide</strong> and <strong>narrow</strong> data formats. For example, data on blood pressure (BP) in wide form:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>bp_wide <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>subject, <span class="sc">~</span>before, <span class="sc">~</span>after,</span>
@@ -4559,10 +4559,10 @@ Note
 3 WJC        105   145</code></pre>
 </div>
 </div>
-<p>One row per <strong>subject</strong>; <code>before</code>/<code>after</code> are separate columns.</p>
+<p>Here, we have row per <strong>subject</strong>, and <code>before</code>/<code>after</code> are separate columns.</p>
 </section>
-<section id="the-same-data-narrow" class="level2 scrollable nostretch">
-<h2 class="scrollable nostretch anchored" data-anchor-id="the-same-data-narrow">The same data, narrow</h2>
+<section id="the-same-bp-data-narrow" class="level2 scrollable nostretch">
+<h2 class="scrollable nostretch anchored" data-anchor-id="the-same-bp-data-narrow">The same BP data, narrow</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>bp_narrow <span class="ot">&lt;-</span> bp_wide <span class="sc">|&gt;</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
@@ -4583,7 +4583,7 @@ Note
 6 WJC     after    145</code></pre>
 </div>
 </div>
-<p>Now one row per <strong>measurement occasion</strong>: the case changed meaning, the numbers didn’t.</p>
+<p>Now one row per <strong>measurement occasion</strong> (before/after): the case changed meaning, the numbers didn’t.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -4594,7 +4594,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Each shape has strengths. <em>Wide</em> makes a before/after change a one-line <code>mutate(change = after - before)</code>. <em>Narrow</em> makes it easy to add more occasions or more variables, and it’s what <code>ggplot2</code> usually wants.</p>
+<p>Each shape has strengths. <em>Wide</em> makes a before/after change a one-line <code>mutate(change = after - before)</code>. <em>Narrow</em> makes it easy to add more measurement occasions or more variables, and it’s what <code>ggplot2</code> usually expects.</p>
 </div>
 </div>
 </section>
@@ -4603,12 +4603,12 @@ Tip
 <h1 data-background-color="#001E44">pivot_longer()</h1>
 <section id="the-idea" class="level2 scrollable nostretch">
 <h2 class="scrollable nostretch anchored" data-anchor-id="the-idea">The idea</h2>
-<p><code>pivot_longer()</code> takes several columns and stacks them into <strong>two</strong> new columns: one holding the old <strong>names</strong>, one holding the old <strong>values</strong> (R4DS §5.3).</p>
-<p>Three arguments after the data:</p>
+<p><code>pivot_longer()</code> takes several columns and stacks them into <strong>two</strong> new columns: one holding the old <strong>names</strong>, one holding the old <strong>values</strong>.</p>
+<p>There are three arguments after the data:</p>
 <ul>
-<li><code>cols</code> — which columns to gather (uses <code>select()</code> syntax: <code>starts_with()</code>, ranges, <code>!</code>)</li>
-<li><code>names_to</code> — name for the new column that will hold the <strong>old column names</strong></li>
-<li><code>values_to</code> — name for the new column that will hold the <strong>cell values</strong></li>
+<li><code>cols</code>: which columns to gather (compatible with <code>select()</code> syntax: <code>starts_with()</code>, ranges with <code>:</code>, <code>!</code>)</li>
+<li><code>names_to</code>: name for the new column that will hold the <strong>old column names</strong></li>
+<li><code>values_to</code>: name for the new column that will hold the <strong>cell values</strong></li>
 </ul>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>bp_wide <span class="sc">|&gt;</span></span>
@@ -4624,7 +4624,7 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>names_to</code> and <code>values_to</code> are <strong>quoted</strong> — they’re names you’re inventing, so they don’t exist in the data yet.</p>
+<p>Note that <code>names_to</code> and <code>values_to</code> are <strong>quoted</strong>. They’re names you’re inventing, so they don’t exist in the data yet.</p>
 </div>
 </div>
 </section>
@@ -4668,10 +4668,10 @@ Warning
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">&quot;week&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;rank&quot;</span>,</span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_drop_na =</span> <span class="cn">TRUE</span></span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">week =</span> <span class="fu">parse_number</span>(week)) <span class="sc">|&gt;</span>     <span class="co"># &quot;wk3&quot; -&gt; 3</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">week =</span> <span class="fu">parse_number</span>(week)) <span class="sc">|&gt;</span> <span class="co"># &quot;wk3&quot; -&gt; 3</span></span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> week, <span class="at">y =</span> rank, <span class="at">group =</span> track)) <span class="sc">+</span></span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_reverse</span>()                        <span class="co"># rank 1 on top</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_reverse</span>() <span class="co"># rank 1 on top</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -4699,10 +4699,10 @@ Note
 <h1 data-background-color="#001E44">pivot_wider()</h1>
 <section id="the-opposite-move" class="level2 scrollable nostretch">
 <h2 class="scrollable nostretch anchored" data-anchor-id="the-opposite-move">The opposite move</h2>
-<p><code>pivot_wider()</code> spreads one column’s values across <strong>new columns</strong> (R4DS §5.4, <em>DC</em> §12.1). Its two key arguments are the mirror of before:</p>
+<p><code>pivot_wider()</code> spreads one column’s values across <strong>new columns</strong>. Its two key arguments are the opposite of before:</p>
 <ul>
-<li><code>names_from</code> — the column whose <strong>values become new column names</strong></li>
-<li><code>values_from</code> — the column whose values <strong>fill the new cells</strong></li>
+<li><code>names_from</code>: the column whose <strong>values become new column names</strong></li>
+<li><code>values_from</code>: the column whose values <strong>fill the new cells</strong></li>
 </ul>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>bp_narrow <span class="sc">|&gt;</span></span>
@@ -4718,9 +4718,9 @@ Note
 </div>
 <p>We’re back to <code>bp_wide</code>. <strong><code>pivot_longer()</code> and <code>pivot_wider()</code> are inverses.</strong></p>
 </section>
-<section id="where-youll-actually-reach-for-it" class="level2 scrollable nostretch">
-<h2 class="scrollable nostretch anchored" data-anchor-id="where-youll-actually-reach-for-it">Where you’ll actually reach for it</h2>
-<p>Remember Wednesday: <code>group_by() |&gt; summarise()</code> produces a <strong>long</strong> summary. Widening it makes a readable comparison table.</p>
+<section id="when-you-might-use-it" class="level2 scrollable nostretch">
+<h2 class="scrollable nostretch anchored" data-anchor-id="when-you-might-use-it">When you might use it</h2>
+<p>Previously we learned <code>group_by() |&gt; summarise()</code> produces a <strong>long</strong> summary. Widening it makes a readable comparison table.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">|&gt;</span></span>
@@ -4737,18 +4737,19 @@ Note
 </div>
 </div>
 </section>
-<section id="and-comparison-becomes-a-mutate" class="level2 scrollable nostretch">
-<h2 class="scrollable nostretch anchored" data-anchor-id="and-comparison-becomes-a-mutate">…and comparison becomes a mutate</h2>
-<p>With <code>female</code> and <code>male</code> now side by side in each row, the difference is one <code>mutate()</code>, exactly <em>DC</em>’s before/after point:</p>
+<section id="comparison-becomes-a-mutate-operation" class="level2 scrollable nostretch">
+<h2 class="scrollable nostretch anchored" data-anchor-id="comparison-becomes-a-mutate-operation">Comparison becomes a mutate operation</h2>
+<p>With <code>female</code> and <code>male</code> now side by side in each row, the difference is one <code>mutate()</code>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">|&gt;</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species, sex) <span class="sc">|&gt;</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_mass =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg_mass =</span> <span class="fu">mean</span>(body_mass_g, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> sex, <span class="at">values_from =</span> avg_mass) <span class="sc">|&gt;</span></span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">diff =</span> male <span class="sc">-</span> female)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 4
+# Groups:   species [3]
   species   female  male  diff
   &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 1 Adelie     3369. 4043.  675.
@@ -4766,7 +4767,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Long form is for <strong>computing and plotting across</strong> a category; wide form is for <strong>reading and comparing within</strong> a row. Same data, you pick the shape that makes your next step a one-liner.</p>
+<p>Long form is for <strong>computing and plotting across</strong> a category; wide form is for <strong>reading and comparing within</strong> a row.</p>
 </div>
 </div>
 </section>
@@ -4822,7 +4823,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>R4DS §5.5: there isn’t always one “tidy” shape, it depends what you’re doing next. Don’t be afraid to <strong>untidy, transform, and re-tidy</strong> as the task changes.</p>
+<p>There isn’t always one “tidy” shape, it depends what you’re doing next. It’s helpful to be comfortable with <strong>untidying, transforming, and re-tidying</strong> as the task changes.</p>
 </div>
 </div>
 </section>
@@ -4850,7 +4851,7 @@ Note
 </section>
 <section id="wrap-up-looking-ahead" class="level2">
 <h2 class="anchored" data-anchor-id="wrap-up-looking-ahead">Wrap-up &amp; looking ahead</h2>
-<p><strong>Tomorrow (Friday):</strong> <strong>Quiz 3</strong> in the first 20 minutes, then version control, Git and GitHub concepts plus a live demo, so your project team can collaborate on shared code.</p>
+<p><strong>Tomorrow (Friday):</strong> <strong>Quiz 3</strong> in the first 20 minutes, then version control, Git and GitHub concepts and a demonstration, so your project team can collaborate on shared code.</p>
 <div class="columns">
 <div class="column" style="width:55%;">
 <p><strong>Upcoming Deadlines</strong></p>

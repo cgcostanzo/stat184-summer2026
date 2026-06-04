@@ -4368,13 +4368,12 @@ margin-bottom: 1.5rem;
    
   <ul>
   <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
-  <li><a href="#part-1-tidy-wide-or-narrow" id="toc-part-1-tidy-wide-or-narrow" class="nav-link" data-scroll-target="#part-1-tidy-wide-or-narrow">Part 1 — Tidy, wide, or narrow?</a></li>
-  <li><a href="#part-2-pivot_longer-on-a-tiny-table" id="toc-part-2-pivot_longer-on-a-tiny-table" class="nav-link" data-scroll-target="#part-2-pivot_longer-on-a-tiny-table">Part 2 — pivot_longer() on a tiny table</a></li>
-  <li><a href="#part-3-pivot_longer-on-real-data" id="toc-part-3-pivot_longer-on-real-data" class="nav-link" data-scroll-target="#part-3-pivot_longer-on-real-data">Part 3 — pivot_longer() on real data</a></li>
-  <li><a href="#part-4-pivot_wider-for-comparison" id="toc-part-4-pivot_wider-for-comparison" class="nav-link" data-scroll-target="#part-4-pivot_wider-for-comparison">Part 4 — pivot_wider() for comparison</a></li>
-  <li><a href="#part-5-the-round-trip-and-a-trap" id="toc-part-5-the-round-trip-and-a-trap" class="nav-link" data-scroll-target="#part-5-the-round-trip-and-a-trap">Part 5 — The round trip, and a trap</a></li>
+  <li><a href="#part-1" id="toc-part-1" class="nav-link" data-scroll-target="#part-1">Part 1</a></li>
+  <li><a href="#part-2" id="toc-part-2" class="nav-link" data-scroll-target="#part-2">Part 2</a></li>
+  <li><a href="#part-3" id="toc-part-3" class="nav-link" data-scroll-target="#part-3">Part 3</a></li>
+  <li><a href="#part-4" id="toc-part-4" class="nav-link" data-scroll-target="#part-4">Part 4</a></li>
+  <li><a href="#part-5" id="toc-part-5" class="nav-link" data-scroll-target="#part-5">Part 5</a></li>
   <li><a href="#part-6-choose-the-shape" id="toc-part-6-choose-the-shape" class="nav-link" data-scroll-target="#part-6-choose-the-shape">Part 6 — Choose the shape</a></li>
-  <li><a href="#wrap-up" id="toc-wrap-up" class="nav-link" data-scroll-target="#wrap-up">Wrap-up</a></li>
   <li><a href="#code-appendix" id="toc-code-appendix" class="nav-link" data-scroll-target="#code-appendix">Code appendix</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="day13-activity.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
@@ -4418,8 +4417,8 @@ margin-bottom: 1.5rem;
 <p>Today’s verbs are <code>pivot_longer()</code> and <code>pivot_wider()</code>. We’ll use a few small built-in tables plus <code>penguins</code>.</p>
 <hr>
 </section>
-<section id="part-1-tidy-wide-or-narrow" class="level1">
-<h1>Part 1 — Tidy, wide, or narrow?</h1>
+<section id="part-1" class="level1">
+<h1>Part 1</h1>
 <p>Look at <code>table1</code> and <code>table2</code> (both built into tidyr):</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>table1</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -4454,20 +4453,27 @@ margin-bottom: 1.5rem;
 </div>
 </div>
 <p><strong>1a.</strong> For each, describe what <strong>one row</strong> represents.</p>
-<p>[table1: … ] — [table2: … ]</p>
+<blockquote class="blockquote">
+<p>Table 1: [ Answer here. ]</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Table 2: [ Answer here. ]</p>
+</blockquote>
 <p><strong>1b.</strong> Which one is <strong>tidy</strong> (each variable a column, each observation a row)? Which is the <strong>narrower</strong> of the two, and how can you tell?</p>
-<p>[Your answer.]</p>
+<blockquote class="blockquote">
+<p>[Answer here.]</p>
+</blockquote>
 <hr>
 </section>
-<section id="part-2-pivot_longer-on-a-tiny-table" class="level1">
-<h1>Part 2 — pivot_longer() on a tiny table</h1>
+<section id="part-2" class="level1">
+<h1>Part 2</h1>
 <p>Build this wide table by hand:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>bp_wide <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>subject, <span class="sc">~</span>before, <span class="sc">~</span>after,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;BHO&quot;</span>,        <span class="dv">160</span>,    <span class="dv">160</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;GWB&quot;</span>,        <span class="dv">115</span>,    <span class="dv">135</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;WJC&quot;</span>,        <span class="dv">105</span>,    <span class="dv">145</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;BHO&quot;</span>, <span class="dv">160</span>, <span class="dv">160</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;GWB&quot;</span>, <span class="dv">115</span>, <span class="dv">135</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;WJC&quot;</span>, <span class="dv">105</span>, <span class="dv">145</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>bp_wide</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -4480,15 +4486,21 @@ margin-bottom: 1.5rem;
 </div>
 </div>
 <p><strong>2a. Predict first.</strong> If you pivot <code>before</code> and <code>after</code> into a long form, how many <strong>rows</strong> will the result have? How many <strong>columns</strong>?</p>
-<p>Prediction: [ … rows / … columns ]</p>
-<p><strong>2b.</strong> Now do it. Use <code>names_to = &quot;when&quot;</code> and <code>values_to = &quot;sbp&quot;</code>. Check against your prediction.</p>
+<p>Prediction:</p>
+<blockquote class="blockquote">
+<p>[Pred. # Rows here]</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>[Pred. # Cols here]</p>
+</blockquote>
+<p><strong>2b.</strong> Now pivot <code>bp_wide</code> to long form. Use <code>names_to = &quot;when&quot;</code> and <code>values_to = &quot;sbp&quot;</code>. Check against your prediction.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <hr>
 </section>
-<section id="part-3-pivot_longer-on-real-data" class="level1">
-<h1>Part 3 — pivot_longer() on real data</h1>
+<section id="part-3" class="level1">
+<h1>Part 3</h1>
 <p>The <code>billboard</code> data (in tidyr) has one column per chart week (<code>wk1</code>, <code>wk2</code>, …).</p>
 <p><strong>3a.</strong> Pivot all the <code>wk</code> columns into <code>week</code> / <code>rank</code>, dropping the empty weeks. (Hint: <code>cols = starts_with(&quot;wk&quot;)</code>, <code>values_drop_na = TRUE</code>.)</p>
 <div class="cell">
@@ -4499,12 +4511,14 @@ margin-bottom: 1.5rem;
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>One sentence:</strong> what does the plot show about how long songs stay on the charts?</p>
-<p>[Your answer.]</p>
+<blockquote class="blockquote">
+<p>[Answer here.]</p>
+</blockquote>
 <hr>
 </section>
-<section id="part-4-pivot_wider-for-comparison" class="level1">
-<h1>Part 4 — pivot_wider() for comparison</h1>
-<p>Start from a <strong>long</strong> summary (this is the kind of table you built on Wednesday):</p>
+<section id="part-4" class="level1">
+<h1>Part 4</h1>
+<p>Start from a long summary table:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>penguin_summary <span class="ot">&lt;-</span> penguins <span class="sc">|&gt;</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(sex)) <span class="sc">|&gt;</span></span>
@@ -4523,23 +4537,31 @@ margin-bottom: 1.5rem;
 6 Gentoo    male      5485.</code></pre>
 </div>
 </div>
-<p><strong>4a. Predict first.</strong> If you widen this with <code>names_from = sex</code>, <code>values_from = avg_mass</code>, how many rows and columns will you get?</p>
-<p>Prediction: [ … rows / … columns ]</p>
-<p><strong>4b.</strong> Do the pivot, then add a column <code>diff</code> = <code>male</code> − <code>female</code>.</p>
+<p><strong>4a.</strong> If you widen this with <code>names_from = sex</code>, <code>values_from = avg_mass</code>, how many rows and columns will you get?</p>
+<p>Prediction:</p>
+<blockquote class="blockquote">
+<p>[Pred. # Rows here]</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>[Pred. # Cols here]</p>
+</blockquote>
+<p><strong>4b.</strong> Pivot, then add a column <code>diff</code> = <code>male</code> - <code>female</code>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Which species has the biggest mass gap between sexes?</strong></p>
-<p>[Your answer.]</p>
+<blockquote class="blockquote">
+<p>[Answer here.]</p>
+</blockquote>
 <hr>
 </section>
-<section id="part-5-the-round-trip-and-a-trap" class="level1">
-<h1>Part 5 — The round trip, and a trap</h1>
+<section id="part-5" class="level1">
+<h1>Part 5</h1>
 <p><strong>5a.</strong> Take your widened penguin table from Part 4 (before the <code>diff</code> column) and pivot it <strong>back</strong> to long form. Do you recover the original <code>penguin_summary</code>? (<code>pivot_longer()</code> and <code>pivot_wider()</code> are inverses.)</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><strong>5b. Debug it.</strong> Someone tries to make <code>bp_wide</code> longer like this and gets a strange result:</p>
+<p><strong>5b.</strong> Someone tries to make <code>bp_wide</code> longer like this and gets a strange result:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>bp_wide <span class="sc">|&gt;</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
@@ -4549,24 +4571,26 @@ margin-bottom: 1.5rem;
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Run it. Why is this “too narrow” / wrong? What single change to <code>cols</code> fixes it?</p>
-<p>[Your explanation and fix.]</p>
+<blockquote class="blockquote">
+<p>[Answer here.]</p>
+</blockquote>
 <hr>
 </section>
 <section id="part-6-choose-the-shape" class="level1">
 <h1>Part 6 — Choose the shape</h1>
-<p>For each goal, say whether you’d want the data <strong>wide</strong> or <strong>narrow</strong>, and which pivot gets you there. One sentence each.</p>
+<p>For each goal, say whether you’d want the data <strong>wide</strong> or <strong>narrow</strong>, and which pivot gets you there.</p>
 <ol type="1">
 <li>Plot each country’s TB cases over time, one line per country.</li>
 <li>Compute, for each country, the change in cases from 1999 to 2000 as a single new column.</li>
 <li>Group by year and sum the cases across all countries.</li>
 </ol>
-<p>[1: … ] — [2: … ] — [3: … ]</p>
-<hr>
-</section>
-<section id="wrap-up" class="level1">
-<h1>Wrap-up</h1>
-<p><strong>One-sentence reflection:</strong> pivoting is the first thing this week that changed the <em>shape</em> of the table rather than its contents, what clicked, and what’s still fuzzy?</p>
-<p>[Write one sentence.]</p>
+<blockquote class="blockquote">
+<ol type="1">
+<li><p>[Answer here.]</p></li>
+<li><p>[Answer here.]</p></li>
+<li><p>[Answer here.]</p></li>
+</ol>
+</blockquote>
 <hr>
 </section>
 <section id="code-appendix" class="level1">
@@ -4578,9 +4602,9 @@ margin-bottom: 1.5rem;
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>table2</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>bp_wide <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>subject, <span class="sc">~</span>before, <span class="sc">~</span>after,</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;BHO&quot;</span>,        <span class="dv">160</span>,    <span class="dv">160</span>,</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;GWB&quot;</span>,        <span class="dv">115</span>,    <span class="dv">135</span>,</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;WJC&quot;</span>,        <span class="dv">105</span>,    <span class="dv">145</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;BHO&quot;</span>, <span class="dv">160</span>, <span class="dv">160</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;GWB&quot;</span>, <span class="dv">115</span>, <span class="dv">135</span>,</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;WJC&quot;</span>, <span class="dv">105</span>, <span class="dv">145</span></span>
 <span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>bp_wide</span>
 <span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Your code:</span></span>

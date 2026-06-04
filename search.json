@@ -326,42 +326,42 @@
     "href": "weeks/week3/day13-pivot-slides.html#recap-and-whats-new",
     "title": "Reshaping: pivot_longer · pivot_wider",
     "section": "Recap, and what’s new",
-    "text": "Recap, and what’s new\nAll week you’ve manipulated data within its existing shape, choosing rows, columns, and groups. That worked because the data was already laid out sensibly.\n\n\n\n\n\n\n\nTip\n\n\nToday is the first new verbs since Monday. pivot_longer() and pivot_wider() change the shape of the table itself, without changing any of the values.\n\n\n\n\nThese come from tidyr, dplyr’s sibling package (both load with library(tidyverse))."
+    "text": "Recap, and what’s new\nAll week you’ve manipulated data within its existing shape, choosing rows, columns, and groups.\n\n\n\n\n\n\n\nTip\n\n\npivot_longer() and pivot_wider() change the shape of the table itself, without changing any of the values.\n\n\n\n\nThese come from tidyr, dplyr’s sibling package (both load with library(tidyverse))."
   },
   {
     "objectID": "weeks/week3/day13-pivot-slides.html#what-tidy-means",
     "href": "weeks/week3/day13-pivot-slides.html#what-tidy-means",
     "title": "Reshaping: pivot_longer · pivot_wider",
     "section": "What “tidy” means",
-    "text": "What “tidy” means\nR4DS §5.2 gives three rules. A dataset is tidy when:\n\nEach variable is a column.\nEach observation is a row.\nEach value is a cell.\n\nThe same numbers can be stored many ways. Only one is tidy:\n\ntable1   # tidy: country, year, cases, population each a column\n\n# A tibble: 6 × 4\n  country      year  cases population\n  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan  1999    745   19987071\n2 Afghanistan  2000   2666   20595360\n3 Brazil       1999  37737  172006362\n4 Brazil       2000  80488  174504898\n5 China        1999 212258 1272915272\n6 China        2000 213766 1280428583"
+    "text": "What “tidy” means\nA dataset is tidy when:\n\nEach variable is a column.\nEach observation is a row.\n\nThe same numbers can be stored many different ways. Only one of the following is tidy:\n\ntable1   # tidy: country, year, cases, population each a column\n\n# A tibble: 6 × 4\n  country      year  cases population\n  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan  1999    745   19987071\n2 Afghanistan  2000   2666   20595360\n3 Brazil       1999  37737  172006362\n4 Brazil       2000  80488  174504898\n5 China        1999 212258 1272915272\n6 China        2000 213766 1280428583"
   },
   {
     "objectID": "weeks/week3/day13-pivot-slides.html#the-same-data-untidy",
     "href": "weeks/week3/day13-pivot-slides.html#the-same-data-untidy",
     "title": "Reshaping: pivot_longer · pivot_wider",
     "section": "The same data, untidy",
-    "text": "The same data, untidy\n\ntable2   # cases and population are stacked into type/count\n\n# A tibble: 12 × 4\n   country      year type            count\n   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;\n 1 Afghanistan  1999 cases             745\n 2 Afghanistan  1999 population   19987071\n 3 Afghanistan  2000 cases            2666\n 4 Afghanistan  2000 population   20595360\n 5 Brazil       1999 cases           37737\n 6 Brazil       1999 population  172006362\n 7 Brazil       2000 cases           80488\n 8 Brazil       2000 population  174504898\n 9 China        1999 cases          212258\n10 China        1999 population 1272915272\n11 China        2000 cases          213766\n12 China        2000 population 1280428583\n\n\ntable2 holds identical information, but type/count jams two variables into a name/value pair. Computing a rate is awkward here and natural in table1.\n\n\n\n\n\n\nNote\n\n\nWhy tidy? dplyr, ggplot2, and friends are built for it. Tidy data is the shape where mutate(), group_by(), and aes() all “just work.”"
+    "text": "The same data, untidy\n\ntable2   # cases and population are stacked into type/count\n\n# A tibble: 12 × 4\n   country      year type            count\n   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;\n 1 Afghanistan  1999 cases             745\n 2 Afghanistan  1999 population   19987071\n 3 Afghanistan  2000 cases            2666\n 4 Afghanistan  2000 population   20595360\n 5 Brazil       1999 cases           37737\n 6 Brazil       1999 population  172006362\n 7 Brazil       2000 cases           80488\n 8 Brazil       2000 population  174504898\n 9 China        1999 cases          212258\n10 China        1999 population 1272915272\n11 China        2000 cases          213766\n12 China        2000 population 1280428583\n\n\ntable2 holds identical information, but type/count jams two variables into a name/value pair. Computing a rate is awkward here and natural in table1.\nThe dead giveaway that the data is not tidy here is that there are multiple rows corresponding to the same country / year observation.\n\n\n\n\n\n\nNote\n\n\nWhy tidy? dplyr, ggplot2, and friends are built for tidy data. Tidy data is the shape where mutate(), group_by(), and aes() work without needing to change the shape of the data first."
   },
   {
     "objectID": "weeks/week3/day13-pivot-slides.html#two-layouts-of-one-dataset",
     "href": "weeks/week3/day13-pivot-slides.html#two-layouts-of-one-dataset",
     "title": "Reshaping: pivot_longer · pivot_wider",
     "section": "Two layouts of one dataset",
-    "text": "Two layouts of one dataset\nDC §12.1 frames reshaping as wide ↔︎ narrow. Blood pressure, wide:\n\nbp_wide &lt;- tribble(\n  ~subject, ~before, ~after,\n  \"BHO\",        160,    160,\n  \"GWB\",        115,    135,\n  \"WJC\",        105,    145\n)\nbp_wide\n\n# A tibble: 3 × 3\n  subject before after\n  &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;\n1 BHO        160   160\n2 GWB        115   135\n3 WJC        105   145\n\n\nOne row per subject; before/after are separate columns."
+    "text": "Two layouts of one dataset\nReshaping refers to moving back and forth between wide and narrow data formats. For example, data on blood pressure (BP) in wide form:\n\nbp_wide &lt;- tribble(\n  ~subject, ~before, ~after,\n  \"BHO\",        160,    160,\n  \"GWB\",        115,    135,\n  \"WJC\",        105,    145\n)\nbp_wide\n\n# A tibble: 3 × 3\n  subject before after\n  &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;\n1 BHO        160   160\n2 GWB        115   135\n3 WJC        105   145\n\n\nHere, we have row per subject, and before/after are separate columns."
   },
   {
-    "objectID": "weeks/week3/day13-pivot-slides.html#the-same-data-narrow",
-    "href": "weeks/week3/day13-pivot-slides.html#the-same-data-narrow",
+    "objectID": "weeks/week3/day13-pivot-slides.html#the-same-bp-data-narrow",
+    "href": "weeks/week3/day13-pivot-slides.html#the-same-bp-data-narrow",
     "title": "Reshaping: pivot_longer · pivot_wider",
-    "section": "The same data, narrow",
-    "text": "The same data, narrow\n\nbp_narrow &lt;- bp_wide |&gt;\n  pivot_longer(\n    cols      = c(before, after),\n    names_to  = \"when\",\n    values_to = \"sbp\"\n  )\nbp_narrow\n\n# A tibble: 6 × 3\n  subject when     sbp\n  &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt;\n1 BHO     before   160\n2 BHO     after    160\n3 GWB     before   115\n4 GWB     after    135\n5 WJC     before   105\n6 WJC     after    145\n\n\nNow one row per measurement occasion: the case changed meaning, the numbers didn’t.\n\n\n\n\n\n\nTip\n\n\nEach shape has strengths. Wide makes a before/after change a one-line mutate(change = after - before). Narrow makes it easy to add more occasions or more variables, and it’s what ggplot2 usually wants."
+    "section": "The same BP data, narrow",
+    "text": "The same BP data, narrow\n\nbp_narrow &lt;- bp_wide |&gt;\n  pivot_longer(\n    cols      = c(before, after),\n    names_to  = \"when\",\n    values_to = \"sbp\"\n  )\nbp_narrow\n\n# A tibble: 6 × 3\n  subject when     sbp\n  &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt;\n1 BHO     before   160\n2 BHO     after    160\n3 GWB     before   115\n4 GWB     after    135\n5 WJC     before   105\n6 WJC     after    145\n\n\nNow one row per measurement occasion (before/after): the case changed meaning, the numbers didn’t.\n\n\n\n\n\n\nTip\n\n\nEach shape has strengths. Wide makes a before/after change a one-line mutate(change = after - before). Narrow makes it easy to add more measurement occasions or more variables, and it’s what ggplot2 usually expects."
   },
   {
     "objectID": "weeks/week3/day13-pivot-slides.html#the-idea",
     "href": "weeks/week3/day13-pivot-slides.html#the-idea",
     "title": "Reshaping: pivot_longer · pivot_wider",
     "section": "The idea",
-    "text": "The idea\npivot_longer() takes several columns and stacks them into two new columns: one holding the old names, one holding the old values (R4DS §5.3).\nThree arguments after the data:\n\ncols — which columns to gather (uses select() syntax: starts_with(), ranges, !)\nnames_to — name for the new column that will hold the old column names\nvalues_to — name for the new column that will hold the cell values\n\n\nbp_wide |&gt;\n  pivot_longer(cols = c(before, after), names_to = \"when\", values_to = \"sbp\")\n\n\n\n\n\n\n\nWarning\n\n\nnames_to and values_to are quoted — they’re names you’re inventing, so they don’t exist in the data yet."
+    "text": "The idea\npivot_longer() takes several columns and stacks them into two new columns: one holding the old names, one holding the old values.\nThere are three arguments after the data:\n\ncols: which columns to gather (compatible with select() syntax: starts_with(), ranges with :, !)\nnames_to: name for the new column that will hold the old column names\nvalues_to: name for the new column that will hold the cell values\n\n\nbp_wide |&gt;\n  pivot_longer(cols = c(before, after), names_to = \"when\", values_to = \"sbp\")\n\n\n\n\n\n\n\nWarning\n\n\nNote that names_to and values_to are quoted. They’re names you’re inventing, so they don’t exist in the data yet."
   },
   {
     "objectID": "weeks/week3/day13-pivot-slides.html#a-real-one-when-names-are-data",
@@ -375,35 +375,35 @@
     "href": "weeks/week3/day13-pivot-slides.html#now-its-plottable",
     "title": "Reshaping: pivot_longer · pivot_wider",
     "section": "Now it’s plottable",
-    "text": "Now it’s plottable\nIn wide form you couldn’t put “week” on an axis, it wasn’t a variable. After pivoting, it is:\n\nbillboard |&gt;\n  pivot_longer(\n    cols = starts_with(\"wk\"),\n    names_to = \"week\", values_to = \"rank\",\n    values_drop_na = TRUE\n  ) |&gt;\n  mutate(week = parse_number(week)) |&gt;     # \"wk3\" -&gt; 3\n  ggplot(aes(x = week, y = rank, group = track)) +\n  geom_line(alpha = 0.25) +\n  scale_y_reverse()                        # rank 1 on top\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nThis is why we pivot: getting a variable out of the column names and into a real column is often the step that makes a plot possible. (parse_number() pulls the number out of \"wk3\".)"
+    "text": "Now it’s plottable\nIn wide form you couldn’t put “week” on an axis, it wasn’t a variable. After pivoting, it is:\n\nbillboard |&gt;\n  pivot_longer(\n    cols = starts_with(\"wk\"),\n    names_to = \"week\", values_to = \"rank\",\n    values_drop_na = TRUE\n  ) |&gt;\n  mutate(week = parse_number(week)) |&gt; # \"wk3\" -&gt; 3\n  ggplot(aes(x = week, y = rank, group = track)) +\n  geom_line(alpha = 0.25) +\n  scale_y_reverse() # rank 1 on top\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nThis is why we pivot: getting a variable out of the column names and into a real column is often the step that makes a plot possible. (parse_number() pulls the number out of \"wk3\".)"
   },
   {
     "objectID": "weeks/week3/day13-pivot-slides.html#the-opposite-move",
     "href": "weeks/week3/day13-pivot-slides.html#the-opposite-move",
     "title": "Reshaping: pivot_longer · pivot_wider",
     "section": "The opposite move",
-    "text": "The opposite move\npivot_wider() spreads one column’s values across new columns (R4DS §5.4, DC §12.1). Its two key arguments are the mirror of before:\n\nnames_from — the column whose values become new column names\nvalues_from — the column whose values fill the new cells\n\n\nbp_narrow |&gt;\n  pivot_wider(names_from = when, values_from = sbp)\n\n# A tibble: 3 × 3\n  subject before after\n  &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;\n1 BHO        160   160\n2 GWB        115   135\n3 WJC        105   145\n\n\nWe’re back to bp_wide. pivot_longer() and pivot_wider() are inverses."
+    "text": "The opposite move\npivot_wider() spreads one column’s values across new columns. Its two key arguments are the opposite of before:\n\nnames_from: the column whose values become new column names\nvalues_from: the column whose values fill the new cells\n\n\nbp_narrow |&gt;\n  pivot_wider(names_from = when, values_from = sbp)\n\n# A tibble: 3 × 3\n  subject before after\n  &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;\n1 BHO        160   160\n2 GWB        115   135\n3 WJC        105   145\n\n\nWe’re back to bp_wide. pivot_longer() and pivot_wider() are inverses."
   },
   {
-    "objectID": "weeks/week3/day13-pivot-slides.html#where-youll-actually-reach-for-it",
-    "href": "weeks/week3/day13-pivot-slides.html#where-youll-actually-reach-for-it",
+    "objectID": "weeks/week3/day13-pivot-slides.html#when-you-might-use-it",
+    "href": "weeks/week3/day13-pivot-slides.html#when-you-might-use-it",
     "title": "Reshaping: pivot_longer · pivot_wider",
-    "section": "Where you’ll actually reach for it",
-    "text": "Where you’ll actually reach for it\nRemember Wednesday: group_by() |&gt; summarise() produces a long summary. Widening it makes a readable comparison table.\n\npenguins |&gt;\n  filter(!is.na(sex)) |&gt;\n  group_by(species, sex) |&gt;\n  summarise(avg_mass = mean(body_mass_g, na.rm = TRUE), .groups = \"drop\") |&gt;\n  pivot_wider(names_from = sex, values_from = avg_mass)\n\n# A tibble: 3 × 3\n  species   female  male\n  &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt;\n1 Adelie     3369. 4043.\n2 Chinstrap  3527. 3939.\n3 Gentoo     4680. 5485."
+    "section": "When you might use it",
+    "text": "When you might use it\nPreviously we learned group_by() |&gt; summarise() produces a long summary. Widening it makes a readable comparison table.\n\npenguins |&gt;\n  filter(!is.na(sex)) |&gt;\n  group_by(species, sex) |&gt;\n  summarise(avg_mass = mean(body_mass_g, na.rm = TRUE), .groups = \"drop\") |&gt;\n  pivot_wider(names_from = sex, values_from = avg_mass)\n\n# A tibble: 3 × 3\n  species   female  male\n  &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt;\n1 Adelie     3369. 4043.\n2 Chinstrap  3527. 3939.\n3 Gentoo     4680. 5485."
   },
   {
-    "objectID": "weeks/week3/day13-pivot-slides.html#and-comparison-becomes-a-mutate",
-    "href": "weeks/week3/day13-pivot-slides.html#and-comparison-becomes-a-mutate",
+    "objectID": "weeks/week3/day13-pivot-slides.html#comparison-becomes-a-mutate-operation",
+    "href": "weeks/week3/day13-pivot-slides.html#comparison-becomes-a-mutate-operation",
     "title": "Reshaping: pivot_longer · pivot_wider",
-    "section": "…and comparison becomes a mutate",
-    "text": "…and comparison becomes a mutate\nWith female and male now side by side in each row, the difference is one mutate(), exactly DC’s before/after point:\n\npenguins |&gt;\n  filter(!is.na(sex)) |&gt;\n  group_by(species, sex) |&gt;\n  summarise(avg_mass = mean(body_mass_g, na.rm = TRUE), .groups = \"drop\") |&gt;\n  pivot_wider(names_from = sex, values_from = avg_mass) |&gt;\n  mutate(diff = male - female)\n\n# A tibble: 3 × 4\n  species   female  male  diff\n  &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 Adelie     3369. 4043.  675.\n2 Chinstrap  3527. 3939.  412.\n3 Gentoo     4680. 5485.  805.\n\n\n\n\n\n\n\n\nTip\n\n\nLong form is for computing and plotting across a category; wide form is for reading and comparing within a row. Same data, you pick the shape that makes your next step a one-liner."
+    "section": "Comparison becomes a mutate operation",
+    "text": "Comparison becomes a mutate operation\nWith female and male now side by side in each row, the difference is one mutate():\n\npenguins |&gt;\n  filter(!is.na(sex)) |&gt;\n  group_by(species, sex) |&gt;\n  summarise(avg_mass = mean(body_mass_g, na.rm = TRUE)) |&gt;\n  pivot_wider(names_from = sex, values_from = avg_mass) |&gt;\n  mutate(diff = male - female)\n\n# A tibble: 3 × 4\n# Groups:   species [3]\n  species   female  male  diff\n  &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 Adelie     3369. 4043.  675.\n2 Chinstrap  3527. 3939.  412.\n3 Gentoo     4680. 5485.  805.\n\n\n\n\n\n\n\n\nTip\n\n\nLong form is for computing and plotting across a category; wide form is for reading and comparing within a row."
   },
   {
     "objectID": "weeks/week3/day13-pivot-slides.html#which-way-do-i-pivot",
     "href": "weeks/week3/day13-pivot-slides.html#which-way-do-i-pivot",
     "title": "Reshaping: pivot_longer · pivot_wider",
     "section": "Which way do I pivot?",
-    "text": "Which way do I pivot?\n\nMatch the shape to the next step.\n\n\n\n\n\n\n\nYour goal\nShape you want\nVerb to get there\n\n\n\n\nPut a “trapped” variable on a plot axis\nnarrow / long\npivot_longer()\n\n\nGroup or summarise over a category\nnarrow / long\npivot_longer()\n\n\nCompare two values per row (a − b)\nwide\npivot_wider()\n\n\nA human-readable comparison table\nwide\npivot_wider()\n\n\n\n\n\n\n\n\n\nNote\n\n\nR4DS §5.5: there isn’t always one “tidy” shape, it depends what you’re doing next. Don’t be afraid to untidy, transform, and re-tidy as the task changes."
+    "text": "Which way do I pivot?\n\nMatch the shape to the next step.\n\n\n\n\n\n\n\nYour goal\nShape you want\nVerb to get there\n\n\n\n\nPut a “trapped” variable on a plot axis\nnarrow / long\npivot_longer()\n\n\nGroup or summarise over a category\nnarrow / long\npivot_longer()\n\n\nCompare two values per row (a − b)\nwide\npivot_wider()\n\n\nA human-readable comparison table\nwide\npivot_wider()\n\n\n\n\n\n\n\n\n\nNote\n\n\nThere isn’t always one “tidy” shape, it depends what you’re doing next. It’s helpful to be comfortable with untidying, transforming, and re-tidying as the task changes."
   },
   {
     "objectID": "weeks/week3/day13-pivot-slides.html#what-we-covered-today",
@@ -424,56 +424,56 @@
     "href": "weeks/week3/day13-pivot-slides.html#wrap-up-looking-ahead",
     "title": "Reshaping: pivot_longer · pivot_wider",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\nTomorrow (Friday): Quiz 3 in the first 20 minutes, then version control, Git and GitHub concepts plus a live demo, so your project team can collaborate on shared code.\n\n\nUpcoming Deadlines\n\nTonight, Thu 6/4, 11:59 p.m.: Project: Team formation\nFri 6/5, before class: DC §9.1–9.2\nFri 6/5, in class: Quiz 3\nFri 6/5, 11:59 p.m.: HW 3\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 5 · DC Ch. 12 · tidyr reference"
+    "text": "Wrap-up & looking ahead\nTomorrow (Friday): Quiz 3 in the first 20 minutes, then version control, Git and GitHub concepts and a demonstration, so your project team can collaborate on shared code.\n\n\nUpcoming Deadlines\n\nTonight, Thu 6/4, 11:59 p.m.: Project: Team formation\nFri 6/5, before class: DC §9.1–9.2\nFri 6/5, in class: Quiz 3\nFri 6/5, 11:59 p.m.: HW 3\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 5 · DC Ch. 12 · tidyr reference"
   },
   {
     "objectID": "weeks/week3/day13-pivot-page.html",
     "href": "weeks/week3/day13-pivot-page.html",
     "title": "Reshaping: pivot_longer · pivot_wider",
     "section": "",
-    "text": "NoteToday: Thursday June 4\n\n\n\nBefore class\n\nPerusall Assignment: DC §12.1\n\nPlan for today\n\nWhat makes data tidy, and why the tidyverse wants it that way\nWide vs. narrow (long) layouts of the same data\nTwo new verbs: pivot_longer() and pivot_wider()\nChoosing a shape to fit the task\n\nHelpful links\n\nSyllabus · AI policy · Schedule · R4DS Ch. 5 · DC Ch. 12 · tidyr reference"
+    "text": "NoteToday: Thursday June 4\n\n\n\nBefore class\n\nPerusall Assignment: DC §12.1\n\nPlan for today\n\nWhat makes data tidy, and why the tidyverse wants it that way\nWide vs. narrow (long) layouts of the same data\npivot_longer() and pivot_wider()\nChoosing a shape to fit the task\n\nHelpful links\n\nSyllabus · AI policy · Schedule · R4DS Ch. 5 · DC Ch. 12 · tidyr reference"
   },
   {
     "objectID": "weeks/week3/day13-pivot-page.html#recap-and-whats-new",
     "href": "weeks/week3/day13-pivot-page.html#recap-and-whats-new",
     "title": "Reshaping: pivot_longer · pivot_wider",
     "section": "Recap, and what’s new",
-    "text": "Recap, and what’s new\nAll week you’ve manipulated data within its existing shape, choosing rows, columns, and groups. That worked because the data was already laid out sensibly.\n\n\n\n\n\n\nTip\n\n\n\nToday is the first new verbs since Monday. pivot_longer() and pivot_wider() change the shape of the table itself, without changing any of the values.\n\n\nThese come from tidyr, dplyr’s sibling package (both load with library(tidyverse))."
+    "text": "Recap, and what’s new\nAll week you’ve manipulated data within its existing shape, choosing rows, columns, and groups.\n\n\n\n\n\n\nTip\n\n\n\npivot_longer() and pivot_wider() change the shape of the table itself, without changing any of the values.\n\n\nThese come from tidyr, dplyr’s sibling package (both load with library(tidyverse))."
   },
   {
     "objectID": "weeks/week3/day13-pivot-page.html#what-tidy-means",
     "href": "weeks/week3/day13-pivot-page.html#what-tidy-means",
     "title": "Reshaping: pivot_longer · pivot_wider",
     "section": "What “tidy” means",
-    "text": "What “tidy” means\nR4DS §5.2 gives three rules. A dataset is tidy when:\n\nEach variable is a column.\nEach observation is a row.\nEach value is a cell.\n\nThe same numbers can be stored many ways. Only one is tidy:\n\ntable1   # tidy: country, year, cases, population each a column\n\n# A tibble: 6 × 4\n  country      year  cases population\n  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan  1999    745   19987071\n2 Afghanistan  2000   2666   20595360\n3 Brazil       1999  37737  172006362\n4 Brazil       2000  80488  174504898\n5 China        1999 212258 1272915272\n6 China        2000 213766 1280428583"
+    "text": "What “tidy” means\nA dataset is tidy when:\n\nEach variable is a column.\nEach observation is a row.\n\nThe same numbers can be stored many different ways. Only one of the following is tidy:\n\ntable1   # tidy: country, year, cases, population each a column\n\n# A tibble: 6 × 4\n  country      year  cases population\n  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan  1999    745   19987071\n2 Afghanistan  2000   2666   20595360\n3 Brazil       1999  37737  172006362\n4 Brazil       2000  80488  174504898\n5 China        1999 212258 1272915272\n6 China        2000 213766 1280428583"
   },
   {
     "objectID": "weeks/week3/day13-pivot-page.html#the-same-data-untidy",
     "href": "weeks/week3/day13-pivot-page.html#the-same-data-untidy",
     "title": "Reshaping: pivot_longer · pivot_wider",
     "section": "The same data, untidy",
-    "text": "The same data, untidy\n\ntable2   # cases and population are stacked into type/count\n\n# A tibble: 12 × 4\n   country      year type            count\n   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;\n 1 Afghanistan  1999 cases             745\n 2 Afghanistan  1999 population   19987071\n 3 Afghanistan  2000 cases            2666\n 4 Afghanistan  2000 population   20595360\n 5 Brazil       1999 cases           37737\n 6 Brazil       1999 population  172006362\n 7 Brazil       2000 cases           80488\n 8 Brazil       2000 population  174504898\n 9 China        1999 cases          212258\n10 China        1999 population 1272915272\n11 China        2000 cases          213766\n12 China        2000 population 1280428583\n\n\ntable2 holds identical information, but type/count jams two variables into a name/value pair. Computing a rate is awkward here and natural in table1.\n\n\n\n\n\n\nNote\n\n\n\nWhy tidy? dplyr, ggplot2, and friends are built for it. Tidy data is the shape where mutate(), group_by(), and aes() all “just work.”"
+    "text": "The same data, untidy\n\ntable2   # cases and population are stacked into type/count\n\n# A tibble: 12 × 4\n   country      year type            count\n   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;\n 1 Afghanistan  1999 cases             745\n 2 Afghanistan  1999 population   19987071\n 3 Afghanistan  2000 cases            2666\n 4 Afghanistan  2000 population   20595360\n 5 Brazil       1999 cases           37737\n 6 Brazil       1999 population  172006362\n 7 Brazil       2000 cases           80488\n 8 Brazil       2000 population  174504898\n 9 China        1999 cases          212258\n10 China        1999 population 1272915272\n11 China        2000 cases          213766\n12 China        2000 population 1280428583\n\n\ntable2 holds identical information, but type/count jams two variables into a name/value pair. Computing a rate is awkward here and natural in table1.\nThe dead giveaway that the data is not tidy here is that there are multiple rows corresponding to the same country / year observation.\n\n\n\n\n\n\nNote\n\n\n\nWhy tidy? dplyr, ggplot2, and friends are built for tidy data. Tidy data is the shape where mutate(), group_by(), and aes() work without needing to change the shape of the data first."
   },
   {
     "objectID": "weeks/week3/day13-pivot-page.html#two-layouts-of-one-dataset",
     "href": "weeks/week3/day13-pivot-page.html#two-layouts-of-one-dataset",
     "title": "Reshaping: pivot_longer · pivot_wider",
     "section": "Two layouts of one dataset",
-    "text": "Two layouts of one dataset\nDC §12.1 frames reshaping as wide ↔︎ narrow. Blood pressure, wide:\n\nbp_wide &lt;- tribble(\n  ~subject, ~before, ~after,\n  \"BHO\",        160,    160,\n  \"GWB\",        115,    135,\n  \"WJC\",        105,    145\n)\nbp_wide\n\n# A tibble: 3 × 3\n  subject before after\n  &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;\n1 BHO        160   160\n2 GWB        115   135\n3 WJC        105   145\n\n\nOne row per subject; before/after are separate columns."
+    "text": "Two layouts of one dataset\nReshaping refers to moving back and forth between wide and narrow data formats. For example, data on blood pressure (BP) in wide form:\n\nbp_wide &lt;- tribble(\n  ~subject, ~before, ~after,\n  \"BHO\",        160,    160,\n  \"GWB\",        115,    135,\n  \"WJC\",        105,    145\n)\nbp_wide\n\n# A tibble: 3 × 3\n  subject before after\n  &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;\n1 BHO        160   160\n2 GWB        115   135\n3 WJC        105   145\n\n\nHere, we have row per subject, and before/after are separate columns."
   },
   {
-    "objectID": "weeks/week3/day13-pivot-page.html#the-same-data-narrow",
-    "href": "weeks/week3/day13-pivot-page.html#the-same-data-narrow",
+    "objectID": "weeks/week3/day13-pivot-page.html#the-same-bp-data-narrow",
+    "href": "weeks/week3/day13-pivot-page.html#the-same-bp-data-narrow",
     "title": "Reshaping: pivot_longer · pivot_wider",
-    "section": "The same data, narrow",
-    "text": "The same data, narrow\n\nbp_narrow &lt;- bp_wide |&gt;\n  pivot_longer(\n    cols      = c(before, after),\n    names_to  = \"when\",\n    values_to = \"sbp\"\n  )\nbp_narrow\n\n# A tibble: 6 × 3\n  subject when     sbp\n  &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt;\n1 BHO     before   160\n2 BHO     after    160\n3 GWB     before   115\n4 GWB     after    135\n5 WJC     before   105\n6 WJC     after    145\n\n\nNow one row per measurement occasion: the case changed meaning, the numbers didn’t.\n\n\n\n\n\n\nTip\n\n\n\nEach shape has strengths. Wide makes a before/after change a one-line mutate(change = after - before). Narrow makes it easy to add more occasions or more variables, and it’s what ggplot2 usually wants."
+    "section": "The same BP data, narrow",
+    "text": "The same BP data, narrow\n\nbp_narrow &lt;- bp_wide |&gt;\n  pivot_longer(\n    cols      = c(before, after),\n    names_to  = \"when\",\n    values_to = \"sbp\"\n  )\nbp_narrow\n\n# A tibble: 6 × 3\n  subject when     sbp\n  &lt;chr&gt;   &lt;chr&gt;  &lt;dbl&gt;\n1 BHO     before   160\n2 BHO     after    160\n3 GWB     before   115\n4 GWB     after    135\n5 WJC     before   105\n6 WJC     after    145\n\n\nNow one row per measurement occasion (before/after): the case changed meaning, the numbers didn’t.\n\n\n\n\n\n\nTip\n\n\n\nEach shape has strengths. Wide makes a before/after change a one-line mutate(change = after - before). Narrow makes it easy to add more measurement occasions or more variables, and it’s what ggplot2 usually expects."
   },
   {
     "objectID": "weeks/week3/day13-pivot-page.html#the-idea",
     "href": "weeks/week3/day13-pivot-page.html#the-idea",
     "title": "Reshaping: pivot_longer · pivot_wider",
     "section": "The idea",
-    "text": "The idea\npivot_longer() takes several columns and stacks them into two new columns: one holding the old names, one holding the old values (R4DS §5.3).\nThree arguments after the data:\n\ncols — which columns to gather (uses select() syntax: starts_with(), ranges, !)\nnames_to — name for the new column that will hold the old column names\nvalues_to — name for the new column that will hold the cell values\n\n\nbp_wide |&gt;\n  pivot_longer(cols = c(before, after), names_to = \"when\", values_to = \"sbp\")\n\n\n\n\n\n\n\nWarning\n\n\n\nnames_to and values_to are quoted — they’re names you’re inventing, so they don’t exist in the data yet."
+    "text": "The idea\npivot_longer() takes several columns and stacks them into two new columns: one holding the old names, one holding the old values.\nThere are three arguments after the data:\n\ncols: which columns to gather (compatible with select() syntax: starts_with(), ranges with :, !)\nnames_to: name for the new column that will hold the old column names\nvalues_to: name for the new column that will hold the cell values\n\n\nbp_wide |&gt;\n  pivot_longer(cols = c(before, after), names_to = \"when\", values_to = \"sbp\")\n\n\n\n\n\n\n\nWarning\n\n\n\nNote that names_to and values_to are quoted. They’re names you’re inventing, so they don’t exist in the data yet."
   },
   {
     "objectID": "weeks/week3/day13-pivot-page.html#a-real-one-when-names-are-data",
@@ -487,35 +487,35 @@
     "href": "weeks/week3/day13-pivot-page.html#now-its-plottable",
     "title": "Reshaping: pivot_longer · pivot_wider",
     "section": "Now it’s plottable",
-    "text": "Now it’s plottable\nIn wide form you couldn’t put “week” on an axis, it wasn’t a variable. After pivoting, it is:\n\nbillboard |&gt;\n  pivot_longer(\n    cols = starts_with(\"wk\"),\n    names_to = \"week\", values_to = \"rank\",\n    values_drop_na = TRUE\n  ) |&gt;\n  mutate(week = parse_number(week)) |&gt;     # \"wk3\" -&gt; 3\n  ggplot(aes(x = week, y = rank, group = track)) +\n  geom_line(alpha = 0.25) +\n  scale_y_reverse()                        # rank 1 on top\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nThis is why we pivot: getting a variable out of the column names and into a real column is often the step that makes a plot possible. (parse_number() pulls the number out of \"wk3\".)"
+    "text": "Now it’s plottable\nIn wide form you couldn’t put “week” on an axis, it wasn’t a variable. After pivoting, it is:\n\nbillboard |&gt;\n  pivot_longer(\n    cols = starts_with(\"wk\"),\n    names_to = \"week\", values_to = \"rank\",\n    values_drop_na = TRUE\n  ) |&gt;\n  mutate(week = parse_number(week)) |&gt; # \"wk3\" -&gt; 3\n  ggplot(aes(x = week, y = rank, group = track)) +\n  geom_line(alpha = 0.25) +\n  scale_y_reverse() # rank 1 on top\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nThis is why we pivot: getting a variable out of the column names and into a real column is often the step that makes a plot possible. (parse_number() pulls the number out of \"wk3\".)"
   },
   {
     "objectID": "weeks/week3/day13-pivot-page.html#the-opposite-move",
     "href": "weeks/week3/day13-pivot-page.html#the-opposite-move",
     "title": "Reshaping: pivot_longer · pivot_wider",
     "section": "The opposite move",
-    "text": "The opposite move\npivot_wider() spreads one column’s values across new columns (R4DS §5.4, DC §12.1). Its two key arguments are the mirror of before:\n\nnames_from — the column whose values become new column names\nvalues_from — the column whose values fill the new cells\n\n\nbp_narrow |&gt;\n  pivot_wider(names_from = when, values_from = sbp)\n\n# A tibble: 3 × 3\n  subject before after\n  &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;\n1 BHO        160   160\n2 GWB        115   135\n3 WJC        105   145\n\n\nWe’re back to bp_wide. pivot_longer() and pivot_wider() are inverses."
+    "text": "The opposite move\npivot_wider() spreads one column’s values across new columns. Its two key arguments are the opposite of before:\n\nnames_from: the column whose values become new column names\nvalues_from: the column whose values fill the new cells\n\n\nbp_narrow |&gt;\n  pivot_wider(names_from = when, values_from = sbp)\n\n# A tibble: 3 × 3\n  subject before after\n  &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;\n1 BHO        160   160\n2 GWB        115   135\n3 WJC        105   145\n\n\nWe’re back to bp_wide. pivot_longer() and pivot_wider() are inverses."
   },
   {
-    "objectID": "weeks/week3/day13-pivot-page.html#where-youll-actually-reach-for-it",
-    "href": "weeks/week3/day13-pivot-page.html#where-youll-actually-reach-for-it",
+    "objectID": "weeks/week3/day13-pivot-page.html#when-you-might-use-it",
+    "href": "weeks/week3/day13-pivot-page.html#when-you-might-use-it",
     "title": "Reshaping: pivot_longer · pivot_wider",
-    "section": "Where you’ll actually reach for it",
-    "text": "Where you’ll actually reach for it\nRemember Wednesday: group_by() |&gt; summarise() produces a long summary. Widening it makes a readable comparison table.\n\npenguins |&gt;\n  filter(!is.na(sex)) |&gt;\n  group_by(species, sex) |&gt;\n  summarise(avg_mass = mean(body_mass_g, na.rm = TRUE), .groups = \"drop\") |&gt;\n  pivot_wider(names_from = sex, values_from = avg_mass)\n\n# A tibble: 3 × 3\n  species   female  male\n  &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt;\n1 Adelie     3369. 4043.\n2 Chinstrap  3527. 3939.\n3 Gentoo     4680. 5485."
+    "section": "When you might use it",
+    "text": "When you might use it\nPreviously we learned group_by() |&gt; summarise() produces a long summary. Widening it makes a readable comparison table.\n\npenguins |&gt;\n  filter(!is.na(sex)) |&gt;\n  group_by(species, sex) |&gt;\n  summarise(avg_mass = mean(body_mass_g, na.rm = TRUE), .groups = \"drop\") |&gt;\n  pivot_wider(names_from = sex, values_from = avg_mass)\n\n# A tibble: 3 × 3\n  species   female  male\n  &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt;\n1 Adelie     3369. 4043.\n2 Chinstrap  3527. 3939.\n3 Gentoo     4680. 5485."
   },
   {
-    "objectID": "weeks/week3/day13-pivot-page.html#and-comparison-becomes-a-mutate",
-    "href": "weeks/week3/day13-pivot-page.html#and-comparison-becomes-a-mutate",
+    "objectID": "weeks/week3/day13-pivot-page.html#comparison-becomes-a-mutate-operation",
+    "href": "weeks/week3/day13-pivot-page.html#comparison-becomes-a-mutate-operation",
     "title": "Reshaping: pivot_longer · pivot_wider",
-    "section": "…and comparison becomes a mutate",
-    "text": "…and comparison becomes a mutate\nWith female and male now side by side in each row, the difference is one mutate(), exactly DC’s before/after point:\n\npenguins |&gt;\n  filter(!is.na(sex)) |&gt;\n  group_by(species, sex) |&gt;\n  summarise(avg_mass = mean(body_mass_g, na.rm = TRUE), .groups = \"drop\") |&gt;\n  pivot_wider(names_from = sex, values_from = avg_mass) |&gt;\n  mutate(diff = male - female)\n\n# A tibble: 3 × 4\n  species   female  male  diff\n  &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 Adelie     3369. 4043.  675.\n2 Chinstrap  3527. 3939.  412.\n3 Gentoo     4680. 5485.  805.\n\n\n\n\n\n\n\n\nTip\n\n\n\nLong form is for computing and plotting across a category; wide form is for reading and comparing within a row. Same data, you pick the shape that makes your next step a one-liner."
+    "section": "Comparison becomes a mutate operation",
+    "text": "Comparison becomes a mutate operation\nWith female and male now side by side in each row, the difference is one mutate():\n\npenguins |&gt;\n  filter(!is.na(sex)) |&gt;\n  group_by(species, sex) |&gt;\n  summarise(avg_mass = mean(body_mass_g, na.rm = TRUE)) |&gt;\n  pivot_wider(names_from = sex, values_from = avg_mass) |&gt;\n  mutate(diff = male - female)\n\n# A tibble: 3 × 4\n# Groups:   species [3]\n  species   female  male  diff\n  &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 Adelie     3369. 4043.  675.\n2 Chinstrap  3527. 3939.  412.\n3 Gentoo     4680. 5485.  805.\n\n\n\n\n\n\n\n\nTip\n\n\n\nLong form is for computing and plotting across a category; wide form is for reading and comparing within a row."
   },
   {
     "objectID": "weeks/week3/day13-pivot-page.html#which-way-do-i-pivot",
     "href": "weeks/week3/day13-pivot-page.html#which-way-do-i-pivot",
     "title": "Reshaping: pivot_longer · pivot_wider",
     "section": "Which way do I pivot?",
-    "text": "Which way do I pivot?\n\nMatch the shape to the next step.\n\n\n\n\n\n\n\nYour goal\nShape you want\nVerb to get there\n\n\n\n\nPut a “trapped” variable on a plot axis\nnarrow / long\npivot_longer()\n\n\nGroup or summarise over a category\nnarrow / long\npivot_longer()\n\n\nCompare two values per row (a − b)\nwide\npivot_wider()\n\n\nA human-readable comparison table\nwide\npivot_wider()\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nR4DS §5.5: there isn’t always one “tidy” shape, it depends what you’re doing next. Don’t be afraid to untidy, transform, and re-tidy as the task changes."
+    "text": "Which way do I pivot?\n\nMatch the shape to the next step.\n\n\n\n\n\n\n\nYour goal\nShape you want\nVerb to get there\n\n\n\n\nPut a “trapped” variable on a plot axis\nnarrow / long\npivot_longer()\n\n\nGroup or summarise over a category\nnarrow / long\npivot_longer()\n\n\nCompare two values per row (a − b)\nwide\npivot_wider()\n\n\nA human-readable comparison table\nwide\npivot_wider()\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nThere isn’t always one “tidy” shape, it depends what you’re doing next. It’s helpful to be comfortable with untidying, transforming, and re-tidying as the task changes."
   },
   {
     "objectID": "weeks/week3/day13-pivot-page.html#what-we-covered-today",
@@ -536,7 +536,7 @@
     "href": "weeks/week3/day13-pivot-page.html#wrap-up-looking-ahead",
     "title": "Reshaping: pivot_longer · pivot_wider",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\nTomorrow (Friday): Quiz 3 in the first 20 minutes, then version control, Git and GitHub concepts plus a live demo, so your project team can collaborate on shared code.\n\n\nUpcoming Deadlines\n\nTonight, Thu 6/4, 11:59 p.m.: Project: Team formation\nFri 6/5, before class: DC §9.1–9.2\nFri 6/5, in class: Quiz 3\nFri 6/5, 11:59 p.m.: HW 3\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 5 · DC Ch. 12 · tidyr reference"
+    "text": "Wrap-up & looking ahead\nTomorrow (Friday): Quiz 3 in the first 20 minutes, then version control, Git and GitHub concepts and a demonstration, so your project team can collaborate on shared code.\n\n\nUpcoming Deadlines\n\nTonight, Thu 6/4, 11:59 p.m.: Project: Team formation\nFri 6/5, before class: DC §9.1–9.2\nFri 6/5, in class: Quiz 3\nFri 6/5, 11:59 p.m.: HW 3\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 5 · DC Ch. 12 · tidyr reference"
   },
   {
     "objectID": "weeks/week3/day13-activity.html",
