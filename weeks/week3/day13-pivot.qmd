@@ -40,7 +40,7 @@ library(palmerpenguins)
 
 - What makes data **tidy**, and why the tidyverse wants it that way
 - **Wide** vs. **narrow (long)** layouts of the *same* data
-- Two new verbs: `pivot_longer()` and `pivot_wider()`
+- `pivot_longer()` and `pivot_wider()`
 - Choosing a shape to fit the task
 
 **Helpful links**
@@ -50,10 +50,10 @@ library(palmerpenguins)
 
 ## Recap, and what's new
 
-All week you've manipulated data **within** its existing shape, choosing rows, columns, and groups. That worked because the data was already laid out sensibly.
+All week you've manipulated data **within** its existing shape, choosing rows, columns, and groups.
 
 ::: {.callout-tip style="font-size: 1.1em;"}
-Today is the first new verbs since Monday. `pivot_longer()` and `pivot_wider()` change the **shape** of the table itself, without changing any of the values.
+`pivot_longer()` and `pivot_wider()` change the **shape** of the table itself, without changing any of the values.
 :::
 
 These come from **tidyr**, dplyr's sibling package (both load with `library(tidyverse)`).
@@ -62,13 +62,12 @@ These come from **tidyr**, dplyr's sibling package (both load with `library(tidy
 
 ## What "tidy" means {.scrollable .nostretch}
 
-R4DS §5.2 gives three rules. A dataset is **tidy** when:
+A dataset is **tidy** when:
 
 1. Each **variable** is a column.
 2. Each **observation** is a row.
-3. Each **value** is a cell.
 
-The same numbers can be stored many ways. Only one is tidy:
+The same numbers can be stored many different ways. Only one of the following is tidy:
 
 ```{r}
 #| echo: TRUE
@@ -82,17 +81,19 @@ table1   # tidy: country, year, cases, population each a column
 table2   # cases and population are stacked into type/count
 ```
 
-`table2` holds identical information, but `type`/`count` jams two variables into a name/value pair. Computing a rate is awkward here and natural in `table1`.
+`table2` holds identical information, but `type`/`count` jams two variables into a name/value pair. Computing a rate is awkward here and natural in `table1`. 
+
+The dead giveaway that the data is **not** tidy here is that there are multiple rows corresponding to the same country / year observation. 
 
 ::: {.callout-note}
-Why tidy? `dplyr`, `ggplot2`, and friends are **built** for it. Tidy data is the shape where `mutate()`, `group_by()`, and `aes()` all "just work."
+Why tidy? `dplyr`, `ggplot2`, and friends are built for tidy data. Tidy data is the shape where `mutate()`, `group_by()`, and `aes()` work without needing to change the shape of the data first. 
 :::
 
 # Wide vs. narrow {background-color="#001E44"}
 
 ## Two layouts of one dataset {.scrollable .nostretch}
 
-*DC* §12.1 frames reshaping as **wide ↔ narrow**. Blood pressure, wide:
+Reshaping refers to moving back and forth between **wide** and **narrow** data formats. For example, data on blood pressure (BP) in wide form:
 
 ```{r}
 #| echo: TRUE
@@ -105,9 +106,9 @@ bp_wide <- tribble(
 bp_wide
 ```
 
-One row per **subject**; `before`/`after` are separate columns.
+Here, we have row per **subject**, and `before`/`after` are separate columns.
 
-## The same data, narrow {.scrollable .nostretch}
+## The same BP data, narrow {.scrollable .nostretch}
 
 ```{r}
 #| echo: TRUE
@@ -120,23 +121,23 @@ bp_narrow <- bp_wide |>
 bp_narrow
 ```
 
-Now one row per **measurement occasion**: the case changed meaning, the numbers didn't.
+Now one row per **measurement occasion** (before/after): the case changed meaning, the numbers didn't.
 
 ::: {.callout-tip}
-Each shape has strengths. *Wide* makes a before/after change a one-line `mutate(change = after - before)`. *Narrow* makes it easy to add more occasions or more variables, and it's what `ggplot2` usually wants.
+Each shape has strengths. *Wide* makes a before/after change a one-line `mutate(change = after - before)`. *Narrow* makes it easy to add more measurement occasions or more variables, and it's what `ggplot2` usually expects.
 :::
 
 # pivot_longer() {background-color="#001E44"}
 
 ## The idea {.scrollable .nostretch}
 
-`pivot_longer()` takes several columns and stacks them into **two** new columns: one holding the old **names**, one holding the old **values** (R4DS §5.3).
+`pivot_longer()` takes several columns and stacks them into **two** new columns: one holding the old **names**, one holding the old **values**.
 
-Three arguments after the data:
+There are three arguments after the data:
 
-- `cols` — which columns to gather (uses `select()` syntax: `starts_with()`, ranges, `!`)
-- `names_to` — name for the new column that will hold the **old column names**
-- `values_to` — name for the new column that will hold the **cell values**
+- `cols`: which columns to gather (compatible with `select()` syntax: `starts_with()`, ranges with `:`, `!`)
+- `names_to`: name for the new column that will hold the **old column names**
+- `values_to`: name for the new column that will hold the **cell values**
 
 ```{r}
 #| echo: TRUE
@@ -146,7 +147,7 @@ bp_wide |>
 ```
 
 ::: {.callout-warning}
-`names_to` and `values_to` are **quoted** — they're names you're inventing, so they don't exist in the data yet.
+Note that `names_to` and `values_to` are **quoted**. They're names you're inventing, so they don't exist in the data yet.
 :::
 
 ## A real one: when names ARE data {.scrollable .nostretch}
@@ -180,10 +181,10 @@ billboard |>
     names_to = "week", values_to = "rank",
     values_drop_na = TRUE
   ) |>
-  mutate(week = parse_number(week)) |>     # "wk3" -> 3
+  mutate(week = parse_number(week)) |> # "wk3" -> 3
   ggplot(aes(x = week, y = rank, group = track)) +
   geom_line(alpha = 0.25) +
-  scale_y_reverse()                        # rank 1 on top
+  scale_y_reverse() # rank 1 on top
 ```
 
 ::: {.callout-note}
@@ -194,10 +195,10 @@ This is *why* we pivot: getting a variable out of the column names and into a re
 
 ## The opposite move {.scrollable .nostretch}
 
-`pivot_wider()` spreads one column's values across **new columns** (R4DS §5.4, *DC* §12.1). Its two key arguments are the mirror of before:
+`pivot_wider()` spreads one column's values across **new columns**. Its two key arguments are the opposite of before:
 
-- `names_from` — the column whose **values become new column names**
-- `values_from` — the column whose values **fill the new cells**
+- `names_from`: the column whose **values become new column names**
+- `values_from`: the column whose values **fill the new cells**
 
 ```{r}
 #| echo: TRUE
@@ -207,9 +208,9 @@ bp_narrow |>
 
 We're back to `bp_wide`. **`pivot_longer()` and `pivot_wider()` are inverses.**
 
-## Where you'll actually reach for it {.scrollable .nostretch}
+## When you might use it {.scrollable .nostretch}
 
-Remember Wednesday: `group_by() |> summarise()` produces a **long** summary. Widening it makes a readable comparison table.
+Previously we learned `group_by() |> summarise()` produces a **long** summary. Widening it makes a readable comparison table.
 
 ```{r}
 #| echo: TRUE
@@ -221,9 +222,9 @@ penguins |>
   pivot_wider(names_from = sex, values_from = avg_mass)
 ```
 
-## ...and comparison becomes a mutate {.scrollable .nostretch}
+## Comparison becomes a mutate operation {.scrollable .nostretch}
 
-With `female` and `male` now side by side in each row, the difference is one `mutate()`, exactly *DC*'s before/after point:
+With `female` and `male` now side by side in each row, the difference is one `mutate()`:
 
 ```{r}
 #| echo: TRUE
@@ -231,13 +232,13 @@ With `female` and `male` now side by side in each row, the difference is one `mu
 penguins |>
   filter(!is.na(sex)) |>
   group_by(species, sex) |>
-  summarise(avg_mass = mean(body_mass_g, na.rm = TRUE), .groups = "drop") |>
+  summarise(avg_mass = mean(body_mass_g, na.rm = TRUE)) |>
   pivot_wider(names_from = sex, values_from = avg_mass) |>
   mutate(diff = male - female)
 ```
 
 ::: {.callout-tip}
-Long form is for **computing and plotting across** a category; wide form is for **reading and comparing within** a row. Same data, you pick the shape that makes your next step a one-liner.
+Long form is for **computing and plotting across** a category; wide form is for **reading and comparing within** a row.
 :::
 
 # Choosing a shape {background-color="#001E44"}
@@ -254,7 +255,7 @@ Long form is for **computing and plotting across** a category; wide form is for 
 : Match the shape to the next step. {tbl-colwidths="[44,28,28]"}
 
 ::: {.callout-note}
-R4DS §5.5: there isn't always one "tidy" shape, it depends what you're doing next. Don't be afraid to **untidy, transform, and re-tidy** as the task changes.
+There isn't always one "tidy" shape, it depends what you're doing next. It's helpful to be comfortable with **untidying, transforming, and re-tidying** as the task changes.
 :::
 
 ## What we covered today {.scrollable .nostretch}
@@ -279,7 +280,7 @@ Roughly 25 minutes. Individually or with a neighbor.
 
 ## Wrap-up & looking ahead
 
-**Tomorrow (Friday):** **Quiz 3** in the first 20 minutes, then version control, Git and GitHub concepts plus a live demo, so your project team can collaborate on shared code.
+**Tomorrow (Friday):** **Quiz 3** in the first 20 minutes, then version control, Git and GitHub concepts and a demonstration, so your project team can collaborate on shared code.
 
 :::: {.columns}
 ::: {.column width="55%"}

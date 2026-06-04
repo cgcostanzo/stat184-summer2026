@@ -1,5 +1,5 @@
 ---
-title: "Putting it together: messy data → summary table"
+title: "Putting it together: from messy data to a summary table"
 subtitle: "Wednesday, June 3, 2026"
 lang: en
 editor: source
@@ -34,14 +34,14 @@ library(nycflights13)
 
 **Before class**
 
-- **No new reading** — bring the six verbs from Monday and Tuesday
+- **No new reading**
 
 **Plan for today**
 
 - No new verbs. Today is about **combining and sequencing** them
-- The workflow: question → target table → plan → build → **check**
+- The workflow: question --\> target table --\> plan --\> build --\> **check**
 - Working on a genuinely messy dataset (`flights`)
-- Not getting fooled: missing values, tiny groups, wrong order
+- Handling missing values, small groups, wrong order
 
 **Helpful links**
 
@@ -50,76 +50,74 @@ library(nycflights13)
 
 ## What you already have
 
-Two days in, you have the **whole single-table toolkit**:
+**Single-table toolkit**:
 
-| Touches... | Verbs |
-|---|---|
-| **Rows** | `filter()`, `arrange()` |
-| **Columns** | `select()`, `mutate()` |
-| **Groups** | `group_by()`, `summarise()` |
+| Touches     | Verbs                       |
+|-------------|-----------------------------|
+| **Rows**    | `filter()`, `arrange()`     |
+| **Columns** | `select()`, `mutate()`      |
+| **Groups**  | `group_by()`, `summarise()` |
 
-: Six verbs, plus `count()` and the pipe. {tbl-colwidths="[30,70]"}
+: Six verbs, plus `count()` and the pipe.
 
 ::: {.callout-tip style="font-size: 1.1em;"}
-Today there is **nothing new to memorize.** The skill we're building is *choosing which verb, in what order*, and *checking that the answer is real.*
+Today we will practice *choosing which verb, in what order*, and *checking that the answer is trustworthy and rigorous.*
 :::
 
-## The workflow {.scrollable .nostretch}
+## Workflow {.scrollable .nostretch}
 
-This is Monday's habit (*DC* §7.1), now run end to end:
+1.  **State the question** in plain English.
+2.  **Sketch the target table:** what does one row represent? what columns?
+3.  **Plan the verbs** as English sentences, writing one sentence per step.
+4.  **Build the pipeline** one verb at a time, looking at the output each time.
+5.  **Check it.** Does the count make sense? Are missing values handled? Does the result match your intuition/pass a sanity check?
 
-1. **State the question** in plain English.
-2. **Sketch the target table:** what does one row represent? what columns?
-3. **Plan the verbs** as English sentences, one per step.
-4. **Build the pipeline** one verb at a time, looking at the output each time.
-5. **Check it.** Does the count make sense? Are missing values handled? Does the number pass a smell test?
-
-::: {.callout-note}
-Step 5 is the one people skip, and it's the one Friday's AI lesson was about. A pipeline that *runs* is not the same as a pipeline that's *right*.
+::: callout-note
+Make sure not to skip Step 5. A pipeline that *runs* is not the same as a pipeline that's *correct*.
 :::
 
 # A messier dataset {background-color="#001E44"}
 
-## Meet `flights` {.scrollable .nostretch}
+## `flights` {.scrollable .nostretch}
 
-You saw `flights` on HW2 and Friday; it's also the running example in R4DS Ch. 3. Every flight out of NYC in 2013:
+You saw `flights` on HW2 and Friday; it's also the running example in R4DS Ch. 3. It contains data on every flight out of NYC area airports in 2013:
 
 ```{r}
 #| echo: TRUE
 glimpse(flights)
 ```
 
-## Where the mess hides {.scrollable .nostretch}
+## Dirty data {.scrollable .nostretch}
 
-This is what real data looks like after `read_csv("something.csv")`:
+This is a common example of what a real dataset often looks like immediately after you load it into R, before you've done any data cleaning:
 
-- **336,776 rows, 19 columns** — `select()` and `n()` earn their keep here in a way they didn't on `penguins`.
-- **Missing values that mean something:** cancelled flights have `NA` for `dep_delay` and `arr_delay`.
-- **Codes, not labels:** `carrier` is `"UA"`, not `"United"`. (Turning codes into names needs a *join*, which is later, so today we'll live with the codes.)
+- **336,776 rows, 19 columns**: `select()` and `n()` are much more relevant here compared to a smaller dataset like `penguins`.
+- **Meaningful missing values:** cancelled flights have `NA` for `dep_delay` and `arr_delay`.
+- **Codes, rather than long-form labels:** here, `carrier` is `"UA"`, not `"United"`. (Turning codes into names requires a *join*, which is later, so today we'll stick to the codes.)
 
 ```{r}
 #| echo: TRUE
 flights |>
   summarise(
-    n          = n(),
+    n           = n(),
     missing_dep = sum(is.na(dep_delay))
   )
 ```
 
-::: {.callout-warning}
-Over 8,000 rows have a missing departure delay. Every average we compute has to decide what to do with them, or it silently returns `NA`.
+::: callout-warning
+The above result tells us that there are 8,000 rows with a missing departure delay. Every average we compute has to decide what to do with them, or it silently returns `NA`.
 :::
 
 # Worked example 1 {background-color="#001E44"}
 
 ## Q: which months had the worst delays? {.scrollable .nostretch}
 
-**English plan:**
+**Plan:**
 
-- One row per **month**, with its average departure delay and a count.
+- We want one row per **month**, with its average departure delay and a count.
 - *Group by* month, *then summarise* the mean and `n()`, *then arrange* worst-first.
 
-**Target table:** `month | avg_delay | n` — twelve rows.
+**Target table:** `month | avg_delay | n`, which should have twelve rows.
 
 ```{r}
 #| echo: TRUE
@@ -137,27 +135,27 @@ flights |>
 
 We used **three** verbs in sequence, and two safety habits from this week:
 
-- `na.rm = TRUE` so the cancelled flights don't poison the mean *(Monday)*
-- `n = n()` so we can see each average rests on ~25,000 flights, not a handful *(Monday)*
+- `na.rm = TRUE` so the cancelled flights don't give `NA`s for the means.
+- `n = n()` so we can see each average rests on around 25,000 flights at least, rather than a small number.
 
-::: {.callout-tip}
-Summer months (6, 7) and December rise to the top — which matches what you'd expect from thunderstorms and holiday travel. **That agreement is the smell test passing.** If January had come out worst by a mile, you'd go looking for a bug.
+::: callout-tip
+Summer months (6, 7) and December rise to the top, which matches what you'd expect from thunderstorms and holiday travel. This is a good place to think about common sense/sanity checking; if January had come out worst by a mile (no thunderstorms and little holiday travel), it might suggest something is wrong with your code. At the very least, it's a signal to double check your code/investigate further.
 :::
 
 # Worked example 2 {background-color="#001E44"}
 
 ## Q: worst JFK summer destinations? {.scrollable .nostretch}
 
-**Question:** for flights leaving **JFK in summer**, which **destination** had the worst average arrival delay, among destinations with **enough flights to trust**?
+**Question:** for flights leaving **JFK in summer**, which **destination** had the worst average arrival delay, among destinations with **enough flights to trust the result**? Let's set an arbitrary cutoff at 100 flights for simplicity.
 
-**English plan:**
+**Plan:**
 
 - *Filter* to JFK, summer months.
 - *Group by* destination, *summarise* mean arrival delay + `n()`.
 - *Filter again* to drop tiny destinations.
 - *Arrange* worst-first.
 
-## Build it one verb at a time {.scrollable .nostretch}
+## Execution {.scrollable .nostretch}
 
 ```{r}
 #| echo: TRUE
@@ -167,34 +165,29 @@ flights |>
   summarise(
     avg_arr_delay = mean(arr_delay, na.rm = TRUE),
     n             = n(),
-    .groups       = "drop"
+    .groups       = "drop" # <-- removes grouping metadata from your data frame
   ) |>
   filter(n >= 100) |>
   arrange(desc(avg_arr_delay))
 ```
 
-::: {.callout-note}
-Notice `filter()` appears **twice**, and it's the *same verb* doing two different jobs: once on the raw rows (which flights), once on the summary table (which destinations are big enough to believe). Same tool, different point in the pipeline.
+::: callout-note
+Notice that `filter()` appears **twice**, operating once on the raw rows (which flights), and once on the summary table (which destinations are "big enough").
 :::
 
-## Why the second filter matters {.scrollable .nostretch}
+## The necessity of the second `filter ()`.scrollable .nostretch}
 
-Without `filter(n >= 100)`, the "worst destination" is whichever one had a single very-late flight. That's exactly Monday's lesson: **a mean from a group of 3 is not a fact.**
+Without `filter(n >= 100)`, the "worst destination" could be whichever one had a single very-late flight (isn't necessarily a problem with this dataset, but we got lucky). **A mean from a group of 3 is not very reliable.** 
 
-```{r}
-#| echo: TRUE
-#| eval: FALSE
-# Drop the n >= 100 line and the top of the list is full of
-# destinations with n = 1 or n = 2. Impressive-looking, meaningless.
-```
+- If we gained more samples, the answer is much more likely to shift significantly in the case of a small sample size.
 
-This is also a verification move: the count column is how you *catch* the problem before it ends up in a report.
+It's a good idea to have verification steps built-in to all of your pipelines when possible; always including the count column is how you *catch* the problem before it ends up in a report that you have to retract later.
 
 # Worked example 3 {background-color="#001E44"}
 
 ## Q: do long hauls leave later? {.scrollable .nostretch}
 
-Now bring in `mutate()` and end with a plot.
+Now we can leverage `mutate()` before piping our transformed data into a plot.
 
 **English plan:** *mutate* a long/short label from `distance`, *group by* it, *summarise* the average delay, *then plot* the summary table.
 
@@ -212,7 +205,7 @@ flights |>
 
 ## From summary table to plot {.scrollable .nostretch}
 
-Because the summary is just a (tiny) data frame, it's already glyph-ready, pipe it into `ggplot()`, switching `|>` to `+`:
+Because the summary is just a (tiny) data frame, it's already glyph-ready, so we can pipe it into `ggplot()`:
 
 ```{r}
 #| echo: TRUE
@@ -225,19 +218,17 @@ flights |>
   geom_col()
 ```
 
-This is the full arc of the week: **raw rows → wrangle to a glyph-ready table → graph it.**
-
 # Getting it right {background-color="#001E44"}
 
 ## Order matters {.scrollable .nostretch}
 
 The same verbs in a different order answer different questions:
 
-::: {.columns}
+::::: columns
 ::: {.column width="50%"}
 **Filter, *then* summarise**
 
-"Average delay *of JFK flights.*"
+"Average delay *of JFK flights.*" (This is more computationally efficient)
 
 ```{r}
 #| echo: TRUE
@@ -268,34 +259,47 @@ flights |>
   filter(origin == "JFK")
 ```
 :::
-:::
+:::::
 
-Both are valid. The trick is knowing **which question you're actually asking** before you write it.
+Both are valid, and both give the same number in this case. However, they won't always be. The trick is knowing **which question you're actually asking** before you write it.
+
+## A case when the output changes with order
+
+```{r}
+#| echo: TRUE
+flights |>
+  filter(dep_delay > 60) |> 
+  summarise(avg_delay = mean(arr_delay, na.rm = TRUE))
+
+flights |>
+  summarise(avg_delay = mean(arr_delay, na.rm = TRUE)) |>
+  filter(avg_delay > 60)
+```
 
 ## The three checks {.scrollable .nostretch}
 
-Before you believe any wrangled result, run the checklist that's been building all week:
+Before trusting any wrangled result, run this checklist:
 
-| Check | The verb/habit | First seen |
-|---|---|---|
-| Did missing values get handled? | `na.rm`, `!is.na()` | Mon / Tue |
-| Is each number based on enough rows? | `n = n()` | Monday |
-| Does the answer pass a smell test? | compare to what you know | Friday |
+| Check                                | The verb/habit           |
+|--------------------------------------|--------------------------|
+| Did missing values get handled?      | `na.rm`, `!is.na()`      |
+| Is each number based on enough rows? | `n = n()`                |
+| Does the answer pass a smell test?   | compare to what you know |
 
-: Your verification checklist. {tbl-colwidths="[42,33,25]"}
+: Your verification checklist.
 
-::: {.callout-warning}
-A pipeline that runs without error has cleared the *lowest* bar. These three checks are what separate "it ran" from "it's right."
+::: callout-warning
+A pipeline that runs without error has cleared the *lowest* bar; that doesn't *necessarily* mean everything is fine.
 :::
 
 ## What we did today {.scrollable .nostretch}
 
-- **No new verbs** — just the six from Monday and Tuesday, sequenced
-- **The workflow:** question → target table → English plan → build incrementally → check
+- **No new verbs**: just the six from Monday and Tuesday, sequenced
+- **The workflow:** question --> target table --> English plan --> build incrementally --> check
 - **Real mess:** missing delays, code-not-name columns, tiny groups
 - **`filter()` in two roles:** subsetting raw rows *and* trimming a summary table
-- **Order matters:** filter-then-summarise ≠ summarise-then-filter
-- **The full arc:** raw rows → glyph-ready summary → plot
+- **Order matters:** filter-then-summarise =/= summarise-then-filter
+- **The full arc:** raw rows --> glyph-ready summary --> plot
 
 # Activity {background-color="#7C0A02"}
 
@@ -305,7 +309,7 @@ Roughly 25 minutes. Individually or with a neighbor.
 
 - [Activity Canvas Link](https://psu.instructure.com/courses/2487468/assignments/)
 
-**Format:** you'll answer a series of questions about `flights` by building pipelines, but each one starts with writing the **English plan first**. You'll compare two pipelines that look alike but answer different questions, catch a silently-dropped `NA`, and finish with one open-ended question where you choose the verbs and **report your sanity checks**.
+**Format:** you'll answer a series of questions about `flights` by building pipelines, but each one starts with writing the **plan in words first**. You'll compare two pipelines that look alike but answer different questions, catch a silently-dropped `NA`, and finish with one open-ended question where you choose the verbs and **report your sanity checks**.
 
 **To turn in:** save your `.qmd` and rendered HTML.
 
@@ -313,21 +317,22 @@ Roughly 25 minutes. Individually or with a neighbor.
 
 **Tomorrow (Thursday):** new reading and new content, reshaping data between **wide and narrow** with `pivot_longer()` and `pivot_wider()`.
 
-:::: {.columns}
+::::: columns
 ::: {.column width="55%"}
 **Upcoming Deadlines**
 
 - **Thu 6/4, before class**: [*DC* §12.1](https://psu.instructure.com/courses/2487468/assignments/18325371)
-- **Thu 6/4, 11:59 p.m.**: [Project: Team formation](https://psu.instructure.com/courses/2487468/assignments/)
+- **Thu 6/4, 11:59 p.m.**: [Project: Team formation](https://psu.instructure.com/courses/2487468/discussion_topics/17435844)
+- **Fri 6/5, 11:59 p.m.**: [Homework 3: Data Wrangling & Reshaping ](https://psu.instructure.com/courses/2487468/assignments/18327019)
 :::
 
 ::: {.column width="45%"}
 **Reach out**
 
-Stuck? Office hours, or email me ([cgc5478@psu.edu](mailto:cgc5478@psu.edu)) or Xinyue ([xpw5228@psu.edu](mailto:xpw5228@psu.edu)).
+Stuck? Office hours, or email me ([cgc5478\@psu.edu](mailto:cgc5478@psu.edu)) or Xinyue ([xpw5228\@psu.edu](mailto:xpw5228@psu.edu)).
 
 **Reference**
 
 [Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*R4DS* Ch. 3](https://r4ds.hadley.nz/data-transform) · [*DC* Ch. 10](https://dtkaplan.github.io/DataComputingEbook/chap-more-data-verbs.html#chap:more-data-verbs) · [dplyr reference](https://dplyr.tidyverse.org/reference)
 :::
-::::
+:::::

@@ -24,7 +24,7 @@ Today's verbs are `pivot_longer()` and `pivot_wider()`. We'll use a few small bu
 
 ---
 
-# Part 1 --- Tidy, wide, or narrow?
+# Part 1
 
 Look at `table1` and `table2` (both built into tidyr):
 
@@ -35,33 +35,39 @@ table2
 
 **1a.** For each, describe what **one row** represents.
 
-[table1: ... ] — [table2: ... ]
+> Table 1: [ Answer here. ]
+
+> Table 2: [ Answer here. ]
 
 **1b.** Which one is **tidy** (each variable a column, each observation a row)? Which is the **narrower** of the two, and how can you tell?
 
-[Your answer.]
+> [Answer here.]
 
 ---
 
-# Part 2 --- pivot_longer() on a tiny table
+# Part 2
 
 Build this wide table by hand:
 
 ```{r build-wide}
 bp_wide <- tribble(
   ~subject, ~before, ~after,
-  "BHO",        160,    160,
-  "GWB",        115,    135,
-  "WJC",        105,    145
+  "BHO", 160, 160,
+  "GWB", 115, 135,
+  "WJC", 105, 145
 )
 bp_wide
 ```
 
 **2a. Predict first.** If you pivot `before` and `after` into a long form, how many **rows** will the result have? How many **columns**?
 
-Prediction: [ ... rows / ... columns ]
+Prediction:
 
-**2b.** Now do it. Use `names_to = "when"` and `values_to = "sbp"`. Check against your prediction.
+> [Pred. # Rows here]
+
+> [Pred. # Cols here]
+
+**2b.** Now pivot `bp_wide` to long form. Use `names_to = "when"` and `values_to = "sbp"`. Check against your prediction.
 
 ```{r longer-bp}
 # Your code:
@@ -70,7 +76,7 @@ Prediction: [ ... rows / ... columns ]
 
 ---
 
-# Part 3 --- pivot_longer() on real data
+# Part 3
 
 The `billboard` data (in tidyr) has one column per chart week (`wk1`, `wk2`, ...).
 
@@ -90,13 +96,13 @@ The `billboard` data (in tidyr) has one column per chart week (`wk1`, `wk2`, ...
 
 **One sentence:** what does the plot show about how long songs stay on the charts?
 
-[Your answer.]
+> [Answer here.]
 
 ---
 
-# Part 4 --- pivot_wider() for comparison
+# Part 4
 
-Start from a **long** summary (this is the kind of table you built on Wednesday):
+Start from a long summary table:
 
 ```{r long-summary, message=FALSE}
 penguin_summary <- penguins |>
@@ -106,11 +112,15 @@ penguin_summary <- penguins |>
 penguin_summary
 ```
 
-**4a. Predict first.** If you widen this with `names_from = sex`, `values_from = avg_mass`, how many rows and columns will you get?
+**4a.** If you widen this with `names_from = sex`, `values_from = avg_mass`, how many rows and columns will you get?
 
-Prediction: [ ... rows / ... columns ]
+Prediction:
 
-**4b.** Do the pivot, then add a column `diff` = `male` − `female`.
+> [Pred. # Rows here]
+
+> [Pred. # Cols here]
+
+**4b.** Pivot, then add a column `diff` = `male` - `female`.
 
 ```{r wider-penguins}
 # Your code:
@@ -119,11 +129,11 @@ Prediction: [ ... rows / ... columns ]
 
 **Which species has the biggest mass gap between sexes?**
 
-[Your answer.]
+> [Answer here.]
 
 ---
 
-# Part 5 --- The round trip, and a trap
+# Part 5
 
 **5a.** Take your widened penguin table from Part 4 (before the `diff` column) and pivot it **back** to long form. Do you recover the original `penguin_summary`? (`pivot_longer()` and `pivot_wider()` are inverses.)
 
@@ -132,7 +142,7 @@ Prediction: [ ... rows / ... columns ]
 
 ```
 
-**5b. Debug it.** Someone tries to make `bp_wide` longer like this and gets a strange result:
+**5b.** Someone tries to make `bp_wide` longer like this and gets a strange result:
 
 ```{r too-narrow}
 #| eval: false
@@ -146,27 +156,23 @@ bp_wide |>
 
 Run it. Why is this "too narrow" / wrong? What single change to `cols` fixes it?
 
-[Your explanation and fix.]
+> [Answer here.]
 
 ---
 
 # Part 6 --- Choose the shape
 
-For each goal, say whether you'd want the data **wide** or **narrow**, and which pivot gets you there. One sentence each.
+For each goal, say whether you'd want the data **wide** or **narrow**, and which pivot gets you there.
 
 1. Plot each country's TB cases over time, one line per country.
 2. Compute, for each country, the change in cases from 1999 to 2000 as a single new column.
 3. Group by year and sum the cases across all countries.
 
-[1: ... ] — [2: ... ] — [3: ... ]
-
----
-
-# Wrap-up
-
-**One-sentence reflection:** pivoting is the first thing this week that changed the *shape* of the table rather than its contents, what clicked, and what's still fuzzy?
-
-[Write one sentence.]
+> 1. [Answer here.]
+>
+> 2. [Answer here.]
+>
+> 3. [Answer here.]
 
 ---
 

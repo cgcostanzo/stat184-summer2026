@@ -52,11 +52,11 @@ library(palmerpenguins)
 
 We discussed the overarching **framework** and two data verbs:
 
-| Family | Input → Output | The verb that uses it |
+| Family | Input to Output | The verb that uses it |
 |---|---|---|
-| Reduction | variable → scalar | `summarise()` |
-| Transformation | variable → variable | *...today: `mutate()`* |
-| Data verb | data frame → data frame | all of them |
+| Reduction | variable to scalar | `summarise()` |
+| Transformation | variable to variable | *...today: `mutate()`* |
+| Data verb | data frame to data frame | all of them |
 
 : {tbl-colwidths="[28,42,30]"}
 
@@ -227,10 +227,10 @@ penguins |>
 ```{r}
 #| echo: TRUE
 #| eval: FALSE
-# transformation: one value per row → mutate()
+# transformation: one value per row to mutate()
 penguins |> mutate(bill_ratio = bill_length_mm / bill_depth_mm)
 
-# reduction: one value total → summarise()
+# reduction: one value total to summarise()
 penguins |> summarise(avg_bill = mean(bill_length_mm, na.rm = TRUE))
 ```
 
@@ -323,7 +323,7 @@ penguins |>                           penguins|>filter(!is.na(sex))|>group_by(
 ```
 
 ::: {.callout-tip}
-Don't hand-format forever: the **`styler`** package reformats a whole file for you. In RStudio, `Cmd/Ctrl + Shift + P` → type "styler". Full guide: R4DS Ch. 4.
+Don't hand-format forever: the **`styler`** package reformats a whole file for you. In RStudio, `Cmd/Ctrl + Shift + P` then type "styler". Full guide: R4DS Ch. 4.
 :::
 
 ## A helpful shortcut {.scrollable .nostretch}

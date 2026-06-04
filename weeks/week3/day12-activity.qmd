@@ -20,13 +20,13 @@ library(tidyverse)
 library(nycflights13)
 ```
 
-Today we use `flights`, every flight out of NYC in 2013. Glimpse it, and note the mess: cancelled flights have **missing** `dep_delay` / `arr_delay`.
+Today we use `flights`, every flight out of NYC in 2013. Glimpse it, and note that cancelled flights are denoted using `NA` missing values in the `dep_delay` and `arr_delay` columns.
 
 ```{r}
 glimpse(flights)
 ```
 
-No new verbs today. You have all six (`filter`, `arrange`, `select`, `mutate`, `group_by`, `summarise`), plus `count()` and the pipe. The goal is **sequencing them and checking your work.**
+Today, we will practice using the six verbs (`filter`, `arrange`, `select`, `mutate`, `group_by`, `summarise`), plus `count()` and the pipe to chain them together.
 
 ---
 
@@ -34,11 +34,15 @@ No new verbs today. You have all six (`filter`, `arrange`, `select`, `mutate`, `
 
 For this question: *Which of the three NYC airports (`origin`) sent out the most flights in 2013?*
 
-**1a.** First, write the **English plan**, one sentence per step. Which verbs, in what order? What does one row of your target table represent?
+**1a.** First, write out your plan in English using one sentence per step. Answer the following questions:
 
-[Your plan here.]
+1. Which verbs will you need to use, and in what order? 
 
-**1b.** Now write it. (Hint: this is a one-liner with `count()`, *or* a `group_by()` + `summarise()`.)
+2. What does one row of your target table represent?
+
+> [Write your plan here.]
+
+**1b.** Now implement your plan with code. (Recall: `count()` is a shortcut for a `group_by()` + `summarise()`. Both give the same result.)
 
 ```{r part1}
 # Your code:
@@ -51,7 +55,7 @@ For this question: *Which of the three NYC airports (`origin`) sent out the most
 
 *Which carrier had the worst average arrival delay, among carriers with at least 1,000 flights?*
 
-Build it step by step: filter is **not** needed on the raw rows here, but you'll need it on the **summary table** to drop small carriers. Include `n = n()`.
+Build a pipeline step by step; filter is **not** needed on the raw rows here, but you'll need it on the **summary table** to drop small carriers. Include `n = n()`.
 
 ```{r part2}
 # Your code:
@@ -60,29 +64,29 @@ Build it step by step: filter is **not** needed on the raw rows here, but you'll
 
 **Which carrier is it, and how many flights is that average based on?**
 
-[Your answer. We only have the 2-letter code today; turning it into the airline's name needs a *join*, which is coming later.]
+> [Write your answer here. Note that we only have the 2-letter code for carrier in today's data; turning it into the airline's name needs a *join*, which we've seen but haven't covered in detail yet.]
 
 ---
 
 # Part 3 --- mutate(), then plot
 
-**3a.** Create a label `time_of_day` that is `"morning"` when `dep_time < 1200` and `"afternoon/evening"` otherwise. Then find the average departure delay for each, with a count.
+**3a.** Create a new variable `time_of_day` that takes on the value `"morning"` when `dep_time < 1200` and `"afternoon/evening"` otherwise. Then find the average departure delay for each, with a count.
 
 ```{r part3a}
 # Your code:
 
 ```
 
-**3b.** Pipe a version of that summary into a `geom_col()` plot of average delay by `time_of_day`. (Remember to switch `|>` to `+` at `ggplot()`.)
+**3b.** Pipe a version of that summary into a `geom_col()` plot of average delay by `time_of_day`.
 
 ```{r part3b}
 # Your code:
 
 ```
 
-**One sentence:** what does it show?
+In one sentence, explain what your plot shows:
 
-[Your answer.]
+> [Write your answer here.]
 
 ---
 
@@ -107,7 +111,7 @@ flights |>
   filter(dest == "BOS")
 ```
 
-[How do the questions differ? Do the numbers match? Should they?]
+> [Write your answer here. Address the following: how do the questions differ? Do the numbers match? Should they?]
 
 **4b. Spot the silent `NA`.** This returns `NA` for some carriers. Why? What single change fixes it?
 
@@ -118,7 +122,7 @@ flights |>
   summarise(avg_delay = mean(dep_delay))
 ```
 
-[Your explanation and fix.]
+> [Write your explanation and the fix in words here.]
 
 ---
 
@@ -128,11 +132,11 @@ Pick **one** of these questions (or invent your own), and answer it with a pipel
 
 - Which destination has the most *variable* arrival delays? (Hint: `sd()` is a reduction, like `mean()`.)
 - Do flights later in the day make up time in the air more than morning flights?
-- Which day of the week (you'd need `month`/`day`...) is worst to fly? *(Stick to month if day-of-week is too much.)*
+- Which day of the week (you would needthe  `month` and `day` variables) is worst to fly? *(Stick to month if day of the week is too much.)*
 
 **5a.** State your question and your English plan.
 
-[Question + plan.]
+> [Write your question & plan here.]
 
 **5b.** Your pipeline:
 
@@ -141,21 +145,17 @@ Pick **one** of these questions (or invent your own), and answer it with a pipel
 
 ```
 
-**5c. Required: report your checks.** Answer all three:
+**5c. Report your checks.** Answer the following three questions:
 
-- How did you handle missing values?
-- What's the smallest `n` in your result, and is it big enough to trust?
-- Does the answer pass a smell test (does it match what you'd expect)?
+1. How did you handle missing values?
+2. What's the smallest sample size `n` in your result, and is it big enough to trust?
+3. Does the answer match your intuition (what you would expect)?
 
-[Your three checks.]
-
----
-
-# Wrap-up
-
-**One-sentence reflection:** what's one mistake you almost made today (wrong order, forgotten `na.rm`, a tiny group) that a quick check caught?
-
-[Write one sentence.]
+> 1. [Write your answer here.]
+>
+> 2. [Write your answer here.]
+>
+> 3. [Write your answer here.]
 
 ---
 
