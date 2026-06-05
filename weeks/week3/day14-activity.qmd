@@ -1,6 +1,6 @@
 ---
 title: "Day 14 Activity: Get Git working (weekend setup)"
-subtitle: "Friday, June 5, 2026 · due before class Monday, June 8"
+subtitle: "Friday, June 5, 2026 · due 11:59 p.m. Tuesday, June 9"
 author: "Your Name Here"
 editor: source
 engine: knitr
@@ -15,7 +15,7 @@ format:
 
 By **Tuesday June 9** your project team needs a shared GitHub repo that **every member can push to.**
 
-Work through the steps in order. Each links to the matching chapter of [**Happy Git with R**](https://happygitwithr.com/) (Jenny Bryan); read its instructions there and use this page as the checklist. Part 5 covers the common ones, and feel free to come to office hours if you get stuck
+Work through the steps in order. Each links to the matching chapter of [**Happy Git with R**](https://happygitwithr.com/) (Jenny Bryan); read its instructions there and use this page as the checklist. Part 5 covers the common ones, and feel free to come to office hours if you get stuck.
 
 ::: {.callout-note}
 We use **RStudio's built-in Git integration** with **HTTPS + a personal access token (PAT)**. That matches *DC* Ch. 9 and Happy Git, and keeps everything inside RStudio.
@@ -119,12 +119,12 @@ You will hit at least one of these. None of them mean you broke anything.
 
 : Common setup snags. {tbl-colwidths="[30,38,32]"}
 
-Still stuck after 15 minutes? Two reliable resources:
+Resources:
 
 - Happy Git's [**troubleshooting**](https://happygitwithr.com/troubleshooting) chapter.
-- The ["**Burn it all down**"](https://happygitwithr.com/burn) move: delete the broken local folder and **re-clone** a fresh copy from GitHub. Your pushed work is safe on the remote.
+- The ["**Burn it all down**"](https://happygitwithr.com/burn) move: delete the broken local folder and **re-clone** a fresh copy from GitHub. 
 
-Bring it to office hours. Setup problems are quick to fix in person and miserable to debug alone at midnight.
+Feel free to come to office hours on Monday if you get stuck. 
 
 ---
 
@@ -135,4 +135,4 @@ Submit on Canvas:
 1. The **URL of your team repo**.
 2. Confirmation that **all members have pushed** (the easiest proof is a screenshot of the repo's commit history or contributors list).
 
-**Due before class Monday, June 8.** Bring your configured laptop, we'll do a collaborative round-trip and a deliberate merge conflict together.
+**Due 11:59 p.m. Tuesday, June 9.**

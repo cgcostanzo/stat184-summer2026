@@ -97,7 +97,7 @@ Paired with **literate programming** (Quarto), version control is what makes an 
 
 ## The distinction {.scrollable .nostretch}
 
-People often use "git" as a catch-a;;, but there's actually two pieces:
+People often use "git" as a catch-all, but there's actually two pieces:
 
 | | **Git** | **GitHub** |
 |---|---|---|
@@ -167,12 +167,12 @@ I'll run the full loop on the projector. **Don't follow along yet**; just watch 
 6. Edit a file *on GitHub*, then **Pull** in RStudio to bring it down.
 
 ::: {.callout-tip}
-Notice there was nothing about data analysis here. Git sits *underneath* the work you already do, it just snapshots and syncs the files.
+Notice there was nothing about data analysis here. Git sits *underneath* the work you already do, simply creating snapshots and syncing the files.
 :::
 
-## How a team uses it {.scrollable .nostretch}
+## Git + Teamwork {.scrollable .nostretch}
 
-Think of the remote as the shared copy everyone syncs to (*DC* §9.2). For your project team:
+For your project team:
 
 - One shared repo on GitHub; everyone has a local clone.
 - Each person edits, commits, and pushes their work.
@@ -187,9 +187,7 @@ Think of the remote as the shared copy everyone syncs to (*DC* §9.2). For your 
 
 # When it goes wrong {background-color="#001E44"}
 
-## The three you'll hit first {.scrollable .nostretch}
-
-Everyone trips on these; there's a fix for each (*DC* §9.2.3):
+## Common issues {.scrollable .nostretch}
 
 | Symptom | Cause | Fix |
 |---|---|---|
@@ -201,7 +199,7 @@ Everyone trips on these; there's a fix for each (*DC* §9.2.3):
 : Common snags and their fixes. {tbl-colwidths="[34,36,30]"}
 
 ::: {.callout-warning}
-When truly stuck, Happy Git's [troubleshooting](https://happygitwithr.com/troubleshooting) chapter and the ["Burn it all down"](https://happygitwithr.com/burn) escape hatch (re-clone a fresh copy) will save you. Getting stuck is normal, not a sign you did it wrong.
+When truly stuck, Happy Git's [troubleshooting](https://happygitwithr.com/troubleshooting) chapter and the ["Burn it all down"](https://happygitwithr.com/burn) escape hatch (re-clone a fresh copy) will probably help.
 :::
 
 ## What we covered today {.scrollable .nostretch}
@@ -209,36 +207,28 @@ When truly stuck, Happy Git's [troubleshooting](https://happygitwithr.com/troubl
 - **Why:** version control = full history + revert + safe collaboration; a reproducibility backbone
 - **Git vs. GitHub:** the local tool vs. the remote host; a repo is a tracked folder
 - **The daily loop:** stage, commit (with a good message), pull, push, mostly from the RStudio Git tab
-- **Teams:** one shared remote, everyone clones, *pull before you push*
+- **Teams:** one shared repo, everyone clones, *pull before you push*
 - **Snags:** merge conflicts, wrong Project, rejected pushes, big files, each has a known fix
 
-# Your weekend {background-color="#7C0A02"}
+# Activity {background-color="#7C0A02"}
 
-## The mission
+## Project Repo Setup Activity
 
-Now it's your turn. The activity walks you through each step.
-
-- [Setup guide / Activity Canvas Link](https://psu.instructure.com/courses/2487468/assignments/)
+- [Activity Canvas Link](https://psu.instructure.com/courses/2487468/assignments/18326660?module_item_id=48204757)
 
 **Solo:** follow [Happy Git with R](https://happygitwithr.com/) to register on GitHub, install Git, connect it to RStudio, and prove it works with a test repo.
 
 **Team:** one person creates the project repo and adds the others as collaborators; everyone clones it and pushes at least one commit.
 
-::: {.callout-tip style="font-size: 1.1em;"}
-The setup is the genuinely fiddly part, so start early and use office hours. Once it works, it tends to keep working.
-:::
-
 ## Wrap-up & looking ahead
-
-**Monday Jun 8:** bring your configured laptop. We'll do a collaborative round-trip together, push, pull, and resolve a merge conflict on purpose, so the project workflow is second nature before you rely on it.
 
 :::: {.columns}
 ::: {.column width="55%"}
 **Upcoming Deadlines**
 
 - **Tonight, Fri 6/5, 11:59 p.m.**: HW 3
-- **By Mon 6/8, class**: team repo working, **all members able to push** (today's setup guide)
-- **Mon 6/8, in class**: bring your configured laptop
+- **By Tues 6/9, class**: team repo working, **all members able to push** (today's setup guide)
+- **Mon 6/8, in class**: in-class join activity (no worksheet to submit) so you can focus on repo setup at home; make sure you attend and are on-time to get credit. 
 :::
 
 ::: {.column width="45%"}
