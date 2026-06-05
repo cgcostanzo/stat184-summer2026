@@ -32,9 +32,9 @@ format:
 
 - **Quiz 3** (first 20 minutes)
 - Why version control exists, and what it buys you
-- Git vs. GitHub, and the one workflow loop you'll use daily
+- Git vs. GitHub, and the basic push/pull loop
 - A live demo (watch, don't follow along yet)
-- Your weekend mission: get Git working + a team repo
+- Weekend: get Git working + set up the team repo
 
 **Helpful links**
 
@@ -74,25 +74,25 @@ It sort of works, until you can't remember which is which, or two people email v
 
 ## What version control actually gives you
 
-From *DC* §9.1, a version control system lets you:
+A version control system (*DC* §9.1) lets you:
 
 - **Record the full history** of every file, not just the latest copy
 - **Revert** to any earlier state if something breaks
-- **Manage contributions** from several people on one project
+- **Work with a team** without stepping on each other's files
 - **Draft freely** without touching the "good" version until you're ready
 
-Instead of saving whole copies, Git stores the **incremental changes**, which is far more efficient and lets it rebuild any past state on demand.
+Instead of saving a new copy of every file each time, Git stores just what changed, so it can reconstruct any earlier version on demand.
 
 ## It's not just for teams {.scrollable .nostretch}
 
-*DC* §9.1.1: most version control is "self-collaboration."
+Even if you're working solo (*DC* §9.1.1), version control pays off:
 
 - Working across **two computers** (laptop + lab machine)
 - Coming back to a project **months later** and needing its history
 - An **insurance policy** if your laptop is lost or dies
 
 ::: {.callout-note}
-And §9.1.2: paired with **literate programming** (your Quarto documents from week 1), version control is what makes an analysis *reproducible*, a complete, transparent record from raw data to final result.
+Paired with **literate programming** (your Quarto documents from week 1), version control is what makes an analysis *reproducible*: a complete record from raw data to final result (*DC* §9.1.2).
 :::
 
 # Git vs. GitHub {background-color="#001E44"}
@@ -115,12 +115,12 @@ A **repo** (repository) is just a folder Git is watching, your `.qmd` files, dat
 
 ## The four moves you'll actually use {.scrollable .nostretch}
 
-Ninety percent of Git, every day, is this loop (*DC* §9.2.2):
+Most days, the whole workflow fits in four steps (*DC* §9.2.2):
 
 1. **Edit & save** your files, as you already do.
-2. **Stage + Commit** — take a snapshot, with a short message saying what changed.
-3. **Pull** — grab any changes from GitHub *before* you send yours.
-4. **Push** — send your commits up to GitHub.
+2. **Stage + Commit**: take a snapshot with a short message saying what changed.
+3. **Pull**: grab any changes from GitHub *before* you send yours.
+4. **Push**: send your commits up to GitHub.
 
 ::: {.callout-tip}
 **Commit early and often.** Each commit is a labeled stop on the time machine. Lots of small, well-described commits beat one giant mystery commit.
@@ -159,12 +159,12 @@ That's the whole interface for the daily loop, no command line required for now.
 
 ## Watch this once {.scrollable .nostretch}
 
-I'll run the full loop on the projector. **Don't follow along yet**, just watch the shape of it; you'll do it yourself this weekend.
+I'll run the full loop on the projector. **Don't follow along yet**; just watch how the pieces connect. You'll do it yourself this weekend.
 
 1. Create a new repo on **GitHub** (with a README).
-2. In RStudio: **New Project → Version Control → Git**, paste the repo URL.
+2. In RStudio: **New Project > Version Control > Git**, paste the repo URL.
 3. Edit the README, **save**.
-4. Git tab: **stage** the change → **Commit** with a message → **Push**.
+4. Git tab: **stage** the change, **Commit** with a message, then **Push**.
 5. Refresh the GitHub page, the change is there.
 6. Edit a file *on GitHub*, then **Pull** in RStudio to bring it down.
 
@@ -174,7 +174,7 @@ Notice there was nothing about data analysis here. Git sits *underneath* the wor
 
 ## How a team uses it {.scrollable .nostretch}
 
-The remote is the shared hub (*DC* §9.2, Fig. 9.4). For your project team:
+Think of the remote as the shared copy everyone syncs to (*DC* §9.2). For your project team:
 
 - One shared repo on GitHub; everyone has a local clone.
 - Each person edits, commits, and pushes their work.
@@ -210,7 +210,7 @@ When truly stuck, Happy Git's [troubleshooting](https://happygitwithr.com/troubl
 
 - **Why:** version control = full history + revert + safe collaboration; a reproducibility backbone
 - **Git vs. GitHub:** the local tool vs. the remote host; a repo is a tracked folder
-- **The daily loop:** stage → commit (good message!) → pull → push, mostly from the RStudio Git tab
+- **The daily loop:** stage, commit (with a good message), pull, push, mostly from the RStudio Git tab
 - **Teams:** one shared remote, everyone clones, *pull before you push*
 - **Snags:** merge conflicts, wrong Project, rejected pushes, big files, each has a known fix
 
@@ -218,7 +218,7 @@ When truly stuck, Happy Git's [troubleshooting](https://happygitwithr.com/troubl
 
 ## The mission
 
-The in-class demo was the map. This weekend you walk the trail.
+Now it's your turn. The activity walks you through each step.
 
 - [Setup guide / Activity Canvas Link](https://psu.instructure.com/courses/2487468/assignments/)
 
