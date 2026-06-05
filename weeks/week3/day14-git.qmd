@@ -121,12 +121,12 @@ Most days, the whole workflow fits in four steps:
 4. **Push**: send your commits up to GitHub.
 
 ::: {.callout-tip}
-**Commit early and often.** Each commit is a labeled stop on the time machine. Lots of small, well-described commits beat one giant mystery commit.
+**Commit early and often.** Each commit is a labeled stop on the time machine. Lots of small, well-described commits are much more clear and easy-to-follow than one giant mystery commit.
 :::
 
 ## Write commit messages your future self can read {.scrollable .nostretch}
 
-The message is how you (and your teammates) navigate the history later.
+The message is how you (and your teammates) navigate the history later without having to read through all of the various versions of your code.
 
 ```
 # Helpful
@@ -140,18 +140,18 @@ The message is how you (and your teammates) navigate the history later.
 ```
 
 ::: {.callout-note}
-A commit with a vague message is a stop on the time machine with no label, you'll have no idea what's there without opening it.
+If you commit with a vague message, you'll have no idea what's there without opening it.
 :::
 
 ## Where this lives: the RStudio Git tab {.scrollable .nostretch}
 
-Once Git is configured, you barely leave RStudio (*DC* §9.2, Fig. 9.2). A **Git** tab appears in the top-right pane with:
+Once Git is configured, you can get away with barely leaving RStudio. A **Git** tab appears in the top-right pane with:
 
 - A list of changed files, each with a **checkbox** to *stage* it
 - A **Commit** button (opens a box for your message)
 - **Pull** (down arrow) and **Push** (up arrow) buttons
 
-That's the whole interface for the daily loop, no command line required for now.
+This means we won't need to mess with the command line for our project work. 
 
 # Live demo {background-color="#001E44"}
 
