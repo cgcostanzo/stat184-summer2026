@@ -592,203 +592,203 @@
     "href": "weeks/week3/day14-git-slides.html#quiz-3-20-minutes",
     "title": "Quiz 3 · Git & GitHub for collaboration",
     "section": "Quiz 3: 20 minutes",
-    "text": "Quiz 3: 20 minutes\n\nClosed-book, closed-notes, closed-internet, closed-AI.\nCovers weeks 1–3: data frames and ggplot2, plus this week’s wrangling, the six verbs (filter, select, mutate, arrange, group_by, summarise) and grouped summaries.\nPivoting appears only at the concept level (wide vs. narrow); no pivot_*() syntax required.\nFive short questions. Show your work.\n\nWhen you finish, turn in your quiz up front and we’ll start on Git."
+    "text": "Quiz 3: 20 minutes\n\nClosed-book, closed-notes, closed-internet, closed-AI.\nCovers weeks 1–3: data frames and ggplot2, plus this week’s wrangling, the six verbs (filter, select, mutate, arrange, group_by, summarise) and grouped summaries.\n\nWhen you finish, turn in your quiz up front."
   },
   {
-    "objectID": "weeks/week3/day14-git-slides.html#you-have-already-invented-version-control",
-    "href": "weeks/week3/day14-git-slides.html#you-have-already-invented-version-control",
+    "objectID": "weeks/week3/day14-git-slides.html#the-naive-approach",
+    "href": "weeks/week3/day14-git-slides.html#the-naive-approach",
     "title": "Quiz 3 · Git & GitHub for collaboration",
-    "section": "You have already invented version control",
-    "text": "You have already invented version control\nBe honest, you’ve done some version of this:\nanalysis.R\nanalysis_v2.R\nanalysis_final.R\nanalysis_final_REAL.R\nanalysis_final_REAL_usethis_one.R\nIt sort of works, until you can’t remember which is which, or two people email versions back and forth and the changes get lost.\n\n\n\n\n\n\n\nTip\n\n\nVersion control is the tool built for exactly this problem. DC §9.1 calls it a time machine for your project."
+    "section": "The naive approach",
+    "text": "The naive approach\nWe’ve all probably done some version of the following:\nanalysis.R\nanalysis_v2.R\nanalysis_final.R\nanalysis_final_REAL.R\nanalysis_final_REAL_usethis_one.R\nIt sort of works, until you can’t remember which is which, or two people email versions back and forth and the changes get lost.\n\n\n\n\n\n\n\nTip\n\n\nVersion control is the tool built for exactly this problem. You can think of it as a time machine for your project."
   },
   {
-    "objectID": "weeks/week3/day14-git-slides.html#what-version-control-actually-gives-you",
-    "href": "weeks/week3/day14-git-slides.html#what-version-control-actually-gives-you",
+    "objectID": "weeks/week3/day14-git-slides.html#version-control-overview",
+    "href": "weeks/week3/day14-git-slides.html#version-control-overview",
     "title": "Quiz 3 · Git & GitHub for collaboration",
-    "section": "What version control actually gives you",
-    "text": "What version control actually gives you\nFrom DC §9.1, a version control system lets you:\n\nRecord the full history of every file, not just the latest copy\nRevert to any earlier state if something breaks\nManage contributions from several people on one project\nDraft freely without touching the “good” version until you’re ready\n\nInstead of saving whole copies, Git stores the incremental changes, which is far more efficient and lets it rebuild any past state on demand."
+    "section": "Version control overview",
+    "text": "Version control overview\nA version control system lets you:\n\nRecord the full history of every file, not just the latest copy\nRevert to any earlier state if something breaks\nWork with a team without stepping on each other’s files\nDraft freely without touching the “good” version until you’re ready\n\nInstead of saving a new copy of every file each time, Git stores just what changed, so it can reconstruct any earlier version on demand."
   },
   {
-    "objectID": "weeks/week3/day14-git-slides.html#its-not-just-for-teams",
-    "href": "weeks/week3/day14-git-slides.html#its-not-just-for-teams",
+    "objectID": "weeks/week3/day14-git-slides.html#helpful-for-solo-work-too",
+    "href": "weeks/week3/day14-git-slides.html#helpful-for-solo-work-too",
     "title": "Quiz 3 · Git & GitHub for collaboration",
-    "section": "It’s not just for teams",
-    "text": "It’s not just for teams\nDC §9.1.1: most version control is “self-collaboration.”\n\nWorking across two computers (laptop + lab machine)\nComing back to a project months later and needing its history\nAn insurance policy if your laptop is lost or dies\n\n\n\n\n\n\n\nNote\n\n\nAnd §9.1.2: paired with literate programming (your Quarto documents from week 1), version control is what makes an analysis reproducible, a complete, transparent record from raw data to final result."
+    "section": "Helpful for solo work too",
+    "text": "Helpful for solo work too\nEven if you’re working solo, version control is worthwhile; you might be:\n\nWorking across two computers (laptop + lab machine)\nComing back to a project months later and needing its history\nAn insurance policy if your laptop is lost or dies\n\n\n\n\n\n\n\nNote\n\n\nPaired with literate programming (Quarto), version control is what makes an analysis reproducible: a complete record from raw data to final result."
   },
   {
-    "objectID": "weeks/week3/day14-git-slides.html#two-different-things",
-    "href": "weeks/week3/day14-git-slides.html#two-different-things",
+    "objectID": "weeks/week3/day14-git-slides.html#the-distinction",
+    "href": "weeks/week3/day14-git-slides.html#the-distinction",
     "title": "Quiz 3 · Git & GitHub for collaboration",
-    "section": "Two different things",
-    "text": "Two different things\nPeople say “git” for everything, but there are two pieces (DC §9.2):\n\nGit is the tool; GitHub is one place to keep it.\n\n\n\n\n\n\n\n\nGit\nGitHub\n\n\n\n\nWhat\nThe version-control tool\nA website that hosts repos\n\n\nWhere\nOn your computer (local)\nIn the cloud (remote)\n\n\nJob\nTracks changes, makes commits\nStores & shares the project\n\n\n\nA repo (repository) is just a folder Git is watching, your .qmd files, data, images, all of it. You keep a local copy on your computer and a remote copy on GitHub, and you sync between them."
+    "section": "The distinction",
+    "text": "The distinction\nPeople often use “git” as a catch-all, but there’s actually two pieces:\n\nGit is the tool; GitHub is one place to keep it.\n\n\n\n\n\n\n\n\nGit\nGitHub\n\n\n\n\nWhat\nThe version-control tool\nA website that hosts repos\n\n\nWhere\nOn your computer (local)\nIn the cloud (remote)\n\n\nJob\nTracks changes, makes commits\nStores & shares the project\n\n\n\nA repo (repository) is just a folder Git is watching. It may include your .qmd files, data, images, etc. You keep a local copy on your computer and a remote copy on GitHub, and sync between them."
   },
   {
-    "objectID": "weeks/week3/day14-git-slides.html#the-four-moves-youll-actually-use",
-    "href": "weeks/week3/day14-git-slides.html#the-four-moves-youll-actually-use",
+    "objectID": "weeks/week3/day14-git-slides.html#four-workflow-steps",
+    "href": "weeks/week3/day14-git-slides.html#four-workflow-steps",
     "title": "Quiz 3 · Git & GitHub for collaboration",
-    "section": "The four moves you’ll actually use",
-    "text": "The four moves you’ll actually use\nNinety percent of Git, every day, is this loop (DC §9.2.2):\n\nEdit & save your files, as you already do.\nStage + Commit — take a snapshot, with a short message saying what changed.\nPull — grab any changes from GitHub before you send yours.\nPush — send your commits up to GitHub.\n\n\n\n\n\n\n\nTip\n\n\nCommit early and often. Each commit is a labeled stop on the time machine. Lots of small, well-described commits beat one giant mystery commit."
+    "section": "Four workflow steps",
+    "text": "Four workflow steps\nMost days, the whole workflow fits in four steps:\n\nEdit & save your files, as you have been doing already.\nStage + Commit: take a snapshot with a short message saying what changed.\nPull: grab any changes from GitHub before you send yours.\nPush: send your commits up to GitHub.\n\n\n\n\n\n\n\nTip\n\n\nCommit early and often. Each commit is a labeled stop on the time machine. Lots of small, well-described commits are much more clear and easy-to-follow than one giant mystery commit."
   },
   {
     "objectID": "weeks/week3/day14-git-slides.html#write-commit-messages-your-future-self-can-read",
     "href": "weeks/week3/day14-git-slides.html#write-commit-messages-your-future-self-can-read",
     "title": "Quiz 3 · Git & GitHub for collaboration",
     "section": "Write commit messages your future self can read",
-    "text": "Write commit messages your future self can read\nThe message is how you (and your teammates) navigate the history later.\n# Helpful\n\"Add body-mass-by-species summary table\"\n\"Fix na.rm bug in flipper-length means\"\n\n# Useless\n\"stuff\"\n\"asdf\"\n\"changes\"\n\n\n\n\n\n\nNote\n\n\nA commit with a vague message is a stop on the time machine with no label, you’ll have no idea what’s there without opening it."
+    "text": "Write commit messages your future self can read\nThe message is how you (and your teammates) navigate the history later without having to read through all of the various versions of your code.\n# Helpful\n\"Add body-mass-by-species summary table\"\n\"Fix na.rm bug in flipper-length means\"\n\n# Useless\n\"stuff\"\n\"asdf\"\n\"changes\"\n\n\n\n\n\n\nNote\n\n\nIf you commit with a vague message, you’ll have no idea what’s there without opening it."
   },
   {
     "objectID": "weeks/week3/day14-git-slides.html#where-this-lives-the-rstudio-git-tab",
     "href": "weeks/week3/day14-git-slides.html#where-this-lives-the-rstudio-git-tab",
     "title": "Quiz 3 · Git & GitHub for collaboration",
     "section": "Where this lives: the RStudio Git tab",
-    "text": "Where this lives: the RStudio Git tab\nOnce Git is configured, you barely leave RStudio (DC §9.2, Fig. 9.2). A Git tab appears in the top-right pane with:\n\nA list of changed files, each with a checkbox to stage it\nA Commit button (opens a box for your message)\nPull (down arrow) and Push (up arrow) buttons\n\nThat’s the whole interface for the daily loop, no command line required for now."
+    "text": "Where this lives: the RStudio Git tab\nOnce Git is configured, you can get away with barely leaving RStudio. A Git tab appears in the top-right pane with:\n\nA list of changed files, each with a checkbox to stage it\nA Commit button (opens a box for your message)\nPull (down arrow) and Push (up arrow) buttons\n\nThis means we won’t need to mess with the command line for our project work."
   },
   {
     "objectID": "weeks/week3/day14-git-slides.html#watch-this-once",
     "href": "weeks/week3/day14-git-slides.html#watch-this-once",
     "title": "Quiz 3 · Git & GitHub for collaboration",
     "section": "Watch this once",
-    "text": "Watch this once\nI’ll run the full loop on the projector. Don’t follow along yet, just watch the shape of it; you’ll do it yourself this weekend.\n\nCreate a new repo on GitHub (with a README).\nIn RStudio: New Project → Version Control → Git, paste the repo URL.\nEdit the README, save.\nGit tab: stage the change → Commit with a message → Push.\nRefresh the GitHub page, the change is there.\nEdit a file on GitHub, then Pull in RStudio to bring it down.\n\n\n\n\n\n\n\nTip\n\n\nNotice there was nothing about data analysis here. Git sits underneath the work you already do, it just snapshots and syncs the files."
+    "text": "Watch this once\nI’ll run the full loop on the projector. Don’t follow along yet; just watch how the pieces connect. You’ll do it yourself this weekend.\n\nCreate a new repo on GitHub (with a README).\nIn RStudio: New Project &gt; Version Control &gt; Git, paste the repo URL.\nEdit the README, save.\nGit tab: stage the change, Commit with a message, then Push.\nRefresh the GitHub page, the change is there.\nEdit a file on GitHub, then Pull in RStudio to bring it down.\n\n\n\n\n\n\n\nTip\n\n\nNotice there was nothing about data analysis here. Git sits underneath the work you already do, simply creating snapshots and syncing the files."
   },
   {
-    "objectID": "weeks/week3/day14-git-slides.html#how-a-team-uses-it",
-    "href": "weeks/week3/day14-git-slides.html#how-a-team-uses-it",
+    "objectID": "weeks/week3/day14-git-slides.html#git-teamwork",
+    "href": "weeks/week3/day14-git-slides.html#git-teamwork",
     "title": "Quiz 3 · Git & GitHub for collaboration",
-    "section": "How a team uses it",
-    "text": "How a team uses it\nThe remote is the shared hub (DC §9.2, Fig. 9.4). For your project team:\n\nOne shared repo on GitHub; everyone has a local clone.\nEach person edits, commits, and pushes their work.\nAlways pull before you push, so you start from everyone’s latest.\n\n        GitHub (shared remote)\n         ↑ push        ↓ pull\n   ┌─────┴─────┬───────┴─────┐\n  you      teammate 1    teammate 2"
+    "section": "Git + Teamwork",
+    "text": "Git + Teamwork\nFor your project team:\n\nOne shared repo on GitHub; everyone has a local clone.\nEach person edits, commits, and pushes their work.\nAlways pull before you push, so you start from everyone’s latest.\n\n        GitHub (shared remote)\n         ↑ push        ↓ pull\n   ┌─────┴─────┬───────┴─────┐\n  you      teammate 1    teammate 2"
   },
   {
-    "objectID": "weeks/week3/day14-git-slides.html#the-three-youll-hit-first",
-    "href": "weeks/week3/day14-git-slides.html#the-three-youll-hit-first",
+    "objectID": "weeks/week3/day14-git-slides.html#common-issues",
+    "href": "weeks/week3/day14-git-slides.html#common-issues",
     "title": "Quiz 3 · Git & GitHub for collaboration",
-    "section": "The three you’ll hit first",
-    "text": "The three you’ll hit first\nEveryone trips on these; there’s a fix for each (DC §9.2.3):\n\nCommon snags and their fixes.\n\n\n\n\n\n\n\nSymptom\nCause\nFix\n\n\n\n\nMerge conflict\nTwo people changed the same lines\nGit asks you to pick; pull/push often to avoid\n\n\n“My changes aren’t tracked!”\nWrong RStudio Project open\nSwitch to the Project tied to that repo\n\n\nPush rejected\nA teammate pushed first\nPull, then push again\n\n\nFile-too-big warning (&gt;50 MB)\nCommitting a big data file\nDon’t commit it; add to .gitignore\n\n\n\n\n\n\n\n\n\nWarning\n\n\nWhen truly stuck, Happy Git’s troubleshooting chapter and the “Burn it all down” escape hatch (re-clone a fresh copy) will save you. Getting stuck is normal, not a sign you did it wrong."
+    "section": "Common issues",
+    "text": "Common issues\n\nCommon snags and their fixes.\n\n\n\n\n\n\n\nSymptom\nCause\nFix\n\n\n\n\nMerge conflict\nTwo people changed the same lines\nGit asks you to pick; pull/push often to avoid\n\n\n“My changes aren’t tracked!”\nWrong RStudio Project open\nSwitch to the Project tied to that repo\n\n\nPush rejected\nA teammate pushed first\nPull, then push again\n\n\nFile-too-big warning (&gt;50 MB)\nCommitting a big data file\nDon’t commit it; add to .gitignore\n\n\n\n\n\n\n\n\n\nWarning\n\n\nWhen truly stuck, Happy Git’s troubleshooting chapter and the “Burn it all down” escape hatch (re-clone a fresh copy) will probably help."
   },
   {
     "objectID": "weeks/week3/day14-git-slides.html#what-we-covered-today",
     "href": "weeks/week3/day14-git-slides.html#what-we-covered-today",
     "title": "Quiz 3 · Git & GitHub for collaboration",
     "section": "What we covered today",
-    "text": "What we covered today\n\nWhy: version control = full history + revert + safe collaboration; a reproducibility backbone\nGit vs. GitHub: the local tool vs. the remote host; a repo is a tracked folder\nThe daily loop: stage → commit (good message!) → pull → push, mostly from the RStudio Git tab\nTeams: one shared remote, everyone clones, pull before you push\nSnags: merge conflicts, wrong Project, rejected pushes, big files, each has a known fix"
+    "text": "What we covered today\n\nWhy: version control = full history + revert + safe collaboration; a reproducibility backbone\nGit vs. GitHub: the local tool vs. the remote host; a repo is a tracked folder\nThe daily loop: stage, commit (with a good message), pull, push, mostly from the RStudio Git tab\nTeams: one shared repo, everyone clones, pull before you push\nSnags: merge conflicts, wrong Project, rejected pushes, big files, each has a known fix"
   },
   {
-    "objectID": "weeks/week3/day14-git-slides.html#the-mission",
-    "href": "weeks/week3/day14-git-slides.html#the-mission",
+    "objectID": "weeks/week3/day14-git-slides.html#project-repo-setup-activity",
+    "href": "weeks/week3/day14-git-slides.html#project-repo-setup-activity",
     "title": "Quiz 3 · Git & GitHub for collaboration",
-    "section": "The mission",
-    "text": "The mission\nThe in-class demo was the map. This weekend you walk the trail.\n\nSetup guide / Activity Canvas Link\n\nSolo: follow Happy Git with R to register on GitHub, install Git, connect it to RStudio, and prove it works with a test repo.\nTeam: one person creates the project repo and adds the others as collaborators; everyone clones it and pushes at least one commit.\n\n\n\n\n\n\n\nTip\n\n\nThe setup is the genuinely fiddly part, so start early and use office hours. Once it works, it tends to keep working."
+    "section": "Project Repo Setup Activity",
+    "text": "Project Repo Setup Activity\n\nActivity Canvas Link\n\nSolo: follow Happy Git with R to register on GitHub, install Git, connect it to RStudio, and prove it works with a test repo.\nTeam: one person creates the project repo and adds the others as collaborators; everyone clones it and pushes at least one commit."
   },
   {
     "objectID": "weeks/week3/day14-git-slides.html#wrap-up-looking-ahead",
     "href": "weeks/week3/day14-git-slides.html#wrap-up-looking-ahead",
     "title": "Quiz 3 · Git & GitHub for collaboration",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\nMonday Jun 8: bring your configured laptop. We’ll do a collaborative round-trip together, push, pull, and resolve a merge conflict on purpose, so the project workflow is second nature before you rely on it.\n\n\nUpcoming Deadlines\n\nTonight, Fri 6/5, 11:59 p.m.: HW 3\nBy Mon 6/8, class: team repo working, all members able to push (today’s setup guide)\nMon 6/8, in class: bring your configured laptop\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · Happy Git with R · DC Ch. 9 · GitHub"
+    "text": "Wrap-up & looking ahead\n\n\nUpcoming Deadlines\n\nTonight, Fri 6/5, 11:59 p.m.: HW 3\nBy Tues 6/9, class: team repo working, all members able to push (today’s setup guide)\nMon 6/8, in class: in-class join activity (no worksheet to submit) so you can focus on repo setup at home; make sure you attend and are on-time to get credit.\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · Happy Git with R · DC Ch. 9 · GitHub"
   },
   {
     "objectID": "weeks/week3/day14-git-page.html",
     "href": "weeks/week3/day14-git-page.html",
     "title": "Quiz 3 · Git & GitHub for collaboration",
     "section": "",
-    "text": "NoteToday: Friday June 5\n\n\n\nBefore class\n\nPerusall Assignment: DC §9.1–9.2\n\nPlan for today\n\nQuiz 3 (first 20 minutes)\nWhy version control exists, and what it buys you\nGit vs. GitHub, and the one workflow loop you’ll use daily\nA live demo (watch, don’t follow along yet)\nYour weekend mission: get Git working + a team repo\n\nHelpful links\n\nSyllabus · AI policy · Schedule · Happy Git with R · DC Ch. 9 · GitHub"
+    "text": "NoteToday: Friday June 5\n\n\n\nBefore class\n\nPerusall Assignment: DC §9.1–9.2\n\nPlan for today\n\nQuiz 3 (first 20 minutes)\nWhy version control\nGit vs. GitHub, push/pull\nDemo\nWeekend: get Git working + set up the team repo\n\nHelpful links\n\nSyllabus · AI policy · Schedule · Happy Git with R · DC Ch. 9 · GitHub"
   },
   {
     "objectID": "weeks/week3/day14-git-page.html#quiz-3-20-minutes",
     "href": "weeks/week3/day14-git-page.html#quiz-3-20-minutes",
     "title": "Quiz 3 · Git & GitHub for collaboration",
     "section": "Quiz 3: 20 minutes",
-    "text": "Quiz 3: 20 minutes\n\nClosed-book, closed-notes, closed-internet, closed-AI.\nCovers weeks 1–3: data frames and ggplot2, plus this week’s wrangling, the six verbs (filter, select, mutate, arrange, group_by, summarise) and grouped summaries.\nPivoting appears only at the concept level (wide vs. narrow); no pivot_*() syntax required.\nFive short questions. Show your work.\n\nWhen you finish, turn in your quiz up front and we’ll start on Git."
+    "text": "Quiz 3: 20 minutes\n\nClosed-book, closed-notes, closed-internet, closed-AI.\nCovers weeks 1–3: data frames and ggplot2, plus this week’s wrangling, the six verbs (filter, select, mutate, arrange, group_by, summarise) and grouped summaries.\n\nWhen you finish, turn in your quiz up front."
   },
   {
-    "objectID": "weeks/week3/day14-git-page.html#you-have-already-invented-version-control",
-    "href": "weeks/week3/day14-git-page.html#you-have-already-invented-version-control",
+    "objectID": "weeks/week3/day14-git-page.html#the-naive-approach",
+    "href": "weeks/week3/day14-git-page.html#the-naive-approach",
     "title": "Quiz 3 · Git & GitHub for collaboration",
-    "section": "You have already invented version control",
-    "text": "You have already invented version control\nBe honest, you’ve done some version of this:\nanalysis.R\nanalysis_v2.R\nanalysis_final.R\nanalysis_final_REAL.R\nanalysis_final_REAL_usethis_one.R\nIt sort of works, until you can’t remember which is which, or two people email versions back and forth and the changes get lost.\n\n\n\n\n\n\nTip\n\n\n\nVersion control is the tool built for exactly this problem. DC §9.1 calls it a time machine for your project."
+    "section": "The naive approach",
+    "text": "The naive approach\nWe’ve all probably done some version of the following:\nanalysis.R\nanalysis_v2.R\nanalysis_final.R\nanalysis_final_REAL.R\nanalysis_final_REAL_usethis_one.R\nIt sort of works, until you can’t remember which is which, or two people email versions back and forth and the changes get lost.\n\n\n\n\n\n\nTip\n\n\n\nVersion control is the tool built for exactly this problem. You can think of it as a time machine for your project."
   },
   {
-    "objectID": "weeks/week3/day14-git-page.html#what-version-control-actually-gives-you",
-    "href": "weeks/week3/day14-git-page.html#what-version-control-actually-gives-you",
+    "objectID": "weeks/week3/day14-git-page.html#version-control-overview",
+    "href": "weeks/week3/day14-git-page.html#version-control-overview",
     "title": "Quiz 3 · Git & GitHub for collaboration",
-    "section": "What version control actually gives you",
-    "text": "What version control actually gives you\nFrom DC §9.1, a version control system lets you:\n\nRecord the full history of every file, not just the latest copy\nRevert to any earlier state if something breaks\nManage contributions from several people on one project\nDraft freely without touching the “good” version until you’re ready\n\nInstead of saving whole copies, Git stores the incremental changes, which is far more efficient and lets it rebuild any past state on demand."
+    "section": "Version control overview",
+    "text": "Version control overview\nA version control system lets you:\n\nRecord the full history of every file, not just the latest copy\nRevert to any earlier state if something breaks\nWork with a team without stepping on each other’s files\nDraft freely without touching the “good” version until you’re ready\n\nInstead of saving a new copy of every file each time, Git stores just what changed, so it can reconstruct any earlier version on demand."
   },
   {
-    "objectID": "weeks/week3/day14-git-page.html#its-not-just-for-teams",
-    "href": "weeks/week3/day14-git-page.html#its-not-just-for-teams",
+    "objectID": "weeks/week3/day14-git-page.html#helpful-for-solo-work-too",
+    "href": "weeks/week3/day14-git-page.html#helpful-for-solo-work-too",
     "title": "Quiz 3 · Git & GitHub for collaboration",
-    "section": "It’s not just for teams",
-    "text": "It’s not just for teams\nDC §9.1.1: most version control is “self-collaboration.”\n\nWorking across two computers (laptop + lab machine)\nComing back to a project months later and needing its history\nAn insurance policy if your laptop is lost or dies\n\n\n\n\n\n\n\nNote\n\n\n\nAnd §9.1.2: paired with literate programming (your Quarto documents from week 1), version control is what makes an analysis reproducible, a complete, transparent record from raw data to final result."
+    "section": "Helpful for solo work too",
+    "text": "Helpful for solo work too\nEven if you’re working solo, version control is worthwhile; you might be:\n\nWorking across two computers (laptop + lab machine)\nComing back to a project months later and needing its history\nAn insurance policy if your laptop is lost or dies\n\n\n\n\n\n\n\nNote\n\n\n\nPaired with literate programming (Quarto), version control is what makes an analysis reproducible: a complete record from raw data to final result."
   },
   {
-    "objectID": "weeks/week3/day14-git-page.html#two-different-things",
-    "href": "weeks/week3/day14-git-page.html#two-different-things",
+    "objectID": "weeks/week3/day14-git-page.html#the-distinction",
+    "href": "weeks/week3/day14-git-page.html#the-distinction",
     "title": "Quiz 3 · Git & GitHub for collaboration",
-    "section": "Two different things",
-    "text": "Two different things\nPeople say “git” for everything, but there are two pieces (DC §9.2):\n\nGit is the tool; GitHub is one place to keep it.\n\n\n\n\n\n\n\n\nGit\nGitHub\n\n\n\n\nWhat\nThe version-control tool\nA website that hosts repos\n\n\nWhere\nOn your computer (local)\nIn the cloud (remote)\n\n\nJob\nTracks changes, makes commits\nStores & shares the project\n\n\n\nA repo (repository) is just a folder Git is watching, your .qmd files, data, images, all of it. You keep a local copy on your computer and a remote copy on GitHub, and you sync between them."
+    "section": "The distinction",
+    "text": "The distinction\nPeople often use “git” as a catch-all, but there’s actually two pieces:\n\nGit is the tool; GitHub is one place to keep it.\n\n\n\n\n\n\n\n\nGit\nGitHub\n\n\n\n\nWhat\nThe version-control tool\nA website that hosts repos\n\n\nWhere\nOn your computer (local)\nIn the cloud (remote)\n\n\nJob\nTracks changes, makes commits\nStores & shares the project\n\n\n\nA repo (repository) is just a folder Git is watching. It may include your .qmd files, data, images, etc. You keep a local copy on your computer and a remote copy on GitHub, and sync between them."
   },
   {
-    "objectID": "weeks/week3/day14-git-page.html#the-four-moves-youll-actually-use",
-    "href": "weeks/week3/day14-git-page.html#the-four-moves-youll-actually-use",
+    "objectID": "weeks/week3/day14-git-page.html#four-workflow-steps",
+    "href": "weeks/week3/day14-git-page.html#four-workflow-steps",
     "title": "Quiz 3 · Git & GitHub for collaboration",
-    "section": "The four moves you’ll actually use",
-    "text": "The four moves you’ll actually use\nNinety percent of Git, every day, is this loop (DC §9.2.2):\n\nEdit & save your files, as you already do.\nStage + Commit — take a snapshot, with a short message saying what changed.\nPull — grab any changes from GitHub before you send yours.\nPush — send your commits up to GitHub.\n\n\n\n\n\n\n\nTip\n\n\n\nCommit early and often. Each commit is a labeled stop on the time machine. Lots of small, well-described commits beat one giant mystery commit."
+    "section": "Four workflow steps",
+    "text": "Four workflow steps\nMost days, the whole workflow fits in four steps:\n\nEdit & save your files, as you have been doing already.\nStage + Commit: take a snapshot with a short message saying what changed.\nPull: grab any changes from GitHub before you send yours.\nPush: send your commits up to GitHub.\n\n\n\n\n\n\n\nTip\n\n\n\nCommit early and often. Each commit is a labeled stop on the time machine. Lots of small, well-described commits are much more clear and easy-to-follow than one giant mystery commit."
   },
   {
     "objectID": "weeks/week3/day14-git-page.html#write-commit-messages-your-future-self-can-read",
     "href": "weeks/week3/day14-git-page.html#write-commit-messages-your-future-self-can-read",
     "title": "Quiz 3 · Git & GitHub for collaboration",
     "section": "Write commit messages your future self can read",
-    "text": "Write commit messages your future self can read\nThe message is how you (and your teammates) navigate the history later.\n# Helpful\n\"Add body-mass-by-species summary table\"\n\"Fix na.rm bug in flipper-length means\"\n\n# Useless\n\"stuff\"\n\"asdf\"\n\"changes\"\n\n\n\n\n\n\nNote\n\n\n\nA commit with a vague message is a stop on the time machine with no label, you’ll have no idea what’s there without opening it."
+    "text": "Write commit messages your future self can read\nThe message is how you (and your teammates) navigate the history later without having to read through all of the various versions of your code.\n# Helpful\n\"Add body-mass-by-species summary table\"\n\"Fix na.rm bug in flipper-length means\"\n\n# Useless\n\"stuff\"\n\"asdf\"\n\"changes\"\n\n\n\n\n\n\nNote\n\n\n\nIf you commit with a vague message, you’ll have no idea what’s there without opening it."
   },
   {
     "objectID": "weeks/week3/day14-git-page.html#where-this-lives-the-rstudio-git-tab",
     "href": "weeks/week3/day14-git-page.html#where-this-lives-the-rstudio-git-tab",
     "title": "Quiz 3 · Git & GitHub for collaboration",
     "section": "Where this lives: the RStudio Git tab",
-    "text": "Where this lives: the RStudio Git tab\nOnce Git is configured, you barely leave RStudio (DC §9.2, Fig. 9.2). A Git tab appears in the top-right pane with:\n\nA list of changed files, each with a checkbox to stage it\nA Commit button (opens a box for your message)\nPull (down arrow) and Push (up arrow) buttons\n\nThat’s the whole interface for the daily loop, no command line required for now."
+    "text": "Where this lives: the RStudio Git tab\nOnce Git is configured, you can get away with barely leaving RStudio. A Git tab appears in the top-right pane with:\n\nA list of changed files, each with a checkbox to stage it\nA Commit button (opens a box for your message)\nPull (down arrow) and Push (up arrow) buttons\n\nThis means we won’t need to mess with the command line for our project work."
   },
   {
     "objectID": "weeks/week3/day14-git-page.html#watch-this-once",
     "href": "weeks/week3/day14-git-page.html#watch-this-once",
     "title": "Quiz 3 · Git & GitHub for collaboration",
     "section": "Watch this once",
-    "text": "Watch this once\nI’ll run the full loop on the projector. Don’t follow along yet, just watch the shape of it; you’ll do it yourself this weekend.\n\nCreate a new repo on GitHub (with a README).\nIn RStudio: New Project → Version Control → Git, paste the repo URL.\nEdit the README, save.\nGit tab: stage the change → Commit with a message → Push.\nRefresh the GitHub page, the change is there.\nEdit a file on GitHub, then Pull in RStudio to bring it down.\n\n\n\n\n\n\n\nTip\n\n\n\nNotice there was nothing about data analysis here. Git sits underneath the work you already do, it just snapshots and syncs the files."
+    "text": "Watch this once\nI’ll run the full loop on the projector. Don’t follow along yet; just watch how the pieces connect. You’ll do it yourself this weekend.\n\nCreate a new repo on GitHub (with a README).\nIn RStudio: New Project &gt; Version Control &gt; Git, paste the repo URL.\nEdit the README, save.\nGit tab: stage the change, Commit with a message, then Push.\nRefresh the GitHub page, the change is there.\nEdit a file on GitHub, then Pull in RStudio to bring it down.\n\n\n\n\n\n\n\nTip\n\n\n\nNotice there was nothing about data analysis here. Git sits underneath the work you already do, simply creating snapshots and syncing the files."
   },
   {
-    "objectID": "weeks/week3/day14-git-page.html#how-a-team-uses-it",
-    "href": "weeks/week3/day14-git-page.html#how-a-team-uses-it",
+    "objectID": "weeks/week3/day14-git-page.html#git-teamwork",
+    "href": "weeks/week3/day14-git-page.html#git-teamwork",
     "title": "Quiz 3 · Git & GitHub for collaboration",
-    "section": "How a team uses it",
-    "text": "How a team uses it\nThe remote is the shared hub (DC §9.2, Fig. 9.4). For your project team:\n\nOne shared repo on GitHub; everyone has a local clone.\nEach person edits, commits, and pushes their work.\nAlways pull before you push, so you start from everyone’s latest.\n\n        GitHub (shared remote)\n         ↑ push        ↓ pull\n   ┌─────┴─────┬───────┴─────┐\n  you      teammate 1    teammate 2"
+    "section": "Git + Teamwork",
+    "text": "Git + Teamwork\nFor your project team:\n\nOne shared repo on GitHub; everyone has a local clone.\nEach person edits, commits, and pushes their work.\nAlways pull before you push, so you start from everyone’s latest.\n\n        GitHub (shared remote)\n         ↑ push        ↓ pull\n   ┌─────┴─────┬───────┴─────┐\n  you      teammate 1    teammate 2"
   },
   {
-    "objectID": "weeks/week3/day14-git-page.html#the-three-youll-hit-first",
-    "href": "weeks/week3/day14-git-page.html#the-three-youll-hit-first",
+    "objectID": "weeks/week3/day14-git-page.html#common-issues",
+    "href": "weeks/week3/day14-git-page.html#common-issues",
     "title": "Quiz 3 · Git & GitHub for collaboration",
-    "section": "The three you’ll hit first",
-    "text": "The three you’ll hit first\nEveryone trips on these; there’s a fix for each (DC §9.2.3):\n\nCommon snags and their fixes.\n\n\n\n\n\n\n\nSymptom\nCause\nFix\n\n\n\n\nMerge conflict\nTwo people changed the same lines\nGit asks you to pick; pull/push often to avoid\n\n\n“My changes aren’t tracked!”\nWrong RStudio Project open\nSwitch to the Project tied to that repo\n\n\nPush rejected\nA teammate pushed first\nPull, then push again\n\n\nFile-too-big warning (&gt;50 MB)\nCommitting a big data file\nDon’t commit it; add to .gitignore\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\nWhen truly stuck, Happy Git’s troubleshooting chapter and the “Burn it all down” escape hatch (re-clone a fresh copy) will save you. Getting stuck is normal, not a sign you did it wrong."
+    "section": "Common issues",
+    "text": "Common issues\n\nCommon snags and their fixes.\n\n\n\n\n\n\n\nSymptom\nCause\nFix\n\n\n\n\nMerge conflict\nTwo people changed the same lines\nGit asks you to pick; pull/push often to avoid\n\n\n“My changes aren’t tracked!”\nWrong RStudio Project open\nSwitch to the Project tied to that repo\n\n\nPush rejected\nA teammate pushed first\nPull, then push again\n\n\nFile-too-big warning (&gt;50 MB)\nCommitting a big data file\nDon’t commit it; add to .gitignore\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\nWhen truly stuck, Happy Git’s troubleshooting chapter and the “Burn it all down” escape hatch (re-clone a fresh copy) will probably help."
   },
   {
     "objectID": "weeks/week3/day14-git-page.html#what-we-covered-today",
     "href": "weeks/week3/day14-git-page.html#what-we-covered-today",
     "title": "Quiz 3 · Git & GitHub for collaboration",
     "section": "What we covered today",
-    "text": "What we covered today\n\nWhy: version control = full history + revert + safe collaboration; a reproducibility backbone\nGit vs. GitHub: the local tool vs. the remote host; a repo is a tracked folder\nThe daily loop: stage → commit (good message!) → pull → push, mostly from the RStudio Git tab\nTeams: one shared remote, everyone clones, pull before you push\nSnags: merge conflicts, wrong Project, rejected pushes, big files, each has a known fix"
+    "text": "What we covered today\n\nWhy: version control = full history + revert + safe collaboration; a reproducibility backbone\nGit vs. GitHub: the local tool vs. the remote host; a repo is a tracked folder\nThe daily loop: stage, commit (with a good message), pull, push, mostly from the RStudio Git tab\nTeams: one shared repo, everyone clones, pull before you push\nSnags: merge conflicts, wrong Project, rejected pushes, big files, each has a known fix"
   },
   {
-    "objectID": "weeks/week3/day14-git-page.html#the-mission",
-    "href": "weeks/week3/day14-git-page.html#the-mission",
+    "objectID": "weeks/week3/day14-git-page.html#project-repo-setup-activity",
+    "href": "weeks/week3/day14-git-page.html#project-repo-setup-activity",
     "title": "Quiz 3 · Git & GitHub for collaboration",
-    "section": "The mission",
-    "text": "The mission\nThe in-class demo was the map. This weekend you walk the trail.\n\nSetup guide / Activity Canvas Link\n\nSolo: follow Happy Git with R to register on GitHub, install Git, connect it to RStudio, and prove it works with a test repo.\nTeam: one person creates the project repo and adds the others as collaborators; everyone clones it and pushes at least one commit.\n\n\n\n\n\n\nTip\n\n\n\nThe setup is the genuinely fiddly part, so start early and use office hours. Once it works, it tends to keep working."
+    "section": "Project Repo Setup Activity",
+    "text": "Project Repo Setup Activity\n\nActivity Canvas Link\n\nSolo: follow Happy Git with R to register on GitHub, install Git, connect it to RStudio, and prove it works with a test repo.\nTeam: one person creates the project repo and adds the others as collaborators; everyone clones it and pushes at least one commit."
   },
   {
     "objectID": "weeks/week3/day14-git-page.html#wrap-up-looking-ahead",
     "href": "weeks/week3/day14-git-page.html#wrap-up-looking-ahead",
     "title": "Quiz 3 · Git & GitHub for collaboration",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\nMonday Jun 8: bring your configured laptop. We’ll do a collaborative round-trip together, push, pull, and resolve a merge conflict on purpose, so the project workflow is second nature before you rely on it.\n\n\nUpcoming Deadlines\n\nTonight, Fri 6/5, 11:59 p.m.: HW 3\nBy Mon 6/8, class: team repo working, all members able to push (today’s setup guide)\nMon 6/8, in class: bring your configured laptop\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · Happy Git with R · DC Ch. 9 · GitHub"
+    "text": "Wrap-up & looking ahead\n\n\nUpcoming Deadlines\n\nTonight, Fri 6/5, 11:59 p.m.: HW 3\nBy Tues 6/9, class: team repo working, all members able to push (today’s setup guide)\nMon 6/8, in class: in-class join activity (no worksheet to submit) so you can focus on repo setup at home; make sure you attend and are on-time to get credit.\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · Happy Git with R · DC Ch. 9 · GitHub"
   },
   {
     "objectID": "weeks/week3/day11-data-verbs-slides.html#recap-from-yesterday",
@@ -6311,7 +6311,7 @@
     "href": "weeks/week3/day14-activity.html",
     "title": "Day 14 Activity: Get Git working (weekend setup)",
     "section": "",
-    "text": "This is your weekend task, not an in-class coding activity. By Monday June 8 your project team needs a shared GitHub repo that every member can push to.\nWork through the steps in order. Each links to the matching chapter of Happy Git with R (Jenny Bryan) — read its instructions; this page is the checklist. Expect a snag or two. Part 5 is the troubleshooting playbook, and office hours exist for exactly this.\n\n\n\n\n\n\nNote\n\n\n\nWe use RStudio’s built-in Git integration with HTTPS + a personal access token (PAT). That matches DC Ch. 9 and Happy Git, and keeps everything inside the RStudio you’ve used since week 1.\n\n\n\n\nPart 1 — Accounts and installs (solo)\n\nRegister a GitHub account — happygitwithr.com/github-acct. Pick a username that’s professional-ish; you may reuse it for years.\nR and RStudio up to date — install-r-rstudio. You set these up in week 1; just confirm they’re current.\nInstall Git — install-git. (Windows: Git for Windows. macOS: easiest is to run git --version in the Terminal and accept the install prompt.)\nIntroduce yourself to Git — hello-git. Set your name and the email tied to your GitHub account. Easiest from the R console:\n\n\n# install.packages(\"usethis\")   # once, if you don't have it\nlibrary(usethis)\nuse_git_config(\n  user.name  = \"Your Name\",          # your name, doesn't have to be your username\n  user.email = \"you@example.com\"      # the SAME email as your GitHub account\n)\n\n\n\n\nPart 2 — Connect RStudio, Git, and GitHub (solo)\nThis is the finicky part. Go slowly.\n\nCreate a personal access token (PAT) — https-pat. From the R console:\n\n\n# install.packages(c(\"usethis\", \"gitcreds\"))   # once, if needed\nusethis::create_github_token()   # opens GitHub; generate the token, COPY it\ngitcreds::gitcreds_set()         # paste the token when prompted\n\n\n\n\n\n\n\nWarning\n\n\n\nTreat the token like a password. Copy it the moment you create it, GitHub won’t show it again. If you lose it, just make a new one.\n\n\n\nConfirm the connection works — push-pull-github.\nConfirm RStudio sees Git — rstudio-git-github and rstudio-see-git. Check Tools → Global Options → Git/SVN shows a Git executable.\n\n\n\n\nPart 3 — Prove it works with a test repo (solo)\nFollow new-github-first:\n\nOn GitHub, create a new repository (check “Add a README”).\nCopy its URL (the green Code button → HTTPS).\nIn RStudio: File → New Project → Version Control → Git, paste the URL, create.\nOpen README.md, add a line like “Test repo for STAT 184”, and save.\nIn the Git tab (top-right pane): tick the box to stage README.md → click Commit → write a message → Push (up arrow).\nRefresh the repo page on GitHub. Your line is there. ✅\n\nIf your change shows up on GitHub, your setup is done. The rest of the term is just repeating this loop.\n\n\n\nPart 4 — The team repo (together, async over the weekend)\nThis is the graded deliverable. Coordinate over your team channel.\nOne person (the repo owner):\n\nCreate the team repo on GitHub (with a README). Name it something like stat184-project-teamNN.\nSettings → Collaborators → add each teammate by GitHub username.\n\nEveryone else:\n\nAccept the email/GitHub invitation.\nClone the repo into RStudio (New Project → Version Control → Git, paste the URL).\n\nEach member, including the owner:\n\nPull first (down arrow) to get everyone’s latest.\nAdd your name on its own line in the README, save.\nStage → Commit (message like “Add Jordan to README”) → Push.\nVerify: on GitHub, the README lists every member’s name, and the repo’s commit history shows at least one commit per person.\n\n\n\n\n\n\n\nTip\n\n\n\nIf two of you edit the README at the same time, you may hit a merge conflict, that’s fine, it’s good practice. See Part 5, and remember the rule: pull before you push.\n\n\n\n\n\nPart 5 — When it goes wrong (troubleshooting)\nYou will hit at least one of these. None of them mean you broke anything.\n\nCommon setup snags.\n\n\n\n\n\n\n\nSymptom\nWhat’s happening\nWhat to do\n\n\n\n\nPush rejected\nA teammate pushed since your last pull\nPull, then push again\n\n\nMerge conflict\nTwo people changed the same lines\nOpen the file, keep the right lines, remove the &lt;&lt;&lt;&lt;/====/&gt;&gt;&gt;&gt; markers, commit\n\n\nChanges don’t appear in Git tab\nWrong RStudio Project is open\nSwitch to the Project tied to that repo\n\n\n“File too large” (&gt;50 MB)\nA big data file got staged\nDon’t commit it; add it to .gitignore\n\n\nAuth fails on push\nPAT missing/expired\nRedo gitcreds::gitcreds_set() (Part 2)\n\n\n\nStill stuck after 15 minutes? Two reliable resources:\n\nHappy Git’s troubleshooting chapter.\nThe “Burn it all down” move: delete the broken local folder and re-clone a fresh copy from GitHub. Your pushed work is safe on the remote.\n\nAnd: bring it to office hours. Setup problems are quick to fix in person and miserable to fix alone at midnight.\n\n\n\nTurn in\nSubmit on Canvas:\n\nThe URL of your team repo.\nConfirmation that all members have pushed (the easiest proof is a screenshot of the repo’s commit history or contributors list).\n\nDue before class Monday, June 8. Bring your configured laptop, we’ll do a collaborative round-trip and a deliberate merge conflict together."
+    "text": "By Tuesday June 9 your project team needs a shared GitHub repo that every member can push to.\nWork through the steps in order. Each links to the matching chapter of Happy Git with R (Jenny Bryan); read its instructions there and use this page as the checklist. Part 5 covers the common ones, and feel free to come to office hours if you get stuck.\n\n\n\n\n\n\nNote\n\n\n\nWe use RStudio’s built-in Git integration with HTTPS + a personal access token (PAT). That matches DC Ch. 9 and Happy Git, and keeps everything inside RStudio.\n\n\n\n\nPart 1 — Accounts and installs (solo)\n\nRegister a GitHub account (if you don’t already have one): happygitwithr.com/github-acct. Pick a username that’s professional-ish; you may reuse it.\nR and RStudio up to date: install-r-rstudio. You set these up in week 1; just confirm they’re current.\nInstall Git: install-git. (Windows: Git for Windows. macOS: easiest is to run git --version in the Terminal and accept the install prompt.)\nIntroduce yourself to Git: hello-git. Set your name and the email tied to your GitHub account. This is easiest from the R console:\n\n\n# install.packages(\"usethis\")   # once, if you don't have it\nlibrary(usethis)\nuse_git_config(\n  user.name  = \"Your Name\",          # your name, doesn't have to be your username\n  user.email = \"you@example.com\"      # the SAME email as your GitHub account\n)\n\n\n\n\nPart 2 — Connect RStudio, Git, and GitHub (solo)\n\nCreate a personal access token (PAT): https-pat. From the R console:\n\n\n# install.packages(c(\"usethis\", \"gitcreds\"))   # run this exactly once\nusethis::create_github_token()   # opens GitHub; generate the token, COPY it\ngitcreds::gitcreds_set()         # paste the token when prompted\n\n\n\n\n\n\n\nWarning\n\n\n\nTreat the token like a password. You should copy it the moment you create it, because GitHub won’t show it again. If you happen to lose it, just make a new one.\n\n\n\nConfirm the connection works: push-pull-github.\nConfirm RStudio sees Git: rstudio-git-github and rstudio-see-git. Check Tools &gt; Global Options &gt; Git/SVN shows a Git executable.\n\n\n\n\nPart 3 — Test repo (solo)\nFollow new-github-first:\n\nOn GitHub, create a new repository (check “Add a README”).\nCopy its URL (the green Code button, then HTTPS).\nIn RStudio: File &gt; New Project &gt; Version Control &gt; Git, paste the URL, create.\nOpen README.md, add a line like “Test repo for STAT 184”, and save.\nIn the Git tab (top-right pane): tick the box to stage README.md, click Commit, write a message, then Push (up arrow).\nRefresh the repo page on GitHub. Your line is there.\n\nIf your change shows up on GitHub, your setup is done. The rest of the term is just repeating this loop.\n\n\n\nPart 4 — The team repo (together, asynchronously over the weekend)\nCoordinate with your team over the weekend.\nOne person (the repo owner):\n\nCreate the team repo on GitHub (with a README). Name it something like stat184-project-teamNN.\nSettings &gt; Collaborators, then add each teammate by GitHub username.\n\nEveryone else:\n\nAccept the email/GitHub invitation.\nClone the repo into RStudio (New Project &gt; Version Control &gt; Git, paste the URL).\n\nEach member, including the owner:\n\nPull first (down arrow) to get everyone’s latest.\nAdd your name on its own line in the README, save.\nStage, Commit (message like “Add Charles to README”), then Push.\nVerify: on GitHub, the README lists every member’s name, and the repo’s commit history shows at least one commit per person.\n\n\n\n\n\n\n\nTip\n\n\n\nIf two of you edit the README at the same time, you may hit a merge conflict, that’s fine, it’s good practice. See Part 5, and remember the rule: pull before you push.\n\n\n\n\n\nPart 5 — When it goes wrong (troubleshooting)\nYou will hit at least one of these. None of them mean you broke anything.\n\nCommon setup snags.\n\n\n\n\n\n\n\nSymptom\nWhat’s happening\nWhat to do\n\n\n\n\nPush rejected\nA teammate pushed since your last pull\nPull, then push again\n\n\nMerge conflict\nTwo people changed the same lines\nOpen the file, keep the right lines, remove the &lt;&lt;&lt;&lt;/====/&gt;&gt;&gt;&gt; markers, commit\n\n\nChanges don’t appear in Git tab\nWrong RStudio Project is open\nSwitch to the Project tied to that repo\n\n\n“File too large” (&gt;50 MB)\nA big data file got staged\nDon’t commit it; add it to .gitignore\n\n\nAuth fails on push\nPAT missing/expired\nRedo gitcreds::gitcreds_set() (Part 2)\n\n\n\nResources:\n\nHappy Git’s troubleshooting chapter.\nThe “Burn it all down” move: delete the broken local folder and re-clone a fresh copy from GitHub.\n\nFeel free to come to office hours on Monday if you get stuck.\n\n\n\nTurn in\nSubmit on Canvas:\n\nThe URL of your team repo.\nConfirmation that all members have pushed (the easiest proof is a screenshot of the repo’s commit history or contributors list).\n\nDue 11:59 p.m. Tuesday, June 9."
   },
   {
     "objectID": "weeks/week3/day12-activity.html",

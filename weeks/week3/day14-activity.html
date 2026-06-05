@@ -4369,8 +4369,8 @@ margin-bottom: 1.5rem;
   <ul>
   <li><a href="#part-1-accounts-and-installs-solo" id="toc-part-1-accounts-and-installs-solo" class="nav-link active" data-scroll-target="#part-1-accounts-and-installs-solo">Part 1 — Accounts and installs (solo)</a></li>
   <li><a href="#part-2-connect-rstudio-git-and-github-solo" id="toc-part-2-connect-rstudio-git-and-github-solo" class="nav-link" data-scroll-target="#part-2-connect-rstudio-git-and-github-solo">Part 2 — Connect RStudio, Git, and GitHub (solo)</a></li>
-  <li><a href="#part-3-prove-it-works-with-a-test-repo-solo" id="toc-part-3-prove-it-works-with-a-test-repo-solo" class="nav-link" data-scroll-target="#part-3-prove-it-works-with-a-test-repo-solo">Part 3 — Prove it works with a test repo (solo)</a></li>
-  <li><a href="#part-4-the-team-repo-together-async-over-the-weekend" id="toc-part-4-the-team-repo-together-async-over-the-weekend" class="nav-link" data-scroll-target="#part-4-the-team-repo-together-async-over-the-weekend">Part 4 — The team repo (together, async over the weekend)</a></li>
+  <li><a href="#part-3-test-repo-solo" id="toc-part-3-test-repo-solo" class="nav-link" data-scroll-target="#part-3-test-repo-solo">Part 3 — Test repo (solo)</a></li>
+  <li><a href="#part-4-the-team-repo-together-asynchronously-over-the-weekend" id="toc-part-4-the-team-repo-together-asynchronously-over-the-weekend" class="nav-link" data-scroll-target="#part-4-the-team-repo-together-asynchronously-over-the-weekend">Part 4 — The team repo (together, asynchronously over the weekend)</a></li>
   <li><a href="#part-5-when-it-goes-wrong-troubleshooting" id="toc-part-5-when-it-goes-wrong-troubleshooting" class="nav-link" data-scroll-target="#part-5-when-it-goes-wrong-troubleshooting">Part 5 — When it goes wrong (troubleshooting)</a></li>
   <li><a href="#turn-in" id="toc-turn-in" class="nav-link" data-scroll-target="#turn-in">Turn in</a></li>
   </ul>
@@ -4383,7 +4383,7 @@ margin-bottom: 1.5rem;
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Day 14 Activity: Get Git working (weekend setup)</h1>
-<p class="subtitle lead">Friday, June 5, 2026 · due before class Monday, June 8</p>
+<p class="subtitle lead">Friday, June 5, 2026 · due 11:59 p.m. Tuesday, June 9</p>
 </div>
 
 
@@ -4406,8 +4406,8 @@ margin-bottom: 1.5rem;
 </header>
 
 
-<p>This is your weekend task, not an in-class coding activity. By <strong>Monday June 8</strong> your project team needs a shared GitHub repo that <strong>every member can push to.</strong></p>
-<p>Work through the steps in order. Each links to the matching chapter of <a href="https://happygitwithr.com/"><strong>Happy Git with R</strong></a> (Jenny Bryan) — read its instructions; this page is the checklist. <strong>Expect a snag or two.</strong> Part 5 is the troubleshooting playbook, and office hours exist for exactly this.</p>
+<p>By <strong>Tuesday June 9</strong> your project team needs a shared GitHub repo that <strong>every member can push to.</strong></p>
+<p>Work through the steps in order. Each links to the matching chapter of <a href="https://happygitwithr.com/"><strong>Happy Git with R</strong></a> (Jenny Bryan); read its instructions there and use this page as the checklist. Part 5 covers the common ones, and feel free to come to office hours if you get stuck.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -4418,17 +4418,17 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>We use <strong>RStudio’s built-in Git integration</strong> with <strong>HTTPS + a personal access token (PAT)</strong>. That matches <em>DC</em> Ch. 9 and Happy Git, and keeps everything inside the RStudio you’ve used since week 1.</p>
+<p>We use <strong>RStudio’s built-in Git integration</strong> with <strong>HTTPS + a personal access token (PAT)</strong>. That matches <em>DC</em> Ch. 9 and Happy Git, and keeps everything inside RStudio.</p>
 </div>
 </div>
 <hr>
 <section id="part-1-accounts-and-installs-solo" class="level1">
 <h1>Part 1 — Accounts and installs (solo)</h1>
 <ul class="task-list">
-<li><label><input type="checkbox"><strong>Register a GitHub account</strong> — <a href="https://happygitwithr.com/github-acct">happygitwithr.com/github-acct</a>. Pick a username that’s professional-ish; you may reuse it for years.</label></li>
-<li><label><input type="checkbox"><strong>R and RStudio up to date</strong> — <a href="https://happygitwithr.com/install-r-rstudio">install-r-rstudio</a>. You set these up in week 1; just confirm they’re current.</label></li>
-<li><label><input type="checkbox"><strong>Install Git</strong> — <a href="https://happygitwithr.com/install-git">install-git</a>. (Windows: Git for Windows. macOS: easiest is to run <code>git --version</code> in the Terminal and accept the install prompt.)</label></li>
-<li><label><input type="checkbox"><strong>Introduce yourself to Git</strong> — <a href="https://happygitwithr.com/hello-git">hello-git</a>. Set your name and the email tied to your GitHub account. Easiest from the R console:</label></li>
+<li><label><input type="checkbox"><strong>Register a GitHub account</strong> (if you don’t already have one): <a href="https://happygitwithr.com/github-acct">happygitwithr.com/github-acct</a>. Pick a username that’s professional-ish; you may reuse it.</label></li>
+<li><label><input type="checkbox"><strong>R and RStudio up to date</strong>: <a href="https://happygitwithr.com/install-r-rstudio">install-r-rstudio</a>. You set these up in week 1; just confirm they’re current.</label></li>
+<li><label><input type="checkbox"><strong>Install Git</strong>: <a href="https://happygitwithr.com/install-git">install-git</a>. (Windows: Git for Windows. macOS: easiest is to run <code>git --version</code> in the Terminal and accept the install prompt.)</label></li>
+<li><label><input type="checkbox"><strong>Introduce yourself to Git</strong>: <a href="https://happygitwithr.com/hello-git">hello-git</a>. Set your name and the email tied to your GitHub account. This is easiest from the R console:</label></li>
 </ul>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;usethis&quot;)   # once, if you don&#39;t have it</span></span>
@@ -4442,12 +4442,11 @@ Note
 </section>
 <section id="part-2-connect-rstudio-git-and-github-solo" class="level1">
 <h1>Part 2 — Connect RStudio, Git, and GitHub (solo)</h1>
-<p>This is the finicky part. Go slowly.</p>
 <ul class="task-list">
-<li><label><input type="checkbox"><strong>Create a personal access token (PAT)</strong> — <a href="https://happygitwithr.com/https-pat">https-pat</a>. From the R console:</label></li>
+<li><label><input type="checkbox"><strong>Create a personal access token (PAT)</strong>: <a href="https://happygitwithr.com/https-pat">https-pat</a>. From the R console:</label></li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c(&quot;usethis&quot;, &quot;gitcreds&quot;))   # once, if needed</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c(&quot;usethis&quot;, &quot;gitcreds&quot;))   # run this exactly once</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">create_github_token</span>()   <span class="co"># opens GitHub; generate the token, COPY it</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>gitcreds<span class="sc">::</span><span class="fu">gitcreds_set</span>()         <span class="co"># paste the token when prompted</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -4461,47 +4460,47 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Treat the token like a password. Copy it the moment you create it, GitHub won’t show it again. If you lose it, just make a new one.</p>
+<p>Treat the token like a password. You should copy it the moment you create it, because GitHub won’t show it again. If you happen to lose it, just make a new one.</p>
 </div>
 </div>
 <ul class="task-list">
-<li><label><input type="checkbox"><strong>Confirm the connection works</strong> — <a href="https://happygitwithr.com/push-pull-github">push-pull-github</a>.</label></li>
-<li><label><input type="checkbox"><strong>Confirm RStudio sees Git</strong> — <a href="https://happygitwithr.com/rstudio-git-github">rstudio-git-github</a> and <a href="https://happygitwithr.com/rstudio-see-git">rstudio-see-git</a>. Check <em>Tools → Global Options → Git/SVN</em> shows a Git executable.</label></li>
+<li><label><input type="checkbox"><strong>Confirm the connection works</strong>: <a href="https://happygitwithr.com/push-pull-github">push-pull-github</a>.</label></li>
+<li><label><input type="checkbox"><strong>Confirm RStudio sees Git</strong>: <a href="https://happygitwithr.com/rstudio-git-github">rstudio-git-github</a> and <a href="https://happygitwithr.com/rstudio-see-git">rstudio-see-git</a>. Check <em>Tools &gt; Global Options &gt; Git/SVN</em> shows a Git executable.</label></li>
 </ul>
 <hr>
 </section>
-<section id="part-3-prove-it-works-with-a-test-repo-solo" class="level1">
-<h1>Part 3 — Prove it works with a test repo (solo)</h1>
+<section id="part-3-test-repo-solo" class="level1">
+<h1>Part 3 — Test repo (solo)</h1>
 <p>Follow <a href="https://happygitwithr.com/new-github-first">new-github-first</a>:</p>
 <ul class="task-list">
 <li><label><input type="checkbox">On <strong>GitHub</strong>, create a new repository (check “Add a README”).</label></li>
-<li><label><input type="checkbox">Copy its URL (the green <strong>Code</strong> button → HTTPS).</label></li>
-<li><label><input type="checkbox">In <strong>RStudio</strong>: <em>File → New Project → Version Control → Git</em>, paste the URL, create.</label></li>
+<li><label><input type="checkbox">Copy its URL (the green <strong>Code</strong> button, then HTTPS).</label></li>
+<li><label><input type="checkbox">In <strong>RStudio</strong>: <em>File &gt; New Project &gt; Version Control &gt; Git</em>, paste the URL, create.</label></li>
 <li><label><input type="checkbox">Open <code>README.md</code>, add a line like “Test repo for STAT 184”, and <strong>save</strong>.</label></li>
-<li><label><input type="checkbox">In the <strong>Git tab</strong> (top-right pane): tick the box to <strong>stage</strong> <code>README.md</code> → click <strong>Commit</strong> → write a message → <strong>Push</strong> (up arrow).</label></li>
-<li><label><input type="checkbox">Refresh the repo page on GitHub. <strong>Your line is there.</strong> ✅</label></li>
+<li><label><input type="checkbox">In the <strong>Git tab</strong> (top-right pane): tick the box to <strong>stage</strong> <code>README.md</code>, click <strong>Commit</strong>, write a message, then <strong>Push</strong> (up arrow).</label></li>
+<li><label><input type="checkbox">Refresh the repo page on GitHub. <strong>Your line is there.</strong></label></li>
 </ul>
 <p>If your change shows up on GitHub, your setup is done. The rest of the term is just repeating this loop.</p>
 <hr>
 </section>
-<section id="part-4-the-team-repo-together-async-over-the-weekend" class="level1">
-<h1>Part 4 — The team repo (together, async over the weekend)</h1>
-<p>This is the graded deliverable. Coordinate over your team channel.</p>
+<section id="part-4-the-team-repo-together-asynchronously-over-the-weekend" class="level1">
+<h1>Part 4 — The team repo (together, asynchronously over the weekend)</h1>
+<p>Coordinate with your team over the weekend.</p>
 <p><strong>One person (the repo owner):</strong></p>
 <ul class="task-list">
 <li><label><input type="checkbox">Create the team repo on GitHub (with a README). Name it something like <code>stat184-project-teamNN</code>.</label></li>
-<li><label><input type="checkbox"><em>Settings → Collaborators</em> → add each teammate by GitHub username.</label></li>
+<li><label><input type="checkbox"><em>Settings &gt; Collaborators</em>, then add each teammate by GitHub username.</label></li>
 </ul>
 <p><strong>Everyone else:</strong></p>
 <ul class="task-list">
 <li><label><input type="checkbox">Accept the email/GitHub invitation.</label></li>
-<li><label><input type="checkbox">Clone the repo into RStudio (<em>New Project → Version Control → Git</em>, paste the URL).</label></li>
+<li><label><input type="checkbox">Clone the repo into RStudio (<em>New Project &gt; Version Control &gt; Git</em>, paste the URL).</label></li>
 </ul>
 <p><strong>Each member, including the owner:</strong></p>
 <ul class="task-list">
 <li><p><label><input type="checkbox"><strong>Pull</strong> first (down arrow) to get everyone’s latest.</label></p></li>
 <li><p><label><input type="checkbox">Add your name on its own line in the README, save.</label></p></li>
-<li><p><label><input type="checkbox">Stage → Commit (message like “Add Jordan to README”) → <strong>Push</strong>.</label></p></li>
+<li><p><label><input type="checkbox">Stage, Commit (message like “Add Charles to README”), then <strong>Push</strong>.</label></p></li>
 <li><p><label><input type="checkbox"><strong>Verify:</strong> on GitHub, the README lists <strong>every</strong> member’s name, and the repo’s commit history shows <strong>at least one commit per person.</strong></label></p></li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -4564,12 +4563,12 @@ Tip
 </tr>
 </tbody>
 </table>
-<p>Still stuck after 15 minutes? Two reliable resources:</p>
+<p>Resources:</p>
 <ul>
 <li>Happy Git’s <a href="https://happygitwithr.com/troubleshooting"><strong>troubleshooting</strong></a> chapter.</li>
-<li>The <a href="https://happygitwithr.com/burn">“<strong>Burn it all down</strong>”</a> move: delete the broken local folder and <strong>re-clone</strong> a fresh copy from GitHub. Your pushed work is safe on the remote.</li>
+<li>The <a href="https://happygitwithr.com/burn">“<strong>Burn it all down</strong>”</a> move: delete the broken local folder and <strong>re-clone</strong> a fresh copy from GitHub.</li>
 </ul>
-<p>And: bring it to office hours. Setup problems are quick to fix in person and miserable to fix alone at midnight.</p>
+<p>Feel free to come to office hours on Monday if you get stuck.</p>
 <hr>
 </section>
 <section id="turn-in" class="level1">
@@ -4579,7 +4578,7 @@ Tip
 <li>The <strong>URL of your team repo</strong>.</li>
 <li>Confirmation that <strong>all members have pushed</strong> (the easiest proof is a screenshot of the repo’s commit history or contributors list).</li>
 </ol>
-<p><strong>Due before class Monday, June 8.</strong> Bring your configured laptop, we’ll do a collaborative round-trip and a deliberate merge conflict together.</p>
+<p><strong>Due 11:59 p.m. Tuesday, June 9.</strong></p>
 
 
 </section>

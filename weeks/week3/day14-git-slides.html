@@ -1012,10 +1012,10 @@ margin-right: 0; }
 <p><strong>Plan for today</strong></p>
 <ul>
 <li><strong>Quiz 3</strong> (first 20 minutes)</li>
-<li>Why version control exists, and what it buys you</li>
-<li>Git vs. GitHub, and the one workflow loop you’ll use daily</li>
-<li>A live demo (watch, don’t follow along yet)</li>
-<li>Your weekend mission: get Git working + a team repo</li>
+<li>Why version control</li>
+<li>Git vs. GitHub, push/pull</li>
+<li>Demo</li>
+<li>Weekend: get Git working + set up the team repo</li>
 </ul>
 <p><strong>Helpful links</strong></p>
 <ul>
@@ -1036,19 +1036,17 @@ margin-right: 0; }
 <ul>
 <li>Closed-book, closed-notes, closed-internet, closed-AI.</li>
 <li>Covers <strong>weeks 1–3</strong>: data frames and ggplot2, plus this week’s wrangling, the six verbs (<code>filter</code>, <code>select</code>, <code>mutate</code>, <code>arrange</code>, <code>group_by</code>, <code>summarise</code>) and grouped summaries.</li>
-<li>Pivoting appears <strong>only at the concept level</strong> (wide vs. narrow); no <code>pivot_*()</code> syntax required.</li>
-<li>Five short questions. Show your work.</li>
 </ul>
-<p>When you finish, turn in your quiz up front and we’ll start on Git.</p>
+<p>When you finish, turn in your quiz up front.</p>
 </section></section>
 <section>
 <section id="why-version-control" class="title-slide slide level1 center" data-background-color="#001E44">
 <h1>Why version control?</h1>
 
 </section>
-<section id="you-have-already-invented-version-control" class="slide level2">
-<h2>You have already invented version control</h2>
-<p>Be honest, you’ve done some version of this:</p>
+<section id="the-naive-approach" class="slide level2">
+<h2>The naive approach</h2>
+<p>We’ve all probably done some version of the following:</p>
 <pre><code>analysis.R
 analysis_v2.R
 analysis_final.R
@@ -1065,26 +1063,26 @@ analysis_final_REAL_usethis_one.R</code></pre>
 <p><strong>Tip</strong></p>
 </div>
 <div class="callout-content">
-<p><strong>Version control</strong> is the tool built for exactly this problem. <em>DC</em> §9.1 calls it a time machine for your project.</p>
+<p><strong>Version control</strong> is the tool built for exactly this problem. You can think of it as a time machine for your project.</p>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="what-version-control-actually-gives-you" class="slide level2">
-<h2>What version control actually gives you</h2>
-<p>From <em>DC</em> §9.1, a version control system lets you:</p>
+<section id="version-control-overview" class="slide level2">
+<h2>Version control overview</h2>
+<p>A version control system lets you:</p>
 <ul>
 <li><strong>Record the full history</strong> of every file, not just the latest copy</li>
 <li><strong>Revert</strong> to any earlier state if something breaks</li>
-<li><strong>Manage contributions</strong> from several people on one project</li>
+<li><strong>Work with a team</strong> without stepping on each other’s files</li>
 <li><strong>Draft freely</strong> without touching the “good” version until you’re ready</li>
 </ul>
-<p>Instead of saving whole copies, Git stores the <strong>incremental changes</strong>, which is far more efficient and lets it rebuild any past state on demand.</p>
+<p>Instead of saving a new copy of every file each time, Git stores just what changed, so it can reconstruct any earlier version on demand.</p>
 </section>
-<section id="its-not-just-for-teams" class="slide level2 scrollable nostretch">
-<h2>It’s not just for teams</h2>
-<p><em>DC</em> §9.1.1: most version control is “self-collaboration.”</p>
+<section id="helpful-for-solo-work-too" class="slide level2 scrollable nostretch">
+<h2>Helpful for solo work too</h2>
+<p>Even if you’re working solo, version control is worthwhile; you might be:</p>
 <ul>
 <li>Working across <strong>two computers</strong> (laptop + lab machine)</li>
 <li>Coming back to a project <strong>months later</strong> and needing its history</li>
@@ -1099,7 +1097,7 @@ analysis_final_REAL_usethis_one.R</code></pre>
 <p><strong>Note</strong></p>
 </div>
 <div class="callout-content">
-<p>And §9.1.2: paired with <strong>literate programming</strong> (your Quarto documents from week 1), version control is what makes an analysis <em>reproducible</em>, a complete, transparent record from raw data to final result.</p>
+<p>Paired with <strong>literate programming</strong> (Quarto), version control is what makes an analysis <em>reproducible</em>: a complete record from raw data to final result.</p>
 </div>
 </div>
 </div>
@@ -1109,9 +1107,9 @@ analysis_final_REAL_usethis_one.R</code></pre>
 <h1>Git vs. GitHub</h1>
 
 </section>
-<section id="two-different-things" class="slide level2 scrollable nostretch">
-<h2>Two different things</h2>
-<p>People say “git” for everything, but there are two pieces (<em>DC</em> §9.2):</p>
+<section id="the-distinction" class="slide level2 scrollable nostretch">
+<h2>The distinction</h2>
+<p>People often use “git” as a catch-all, but there’s actually two pieces:</p>
 <table class="caption-top">
 <caption>Git is the tool; GitHub is one place to keep it.</caption>
 <colgroup>
@@ -1144,21 +1142,21 @@ analysis_final_REAL_usethis_one.R</code></pre>
 </tr>
 </tbody>
 </table>
-<p>A <strong>repo</strong> (repository) is just a folder Git is watching, your <code>.qmd</code> files, data, images, all of it. You keep a <strong>local</strong> copy on your computer and a <strong>remote</strong> copy on GitHub, and you sync between them.</p>
+<p>A <strong>repo</strong> (repository) is just a folder Git is watching. It may include your <code>.qmd</code> files, data, images, etc. You keep a <strong>local</strong> copy on your computer and a <strong>remote</strong> copy on GitHub, and sync between them.</p>
 </section></section>
 <section>
-<section id="the-daily-loop" class="title-slide slide level1 center" data-background-color="#001E44">
-<h1>The daily loop</h1>
+<section id="daily-workflow" class="title-slide slide level1 center" data-background-color="#001E44">
+<h1>Daily workflow</h1>
 
 </section>
-<section id="the-four-moves-youll-actually-use" class="slide level2 scrollable nostretch">
-<h2>The four moves you’ll actually use</h2>
-<p>Ninety percent of Git, every day, is this loop (<em>DC</em> §9.2.2):</p>
+<section id="four-workflow-steps" class="slide level2 scrollable nostretch">
+<h2>Four workflow steps</h2>
+<p>Most days, the whole workflow fits in four steps:</p>
 <ol type="1">
-<li><strong>Edit &amp; save</strong> your files, as you already do.</li>
-<li><strong>Stage + Commit</strong> — take a snapshot, with a short message saying what changed.</li>
-<li><strong>Pull</strong> — grab any changes from GitHub <em>before</em> you send yours.</li>
-<li><strong>Push</strong> — send your commits up to GitHub.</li>
+<li><strong>Edit &amp; save</strong> your files, as you have been doing already.</li>
+<li><strong>Stage + Commit</strong>: take a snapshot with a short message saying what changed.</li>
+<li><strong>Pull</strong>: grab any changes from GitHub <em>before</em> you send yours.</li>
+<li><strong>Push</strong>: send your commits up to GitHub.</li>
 </ol>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
@@ -1169,14 +1167,14 @@ analysis_final_REAL_usethis_one.R</code></pre>
 <p><strong>Tip</strong></p>
 </div>
 <div class="callout-content">
-<p><strong>Commit early and often.</strong> Each commit is a labeled stop on the time machine. Lots of small, well-described commits beat one giant mystery commit.</p>
+<p><strong>Commit early and often.</strong> Each commit is a labeled stop on the time machine. Lots of small, well-described commits are much more clear and easy-to-follow than one giant mystery commit.</p>
 </div>
 </div>
 </div>
 </section>
 <section id="write-commit-messages-your-future-self-can-read" class="slide level2 scrollable nostretch">
 <h2>Write commit messages your future self can read</h2>
-<p>The message is how you (and your teammates) navigate the history later.</p>
+<p>The message is how you (and your teammates) navigate the history later without having to read through all of the various versions of your code.</p>
 <pre><code># Helpful
 &quot;Add body-mass-by-species summary table&quot;
 &quot;Fix na.rm bug in flipper-length means&quot;
@@ -1194,20 +1192,20 @@ analysis_final_REAL_usethis_one.R</code></pre>
 <p><strong>Note</strong></p>
 </div>
 <div class="callout-content">
-<p>A commit with a vague message is a stop on the time machine with no label, you’ll have no idea what’s there without opening it.</p>
+<p>If you commit with a vague message, you’ll have no idea what’s there without opening it.</p>
 </div>
 </div>
 </div>
 </section>
 <section id="where-this-lives-the-rstudio-git-tab" class="slide level2 scrollable nostretch">
 <h2>Where this lives: the RStudio Git tab</h2>
-<p>Once Git is configured, you barely leave RStudio (<em>DC</em> §9.2, Fig. 9.2). A <strong>Git</strong> tab appears in the top-right pane with:</p>
+<p>Once Git is configured, you can get away with barely leaving RStudio. A <strong>Git</strong> tab appears in the top-right pane with:</p>
 <ul>
 <li>A list of changed files, each with a <strong>checkbox</strong> to <em>stage</em> it</li>
 <li>A <strong>Commit</strong> button (opens a box for your message)</li>
 <li><strong>Pull</strong> (down arrow) and <strong>Push</strong> (up arrow) buttons</li>
 </ul>
-<p>That’s the whole interface for the daily loop, no command line required for now.</p>
+<p>This means we won’t need to mess with the command line for our project work.</p>
 </section></section>
 <section>
 <section id="live-demo" class="title-slide slide level1 center" data-background-color="#001E44">
@@ -1216,12 +1214,12 @@ analysis_final_REAL_usethis_one.R</code></pre>
 </section>
 <section id="watch-this-once" class="slide level2 scrollable nostretch">
 <h2>Watch this once</h2>
-<p>I’ll run the full loop on the projector. <strong>Don’t follow along yet</strong>, just watch the shape of it; you’ll do it yourself this weekend.</p>
+<p>I’ll run the full loop on the projector. <strong>Don’t follow along yet</strong>; just watch how the pieces connect. You’ll do it yourself this weekend.</p>
 <ol type="1">
 <li>Create a new repo on <strong>GitHub</strong> (with a README).</li>
-<li>In RStudio: <strong>New Project → Version Control → Git</strong>, paste the repo URL.</li>
+<li>In RStudio: <strong>New Project &gt; Version Control &gt; Git</strong>, paste the repo URL.</li>
 <li>Edit the README, <strong>save</strong>.</li>
-<li>Git tab: <strong>stage</strong> the change → <strong>Commit</strong> with a message → <strong>Push</strong>.</li>
+<li>Git tab: <strong>stage</strong> the change, <strong>Commit</strong> with a message, then <strong>Push</strong>.</li>
 <li>Refresh the GitHub page, the change is there.</li>
 <li>Edit a file <em>on GitHub</em>, then <strong>Pull</strong> in RStudio to bring it down.</li>
 </ol>
@@ -1234,14 +1232,14 @@ analysis_final_REAL_usethis_one.R</code></pre>
 <p><strong>Tip</strong></p>
 </div>
 <div class="callout-content">
-<p>Notice there was nothing about data analysis here. Git sits <em>underneath</em> the work you already do, it just snapshots and syncs the files.</p>
+<p>Notice there was nothing about data analysis here. Git sits <em>underneath</em> the work you already do, simply creating snapshots and syncing the files.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="how-a-team-uses-it" class="slide level2 scrollable nostretch">
-<h2>How a team uses it</h2>
-<p>The remote is the shared hub (<em>DC</em> §9.2, Fig. 9.4). For your project team:</p>
+<section id="git-teamwork" class="slide level2 scrollable nostretch">
+<h2>Git + Teamwork</h2>
+<p>For your project team:</p>
 <ul>
 <li>One shared repo on GitHub; everyone has a local clone.</li>
 <li>Each person edits, commits, and pushes their work.</li>
@@ -1257,9 +1255,8 @@ analysis_final_REAL_usethis_one.R</code></pre>
 <h1>When it goes wrong</h1>
 
 </section>
-<section id="the-three-youll-hit-first" class="slide level2 scrollable nostretch">
-<h2>The three you’ll hit first</h2>
-<p>Everyone trips on these; there’s a fix for each (<em>DC</em> §9.2.3):</p>
+<section id="common-issues" class="slide level2 scrollable nostretch">
+<h2>Common issues</h2>
 <table class="caption-top">
 <caption>Common snags and their fixes.</caption>
 <colgroup>
@@ -1306,7 +1303,7 @@ analysis_final_REAL_usethis_one.R</code></pre>
 <p><strong>Warning</strong></p>
 </div>
 <div class="callout-content">
-<p>When truly stuck, Happy Git’s <a href="https://happygitwithr.com/troubleshooting">troubleshooting</a> chapter and the <a href="https://happygitwithr.com/burn">“Burn it all down”</a> escape hatch (re-clone a fresh copy) will save you. Getting stuck is normal, not a sign you did it wrong.</p>
+<p>When truly stuck, Happy Git’s <a href="https://happygitwithr.com/troubleshooting">troubleshooting</a> chapter and the <a href="https://happygitwithr.com/burn">“Burn it all down”</a> escape hatch (re-clone a fresh copy) will probably help.</p>
 </div>
 </div>
 </div>
@@ -1316,50 +1313,33 @@ analysis_final_REAL_usethis_one.R</code></pre>
 <ul>
 <li><strong>Why:</strong> version control = full history + revert + safe collaboration; a reproducibility backbone</li>
 <li><strong>Git vs. GitHub:</strong> the local tool vs. the remote host; a repo is a tracked folder</li>
-<li><strong>The daily loop:</strong> stage → commit (good message!) → pull → push, mostly from the RStudio Git tab</li>
-<li><strong>Teams:</strong> one shared remote, everyone clones, <em>pull before you push</em></li>
+<li><strong>The daily loop:</strong> stage, commit (with a good message), pull, push, mostly from the RStudio Git tab</li>
+<li><strong>Teams:</strong> one shared repo, everyone clones, <em>pull before you push</em></li>
 <li><strong>Snags:</strong> merge conflicts, wrong Project, rejected pushes, big files, each has a known fix</li>
 </ul>
 </section></section>
 <section>
-<section id="your-weekend" class="title-slide slide level1 center" data-background-color="#7C0A02">
-<h1>Your weekend</h1>
+<section id="activity" class="title-slide slide level1 center" data-background-color="#7C0A02">
+<h1>Activity</h1>
 
 </section>
-<section id="the-mission" class="slide level2">
-<h2>The mission</h2>
-<p>The in-class demo was the map. This weekend you walk the trail.</p>
+<section id="project-repo-setup-activity" class="slide level2">
+<h2>Project Repo Setup Activity</h2>
 <ul>
-<li><a href="https://psu.instructure.com/courses/2487468/assignments/">Setup guide / Activity Canvas Link</a></li>
+<li><a href="https://psu.instructure.com/courses/2487468/assignments/18326660?module_item_id=48204757">Activity Canvas Link</a></li>
 </ul>
 <p><strong>Solo:</strong> follow <a href="https://happygitwithr.com/">Happy Git with R</a> to register on GitHub, install Git, connect it to RStudio, and prove it works with a test repo.</p>
 <p><strong>Team:</strong> one person creates the project repo and adds the others as collaborators; everyone clones it and pushes at least one commit.</p>
-<div style="font-size: 1.1em;">
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Tip</strong></p>
-</div>
-<div class="callout-content">
-<p>The setup is the genuinely fiddly part, so start early and use office hours. Once it works, it tends to keep working.</p>
-</div>
-</div>
-</div>
-</div>
 </section>
 <section id="wrap-up-looking-ahead" class="slide level2">
 <h2>Wrap-up &amp; looking ahead</h2>
-<p><strong>Monday Jun 8:</strong> bring your configured laptop. We’ll do a collaborative round-trip together, push, pull, and resolve a merge conflict on purpose, so the project workflow is second nature before you rely on it.</p>
 <div class="columns">
 <div class="column" style="width:55%;">
 <p><strong>Upcoming Deadlines</strong></p>
 <ul>
 <li><strong>Tonight, Fri 6/5, 11:59 p.m.</strong>: HW 3</li>
-<li><strong>By Mon 6/8, class</strong>: team repo working, <strong>all members able to push</strong> (today’s setup guide)</li>
-<li><strong>Mon 6/8, in class</strong>: bring your configured laptop</li>
+<li><strong>By Tues 6/9, class</strong>: team repo working, <strong>all members able to push</strong> (today’s setup guide)</li>
+<li><strong>Mon 6/8, in class</strong>: in-class join activity (no worksheet to submit) so you can focus on repo setup at home; make sure you attend and are on-time to get credit.</li>
 </ul>
 </div><div class="column" style="width:45%;">
 <p><strong>Reach out</strong></p>
