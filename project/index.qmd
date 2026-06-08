@@ -25,9 +25,9 @@ These are from past sections --- their requirements were slightly different, but
 | Milestone | Due | Weight (of project grade) |
 |---|---|---|
 | Team formation | Thu Jun 4, 11:59 p.m. | — (required) |
-| **Checkpoint 1** — topic, question, data sources | Fri Jun 12, 11:59 p.m. | 15% |
+| **Checkpoint 1**: topic, question, data sources | Sunday Jun 14, 11:59 p.m. | 15% |
 | **Oral check-in #1** (mid-project) | Thu Jun 18 in class | 15% |
-| **Checkpoint 2** — partial draft with visualizations | Wed Jun 24, 11:59 p.m. | 20% |
+| **Checkpoint 2**: partial draft with visualizations | Wed Jun 24, 11:59 p.m. | 20% |
 | **Oral check-in #2** (final walkthrough) | Thu Jun 25 in class | 20% |
 | **Final report + video presentation** | Fri Jun 26, 11:59 p.m. | 30% |
 
@@ -63,7 +63,7 @@ Good sources of real data:
 - <https://github.com/nytimes> — NYT data
 - <https://github.com/rfordatascience/tidytuesday> — Tidy Tuesday (you may use these CSVs as primary data, just not the R package itself)
 - <https://scorenetwork.org/> — Sports data
-- <https://www.kaggle.com/datasets> — Kaggle (caution: not all data is real)
+- <https://www.kaggle.com/datasets> — Kaggle
 
 ## Analysis and report
 

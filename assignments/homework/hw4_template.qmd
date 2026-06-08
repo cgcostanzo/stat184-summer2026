@@ -45,7 +45,7 @@ This homework uses the five related tables in `nycflights13`: `flights`, `airlin
 glimpse(flights)
 ```
 
-Throughout this homework, the key relationship to keep in mind: `flights` is the central table. The other four tables each add detail about one piece of a flight -- the airline, the airports, the plane, or the weather conditions.
+Throughout this homework, the key relationship to keep in mind: `flights` is the central table. The other four tables each add detail about one piece of a flight: the airline, the airports, the plane, or the weather conditions.
 
 ---
 
@@ -55,19 +55,19 @@ Throughout this homework, the key relationship to keep in mind: `flights` is the
 
 ### Part (a): add airline names
 
-The `carrier` column in `flights` holds two-letter codes. Use `left_join()` to attach the full airline name from `airlines`, then build a summary: **for each airline, how many flights departed, and what was the average departure delay?** Include only carriers with at least 1,000 flights. Arrange by average delay, highest first. Show the result.
+The `carrier` column in `flights` holds two-letter codes. Use `left_join()` to attach the full airline name from `airlines`, then build a summary: **for each airline, how many flights departed, and what was the average departure delay?** Include only carriers with at least 1,000 flights, arrange by average delay (highest first), and make sure to output the result.
 
 ```{r}
 # Write your R code here
 ```
 
-In one sentence: which airline had the worst average departure delay, and does anything about that surprise you?
+Which airline had the worst average departure delay?
 
 [Write your answer here.]
 
 ### Part (b): add plane details
 
-Use `left_join()` to attach `manufacturer` and `seats` from `planes` to a filtered version of `flights`. Narrow `flights` down to just `month`, `day`, `carrier`, `tailnum`, `origin`, and `dest` first, then join. Show the first six rows with `head()`.
+Use `left_join()` to attach `manufacturer` and `seats` from `planes` to a filtered version of `flights`. Narrow `flights` down to just `month`, `day`, `carrier`, `tailnum`, `origin`, and `dest` first, then join. Use `head()` to output the first six rows.
 
 ```{r}
 # Write your R code here
@@ -81,7 +81,7 @@ Not every tail number in `flights` has a record in `planes`. After joining in Pa
 # Write your R code here
 ```
 
-In one sentence: what does it mean that `manufacturer` is `NA` here?
+What does it mean that `manufacturer` is `NA` here?
 
 [Write your answer here.]
 
@@ -91,7 +91,7 @@ In one sentence: what does it mean that `manufacturer` is `NA` here?
 
 Sometimes the key column has a different name in the two tables. `join_by(a == b)` says: match rows where column `a` in the left table equals column `b` in the right table.
 
-The `airports` table has a primary key called `faa`. In `flights`, both `origin` and `dest` refer to airport codes -- but they're named differently from `faa`.
+The `airports` table has a primary key called `faa`. In `flights`, both `origin` and `dest` refer to airport codes, but they're named differently from `faa`.
 
 ### Part (a): destination airport names
 
@@ -117,7 +117,7 @@ Join the latitude (`lat`) and longitude (`lon`) from `airports` onto flights usi
 # Write your R code here
 ```
 
-In one sentence: do the airports with the worst average arrival delays share anything in common (region, size, etc.)?
+Do the airports with the worst average arrival delays share anything in common (region, size, etc.)?
 
 [Write your answer here.]
 
@@ -125,7 +125,7 @@ In one sentence: do the airports with the worst average arrival delays share any
 
 ## Question 3 -- anti_join and semi_join
 
-Filtering joins don't add columns -- they filter rows based on whether a match exists in another table.
+Filtering joins don't add columns; they filter rows based on whether a match exists in another table.
 
 - `anti_join(x, y)`: keeps rows in `x` with **no** match in `y`
 - `semi_join(x, y)`: keeps rows in `x` **with** a match in `y`
@@ -138,7 +138,7 @@ Use `anti_join()` to find all flights whose `tailnum` does not appear in `planes
 # Write your R code here
 ```
 
-In one or two sentences: which carriers account for most of the unmatched tail numbers? What might explain this?
+Which carriers account for most of the unmatched tail numbers? What might explain this?
 
 [Write your answer here.]
 
@@ -152,7 +152,7 @@ The `airports` table has 1,458 airports, but most of them never appear as a dest
 
 ### Part (c): thinking about the joins
 
-In one or two sentences each, explain:
+Answer each of the following:
 
 1. Why would you use `anti_join()` instead of just `filter()` to find unmatched rows?
 2. If `anti_join(flights, planes, join_by(tailnum))` gives you rows, what does that tell you about the data?
@@ -167,7 +167,7 @@ Joins fit naturally into the same pipelines you've been building all semester. T
 
 ### Part (a): average delay by airline name
 
-The goal: a table showing **average arrival delay by full airline name**, for airlines with at least 500 flights, arranged from worst to best. You'll need to join `airlines` to get the name, group by it, summarise, filter, and arrange -- all in one pipeline.
+The goal: a table showing **average arrival delay by full airline name**, for airlines with at least 500 flights, arranged from worst to best. You'll need to join `airlines` to get the name, group by it, summarise, filter, and arrange.
 
 ```{r}
 # Write your R code here
@@ -183,7 +183,7 @@ Make a scatter plot with plane age on the x-axis and average departure delay on 
 # Write your R code here
 ```
 
-In one or two sentences: is there a visible relationship between plane age and departure delay in this data?
+Is there a visible relationship between plane age and departure delay in this data?
 
 [Write your answer here.]
 

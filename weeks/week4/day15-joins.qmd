@@ -394,6 +394,8 @@ A **primary key** uniquely identifies each row in its own table:
 - `airports$faa`: each three-digit airport code appears exactly once
 - `planes$tailnum`: each tail number appears exactly once
 
+When more than one key is needed, the key is called a **compound key**.
+
 A **foreign key** refers to a primary key in another table:
 
 - `flights$carrier` refers to `airlines$carrier`
