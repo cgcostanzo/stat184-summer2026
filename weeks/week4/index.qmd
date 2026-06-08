@@ -1,33 +1,32 @@
 ---
-title: "Week 4 — Joins, Import & Exam"
-subtitle: "June 8 – 12, 2026"
+title: "Week 4 --- Joins, Import & Exam"
+subtitle: "June 8 - 12, 2026"
 ---
 
 ::: callout-important
 **Exam is Thursday, June 11.**
 :::
 
-We cover the last major data-handling tools — joining multiple tables and importing data from various sources — and then sit the exam. Friday is a light day with Project Checkpoint 1 due that night.
+We will cover the last major data-handling tools--- joining multiple tables and importing data from various sources. Thursday is our in-class midterm exam, and Friday we will cover web scraping.
 
 ## Daily plan
 
-| Date | Topic | Files |
-|---|---|---|
-| Mon Jun 8 | [Joining tables: `inner_join`, `left_join`, etc.](day15-joins.qmd) | [Slides](day15-joins-slides.html), in-class code |
-| Tue Jun 9 | [Importing data: CSV, Excel, web URLs](day16-import.qmd) | slides, in-class code |
-| Wed Jun 10 | [**Exam review** · practice problems](day17-exam-review.qmd) | review packet |
-| Thu Jun 11 | [**EXAM**](day18-exam.qmd) | exam |
-| Fri Jun 12 | [Intro to web scraping (light day)](day19-scraping.qmd) | slides, in-class code |
+| Date | Topic | Slides & Notes | Code & Data |
+|---|---|---|---|
+| Mon Jun 8 | Joining tables | [Slides](day15-joins-slides.html) · [Page](day15-joins-page.html) · [PDF](day15-joins.pdf) | [day15-activity.R](day15-activity.R){download="day15-activity.R"} |
+| Tue Jun 9 | Importing data | [Slides](day16-import-slides.html) · [Page](day16-import-page.html) · [PDF](day16-import.pdf) | [day16-activity.R](day11-activity.R){download="day16-activity.R"} |
+| Wed Jun 10 | Exam review | [Slides](day17-exam-review-slides.html) · [Page](day17-exam-review-page.html) · [PDF](day17-exam-review.pdf) | [day17-activity.R](day17-activity.R){download="day17-activity.R"} |
+| Thu Jun 11 | **EXAM** | --- | [day13-activity.R](day13-activity.R){download="day13-activity.R"} |
+| Fri Jun 12 | **Quiz 3** · Web scraping | [Slides](day19-scraping-slides.html) · [Page](day19-scraping-page.html) · [PDF](day19-scraping.pdf) | [day14-activity.R](day19-activity.R){download="day19-activity.R"} |
 
 ## Readings due this week
 
-- Before Mon: *Data Computing* Ch 11 (§11.1–11.3) — joining two data frames
-- Before Tue: *Data Computing* Ch 16 (§16.1–16.2, 16.4–16.5) — data formats, CSV, cleaning, factors
-- Before Fri: *Data Computing* Ch 16 (§16.3) — HTML tables and web scraping
+- Before Mon: *Data Computing* Ch 11 ([§11.1–11.3](https://psu.instructure.com/courses/2487468/assignments/18325373)): joining two data frames
+- Before Tue: *Data Computing* Ch 16 ([§16.1–16.2, 16.4–16.5](https://psu.instructure.com/courses/2487468/assignments/18325374)): data formats, CSV, cleaning, factors
+- Before Fri: *Data Computing* Ch 16 ([§16.3](https://psu.instructure.com/courses/2487468/assignments/18325375)): HTML tables and web scraping
 
 ## Assignments due this week
 
-- **Reading Quiz 4** — due before Monday's class (Canvas)
-- **HW 4** — due Mon Jun 15, 11:59 p.m.
-- **Exam (in-class + take-home)** — Thursday Jun 11
-- **Project Checkpoint 1** — due Friday Jun 12, 11:59 p.m.
+- **HW 4**: due Mon Jun 15, 11:59 p.m.
+- **Exam (in-class)**: Thursday Jun 11
+- **Project Checkpoint 1**: due Sunday Jun 14, 11:59 p.m.

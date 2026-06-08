@@ -27,6 +27,7 @@ format:
 #| warning: FALSE
 library(tidyverse)
 library(nycflights13)
+library(patchwork)
 
 LEGO_YELLOW <- "#F7C400"
 LEGO_BLUE   <- "#006CB7"
@@ -79,55 +80,124 @@ plot_plate <- function(data) {
 
 **Plan for today**
 
-- LEGO joins activity (opener, ~20 min)
+- LEGO joins activity
 - Why data gets split across tables
-- Keys: what connects one table to another
-- `left_join()`: the join you'll use most
-- `join_by()`: specifying the match
-- `anti_join()` and `semi_join()`: filtering by membership
+- Keys
+- `left_join()`
+- `join_by()`
+- `anti_join()` and `semi_join()`
 
 **Helpful links**
 
 - [Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*R4DS* Ch. 19](https://r4ds.hadley.nz/joins) · [*DC* Ch. 11](https://dtkaplan.github.io/DataComputingEbook/chap-join.html) · [dplyr reference](https://dplyr.tidyverse.org/reference)
 :::
 
-# Brick University Joins {background-color="#7C0A02"}
+# The four joins {background-color="#001E44"}
 
-## Activity Overview {.scrollable .nostretch}
+## What a join does {.scrollable .nostretch}
 
-Each of you will get two sets of bricks, a baseplate, and a handout showing the two corresponding datasets. The two kinds of bricks are:
+A **join** combines two tables by matching rows on a shared column, which is called the **key**.
 
-- **Yellow** — departments (STAT, ECON, PSY, ENG) — the **right table**
-- **Blue** — students (A–F), each with a declared major — the **left table**
+|                 | Role                                          |
+|-----------------|-----------------------------------------------|
+| **Left table**  | Your primary data                             |
+| **Right table** | The lookup table (columns you want to attach) |
 
-You'll work through **4 joins**, one at a time. Each slide describes a scenario and asks you to physically build the answer on your baseplate. After a minute or two, I'll show the answer on the projector.
+The join type controls which rows survive when a row in one table has no match in the other.
 
-::: {.callout-tip}
-The goal here is to build intuition for what different joins actually *do*. In all four cases, `students` is the left table and `departments` is the right table.
-:::
+In R: `left_join(x, y, join_by(...))`.
+
+- `x` is the left table
+- `y` is the right table.
+
+# Brickerly College Joins {background-color="#7C0A02"}
 
 ## The data {.scrollable .nostretch}
 
 Each person gets 6 student bricks + 4 department bricks + 1 baseplate.
 
-<iframe src="day15-activity.html" width="100%" height="500px" style="border: 1px solid #ccc; border-radius: 4px;"></iframe>
+<iframe src="day15-activity.html" width="100%" height="500px" style="border: 1px solid #ccc; border-radius: 4px;">
+
+</iframe>
+
+## inner · left · right · full {.nostretch}
+
+```{r}
+#| echo: FALSE
+#| fig-width: 8
+#| fig-height: 5
+
+arc_pts <- function(cx, a1, a2, n = 200, r = 1) {
+  theta <- seq(a1, a2, length.out = n)
+  data.frame(x = cx + r * cos(theta), y = r * sin(theta))
+}
+
+cx_L <- -0.5; cx_R <- 0.5
+
+poly_inter     <- rbind(arc_pts(cx_R,  2*pi/3,  4*pi/3),
+                        arc_pts(cx_L, -pi/3,    pi/3))
+poly_left_only <- rbind(arc_pts(cx_L,  pi/3,    5*pi/3),
+                        arc_pts(cx_R,  4*pi/3,  2*pi/3))
+poly_rght_only <- rbind(arc_pts(cx_R,  2*pi/3, -2*pi/3),
+                        arc_pts(cx_L, -pi/3,    pi/3))
+circ_L <- arc_pts(cx_L, 0, 2*pi)
+circ_R <- arc_pts(cx_R, 0, 2*pi)
+
+FILL_ON  <- "#001E44"
+FILL_OFF <- "#d8d8d8"
+
+venn_p <- function(show_l, show_i, show_r, title, sub) {
+  ggplot() +
+    geom_polygon(data = poly_left_only, aes(x, y),
+                 fill = if (show_l) FILL_ON else FILL_OFF, alpha = 0.9) +
+    geom_polygon(data = poly_inter,     aes(x, y),
+                 fill = if (show_i) FILL_ON else FILL_OFF, alpha = 0.9) +
+    geom_polygon(data = poly_rght_only, aes(x, y),
+                 fill = if (show_r) FILL_ON else FILL_OFF, alpha = 0.9) +
+    geom_path(data = circ_L, aes(x, y), color = "gray40", linewidth = 0.6) +
+    geom_path(data = circ_R, aes(x, y), color = "gray40", linewidth = 0.6) +
+    annotate("text", x = cx_L, y = 1.25, label = "students",    size = 3, hjust = 0.5) +
+    annotate("text", x = cx_R, y = 1.25, label = "departments", size = 3, hjust = 0.5) +
+    coord_fixed(xlim = c(-1.7, 1.7), ylim = c(-1.1, 1.45)) +
+    labs(title = title, subtitle = sub) +
+    theme_void() +
+    theme(
+      plot.title    = element_text(face = "bold", hjust = 0.5, size = 12,
+                                   margin = margin(b = 2)),
+      plot.subtitle = element_text(hjust = 0.5, size = 9, color = "gray40"),
+      plot.background = element_rect(fill = "white", color = NA)
+    )
+}
+
+(venn_p(FALSE, TRUE,  FALSE, "inner_join()",  "matched rows only") |
+ venn_p(TRUE,  TRUE,  FALSE, "left_join()",   "all left rows")) /
+(venn_p(FALSE, TRUE,  TRUE,  "right_join()",  "all right rows") |
+ venn_p(TRUE,  TRUE,  TRUE,  "full_join()",   "all rows from both tables"))
+```
+
+## Activity overview {.scrollable .nostretch}
+
+Each of you should have two sets of bricks, a baseplate, and a handout showing the two corresponding datasets. The two kinds of bricks are:
+
+- **Department bricks** (STAT, ECON, PSY, ENG): the **right table** in R
+- **Student bricks** (A–F, each with a declared major): the **left table** in R
+
+We'll build **4 joins**, one at a time. Each slide describes a scenario and asks you to physically build the answer on your baseplate. After a minute or two, I'll show the answer on the projector.
+
+::: callout-note
+**Stacking convention:** department brick at the base, student bricks above it. This is just a physical arrangement for the activity; it has nothing to do with which table is "left" or "right" in R.
+:::
 
 ## Join 1 {.scrollable .nostretch}
 
-*"The registrar is printing a student directory that pairs each student with their department. A student only appears if they've declared a major that maps to one of our four departments. Build the directory."*
+*"Brickerly College is printing a glossy brochure of Student-Department success stories. They only want to feature complete pairs. If a student in their directory no longer belongs to one of their college's four departments, or if one of the four departments currently has no students, they will leave them off the brochure."*
 
-**Left table: `students` &nbsp;·&nbsp; Right table: `departments`**
+**Left table: `students`  ·  Right table: `departments`**
 
-What join does this? Build it on the baseplate, then hold it up.
+Build this join on your baseplate.
 
-::: {.fragment}
-**INNER JOIN** — keep only rows that match in *both* tables.
-
-On the plate: 4 stacks -- A with STAT, B with STAT (stack them on the same brick), C with ECON, D with PSY.
-
-Left off: E, F, and ENG.
-
-E never declared, F declared a major we don't have, and ENG has no students. The inner join only keeps mutual matches.
+::: fragment
+**INNER JOIN**: keep only rows that match in *both* tables.
 :::
 
 ## Inner join {.scrollable .nostretch}
@@ -146,7 +216,9 @@ tibble(
 ) |> plot_plate()
 ```
 
-Yellow = department (right table), blue = student (left table). E, F, and ENG are off the plate.
+On the plate: A with STAT, B with STAT, C with ECON, D with PSY.
+
+Off the plate: E (undeclared), F (major not in Brickerly College), ENG (no students). The inner join only keeps mutual matches.
 
 ```{r}
 #| echo: TRUE
@@ -156,22 +228,14 @@ inner_join(students, departments, join_by(major == code))
 
 ## Join 2 {.scrollable .nostretch}
 
-*"Academic advising needs to schedule a check-in with every student on the roster -- including students who haven't declared, or whose major isn't one of ours. Show each student's department if we have it."*
+*"Academic advising needs to send a check-in email to every single student on the roster. We want to include their department if we have it, but even if they are undeclared or switched to a major outside of our college, they must be on the email."*
 
-**Left table: `students` &nbsp;·&nbsp; Right table: `departments`**
+**Left table: `students`  ·  Right table: `departments`**
 
-What join does this? Build it, then hold it up.
+Build this join on your baseplate.
 
-::: {.fragment}
-**LEFT JOIN** — keep every row from the left table; attach matches from the right where they exist.
-
-On the plate: the same 4 stacks, plus E solo and F solo -- all 6 students.
-
-Left off: ENG.
-
-E and F sit on the plate with no department brick attached. Those are exactly the students advising most needs to reach. Engineering, with no students, disappears entirely.
-
-*Before revealing: try an inner join for this prompt. Ask the room -- did every student get a slot? When E and F are missing, that's the gap the left join fixes.*
+::: fragment
+**LEFT JOIN**: keep every row from the left table; attach matches from the right where they exist.
 :::
 
 ## Left join {.scrollable .nostretch}
@@ -191,7 +255,9 @@ tibble(
 ) |> plot_plate()
 ```
 
-All 6 students (left table) are on the plate. E and F have no yellow department brick -- `dept` is `NA` for them. ENG is off the plate.
+On the plate: A with STAT, B with STAT, C with ECON, D with PSY, E solo (no declared major) and F solo (major not in Brickerly College)
+
+Off the plate: ENG (no students in the major)
 
 ```{r}
 #| echo: TRUE
@@ -201,20 +267,14 @@ left_join(students, departments, join_by(major == code))
 
 ## Join 3 {.scrollable .nostretch}
 
-*"The activities fair needs a table for every department -- staffed or not -- so prospective students can learn about programs that have few or no current majors. Show each department's students if it has any."*
+*"Brickerly College is setting up booths for the Academic Fair. All four departments in the college must get a booth, even if they currently have zero students enrolled. If they have students, place them at the booth."*
 
-**Left table: `students` &nbsp;·&nbsp; Right table: `departments`**
+**Left table: `students`  ·  Right table: `departments`**
 
-What join does this? Build it, then hold it up.
+Build this join on your baseplate.
 
-::: {.fragment}
-**RIGHT JOIN** — keep every row from the right table; attach matches from the left where they exist.
-
-On the plate: STAT (with A and B stacked), ECON (with C), PSY (with D), ENG solo -- all 4 departments.
-
-Left off: E and F.
-
-Engineering gets a table even with zero students. E and F drop out because they don't belong to any listed department.
+::: fragment
+**RIGHT JOIN**: keep every row from the right table; attach matches from the left where they exist.
 :::
 
 ## Right join {.scrollable .nostretch}
@@ -234,7 +294,9 @@ tibble(
 ) |> plot_plate()
 ```
 
-All 4 departments (right table) are on the plate. ENG has no blue student brick -- `student` is `NA` for it. E and F are off the plate.
+On the plate: A with STAT, B with STAT, C with ECON, D with PSY, ENG with no students
+
+Off the plate: E (no major declared) and F (major not in Brickerly College)
 
 ```{r}
 #| echo: TRUE
@@ -244,18 +306,14 @@ right_join(students, departments, join_by(major == code))
 
 ## Join 4 {.scrollable .nostretch}
 
-*"The Provost wants a complete audit -- every student and every department must appear at least once, match or no match. Build the full picture."*
+*"The Provost has demanded a total audit of Brickerly College. Every student and every department must appear on the board at least once, regardless of whether they have a match or not."*
 
-**Left table: `students` &nbsp;·&nbsp; Right table: `departments`**
+**Left table: `students`  ·  Right table: `departments`**
 
-What join does this? Build it, then hold it up.
+Build this join on your baseplate.
 
-::: {.fragment}
-**FULL JOIN** — keep every row from both tables; fill in `NA` where there's no match.
-
-On the plate: the 4 matched stacks + E solo + F solo + ENG solo. Every brick is used.
-
-Solo student bricks (E, F) have `NA` for department. The solo ENG brick has `NA` for student. A left join and a right join at the same time.
+::: fragment
+**FULL JOIN**: keep every row from both tables; fill in `NA` where there's no match.
 :::
 
 ## Full join {.scrollable .nostretch}
@@ -265,8 +323,8 @@ Solo student bricks (E, F) have `NA` for department. The solo ENG brick has `NA`
 #| fig-width: 9
 #| fig-height: 3.5
 tibble(
-  col   = c(1, 1, 1, 2, 2, 3, 3, 4, 5, 6),
-  row   = c(1, 2, 3, 1, 2, 1, 2, 1, 1, 1),
+  col = c(1, 1, 1, 2, 2, 3, 3, 4, 5, 6),
+  row = c(1, 2, 3, 1, 2, 1, 2, 1, 1, 1),
   label = c("STAT", "A", "B", "ECON", "C", "PSY", "D", "E", "F", "ENG"),
   fill  = c(LEGO_YELLOW, LEGO_BLUE, LEGO_BLUE,
             LEGO_YELLOW, LEGO_BLUE,
@@ -275,7 +333,9 @@ tibble(
 ) |> plot_plate()
 ```
 
-Every brick is on the plate. Solo blue bricks (E, F) have `NA` for dept; solo yellow brick (ENG) has `NA` for student.
+On the plate: A with STAT, B with STAT, C with ECON, D with PSY, E solo (no major declared), F solo (major not in Brickerly College), ENG solo (no students in the major)
+
+Off the plate: no bricks
 
 ```{r}
 #| echo: TRUE
@@ -283,33 +343,31 @@ Every brick is on the plate. Solo blue bricks (E, F) have `NA` for dept; solo ye
 full_join(students, departments, join_by(major == code))
 ```
 
-## What we just built {.scrollable .nostretch}
+## Recap {.scrollable .nostretch}
 
-| Join | On the baseplate | Left off |
-|---|---|---|
-| Inner | 4 matched stacks | E, F, ENG |
-| Left | 4 stacks + E solo + F solo | ENG |
-| Right | 4 stacks + ENG solo | E, F |
-| Full | 4 stacks + E solo + F solo + ENG solo | nothing |
+| Join  | On the baseplate                    | Left off  |
+|-------|-------------------------------------|-----------|
+| Inner | Matched stacks                      | E, F, ENG |
+| Left  | Stacks + E solo + F solo            | ENG       |
+| Right | Stacks + ENG solo                   | E, F      |
+| Full  | Stacks + E solo + F solo + ENG solo | nothing   |
 
-: {tbl-colwidths="[20,45,35]"}
-
-In R the same four joins are `inner_join()`, `left_join()`, `right_join()`, and `full_join()`. The one you'll reach for most is `left_join()` -- keep everything in your main table, attach what you can from the right.
+In dplyr, the corresponding four joins are `inner_join()`, `left_join()`, `right_join()`, and `full_join()`. `left_join()`, where you keep everything in your main table and attach what you can from the right, will likely be the one you use the most.
 
 # Why multiple tables? {background-color="#001E44"}
 
-## Data is split up on purpose {.scrollable .nostretch}
+## Data is often split up on purpose {.scrollable .nostretch}
 
 The `flights` dataset from nycflights13 has 336,776 rows, one per flight. Each row has a `carrier` column (`"UA"`, `"AA"`, etc.), but not the airline's full name.
 
-The full names live in a separate `airlines` table:
+The full names can be found in a separate `airlines` dataset:
 
 ```{r}
 #| echo: TRUE
 airlines
 ```
 
-Storing the name separately isn't an oversight. The name belongs to the airline, not to each individual flight. Keeping it in one place means you only update it once, and you don't repeat "United Air Lines Inc." a hundred thousand times.
+Storing the name separately is on purpose here. The name belongs to the airline, not to each individual flight. Keeping it in one place means you only update it once, and you don't repeat "United Air Lines Inc." hundreds of thousands of times unnecessarily.
 
 ## Joins bring the tables back together {.scrollable .nostretch}
 
@@ -319,7 +377,7 @@ A **join** matches rows from one table to rows in another and combines them side
 #| echo: TRUE
 flights |>
   select(month, day, carrier, flight, origin, dest) |>
-  left_join(airlines, join_by(carrier))
+  left_join(x = _, y = airlines, join_by(carrier))
 ```
 
 The `name` column is now attached to each flight. The airline name appears once in `airlines`, but as many times as needed in the result.
@@ -333,7 +391,7 @@ A **key** is a column (or set of columns) that identifies rows and links tables 
 A **primary key** uniquely identifies each row in its own table:
 
 - `airlines$carrier`: each two-letter code appears exactly once
-- `airports$faa`: each airport code appears exactly once
+- `airports$faa`: each three-digit airport code appears exactly once
 - `planes$tailnum`: each tail number appears exactly once
 
 A **foreign key** refers to a primary key in another table:
@@ -342,26 +400,24 @@ A **foreign key** refers to a primary key in another table:
 - `flights$dest` (and `flights$origin`) refer to `airports$faa`
 - `flights$tailnum` refers to `planes$tailnum`
 
-The key columns often share the same name in both tables, which makes the join straightforward. When they don't, you say so explicitly.
+The key columns often share the same name in both tables, which makes the join straightforward. But when they don't, you need to tell R the distinct names of the two key columns; otherwise, it will not know how to merge the two tables.
 
 ## How the nycflights13 tables connect {.scrollable .nostretch}
 
-`flights` is the central table. The others each add detail about one piece of a flight:
+Here, `flights` is the central table, and the other tables each add detail about a piece of a flight:
 
-| Column(s) in `flights` | Connects to | Table |
-|---|---|---|
-| `carrier` | `carrier` | `airlines` |
-| `tailnum` | `tailnum` | `planes` |
-| `origin`, `dest` | `faa` | `airports` |
-| `origin` + `time_hour` | `origin` + `time_hour` | `weather` |
-
-: {tbl-colwidths="[38,22,40]"}
+| Column(s) in `flights` | Connects to            | Table      |
+|------------------------|------------------------|------------|
+| `carrier`              | `carrier`              | `airlines` |
+| `tailnum`              | `tailnum`              | `planes`   |
+| `origin`, `dest`       | `faa`                  | `airports` |
+| `origin` + `time_hour` | `origin` + `time_hour` | `weather`  |
 
 Both `origin` and `dest` refer to the same column in `airports`. You can join on either one depending on what you're asking.
 
 ## Checking a primary key {.scrollable .nostretch}
 
-Before joining, it's worth verifying that a column is actually a primary key -- no duplicates. Count and look for any `n > 1`:
+Before joining, it's worth verifying that a column is actually a primary key. For a column to be a primary key, there must be no duplicates. To count and look for any `n > 1`, you can run the following code:
 
 ```{r}
 #| echo: TRUE
@@ -370,57 +426,60 @@ airlines |>
   filter(n > 1)
 ```
 
-An empty result confirms `carrier` is unique in `airlines`. If you got rows back, the column isn't a primary key and the join could produce more rows than you expected.
+The result here is an empty tibble, which confirms `carrier` is unique in `airlines`. If you had gotten rows back, that would've meant that the column wasn't a primary key and the join could produce more rows than you expected.
 
 # left_join() {background-color="#001E44"}
 
-## The join you'll use most {.scrollable .nostretch}
+## The most common join {.scrollable .nostretch}
 
-`left_join(x, y)` keeps every row from `x` and attaches matching columns from `y`. If there's no match in `y`, the new columns get `NA`.
+`left_join(x, y)` keeps every row from `x` and attaches matching columns from `y`. If there's no match in `y`, the corresponding entries in the new columns are assigned an `NA` value.
 
 ```{r}
 #| echo: TRUE
 flights |>
   select(month, day, tailnum, carrier) |>
-  left_join(planes |> select(tailnum, manufacturer, model),
+  left_join(x = _, y = planes |> select(tailnum, manufacturer, model),
             join_by(tailnum))
 ```
 
-::: {.callout-tip}
-Use `left_join()` when you want to add information to a main table. The left table stays intact; you're just pulling in extra columns from the right.
+::: callout-tip
+Typically, we use `left_join()` when we want to add information to a main table. The left table will stay completely intact since you're just pulling in extra columns from the right.
 :::
 
 ## When there's no match: NA {.scrollable .nostretch}
 
-Some tail numbers in `flights` don't appear in `planes`. `left_join()` keeps those rows anyway and fills the new columns with `NA`:
+Some tail numbers in `flights` don't appear in `planes`. `left_join()` keeps those rows anyway and fills the new columns with `NA`. The `N3ALAA` tailnumber is one example:
 
 ```{r}
 #| echo: TRUE
 flights |>
   filter(tailnum == "N3ALAA") |>
   select(month, day, tailnum, carrier) |>
-  left_join(planes |> select(tailnum, manufacturer, model),
+  left_join(x = _, y = planes |> select(tailnum, manufacturer, model),
             join_by(tailnum))
 ```
 
-That's intentional: the flight happened whether or not we have plane records. The missing information shows up as `NA` rather than disappearing silently.
+What's going on here is that the flight happened, but there are no plane records. This albeit incomplete information is still valuable information to have; we want the missing information to show up as `NA` rather than being silently left out of the joined table.
 
 # join_by() {background-color="#001E44"}
 
-## When the column names match {.scrollable .nostretch}
+## Matching column names {.scrollable .nostretch}
 
 When the key has the same name in both tables, `join_by()` is simple:
 
 ```{r}
 #| echo: TRUE
 #| eval: FALSE
-flights |> left_join(airlines, join_by(carrier))   # carrier == carrier
-flights |> left_join(planes,   join_by(tailnum))   # tailnum == tailnum
+flights |> 
+  left_join(x = _, y = airlines, join_by(carrier)) # carrier == carrier
+
+flights |> 
+  left_join(x = _, y = planes, join_by(tailnum)) # tailnum == tailnum
 ```
 
-dplyr prints which columns it matched on, so you can check it did the right thing.
+dplyr prints which columns it matched on, so you can make sure it's working correctly.
 
-## When the column names differ {.scrollable .nostretch}
+## Different column names {.scrollable .nostretch}
 
 `airports$faa` is the primary key, but `flights` uses `origin` and `dest` to refer to airports. You tell R which columns correspond with `==` inside `join_by()`:
 
@@ -428,57 +487,60 @@ dplyr prints which columns it matched on, so you can check it did the right thin
 #| echo: TRUE
 flights |>
   select(month, day, origin, dest) |>
-  left_join(airports |> select(faa, name, lat, lon),
+  left_join(x = _, y = airports |> select(faa, name, lat, lon),
             join_by(dest == faa))
 ```
 
-`join_by(dest == faa)` says: match rows where `dest` in the left table equals `faa` in the right table.
+`join_by(dest == faa)` tells R to match rows where `dest` in the left table equals `faa` in the right table.
 
-## The natural join pitfall {.scrollable .nostretch}
+## Common pitfall {.scrollable .nostretch}
 
-If you omit `join_by()`, dplyr matches on **all** shared column names. This can go wrong quietly.
+If you omit `join_by()`, dplyr matches on **all** shared column names. This can go wrong, and the dangerous part is that it will not necessarily throw an error.
 
 `flights` and `planes` both have a `year` column, but `flights$year` is the flight year and `planes$year` is the year the plane was built:
 
 ```{r}
 #| echo: TRUE
-# joins on both tailnum AND year -- almost certainly not what you want
+# joins on both tailnum and year
+# almost certainly not what you want
 flights |>
   select(year, month, day, tailnum) |>
-  left_join(planes)
+  left_join(x = _, y = planes)
 ```
 
-Because almost no plane was built in 2013 with a matching tailnum, the result is full of `NA`. Always specify `join_by()` when columns share a name but mean different things.
+Because almost no plane was built in 2013 with a matching tailnum, the result is full of `NA`s. Always specify `join_by()` when columns share a name but mean different things.
 
 # Other mutating joins {background-color="#001E44"}
 
 ## left, inner, right, full {.scrollable .nostretch}
 
-All four mutating joins add columns from the right table. The difference is which rows survive -- the same four cases you just built with LEGO:
+All four mutating joins add columns from the right table. The difference is which rows survive. Here are the same four cases you just built with bricks:
 
-| Join | Rows kept |
-|---|---|
-| `left_join()` | all rows from the **left** table |
+| Join           | Rows kept                                 |
+|----------------|-------------------------------------------|
+| `left_join()`  | all rows from the **left** table          |
 | `inner_join()` | only rows with a match in **both** tables |
-| `right_join()` | all rows from the **right** table |
-| `full_join()` | all rows from **either** table |
+| `right_join()` | all rows from the **right** table         |
+| `full_join()`  | all rows from **either** table            |
 
-: {tbl-colwidths="[38,62]"}
+`left_join()` is the right choice for adding additional variables to a main table. `inner_join()` is useful when you only want rows that can be fully matched on both sides.
 
-`left_join()` is the right choice for adding detail to a main table. `inner_join()` is useful when you only want rows that can be fully matched on both sides.
-
-## left vs. inner: what changes {.scrollable .nostretch}
+## left vs. inner join {.scrollable .nostretch}
 
 ```{r}
 #| echo: TRUE
 # left_join: keeps all 336,776 flights; unmatched rows get NA
-nrow(flights |> left_join(planes, join_by(tailnum)))
+nrow(flights |> 
+       left_join(x = _, y = planes, join_by(tailnum))
+     )
 
 # inner_join: drops any flight with no matching plane record
-nrow(flights |> inner_join(planes, join_by(tailnum)))
+nrow(flights |> 
+       inner_join(x = _, y = planes, join_by(tailnum))
+     )
 ```
 
-About 50,000 flights disappear with the inner join. Whether that's right depends on your question.
+About 50,000 flights disappear with the inner join. Whether that's the appropriate move depends on your question.
 
 # Filtering joins {background-color="#001E44"}
 
@@ -486,36 +548,34 @@ About 50,000 flights disappear with the inner join. Whether that's right depends
 
 Filtering joins don't add columns. They filter rows based on whether a match exists in another table:
 
-| Join | Keeps... |
-|---|---|
-| `semi_join(x, y)` | rows in `x` that **have** a match in `y` |
+| Join              | Keeps...                                       |
+|-------------------|------------------------------------------------|
+| `semi_join(x, y)` | rows in `x` that **have** a match in `y`       |
 | `anti_join(x, y)` | rows in `x` that **don't** have a match in `y` |
 
-: {tbl-colwidths="[42,58]"}
+Here, only the columns of `x` appear in the result, and nothing from `y` is added. This is helpful for checking what's present or absent in one table relative to another.
 
-Only the columns of `x` appear in the result -- nothing from `y` is added. This is handy for checking what's present or absent in one table relative to another.
-
-## anti_join(): finding what's missing {.scrollable .nostretch}
+## anti_join() {.scrollable .nostretch}
 
 Which flights have a tail number that doesn't appear in `planes` at all?
 
 ```{r}
 #| echo: TRUE
 flights |>
-  anti_join(planes, join_by(tailnum)) |>
+  anti_join(x = _, y = planes, join_by(tailnum)) |>
   distinct(tailnum)
 ```
 
-Over 700 unique tail numbers in `flights` have no matching record in `planes`. Worth knowing before you join in plane characteristics for an analysis.
+Over 700 unique tail numbers in `flights` have no matching record in `planes`. This information is probably good to know before you join in plane characteristics for an analysis.
 
-## semi_join(): filtering by membership {.scrollable .nostretch}
+## semi_join() {.scrollable .nostretch}
 
-`semi_join()` keeps only the rows from `x` that appear in `y`. Which airports actually appear as destinations in `flights`?
+`semi_join()` filters by membership, keeping only the rows from `x` that appear in `y`. For example, this function can be used to answer the question: which airports actually appear as destinations in `flights`?
 
 ```{r}
 #| echo: TRUE
 airports |>
-  semi_join(flights, join_by(faa == dest))
+  semi_join(x = _, y = flights, join_by(faa == dest))
 ```
 
 Only 101 of the 1,458 airports in `airports` are actual destinations in this dataset.
@@ -535,7 +595,7 @@ Only 101 of the 1,458 airports in `airports` are actual destinations in this dat
 
 **Tomorrow (Tuesday):** importing data from CSV files, Excel, and web URLs, plus a look at factors vs. strings.
 
-:::: {.columns}
+::::: columns
 ::: {.column width="55%"}
 **Upcoming Deadlines**
 
@@ -547,10 +607,10 @@ Only 101 of the 1,458 airports in `airports` are actual destinations in this dat
 ::: {.column width="45%"}
 **Reach out**
 
-Stuck? Office hours, or email me ([cgc5478@psu.edu](mailto:cgc5478@psu.edu)) or Xinyue ([xpw5228@psu.edu](mailto:xpw5228@psu.edu)).
+Stuck? Office hours, or email me ([cgc5478\@psu.edu](mailto:cgc5478@psu.edu)) or Xinyue ([xpw5228\@psu.edu](mailto:xpw5228@psu.edu)).
 
 **Reference**
 
 [Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*R4DS* Ch. 19](https://r4ds.hadley.nz/joins) · [*DC* Ch. 11](https://dtkaplan.github.io/DataComputingEbook/chap-join.html) · [dplyr reference](https://dplyr.tidyverse.org/reference)
 :::
-::::
+:::::
