@@ -6115,14 +6115,14 @@
     "href": "weeks/week4/index.html",
     "title": "Week 4 — Joins, Import & Exam",
     "section": "",
-    "text": "Important\n\n\n\nExam is Thursday, June 11.\nWe cover the last major data-handling tools — joining multiple tables and importing data from various sources — and then sit the exam. Friday is a light day with Project Checkpoint 1 due that night."
+    "text": "Important\n\n\n\nExam is Thursday, June 11.\nWe will cover the last major data-handling tools— joining multiple tables and importing data from various sources. Thursday is our in-class midterm exam, and Friday we will cover web scraping."
   },
   {
     "objectID": "weeks/week4/index.html#daily-plan",
     "href": "weeks/week4/index.html#daily-plan",
     "title": "Week 4 — Joins, Import & Exam",
     "section": "Daily plan",
-    "text": "Daily plan\n\n\n\nDate\nTopic\nSlides & Notes\nCode & Data\n\n\n\n\nMon Jun 8\nJoining tables\nSlides · Page · PDF\nday15-activity.R\n\n\nTue Jun 9\nImporting data\nSlides · Page · PDF\nday16-activity.R\n\n\nWed Jun 10\nExam review\nSlides · Page · PDF\nday17-activity.R\n\n\nThu Jun 11\nEXAM\nSlides · Page · PDF\nday13-activity.R\n\n\nFri Jun 12\nQuiz 3 · Web scraping\nSlides · Page · PDF\nday14-activity.R"
+    "text": "Daily plan\n\n\n\nDate\nTopic\nSlides & Notes\nCode & Data\n\n\n\n\nMon Jun 8\nJoining tables\nSlides · Page · PDF\nday15-activity.R\n\n\nTue Jun 9\nImporting data\nSlides · Page · PDF\nday16-activity.R\n\n\nWed Jun 10\nExam review\nSlides · Page · PDF\nday17-activity.R\n\n\nThu Jun 11\nEXAM\n—\nday13-activity.R\n\n\nFri Jun 12\nQuiz 3 · Web scraping\nSlides · Page · PDF\nday14-activity.R"
   },
   {
     "objectID": "weeks/week4/index.html#readings-due-this-week",
