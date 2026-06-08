@@ -4469,7 +4469,7 @@ $ minute         &lt;dbl&gt; 15, 29, 40, 45, 0, 58, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5
 $ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-01 0…</code></pre>
 </div>
 </div>
-<p>Throughout this homework, the key relationship to keep in mind: <code>flights</code> is the central table. The other four tables each add detail about one piece of a flight – the airline, the airports, the plane, or the weather conditions.</p>
+<p>Throughout this homework, the key relationship to keep in mind: <code>flights</code> is the central table. The other four tables each add detail about one piece of a flight: the airline, the airports, the plane, or the weather conditions.</p>
 <hr>
 </section>
 <section id="question-1-left_join-basics" class="level2">
@@ -4477,16 +4477,16 @@ $ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-
 <p><code>left_join()</code> keeps every row from the left table and attaches matching columns from the right. If there’s no match, the new columns get <code>NA</code>.</p>
 <section id="part-a-add-airline-names" class="level3">
 <h3 class="anchored" data-anchor-id="part-a-add-airline-names">Part (a): add airline names</h3>
-<p>The <code>carrier</code> column in <code>flights</code> holds two-letter codes. Use <code>left_join()</code> to attach the full airline name from <code>airlines</code>, then build a summary: <strong>for each airline, how many flights departed, and what was the average departure delay?</strong> Include only carriers with at least 1,000 flights. Arrange by average delay, highest first. Show the result.</p>
+<p>The <code>carrier</code> column in <code>flights</code> holds two-letter codes. Use <code>left_join()</code> to attach the full airline name from <code>airlines</code>, then build a summary: <strong>for each airline, how many flights departed, and what was the average departure delay?</strong> Include only carriers with at least 1,000 flights, arrange by average delay (highest first), and make sure to output the result.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>In one sentence: which airline had the worst average departure delay, and does anything about that surprise you?</p>
+<p>Which airline had the worst average departure delay?</p>
 <p>[Write your answer here.]</p>
 </section>
 <section id="part-b-add-plane-details" class="level3">
 <h3 class="anchored" data-anchor-id="part-b-add-plane-details">Part (b): add plane details</h3>
-<p>Use <code>left_join()</code> to attach <code>manufacturer</code> and <code>seats</code> from <code>planes</code> to a filtered version of <code>flights</code>. Narrow <code>flights</code> down to just <code>month</code>, <code>day</code>, <code>carrier</code>, <code>tailnum</code>, <code>origin</code>, and <code>dest</code> first, then join. Show the first six rows with <code>head()</code>.</p>
+<p>Use <code>left_join()</code> to attach <code>manufacturer</code> and <code>seats</code> from <code>planes</code> to a filtered version of <code>flights</code>. Narrow <code>flights</code> down to just <code>month</code>, <code>day</code>, <code>carrier</code>, <code>tailnum</code>, <code>origin</code>, and <code>dest</code> first, then join. Use <code>head()</code> to output the first six rows.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -4497,7 +4497,7 @@ $ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>In one sentence: what does it mean that <code>manufacturer</code> is <code>NA</code> here?</p>
+<p>What does it mean that <code>manufacturer</code> is <code>NA</code> here?</p>
 <p>[Write your answer here.]</p>
 <hr>
 </section>
@@ -4505,7 +4505,7 @@ $ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-
 <section id="question-2-join_by-with-different-column-names" class="level2">
 <h2 class="anchored" data-anchor-id="question-2-join_by-with-different-column-names">Question 2 – join_by() with different column names</h2>
 <p>Sometimes the key column has a different name in the two tables. <code>join_by(a == b)</code> says: match rows where column <code>a</code> in the left table equals column <code>b</code> in the right table.</p>
-<p>The <code>airports</code> table has a primary key called <code>faa</code>. In <code>flights</code>, both <code>origin</code> and <code>dest</code> refer to airport codes – but they’re named differently from <code>faa</code>.</p>
+<p>The <code>airports</code> table has a primary key called <code>faa</code>. In <code>flights</code>, both <code>origin</code> and <code>dest</code> refer to airport codes, but they’re named differently from <code>faa</code>.</p>
 <section id="part-a-destination-airport-names" class="level3">
 <h3 class="anchored" data-anchor-id="part-a-destination-airport-names">Part (a): destination airport names</h3>
 <p>Join <code>airports</code> onto <code>flights</code> using <code>dest</code> as the key. Select only <code>month</code>, <code>day</code>, <code>origin</code>, <code>dest</code>, and <code>name</code> (the destination airport’s full name) from the result. Show the first six rows.</p>
@@ -4526,14 +4526,14 @@ $ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>In one sentence: do the airports with the worst average arrival delays share anything in common (region, size, etc.)?</p>
+<p>Do the airports with the worst average arrival delays share anything in common (region, size, etc.)?</p>
 <p>[Write your answer here.]</p>
 <hr>
 </section>
 </section>
 <section id="question-3-anti_join-and-semi_join" class="level2">
 <h2 class="anchored" data-anchor-id="question-3-anti_join-and-semi_join">Question 3 – anti_join and semi_join</h2>
-<p>Filtering joins don’t add columns – they filter rows based on whether a match exists in another table.</p>
+<p>Filtering joins don’t add columns; they filter rows based on whether a match exists in another table.</p>
 <ul>
 <li><code>anti_join(x, y)</code>: keeps rows in <code>x</code> with <strong>no</strong> match in <code>y</code></li>
 <li><code>semi_join(x, y)</code>: keeps rows in <code>x</code> <strong>with</strong> a match in <code>y</code></li>
@@ -4544,7 +4544,7 @@ $ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>In one or two sentences: which carriers account for most of the unmatched tail numbers? What might explain this?</p>
+<p>Which carriers account for most of the unmatched tail numbers? What might explain this?</p>
 <p>[Write your answer here.]</p>
 </section>
 <section id="part-b-filtering-airports-by-flight-activity" class="level3">
@@ -4556,7 +4556,7 @@ $ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-
 </section>
 <section id="part-c-thinking-about-the-joins" class="level3">
 <h3 class="anchored" data-anchor-id="part-c-thinking-about-the-joins">Part (c): thinking about the joins</h3>
-<p>In one or two sentences each, explain:</p>
+<p>Answer each of the following:</p>
 <ol type="1">
 <li>Why would you use <code>anti_join()</code> instead of just <code>filter()</code> to find unmatched rows?</li>
 <li>If <code>anti_join(flights, planes, join_by(tailnum))</code> gives you rows, what does that tell you about the data?</li>
@@ -4570,7 +4570,7 @@ $ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-
 <p>Joins fit naturally into the same pipelines you’ve been building all semester. This question asks you to chain joins with the wrangling verbs from weeks 3 and 4.</p>
 <section id="part-a-average-delay-by-airline-name" class="level3">
 <h3 class="anchored" data-anchor-id="part-a-average-delay-by-airline-name">Part (a): average delay by airline name</h3>
-<p>The goal: a table showing <strong>average arrival delay by full airline name</strong>, for airlines with at least 500 flights, arranged from worst to best. You’ll need to join <code>airlines</code> to get the name, group by it, summarise, filter, and arrange – all in one pipeline.</p>
+<p>The goal: a table showing <strong>average arrival delay by full airline name</strong>, for airlines with at least 500 flights, arranged from worst to best. You’ll need to join <code>airlines</code> to get the name, group by it, summarise, filter, and arrange.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -4582,7 +4582,7 @@ $ time_hour      &lt;dttm&gt; 2013-01-01 05:00:00, 2013-01-01 05:00:00, 2013-01-
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Write your R code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>In one or two sentences: is there a visible relationship between plane age and departure delay in this data?</p>
+<p>Is there a visible relationship between plane age and departure delay in this data?</p>
 <p>[Write your answer here.]</p>
 <hr>
 </section>
