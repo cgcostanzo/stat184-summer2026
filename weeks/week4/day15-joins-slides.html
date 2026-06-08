@@ -1278,11 +1278,6 @@ margin-right: 0; }
 <section id="recap" class="slide level2 scrollable nostretch">
 <h2>Recap</h2>
 <table class="caption-top">
-<colgroup>
-<col style="width: 20%">
-<col style="width: 45%">
-<col style="width: 35%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Join</th>
@@ -1313,7 +1308,7 @@ margin-right: 0; }
 </tr>
 </tbody>
 </table>
-<p>In dplyr, the same four joins are <code>inner_join()</code>, <code>left_join()</code>, <code>right_join()</code>, and <code>full_join()</code>. <code>left_join()</code>, where you keep everything in your main table and attach what you can from the right, will likely be the one you use the most.</p>
+<p>In dplyr, the corresponding four joins are <code>inner_join()</code>, <code>left_join()</code>, <code>right_join()</code>, and <code>full_join()</code>. <code>left_join()</code>, where you keep everything in your main table and attach what you can from the right, will likely be the one you use the most.</p>
 </section></section>
 <section>
 <section id="why-multiple-tables" class="title-slide slide level1 center" data-background-color="#001E44">
@@ -1323,7 +1318,7 @@ margin-right: 0; }
 <section id="data-is-often-split-up-on-purpose" class="slide level2 scrollable nostretch">
 <h2>Data is often split up on purpose</h2>
 <p>The <code>flights</code> dataset from nycflights13 has 336,776 rows, one per flight. Each row has a <code>carrier</code> column (<code>&quot;UA&quot;</code>, <code>&quot;AA&quot;</code>, etc.), but not the airline’s full name.</p>
-<p>The full names live in a separate <code>airlines</code> table:</p>
+<p>The full names can be found in a separate <code>airlines</code> dataset:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>airlines</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1348,7 +1343,7 @@ margin-right: 0; }
 16 YV      Mesa Airlines Inc.         </code></pre>
 </div>
 </div>
-<p>Storing the name separately isn’t an oversight. The name belongs to the airline, not to each individual flight. Keeping it in one place means you only update it once, and you don’t repeat “United Air Lines Inc.” a hundred thousand times.</p>
+<p>Storing the name separately is on purpose here. The name belongs to the airline, not to each individual flight. Keeping it in one place means you only update it once, and you don’t repeat “United Air Lines Inc.” hundreds of thousands of times unnecessarily.</p>
 </section>
 <section id="joins-bring-the-tables-back-together" class="slide level2 scrollable nostretch">
 <h2>Joins bring the tables back together</h2>
@@ -1356,7 +1351,7 @@ margin-right: 0; }
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>flights <span class="sc">|&gt;</span></span>
 <span id="cb7-2"><a></a>  <span class="fu">select</span>(month, day, carrier, flight, origin, dest) <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a></a>  <span class="fu">left_join</span>(airlines, <span class="fu">join_by</span>(carrier))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-3"><a></a>  <span class="fu">left_join</span>(<span class="at">x =</span> _, <span class="at">y =</span> airlines, <span class="fu">join_by</span>(carrier))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 336,776 × 7
    month   day carrier flight origin dest  name                    
@@ -1387,7 +1382,7 @@ margin-right: 0; }
 <p>A <strong>primary key</strong> uniquely identifies each row in its own table:</p>
 <ul>
 <li><code>airlines$carrier</code>: each two-letter code appears exactly once</li>
-<li><code>airports$faa</code>: each airport code appears exactly once</li>
+<li><code>airports$faa</code>: each three-digit airport code appears exactly once</li>
 <li><code>planes$tailnum</code>: each tail number appears exactly once</li>
 </ul>
 <p>A <strong>foreign key</strong> refers to a primary key in another table:</p>
@@ -1396,17 +1391,12 @@ margin-right: 0; }
 <li><code>flights$dest</code> (and <code>flights$origin</code>) refer to <code>airports$faa</code></li>
 <li><code>flights$tailnum</code> refers to <code>planes$tailnum</code></li>
 </ul>
-<p>The key columns often share the same name in both tables, which makes the join straightforward. When they don’t, you say so explicitly.</p>
+<p>The key columns often share the same name in both tables, which makes the join straightforward. But when they don’t, you need to tell R the distinct names of the two key columns; otherwise, it will not know how to merge the two tables.</p>
 </section>
 <section id="how-the-nycflights13-tables-connect" class="slide level2 scrollable nostretch">
 <h2>How the nycflights13 tables connect</h2>
-<p><code>flights</code> is the central table. The others each add detail about one piece of a flight:</p>
+<p>Here, <code>flights</code> is the central table, and the other tables each add detail about a piece of a flight:</p>
 <table class="caption-top">
-<colgroup>
-<col style="width: 38%">
-<col style="width: 22%">
-<col style="width: 40%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Column(s) in <code>flights</code></th>
@@ -1441,7 +1431,7 @@ margin-right: 0; }
 </section>
 <section id="checking-a-primary-key" class="slide level2 scrollable nostretch">
 <h2>Checking a primary key</h2>
-<p>Before joining, it’s worth verifying that a column is actually a primary key – no duplicates. Count and look for any <code>n &gt; 1</code>:</p>
+<p>Before joining, it’s worth verifying that a column is actually a primary key. For a column to be a primary key, there must be no duplicates. To count and look for any <code>n &gt; 1</code>, you can run the following code:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>airlines <span class="sc">|&gt;</span></span>
 <span id="cb9-2"><a></a>  <span class="fu">count</span>(carrier) <span class="sc">|&gt;</span></span>
@@ -1451,7 +1441,7 @@ margin-right: 0; }
 # ℹ 2 variables: carrier &lt;chr&gt;, n &lt;int&gt;</code></pre>
 </div>
 </div>
-<p>An empty result confirms <code>carrier</code> is unique in <code>airlines</code>. If you got rows back, the column isn’t a primary key and the join could produce more rows than you expected.</p>
+<p>The result here is an empty tibble, which confirms <code>carrier</code> is unique in <code>airlines</code>. If you had gotten rows back, that would’ve meant that the column wasn’t a primary key and the join could produce more rows than you expected.</p>
 </section></section>
 <section>
 <section id="left_join" class="title-slide slide level1 center" data-background-color="#001E44">
@@ -1460,11 +1450,11 @@ margin-right: 0; }
 </section>
 <section id="the-most-common-join" class="slide level2 scrollable nostretch">
 <h2>The most common join</h2>
-<p><code>left_join(x, y)</code> keeps every row from <code>x</code> and attaches matching columns from <code>y</code>. If there’s no match in <code>y</code>, the new columns get <code>NA</code>.</p>
+<p><code>left_join(x, y)</code> keeps every row from <code>x</code> and attaches matching columns from <code>y</code>. If there’s no match in <code>y</code>, the corresponding entries in the new columns are assigned an <code>NA</code> value.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>flights <span class="sc">|&gt;</span></span>
 <span id="cb11-2"><a></a>  <span class="fu">select</span>(month, day, tailnum, carrier) <span class="sc">|&gt;</span></span>
-<span id="cb11-3"><a></a>  <span class="fu">left_join</span>(planes <span class="sc">|&gt;</span> <span class="fu">select</span>(tailnum, manufacturer, model),</span>
+<span id="cb11-3"><a></a>  <span class="fu">left_join</span>(<span class="at">x =</span> _, <span class="at">y =</span> planes <span class="sc">|&gt;</span> <span class="fu">select</span>(tailnum, manufacturer, model),</span>
 <span id="cb11-4"><a></a>            <span class="fu">join_by</span>(tailnum))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 336,776 × 6
@@ -1492,19 +1482,19 @@ margin-right: 0; }
 <p><strong>Tip</strong></p>
 </div>
 <div class="callout-content">
-<p>Use <code>left_join()</code> when you want to add information to a main table. The left table stays intact since you’re just pulling in extra columns from the right.</p>
+<p>Typically, we use <code>left_join()</code> when we want to add information to a main table. The left table will stay completely intact since you’re just pulling in extra columns from the right.</p>
 </div>
 </div>
 </div>
 </section>
 <section id="when-theres-no-match-na" class="slide level2 scrollable nostretch">
 <h2>When there’s no match: NA</h2>
-<p>Some tail numbers in <code>flights</code> don’t appear in <code>planes</code>. <code>left_join()</code> keeps those rows anyway and fills the new columns with <code>NA</code>:</p>
+<p>Some tail numbers in <code>flights</code> don’t appear in <code>planes</code>. <code>left_join()</code> keeps those rows anyway and fills the new columns with <code>NA</code>. The <code>N3ALAA</code> tailnumber is one example:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>flights <span class="sc">|&gt;</span></span>
 <span id="cb13-2"><a></a>  <span class="fu">filter</span>(tailnum <span class="sc">==</span> <span class="st">&quot;N3ALAA&quot;</span>) <span class="sc">|&gt;</span></span>
 <span id="cb13-3"><a></a>  <span class="fu">select</span>(month, day, tailnum, carrier) <span class="sc">|&gt;</span></span>
-<span id="cb13-4"><a></a>  <span class="fu">left_join</span>(planes <span class="sc">|&gt;</span> <span class="fu">select</span>(tailnum, manufacturer, model),</span>
+<span id="cb13-4"><a></a>  <span class="fu">left_join</span>(<span class="at">x =</span> _, <span class="at">y =</span> planes <span class="sc">|&gt;</span> <span class="fu">select</span>(tailnum, manufacturer, model),</span>
 <span id="cb13-5"><a></a>            <span class="fu">join_by</span>(tailnum))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 63 × 6
@@ -1523,29 +1513,32 @@ margin-right: 0; }
 # ℹ 53 more rows</code></pre>
 </div>
 </div>
-<p>That is intentional; the flight happened whether or not we have plane records. The missing information shows up as <code>NA</code> rather than disappearing silently.</p>
+<p>What’s going on here is that the flight happened, but there are no plane records. This albeit incomplete information is still valuable information to have; we want the missing information to show up as <code>NA</code> rather than being silently left out of the joined table.</p>
 </section></section>
 <section>
 <section id="join_by" class="title-slide slide level1 center" data-background-color="#001E44">
 <h1>join_by()</h1>
 
 </section>
-<section id="when-the-column-names-match" class="slide level2 scrollable nostretch">
-<h2>When the column names match</h2>
+<section id="matching-column-names" class="slide level2 scrollable nostretch">
+<h2>Matching column names</h2>
 <p>When the key has the same name in both tables, <code>join_by()</code> is simple:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>flights <span class="sc">|&gt;</span> <span class="fu">left_join</span>(airlines, <span class="fu">join_by</span>(carrier))   <span class="co"># carrier == carrier</span></span>
-<span id="cb15-2"><a></a>flights <span class="sc">|&gt;</span> <span class="fu">left_join</span>(planes,   <span class="fu">join_by</span>(tailnum))   <span class="co"># tailnum == tailnum</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb15-2"><a></a>  <span class="fu">left_join</span>(<span class="at">x =</span> _, <span class="at">y =</span> airlines, <span class="fu">join_by</span>(carrier)) <span class="co"># carrier == carrier</span></span>
+<span id="cb15-3"><a></a></span>
+<span id="cb15-4"><a></a>flights <span class="sc">|&gt;</span> </span>
+<span id="cb15-5"><a></a>  <span class="fu">left_join</span>(<span class="at">x =</span> _, <span class="at">y =</span> planes, <span class="fu">join_by</span>(tailnum)) <span class="co"># tailnum == tailnum</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>dplyr prints which columns it matched on, so you can check it did the right thing.</p>
+<p>dplyr prints which columns it matched on, so you can make sure it’s working correctly.</p>
 </section>
-<section id="when-the-column-names-differ" class="slide level2 scrollable nostretch">
-<h2>When the column names differ</h2>
+<section id="different-column-names" class="slide level2 scrollable nostretch">
+<h2>Different column names</h2>
 <p><code>airports$faa</code> is the primary key, but <code>flights</code> uses <code>origin</code> and <code>dest</code> to refer to airports. You tell R which columns correspond with <code>==</code> inside <code>join_by()</code>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>flights <span class="sc">|&gt;</span></span>
 <span id="cb16-2"><a></a>  <span class="fu">select</span>(month, day, origin, dest) <span class="sc">|&gt;</span></span>
-<span id="cb16-3"><a></a>  <span class="fu">left_join</span>(airports <span class="sc">|&gt;</span> <span class="fu">select</span>(faa, name, lat, lon),</span>
+<span id="cb16-3"><a></a>  <span class="fu">left_join</span>(<span class="at">x =</span> _, <span class="at">y =</span> airports <span class="sc">|&gt;</span> <span class="fu">select</span>(faa, name, lat, lon),</span>
 <span id="cb16-4"><a></a>            <span class="fu">join_by</span>(dest <span class="sc">==</span> faa))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 336,776 × 7
@@ -1564,17 +1557,18 @@ margin-right: 0; }
 # ℹ 336,766 more rows</code></pre>
 </div>
 </div>
-<p><code>join_by(dest == faa)</code> says: match rows where <code>dest</code> in the left table equals <code>faa</code> in the right table.</p>
+<p><code>join_by(dest == faa)</code> tells R to match rows where <code>dest</code> in the left table equals <code>faa</code> in the right table.</p>
 </section>
-<section id="the-natural-join-pitfall" class="slide level2 scrollable nostretch">
-<h2>The natural join pitfall</h2>
-<p>If you omit <code>join_by()</code>, dplyr matches on <strong>all</strong> shared column names. This can go wrong quietly.</p>
+<section id="common-pitfall" class="slide level2 scrollable nostretch">
+<h2>Common pitfall</h2>
+<p>If you omit <code>join_by()</code>, dplyr matches on <strong>all</strong> shared column names. This can go wrong, and the dangerous part is that it will not necessarily throw an error.</p>
 <p><code>flights</code> and <code>planes</code> both have a <code>year</code> column, but <code>flights$year</code> is the flight year and <code>planes$year</code> is the year the plane was built:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="co"># joins on both tailnum AND year -- almost certainly not what you want</span></span>
-<span id="cb18-2"><a></a>flights <span class="sc">|&gt;</span></span>
-<span id="cb18-3"><a></a>  <span class="fu">select</span>(year, month, day, tailnum) <span class="sc">|&gt;</span></span>
-<span id="cb18-4"><a></a>  <span class="fu">left_join</span>(planes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a><span class="co"># joins on both tailnum and year</span></span>
+<span id="cb18-2"><a></a><span class="co"># almost certainly not what you want</span></span>
+<span id="cb18-3"><a></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb18-4"><a></a>  <span class="fu">select</span>(year, month, day, tailnum) <span class="sc">|&gt;</span></span>
+<span id="cb18-5"><a></a>  <span class="fu">left_join</span>(<span class="at">x =</span> _, <span class="at">y =</span> planes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 336,776 × 11
     year month   day tailnum type  manufacturer model engines seats speed engine
@@ -1592,7 +1586,7 @@ margin-right: 0; }
 # ℹ 336,766 more rows</code></pre>
 </div>
 </div>
-<p>Because almost no plane was built in 2013 with a matching tailnum, the result is full of <code>NA</code>. Always specify <code>join_by()</code> when columns share a name but mean different things.</p>
+<p>Because almost no plane was built in 2013 with a matching tailnum, the result is full of <code>NA</code>s. Always specify <code>join_by()</code> when columns share a name but mean different things.</p>
 </section></section>
 <section>
 <section id="other-mutating-joins" class="title-slide slide level1 center" data-background-color="#001E44">
@@ -1601,12 +1595,8 @@ margin-right: 0; }
 </section>
 <section id="left-inner-right-full" class="slide level2 scrollable nostretch">
 <h2>left, inner, right, full</h2>
-<p>All four mutating joins add columns from the right table. The difference is which rows survive – the same four cases you just built with LEGO:</p>
+<p>All four mutating joins add columns from the right table. The difference is which rows survive. Here are the same four cases you just built with bricks:</p>
 <table class="caption-top">
-<colgroup>
-<col style="width: 38%">
-<col style="width: 62%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Join</th>
@@ -1632,23 +1622,27 @@ margin-right: 0; }
 </tr>
 </tbody>
 </table>
-<p><code>left_join()</code> is the right choice for adding detail to a main table. <code>inner_join()</code> is useful when you only want rows that can be fully matched on both sides.</p>
+<p><code>left_join()</code> is the right choice for adding additional variables to a main table. <code>inner_join()</code> is useful when you only want rows that can be fully matched on both sides.</p>
 </section>
-<section id="left-vs.-inner-what-changes" class="slide level2 scrollable nostretch">
-<h2>left vs. inner: what changes</h2>
+<section id="left-vs.-inner-join" class="slide level2 scrollable nostretch">
+<h2>left vs. inner join</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="co"># left_join: keeps all 336,776 flights; unmatched rows get NA</span></span>
-<span id="cb20-2"><a></a><span class="fu">nrow</span>(flights <span class="sc">|&gt;</span> <span class="fu">left_join</span>(planes, <span class="fu">join_by</span>(tailnum)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb20-2"><a></a><span class="fu">nrow</span>(flights <span class="sc">|&gt;</span> </span>
+<span id="cb20-3"><a></a>       <span class="fu">left_join</span>(<span class="at">x =</span> _, <span class="at">y =</span> planes, <span class="fu">join_by</span>(tailnum))</span>
+<span id="cb20-4"><a></a>     )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 336776</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="co"># inner_join: drops any flight with no matching plane record</span></span>
-<span id="cb22-2"><a></a><span class="fu">nrow</span>(flights <span class="sc">|&gt;</span> <span class="fu">inner_join</span>(planes, <span class="fu">join_by</span>(tailnum)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb22-2"><a></a><span class="fu">nrow</span>(flights <span class="sc">|&gt;</span> </span>
+<span id="cb22-3"><a></a>       <span class="fu">inner_join</span>(<span class="at">x =</span> _, <span class="at">y =</span> planes, <span class="fu">join_by</span>(tailnum))</span>
+<span id="cb22-4"><a></a>     )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 284170</code></pre>
 </div>
 </div>
-<p>About 50,000 flights disappear with the inner join. Whether that’s right depends on your question.</p>
+<p>About 50,000 flights disappear with the inner join. Whether that’s the appropriate move depends on your question.</p>
 </section></section>
 <section>
 <section id="filtering-joins" class="title-slide slide level1 center" data-background-color="#001E44">
@@ -1659,10 +1653,6 @@ margin-right: 0; }
 <h2>semi_join() and anti_join()</h2>
 <p>Filtering joins don’t add columns. They filter rows based on whether a match exists in another table:</p>
 <table class="caption-top">
-<colgroup>
-<col style="width: 42%">
-<col style="width: 57%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Join</th>
@@ -1680,14 +1670,14 @@ margin-right: 0; }
 </tr>
 </tbody>
 </table>
-<p>Only the columns of <code>x</code> appear in the result – nothing from <code>y</code> is added. This is handy for checking what’s present or absent in one table relative to another.</p>
+<p>Here, only the columns of <code>x</code> appear in the result, and nothing from <code>y</code> is added. This is helpful for checking what’s present or absent in one table relative to another.</p>
 </section>
-<section id="anti_join-finding-whats-missing" class="slide level2 scrollable nostretch">
-<h2>anti_join(): finding what’s missing</h2>
+<section id="anti_join" class="slide level2 scrollable nostretch">
+<h2>anti_join()</h2>
 <p>Which flights have a tail number that doesn’t appear in <code>planes</code> at all?</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>flights <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a></a>  <span class="fu">anti_join</span>(planes, <span class="fu">join_by</span>(tailnum)) <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a></a>  <span class="fu">anti_join</span>(<span class="at">x =</span> _, <span class="at">y =</span> planes, <span class="fu">join_by</span>(tailnum)) <span class="sc">|&gt;</span></span>
 <span id="cb24-3"><a></a>  <span class="fu">distinct</span>(tailnum)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 722 × 1
@@ -1706,14 +1696,14 @@ margin-right: 0; }
 # ℹ 712 more rows</code></pre>
 </div>
 </div>
-<p>Over 700 unique tail numbers in <code>flights</code> have no matching record in <code>planes</code>. Worth knowing before you join in plane characteristics for an analysis.</p>
+<p>Over 700 unique tail numbers in <code>flights</code> have no matching record in <code>planes</code>. This information is probably good to know before you join in plane characteristics for an analysis.</p>
 </section>
-<section id="semi_join-filtering-by-membership" class="slide level2 scrollable nostretch">
-<h2>semi_join(): filtering by membership</h2>
-<p><code>semi_join()</code> keeps only the rows from <code>x</code> that appear in <code>y</code>. Which airports actually appear as destinations in <code>flights</code>?</p>
+<section id="semi_join" class="slide level2 scrollable nostretch">
+<h2>semi_join()</h2>
+<p><code>semi_join()</code> filters by membership, keeping only the rows from <code>x</code> that appear in <code>y</code>. For example, this function can be used to answer the question: which airports actually appear as destinations in <code>flights</code>?</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>airports <span class="sc">|&gt;</span></span>
-<span id="cb26-2"><a></a>  <span class="fu">semi_join</span>(flights, <span class="fu">join_by</span>(faa <span class="sc">==</span> dest))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb26-2"><a></a>  <span class="fu">semi_join</span>(<span class="at">x =</span> _, <span class="at">y =</span> flights, <span class="fu">join_by</span>(faa <span class="sc">==</span> dest))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 101 × 8
    faa   name                                lat    lon   alt    tz dst   tzone 
