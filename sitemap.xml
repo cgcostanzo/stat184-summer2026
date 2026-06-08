@@ -57,27 +57,27 @@
     <lastmod>2026-06-02T14:25:19.848Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week4/day2-import.html</loc>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week4/day16-import.html</loc>
     <lastmod>2026-05-16T17:10:06.748Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week4/index.html</loc>
-    <lastmod>2026-05-29T03:03:58.654Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week4/day5-scraping.html</loc>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week4/day17-exam-review.html</loc>
     <lastmod>2026-05-16T17:10:06.749Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week5/day2-control-flow.html</loc>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week4/day19-scraping.html</loc>
+    <lastmod>2026-05-16T17:10:06.749Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week5/day22-iteration.html</loc>
     <lastmod>2026-05-16T17:10:06.750Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week5/index.html</loc>
-    <lastmod>2026-05-16T17:10:06.751Z</lastmod>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week5/day20-functions.html</loc>
+    <lastmod>2026-05-16T17:10:06.749Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week5/day3-iteration.html</loc>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week5/day23-strings-dates.html</loc>
     <lastmod>2026-05-16T17:10:06.750Z</lastmod>
   </url>
   <url>
@@ -125,12 +125,12 @@
     <lastmod>2026-05-27T12:04:52.360Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week6/day2-trees.html</loc>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week6/day25-trees.html</loc>
     <lastmod>2026-05-16T17:10:06.751Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week6/index.html</loc>
-    <lastmod>2026-05-16T17:10:06.752Z</lastmod>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week6/day28-presentations.html</loc>
+    <lastmod>2026-05-16T17:10:06.751Z</lastmod>
   </url>
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/assignments/quizzes/index.html</loc>
@@ -141,35 +141,39 @@
     <lastmod>2026-05-17T15:27:07.130Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/assignments/homework/hw2_template.html</loc>
-    <lastmod>2026-05-28T14:53:51.121Z</lastmod>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/assignments/homework/hw3_template.html</loc>
+    <lastmod>2026-06-01T16:23:00.617Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/assignments/homework/hw0_template.html</loc>
-    <lastmod>2026-05-18T20:29:49.763Z</lastmod>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/assignments/homework/index.html</loc>
+    <lastmod>2026-06-08T05:10:53.066Z</lastmod>
   </url>
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/assignments/homework/hw1_template.html</loc>
     <lastmod>2026-05-18T22:16:59.055Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/assignments/homework/index.html</loc>
-    <lastmod>2026-06-02T04:37:21.568Z</lastmod>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/assignments/homework/hw0_template.html</loc>
+    <lastmod>2026-05-18T20:29:49.763Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/assignments/homework/hw3_template.html</loc>
-    <lastmod>2026-06-01T16:23:00.617Z</lastmod>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/assignments/homework/hw2_template.html</loc>
+    <lastmod>2026-05-28T14:53:51.121Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/assignments/homework/hw4_template.html</loc>
+    <lastmod>2026-06-06T16:14:26.843Z</lastmod>
   </url>
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/assignments/exam/index.html</loc>
     <lastmod>2026-05-17T18:55:56.069Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week6/day5-presentations.html</loc>
-    <lastmod>2026-05-16T17:10:06.751Z</lastmod>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week6/index.html</loc>
+    <lastmod>2026-06-08T05:10:29.597Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week6/day1-clustering.html</loc>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week6/day24-clustering.html</loc>
     <lastmod>2026-05-16T17:10:06.751Z</lastmod>
   </url>
   <url>
@@ -233,23 +237,27 @@
     <lastmod>2026-05-28T12:44:14.041Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week5/day4-strings-dates.html</loc>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week5/day21-control-flow.html</loc>
     <lastmod>2026-05-16T17:10:06.750Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week5/day1-functions.html</loc>
-    <lastmod>2026-05-16T17:10:06.749Z</lastmod>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week5/index.html</loc>
+    <lastmod>2026-06-08T05:10:31.001Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week4/day4-exam.html</loc>
-    <lastmod>2026-05-16T17:10:06.749Z</lastmod>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week4/day15-joins-page.html</loc>
+    <lastmod>2026-06-08T06:25:30.360Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week4/day1-joins.html</loc>
-    <lastmod>2026-05-16T17:10:06.748Z</lastmod>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week4/day15-joins-slides.html</loc>
+    <lastmod>2026-06-08T06:25:30.360Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week4/day3-exam-review.html</loc>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week4/index.html</loc>
+    <lastmod>2026-06-08T05:10:18.225Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week4/day18-exam.html</loc>
     <lastmod>2026-05-16T17:10:06.749Z</lastmod>
   </url>
   <url>
