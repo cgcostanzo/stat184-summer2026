@@ -5800,7 +5800,7 @@
     "href": "weeks/week4/day15-joins-page.html#the-columns-that-connect-tables",
     "title": "Joining tables",
     "section": "The columns that connect tables",
-    "text": "The columns that connect tables\nA key is a column (or set of columns) that identifies rows and links tables together.\nA primary key uniquely identifies each row in its own table:\n\nairlines$carrier: each two-letter code appears exactly once\nairports$faa: each three-digit airport code appears exactly once\nplanes$tailnum: each tail number appears exactly once\n\nA foreign key refers to a primary key in another table:\n\nflights$carrier refers to airlines$carrier\nflights$dest (and flights$origin) refer to airports$faa\nflights$tailnum refers to planes$tailnum\n\nThe key columns often share the same name in both tables, which makes the join straightforward. But when they don’t, you need to tell R the distinct names of the two key columns; otherwise, it will not know how to merge the two tables."
+    "text": "The columns that connect tables\nA key is a column (or set of columns) that identifies rows and links tables together.\nA primary key uniquely identifies each row in its own table:\n\nairlines$carrier: each two-letter code appears exactly once\nairports$faa: each three-digit airport code appears exactly once\nplanes$tailnum: each tail number appears exactly once\n\nWhen more than one key is needed, the key is called a compound key.\nA foreign key refers to a primary key in another table:\n\nflights$carrier refers to airlines$carrier\nflights$dest (and flights$origin) refer to airports$faa\nflights$tailnum refers to planes$tailnum\n\nThe key columns often share the same name in both tables, which makes the join straightforward. But when they don’t, you need to tell R the distinct names of the two key columns; otherwise, it will not know how to merge the two tables."
   },
   {
     "objectID": "weeks/week4/day15-joins-page.html#how-the-nycflights13-tables-connect",
@@ -6010,7 +6010,7 @@
     "href": "weeks/week4/day15-joins-slides.html#the-columns-that-connect-tables",
     "title": "Joining tables",
     "section": "The columns that connect tables",
-    "text": "The columns that connect tables\nA key is a column (or set of columns) that identifies rows and links tables together.\nA primary key uniquely identifies each row in its own table:\n\nairlines$carrier: each two-letter code appears exactly once\nairports$faa: each three-digit airport code appears exactly once\nplanes$tailnum: each tail number appears exactly once\n\nA foreign key refers to a primary key in another table:\n\nflights$carrier refers to airlines$carrier\nflights$dest (and flights$origin) refer to airports$faa\nflights$tailnum refers to planes$tailnum\n\nThe key columns often share the same name in both tables, which makes the join straightforward. But when they don’t, you need to tell R the distinct names of the two key columns; otherwise, it will not know how to merge the two tables."
+    "text": "The columns that connect tables\nA key is a column (or set of columns) that identifies rows and links tables together.\nA primary key uniquely identifies each row in its own table:\n\nairlines$carrier: each two-letter code appears exactly once\nairports$faa: each three-digit airport code appears exactly once\nplanes$tailnum: each tail number appears exactly once\n\nWhen more than one key is needed, the key is called a compound key.\nA foreign key refers to a primary key in another table:\n\nflights$carrier refers to airlines$carrier\nflights$dest (and flights$origin) refer to airports$faa\nflights$tailnum refers to planes$tailnum\n\nThe key columns often share the same name in both tables, which makes the join straightforward. But when they don’t, you need to tell R the distinct names of the two key columns; otherwise, it will not know how to merge the two tables."
   },
   {
     "objectID": "weeks/week4/day15-joins-slides.html#how-the-nycflights13-tables-connect",
@@ -6122,7 +6122,7 @@
     "href": "weeks/week4/index.html#daily-plan",
     "title": "Week 4 — Joins, Import & Exam",
     "section": "Daily plan",
-    "text": "Daily plan\n\n\n\nDate\nTopic\nSlides & Notes\nCode & Data\n\n\n\n\nMon Jun 8\nJoining tables\nSlides · Page · PDF\nday15-activity.R\n\n\nTue Jun 9\nImporting data\nSlides · Page · PDF\nday16-activity.R\n\n\nWed Jun 10\nExam review\nSlides · Page · PDF\nday17-activity.R\n\n\nThu Jun 11\nEXAM\n—\nday13-activity.R\n\n\nFri Jun 12\nQuiz 3 · Web scraping\nSlides · Page · PDF\nday14-activity.R"
+    "text": "Daily plan\n\n\n\nDate\nTopic\nSlides & Notes\nCode & Data\n\n\n\n\nMon Jun 8\nJoining tables\nSlides · Page · PDF\nday15-activity.R\n\n\nTue Jun 9\nImporting data\nSlides · Page · PDF\nday16-activity.R\n\n\nWed Jun 10\nExam review\nSlides · Page · PDF\nday17-activity.R\n\n\nThu Jun 11\nEXAM\n—\n—\n\n\nFri Jun 12\nQuiz 3 · Web scraping\nSlides · Page · PDF\nday14-activity.R"
   },
   {
     "objectID": "weeks/week4/index.html#readings-due-this-week",
