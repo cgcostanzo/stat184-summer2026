@@ -9,8 +9,7 @@ library(tidyverse)
 library(lubridate)
 
 
-# ── Part 1: Students CSV ────────────────────────────────────────────────────
-# We'll read in the same students CSV from R4DS Ch. 7, fix it up step by step.
+# --- Part 1: Students CSV -----------------------------------------------------
 # Run each block, look at the output, then move to the next fix.
 
 url_students <- "https://pos.it/r4ds-students-csv"
@@ -53,7 +52,7 @@ write_rds(students, "students-clean.rds")
 read_rds("students-clean.rds")
 
 
-# ── Part 2: Houses for sale ─────────────────────────────────────────────────
+# --- Part 2: Houses for sale --------------------------------------------------
 # Saratoga, NY houses data from DC Ch. 16. Several columns use integer codes
 # instead of meaningful labels.
 
@@ -96,7 +95,7 @@ houses <- houses |>
 #     fuel_type. Does fuel type seem to relate to price?
 
 
-# ── Part 3: Challenge — column types and dates ──────────────────────────────
+# --- Part 3: Challenge: column types and dates --------------------------------
 
 # 3a. Read the students CSV again, but this time force student_id to be
 #     a character column (it's an ID number — math on it is meaningless).
