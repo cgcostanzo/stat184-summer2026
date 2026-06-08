@@ -1077,10 +1077,10 @@ margin-right: 0; }
 </ul>
 <p><strong>Plan for today</strong></p>
 <ul>
-<li><code>read_csv()</code> and its most useful arguments</li>
-<li>Cleaning what comes in: NA values, column names, column types</li>
+<li><code>read_csv()</code></li>
+<li>Data cleaning: NA values, column names, column types</li>
 <li>Other file formats and reading from URLs</li>
-<li>Writing data back out</li>
+<li>Writing data</li>
 <li>Dates with lubridate</li>
 <li>In-class activity</li>
 </ul>
@@ -1098,11 +1098,11 @@ margin-right: 0; }
 <h1>Getting data into R</h1>
 
 </section>
-<section id="so-far-data-came-pre-loaded" class="slide level2 scrollable nostretch">
-<h2>So far, data came pre-loaded</h2>
+<section id="pre-loaded-data" class="slide level2 scrollable nostretch">
+<h2>Pre-loaded data</h2>
 <p>Every dataset we’ve used this semester was already in R: <code>penguins</code>, <code>flights</code>, <code>diamonds</code>. That won’t be true in real work.</p>
-<p>Real data lives in files — CSV spreadsheets, Excel workbooks, tab-delimited exports from survey software, files someone emails you.</p>
-<p>Today’s goal: get a file off disk (or the web) and into a tidy data frame, ready to work with.</p>
+<p>Real data lives in files, including CSV spreadsheets, Excel workbooks, tab-delimited exports from survey software, files someone emails you.</p>
+<p>Today’s goal: get a file off disk (or the web) and into a tidy data frame that we can easily work with.</p>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1119,11 +1119,11 @@ margin-right: 0; }
 </section>
 <section id="read_csv" class="slide level2 scrollable nostretch">
 <h2>read_csv()</h2>
-<p>The most common file type you’ll encounter is <strong>CSV</strong> (comma-separated values). <code>read_csv()</code> handles it.</p>
+<p>The most common file type you’ll encounter is <strong>CSV</strong> (comma-separated values), which can be read in using<code>read_csv()</code>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>students <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/students.csv&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Or directly from a URL — no download needed:</p>
+<p>We can also read in CSV files directly from a URL, without having to download anything:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>students <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;https://pos.it/r4ds-students-csv&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
@@ -1137,10 +1137,10 @@ dbl (1): Student ID
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
 </div>
-<p>When you run it, readr prints a <strong>column specification message</strong>: how many rows and columns it found, and what type it guessed for each column. This is useful information, not noise.</p>
+<p>After reading in the CSV, readr prints a <strong>column specification message</strong> that tells you how many rows and columns it found, and what type it guessed for each column.</p>
 </section>
-<section id="what-the-message-tells-you" class="slide level2 scrollable nostretch">
-<h2>What the message tells you</h2>
+<section id="column-specification-message" class="slide level2 scrollable nostretch">
+<h2>Column specification message</h2>
 <pre><code>Rows: 6 Columns: 5
 ── Column specification ─────────────────
 Delimiter: &quot;,&quot;
@@ -1173,14 +1173,14 @@ dbl (1): Student ID</code></pre>
 <p>A few things to fix:</p>
 <ul>
 <li><code>favourite.food</code> has <code>&quot;N/A&quot;</code> as a string, not a real <code>NA</code></li>
-<li><code>Student ID</code> and <code>Full Name</code> have spaces — awkward to type</li>
+<li><code>Student ID</code> and <code>Full Name</code> have spaces, which are awkward to type</li>
 <li><code>AGE</code> is a character column even though it’s mostly numbers (<code>&quot;five&quot;</code> snuck in)</li>
 <li><code>mealPlan</code> is categorical and should be a factor</li>
 </ul>
 </section>
 <section id="problem-1-na-values" class="slide level2 scrollable nostretch">
 <h2>Problem 1: NA values</h2>
-<p>By default, readr only treats empty cells as <code>NA</code>. Strings like <code>&quot;N/A&quot;</code>, <code>&quot;.&quot;</code>, <code>&quot;missing&quot;</code>, or <code>&quot;–&quot;</code> are left as-is.</p>
+<p>By default, readr only treats empty cells as <code>NA</code>. Strings like <code>&quot;N/A&quot;</code>, <code>&quot;.&quot;</code>, <code>&quot;missing&quot;</code>, or <code>&quot;-&quot;</code> are left as-is.</p>
 <p>Use the <code>na</code> argument to tell readr what else counts as missing:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>students <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
@@ -1204,7 +1204,7 @@ dbl (1): Student ID</code></pre>
 </section>
 <section id="problem-2-column-names" class="slide level2 scrollable nostretch">
 <h2>Problem 2: column names</h2>
-<p>Columns with spaces are <strong>non-syntactic</strong> — you can’t type them without backticks:</p>
+<p>Columns with spaces are <strong>non-syntactic</strong>, and you can’t type them without backticks:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>students<span class="sc">$</span>Student ID   <span class="co"># Error</span></span>
 <span id="cb9-2"><a></a>students<span class="sc">$</span><span class="st">`</span><span class="at">Student ID</span><span class="st">`</span> <span class="co"># Works, but annoying</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1228,17 +1228,17 @@ dbl (1): Student ID</code></pre>
 6          6 Güvenç Attila    Ice cream          Lunch only          6    </code></pre>
 </div>
 </div>
-<p><code>janitor</code> isn’t part of the tidyverse, but <code>install.packages(&quot;janitor&quot;)</code> once is all it takes.</p>
+<p><code>janitor</code> isn’t part of the tidyverse; run <code>install.packages(&quot;janitor&quot;)</code> once.</p>
 </section>
 <section id="problem-3-wrong-column-types" class="slide level2 scrollable nostretch">
 <h2>Problem 3: wrong column types</h2>
-<p><code>mealPlan</code> is categorical — make it a factor. <code>age</code> is numeric — fix <code>&quot;five&quot;</code> first, then parse:</p>
+<p><code>mealPlan</code> is categorical, but we want to make it a factor. <code>age</code> is numeric, so we need adjust the (incorrect) character string <code>&quot;five&quot;</code> to be numeric first, then parse:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>students <span class="ot">&lt;-</span> students <span class="sc">|&gt;</span></span>
 <span id="cb13-2"><a></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span></span>
 <span id="cb13-3"><a></a>  <span class="fu">mutate</span>(</span>
 <span id="cb13-4"><a></a>    <span class="at">meal_plan =</span> <span class="fu">factor</span>(meal_plan),</span>
-<span id="cb13-5"><a></a>    <span class="at">age =</span> <span class="fu">parse_number</span>(<span class="fu">if_else</span>(age <span class="sc">==</span> <span class="st">&quot;five&quot;</span>, <span class="st">&quot;5&quot;</span>, age))</span>
+<span id="cb13-5"><a></a>    <span class="at">age =</span> <span class="fu">parse_number</span>(<span class="fu">if_else</span>(age <span class="sc">==</span> <span class="st">&quot;five&quot;</span>, <span class="st">&quot;5&quot;</span>, age)) <span class="co"># vectorized ifelse()</span></span>
 <span id="cb13-6"><a></a>  )</span>
 <span id="cb13-7"><a></a>students</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1263,7 +1263,7 @@ dbl (1): Student ID</code></pre>
 <p><strong>Tip</strong></p>
 </div>
 <div class="callout-content">
-<p><code>parse_number()</code> is also great for values like <code>&quot;$1,234&quot;</code> or <code>&quot;42%&quot;</code> — it strips non-numeric characters automatically.</p>
+<p><code>parse_number()</code> is also great for values like <code>&quot;$1,234&quot;</code> or <code>&quot;42%&quot;</code> since it strips non-numeric characters automatically.</p>
 </div>
 </div>
 </div>
@@ -1277,10 +1277,10 @@ dbl (1): Student ID</code></pre>
 <h2>How readr guesses</h2>
 <p>For each column, readr samples up to 1,000 values and asks, in order:</p>
 <ol type="1">
-<li>Only <code>TRUE</code>, <code>FALSE</code>, <code>T</code>, <code>F</code>? → <strong>logical</strong></li>
-<li>Only numbers? → <strong>double</strong></li>
-<li>Matches ISO 8601 (<code>2026-06-09</code>)? → <strong>date</strong></li>
-<li>Otherwise → <strong>character</strong></li>
+<li>Only <code>TRUE</code>, <code>FALSE</code>, <code>T</code>, <code>F</code>? <span class="math inline">\(\rightarrow\)</span> <strong>logical</strong></li>
+<li>Only numbers? <span class="math inline">\(\rightarrow\)</span> <strong>double</strong></li>
+<li>Matches ISO 8601 (<code>2026-06-09</code>)? <span class="math inline">\(\rightarrow\)</span> <strong>date</strong></li>
+<li>Otherwise <span class="math inline">\(\rightarrow\)</span> <strong>character</strong></li>
 </ol>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">read_csv</span>(<span class="st">&quot;</span></span>
@@ -1298,11 +1298,11 @@ dbl (1): Student ID</code></pre>
 3 TRUE      Inf   2021-02-16 ghi   </code></pre>
 </div>
 </div>
-<p>This works perfectly on clean data. It fails when unexpected values are present — like <code>&quot;N/A&quot;</code> or <code>&quot;five&quot;</code>.</p>
+<p>This works well with clean data, but fails when unexpected values like <code>&quot;N/A&quot;</code> or <code>&quot;five&quot;</code> are present.</p>
 </section>
 <section id="overriding-types-col_types" class="slide level2 scrollable nostretch">
 <h2>Overriding types: col_types</h2>
-<p>Tell readr what type to expect with the <code>col_types</code> argument:</p>
+<p>We can tell readr what type to expect with the <code>col_types</code> argument:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a><span class="fu">read_csv</span>(</span>
 <span id="cb17-2"><a></a>  file,</span>
@@ -1351,7 +1351,7 @@ dbl (1): Student ID</code></pre>
 </section>
 <section id="when-guessing-goes-wrong-problems" class="slide level2 scrollable nostretch">
 <h2>When guessing goes wrong: problems()</h2>
-<p>If you force a type and readr finds values that don’t fit, it warns you — and stores the details:</p>
+<p>If you force a type and readr finds values that don’t fit, it warns you and stores the details:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>simple_csv <span class="ot">&lt;-</span> <span class="st">&quot;x</span><span class="sc">\n</span><span class="st">10</span><span class="sc">\n</span><span class="st">.</span><span class="sc">\n</span><span class="st">20</span><span class="sc">\n</span><span class="st">30&quot;</span></span>
 <span id="cb18-2"><a></a></span>
@@ -1364,7 +1364,7 @@ dbl (1): Student ID</code></pre>
 1     3     1 a double .      /private/var/folders/_4/htlmsm_n50vcj9k6v2766k_40…</code></pre>
 </div>
 </div>
-<p>Row 3 has <code>&quot;.&quot;</code> where readr expected a number. Once you know the culprit, fix it:</p>
+<p>Row 3 has <code>&quot;.&quot;</code> where readr expected a number. Now that we have identified the culprit, we can fix it:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a><span class="fu">read_csv</span>(simple_csv, <span class="at">na =</span> <span class="st">&quot;.&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1386,7 +1386,7 @@ dbl (1): Student ID</code></pre>
 <p><strong>Tip</strong></p>
 </div>
 <div class="callout-content">
-<p>The workflow: read with forced types → <code>problems()</code> to locate oddities → decide whether they’re true missing values or something else.</p>
+<p>The workflow: read with forced types <span class="math inline">\(\rightarrow\)</span> <code>problems()</code> to locate oddities <span class="math inline">\(\rightarrow\)</span> decide whether they’re true missing values or something else.</p>
 </div>
 </div>
 </div>
@@ -1398,7 +1398,7 @@ dbl (1): Student ID</code></pre>
 </section>
 <section id="other-read_-functions" class="slide level2 scrollable nostretch">
 <h2>Other read_ functions</h2>
-<p>Once you know <code>read_csv()</code>, the others follow the same pattern — just a different delimiter:</p>
+<p>Once you know <code>read_csv()</code>, the others follow the same pattern, but have a different delimiter:</p>
 <table class="caption-top">
 <colgroup>
 <col style="width: 50%">
@@ -1425,7 +1425,7 @@ dbl (1): Student ID</code></pre>
 </tr>
 <tr class="even">
 <td><code>read_delim()</code></td>
-<td>any delimiter — guesses if you don’t specify</td>
+<td>any delimiter; guesses if you don’t specify</td>
 </tr>
 <tr class="odd">
 <td><code>read_fwf()</code></td>
@@ -1482,15 +1482,15 @@ dbl (1): Student ID</code></pre>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">write_csv</span>(students, <span class="st">&quot;data/students-clean.csv&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><strong>The catch:</strong> column types are lost. When you read the file back, readr guesses types fresh — and <code>meal_plan</code> goes back to character, not factor.</p>
+<p><strong>The catch:</strong> column types are lost. When you read the file back, readr guesses types fresh and <code>meal_plan</code> goes back to character, not factor.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a><span class="fu">read_csv</span>(<span class="st">&quot;data/students-clean.csv&quot;</span>)   <span class="co"># meal_plan is &lt;chr&gt; again</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>CSV is a plain-text format. It stores values, not type metadata.</p>
+<p>CSV is a plain-text format, so it stores values, not type metadata.</p>
 </section>
 <section id="preserving-types-write_rds" class="slide level2 scrollable nostretch">
 <h2>Preserving types: write_rds()</h2>
-<p>For saving intermediate results within R, use <strong>RDS</strong> — R’s native binary format. Types are preserved exactly.</p>
+<p>For saving intermediate results within R, use <strong>RDS</strong>, which is R’s native binary format. In this format, types are preserved exactly.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a><span class="fu">write_rds</span>(students, <span class="st">&quot;data/students-clean.rds&quot;</span>)</span>
 <span id="cb27-2"><a></a><span class="fu">read_rds</span>(<span class="st">&quot;data/students-clean.rds&quot;</span>)   <span class="co"># meal_plan is &lt;fct&gt;, age is &lt;dbl&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1528,8 +1528,8 @@ dbl (1): Student ID</code></pre>
 </section>
 <section id="tribble-and-tibble" class="slide level2 scrollable nostretch">
 <h2>tribble() and tibble()</h2>
-<p>Sometimes you need to key in a small table by hand. Two options:</p>
-<p><strong><code>tibble()</code></strong> — column by column:</p>
+<p>Sometimes you need to key in a small table by hand. You have two options:</p>
+<p><strong><code>tibble()</code></strong>: column by column:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="fu">tibble</span>(</span>
 <span id="cb28-2"><a></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>),</span>
@@ -1545,7 +1545,7 @@ dbl (1): Student ID</code></pre>
 3     5 g      0.6 </code></pre>
 </div>
 </div>
-<p><strong><code>tribble()</code></strong> — row by row (easier to read for small tables):</p>
+<p><strong><code>tribble()</code></strong>: row by row (easier to read for small tables):</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a><span class="fu">tribble</span>(</span>
 <span id="cb30-2"><a></a>  <span class="sc">~</span>x, <span class="sc">~</span>y,   <span class="sc">~</span>z,</span>
@@ -1571,15 +1571,15 @@ dbl (1): Student ID</code></pre>
 </section>
 <section id="strings-to-numbers" class="slide level2 scrollable nostretch">
 <h2>Strings to numbers</h2>
-<p>Real data often stores numbers as strings — formatted currency, percentages, European decimals. Two tools:</p>
-<p><strong><code>as.numeric()</code></strong> — works on clean numeric strings:</p>
+<p>Real data often stores numbers as strings, such as formatted currency, percentages, European decimals.</p>
+<p><strong><code>as.numeric()</code></strong>: works on clean numeric strings:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a><span class="fu">as.numeric</span>(<span class="fu">c</span>(<span class="st">&quot;42&quot;</span>, <span class="st">&quot;3.14&quot;</span>, <span class="st">&quot;NA&quot;</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 42.00  3.14    NA</code></pre>
 </div>
 </div>
-<p><strong><code>parse_number()</code></strong> — ignores non-numeric characters:</p>
+<p><strong><code>parse_number()</code></strong>: ignores non-numeric characters:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a><span class="fu">parse_number</span>(<span class="fu">c</span>(<span class="st">&quot;$1,234.56&quot;</span>, <span class="st">&quot;17%&quot;</span>, <span class="st">&quot;9.8 m/s&quot;</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1603,7 +1603,7 @@ dbl (1): Student ID</code></pre>
 </section>
 <section id="recoding-integer-codes" class="slide level2 scrollable nostretch">
 <h2>Recoding integer codes</h2>
-<p>Survey exports and government data often store categories as integers. The codebook tells you what the numbers mean.</p>
+<p>Survey exports and government data often store categories as integers. They will typically provide a codebook that tells you what the numbers mean.</p>
 <p>Strategy: build a lookup table, then <code>left_join()</code>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a>fuel_codes <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
@@ -1626,7 +1626,6 @@ dbl (1): Student ID</code></pre>
 4     4 oil      </code></pre>
 </div>
 </div>
-<p>You saw this exact pattern in yesterday’s joins lecture. Data import and data joining go hand in hand.</p>
 </section>
 <section id="dates-with-lubridate" class="slide level2 scrollable nostretch">
 <h2>Dates with lubridate</h2>
@@ -1652,7 +1651,7 @@ dbl (1): Student ID</code></pre>
 <pre><code>[1] &quot;2026-06-09 09:35:00 UTC&quot;</code></pre>
 </div>
 </div>
-<p>Once a date is a proper <code>&lt;date&gt;</code> object, arithmetic works:</p>
+<p>Once a date is a proper <code>&lt;date&gt;</code> object, arithmetic works as you would expect:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a></a><span class="fu">ymd</span>(<span class="st">&quot;2026-06-26&quot;</span>) <span class="sc">-</span> <span class="fu">ymd</span>(<span class="st">&quot;2026-06-09&quot;</span>)  <span class="co"># days until end of course</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1694,10 +1693,10 @@ dbl (1): Student ID</code></pre>
 </section>
 <section id="in-class-activity" class="slide level2">
 <h2>In-class activity</h2>
-<p>Work through <code>day16-activity.R</code> — open it in RStudio now.</p>
+<p>Work through <code>day16-activity.R</code> in RStudio.</p>
 <ul>
 <li><strong>Part 1</strong>: read in and clean the students CSV step by step</li>
-<li><strong>Part 2</strong>: houses-for-sale data — integer codes, missing values, writing out</li>
+<li><strong>Part 2</strong>: houses-for-sale data: integer codes, missing values, writing out</li>
 <li><strong>Part 3</strong>: Saratoga dates (challenge)</li>
 </ul>
 <p><a href="day16-activity.R" download="day16-activity.R">Activity file</a></p>
