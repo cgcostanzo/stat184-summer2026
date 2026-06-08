@@ -9,11 +9,11 @@ The last week. Some special topics (clustering, decision trees — instructor's 
 
 | Date | Topic | Files |
 |---|---|---|
-| Mon Jun 22 | [**Quiz 5 (rescheduled)** · intro to clustering](day1-clustering.qmd) | quiz, slides |
-| Tue Jun 23 | [Decision trees / CART (or alternative)](day2-trees.qmd) | slides, in-class code |
+| Mon Jun 22 | [**Quiz 5 (rescheduled)** · intro to clustering](day24-clustering.qmd) | quiz, slides |
+| Tue Jun 23 | [Decision trees / CART (or alternative)](day25-trees.qmd) | slides, in-class code |
 | Wed Jun 24 | **Project work day** · oral check-in #1 makeups | — |
 | Thu Jun 25 | **Project work day** · oral check-in #2 (final walkthrough) | — |
-| Fri Jun 26 | [**Quiz 6** · short project presentations · wrap-up](day5-presentations.qmd) | quiz |
+| Fri Jun 26 | [**Quiz 6** · short project presentations · wrap-up](day28-presentations.qmd) | quiz |
 
 ## Readings due this week
 

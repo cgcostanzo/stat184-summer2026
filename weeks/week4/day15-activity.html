@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STAT 184 · The two tables</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:    #1c1c1c;
+    --muted:  #8c8c8c;
+    --faint:  #b9b9b9;
+    --line:   #e4e4e2;
+    --panel:  #fafafa;
+    --accent: #2166ac;   /* prompt + key */
+    --na:     #b2182b;    /* NA values   */
+    --paper:  #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #e9e8e3;
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 28px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 8.5in;
+    min-height: 11in;
+    background: var(--paper);
+    padding: 0.85in 0.9in;
+    box-shadow: 0 6px 30px rgba(0,0,0,0.15);
+  }
+
+  /* ---- Title ---- */
+  .head-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 10px;
+    margin-bottom: 6px;
+  }
+  h1 {
+    font-weight: 600;
+    font-size: 23px;
+    letter-spacing: -0.2px;
+  }
+  .course {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+  }
+  .sub {
+    font-size: 13.5px;
+    color: #555;
+    margin-bottom: 34px;
+  }
+
+  /* ---- Console blocks ---- */
+  .block { margin-bottom: 30px; }
+  .prompt {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 14px;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .prompt b { color: var(--ink); font-weight: 500; }
+
+  .console {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 16px 20px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .meta { color: var(--muted); margin-bottom: 4px; }
+
+  table.tibble { border-collapse: collapse; }
+  table.tibble td {
+    padding: 0 2.4em 0 0;
+    white-space: pre;
+    vertical-align: top;
+  }
+  table.tibble td.rn {
+    color: var(--faint);
+    text-align: right;
+    padding-right: 1.1em;
+    min-width: 1.4em;
+  }
+  tr.type td { color: var(--muted); }
+  td.na { color: var(--na); }
+
+  /* ---- Key ---- */
+  .key {
+    border-left: 3px solid var(--accent);
+    padding: 4px 0 4px 16px;
+    margin: 4px 0 30px;
+  }
+  .key .kline {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  .key .kline .var { color: var(--accent); }
+  .key .kline .op  { color: var(--muted); }
+  .key p {
+    font-size: 13.5px;
+    color: #444;
+    line-height: 1.45;
+    max-width: 56ch;
+  }
+
+  /* ---- Notes ---- */
+  .notes {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    color: #5a5a5a;
+    line-height: 1.7;
+  }
+  .notes .c { color: var(--muted); }
+  .notes .na { color: var(--na); }
+
+  @page { size: letter; margin: 0; }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { box-shadow: none; width: 100%; min-height: 100vh; }
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="head-row">
+      <h1>Brick University Data</h1>
+      <div class="course">STAT 184 · joins</div>
+    </div>
+    <p class="sub"></p>
+
+    <!-- students -->
+    <div class="block">
+      <div class="prompt">&gt; <b>students</b></div>
+      <div class="console">
+        <div class="meta"># A tibble: 6 × 2</div>
+        <table class="tibble">
+          <tr class="head"><td class="rn"></td><td>student</td><td>major</td></tr>
+          <tr class="type"><td class="rn"></td><td>&lt;chr&gt;</td><td>&lt;chr&gt;</td></tr>
+          <tr><td class="rn">1</td><td>A</td><td>STAT</td></tr>
+          <tr><td class="rn">2</td><td>B</td><td>STAT</td></tr>
+          <tr><td class="rn">3</td><td>C</td><td>ECON</td></tr>
+          <tr><td class="rn">4</td><td>D</td><td>PSY</td></tr>
+          <tr><td class="rn">5</td><td>E</td><td class="na">NA</td></tr>
+          <tr><td class="rn">6</td><td>F</td><td>BIO</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- departments -->
+    <div class="block">
+      <div class="prompt">&gt; <b>departments</b></div>
+      <div class="console">
+        <div class="meta"># A tibble: 4 × 2</div>
+        <table class="tibble">
+          <tr class="head"><td class="rn"></td><td>code</td><td>department</td></tr>
+          <tr class="type"><td class="rn"></td><td>&lt;chr&gt;</td><td>&lt;chr&gt;</td></tr>
+          <tr><td class="rn">1</td><td>STAT</td><td>Statistics</td></tr>
+          <tr><td class="rn">2</td><td>ECON</td><td>Economics</td></tr>
+          <tr><td class="rn">3</td><td>PSY</td><td>Psychology</td></tr>
+          <tr><td class="rn">4</td><td>ENG</td><td>Engineering</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- key -->
+    <div class="key">
+      <div class="kline">
+        <span class="var">students$major</span>
+        <span class="op">&nbsp;==&nbsp;</span>
+        <span class="var">departments$code</span>
+      </div>
+      <p>The key is the column the two tables share by meaning, not (necessarily) by name. You should match a student to a
+      department when their <b>major</b> equals a department <b>code</b>.</p>
+    </div>
+
+    <!-- notes -->
+    <div class="notes">
+      <div><span class="c"># E has no declared major &rarr; major is <span class="na">NA</span>, so no code to match</span></div>
+      <div><span class="c"># F's major (BIO) never appears in departments$code</span></div>
+      <div><span class="c"># ENG is a real department, but no student declared it</span></div>
+    </div>
+
+  </div>
+</body>
+</html>

@@ -13,10 +13,10 @@ We move beyond tidyverse verbs into more general programming territory: writing 
 
 | Date | Topic | Files |
 |---|---|---|
-| Mon Jun 15 | [Writing functions in R](day1-functions.qmd) | slides, in-class code |
-| Tue Jun 16 | [Control flow: `if/else`, `for`, `while`](day2-control-flow.qmd) | slides, in-class code |
-| Wed Jun 17 | [Vectorized ops · `purrr::map`](day3-iteration.qmd) | slides, in-class code |
-| Thu Jun 18 | [Strings, dates, intro to regex](day4-strings-dates.qmd) + **Project oral check-in #1** | slides, in-class code |
+| Mon Jun 15 | [Writing functions in R](day20-functions.qmd) | slides, in-class code |
+| Tue Jun 16 | [Control flow: `if/else`, `for`, `while`](day21-control-flow.qmd) | slides, in-class code |
+| Wed Jun 17 | [Vectorized ops · `purrr::map`](day22-iteration.qmd) | slides, in-class code |
+| Thu Jun 18 | [Strings, dates, intro to regex](day23-strings-dates.qmd) + **Project oral check-in #1** | slides, in-class code |
 | Fri Jun 19 | **No class — Juneteenth** | — |
 
 ## Readings due this week
@@ -33,5 +33,5 @@ Mon–Wed readings come from *R for Data Science* (R4DS) — *Data Computing* do
 ## Assignments due this week
 
 - **Reading Quiz 5** — due before Monday's class (Canvas)
-- **HW 4** — due Tue Jun 16, 11:59 p.m.
+- **HW 4** — due Mon Jun 15, 11:59 p.m.
 - **Project Oral Check-in #1** — Thursday Jun 18 in class (signup on Canvas)

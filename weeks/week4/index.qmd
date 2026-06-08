@@ -13,11 +13,11 @@ We cover the last major data-handling tools — joining multiple tables and impo
 
 | Date | Topic | Files |
 |---|---|---|
-| Mon Jun 8 | [Joining tables: `inner_join`, `left_join`, etc.](day1-joins.qmd) | slides, in-class code |
-| Tue Jun 9 | [Importing data: CSV, Excel, web URLs](day2-import.qmd) | slides, in-class code |
-| Wed Jun 10 | [**Exam review** · practice problems](day3-exam-review.qmd) | review packet |
-| Thu Jun 11 | [**EXAM**](day4-exam.qmd) | exam |
-| Fri Jun 12 | [Intro to web scraping (light day)](day5-scraping.qmd) | slides, in-class code |
+| Mon Jun 8 | [Joining tables: `inner_join`, `left_join`, etc.](day15-joins.qmd) | [Slides](day15-joins-slides.html), in-class code |
+| Tue Jun 9 | [Importing data: CSV, Excel, web URLs](day16-import.qmd) | slides, in-class code |
+| Wed Jun 10 | [**Exam review** · practice problems](day17-exam-review.qmd) | review packet |
+| Thu Jun 11 | [**EXAM**](day18-exam.qmd) | exam |
+| Fri Jun 12 | [Intro to web scraping (light day)](day19-scraping.qmd) | slides, in-class code |
 
 ## Readings due this week
 
@@ -28,6 +28,6 @@ We cover the last major data-handling tools — joining multiple tables and impo
 ## Assignments due this week
 
 - **Reading Quiz 4** — due before Monday's class (Canvas)
-- **HW 3** — due Tue Jun 9, 11:59 p.m.
+- **HW 4** — due Mon Jun 15, 11:59 p.m.
 - **Exam (in-class + take-home)** — Thursday Jun 11
 - **Project Checkpoint 1** — due Friday Jun 12, 11:59 p.m.
