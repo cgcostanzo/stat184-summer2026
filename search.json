@@ -6122,21 +6122,21 @@
     "href": "weeks/week4/index.html#daily-plan",
     "title": "Week 4 — Joins, Import & Exam",
     "section": "Daily plan",
-    "text": "Daily plan\n\n\n\nDate\nTopic\nFiles\n\n\n\n\nMon Jun 8\nJoining tables: inner_join, left_join, etc.\nSlides, in-class code\n\n\nTue Jun 9\nImporting data: CSV, Excel, web URLs\nslides, in-class code\n\n\nWed Jun 10\nExam review · practice problems\nreview packet\n\n\nThu Jun 11\nEXAM\nexam\n\n\nFri Jun 12\nIntro to web scraping (light day)\nslides, in-class code"
+    "text": "Daily plan\n\n\n\nDate\nTopic\nSlides & Notes\nCode & Data\n\n\n\n\nMon Jun 8\nJoining tables\nSlides · Page · PDF\nday15-activity.R\n\n\nTue Jun 9\nImporting data\nSlides · Page · PDF\nday16-activity.R\n\n\nWed Jun 10\nExam review\nSlides · Page · PDF\nday17-activity.R\n\n\nThu Jun 11\nEXAM\nSlides · Page · PDF\nday13-activity.R\n\n\nFri Jun 12\nQuiz 3 · Web scraping\nSlides · Page · PDF\nday14-activity.R"
   },
   {
     "objectID": "weeks/week4/index.html#readings-due-this-week",
     "href": "weeks/week4/index.html#readings-due-this-week",
     "title": "Week 4 — Joins, Import & Exam",
     "section": "Readings due this week",
-    "text": "Readings due this week\n\nBefore Mon: Data Computing Ch 11 (§11.1–11.3) — joining two data frames\nBefore Tue: Data Computing Ch 16 (§16.1–16.2, 16.4–16.5) — data formats, CSV, cleaning, factors\nBefore Fri: Data Computing Ch 16 (§16.3) — HTML tables and web scraping"
+    "text": "Readings due this week\n\nBefore Mon: Data Computing Ch 11 (§11.1–11.3): joining two data frames\nBefore Tue: Data Computing Ch 16 (§16.1–16.2, 16.4–16.5): data formats, CSV, cleaning, factors\nBefore Fri: Data Computing Ch 16 (§16.3): HTML tables and web scraping"
   },
   {
     "objectID": "weeks/week4/index.html#assignments-due-this-week",
     "href": "weeks/week4/index.html#assignments-due-this-week",
     "title": "Week 4 — Joins, Import & Exam",
     "section": "Assignments due this week",
-    "text": "Assignments due this week\n\nReading Quiz 4 — due before Monday’s class (Canvas)\nHW 4 — due Mon Jun 15, 11:59 p.m.\nExam (in-class + take-home) — Thursday Jun 11\nProject Checkpoint 1 — due Friday Jun 12, 11:59 p.m."
+    "text": "Assignments due this week\n\nHW 4: due Mon Jun 15, 11:59 p.m.\nExam (in-class): Thursday Jun 11\nProject Checkpoint 1: due Sunday Jun 14, 11:59 p.m."
   },
   {
     "objectID": "weeks/week4/day18-exam.html",
