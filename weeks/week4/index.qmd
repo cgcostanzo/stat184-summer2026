@@ -17,7 +17,7 @@ We will cover the last major data-handling tools--- joining multiple tables and 
 | Tue Jun 9 | Importing data | [Slides](day16-import-slides.html) · [Page](day16-import-page.html) · [PDF](day16-import.pdf) | [day16-activity.R](day11-activity.R){download="day16-activity.R"} |
 | Wed Jun 10 | Exam review | [Slides](day17-exam-review-slides.html) · [Page](day17-exam-review-page.html) · [PDF](day17-exam-review.pdf) | [day17-activity.R](day17-activity.R){download="day17-activity.R"} |
 | Thu Jun 11 | **EXAM** | --- | --- |
-| Fri Jun 12 | Web scraping | [Slides](day19-scraping-slides.html) · [Page](day19-scraping-page.html) · [PDF](day19-scraping.pdf) | [day14-activity.R](day19-activity.R){download="day19-activity.R"} |
+| Fri Jun 12 | Web scraping | [Slides](day19-scraping-slides.html) · [Page](day19-scraping-page.html) · [PDF](day19-scraping.pdf) | [day19-activity.R](day19-activity.R){download="day19-activity.R"} |
 
 ## Readings due this week
 

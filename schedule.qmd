@@ -56,10 +56,10 @@ This schedule is tentative and subject to change. Substantive changes will be an
 | Date | Topic | Read before class | Due |
 |---|---|---|---|
 | Mon Jun 8 | Joining tables: `inner_join`, `left_join`, anti-joins | [DC §11.1–11.3](https://psu.instructure.com/courses/2487468/assignments/18325373) | |
-| Tue Jun 9 | Importing data: CSV, Excel, factors vs strings, cleaning | [DC §16.1–16.2, 16.4–16.5](https://psu.instructure.com/courses/2487468/assignments/18325374) | [HW 4]() |
+| Tue Jun 9 | Importing data: CSV, Excel, factors vs strings, cleaning | [DC §16.1–16.2, 16.4–16.5](https://psu.instructure.com/courses/2487468/assignments/18325374) | --- |
 | Wed Jun 10 | **Exam review** · practice problems in class | --- | --- |
 | **Thu Jun 11** | **EXAM (in-class, on paper, closed book)** | --- | --- |
-| Fri Jun 12 | Light day · web scraping & HTML tables | [DC §16.3](https://psu.instructure.com/courses/2487468/assignments/18325375) | [**Project Checkpoint 1**]() |
+| Fri Jun 12 | Light day · web scraping & HTML tables | [DC §16.3](https://psu.instructure.com/courses/2487468/assignments/18325375) | [**Project Checkpoint 1**](https://psu.instructure.com/courses/2487468/discussion_topics/17441405) (Due 6/14 11:59 p.m.) |
 
 : Week 4 schedule {tbl-colwidths="[10,35,25,30]"}
 
@@ -71,8 +71,8 @@ Week 5 covers material that *Data Computing* doesn't address in depth. Readings 
 
 | Date | Topic | Read before class | Due |
 |---|---|---|---|
-| Mon Jun 15 | Writing functions in R | [R4DS Ch 25 (Functions)](https://psu.instructure.com/courses/2487468/assignments/18325376) | --- |
-| Tue Jun 16 | Control flow · `if/else`, `for`, `while` | [R4DS Ch 26 §26.1–26.3](https://psu.instructure.com/courses/2487468/assignments/18325377) | [HW 4]() |
+| Mon Jun 15 | Writing functions in R | [R4DS Ch 25 (Functions)](https://psu.instructure.com/courses/2487468/assignments/18325376) | [HW 4](https://psu.instructure.com/courses/2487468/assignments/18333004) |
+| Tue Jun 16 | Control flow · `if/else`, `for`, `while` | [R4DS Ch 26 §26.1–26.3](https://psu.instructure.com/courses/2487468/assignments/18325377) | --- |
 | Wed Jun 17 | Vectorized operations · `purrr::map` | [R4DS Ch 26 §26.4–26.5](https://psu.instructure.com/courses/2487468/assignments/18325378) | --- |
 | Thu Jun 18 | Strings, dates, and regex | [DC §17.1–17.2](https://psu.instructure.com/courses/2487468/assignments/18325379) | **Project oral check-in #1** (during class) |
 | Fri Jun 19 | **No class - Juneteenth** · Quiz 5 rescheduled to Mon Jun 22 | --- | --- |

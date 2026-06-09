@@ -37,10 +37,10 @@ library(tidyverse)
 
 **Plan for today**
 
-- `read_csv()` and its most useful arguments
-- Cleaning what comes in: NA values, column names, column types
+- `read_csv()`
+- Data cleaning: NA values, column names, column types
 - Other file formats and reading from URLs
-- Writing data back out
+- Writing data
 - Dates with lubridate
 - In-class activity
 
@@ -51,13 +51,13 @@ library(tidyverse)
 
 # Getting data into R {background-color="#001E44"}
 
-## So far, data came pre-loaded {.scrollable .nostretch}
+## Pre-loaded data {.scrollable .nostretch}
 
 Every dataset we've used this semester was already in R: `penguins`, `flights`, `diamonds`. That won't be true in real work.
 
-Real data lives in files — CSV spreadsheets, Excel workbooks, tab-delimited exports from survey software, files someone emails you.
+Real data lives in files, including CSV spreadsheets, Excel workbooks, tab-delimited exports from survey software, files someone emails you.
 
-Today's goal: get a file off disk (or the web) and into a tidy data frame, ready to work with.
+Today's goal: get a file off disk (or the web) and into a tidy data frame that we can easily work with.
 
 ::: {.callout-note}
 `readr` is part of the tidyverse, so `library(tidyverse)` is all you need for CSV and most text files.
@@ -65,7 +65,7 @@ Today's goal: get a file off disk (or the web) and into a tidy data frame, ready
 
 ## read_csv() {.scrollable .nostretch}
 
-The most common file type you'll encounter is **CSV** (comma-separated values). `read_csv()` handles it.
+The most common file type you'll encounter is **CSV** (comma-separated values), which can be read in using`read_csv()`:
 
 ```{r}
 #| echo: TRUE
@@ -73,7 +73,7 @@ The most common file type you'll encounter is **CSV** (comma-separated values). 
 students <- read_csv("data/students.csv")
 ```
 
-Or directly from a URL — no download needed:
+We can also read in CSV files directly from a URL, without having to download anything:
 
 ```{r}
 #| echo: TRUE
@@ -81,9 +81,9 @@ Or directly from a URL — no download needed:
 students <- read_csv("https://pos.it/r4ds-students-csv")
 ```
 
-When you run it, readr prints a **column specification message**: how many rows and columns it found, and what type it guessed for each column. This is useful information, not noise.
+After reading in the CSV, readr prints a **column specification message** that tells you how many rows and columns it found, and what type it guessed for each column.
 
-## What the message tells you {.scrollable .nostretch}
+## Column specification message {.scrollable .nostretch}
 
 ```
 Rows: 6 Columns: 5
@@ -110,13 +110,13 @@ students
 A few things to fix:
 
 - `favourite.food` has `"N/A"` as a string, not a real `NA`
-- `Student ID` and `Full Name` have spaces — awkward to type
+- `Student ID` and `Full Name` have spaces, which are awkward to type
 - `AGE` is a character column even though it's mostly numbers (`"five"` snuck in)
 - `mealPlan` is categorical and should be a factor
 
 ## Problem 1: NA values {.scrollable .nostretch}
 
-By default, readr only treats empty cells as `NA`. Strings like `"N/A"`, `"."`, `"missing"`, or `"–"` are left as-is.
+By default, readr only treats empty cells as `NA`. Strings like `"N/A"`, `"."`, `"missing"`, or `"-"` are left as-is.
 
 Use the `na` argument to tell readr what else counts as missing:
 
@@ -133,7 +133,7 @@ students
 
 ## Problem 2: column names {.scrollable .nostretch}
 
-Columns with spaces are **non-syntactic** — you can't type them without backticks:
+Columns with spaces are **non-syntactic**, and you can't type them without backticks:
 
 ```{r}
 #| echo: TRUE
@@ -157,11 +157,11 @@ Or use `janitor::clean_names()` to convert **everything** to snake_case at once:
 students |> janitor::clean_names()
 ```
 
-`janitor` isn't part of the tidyverse, but `install.packages("janitor")` once is all it takes.
+`janitor` isn't part of the tidyverse; run `install.packages("janitor")` once.
 
 ## Problem 3: wrong column types {.scrollable .nostretch}
 
-`mealPlan` is categorical — make it a factor. `age` is numeric — fix `"five"` first, then parse:
+`mealPlan` is categorical, but we want to make it a factor. `age` is numeric, so we need adjust the (incorrect) character string `"five"` to be numeric first, then parse:
 
 ```{r}
 #| echo: TRUE
@@ -169,7 +169,7 @@ students <- students |>
   janitor::clean_names() |>
   mutate(
     meal_plan = factor(meal_plan),
-    age = parse_number(if_else(age == "five", "5", age))
+    age = parse_number(if_else(age == "five", "5", age)) # vectorized ifelse()
   )
 students
 ```
@@ -177,7 +177,7 @@ students
 `if_else(test, yes, no)`: where `age == "five"`, substitute `"5"`; otherwise leave it alone. Then `parse_number()` converts the string to a number.
 
 ::: {.callout-tip}
-`parse_number()` is also great for values like `"$1,234"` or `"42%"` — it strips non-numeric characters automatically.
+`parse_number()` is also great for values like `"$1,234"` or `"42%"` since it strips non-numeric characters automatically.
 :::
 
 # Column type detection {background-color="#001E44"}
@@ -186,10 +186,10 @@ students
 
 For each column, readr samples up to 1,000 values and asks, in order:
 
-1. Only `TRUE`, `FALSE`, `T`, `F`? → **logical**
-2. Only numbers? → **double**
-3. Matches ISO 8601 (`2026-06-09`)? → **date**
-4. Otherwise → **character**
+1. Only `TRUE`, `FALSE`, `T`, `F`? $\rightarrow$ **logical**
+2. Only numbers? $\rightarrow$ **double**
+3. Matches ISO 8601 (`2026-06-09`)? $\rightarrow$ **date**
+4. Otherwise $\rightarrow$ **character**
 
 ```{r}
 #| echo: TRUE
@@ -201,11 +201,11 @@ read_csv("
 ")
 ```
 
-This works perfectly on clean data. It fails when unexpected values are present — like `"N/A"` or `"five"`.
+This works well with clean data, but fails when unexpected values like `"N/A"` or `"five"` are present.
 
 ## Overriding types: col_types {.scrollable .nostretch}
 
-Tell readr what type to expect with the `col_types` argument:
+We can tell readr what type to expect with the `col_types` argument:
 
 ```{r}
 #| echo: TRUE
@@ -233,7 +233,7 @@ Available column types:
 
 ## When guessing goes wrong: problems() {.scrollable .nostretch}
 
-If you force a type and readr finds values that don't fit, it warns you — and stores the details:
+If you force a type and readr finds values that don't fit, it warns you and stores the details:
 
 ```{r}
 #| echo: TRUE
@@ -243,7 +243,7 @@ df <- read_csv(simple_csv, col_types = list(x = col_double()))
 problems(df)
 ```
 
-Row 3 has `"."` where readr expected a number. Once you know the culprit, fix it:
+Row 3 has `"."` where readr expected a number. Now that we have identified the culprit, we can fix it:
 
 ```{r}
 #| echo: TRUE
@@ -251,21 +251,21 @@ read_csv(simple_csv, na = ".")
 ```
 
 ::: {.callout-tip}
-The workflow: read with forced types → `problems()` to locate oddities → decide whether they're true missing values or something else.
+The workflow: read with forced types $\rightarrow$ `problems()` to locate oddities $\rightarrow$ decide whether they're true missing values or something else.
 :::
 
 # Other file formats {background-color="#001E44"}
 
 ## Other read_ functions {.scrollable .nostretch}
 
-Once you know `read_csv()`, the others follow the same pattern — just a different delimiter:
+Once you know `read_csv()`, the others follow the same pattern, but have a different delimiter:
 
 | Function | Use when |
 |---|---|
 | `read_csv()` | comma-separated (`.csv`) |
 | `read_csv2()` | semicolon-separated (common in Europe where `,` is the decimal) |
 | `read_tsv()` | tab-delimited (`.tsv`, `.txt`) |
-| `read_delim()` | any delimiter — guesses if you don't specify |
+| `read_delim()` | any delimiter; guesses if you don't specify |
 | `read_fwf()` | fixed-width fields |
 
 All of them accept a **file path or a URL** as the first argument.
@@ -316,7 +316,7 @@ To save a data frame to CSV:
 write_csv(students, "data/students-clean.csv")
 ```
 
-**The catch:** column types are lost. When you read the file back, readr guesses types fresh — and `meal_plan` goes back to character, not factor.
+**The catch:** column types are lost. When you read the file back, readr guesses types fresh and `meal_plan` goes back to character, not factor.
 
 ```{r}
 #| echo: TRUE
@@ -324,11 +324,11 @@ write_csv(students, "data/students-clean.csv")
 read_csv("data/students-clean.csv")   # meal_plan is <chr> again
 ```
 
-CSV is a plain-text format. It stores values, not type metadata.
+CSV is a plain-text format, so it stores values, not type metadata.
 
 ## Preserving types: write_rds() {.scrollable .nostretch}
 
-For saving intermediate results within R, use **RDS** — R's native binary format. Types are preserved exactly.
+For saving intermediate results within R, use **RDS**, which is R's native binary format. In this format, types are preserved exactly.
 
 ```{r}
 #| echo: TRUE
@@ -348,9 +348,9 @@ Use CSV to share data with others or for archiving. Use RDS when you're saving a
 
 ## tribble() and tibble() {.scrollable .nostretch}
 
-Sometimes you need to key in a small table by hand. Two options:
+Sometimes you need to key in a small table by hand. You have two options:
 
-**`tibble()`** — column by column:
+**`tibble()`**: column by column:
 
 ```{r}
 #| echo: TRUE
@@ -361,7 +361,7 @@ tibble(
 )
 ```
 
-**`tribble()`** — row by row (easier to read for small tables):
+**`tribble()`**: row by row (easier to read for small tables):
 
 ```{r}
 #| echo: TRUE
@@ -379,16 +379,16 @@ Column headers start with `~`. This is what we used to define `students` and `de
 
 ## Strings to numbers {.scrollable .nostretch}
 
-Real data often stores numbers as strings — formatted currency, percentages, European decimals. Two tools:
+Real data often stores numbers as strings, such as formatted currency, percentages, European decimals.
 
-**`as.numeric()`** — works on clean numeric strings:
+**`as.numeric()`**: works on clean numeric strings:
 
 ```{r}
 #| echo: TRUE
 as.numeric(c("42", "3.14", "NA"))
 ```
 
-**`parse_number()`** — ignores non-numeric characters:
+**`parse_number()`**: ignores non-numeric characters:
 
 ```{r}
 #| echo: TRUE
@@ -403,7 +403,7 @@ parse_number(c("$1,234.56", "17%", "9.8 m/s"))
 
 ## Recoding integer codes {.scrollable .nostretch}
 
-Survey exports and government data often store categories as integers. The codebook tells you what the numbers mean.
+Survey exports and government data often store categories as integers. They will typically provide a codebook that tells you what the numbers mean.
 
 Strategy: build a lookup table, then `left_join()`:
 
@@ -421,8 +421,6 @@ houses_raw <- tibble(fuel = c(2, 3, 2, 4))
 houses_raw |> left_join(fuel_codes, join_by(fuel == code))
 ```
 
-You saw this exact pattern in yesterday's joins lecture. Data import and data joining go hand in hand.
-
 ## Dates with lubridate {.scrollable .nostretch}
 
 Dates stored as strings need to be converted before R can do date arithmetic or plot them in order.
@@ -439,7 +437,7 @@ dmy("9 June 2026")           # day-month-year
 mdy_hm("06/09/2026 09:35")   # with time
 ```
 
-Once a date is a proper `<date>` object, arithmetic works:
+Once a date is a proper `<date>` object, arithmetic works as you would expect:
 
 ```{r}
 #| echo: TRUE
@@ -472,10 +470,10 @@ df |> mutate(size = factor(size, levels = c("S","M","L")))  # ordered
 
 ## In-class activity
 
-Work through `day16-activity.R` — open it in RStudio now.
+Work through `day16-activity.R` in RStudio.
 
 - **Part 1**: read in and clean the students CSV step by step
-- **Part 2**: houses-for-sale data — integer codes, missing values, writing out
+- **Part 2**: houses-for-sale data: integer codes, missing values, writing out
 - **Part 3**: Saratoga dates (challenge)
 
 [Activity file](day16-activity.R){download="day16-activity.R"}
