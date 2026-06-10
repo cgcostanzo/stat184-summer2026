@@ -1365,39 +1365,431 @@
     "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nread_csv() and its key arguments: na, col_types, col_names\njanitor::clean_names(), parse_number(), factor()\nOther file types: read_tsv(), read_delim(), read_csv2()\nwrite_csv() vs write_rds()\ntribble() for hand-keyed tables\nRecoding integers via left_join()\nDates with lubridate\n\nUpcoming\n\nTomorrow (Wed Jun 10): exam review\nThursday (Thu Jun 11): in-class midterm exam\nHW 4 due Mon Jun 15\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 7 · readr reference"
   },
   {
-    "objectID": "weeks/week4/day17-exam-review.html",
-    "href": "weeks/week4/day17-exam-review.html",
-    "title": "Exam review · practice problems in class",
+    "objectID": "weeks/week4/day17-exam-review-slides.html#logistics",
+    "href": "weeks/week4/day17-exam-review-slides.html#logistics",
+    "title": "Midterm exam review",
+    "section": "Logistics",
+    "text": "Logistics\n\nWhen: Thursday June 11, start of class (9:35 a.m.)\nHow long: 75 minutes\nPoints: 100 total, 8 parts (A-H)\nClosed book\n\nYou may assume tidyverse and palmerpenguins are loaded. You’ll see these datasets: penguins, mpg, diamonds, msleep.\nFormat breakdown:\n\n\n\nPart\nType\nPoints\n\n\n\n\nA\nMultiple choice (12 items)\n24\n\n\nB\nPredict the output\n12\n\n\nC\nCode anatomy\n10\n\n\nD\nCode writing\n20\n\n\nE\nPosition adjustments\n8\n\n\nF\nFacets and scales\n6\n\n\nG\nTidy data\n8\n\n\nH\nShort answer & debugging\n12"
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#study-advice",
+    "href": "weeks/week4/day17-exam-review-slides.html#study-advice",
+    "title": "Midterm exam review",
+    "section": "Study advice",
+    "text": "Study advice\nThe exam tests whether you can read, write, and reason about code. Some study suggestions:\n\nFor multiple choice, know why each answer is correct or incorrect, not just the letter\nFor predict-the-output, run the expressions yourself and understand the rule\nFor code writing, practice writing from scratch instead of just reading\nFor debugging think about “what rule does this code violate?”"
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#assignment-and-objects",
+    "href": "weeks/week4/day17-exam-review-slides.html#assignment-and-objects",
+    "title": "Midterm exam review",
+    "section": "Assignment and objects",
+    "text": "Assignment and objects\nThe standard assignment operator is &lt;-. = works too, but &lt;- is the course convention and the idiomatic R style.\n\nx &lt;- 7.3 # preferred\nx\n\n[1] 7.3\n\nx = 8.1 # works, not preferred\nx\n\n[1] 8.1\n\n1.2 -&gt; x # also works, really not preferred\nx\n\n[1] 1.2\n\n\n== is a comparison, not assignment; it tests whether two things are equal and returns TRUE or FALSE.\n\nx == 1.2     # is x equal to 1.2?\n\n[1] TRUE\n\nx == pi    # is x equal to pi (~3.14)?\n\n[1] FALSE"
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#install.packages-vs-library",
+    "href": "weeks/week4/day17-exam-review-slides.html#install.packages-vs-library",
+    "title": "Midterm exam review",
+    "section": "install.packages() vs library()",
+    "text": "install.packages() vs library()\n\n\n\n\n\n\n\n\n\ninstall.packages()\nlibrary()\n\n\n\n\nWhat it does\nDownloads the package to your computer\nLoads it into the current session\n\n\nWhen to run\nOnce per computer\nEvery session\n\n\nIn a script?\nNever; do it in the Console\nYes: at the top\n\n\n\n\n\n\n\n\n\nWarning\n\n\nInstalled once \\(\\neq\\) available always. You must call library() at the start of every new R session."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#data-frames",
+    "href": "weeks/week4/day17-exam-review-slides.html#data-frames",
+    "title": "Midterm exam review",
+    "section": "Data frames",
+    "text": "Data frames\nA data frame is a two-dimensional table:\n\nEach row is one case/observation\nEach column is one variable\nColumns can each hold a different type (numeric, character, logical, factor, etc.)\nWithin a column, every value is the same type\n\nThis is what distinguishes a data frame from a matrix (all values must be the same type) and from a vector (one-dimensional).\n\nglimpse(penguins)  # see the structure: rows, columns, types\n\nRows: 344\nColumns: 8\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…"
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#named-vs-positional-arguments",
+    "href": "weeks/week4/day17-exam-review-slides.html#named-vs-positional-arguments",
+    "title": "Midterm exam review",
+    "section": "Named vs positional arguments",
+    "text": "Named vs positional arguments\nFunctions take arguments. You can pass them positionally (by order) or by name.\n\nround(3.14159, 2)              # positional: x first, digits second\n\n[1] 3.14\n\nround(x = 3.14159, digits = 2) # named\n\n[1] 3.14\n\nround(digits = 2, x = 3.14159) # named; shows that order doesn't matter\n\n[1] 3.14\n\n\nNamed arguments are safer and more readable, but both styles are correct R."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#arithmetic-and-vectors",
+    "href": "weeks/week4/day17-exam-review-slides.html#arithmetic-and-vectors",
+    "title": "Midterm exam review",
+    "section": "Arithmetic and vectors",
+    "text": "Arithmetic and vectors\nR operates element-wise on vectors of the same length:\n\nc(1, 2, 3) + c(10, 20, 30)\n\n[1] 11 22 33\n\nc(2, 4, 6) * 3\n\n[1]  6 12 18\n\n\nKey operators to know:\n\n\n\nExpression\nWhat it does\n\n\n\n\n%%\nModulo (remainder after division)\n\n\n%/%\nInteger division\n\n\n^\nExponent\n\n\n\n\n17 %% 5  # remainder when 17 is divided by 5\n\n[1] 2\n\n17 %/% 5 # how many times does 5 go into 17?\n\n[1] 3"
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#practice-predict-the-output",
+    "href": "weeks/week4/day17-exam-review-slides.html#practice-predict-the-output",
+    "title": "Midterm exam review",
+    "section": "Practice: predict the output",
+    "text": "Practice: predict the output\nWrite your answer before clicking.\n(a) sqrt(81)\n\n9\n\n(b) c(3, 6, 9) - c(1, 2, 3)\n\n2 4 6: element-wise subtraction\n\n(c) 10 %% 3\n\n1: 10 = 3 × 3 + 1\n\n(d) seq(0, 12, by = 3)\n\n0 3 6 9 12\n\n(e) length(c(\"alpha\", \"beta\", \"gamma\", \"delta\"))\n\n4: four elements in the vector\n\n(f) mean(c(5, 10, 15, 20), na.rm = TRUE)\n\n12.5: (5+10+15+20)/4"
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#na-and-na.rm",
+    "href": "weeks/week4/day17-exam-review-slides.html#na-and-na.rm",
+    "title": "Midterm exam review",
+    "section": "NA and na.rm",
+    "text": "NA and na.rm\nNA in R means “not available”, i.e., a missing value. Almost any calculation with NA returns NA:\n\nmean(c(2, 4, NA, 8))               # NA\n\n[1] NA\n\nmean(c(2, 4, NA, 8), na.rm = TRUE) # drop NAs first\n\n[1] 4.666667\n\n\nAny function that summarizes values across a vector, such as mean(), sum(), min(), max(), sd(), accepts na.rm = TRUE."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#mapping-vs-setting-aesthetics",
+    "href": "weeks/week4/day17-exam-review-slides.html#mapping-vs-setting-aesthetics",
+    "title": "Midterm exam review",
+    "section": "Mapping vs setting aesthetics",
+    "text": "Mapping vs setting aesthetics\n\n\n\n\n\n\n\n\n\nInside aes()\nOutside aes()\n\n\n\n\nWhat it does\nMaps a variable to a visual property\nSets a fixed visual property\n\n\nChanges by row?\nYes; different rows get different values\nNo; every point gets the same value\n\n\nExample\naes(color = species)\ncolor = \"red\"\n\n\n\n\n# color varies by species (mapping):\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +\n  geom_point(aes(color = species))\n\n# every point is red (setting):\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +\n  geom_point(color = \"red\")\n\n\n\n\n\n\n\nWarning\n\n\ngeom_point(aes(color = \"red\")) maps the string \"red\" as if it were a variable. You get one default color and a legend that says “red”. Set constants outside aes()."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#glyphs",
+    "href": "weeks/week4/day17-exam-review-slides.html#glyphs",
+    "title": "Midterm exam review",
+    "section": "Glyphs",
+    "text": "Glyphs\nIn the grammar of graphics, a glyph is the basic mark that represents one case.\n\nIn a scatterplot: one dot per row\nIn a bar chart: one bar segment per group\nIn a line plot: one point connected by a line segment\n\nThe glyph is what geom_* functions draw. Each row of data produces one glyph (or contributes to one group glyph)."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#choosing-the-right-geom",
+    "href": "weeks/week4/day17-exam-review-slides.html#choosing-the-right-geom",
+    "title": "Midterm exam review",
+    "section": "Choosing the right geom",
+    "text": "Choosing the right geom\n\n\n\n\n\n\n\nGoal\nAppropriate Geom\n\n\n\n\nDistribution of one quantitative variable\ngeom_histogram() or geom_density()\n\n\nDistribution of one categorical variable\ngeom_bar()\n\n\nRelationship between two quantitative variables\ngeom_point()\n\n\nTrend over time or ordered x\ngeom_line()\n\n\nRelationship between quant and categorical\ngeom_boxplot()\n\n\nCounts of two categoricals\ngeom_bar() + fill + position"
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#zooming-coord_cartesian-vs-xlim",
+    "href": "weeks/week4/day17-exam-review-slides.html#zooming-coord_cartesian-vs-xlim",
+    "title": "Midterm exam review",
+    "section": "Zooming: coord_cartesian() vs xlim()",
+    "text": "Zooming: coord_cartesian() vs xlim()\nBoth zoom in on a plot, but the difference matters when you have fitted curves:\n\nxlim(0, 50) drops data outside the range before any computation, which changes what a smoother sees\ncoord_cartesian(xlim = c(0, 50)) only adjusts the viewport. Here, all data is still used (you’re just zooming in).\n\n\n# Safer zoom since it doesn't affect statistics:\nggplot(mpg, aes(x = displ, y = hwy)) +\n  geom_point() +\n  geom_smooth() +\n  coord_cartesian(xlim = c(1.5, 4))\n\n\n\n\n\n\n\nTip\n\n\nDefault: use coord_cartesian() when you want to zoom without affecting calculations."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#position-adjustments",
+    "href": "weeks/week4/day17-exam-review-slides.html#position-adjustments",
+    "title": "Midterm exam review",
+    "section": "Position adjustments",
+    "text": "Position adjustments\nWith geom_bar(aes(x = drv, fill = class)):\n\n\n\n\n\n\n\n\n\n\n\n\nPosition\nWhat it does\n\n\n\n\n\"stack\"\nBars stacked; total height = total count\n\n\n\"dodge\"\nBars side by side within each group\n\n\n\"fill\"\nBars all same height; shows proportions\n\n\n\n\"fill\" is best when you want to compare proportions across groups."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#facets",
+    "href": "weeks/week4/day17-exam-review-slides.html#facets",
+    "title": "Midterm exam review",
+    "section": "Facets",
+    "text": "Facets\nFaceting splits the plot into panels, one per level of a variable.\n\nfacet_wrap(~ class)    # one variable; auto-wraps into a grid\nfacet_grid(drv ~ year) # drv in ROWS, year in COLUMNS\n\nKey rules for facet_grid(row_var ~ col_var):\n\nLeft of ~ \\(\\rightarrow\\) rows\nRight of ~ \\(\\rightarrow\\) columns\nNumber of panels = levels(row_var) \\(\\times\\) levels(col_var)\nBy default all panels share the same axis scales\n\n\n# 3 drv values × 2 year values = 6 panels\nggplot(mpg, aes(x = hwy)) +\n  geom_histogram(bins = 15) +\n  facet_grid(drv ~ year)"
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#practice-ggplot-debugging",
+    "href": "weeks/week4/day17-exam-review-slides.html#practice-ggplot-debugging",
+    "title": "Midterm exam review",
+    "section": "Practice: ggplot debugging",
+    "text": "Practice: ggplot debugging\nWhat is wrong with this code? There are two separate problems.\n\nggplot(diamonds, aes(x = carat, y = price))\n  geom_point()\n\n\nProblem 1: The ggplot() line is missing a trailing +. Without it, R treats the two lines as separate, unrelated expressions.\nProblem 2: If tidyverse (or ggplot2) was never loaded with library() in this session, geom_point won’t be found, even if the package is installed.\nFixed:\n\nggplot(diamonds, aes(x = carat, y = price)) +\n  geom_point()"
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#practice-skewed-data",
+    "href": "weeks/week4/day17-exam-review-slides.html#practice-skewed-data",
+    "title": "Midterm exam review",
+    "section": "Practice: skewed data",
+    "text": "Practice: skewed data\nA scatterplot of msleep with bodywt on the x-axis and sleep_total on the y-axis shows almost all points crammed into the bottom-left corner, with one or two animals far to the right.\n(a) Why does this happen?\n\nbodywt is extremely right-skewed, i.e., a few very large animals (elephants, giraffes) pull the x-axis far right, compressing everything else into the left.\n\n(b) Write one line of code to fix it:\n\n\n+ scale_x_log10()\n\nA log scale spaces the values multiplicatively so the small animals spread out instead of piling up."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#the-six-core-verbs",
+    "href": "weeks/week4/day17-exam-review-slides.html#the-six-core-verbs",
+    "title": "Midterm exam review",
+    "section": "The six core verbs",
+    "text": "The six core verbs\n\n\n\n\n\n\n\n\n\nVerb\nWhat it does\nRows changed?\nColumns changed?\n\n\n\n\nfilter()\nKeep rows matching a condition\nYes; fewer rows\nNo\n\n\nselect()\nKeep (or drop) columns\nNo\nYes; fewer columns\n\n\nmutate()\nAdd or modify a column\nNo\nYes; more/changed columns\n\n\narrange()\nSort rows\nYes; reordered\nNo\n\n\ngroup_by()\nTag groups for later\nNo visible change\nNo\n\n\nsummarise()\nCollapse to one row per group\nYes; fewer rows\nYes; new summary columns\n\n\n\ngroup_by() + summarise() always go together."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#reduction-functions",
+    "href": "weeks/week4/day17-exam-review-slides.html#reduction-functions",
+    "title": "Midterm exam review",
+    "section": "Reduction functions",
+    "text": "Reduction functions\nA reduction (or summary) function takes a whole column (vector) and returns one value:\n\nmean(c(10, 20, 30))\nsum(c(10, 20, 30))\nn() # only works inside summarise(): counts rows in the group\n\nCompare to a transformation function — it returns one value per row:\n\nc(10, 20, 30) * 2  # three inputs, three outputs\n\n[1] 20 40 60\n\nlog(c(10, 20, 30)) # still three outputs\n\n[1] 2.302585 2.995732 3.401197\n\n\nUse reductions in summarise(). Use transformations in mutate()."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#pipeline-order-matters",
+    "href": "weeks/week4/day17-exam-review-slides.html#pipeline-order-matters",
+    "title": "Midterm exam review",
+    "section": "Pipeline order matters",
+    "text": "Pipeline order matters\nThe pipe (|&gt;) feeds the output of one step into the next. Order determines what each step sees.\n\n\n\n\n\n\nWarning\n\n\nYou cannot filter on a column that summarise() already collapsed away. Always filter() first when the condition is on individual rows.\n\n\n\n\n# CORRECT: filter rows first, then summarise\npenguins |&gt;\n  filter(body_mass_g &gt; 4000) |&gt;\n  summarise(avg = mean(body_mass_g))\n\n# WRONG: summarise removes the rows — nothing left to filter\npenguins |&gt;\n  summarise(avg = mean(body_mass_g)) |&gt;\n  filter(body_mass_g &gt; 4000) # body_mass_g no longer exists!"
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#reading-code-anatomy-of-a-pipeline",
+    "href": "weeks/week4/day17-exam-review-slides.html#reading-code-anatomy-of-a-pipeline",
+    "title": "Midterm exam review",
+    "section": "Reading code: anatomy of a pipeline",
+    "text": "Reading code: anatomy of a pipeline\n\nmpg |&gt;\n  filter(class == \"compact\") |&gt;\n  group_by(manufacturer) |&gt;\n  summarise(avg_hwy = mean(hwy))\n\nBe able to identify each piece:\n\nData table: mpg\nFunctions: filter, group_by, summarise, mean, == (operator)\nVariables (columns): class, manufacturer, hwy, and the new avg_hwy\nConstants: \"compact\" (a character string literal)\nVerb that keeps only some rows: filter()"
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#practice-write-a-pipeline",
+    "href": "weeks/week4/day17-exam-review-slides.html#practice-write-a-pipeline",
+    "title": "Midterm exam review",
+    "section": "Practice: write a pipeline",
+    "text": "Practice: write a pipeline\nWrite a pipeline on penguins that:\n\nKeeps only rows where sex is not NA\nGroups by species\nReports the count (n) and mean flipper length (avg_flipper) per species\nSorts from longest to shortest average flipper\n\nTry it before looking.\n\n\npenguins |&gt;\n  filter(!is.na(sex)) |&gt;\n  group_by(species) |&gt;\n  summarise(n = n(), avg_flipper = mean(flipper_length_mm, na.rm = TRUE)) |&gt;\n  arrange(desc(avg_flipper))\n\n# A tibble: 3 × 3\n  species       n avg_flipper\n  &lt;fct&gt;     &lt;int&gt;       &lt;dbl&gt;\n1 Gentoo      119        217.\n2 Chinstrap    68        196.\n3 Adelie      146        190."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#practice-pipes-and-nested-calls",
+    "href": "weeks/week4/day17-exam-review-slides.html#practice-pipes-and-nested-calls",
+    "title": "Midterm exam review",
+    "section": "Practice: pipes and nested calls",
+    "text": "Practice: pipes and nested calls\nNested \\(\\rightarrow\\) pipe: Rewrite with |&gt;, one step per line.\n\nhead(arrange(filter(mpg, year == 2008), desc(hwy)), 3)\n\n\n\nmpg |&gt;\n  filter(year == 2008) |&gt;\n  arrange(desc(hwy)) |&gt;\n  head(3)\n\nThe innermost call becomes the first step. head() is outermost, so it goes last.\n\nPipe \\(\\rightarrow\\) nested: Rewrite without the pipe.\n\npenguins |&gt;\n  filter(!is.na(bill_length_mm)) |&gt;\n  summarise(avg_bill = mean(bill_length_mm))\n\n\n\nsummarise(filter(penguins, !is.na(bill_length_mm)), avg_bill = mean(bill_length_mm))"
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#the-over-grouping-pitfall",
+    "href": "weeks/week4/day17-exam-review-slides.html#the-over-grouping-pitfall",
+    "title": "Midterm exam review",
+    "section": "The over-grouping pitfall",
+    "text": "The over-grouping pitfall\n\npenguins |&gt;\n  group_by(species, island, sex) |&gt;\n  summarise(avg_mass = mean(body_mass_g, na.rm = TRUE), .groups = \"drop\") |&gt;\n  arrange(desc(avg_mass)) |&gt;\n  head(3)\n\n# A tibble: 3 × 4\n  species island sex    avg_mass\n  &lt;fct&gt;   &lt;fct&gt;  &lt;fct&gt;     &lt;dbl&gt;\n1 Gentoo  Biscoe male      5485.\n2 Gentoo  Biscoe female    4680.\n3 Gentoo  Biscoe &lt;NA&gt;      4588.\n\n\nThe top row has the highest average, but how many penguins is it based on?\n\nGrouping by three variables (species + island + sex) can produce groups with very few penguins. A high average from 2 penguins is not trustworthy.\nFix: always add n = n() inside summarise() so you can see the group size."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#wide-vs-narrow-long",
+    "href": "weeks/week4/day17-exam-review-slides.html#wide-vs-narrow-long",
+    "title": "Midterm exam review",
+    "section": "Wide vs narrow (long)",
+    "text": "Wide vs narrow (long)\nThe same data can be stored in two shapes:\nWide: one row per student, one column per exam:\nstudent   midterm   final\nAva            88      91\nBen            72      85\nCy             95      90\nNarrow (long): one row per measurement:\nstudent   exam       score\nAva       midterm       88\nAva       final         91\nBen       midterm       72\nBen       final         85\nCy        midterm       95\nCy        final         90\nWide has 3 rows and 3 columns. Narrow has 6 rows and 3 columns. They contain the same data, just in a different shape."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#pivot_longer-and-pivot_wider",
+    "href": "weeks/week4/day17-exam-review-slides.html#pivot_longer-and-pivot_wider",
+    "title": "Midterm exam review",
+    "section": "pivot_longer() and pivot_wider()",
+    "text": "pivot_longer() and pivot_wider()\n\n# Wide to narrow (long)\nwide_scores |&gt;\n  pivot_longer(\n    cols = c(midterm, final), # which columns to stack\n    names_to  = \"exam\",       # new column holding the old names\n    values_to = \"score\"       # new column holding the values\n  )\n\n# Narrow to wide\nnarrow_scores |&gt;\n  pivot_wider(\n    names_from  = exam, # column whose values become new column names\n    values_from = score # column whose values fill the new cells\n  )\n\nMemory trick: pivot_longer() makes the table taller (more rows). pivot_wider() makes it wider (more columns). They are exact inverses."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#practice-identify-the-pivot",
+    "href": "weeks/week4/day17-exam-review-slides.html#practice-identify-the-pivot",
+    "title": "Midterm exam review",
+    "section": "Practice: identify the pivot",
+    "text": "Practice: identify the pivot\n(a) You have one row per country and columns pop_2000, pop_2010, pop_2020. You want to plot population over time. Should you pivot_longer() or pivot_wider()?\n\npivot_longer(): the years are trapped in column names and need to become a year variable so you can put it on the x-axis.\n\n(b) You have a long table with one row per (student, subject) pair. You want to compute each student’s math score minus their reading score. Should you pivot_longer() or pivot_wider()?\n\npivot_wider(): put each subject in its own column so that math and reading are side by side in the same row, enabling a mutate(diff = math - reading)."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#writing-a-ggplot",
+    "href": "weeks/week4/day17-exam-review-slides.html#writing-a-ggplot",
+    "title": "Midterm exam review",
+    "section": "Writing a ggplot",
+    "text": "Writing a ggplot\nThe template:\n\nggplot(DATA, aes(x = XVAR, y = YVAR)) +\n  geom_SOMETHING(aes(MAPPED_AESTHETICS), FIXED_AESTHETICS)\n\nMapped (inside aes()): changes row by row based on a column Fixed (outside aes()): same for every point/bar/line\nPractice: Write a scatterplot of penguins with bill_length_mm on x, bill_depth_mm on y, points colored by species, and a fixed size of 2.\n\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +\n  geom_point(aes(color = species), size = 2)\n\n\n\n\n\n\n\n\ncolor = species is a mapping \\(\\rightarrow\\) inside aes(). size = 2 is a constant \\(\\rightarrow\\) outside aes()."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#quick-reference-things-to-know-cold",
+    "href": "weeks/week4/day17-exam-review-slides.html#quick-reference-things-to-know-cold",
+    "title": "Midterm exam review",
+    "section": "Quick-reference: things to know cold",
+    "text": "Quick-reference: things to know cold\nR basics\n\n&lt;- is assignment; == is equality test\ninstall.packages() once; library() every session\nData frame: 2D, columns can have different types\nna.rm = TRUE to ignore NAs in summary functions\n\nggplot\n\naes() maps data; constants go outside aes()\ngeom_histogram for distribution, geom_point for scatter, geom_bar for counts\ncoord_cartesian() to zoom without dropping data\nfacet_grid(row ~ col): rows left of ~, columns right\nposition = \"fill\" for proportions\n\ndplyr\n\nfilter rows, mutate columns, summarise collapses with group_by\nfilter() must come before summarise() if the condition is on individual rows\nAlways add n = n() to summaries so you know the group size\narrange(desc(...)) for descending order\n\nTidy data\n\npivot_longer(): wide to narrow (more rows)\npivot_wider(): narrow to wide (more columns)"
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-slides.html#exam",
+    "href": "weeks/week4/day17-exam-review-slides.html#exam",
+    "title": "Midterm exam review",
+    "section": "Exam",
+    "text": "Exam\nThursday June 11, 9:35 a.m.\nBring a pen or pencil.\nIf you finish early, double-check your code writing answers.\nIf something is unclear during the exam, please raise your hand."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html",
+    "href": "weeks/week4/day17-exam-review-page.html",
+    "title": "Midterm exam review",
     "section": "",
-    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
+    "text": "NoteToday: Wednesday June 10\n\n\n\nPlan for today\n\nExam is tomorrow, Thursday June 11, in class\nReview\nPractice problems\n\nHelpful links\n\nSyllabus · Schedule · R4DS Ch. 1–5 · DC Ch. 3–5, 11–12"
   },
   {
-    "objectID": "weeks/week4/day17-exam-review.html#before-class",
-    "href": "weeks/week4/day17-exam-review.html#before-class",
-    "title": "Exam review · practice problems in class",
-    "section": "Before class",
-    "text": "Before class\n\nTODO: any prep materials, data files, etc.\n(No new reading)"
+    "objectID": "weeks/week4/day17-exam-review-page.html#logistics",
+    "href": "weeks/week4/day17-exam-review-page.html#logistics",
+    "title": "Midterm exam review",
+    "section": "Logistics",
+    "text": "Logistics\n\nWhen: Thursday June 11, start of class (9:35 a.m.)\nHow long: 75 minutes\nPoints: 100 total, 8 parts (A-H)\nClosed book\n\nYou may assume tidyverse and palmerpenguins are loaded. You’ll see these datasets: penguins, mpg, diamonds, msleep.\nFormat breakdown:\n\n\n\nPart\nType\nPoints\n\n\n\n\nA\nMultiple choice (12 items)\n24\n\n\nB\nPredict the output\n12\n\n\nC\nCode anatomy\n10\n\n\nD\nCode writing\n20\n\n\nE\nPosition adjustments\n8\n\n\nF\nFacets and scales\n6\n\n\nG\nTidy data\n8\n\n\nH\nShort answer & debugging\n12"
   },
   {
-    "objectID": "weeks/week4/day17-exam-review.html#outline",
-    "href": "weeks/week4/day17-exam-review.html#outline",
-    "title": "Exam review · practice problems in class",
-    "section": "Outline",
-    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
+    "objectID": "weeks/week4/day17-exam-review-page.html#study-advice",
+    "href": "weeks/week4/day17-exam-review-page.html#study-advice",
+    "title": "Midterm exam review",
+    "section": "Study advice",
+    "text": "Study advice\nThe exam tests whether you can read, write, and reason about code. Some study suggestions:\n\nFor multiple choice, know why each answer is correct or incorrect, not just the letter\nFor predict-the-output, run the expressions yourself and understand the rule\nFor code writing, practice writing from scratch instead of just reading\nFor debugging think about “what rule does this code violate?”"
   },
   {
-    "objectID": "weeks/week4/day17-exam-review.html#resources",
-    "href": "weeks/week4/day17-exam-review.html#resources",
-    "title": "Exam review · practice problems in class",
-    "section": "Resources",
-    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+    "objectID": "weeks/week4/day17-exam-review-page.html#assignment-and-objects",
+    "href": "weeks/week4/day17-exam-review-page.html#assignment-and-objects",
+    "title": "Midterm exam review",
+    "section": "Assignment and objects",
+    "text": "Assignment and objects\nThe standard assignment operator is &lt;-. = works too, but &lt;- is the course convention and the idiomatic R style.\n\nx &lt;- 7.3 # preferred\nx\n\n[1] 7.3\n\nx = 8.1 # works, not preferred\nx\n\n[1] 8.1\n\n1.2 -&gt; x # also works, really not preferred\nx\n\n[1] 1.2\n\n\n== is a comparison, not assignment; it tests whether two things are equal and returns TRUE or FALSE.\n\nx == 1.2     # is x equal to 1.2?\n\n[1] TRUE\n\nx == pi    # is x equal to pi (~3.14)?\n\n[1] FALSE"
   },
   {
-    "objectID": "weeks/week4/day17-exam-review.html#after-class",
-    "href": "weeks/week4/day17-exam-review.html#after-class",
-    "title": "Exam review · practice problems in class",
-    "section": "After class",
-    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
+    "objectID": "weeks/week4/day17-exam-review-page.html#install.packages-vs-library",
+    "href": "weeks/week4/day17-exam-review-page.html#install.packages-vs-library",
+    "title": "Midterm exam review",
+    "section": "install.packages() vs library()",
+    "text": "install.packages() vs library()\n\n\n\n\n\n\n\n\n\ninstall.packages()\nlibrary()\n\n\n\n\nWhat it does\nDownloads the package to your computer\nLoads it into the current session\n\n\nWhen to run\nOnce per computer\nEvery session\n\n\nIn a script?\nNever; do it in the Console\nYes: at the top\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\nInstalled once \\(\\neq\\) available always. You must call library() at the start of every new R session."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html#data-frames",
+    "href": "weeks/week4/day17-exam-review-page.html#data-frames",
+    "title": "Midterm exam review",
+    "section": "Data frames",
+    "text": "Data frames\nA data frame is a two-dimensional table:\n\nEach row is one case/observation\nEach column is one variable\nColumns can each hold a different type (numeric, character, logical, factor, etc.)\nWithin a column, every value is the same type\n\nThis is what distinguishes a data frame from a matrix (all values must be the same type) and from a vector (one-dimensional).\n\nglimpse(penguins)  # see the structure: rows, columns, types\n\nRows: 344\nColumns: 8\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            &lt;fct&gt; Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               &lt;fct&gt; male, female, female, NA, female, male, female, male…\n$ year              &lt;int&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…"
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html#named-vs-positional-arguments",
+    "href": "weeks/week4/day17-exam-review-page.html#named-vs-positional-arguments",
+    "title": "Midterm exam review",
+    "section": "Named vs positional arguments",
+    "text": "Named vs positional arguments\nFunctions take arguments. You can pass them positionally (by order) or by name.\n\nround(3.14159, 2)              # positional: x first, digits second\n\n[1] 3.14\n\nround(x = 3.14159, digits = 2) # named\n\n[1] 3.14\n\nround(digits = 2, x = 3.14159) # named; shows that order doesn't matter\n\n[1] 3.14\n\n\nNamed arguments are safer and more readable, but both styles are correct R."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html#arithmetic-and-vectors",
+    "href": "weeks/week4/day17-exam-review-page.html#arithmetic-and-vectors",
+    "title": "Midterm exam review",
+    "section": "Arithmetic and vectors",
+    "text": "Arithmetic and vectors\nR operates element-wise on vectors of the same length:\n\nc(1, 2, 3) + c(10, 20, 30)\n\n[1] 11 22 33\n\nc(2, 4, 6) * 3\n\n[1]  6 12 18\n\n\nKey operators to know:\n\n\n\nExpression\nWhat it does\n\n\n\n\n%%\nModulo (remainder after division)\n\n\n%/%\nInteger division\n\n\n^\nExponent\n\n\n\n\n17 %% 5  # remainder when 17 is divided by 5\n\n[1] 2\n\n17 %/% 5 # how many times does 5 go into 17?\n\n[1] 3"
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html#practice-predict-the-output",
+    "href": "weeks/week4/day17-exam-review-page.html#practice-predict-the-output",
+    "title": "Midterm exam review",
+    "section": "Practice: predict the output",
+    "text": "Practice: predict the output\nWrite your answer before clicking.\n(a) sqrt(81)\n\n9\n\n(b) c(3, 6, 9) - c(1, 2, 3)\n\n2 4 6: element-wise subtraction\n\n(c) 10 %% 3\n\n1: 10 = 3 × 3 + 1\n\n(d) seq(0, 12, by = 3)\n\n0 3 6 9 12\n\n(e) length(c(\"alpha\", \"beta\", \"gamma\", \"delta\"))\n\n4: four elements in the vector\n\n(f) mean(c(5, 10, 15, 20), na.rm = TRUE)\n\n12.5: (5+10+15+20)/4"
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html#na-and-na.rm",
+    "href": "weeks/week4/day17-exam-review-page.html#na-and-na.rm",
+    "title": "Midterm exam review",
+    "section": "NA and na.rm",
+    "text": "NA and na.rm\nNA in R means “not available”, i.e., a missing value. Almost any calculation with NA returns NA:\n\nmean(c(2, 4, NA, 8))               # NA\n\n[1] NA\n\nmean(c(2, 4, NA, 8), na.rm = TRUE) # drop NAs first\n\n[1] 4.666667\n\n\nAny function that summarizes values across a vector, such as mean(), sum(), min(), max(), sd(), accepts na.rm = TRUE."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html#mapping-vs-setting-aesthetics",
+    "href": "weeks/week4/day17-exam-review-page.html#mapping-vs-setting-aesthetics",
+    "title": "Midterm exam review",
+    "section": "Mapping vs setting aesthetics",
+    "text": "Mapping vs setting aesthetics\n\n\n\n\n\n\n\n\n\nInside aes()\nOutside aes()\n\n\n\n\nWhat it does\nMaps a variable to a visual property\nSets a fixed visual property\n\n\nChanges by row?\nYes; different rows get different values\nNo; every point gets the same value\n\n\nExample\naes(color = species)\ncolor = \"red\"\n\n\n\n\n# color varies by species (mapping):\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +\n  geom_point(aes(color = species))\n\n# every point is red (setting):\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +\n  geom_point(color = \"red\")\n\n\n\n\n\n\n\nWarning\n\n\n\ngeom_point(aes(color = \"red\")) maps the string \"red\" as if it were a variable. You get one default color and a legend that says “red”. Set constants outside aes()."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html#glyphs",
+    "href": "weeks/week4/day17-exam-review-page.html#glyphs",
+    "title": "Midterm exam review",
+    "section": "Glyphs",
+    "text": "Glyphs\nIn the grammar of graphics, a glyph is the basic mark that represents one case.\n\nIn a scatterplot: one dot per row\nIn a bar chart: one bar segment per group\nIn a line plot: one point connected by a line segment\n\nThe glyph is what geom_* functions draw. Each row of data produces one glyph (or contributes to one group glyph)."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html#choosing-the-right-geom",
+    "href": "weeks/week4/day17-exam-review-page.html#choosing-the-right-geom",
+    "title": "Midterm exam review",
+    "section": "Choosing the right geom",
+    "text": "Choosing the right geom\n\n\n\n\n\n\n\nGoal\nAppropriate Geom\n\n\n\n\nDistribution of one quantitative variable\ngeom_histogram() or geom_density()\n\n\nDistribution of one categorical variable\ngeom_bar()\n\n\nRelationship between two quantitative variables\ngeom_point()\n\n\nTrend over time or ordered x\ngeom_line()\n\n\nRelationship between quant and categorical\ngeom_boxplot()\n\n\nCounts of two categoricals\ngeom_bar() + fill + position"
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html#zooming-coord_cartesian-vs-xlim",
+    "href": "weeks/week4/day17-exam-review-page.html#zooming-coord_cartesian-vs-xlim",
+    "title": "Midterm exam review",
+    "section": "Zooming: coord_cartesian() vs xlim()",
+    "text": "Zooming: coord_cartesian() vs xlim()\nBoth zoom in on a plot, but the difference matters when you have fitted curves:\n\nxlim(0, 50) drops data outside the range before any computation, which changes what a smoother sees\ncoord_cartesian(xlim = c(0, 50)) only adjusts the viewport. Here, all data is still used (you’re just zooming in).\n\n\n# Safer zoom since it doesn't affect statistics:\nggplot(mpg, aes(x = displ, y = hwy)) +\n  geom_point() +\n  geom_smooth() +\n  coord_cartesian(xlim = c(1.5, 4))\n\n\n\n\n\n\n\nTip\n\n\n\nDefault: use coord_cartesian() when you want to zoom without affecting calculations."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html#position-adjustments",
+    "href": "weeks/week4/day17-exam-review-page.html#position-adjustments",
+    "title": "Midterm exam review",
+    "section": "Position adjustments",
+    "text": "Position adjustments\nWith geom_bar(aes(x = drv, fill = class)):\n\n\n\n\n\n\n\n\n\n\n\n\nPosition\nWhat it does\n\n\n\n\n\"stack\"\nBars stacked; total height = total count\n\n\n\"dodge\"\nBars side by side within each group\n\n\n\"fill\"\nBars all same height; shows proportions\n\n\n\n\"fill\" is best when you want to compare proportions across groups."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html#facets",
+    "href": "weeks/week4/day17-exam-review-page.html#facets",
+    "title": "Midterm exam review",
+    "section": "Facets",
+    "text": "Facets\nFaceting splits the plot into panels, one per level of a variable.\n\nfacet_wrap(~ class)    # one variable; auto-wraps into a grid\nfacet_grid(drv ~ year) # drv in ROWS, year in COLUMNS\n\nKey rules for facet_grid(row_var ~ col_var):\n\nLeft of ~ \\(\\rightarrow\\) rows\nRight of ~ \\(\\rightarrow\\) columns\nNumber of panels = levels(row_var) \\(\\times\\) levels(col_var)\nBy default all panels share the same axis scales\n\n\n# 3 drv values × 2 year values = 6 panels\nggplot(mpg, aes(x = hwy)) +\n  geom_histogram(bins = 15) +\n  facet_grid(drv ~ year)"
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html#practice-ggplot-debugging",
+    "href": "weeks/week4/day17-exam-review-page.html#practice-ggplot-debugging",
+    "title": "Midterm exam review",
+    "section": "Practice: ggplot debugging",
+    "text": "Practice: ggplot debugging\nWhat is wrong with this code? There are two separate problems.\n\nggplot(diamonds, aes(x = carat, y = price))\n  geom_point()\n\n\nProblem 1: The ggplot() line is missing a trailing +. Without it, R treats the two lines as separate, unrelated expressions.\nProblem 2: If tidyverse (or ggplot2) was never loaded with library() in this session, geom_point won’t be found, even if the package is installed.\nFixed:\n\nggplot(diamonds, aes(x = carat, y = price)) +\n  geom_point()"
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html#practice-skewed-data",
+    "href": "weeks/week4/day17-exam-review-page.html#practice-skewed-data",
+    "title": "Midterm exam review",
+    "section": "Practice: skewed data",
+    "text": "Practice: skewed data\nA scatterplot of msleep with bodywt on the x-axis and sleep_total on the y-axis shows almost all points crammed into the bottom-left corner, with one or two animals far to the right.\n(a) Why does this happen?\n\nbodywt is extremely right-skewed, i.e., a few very large animals (elephants, giraffes) pull the x-axis far right, compressing everything else into the left.\n\n(b) Write one line of code to fix it:\n\n\n+ scale_x_log10()\n\nA log scale spaces the values multiplicatively so the small animals spread out instead of piling up."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html#the-six-core-verbs",
+    "href": "weeks/week4/day17-exam-review-page.html#the-six-core-verbs",
+    "title": "Midterm exam review",
+    "section": "The six core verbs",
+    "text": "The six core verbs\n\n\n\n\n\n\n\n\n\nVerb\nWhat it does\nRows changed?\nColumns changed?\n\n\n\n\nfilter()\nKeep rows matching a condition\nYes; fewer rows\nNo\n\n\nselect()\nKeep (or drop) columns\nNo\nYes; fewer columns\n\n\nmutate()\nAdd or modify a column\nNo\nYes; more/changed columns\n\n\narrange()\nSort rows\nYes; reordered\nNo\n\n\ngroup_by()\nTag groups for later\nNo visible change\nNo\n\n\nsummarise()\nCollapse to one row per group\nYes; fewer rows\nYes; new summary columns\n\n\n\ngroup_by() + summarise() always go together."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html#reduction-functions",
+    "href": "weeks/week4/day17-exam-review-page.html#reduction-functions",
+    "title": "Midterm exam review",
+    "section": "Reduction functions",
+    "text": "Reduction functions\nA reduction (or summary) function takes a whole column (vector) and returns one value:\n\nmean(c(10, 20, 30))\nsum(c(10, 20, 30))\nn() # only works inside summarise(): counts rows in the group\n\nCompare to a transformation function — it returns one value per row:\n\nc(10, 20, 30) * 2  # three inputs, three outputs\n\n[1] 20 40 60\n\nlog(c(10, 20, 30)) # still three outputs\n\n[1] 2.302585 2.995732 3.401197\n\n\nUse reductions in summarise(). Use transformations in mutate()."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html#pipeline-order-matters",
+    "href": "weeks/week4/day17-exam-review-page.html#pipeline-order-matters",
+    "title": "Midterm exam review",
+    "section": "Pipeline order matters",
+    "text": "Pipeline order matters\nThe pipe (|&gt;) feeds the output of one step into the next. Order determines what each step sees.\n\n\n\n\n\n\nWarning\n\n\n\nYou cannot filter on a column that summarise() already collapsed away. Always filter() first when the condition is on individual rows.\n\n\n\n# CORRECT: filter rows first, then summarise\npenguins |&gt;\n  filter(body_mass_g &gt; 4000) |&gt;\n  summarise(avg = mean(body_mass_g))\n\n# WRONG: summarise removes the rows — nothing left to filter\npenguins |&gt;\n  summarise(avg = mean(body_mass_g)) |&gt;\n  filter(body_mass_g &gt; 4000) # body_mass_g no longer exists!"
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html#reading-code-anatomy-of-a-pipeline",
+    "href": "weeks/week4/day17-exam-review-page.html#reading-code-anatomy-of-a-pipeline",
+    "title": "Midterm exam review",
+    "section": "Reading code: anatomy of a pipeline",
+    "text": "Reading code: anatomy of a pipeline\n\nmpg |&gt;\n  filter(class == \"compact\") |&gt;\n  group_by(manufacturer) |&gt;\n  summarise(avg_hwy = mean(hwy))\n\nBe able to identify each piece:\n\nData table: mpg\nFunctions: filter, group_by, summarise, mean, == (operator)\nVariables (columns): class, manufacturer, hwy, and the new avg_hwy\nConstants: \"compact\" (a character string literal)\nVerb that keeps only some rows: filter()"
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html#practice-write-a-pipeline",
+    "href": "weeks/week4/day17-exam-review-page.html#practice-write-a-pipeline",
+    "title": "Midterm exam review",
+    "section": "Practice: write a pipeline",
+    "text": "Practice: write a pipeline\nWrite a pipeline on penguins that:\n\nKeeps only rows where sex is not NA\nGroups by species\nReports the count (n) and mean flipper length (avg_flipper) per species\nSorts from longest to shortest average flipper\n\nTry it before looking.\n\n\npenguins |&gt;\n  filter(!is.na(sex)) |&gt;\n  group_by(species) |&gt;\n  summarise(n = n(), avg_flipper = mean(flipper_length_mm, na.rm = TRUE)) |&gt;\n  arrange(desc(avg_flipper))\n\n# A tibble: 3 × 3\n  species       n avg_flipper\n  &lt;fct&gt;     &lt;int&gt;       &lt;dbl&gt;\n1 Gentoo      119        217.\n2 Chinstrap    68        196.\n3 Adelie      146        190."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html#practice-pipes-and-nested-calls",
+    "href": "weeks/week4/day17-exam-review-page.html#practice-pipes-and-nested-calls",
+    "title": "Midterm exam review",
+    "section": "Practice: pipes and nested calls",
+    "text": "Practice: pipes and nested calls\nNested \\(\\rightarrow\\) pipe: Rewrite with |&gt;, one step per line.\n\nhead(arrange(filter(mpg, year == 2008), desc(hwy)), 3)\n\n\n\nmpg |&gt;\n  filter(year == 2008) |&gt;\n  arrange(desc(hwy)) |&gt;\n  head(3)\n\nThe innermost call becomes the first step. head() is outermost, so it goes last.\n\nPipe \\(\\rightarrow\\) nested: Rewrite without the pipe.\n\npenguins |&gt;\n  filter(!is.na(bill_length_mm)) |&gt;\n  summarise(avg_bill = mean(bill_length_mm))\n\n\n\nsummarise(filter(penguins, !is.na(bill_length_mm)), avg_bill = mean(bill_length_mm))"
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html#the-over-grouping-pitfall",
+    "href": "weeks/week4/day17-exam-review-page.html#the-over-grouping-pitfall",
+    "title": "Midterm exam review",
+    "section": "The over-grouping pitfall",
+    "text": "The over-grouping pitfall\n\npenguins |&gt;\n  group_by(species, island, sex) |&gt;\n  summarise(avg_mass = mean(body_mass_g, na.rm = TRUE), .groups = \"drop\") |&gt;\n  arrange(desc(avg_mass)) |&gt;\n  head(3)\n\n# A tibble: 3 × 4\n  species island sex    avg_mass\n  &lt;fct&gt;   &lt;fct&gt;  &lt;fct&gt;     &lt;dbl&gt;\n1 Gentoo  Biscoe male      5485.\n2 Gentoo  Biscoe female    4680.\n3 Gentoo  Biscoe &lt;NA&gt;      4588.\n\n\nThe top row has the highest average, but how many penguins is it based on?\n\nGrouping by three variables (species + island + sex) can produce groups with very few penguins. A high average from 2 penguins is not trustworthy.\nFix: always add n = n() inside summarise() so you can see the group size."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html#wide-vs-narrow-long",
+    "href": "weeks/week4/day17-exam-review-page.html#wide-vs-narrow-long",
+    "title": "Midterm exam review",
+    "section": "Wide vs narrow (long)",
+    "text": "Wide vs narrow (long)\nThe same data can be stored in two shapes:\nWide: one row per student, one column per exam:\nstudent   midterm   final\nAva            88      91\nBen            72      85\nCy             95      90\nNarrow (long): one row per measurement:\nstudent   exam       score\nAva       midterm       88\nAva       final         91\nBen       midterm       72\nBen       final         85\nCy        midterm       95\nCy        final         90\nWide has 3 rows and 3 columns. Narrow has 6 rows and 3 columns. They contain the same data, just in a different shape."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html#pivot_longer-and-pivot_wider",
+    "href": "weeks/week4/day17-exam-review-page.html#pivot_longer-and-pivot_wider",
+    "title": "Midterm exam review",
+    "section": "pivot_longer() and pivot_wider()",
+    "text": "pivot_longer() and pivot_wider()\n\n# Wide to narrow (long)\nwide_scores |&gt;\n  pivot_longer(\n    cols = c(midterm, final), # which columns to stack\n    names_to  = \"exam\",       # new column holding the old names\n    values_to = \"score\"       # new column holding the values\n  )\n\n# Narrow to wide\nnarrow_scores |&gt;\n  pivot_wider(\n    names_from  = exam, # column whose values become new column names\n    values_from = score # column whose values fill the new cells\n  )\n\nMemory trick: pivot_longer() makes the table taller (more rows). pivot_wider() makes it wider (more columns). They are exact inverses."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html#practice-identify-the-pivot",
+    "href": "weeks/week4/day17-exam-review-page.html#practice-identify-the-pivot",
+    "title": "Midterm exam review",
+    "section": "Practice: identify the pivot",
+    "text": "Practice: identify the pivot\n(a) You have one row per country and columns pop_2000, pop_2010, pop_2020. You want to plot population over time. Should you pivot_longer() or pivot_wider()?\n\npivot_longer(): the years are trapped in column names and need to become a year variable so you can put it on the x-axis.\n\n(b) You have a long table with one row per (student, subject) pair. You want to compute each student’s math score minus their reading score. Should you pivot_longer() or pivot_wider()?\n\npivot_wider(): put each subject in its own column so that math and reading are side by side in the same row, enabling a mutate(diff = math - reading)."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html#writing-a-ggplot",
+    "href": "weeks/week4/day17-exam-review-page.html#writing-a-ggplot",
+    "title": "Midterm exam review",
+    "section": "Writing a ggplot",
+    "text": "Writing a ggplot\nThe template:\n\nggplot(DATA, aes(x = XVAR, y = YVAR)) +\n  geom_SOMETHING(aes(MAPPED_AESTHETICS), FIXED_AESTHETICS)\n\nMapped (inside aes()): changes row by row based on a column Fixed (outside aes()): same for every point/bar/line\nPractice: Write a scatterplot of penguins with bill_length_mm on x, bill_depth_mm on y, points colored by species, and a fixed size of 2.\n\n\nggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +\n  geom_point(aes(color = species), size = 2)\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\ncolor = species is a mapping \\(\\rightarrow\\) inside aes(). size = 2 is a constant \\(\\rightarrow\\) outside aes()."
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html#quick-reference-things-to-know-cold",
+    "href": "weeks/week4/day17-exam-review-page.html#quick-reference-things-to-know-cold",
+    "title": "Midterm exam review",
+    "section": "Quick-reference: things to know cold",
+    "text": "Quick-reference: things to know cold\nR basics\n\n&lt;- is assignment; == is equality test\ninstall.packages() once; library() every session\nData frame: 2D, columns can have different types\nna.rm = TRUE to ignore NAs in summary functions\n\nggplot\n\naes() maps data; constants go outside aes()\ngeom_histogram for distribution, geom_point for scatter, geom_bar for counts\ncoord_cartesian() to zoom without dropping data\nfacet_grid(row ~ col): rows left of ~, columns right\nposition = \"fill\" for proportions\n\ndplyr\n\nfilter rows, mutate columns, summarise collapses with group_by\nfilter() must come before summarise() if the condition is on individual rows\nAlways add n = n() to summaries so you know the group size\narrange(desc(...)) for descending order\n\nTidy data\n\npivot_longer(): wide to narrow (more rows)\npivot_wider(): narrow to wide (more columns)"
+  },
+  {
+    "objectID": "weeks/week4/day17-exam-review-page.html#exam",
+    "href": "weeks/week4/day17-exam-review-page.html#exam",
+    "title": "Midterm exam review",
+    "section": "Exam",
+    "text": "Exam\nThursday June 11, 9:35 a.m.\nBring a pen or pencil.\nIf you finish early, double-check your code writing answers.\nIf something is unclear during the exam, please raise your hand."
   },
   {
     "objectID": "weeks/week4/day19-scraping.html",
