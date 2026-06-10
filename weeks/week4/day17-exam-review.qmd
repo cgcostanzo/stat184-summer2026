@@ -613,9 +613,7 @@ narrow_scores |>
 
 # Putting it together {background-color="#001E44"}
 
-## Writing a ggplot {.scrollable .nostretch}
-
-The template:
+## ggplot template {.scrollable .nostretch}
 
 ```{r}
 #| echo: TRUE
