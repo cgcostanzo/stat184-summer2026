@@ -1796,28 +1796,28 @@
     "href": "weeks/week4/day19-scraping-slides.html#every-easy-data-format-is-alike",
     "title": "Web scraping & HTML tables",
     "section": "Every easy data format is alike",
-    "text": "Every easy data format is alike\n\n“Every easy data format is alike. Every difficult data format is difficult in its own way.” — with apologies to Leo Tolstoy\n\nSo far the world has been kind: penguins, flights, CSVs with a tidy read_csv(). But a huge amount of data you’ll actually want lives on web pages, formatted for human eyes, not for read_csv().\nData scraping: gathering data from sources that aren’t already in data-frame format — usually translating from the HTML a browser renders into a tidy data frame.\nToday’s goal: point R at a URL and walk away with a tibble."
+    "text": "Every easy data format is alike\n\n“Every easy data format is alike. Every difficult data format is difficult in its own way.” - with apologies to Leo Tolstoy\n\nSo we’ve worked with easily accessible datasets like penguins, flights, or CSVs that can be quickly imported with read_csv(). But a lot of data is only available on web pages that are formatted for human eyes rather than read_csv().\nData scraping is gathering data from sources that aren’t already in data-frame format; in our context, this is usually translating from the HTML a browser renders into a tidy data frame."
   },
   {
     "objectID": "weeks/week4/day19-scraping-slides.html#when-to-scrape-and-when-not-to",
     "href": "weeks/week4/day19-scraping-slides.html#when-to-scrape-and-when-not-to",
     "title": "Web scraping & HTML tables",
     "section": "When to scrape (and when not to)",
-    "text": "When to scrape (and when not to)\nBefore you scrape, always check for a friendlier door:\n\nIs there a download link? A “Download CSV” button beats scraping every time.\nIs there an API? Many sites (Spotify, the Census, GitHub) offer an API that returns clean JSON. Often a CRAN package already wraps it (tidycensus, spotifyr, gh).\nOnly then, scrape the HTML.\n\nScraping is the technique that always works — but it’s also the most fragile. If the site redesigns its HTML tomorrow, your code breaks. Use it when nothing easier exists."
+    "text": "When to scrape (and when not to)\nBefore you scrape, always check for a friendlier door:\n\nIs there a download link?\nIs there an API?\n\n\nMany sites (Spotify, the Census, GitHub) offer an API that returns clean JSON. Often a CRAN package already wraps it (tidycensus, spotifyr, gh).\n\n\nOnly then, scrape the HTML.\n\nScraping is flexible but fragile. If a website administrator redesigns its HTML, your code will no longer work. It’s best to reserve web scraping for cases when no easier option is feasible."
   },
   {
-    "objectID": "weeks/week4/day19-scraping-slides.html#ethics-legality",
-    "href": "weeks/week4/day19-scraping-slides.html#ethics-legality",
+    "objectID": "weeks/week4/day19-scraping-slides.html#ethical-web-scraping",
+    "href": "weeks/week4/day19-scraping-slides.html#ethical-web-scraping",
     "title": "Web scraping & HTML tables",
-    "section": "Ethics & legality",
-    "text": "Ethics & legality\nWe’re not lawyers, but the rule of thumb from R4DS: you’re usually on safe ground if the data is\n\npublic — you didn’t have to log in or click “I agree”,\nnon-personal — not names, emails, locations of identifiable people, and\nfactual — facts and data aren’t copyrightable (creative text and images are).\n\nCautionary tale: in 2016 researchers scraped ~70,000 OkCupid profiles — public, but deeply personal — and released them with no anonymization. It was widely condemned. Public does not mean fair game.\n\n\n\n\n\n\nWarning\n\n\nPersonally identifiable information (names, ages, locations) lives under strict laws (GDPR in Europe). When in doubt, don’t."
+    "section": "Ethical web-scraping",
+    "text": "Ethical web-scraping\nThe rule of thumb from R4DS: you’re usually on safe ground if the data is\n\npublic: you didn’t have to log in or click “I agree”,\nnon-personal: not names, emails, locations of identifiable people, and\nfactual: facts and data aren’t copyrightable (creative text and images are).\n\nR4DS real-world cautionary example: 2016 researchers scraped ~70,000 OkCupid profiles. These are public, but deeply personal dating profiles. The researchers then released the profiles with no anonymization. It was widely condemned. Public does not mean fair game or ethical."
   },
   {
     "objectID": "weeks/week4/day19-scraping-slides.html#be-a-polite-guest",
     "href": "weeks/week4/day19-scraping-slides.html#be-a-polite-guest",
     "title": "Web scraping & HTML tables",
     "section": "Be a polite guest",
-    "text": "Be a polite guest\nA scraper can fire off thousands of requests in seconds. To a small server that looks like an attack.\n\nThrottle: pause between requests. Don’t hammer a server.\nCache: never download the same page twice.\nIdentify yourself and respect robots.txt and terms of service where you reasonably can.\n\nThe polite package automates all of this — it pauses, caches, and checks robots.txt for you.\n\n# install.packages(\"polite\")\nlibrary(polite)\nsession &lt;- bow(\"https://www.example.com\")   # introduce yourself\nresult  &lt;- scrape(session)                    # politely fetch"
+    "text": "Be a polite guest\nA scraper can fire off thousands of requests in seconds. To a small server that may look like an attack.\n\nThrottle: pause between requests. Don’t hammer a server.\nCache: never download the same page twice.\nIdentify yourself and respect robots.txt and terms of service where you reasonably can.\n\nThe polite package automates all of this for you, pausing, cauching, and checking robots.txt for you.\n\n# install.packages(\"polite\")\nlibrary(polite)\nsession &lt;- bow(\"https://www.example.com\") # introduce yourself\nresult  &lt;- scrape(session) # politely fetch"
   },
   {
     "objectID": "weeks/week4/day19-scraping-slides.html#what-a-web-page-really-is",
@@ -1831,98 +1831,105 @@
     "href": "weeks/week4/day19-scraping-slides.html#anatomy-of-an-element",
     "title": "Web scraping & HTML tables",
     "section": "Anatomy of an element",
-    "text": "Anatomy of an element\n       start tag      attribute        contents          end tag\n          │               │                │                │\n        ┌─┴─┐    ┌────────┴────────┐   ┌────┴───┐         ┌──┴──┐\n        &lt;a     href='/cats'  class='link'&gt;  cute cats     &lt;/a&gt;\n\nTags come in pairs: &lt;p&gt; … &lt;/p&gt;. The content lives in between.\nAttributes are name='value' pairs inside the start tag.\nTwo attributes matter most for scraping:\n\nid — a unique label for one element (id='first')\nclass — a reusable label shared by many elements (class='weight')\n\n\nDesigners use id and class to style the page. We hijack them to find our data."
+    "text": "Anatomy of an element\n\nTags come in pairs: &lt;p&gt; … &lt;/p&gt;. The content lives in between.\nAttributes are name='value' pairs inside the start tag.\nTwo attributes matter most for scraping:\n\nid: a unique label for one element (id='first')\nclass: a reusable label shared by many elements (class='weight')\n\n\nDesigners use id and class to style the page. We hijack them to find our data."
+  },
+  {
+    "objectID": "weeks/week4/day19-scraping-slides.html#example-element",
+    "href": "weeks/week4/day19-scraping-slides.html#example-element",
+    "title": "Web scraping & HTML tables",
+    "section": "Example element",
+    "text": "Example element\n cute cats \n\nStart Tag (&lt;a … &gt;): This opens the element and tells the browser where it begins.\nAttributes (href=‘/cats’, class=‘link’): These live inside the start tag and provide extra information or settings (like the destination URL or CSS styling classes).\nContents (cute cats): This is the actual text, image, or nested element that gets displayed and affected by the tag.\nEnd Tag (): This closes the element, telling the browser where it stops."
   },
   {
     "objectID": "weeks/week4/day19-scraping-slides.html#useful-tags-to-recognize",
     "href": "weeks/week4/day19-scraping-slides.html#useful-tags-to-recognize",
     "title": "Web scraping & HTML tables",
     "section": "Useful tags to recognize",
-    "text": "Useful tags to recognize\n\n\n\nTag\nMeaning\n\n\n\n\n&lt;h1&gt;–&lt;h6&gt;\nheadings\n\n\n&lt;p&gt;\nparagraph\n\n\n&lt;ul&gt; / &lt;ol&gt; / &lt;li&gt;\nunordered / ordered list / list item\n\n\n&lt;a href='...'&gt;\nlink (destination in the href attribute)\n\n\n&lt;img src='...'&gt;\nimage (source in the src attribute)\n\n\n&lt;b&gt; / &lt;i&gt; / &lt;span&gt;\nbold / italic / inline container\n\n\n&lt;table&gt; &lt;tr&gt; &lt;th&gt; &lt;td&gt;\ntable, row, header cell, data cell\n\n\n\nYou don’t need to memorize HTML — just enough to spot where your data is hiding. A little googling or the MDN docs fills the rest."
+    "text": "Useful tags to recognize\n\n\n\nTag\nMeaning\n\n\n\n\n&lt;h1&gt;–&lt;h6&gt;\nheadings\n\n\n&lt;p&gt;\nparagraph\n\n\n&lt;ul&gt; / &lt;ol&gt; / &lt;li&gt;\nunordered / ordered list / list item\n\n\n&lt;a href='...'&gt;\nlink (destination in the href attribute)\n\n\n&lt;img src='...'&gt;\nimage (source in the src attribute)\n\n\n&lt;b&gt; / &lt;i&gt; / &lt;span&gt;\nbold / italic / inline container\n\n\n&lt;table&gt; &lt;tr&gt; &lt;th&gt; &lt;td&gt;\ntable, row, header cell, data cell\n\n\n\nYou don’t need to memorize HTML, but it’s useful to know enough to spot where your data is hiding. Google or the MDN docs are great resources to help fill in any gaps."
   },
   {
     "objectID": "weeks/week4/day19-scraping-slides.html#the-rvest-workflow",
     "href": "weeks/week4/day19-scraping-slides.html#the-rvest-workflow",
     "title": "Web scraping & HTML tables",
     "section": "The rvest workflow",
-    "text": "The rvest workflow\nrvest (think “harvest”) is the tidyverse scraping package. It’s installed with the tidyverse but loaded separately:\n\nlibrary(rvest)\n\nThe pipeline is always the same four moves:\n\nread_html(url) — download the page into R\nhtml_elements(css) — select the pieces you want (a CSS selector)\nhtml_element(css) — narrow to one piece per observation\nhtml_text2() / html_attr() / html_table() — pull out the actual values"
+    "text": "The rvest workflow\nrvest (think “harvest”) is the tidyverse scraping package. It’s installed with the tidyverse but loaded separately:\n\nlibrary(rvest)\n\nSteps:\n\nread_html(url): download the page into R\nhtml_elements(css): select the pieces you want (a CSS selector)\nhtml_element(css): narrow to one piece per observation\nhtml_text2() / html_attr() / html_table(): pull out the actual values"
   },
   {
-    "objectID": "weeks/week4/day19-scraping-slides.html#practice-without-the-internet",
-    "href": "weeks/week4/day19-scraping-slides.html#practice-without-the-internet",
+    "objectID": "weeks/week4/day19-scraping-slides.html#practice",
+    "href": "weeks/week4/day19-scraping-slides.html#practice",
     "title": "Web scraping & HTML tables",
-    "section": "Practice without the internet",
-    "text": "Practice without the internet\nminimal_html() lets us hand-write HTML to experiment — no network, no fragility. We’ll use it to learn, then point the same tools at real pages.\n\nhtml &lt;- minimal_html(\"\n  &lt;h1&gt;This is a heading&lt;/h1&gt;\n  &lt;p id='first'&gt;This is a paragraph&lt;/p&gt;\n  &lt;p class='important'&gt;This is an important paragraph&lt;/p&gt;\n\")\nhtml\n\n{html_document}\n&lt;html&gt;\n[1] &lt;head&gt;\\n&lt;meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8 ...\n[2] &lt;body&gt;\\n&lt;h1&gt;This is a heading&lt;/h1&gt;\\n  &lt;p id=\"first\"&gt;This is a paragraph&lt;/ ...\n\n\nEverything that follows works identically whether html came from minimal_html() or read_html(\"https://...\")."
+    "section": "Practice",
+    "text": "Practice\nminimal_html() is a function that allows us to hand write HTML. We’ll use it to learn, then use the same tools on real web pages.\n\nhtml &lt;- minimal_html(\"\n  &lt;h1&gt;This is a heading&lt;/h1&gt;\n  &lt;p id='first'&gt;This is a paragraph&lt;/p&gt;\n  &lt;p class='important'&gt;This is an important paragraph&lt;/p&gt;\n\")\nhtml\n\n{html_document}\n&lt;html&gt;\n[1] &lt;head&gt;\\n&lt;meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8 ...\n[2] &lt;body&gt;\\n&lt;h1&gt;This is a heading&lt;/h1&gt;\\n  &lt;p id=\"first\"&gt;This is a paragraph&lt;/ ...\n\n\nEverything that follows works identically whether html came from minimal_html() or read_html(\"https://...\")."
   },
   {
     "objectID": "weeks/week4/day19-scraping-slides.html#css-selectors-three-youll-use-constantly",
     "href": "weeks/week4/day19-scraping-slides.html#css-selectors-three-youll-use-constantly",
     "title": "Web scraping & HTML tables",
     "section": "CSS selectors: three you’ll use constantly",
-    "text": "CSS selectors: three you’ll use constantly\nA CSS selector is a tiny pattern language for “which elements do I mean?”\n\n\n\n\n\n\n\n\nSelector\nSelects\nRead it as\n\n\n\n\np\nall &lt;p&gt; elements\n“every paragraph”\n\n\n.important\nall elements with class=\"important\"\n“anything classed important” (dot = class)\n\n\n#first\nthe element with id=\"first\"\n“the one with id first” (hash = id)\n\n\np.important\n&lt;p&gt; elements that are also class=\"important\"\ncombine them\n\n\nli b\n&lt;b&gt; inside an &lt;li&gt;\ndescendant (space)\n\n\n\n\nhtml |&gt; html_elements(\"p\")            # both paragraphs\n\n{xml_nodeset (2)}\n[1] &lt;p id=\"first\"&gt;This is a paragraph&lt;/p&gt;\n[2] &lt;p class=\"important\"&gt;This is an important paragraph&lt;/p&gt;\n\nhtml |&gt; html_elements(\".important\")   # just the important one\n\n{xml_nodeset (1)}\n[1] &lt;p class=\"important\"&gt;This is an important paragraph&lt;/p&gt;\n\nhtml |&gt; html_element(\"#first\")        # the one with id=\"first\"\n\n{html_node}\n&lt;p id=\"first\"&gt;"
+    "text": "CSS selectors: three you’ll use constantly\nA Cascading style sheets (CSS) selector is a mini pattern language that provides a concise way of describing which HTML elements you want to extract from a web page.\n\n\n\n\n\n\n\n\nSelector\nSelects\nRead it as\n\n\n\n\np\nall &lt;p&gt; elements\n“every paragraph”\n\n\n.important\nall elements with class=\"important\"\n“anything classed important” (dot = class)\n\n\n#first\nthe element with id=\"first\"\n“the one with id first” (hash = id)\n\n\np.important\n&lt;p&gt; elements that are also class=\"important\"\ncombine them\n\n\nli b\n&lt;b&gt; inside an &lt;li&gt;\ndescendant (space)\n\n\n\n\nhtml |&gt; html_elements(\"p\") # both paragraphs\n\n{xml_nodeset (2)}\n[1] &lt;p id=\"first\"&gt;This is a paragraph&lt;/p&gt;\n[2] &lt;p class=\"important\"&gt;This is an important paragraph&lt;/p&gt;\n\nhtml |&gt; html_elements(\".important\") # just the important one\n\n{xml_nodeset (1)}\n[1] &lt;p class=\"important\"&gt;This is an important paragraph&lt;/p&gt;\n\nhtml |&gt; html_element(\"#first\") # the one with id=\"first\"\n\n{html_node}\n&lt;p id=\"first\"&gt;"
   },
   {
     "objectID": "weeks/week4/day19-scraping-slides.html#element-vs.-elements-this-trips-everyone-up",
     "href": "weeks/week4/day19-scraping-slides.html#element-vs.-elements-this-trips-everyone-up",
     "title": "Web scraping & HTML tables",
     "section": "element vs. elements (this trips everyone up)",
-    "text": "element vs. elements (this trips everyone up)\nTwo nearly identical functions, one crucial difference:\n\nhtml_elements() (plural) — returns all matches. Length depends on the page.\nhtml_element() (singular) — returns one match per input, filling NA when nothing matches.\n\n\nhtml |&gt; html_elements(\"b\")   # 0 matches -&gt; empty\n\n{xml_nodeset (0)}\n\nhtml |&gt; html_element(\"b\")    # 0 matches -&gt; NA (length preserved!)\n\n{xml_missing}\n&lt;NA&gt;\n\n\nThat NA-filling behavior is the secret to keeping columns aligned. Here’s why it matters →"
+    "text": "element vs. elements (this trips everyone up)\n\nhtml_elements() (plural): returns all matches. Length depends on the page.\nhtml_element() (singular): returns one match per input, filling NA when nothing matches.\n\n\nhtml |&gt; html_elements(\"b\") # 0 matches -&gt; empty\n\n{xml_nodeset (0)}\n\nhtml |&gt; html_element(\"b\") # 0 matches -&gt; NA (length preserved!)\n\n{xml_missing}\n&lt;NA&gt;\n\n\nThat NA-filling behavior keeps columns aligned."
   },
   {
     "objectID": "weeks/week4/day19-scraping-slides.html#why-the-distinction-matters",
     "href": "weeks/week4/day19-scraping-slides.html#why-the-distinction-matters",
     "title": "Web scraping & HTML tables",
     "section": "Why the distinction matters",
-    "text": "Why the distinction matters\nA page of four StarWars characters — but not all have a recorded weight:\n\ndroids &lt;- minimal_html(\"\n  &lt;ul&gt;\n    &lt;li&gt;&lt;b&gt;C-3PO&lt;/b&gt; is a &lt;i&gt;droid&lt;/i&gt; that weighs &lt;span class='weight'&gt;167 kg&lt;/span&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;b&gt;R2-D2&lt;/b&gt; is a &lt;i&gt;droid&lt;/i&gt; that weighs &lt;span class='weight'&gt;96 kg&lt;/span&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;b&gt;Yoda&lt;/b&gt; weighs &lt;span class='weight'&gt;66 kg&lt;/span&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;b&gt;R4-P17&lt;/b&gt; is a &lt;i&gt;droid&lt;/i&gt;&lt;/li&gt;\n  &lt;/ul&gt;\n\")\n\nGrab the weights directly and you get 3 values for 4 characters — and no way to know which one is missing:\n\ndroids |&gt; html_elements(\".weight\") |&gt; html_text2()   # length 3 — misaligned!\n\n[1] \"167 kg\" \"96 kg\"  \"66 kg\""
+    "text": "Why the distinction matters\nBelow is a page of four StarWars characters, some of whom are missing a recorded weight:\n\ndroids &lt;- minimal_html(\"\n  &lt;ul&gt;\n    &lt;li&gt;&lt;b&gt;C-3PO&lt;/b&gt; is a &lt;i&gt;droid&lt;/i&gt; that weighs &lt;span class='weight'&gt;167 kg&lt;/span&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;b&gt;R2-D2&lt;/b&gt; is a &lt;i&gt;droid&lt;/i&gt; that weighs &lt;span class='weight'&gt;96 kg&lt;/span&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;b&gt;Yoda&lt;/b&gt; weighs &lt;span class='weight'&gt;66 kg&lt;/span&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;b&gt;R4-P17&lt;/b&gt; is a &lt;i&gt;droid&lt;/i&gt;&lt;/li&gt;\n  &lt;/ul&gt;\n\")\n\nGrab the weights directly and you get 3 values for 4 characters and no way to know which one is missing:\n\ndroids |&gt; html_elements(\".weight\") |&gt; html_text2()   # length 3 — misaligned!\n\n[1] \"167 kg\" \"96 kg\"  \"66 kg\""
   },
   {
-    "objectID": "weeks/week4/day19-scraping-slides.html#the-robust-pattern-rows-then-columns",
-    "href": "weeks/week4/day19-scraping-slides.html#the-robust-pattern-rows-then-columns",
+    "objectID": "weeks/week4/day19-scraping-slides.html#rows-then-columns",
+    "href": "weeks/week4/day19-scraping-slides.html#rows-then-columns",
     "title": "Web scraping & HTML tables",
-    "section": "The robust pattern: rows then columns",
-    "text": "The robust pattern: rows then columns\nStep 1. Use html_elements() to grab one element per observation (each &lt;li&gt; is one character):\n\ncharacters &lt;- droids |&gt; html_elements(\"li\")\nlength(characters)   # 4 — one per character\n\n[1] 4\n\n\nStep 2. Use html_element() on each to pull one value per observation. Missing weights become NA, so everything stays aligned:\n\ntibble(\n  name    = characters |&gt; html_element(\"b\")       |&gt; html_text2(),\n  species = characters |&gt; html_element(\"i\")        |&gt; html_text2(),\n  weight  = characters |&gt; html_element(\".weight\")  |&gt; html_text2()\n)\n\n# A tibble: 4 × 3\n  name   species weight\n  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt; \n1 C-3PO  droid   167 kg\n2 R2-D2  droid   96 kg \n3 Yoda   &lt;NA&gt;    66 kg \n4 R4-P17 droid   &lt;NA&gt;  \n\n\n\n\n\n\n\n\nTip\n\n\nThe golden rule: html_elements() to find your rows, then html_element() to find each column. Same number of values every time."
+    "section": "Rows then columns",
+    "text": "Rows then columns\nStep 1. Use html_elements() to grab one element per observation (each &lt;li&gt; is one character):\n\ncharacters &lt;- droids |&gt; html_elements(\"li\")\nlength(characters) # 4 (one per character)\n\n[1] 4\n\n\nStep 2. Use html_element() on each to pull one value per observation. Missing weights become NA, so everything stays aligned:\n\ntibble(\n  name = characters |&gt; html_element(\"b\") |&gt; html_text2(),\n  species = characters |&gt; html_element(\"i\") |&gt; html_text2(),\n  weight  = characters |&gt; html_element(\".weight\") |&gt; html_text2()\n)\n\n# A tibble: 4 × 3\n  name   species weight\n  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt; \n1 C-3PO  droid   167 kg\n2 R2-D2  droid   96 kg \n3 Yoda   &lt;NA&gt;    66 kg \n4 R4-P17 droid   &lt;NA&gt;  \n\n\n\n\n\n\n\n\nTip\n\n\nhtml_elements() to find your rows, then html_element() to find each column."
   },
   {
     "objectID": "weeks/week4/day19-scraping-slides.html#pulling-out-the-values",
     "href": "weeks/week4/day19-scraping-slides.html#pulling-out-the-values",
     "title": "Web scraping & HTML tables",
     "section": "Pulling out the values",
-    "text": "Pulling out the values\nSelecting elements gets you HTML nodes. Two functions turn nodes into data:\nhtml_text2() — the visible text (handles whitespace like a browser; prefer it over html_text()):\n\ndroids |&gt; html_elements(\"b\") |&gt; html_text2()\n\n[1] \"C-3PO\"  \"R2-D2\"  \"Yoda\"   \"R4-P17\"\n\n\nhtml_attr(\"name\") — the value of an attribute, e.g. a link’s destination:\n\nlinks &lt;- minimal_html(\"\n  &lt;p&gt;&lt;a href='https://en.wikipedia.org/wiki/Cat'&gt;cats&lt;/a&gt;&lt;/p&gt;\n  &lt;p&gt;&lt;a href='https://en.wikipedia.org/wiki/Dog'&gt;dogs&lt;/a&gt;&lt;/p&gt;\n\")\nlinks |&gt; html_elements(\"a\") |&gt; html_attr(\"href\")\n\n[1] \"https://en.wikipedia.org/wiki/Cat\" \"https://en.wikipedia.org/wiki/Dog\"\n\n\n\n\n\n\n\n\nWarning\n\n\nhtml_attr() always returns a string — html_attr(\"width\") gives \"100\", not 100. Follow up with parse_number() / as.integer()."
+    "text": "Pulling out the values\nSelecting elements gets you HTML nodes. Two functions turn nodes into data:\nhtml_text2(): the visible text (handles whitespace like a browser; prefer it over html_text()):\n\ndroids |&gt; html_elements(\"b\") |&gt; html_text2()\n\n[1] \"C-3PO\"  \"R2-D2\"  \"Yoda\"   \"R4-P17\"\n\n\nhtml_attr(\"name\"): the value of an attribute, e.g. a link’s destination:\n\nlinks &lt;- minimal_html(\"\n  &lt;p&gt;&lt;a href='https://en.wikipedia.org/wiki/Cat'&gt;cats&lt;/a&gt;&lt;/p&gt;\n  &lt;p&gt;&lt;a href='https://en.wikipedia.org/wiki/Dog'&gt;dogs&lt;/a&gt;&lt;/p&gt;\n\")\nlinks |&gt; html_elements(\"a\") |&gt; html_attr(\"href\")\n\n[1] \"https://en.wikipedia.org/wiki/Cat\" \"https://en.wikipedia.org/wiki/Dog\"\n\n\n\n\n\n\n\n\nWarning\n\n\nhtml_attr() always returns a string. html_attr(\"width\") gives \"100\", not 100. Follow up with parse_number() / as.integer()."
   },
   {
     "objectID": "weeks/week4/day19-scraping-slides.html#html_table",
     "href": "weeks/week4/day19-scraping-slides.html#html_table",
     "title": "Web scraping & HTML tables",
     "section": "html_table()",
-    "text": "html_table()\nIf your data is already in an HTML &lt;table&gt;, you’re in luck — html_table() reads it straight into a tibble, guessing column types as it goes.\n\ntbl &lt;- minimal_html(\"\n  &lt;table&gt;\n    &lt;tr&gt;&lt;th&gt;x&lt;/th&gt;   &lt;th&gt;y&lt;/th&gt;&lt;/tr&gt;\n    &lt;tr&gt;&lt;td&gt;1.5&lt;/td&gt; &lt;td&gt;2.7&lt;/td&gt;&lt;/tr&gt;\n    &lt;tr&gt;&lt;td&gt;4.9&lt;/td&gt; &lt;td&gt;1.3&lt;/td&gt;&lt;/tr&gt;\n    &lt;tr&gt;&lt;td&gt;7.2&lt;/td&gt; &lt;td&gt;8.1&lt;/td&gt;&lt;/tr&gt;\n  &lt;/table&gt;\n\")\ntbl |&gt; html_element(\"table\") |&gt; html_table()\n\n# A tibble: 3 × 2\n      x     y\n  &lt;dbl&gt; &lt;dbl&gt;\n1   1.5   2.7\n2   4.9   1.3\n3   7.2   8.1\n\n\nx and y came back as &lt;dbl&gt; automatically. (Turn that off with convert = FALSE when the auto-guess misfires.)"
+    "text": "html_table()\nIf your data is already in an HTML &lt;table&gt;, you’re in luck. html_table() reads it straight into a tibble, guessing column types as it goes.\n\ntbl &lt;- minimal_html(\"\n  &lt;table&gt;\n    &lt;tr&gt;&lt;th&gt;x&lt;/th&gt;   &lt;th&gt;y&lt;/th&gt;&lt;/tr&gt;\n    &lt;tr&gt;&lt;td&gt;1.5&lt;/td&gt; &lt;td&gt;2.7&lt;/td&gt;&lt;/tr&gt;\n    &lt;tr&gt;&lt;td&gt;4.9&lt;/td&gt; &lt;td&gt;1.3&lt;/td&gt;&lt;/tr&gt;\n    &lt;tr&gt;&lt;td&gt;7.2&lt;/td&gt; &lt;td&gt;8.1&lt;/td&gt;&lt;/tr&gt;\n  &lt;/table&gt;\n\")\ntbl |&gt; html_element(\"table\") |&gt; html_table()\n\n# A tibble: 3 × 2\n      x     y\n  &lt;dbl&gt; &lt;dbl&gt;\n1   1.5   2.7\n2   4.9   1.3\n3   7.2   8.1\n\n\nx and y came back as &lt;dbl&gt; automatically. (Turn that off with convert = FALSE when the auto-guess misfires.)"
   },
   {
     "objectID": "weeks/week4/day19-scraping-slides.html#a-real-page-world-record-in-the-mile",
     "href": "weeks/week4/day19-scraping-slides.html#a-real-page-world-record-in-the-mile",
     "title": "Web scraping & HTML tables",
     "section": "A real page: world record in the mile",
-    "text": "A real page: world record in the mile\nThe Wikipedia page on the mile run world record progression holds a dozen tables. html_elements(\"table\") grabs them all into a list:\n\nurl &lt;- \"https://en.wikipedia.org/wiki/Mile_run_world_record_progression\"\n\ntables &lt;- url |&gt;\n  read_html() |&gt;\n  html_elements(\"table\") |&gt;\n  html_table()\n\nlength(tables)     # 12 tables on the page\nrecord &lt;- tables[[4]]   # the men's IAAF-era progression\n\n\n\n# A tibble: 6 × 4\n  Time   Athlete          Nationality   Date             \n  &lt;chr&gt;  &lt;chr&gt;            &lt;chr&gt;         &lt;chr&gt;            \n1 4:14.4 John Paul Jones  United States 31 May 1913[6]   \n2 4:12.6 Norman Taber     United States 16 July 1915[6]  \n3 4:10.4 Paavo Nurmi      Finland       23 August 1923[6]\n4 4:09.2 Jules Ladoumègue France        4 October 1931[6]\n5 4:07.6 Jack Lovelock    New Zealand   15 July 1933[6]  \n6 4:06.8 Glenn Cunningham United States 16 June 1934[6]  \n\n\nDouble brackets [[4]] because tables is a list of data frames. (Note: Wikipedia changes, so table 4 today may differ tomorrow — always look before you trust an index.)"
+    "text": "A real page: world record in the mile\nThe Wikipedia page on the mile run world record progression holds a dozen tables. html_elements(\"table\") grabs them all into a list:\n\nurl &lt;- \"https://en.wikipedia.org/wiki/Mile_run_world_record_progression\"\n\ntables &lt;- url |&gt;\n  read_html() |&gt;\n  html_elements(\"table\") |&gt;\n  html_table()\n\nlength(tables)     # 12 tables on the page\nrecord &lt;- tables[[4]]   # the men's IAAF-era progression\n\n\n\n# A tibble: 6 × 4\n  Time   Athlete          Nationality   Date             \n  &lt;chr&gt;  &lt;chr&gt;            &lt;chr&gt;         &lt;chr&gt;            \n1 4:14.4 John Paul Jones  United States 31 May 1913[6]   \n2 4:12.6 Norman Taber     United States 16 July 1915[6]  \n3 4:10.4 Paavo Nurmi      Finland       23 August 1923[6]\n4 4:09.2 Jules Ladoumègue France        4 October 1931[6]\n5 4:07.6 Jack Lovelock    New Zealand   15 July 1933[6]  \n6 4:06.8 Glenn Cunningham United States 16 June 1934[6]  \n\n\nDouble brackets [[4]] because tables is a list of data frames. (Note: Wikipedia changes frequently, so table 4 today may differ tomorrow; always be sure to look before you trust an index.)"
   },
   {
-    "objectID": "weeks/week4/day19-scraping-slides.html#scraped-data-is-dirty-data",
-    "href": "weeks/week4/day19-scraping-slides.html#scraped-data-is-dirty-data",
+    "objectID": "weeks/week4/day19-scraping-slides.html#scraped-data-is-usually-dirty",
+    "href": "weeks/week4/day19-scraping-slides.html#scraped-data-is-usually-dirty",
     "title": "Web scraping & HTML tables",
-    "section": "Scraped data is dirty data",
-    "text": "Scraped data is dirty data\nLook closely at what we got:\n\nDate is \"31 May 1913[6]\" — a footnote marker [6] is glued on.\nTime is \"4:14.4\" — a string, not a number we can plot or subtract.\n\nScraped values are always character strings, often with human-formatting baggage. The last mile of scraping is cleaning. Our toolkit, all from this unit:\n\nstr_remove() / gsub() + regular expressions to strip junk\nparse_number() for currency, percentages, stray units\nlubridate (dmy(), mdy(), …) for dates\nas.duration(ms(...)) for times like \"4:14.4\""
+    "section": "Scraped data is usually dirty",
+    "text": "Scraped data is usually dirty\nLook closely at what we got:\n\nDate is \"31 May 1913[6]\". Here, a footnote marker [6] is glued on.\nTime is \"4:14.4\", which is a string, not a number we can plot or subtract.\n\nScraped values are always character strings, often with human-formatting baggage. The next step after scraping is almost always cleaning:\n\nstr_remove() / gsub() + regular expressions to strip junk\nparse_number() for currency, percentages, stray units\nlubridate (dmy(), mdy(), …) for dates\nas.duration(ms(...)) for times like \"4:14.4\""
   },
   {
     "objectID": "weeks/week4/day19-scraping-slides.html#stripping-footnotes-with-a-regex",
     "href": "weeks/week4/day19-scraping-slides.html#stripping-footnotes-with-a-regex",
     "title": "Web scraping & HTML tables",
     "section": "Stripping footnotes with a regex",
-    "text": "Stripping footnotes with a regex\nWe want to delete a bracketed footnote like [6] at the end of the date. A regular expression describes that pattern:\n\nrecord &lt;- record |&gt;\n  mutate(Date = str_remove(Date, \"\\\\[.\\\\]$\"))\nrecord$Date\n\n[1] \"31 May 1913\"    \"16 July 1915\"   \"23 August 1923\" \"4 October 1931\"\n[5] \"15 July 1933\"   \"16 June 1934\"  \n\n\nDecoding \"\\\\[.\\\\]$\":\n\n\n\n\n\n\n\nPiece\nMeans\n\n\n\n\n\\\\[ \\\\]\na literal [ and ] (escaped — brackets are special)\n\n\n.\nany single character (here, the footnote digit)\n\n\n$\nanchored at the end of the string\n\n\n\nYou’ll meet regular expressions properly next week — for now, recognize them as pattern-matchers for cleaning text."
+    "text": "Stripping footnotes with a regex\nWe want to delete a bracketed footnote like [6] at the end of the date. A regular expression describes that pattern:\n\nrecord &lt;- record |&gt;\n  mutate(Date = str_remove(Date, \"\\\\[.\\\\]$\"))\nrecord$Date\n\n[1] \"31 May 1913\"    \"16 July 1915\"   \"23 August 1923\" \"4 October 1931\"\n[5] \"15 July 1933\"   \"16 June 1934\"  \n\n\nDecoding \"\\\\[.\\\\]$\":\n\n\n\n\n\n\n\nPiece\nMeans\n\n\n\n\n\\\\[ \\\\]\na literal [ and ] (escaped — brackets are special)\n\n\n.\nany single character (here, the footnote digit)\n\n\n$\nanchored at the end of the string\n\n\n\nWe’ll discuss regular expressions in more detail next week."
   },
   {
     "objectID": "weeks/week4/day19-scraping-slides.html#parsing-dates-and-times",
     "href": "weeks/week4/day19-scraping-slides.html#parsing-dates-and-times",
     "title": "Web scraping & HTML tables",
     "section": "Parsing dates and times",
-    "text": "Parsing dates and times\nNow the date is clean, hand it to lubridate. These are \"4 October 1931\"-style → day-month-year → dmy():\n\nrecord &lt;- record |&gt;\n  mutate(\n    Date    = dmy(Date),\n    seconds = as.numeric(as.duration(ms(Time)))   # \"4:14.4\" -&gt; 254.4 sec\n  )\nrecord |&gt; select(Time, seconds, Date)\n\n# A tibble: 6 × 3\n  Time   seconds Date      \n  &lt;chr&gt;    &lt;dbl&gt; &lt;date&gt;    \n1 4:14.4    254. 1913-05-31\n2 4:12.6    253. 1915-07-16\n3 4:10.4    250. 1923-08-23\n4 4:09.2    249. 1931-10-04\n5 4:07.6    248. 1933-07-15\n6 4:06.8    247. 1934-06-16\n\n\nms() reads \"minutes:seconds\"; as.duration() turns it into a real time span; as.numeric() gives plain seconds we can plot."
+    "text": "Parsing dates and times\nOnce we have a clean date, we can use the lubridate package. These are \"4 October 1931\"-style to day-month-year to dmy():\n\nrecord &lt;- record |&gt;\n  mutate(\n    Date = dmy(Date),\n    seconds = as.numeric(as.duration(ms(Time))) # \"4:14.4\" -&gt; 254.4 sec\n  )\nrecord |&gt; select(Time, seconds, Date)\n\n# A tibble: 6 × 3\n  Time   seconds Date      \n  &lt;chr&gt;    &lt;dbl&gt; &lt;date&gt;    \n1 4:14.4    254. 1913-05-31\n2 4:12.6    253. 1915-07-16\n3 4:10.4    250. 1923-08-23\n4 4:09.2    249. 1931-10-04\n5 4:07.6    248. 1933-07-15\n6 4:06.8    247. 1934-06-16\n\n\nms() reads \"minutes:seconds\"; as.duration() turns it into a real time span; as.numeric() gives plain seconds we can plot."
   },
   {
     "objectID": "weeks/week4/day19-scraping-slides.html#pay-off-a-plot-of-progress",
@@ -1936,21 +1943,21 @@
     "href": "weeks/week4/day19-scraping-slides.html#how-do-i-know-which-selector",
     "title": "Web scraping & HTML tables",
     "section": "How do I know which selector?",
-    "text": "How do I know which selector?\nThis is the genuinely hard part — and it’s normal to need trial and error. Three ways to discover the selector you need:\n\nRight-click → Inspect in your browser. The developer tools highlight the exact HTML for whatever you clicked. Look at its class and id.\nSelectorGadget — a point-and-click bookmarklet. Click what you want (turns green), click what you don’t (turns red), and it writes the selector for you.\nCopy as selector — in DevTools, right-click an element → Copy → Copy selector.\n\nYou want a selector that’s sensitive (catches everything you want) and specific (catches nothing you don’t)."
+    "text": "How do I know which selector?\nThis is the genuinely hard part — and it’s normal to need trial and error. Three ways to discover the selector you need:\n\nRight-click then Inspect in your browser. The developer tools highlight the exact HTML for whatever you clicked. Look at its class and id.\nSelectorGadget: a point-and-click bookmarklet. Click what you want (turns green), click what you don’t (turns red), and it writes the selector for you.\nCopy as selector: in DevTools, right-click an element → Copy → Copy selector.\n\nYou want a selector that’s sensitive (catches everything you want) and specific (catches nothing you don’t)."
   },
   {
-    "objectID": "weeks/week4/day19-scraping-slides.html#a-note-on-dynamic-sites",
-    "href": "weeks/week4/day19-scraping-slides.html#a-note-on-dynamic-sites",
+    "objectID": "weeks/week4/day19-scraping-slides.html#dynamic-sites",
+    "href": "weeks/week4/day19-scraping-slides.html#dynamic-sites",
     "title": "Web scraping & HTML tables",
-    "section": "A note on dynamic sites",
-    "text": "A note on dynamic sites\nSometimes html_elements() returns nothing like what you see in the browser. Usually that means the page builds its content with JavaScript after loading.\nrvest only downloads the raw HTML — it doesn’t run JavaScript. So:\n\nCheck whether the data is in the raw HTML (View Source, not Inspect).\nIf it’s truly JS-rendered, you need a tool that drives a real browser — the chromote package runs Chrome in the background.\nOr, again: look for an API first. Dynamic pages are often fed by one."
+    "section": "Dynamic sites",
+    "text": "Dynamic sites\nSometimes html_elements() returns nothing like what you see in the browser. Usually that means the page builds its content with JavaScript after loading.\nrvest only downloads the raw HTML. It doesn’t run JavaScript. This means you should:\n\nCheck whether the data is in the raw HTML (View Source, not Inspect).\nIf it’s truly JS-rendered, you need a tool that drives a real browser: the chromote package runs Chrome in the background.\nOr, again: look for an API first. Dynamic pages are often fed by one."
   },
   {
     "objectID": "weeks/week4/day19-scraping-slides.html#in-class-activity",
     "href": "weeks/week4/day19-scraping-slides.html#in-class-activity",
     "title": "Web scraping & HTML tables",
     "section": "In-class activity",
-    "text": "In-class activity\nOpen day19-activity.R in RStudio and work through the parts in order.\n\nPart 1 — HTML basics with minimal_html(): selectors, element vs elements, the alignment trap.\nPart 2 — scrape a real Wikipedia table with html_table(), then clean dates and times and make a plot.\nPart 3 (challenge) — scrape non-table structured content (the rvest StarWars vignette) into a tidy tibble, and pull a link out of an attribute.\n\nActivity file\n\n\n\n\n\n\nTip\n\n\nIf a live page won’t load or has changed, that is web scraping — note it and move on. The skills transfer; the specific HTML is always a moving target."
+    "text": "In-class activity\nOpen day19-activity.R in RStudio and work through the parts in order.\n\nPart 1: HTML basics with minimal_html(): selectors, element vs elements, the alignment trap.\nPart 2: scrape a real Wikipedia table with html_table(), then clean dates and times and make a plot.\nPart 3 (challenge): scrape non-table structured content (the rvest StarWars vignette) into a tidy tibble, and pull a link out of an attribute.\n\nActivity file"
   },
   {
     "objectID": "weeks/week4/day19-scraping-slides.html#wrap-up-looking-ahead",
@@ -1964,35 +1971,35 @@
     "href": "weeks/week4/day19-scraping-page.html",
     "title": "Web scraping & HTML tables",
     "section": "",
-    "text": "NoteToday: Friday June 12\n\n\n\nBefore class\n\nPerusall Assignment: DC §16.3 — HTML tables & web scraping\nWelcome back from the exam! Today is lighter and hands-on.\n\nPlan for today\n\nWhy scraping, and the ethics of doing it responsibly\nA 5-minute tour of HTML\nrvest: read_html(), CSS selectors, html_text2(), html_attr()\nThe easy win: html_table()\nCleaning what you scrape (footnotes, times, dates)\nIn-class activity\n\nHelpful links\n\nSyllabus · AI policy · Schedule · R4DS Ch. 24 · DC Ch. 16 · rvest reference"
+    "text": "NoteToday: Friday June 12\n\n\n\nBefore class\n\nPerusall Assignment: DC §16.3: HTML tables & web scraping\n\nPlan for today\n\nWhy scraping, and the ethics of doing it responsibly\nA 5-minute tour of HTML\nrvest: read_html(), CSS selectors, html_text2(), html_attr()\nThe easy win: html_table()\nCleaning what you scrape (footnotes, times, dates)\nIn-class activity\n\nHelpful links\n\nSyllabus · AI policy · Schedule · R4DS Ch. 24 · DC Ch. 16 · rvest reference"
   },
   {
     "objectID": "weeks/week4/day19-scraping-page.html#every-easy-data-format-is-alike",
     "href": "weeks/week4/day19-scraping-page.html#every-easy-data-format-is-alike",
     "title": "Web scraping & HTML tables",
     "section": "Every easy data format is alike",
-    "text": "Every easy data format is alike\n\n“Every easy data format is alike. Every difficult data format is difficult in its own way.” — with apologies to Leo Tolstoy\n\nSo far the world has been kind: penguins, flights, CSVs with a tidy read_csv(). But a huge amount of data you’ll actually want lives on web pages, formatted for human eyes, not for read_csv().\nData scraping: gathering data from sources that aren’t already in data-frame format — usually translating from the HTML a browser renders into a tidy data frame.\nToday’s goal: point R at a URL and walk away with a tibble."
+    "text": "Every easy data format is alike\n\n“Every easy data format is alike. Every difficult data format is difficult in its own way.” - with apologies to Leo Tolstoy\n\nSo we’ve worked with easily accessible datasets like penguins, flights, or CSVs that can be quickly imported with read_csv(). But a lot of data is only available on web pages that are formatted for human eyes rather than read_csv().\nData scraping is gathering data from sources that aren’t already in data-frame format; in our context, this is usually translating from the HTML a browser renders into a tidy data frame."
   },
   {
     "objectID": "weeks/week4/day19-scraping-page.html#when-to-scrape-and-when-not-to",
     "href": "weeks/week4/day19-scraping-page.html#when-to-scrape-and-when-not-to",
     "title": "Web scraping & HTML tables",
     "section": "When to scrape (and when not to)",
-    "text": "When to scrape (and when not to)\nBefore you scrape, always check for a friendlier door:\n\nIs there a download link? A “Download CSV” button beats scraping every time.\nIs there an API? Many sites (Spotify, the Census, GitHub) offer an API that returns clean JSON. Often a CRAN package already wraps it (tidycensus, spotifyr, gh).\nOnly then, scrape the HTML.\n\nScraping is the technique that always works — but it’s also the most fragile. If the site redesigns its HTML tomorrow, your code breaks. Use it when nothing easier exists."
+    "text": "When to scrape (and when not to)\nBefore you scrape, always check for a friendlier door:\n\nIs there a download link?\nIs there an API?\n\n\nMany sites (Spotify, the Census, GitHub) offer an API that returns clean JSON. Often a CRAN package already wraps it (tidycensus, spotifyr, gh).\n\n\nOnly then, scrape the HTML.\n\nScraping is flexible but fragile. If a website administrator redesigns its HTML, your code will no longer work. It’s best to reserve web scraping for cases when no easier option is feasible."
   },
   {
-    "objectID": "weeks/week4/day19-scraping-page.html#ethics-legality",
-    "href": "weeks/week4/day19-scraping-page.html#ethics-legality",
+    "objectID": "weeks/week4/day19-scraping-page.html#ethical-web-scraping",
+    "href": "weeks/week4/day19-scraping-page.html#ethical-web-scraping",
     "title": "Web scraping & HTML tables",
-    "section": "Ethics & legality",
-    "text": "Ethics & legality\nWe’re not lawyers, but the rule of thumb from R4DS: you’re usually on safe ground if the data is\n\npublic — you didn’t have to log in or click “I agree”,\nnon-personal — not names, emails, locations of identifiable people, and\nfactual — facts and data aren’t copyrightable (creative text and images are).\n\nCautionary tale: in 2016 researchers scraped ~70,000 OkCupid profiles — public, but deeply personal — and released them with no anonymization. It was widely condemned. Public does not mean fair game.\n\n\n\n\n\n\nWarning\n\n\n\nPersonally identifiable information (names, ages, locations) lives under strict laws (GDPR in Europe). When in doubt, don’t."
+    "section": "Ethical web-scraping",
+    "text": "Ethical web-scraping\nThe rule of thumb from R4DS: you’re usually on safe ground if the data is\n\npublic: you didn’t have to log in or click “I agree”,\nnon-personal: not names, emails, locations of identifiable people, and\nfactual: facts and data aren’t copyrightable (creative text and images are).\n\nR4DS real-world cautionary example: 2016 researchers scraped ~70,000 OkCupid profiles. These are public, but deeply personal dating profiles. The researchers then released the profiles with no anonymization. It was widely condemned. Public does not mean fair game or ethical."
   },
   {
     "objectID": "weeks/week4/day19-scraping-page.html#be-a-polite-guest",
     "href": "weeks/week4/day19-scraping-page.html#be-a-polite-guest",
     "title": "Web scraping & HTML tables",
     "section": "Be a polite guest",
-    "text": "Be a polite guest\nA scraper can fire off thousands of requests in seconds. To a small server that looks like an attack.\n\nThrottle: pause between requests. Don’t hammer a server.\nCache: never download the same page twice.\nIdentify yourself and respect robots.txt and terms of service where you reasonably can.\n\nThe polite package automates all of this — it pauses, caches, and checks robots.txt for you.\n\n# install.packages(\"polite\")\nlibrary(polite)\nsession &lt;- bow(\"https://www.example.com\")   # introduce yourself\nresult  &lt;- scrape(session)                    # politely fetch"
+    "text": "Be a polite guest\nA scraper can fire off thousands of requests in seconds. To a small server that may look like an attack.\n\nThrottle: pause between requests. Don’t hammer a server.\nCache: never download the same page twice.\nIdentify yourself and respect robots.txt and terms of service where you reasonably can.\n\nThe polite package automates all of this for you, pausing, cauching, and checking robots.txt for you.\n\n# install.packages(\"polite\")\nlibrary(polite)\nsession &lt;- bow(\"https://www.example.com\") # introduce yourself\nresult  &lt;- scrape(session) # politely fetch"
   },
   {
     "objectID": "weeks/week4/day19-scraping-page.html#what-a-web-page-really-is",
@@ -2006,98 +2013,105 @@
     "href": "weeks/week4/day19-scraping-page.html#anatomy-of-an-element",
     "title": "Web scraping & HTML tables",
     "section": "Anatomy of an element",
-    "text": "Anatomy of an element\n       start tag      attribute        contents          end tag\n          │               │                │                │\n        ┌─┴─┐    ┌────────┴────────┐   ┌────┴───┐         ┌──┴──┐\n        &lt;a     href='/cats'  class='link'&gt;  cute cats     &lt;/a&gt;\n\nTags come in pairs: &lt;p&gt; … &lt;/p&gt;. The content lives in between.\nAttributes are name='value' pairs inside the start tag.\nTwo attributes matter most for scraping:\n\nid — a unique label for one element (id='first')\nclass — a reusable label shared by many elements (class='weight')\n\n\nDesigners use id and class to style the page. We hijack them to find our data."
+    "text": "Anatomy of an element\n\nTags come in pairs: &lt;p&gt; … &lt;/p&gt;. The content lives in between.\nAttributes are name='value' pairs inside the start tag.\nTwo attributes matter most for scraping:\n\nid: a unique label for one element (id='first')\nclass: a reusable label shared by many elements (class='weight')\n\n\nDesigners use id and class to style the page. We hijack them to find our data."
+  },
+  {
+    "objectID": "weeks/week4/day19-scraping-page.html#example-element",
+    "href": "weeks/week4/day19-scraping-page.html#example-element",
+    "title": "Web scraping & HTML tables",
+    "section": "Example element",
+    "text": "Example element\n cute cats \n\nStart Tag (&lt;a … &gt;): This opens the element and tells the browser where it begins.\nAttributes (href=‘/cats’, class=‘link’): These live inside the start tag and provide extra information or settings (like the destination URL or CSS styling classes).\nContents (cute cats): This is the actual text, image, or nested element that gets displayed and affected by the tag.\nEnd Tag (): This closes the element, telling the browser where it stops."
   },
   {
     "objectID": "weeks/week4/day19-scraping-page.html#useful-tags-to-recognize",
     "href": "weeks/week4/day19-scraping-page.html#useful-tags-to-recognize",
     "title": "Web scraping & HTML tables",
     "section": "Useful tags to recognize",
-    "text": "Useful tags to recognize\n\n\n\nTag\nMeaning\n\n\n\n\n&lt;h1&gt;–&lt;h6&gt;\nheadings\n\n\n&lt;p&gt;\nparagraph\n\n\n&lt;ul&gt; / &lt;ol&gt; / &lt;li&gt;\nunordered / ordered list / list item\n\n\n&lt;a href='...'&gt;\nlink (destination in the href attribute)\n\n\n&lt;img src='...'&gt;\nimage (source in the src attribute)\n\n\n&lt;b&gt; / &lt;i&gt; / &lt;span&gt;\nbold / italic / inline container\n\n\n&lt;table&gt; &lt;tr&gt; &lt;th&gt; &lt;td&gt;\ntable, row, header cell, data cell\n\n\n\nYou don’t need to memorize HTML — just enough to spot where your data is hiding. A little googling or the MDN docs fills the rest."
+    "text": "Useful tags to recognize\n\n\n\nTag\nMeaning\n\n\n\n\n&lt;h1&gt;–&lt;h6&gt;\nheadings\n\n\n&lt;p&gt;\nparagraph\n\n\n&lt;ul&gt; / &lt;ol&gt; / &lt;li&gt;\nunordered / ordered list / list item\n\n\n&lt;a href='...'&gt;\nlink (destination in the href attribute)\n\n\n&lt;img src='...'&gt;\nimage (source in the src attribute)\n\n\n&lt;b&gt; / &lt;i&gt; / &lt;span&gt;\nbold / italic / inline container\n\n\n&lt;table&gt; &lt;tr&gt; &lt;th&gt; &lt;td&gt;\ntable, row, header cell, data cell\n\n\n\nYou don’t need to memorize HTML, but it’s useful to know enough to spot where your data is hiding. Google or the MDN docs are great resources to help fill in any gaps."
   },
   {
     "objectID": "weeks/week4/day19-scraping-page.html#the-rvest-workflow",
     "href": "weeks/week4/day19-scraping-page.html#the-rvest-workflow",
     "title": "Web scraping & HTML tables",
     "section": "The rvest workflow",
-    "text": "The rvest workflow\nrvest (think “harvest”) is the tidyverse scraping package. It’s installed with the tidyverse but loaded separately:\n\nlibrary(rvest)\n\nThe pipeline is always the same four moves:\n\nread_html(url) — download the page into R\nhtml_elements(css) — select the pieces you want (a CSS selector)\nhtml_element(css) — narrow to one piece per observation\nhtml_text2() / html_attr() / html_table() — pull out the actual values"
+    "text": "The rvest workflow\nrvest (think “harvest”) is the tidyverse scraping package. It’s installed with the tidyverse but loaded separately:\n\nlibrary(rvest)\n\nSteps:\n\nread_html(url): download the page into R\nhtml_elements(css): select the pieces you want (a CSS selector)\nhtml_element(css): narrow to one piece per observation\nhtml_text2() / html_attr() / html_table(): pull out the actual values"
   },
   {
-    "objectID": "weeks/week4/day19-scraping-page.html#practice-without-the-internet",
-    "href": "weeks/week4/day19-scraping-page.html#practice-without-the-internet",
+    "objectID": "weeks/week4/day19-scraping-page.html#practice",
+    "href": "weeks/week4/day19-scraping-page.html#practice",
     "title": "Web scraping & HTML tables",
-    "section": "Practice without the internet",
-    "text": "Practice without the internet\nminimal_html() lets us hand-write HTML to experiment — no network, no fragility. We’ll use it to learn, then point the same tools at real pages.\n\nhtml &lt;- minimal_html(\"\n  &lt;h1&gt;This is a heading&lt;/h1&gt;\n  &lt;p id='first'&gt;This is a paragraph&lt;/p&gt;\n  &lt;p class='important'&gt;This is an important paragraph&lt;/p&gt;\n\")\nhtml\n\n{html_document}\n&lt;html&gt;\n[1] &lt;head&gt;\\n&lt;meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8 ...\n[2] &lt;body&gt;\\n&lt;h1&gt;This is a heading&lt;/h1&gt;\\n  &lt;p id=\"first\"&gt;This is a paragraph&lt;/ ...\n\n\nEverything that follows works identically whether html came from minimal_html() or read_html(\"https://...\")."
+    "section": "Practice",
+    "text": "Practice\nminimal_html() is a function that allows us to hand write HTML. We’ll use it to learn, then use the same tools on real web pages.\n\nhtml &lt;- minimal_html(\"\n  &lt;h1&gt;This is a heading&lt;/h1&gt;\n  &lt;p id='first'&gt;This is a paragraph&lt;/p&gt;\n  &lt;p class='important'&gt;This is an important paragraph&lt;/p&gt;\n\")\nhtml\n\n{html_document}\n&lt;html&gt;\n[1] &lt;head&gt;\\n&lt;meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8 ...\n[2] &lt;body&gt;\\n&lt;h1&gt;This is a heading&lt;/h1&gt;\\n  &lt;p id=\"first\"&gt;This is a paragraph&lt;/ ...\n\n\nEverything that follows works identically whether html came from minimal_html() or read_html(\"https://...\")."
   },
   {
     "objectID": "weeks/week4/day19-scraping-page.html#css-selectors-three-youll-use-constantly",
     "href": "weeks/week4/day19-scraping-page.html#css-selectors-three-youll-use-constantly",
     "title": "Web scraping & HTML tables",
     "section": "CSS selectors: three you’ll use constantly",
-    "text": "CSS selectors: three you’ll use constantly\nA CSS selector is a tiny pattern language for “which elements do I mean?”\n\n\n\n\n\n\n\n\nSelector\nSelects\nRead it as\n\n\n\n\np\nall &lt;p&gt; elements\n“every paragraph”\n\n\n.important\nall elements with class=\"important\"\n“anything classed important” (dot = class)\n\n\n#first\nthe element with id=\"first\"\n“the one with id first” (hash = id)\n\n\np.important\n&lt;p&gt; elements that are also class=\"important\"\ncombine them\n\n\nli b\n&lt;b&gt; inside an &lt;li&gt;\ndescendant (space)\n\n\n\n\nhtml |&gt; html_elements(\"p\")            # both paragraphs\n\n{xml_nodeset (2)}\n[1] &lt;p id=\"first\"&gt;This is a paragraph&lt;/p&gt;\n[2] &lt;p class=\"important\"&gt;This is an important paragraph&lt;/p&gt;\n\nhtml |&gt; html_elements(\".important\")   # just the important one\n\n{xml_nodeset (1)}\n[1] &lt;p class=\"important\"&gt;This is an important paragraph&lt;/p&gt;\n\nhtml |&gt; html_element(\"#first\")        # the one with id=\"first\"\n\n{html_node}\n&lt;p id=\"first\"&gt;"
+    "text": "CSS selectors: three you’ll use constantly\nA Cascading style sheets (CSS) selector is a mini pattern language that provides a concise way of describing which HTML elements you want to extract from a web page.\n\n\n\n\n\n\n\n\nSelector\nSelects\nRead it as\n\n\n\n\np\nall &lt;p&gt; elements\n“every paragraph”\n\n\n.important\nall elements with class=\"important\"\n“anything classed important” (dot = class)\n\n\n#first\nthe element with id=\"first\"\n“the one with id first” (hash = id)\n\n\np.important\n&lt;p&gt; elements that are also class=\"important\"\ncombine them\n\n\nli b\n&lt;b&gt; inside an &lt;li&gt;\ndescendant (space)\n\n\n\n\nhtml |&gt; html_elements(\"p\") # both paragraphs\n\n{xml_nodeset (2)}\n[1] &lt;p id=\"first\"&gt;This is a paragraph&lt;/p&gt;\n[2] &lt;p class=\"important\"&gt;This is an important paragraph&lt;/p&gt;\n\nhtml |&gt; html_elements(\".important\") # just the important one\n\n{xml_nodeset (1)}\n[1] &lt;p class=\"important\"&gt;This is an important paragraph&lt;/p&gt;\n\nhtml |&gt; html_element(\"#first\") # the one with id=\"first\"\n\n{html_node}\n&lt;p id=\"first\"&gt;"
   },
   {
     "objectID": "weeks/week4/day19-scraping-page.html#element-vs.-elements-this-trips-everyone-up",
     "href": "weeks/week4/day19-scraping-page.html#element-vs.-elements-this-trips-everyone-up",
     "title": "Web scraping & HTML tables",
     "section": "element vs. elements (this trips everyone up)",
-    "text": "element vs. elements (this trips everyone up)\nTwo nearly identical functions, one crucial difference:\n\nhtml_elements() (plural) — returns all matches. Length depends on the page.\nhtml_element() (singular) — returns one match per input, filling NA when nothing matches.\n\n\nhtml |&gt; html_elements(\"b\")   # 0 matches -&gt; empty\n\n{xml_nodeset (0)}\n\nhtml |&gt; html_element(\"b\")    # 0 matches -&gt; NA (length preserved!)\n\n{xml_missing}\n&lt;NA&gt;\n\n\nThat NA-filling behavior is the secret to keeping columns aligned. Here’s why it matters →"
+    "text": "element vs. elements (this trips everyone up)\n\nhtml_elements() (plural): returns all matches. Length depends on the page.\nhtml_element() (singular): returns one match per input, filling NA when nothing matches.\n\n\nhtml |&gt; html_elements(\"b\") # 0 matches -&gt; empty\n\n{xml_nodeset (0)}\n\nhtml |&gt; html_element(\"b\") # 0 matches -&gt; NA (length preserved!)\n\n{xml_missing}\n&lt;NA&gt;\n\n\nThat NA-filling behavior keeps columns aligned."
   },
   {
     "objectID": "weeks/week4/day19-scraping-page.html#why-the-distinction-matters",
     "href": "weeks/week4/day19-scraping-page.html#why-the-distinction-matters",
     "title": "Web scraping & HTML tables",
     "section": "Why the distinction matters",
-    "text": "Why the distinction matters\nA page of four StarWars characters — but not all have a recorded weight:\n\ndroids &lt;- minimal_html(\"\n  &lt;ul&gt;\n    &lt;li&gt;&lt;b&gt;C-3PO&lt;/b&gt; is a &lt;i&gt;droid&lt;/i&gt; that weighs &lt;span class='weight'&gt;167 kg&lt;/span&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;b&gt;R2-D2&lt;/b&gt; is a &lt;i&gt;droid&lt;/i&gt; that weighs &lt;span class='weight'&gt;96 kg&lt;/span&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;b&gt;Yoda&lt;/b&gt; weighs &lt;span class='weight'&gt;66 kg&lt;/span&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;b&gt;R4-P17&lt;/b&gt; is a &lt;i&gt;droid&lt;/i&gt;&lt;/li&gt;\n  &lt;/ul&gt;\n\")\n\nGrab the weights directly and you get 3 values for 4 characters — and no way to know which one is missing:\n\ndroids |&gt; html_elements(\".weight\") |&gt; html_text2()   # length 3 — misaligned!\n\n[1] \"167 kg\" \"96 kg\"  \"66 kg\""
+    "text": "Why the distinction matters\nBelow is a page of four StarWars characters, some of whom are missing a recorded weight:\n\ndroids &lt;- minimal_html(\"\n  &lt;ul&gt;\n    &lt;li&gt;&lt;b&gt;C-3PO&lt;/b&gt; is a &lt;i&gt;droid&lt;/i&gt; that weighs &lt;span class='weight'&gt;167 kg&lt;/span&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;b&gt;R2-D2&lt;/b&gt; is a &lt;i&gt;droid&lt;/i&gt; that weighs &lt;span class='weight'&gt;96 kg&lt;/span&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;b&gt;Yoda&lt;/b&gt; weighs &lt;span class='weight'&gt;66 kg&lt;/span&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;b&gt;R4-P17&lt;/b&gt; is a &lt;i&gt;droid&lt;/i&gt;&lt;/li&gt;\n  &lt;/ul&gt;\n\")\n\nGrab the weights directly and you get 3 values for 4 characters and no way to know which one is missing:\n\ndroids |&gt; html_elements(\".weight\") |&gt; html_text2()   # length 3 — misaligned!\n\n[1] \"167 kg\" \"96 kg\"  \"66 kg\""
   },
   {
-    "objectID": "weeks/week4/day19-scraping-page.html#the-robust-pattern-rows-then-columns",
-    "href": "weeks/week4/day19-scraping-page.html#the-robust-pattern-rows-then-columns",
+    "objectID": "weeks/week4/day19-scraping-page.html#rows-then-columns",
+    "href": "weeks/week4/day19-scraping-page.html#rows-then-columns",
     "title": "Web scraping & HTML tables",
-    "section": "The robust pattern: rows then columns",
-    "text": "The robust pattern: rows then columns\nStep 1. Use html_elements() to grab one element per observation (each &lt;li&gt; is one character):\n\ncharacters &lt;- droids |&gt; html_elements(\"li\")\nlength(characters)   # 4 — one per character\n\n[1] 4\n\n\nStep 2. Use html_element() on each to pull one value per observation. Missing weights become NA, so everything stays aligned:\n\ntibble(\n  name    = characters |&gt; html_element(\"b\")       |&gt; html_text2(),\n  species = characters |&gt; html_element(\"i\")        |&gt; html_text2(),\n  weight  = characters |&gt; html_element(\".weight\")  |&gt; html_text2()\n)\n\n# A tibble: 4 × 3\n  name   species weight\n  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt; \n1 C-3PO  droid   167 kg\n2 R2-D2  droid   96 kg \n3 Yoda   &lt;NA&gt;    66 kg \n4 R4-P17 droid   &lt;NA&gt;  \n\n\n\n\n\n\n\n\nTip\n\n\n\nThe golden rule: html_elements() to find your rows, then html_element() to find each column. Same number of values every time."
+    "section": "Rows then columns",
+    "text": "Rows then columns\nStep 1. Use html_elements() to grab one element per observation (each &lt;li&gt; is one character):\n\ncharacters &lt;- droids |&gt; html_elements(\"li\")\nlength(characters) # 4 (one per character)\n\n[1] 4\n\n\nStep 2. Use html_element() on each to pull one value per observation. Missing weights become NA, so everything stays aligned:\n\ntibble(\n  name = characters |&gt; html_element(\"b\") |&gt; html_text2(),\n  species = characters |&gt; html_element(\"i\") |&gt; html_text2(),\n  weight  = characters |&gt; html_element(\".weight\") |&gt; html_text2()\n)\n\n# A tibble: 4 × 3\n  name   species weight\n  &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt; \n1 C-3PO  droid   167 kg\n2 R2-D2  droid   96 kg \n3 Yoda   &lt;NA&gt;    66 kg \n4 R4-P17 droid   &lt;NA&gt;  \n\n\n\n\n\n\n\n\nTip\n\n\n\nhtml_elements() to find your rows, then html_element() to find each column."
   },
   {
     "objectID": "weeks/week4/day19-scraping-page.html#pulling-out-the-values",
     "href": "weeks/week4/day19-scraping-page.html#pulling-out-the-values",
     "title": "Web scraping & HTML tables",
     "section": "Pulling out the values",
-    "text": "Pulling out the values\nSelecting elements gets you HTML nodes. Two functions turn nodes into data:\nhtml_text2() — the visible text (handles whitespace like a browser; prefer it over html_text()):\n\ndroids |&gt; html_elements(\"b\") |&gt; html_text2()\n\n[1] \"C-3PO\"  \"R2-D2\"  \"Yoda\"   \"R4-P17\"\n\n\nhtml_attr(\"name\") — the value of an attribute, e.g. a link’s destination:\n\nlinks &lt;- minimal_html(\"\n  &lt;p&gt;&lt;a href='https://en.wikipedia.org/wiki/Cat'&gt;cats&lt;/a&gt;&lt;/p&gt;\n  &lt;p&gt;&lt;a href='https://en.wikipedia.org/wiki/Dog'&gt;dogs&lt;/a&gt;&lt;/p&gt;\n\")\nlinks |&gt; html_elements(\"a\") |&gt; html_attr(\"href\")\n\n[1] \"https://en.wikipedia.org/wiki/Cat\" \"https://en.wikipedia.org/wiki/Dog\"\n\n\n\n\n\n\n\n\nWarning\n\n\n\nhtml_attr() always returns a string — html_attr(\"width\") gives \"100\", not 100. Follow up with parse_number() / as.integer()."
+    "text": "Pulling out the values\nSelecting elements gets you HTML nodes. Two functions turn nodes into data:\nhtml_text2(): the visible text (handles whitespace like a browser; prefer it over html_text()):\n\ndroids |&gt; html_elements(\"b\") |&gt; html_text2()\n\n[1] \"C-3PO\"  \"R2-D2\"  \"Yoda\"   \"R4-P17\"\n\n\nhtml_attr(\"name\"): the value of an attribute, e.g. a link’s destination:\n\nlinks &lt;- minimal_html(\"\n  &lt;p&gt;&lt;a href='https://en.wikipedia.org/wiki/Cat'&gt;cats&lt;/a&gt;&lt;/p&gt;\n  &lt;p&gt;&lt;a href='https://en.wikipedia.org/wiki/Dog'&gt;dogs&lt;/a&gt;&lt;/p&gt;\n\")\nlinks |&gt; html_elements(\"a\") |&gt; html_attr(\"href\")\n\n[1] \"https://en.wikipedia.org/wiki/Cat\" \"https://en.wikipedia.org/wiki/Dog\"\n\n\n\n\n\n\n\n\nWarning\n\n\n\nhtml_attr() always returns a string. html_attr(\"width\") gives \"100\", not 100. Follow up with parse_number() / as.integer()."
   },
   {
     "objectID": "weeks/week4/day19-scraping-page.html#html_table",
     "href": "weeks/week4/day19-scraping-page.html#html_table",
     "title": "Web scraping & HTML tables",
     "section": "html_table()",
-    "text": "html_table()\nIf your data is already in an HTML &lt;table&gt;, you’re in luck — html_table() reads it straight into a tibble, guessing column types as it goes.\n\ntbl &lt;- minimal_html(\"\n  &lt;table&gt;\n    &lt;tr&gt;&lt;th&gt;x&lt;/th&gt;   &lt;th&gt;y&lt;/th&gt;&lt;/tr&gt;\n    &lt;tr&gt;&lt;td&gt;1.5&lt;/td&gt; &lt;td&gt;2.7&lt;/td&gt;&lt;/tr&gt;\n    &lt;tr&gt;&lt;td&gt;4.9&lt;/td&gt; &lt;td&gt;1.3&lt;/td&gt;&lt;/tr&gt;\n    &lt;tr&gt;&lt;td&gt;7.2&lt;/td&gt; &lt;td&gt;8.1&lt;/td&gt;&lt;/tr&gt;\n  &lt;/table&gt;\n\")\ntbl |&gt; html_element(\"table\") |&gt; html_table()\n\n# A tibble: 3 × 2\n      x     y\n  &lt;dbl&gt; &lt;dbl&gt;\n1   1.5   2.7\n2   4.9   1.3\n3   7.2   8.1\n\n\nx and y came back as &lt;dbl&gt; automatically. (Turn that off with convert = FALSE when the auto-guess misfires.)"
+    "text": "html_table()\nIf your data is already in an HTML &lt;table&gt;, you’re in luck. html_table() reads it straight into a tibble, guessing column types as it goes.\n\ntbl &lt;- minimal_html(\"\n  &lt;table&gt;\n    &lt;tr&gt;&lt;th&gt;x&lt;/th&gt;   &lt;th&gt;y&lt;/th&gt;&lt;/tr&gt;\n    &lt;tr&gt;&lt;td&gt;1.5&lt;/td&gt; &lt;td&gt;2.7&lt;/td&gt;&lt;/tr&gt;\n    &lt;tr&gt;&lt;td&gt;4.9&lt;/td&gt; &lt;td&gt;1.3&lt;/td&gt;&lt;/tr&gt;\n    &lt;tr&gt;&lt;td&gt;7.2&lt;/td&gt; &lt;td&gt;8.1&lt;/td&gt;&lt;/tr&gt;\n  &lt;/table&gt;\n\")\ntbl |&gt; html_element(\"table\") |&gt; html_table()\n\n# A tibble: 3 × 2\n      x     y\n  &lt;dbl&gt; &lt;dbl&gt;\n1   1.5   2.7\n2   4.9   1.3\n3   7.2   8.1\n\n\nx and y came back as &lt;dbl&gt; automatically. (Turn that off with convert = FALSE when the auto-guess misfires.)"
   },
   {
     "objectID": "weeks/week4/day19-scraping-page.html#a-real-page-world-record-in-the-mile",
     "href": "weeks/week4/day19-scraping-page.html#a-real-page-world-record-in-the-mile",
     "title": "Web scraping & HTML tables",
     "section": "A real page: world record in the mile",
-    "text": "A real page: world record in the mile\nThe Wikipedia page on the mile run world record progression holds a dozen tables. html_elements(\"table\") grabs them all into a list:\n\nurl &lt;- \"https://en.wikipedia.org/wiki/Mile_run_world_record_progression\"\n\ntables &lt;- url |&gt;\n  read_html() |&gt;\n  html_elements(\"table\") |&gt;\n  html_table()\n\nlength(tables)     # 12 tables on the page\nrecord &lt;- tables[[4]]   # the men's IAAF-era progression\n\n\n\n# A tibble: 6 × 4\n  Time   Athlete          Nationality   Date             \n  &lt;chr&gt;  &lt;chr&gt;            &lt;chr&gt;         &lt;chr&gt;            \n1 4:14.4 John Paul Jones  United States 31 May 1913[6]   \n2 4:12.6 Norman Taber     United States 16 July 1915[6]  \n3 4:10.4 Paavo Nurmi      Finland       23 August 1923[6]\n4 4:09.2 Jules Ladoumègue France        4 October 1931[6]\n5 4:07.6 Jack Lovelock    New Zealand   15 July 1933[6]  \n6 4:06.8 Glenn Cunningham United States 16 June 1934[6]  \n\n\nDouble brackets [[4]] because tables is a list of data frames. (Note: Wikipedia changes, so table 4 today may differ tomorrow — always look before you trust an index.)"
+    "text": "A real page: world record in the mile\nThe Wikipedia page on the mile run world record progression holds a dozen tables. html_elements(\"table\") grabs them all into a list:\n\nurl &lt;- \"https://en.wikipedia.org/wiki/Mile_run_world_record_progression\"\n\ntables &lt;- url |&gt;\n  read_html() |&gt;\n  html_elements(\"table\") |&gt;\n  html_table()\n\nlength(tables)     # 12 tables on the page\nrecord &lt;- tables[[4]]   # the men's IAAF-era progression\n\n\n\n# A tibble: 6 × 4\n  Time   Athlete          Nationality   Date             \n  &lt;chr&gt;  &lt;chr&gt;            &lt;chr&gt;         &lt;chr&gt;            \n1 4:14.4 John Paul Jones  United States 31 May 1913[6]   \n2 4:12.6 Norman Taber     United States 16 July 1915[6]  \n3 4:10.4 Paavo Nurmi      Finland       23 August 1923[6]\n4 4:09.2 Jules Ladoumègue France        4 October 1931[6]\n5 4:07.6 Jack Lovelock    New Zealand   15 July 1933[6]  \n6 4:06.8 Glenn Cunningham United States 16 June 1934[6]  \n\n\nDouble brackets [[4]] because tables is a list of data frames. (Note: Wikipedia changes frequently, so table 4 today may differ tomorrow; always be sure to look before you trust an index.)"
   },
   {
-    "objectID": "weeks/week4/day19-scraping-page.html#scraped-data-is-dirty-data",
-    "href": "weeks/week4/day19-scraping-page.html#scraped-data-is-dirty-data",
+    "objectID": "weeks/week4/day19-scraping-page.html#scraped-data-is-usually-dirty",
+    "href": "weeks/week4/day19-scraping-page.html#scraped-data-is-usually-dirty",
     "title": "Web scraping & HTML tables",
-    "section": "Scraped data is dirty data",
-    "text": "Scraped data is dirty data\nLook closely at what we got:\n\nDate is \"31 May 1913[6]\" — a footnote marker [6] is glued on.\nTime is \"4:14.4\" — a string, not a number we can plot or subtract.\n\nScraped values are always character strings, often with human-formatting baggage. The last mile of scraping is cleaning. Our toolkit, all from this unit:\n\nstr_remove() / gsub() + regular expressions to strip junk\nparse_number() for currency, percentages, stray units\nlubridate (dmy(), mdy(), …) for dates\nas.duration(ms(...)) for times like \"4:14.4\""
+    "section": "Scraped data is usually dirty",
+    "text": "Scraped data is usually dirty\nLook closely at what we got:\n\nDate is \"31 May 1913[6]\". Here, a footnote marker [6] is glued on.\nTime is \"4:14.4\", which is a string, not a number we can plot or subtract.\n\nScraped values are always character strings, often with human-formatting baggage. The next step after scraping is almost always cleaning:\n\nstr_remove() / gsub() + regular expressions to strip junk\nparse_number() for currency, percentages, stray units\nlubridate (dmy(), mdy(), …) for dates\nas.duration(ms(...)) for times like \"4:14.4\""
   },
   {
     "objectID": "weeks/week4/day19-scraping-page.html#stripping-footnotes-with-a-regex",
     "href": "weeks/week4/day19-scraping-page.html#stripping-footnotes-with-a-regex",
     "title": "Web scraping & HTML tables",
     "section": "Stripping footnotes with a regex",
-    "text": "Stripping footnotes with a regex\nWe want to delete a bracketed footnote like [6] at the end of the date. A regular expression describes that pattern:\n\nrecord &lt;- record |&gt;\n  mutate(Date = str_remove(Date, \"\\\\[.\\\\]$\"))\nrecord$Date\n\n[1] \"31 May 1913\"    \"16 July 1915\"   \"23 August 1923\" \"4 October 1931\"\n[5] \"15 July 1933\"   \"16 June 1934\"  \n\n\nDecoding \"\\\\[.\\\\]$\":\n\n\n\n\n\n\n\nPiece\nMeans\n\n\n\n\n\\\\[ \\\\]\na literal [ and ] (escaped — brackets are special)\n\n\n.\nany single character (here, the footnote digit)\n\n\n$\nanchored at the end of the string\n\n\n\nYou’ll meet regular expressions properly next week — for now, recognize them as pattern-matchers for cleaning text."
+    "text": "Stripping footnotes with a regex\nWe want to delete a bracketed footnote like [6] at the end of the date. A regular expression describes that pattern:\n\nrecord &lt;- record |&gt;\n  mutate(Date = str_remove(Date, \"\\\\[.\\\\]$\"))\nrecord$Date\n\n[1] \"31 May 1913\"    \"16 July 1915\"   \"23 August 1923\" \"4 October 1931\"\n[5] \"15 July 1933\"   \"16 June 1934\"  \n\n\nDecoding \"\\\\[.\\\\]$\":\n\n\n\n\n\n\n\nPiece\nMeans\n\n\n\n\n\\\\[ \\\\]\na literal [ and ] (escaped — brackets are special)\n\n\n.\nany single character (here, the footnote digit)\n\n\n$\nanchored at the end of the string\n\n\n\nWe’ll discuss regular expressions in more detail next week."
   },
   {
     "objectID": "weeks/week4/day19-scraping-page.html#parsing-dates-and-times",
     "href": "weeks/week4/day19-scraping-page.html#parsing-dates-and-times",
     "title": "Web scraping & HTML tables",
     "section": "Parsing dates and times",
-    "text": "Parsing dates and times\nNow the date is clean, hand it to lubridate. These are \"4 October 1931\"-style → day-month-year → dmy():\n\nrecord &lt;- record |&gt;\n  mutate(\n    Date    = dmy(Date),\n    seconds = as.numeric(as.duration(ms(Time)))   # \"4:14.4\" -&gt; 254.4 sec\n  )\nrecord |&gt; select(Time, seconds, Date)\n\n# A tibble: 6 × 3\n  Time   seconds Date      \n  &lt;chr&gt;    &lt;dbl&gt; &lt;date&gt;    \n1 4:14.4    254. 1913-05-31\n2 4:12.6    253. 1915-07-16\n3 4:10.4    250. 1923-08-23\n4 4:09.2    249. 1931-10-04\n5 4:07.6    248. 1933-07-15\n6 4:06.8    247. 1934-06-16\n\n\nms() reads \"minutes:seconds\"; as.duration() turns it into a real time span; as.numeric() gives plain seconds we can plot."
+    "text": "Parsing dates and times\nOnce we have a clean date, we can use the lubridate package. These are \"4 October 1931\"-style to day-month-year to dmy():\n\nrecord &lt;- record |&gt;\n  mutate(\n    Date = dmy(Date),\n    seconds = as.numeric(as.duration(ms(Time))) # \"4:14.4\" -&gt; 254.4 sec\n  )\nrecord |&gt; select(Time, seconds, Date)\n\n# A tibble: 6 × 3\n  Time   seconds Date      \n  &lt;chr&gt;    &lt;dbl&gt; &lt;date&gt;    \n1 4:14.4    254. 1913-05-31\n2 4:12.6    253. 1915-07-16\n3 4:10.4    250. 1923-08-23\n4 4:09.2    249. 1931-10-04\n5 4:07.6    248. 1933-07-15\n6 4:06.8    247. 1934-06-16\n\n\nms() reads \"minutes:seconds\"; as.duration() turns it into a real time span; as.numeric() gives plain seconds we can plot."
   },
   {
     "objectID": "weeks/week4/day19-scraping-page.html#pay-off-a-plot-of-progress",
@@ -2111,21 +2125,21 @@
     "href": "weeks/week4/day19-scraping-page.html#how-do-i-know-which-selector",
     "title": "Web scraping & HTML tables",
     "section": "How do I know which selector?",
-    "text": "How do I know which selector?\nThis is the genuinely hard part — and it’s normal to need trial and error. Three ways to discover the selector you need:\n\nRight-click → Inspect in your browser. The developer tools highlight the exact HTML for whatever you clicked. Look at its class and id.\nSelectorGadget — a point-and-click bookmarklet. Click what you want (turns green), click what you don’t (turns red), and it writes the selector for you.\nCopy as selector — in DevTools, right-click an element → Copy → Copy selector.\n\nYou want a selector that’s sensitive (catches everything you want) and specific (catches nothing you don’t)."
+    "text": "How do I know which selector?\nThis is the genuinely hard part — and it’s normal to need trial and error. Three ways to discover the selector you need:\n\nRight-click then Inspect in your browser. The developer tools highlight the exact HTML for whatever you clicked. Look at its class and id.\nSelectorGadget: a point-and-click bookmarklet. Click what you want (turns green), click what you don’t (turns red), and it writes the selector for you.\nCopy as selector: in DevTools, right-click an element → Copy → Copy selector.\n\nYou want a selector that’s sensitive (catches everything you want) and specific (catches nothing you don’t)."
   },
   {
-    "objectID": "weeks/week4/day19-scraping-page.html#a-note-on-dynamic-sites",
-    "href": "weeks/week4/day19-scraping-page.html#a-note-on-dynamic-sites",
+    "objectID": "weeks/week4/day19-scraping-page.html#dynamic-sites",
+    "href": "weeks/week4/day19-scraping-page.html#dynamic-sites",
     "title": "Web scraping & HTML tables",
-    "section": "A note on dynamic sites",
-    "text": "A note on dynamic sites\nSometimes html_elements() returns nothing like what you see in the browser. Usually that means the page builds its content with JavaScript after loading.\nrvest only downloads the raw HTML — it doesn’t run JavaScript. So:\n\nCheck whether the data is in the raw HTML (View Source, not Inspect).\nIf it’s truly JS-rendered, you need a tool that drives a real browser — the chromote package runs Chrome in the background.\nOr, again: look for an API first. Dynamic pages are often fed by one."
+    "section": "Dynamic sites",
+    "text": "Dynamic sites\nSometimes html_elements() returns nothing like what you see in the browser. Usually that means the page builds its content with JavaScript after loading.\nrvest only downloads the raw HTML. It doesn’t run JavaScript. This means you should:\n\nCheck whether the data is in the raw HTML (View Source, not Inspect).\nIf it’s truly JS-rendered, you need a tool that drives a real browser: the chromote package runs Chrome in the background.\nOr, again: look for an API first. Dynamic pages are often fed by one."
   },
   {
     "objectID": "weeks/week4/day19-scraping-page.html#in-class-activity",
     "href": "weeks/week4/day19-scraping-page.html#in-class-activity",
     "title": "Web scraping & HTML tables",
     "section": "In-class activity",
-    "text": "In-class activity\nOpen day19-activity.R in RStudio and work through the parts in order.\n\nPart 1 — HTML basics with minimal_html(): selectors, element vs elements, the alignment trap.\nPart 2 — scrape a real Wikipedia table with html_table(), then clean dates and times and make a plot.\nPart 3 (challenge) — scrape non-table structured content (the rvest StarWars vignette) into a tidy tibble, and pull a link out of an attribute.\n\nActivity file\n\n\n\n\n\n\nTip\n\n\n\nIf a live page won’t load or has changed, that is web scraping — note it and move on. The skills transfer; the specific HTML is always a moving target."
+    "text": "In-class activity\nOpen day19-activity.R in RStudio and work through the parts in order.\n\nPart 1: HTML basics with minimal_html(): selectors, element vs elements, the alignment trap.\nPart 2: scrape a real Wikipedia table with html_table(), then clean dates and times and make a plot.\nPart 3 (challenge): scrape non-table structured content (the rvest StarWars vignette) into a tidy tibble, and pull a link out of an attribute.\n\nActivity file"
   },
   {
     "objectID": "weeks/week4/day19-scraping-page.html#wrap-up-looking-ahead",

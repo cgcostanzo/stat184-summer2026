@@ -1073,8 +1073,7 @@ margin-right: 0; }
 <div class="callout-content">
 <p><strong>Before class</strong></p>
 <ul>
-<li><strong>Perusall Assignment</strong>: <a href="https://psu.instructure.com/courses/2487468/assignments/18325375"><em>DC</em> §16.3</a> — HTML tables &amp; web scraping</li>
-<li>Welcome back from the exam! Today is lighter and hands-on.</li>
+<li><strong>Perusall Assignment</strong>: <a href="https://psu.instructure.com/courses/2487468/assignments/18325375"><em>DC</em> §16.3</a>: HTML tables &amp; web scraping</li>
 </ul>
 <p><strong>Plan for today</strong></p>
 <ul>
@@ -1102,69 +1101,60 @@ margin-right: 0; }
 <section id="every-easy-data-format-is-alike" class="slide level2 scrollable nostretch">
 <h2>Every easy data format is alike</h2>
 <blockquote>
-<p><em>“Every easy data format is alike. Every difficult data format is difficult in its own way.”</em> — with apologies to Leo Tolstoy</p>
+<p><em>“Every easy data format is alike. Every difficult data format is difficult in its own way.”</em> - with apologies to Leo Tolstoy</p>
 </blockquote>
-<p>So far the world has been kind: <code>penguins</code>, <code>flights</code>, CSVs with a tidy <code>read_csv()</code>. But a huge amount of data you’ll actually want lives on <strong>web pages</strong>, formatted for human eyes, not for <code>read_csv()</code>.</p>
-<p><strong>Data scraping</strong>: gathering data from sources that aren’t already in data-frame format — usually translating from the HTML a browser renders into a tidy data frame.</p>
-<p>Today’s goal: point R at a URL and walk away with a <code>tibble</code>.</p>
+<p>So we’ve worked with easily accessible datasets like <code>penguins</code>, <code>flights</code>, or CSVs that can be quickly imported with <code>read_csv()</code>. But a lot of data is only available on <strong>web pages</strong> that are formatted for human eyes rather than <code>read_csv()</code>.</p>
+<p><strong>Data scraping</strong> is gathering data from sources that aren’t already in data-frame format; in our context, this is usually translating from the HTML a browser renders into a tidy data frame.</p>
 </section>
 <section id="when-to-scrape-and-when-not-to" class="slide level2 scrollable nostretch">
 <h2>When to scrape (and when not to)</h2>
 <p>Before you scrape, <strong>always check for a friendlier door</strong>:</p>
 <ol type="1">
-<li><strong>Is there a download link?</strong> A “Download CSV” button beats scraping every time.</li>
-<li><strong>Is there an API?</strong> Many sites (Spotify, the Census, GitHub) offer an <a href="https://r4ds.hadley.nz/webscraping">API</a> that returns clean JSON. Often a CRAN package already wraps it (<code>tidycensus</code>, <code>spotifyr</code>, <code>gh</code>).</li>
+<li><strong>Is there a download link?</strong></li>
+<li><strong>Is there an API?</strong></li>
+</ol>
+<ul>
+<li>Many sites (Spotify, the Census, GitHub) offer an <a href="https://r4ds.hadley.nz/webscraping">API</a> that returns clean JSON. Often a CRAN package already wraps it (<code>tidycensus</code>, <code>spotifyr</code>, <code>gh</code>).</li>
+</ul>
+<ol start="3" type="1">
 <li><strong>Only then, scrape the HTML.</strong></li>
 </ol>
-<p>Scraping is the technique that <em>always</em> works — but it’s also the most fragile. If the site redesigns its HTML tomorrow, your code breaks. Use it when nothing easier exists.</p>
+<p>Scraping is flexible but fragile. If a website administrator redesigns its HTML, your code will no longer work. It’s best to reserve web scraping for cases when no easier option is feasible.</p>
 </section></section>
 <section>
-<section id="scrape-responsibly" class="title-slide slide level1 center" data-background-color="#7C0A02">
-<h1>Scrape responsibly</h1>
+<section id="good-web-scraping-citizens" class="title-slide slide level1 center" data-background-color="#7C0A02">
+<h1>Good web-scraping citizens</h1>
 
 </section>
-<section id="ethics-legality" class="slide level2 scrollable nostretch">
-<h2>Ethics &amp; legality</h2>
-<p>We’re not lawyers, but the rule of thumb from <em>R4DS</em>: you’re usually on safe ground if the data is</p>
+<section id="ethical-web-scraping" class="slide level2 scrollable nostretch">
+<h2>Ethical web-scraping</h2>
+<p>The rule of thumb from <em>R4DS</em>: you’re usually on safe ground if the data is</p>
 <ul>
-<li><strong>public</strong> — you didn’t have to log in or click “I agree”,</li>
-<li><strong>non-personal</strong> — not names, emails, locations of identifiable people, and</li>
-<li><strong>factual</strong> — facts and data aren’t copyrightable (creative text and images are).</li>
+<li><strong>public</strong>: you didn’t have to log in or click “I agree”,</li>
+<li><strong>non-personal</strong>: not names, emails, locations of identifiable people, and</li>
+<li><strong>factual</strong>: facts and data aren’t copyrightable (creative text and images are).</li>
 </ul>
-<p>Cautionary tale: in 2016 researchers scraped ~70,000 <strong>OkCupid</strong> profiles — public, but deeply personal — and released them with no anonymization. It was widely condemned. <em>Public</em> does not mean <em>fair game</em>.</p>
-<div class="callout callout-warning callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Warning</strong></p>
-</div>
-<div class="callout-content">
-<p>Personally identifiable information (names, ages, locations) lives under strict laws (GDPR in Europe). When in doubt, don’t.</p>
-</div>
-</div>
-</div>
+<p>R4DS real-world cautionary example: 2016 researchers scraped ~70,000 <strong>OkCupid</strong> profiles. These are public, but deeply personal dating profiles. The researchers then released the profiles with no anonymization. It was widely condemned. <em>Public</em> does not mean <em>fair game</em> or <em>ethical</em>.</p>
 </section>
 <section id="be-a-polite-guest" class="slide level2 scrollable nostretch">
 <h2>Be a polite guest</h2>
-<p>A scraper can fire off thousands of requests in seconds. To a small server that looks like an attack.</p>
+<p>A scraper can fire off thousands of requests in seconds. To a small server that may look like an attack.</p>
 <ul>
 <li><strong>Throttle</strong>: pause between requests. Don’t hammer a server.</li>
 <li><strong>Cache</strong>: never download the same page twice.</li>
 <li><strong>Identify yourself</strong> and respect <code>robots.txt</code> and terms of service where you reasonably can.</li>
 </ul>
-<p>The <a href="https://dmi3kno.github.io/polite/"><code>polite</code></a> package automates all of this — it pauses, caches, and checks <code>robots.txt</code> for you.</p>
+<p>The <a href="https://dmi3kno.github.io/polite/"><code>polite</code></a> package automates all of this for you, pausing, cauching, and checking <code>robots.txt</code> for you.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co"># install.packages(&quot;polite&quot;)</span></span>
 <span id="cb1-2"><a></a><span class="fu">library</span>(polite)</span>
-<span id="cb1-3"><a></a>session <span class="ot">&lt;-</span> <span class="fu">bow</span>(<span class="st">&quot;https://www.example.com&quot;</span>)   <span class="co"># introduce yourself</span></span>
-<span id="cb1-4"><a></a>result  <span class="ot">&lt;-</span> <span class="fu">scrape</span>(session)                    <span class="co"># politely fetch</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-3"><a></a>session <span class="ot">&lt;-</span> <span class="fu">bow</span>(<span class="st">&quot;https://www.example.com&quot;</span>) <span class="co"># introduce yourself</span></span>
+<span id="cb1-4"><a></a>result  <span class="ot">&lt;-</span> <span class="fu">scrape</span>(session) <span class="co"># politely fetch</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section></section>
 <section>
-<section id="a-5-minute-tour-of-html" class="title-slide slide level1 center" data-background-color="#001E44">
-<h1>A 5-minute tour of HTML</h1>
+<section id="quick-html-tour" class="title-slide slide level1 center" data-background-color="#001E44">
+<h1>Quick HTML tour</h1>
 
 </section>
 <section id="what-a-web-page-really-is" class="slide level2 scrollable nostretch">
@@ -1184,20 +1174,26 @@ margin-right: 0; }
 </section>
 <section id="anatomy-of-an-element" class="slide level2 scrollable nostretch">
 <h2>Anatomy of an element</h2>
-<pre><code>       start tag      attribute        contents          end tag
-          │               │                │                │
-        ┌─┴─┐    ┌────────┴────────┐   ┌────┴───┐         ┌──┴──┐
-        &lt;a     href=&#39;/cats&#39;  class=&#39;link&#39;&gt;  cute cats     &lt;/a&gt;</code></pre>
 <ul>
 <li><strong>Tags</strong> come in pairs: <code>&lt;p&gt;</code> … <code>&lt;/p&gt;</code>. The content lives in between.</li>
 <li><strong>Attributes</strong> are <code>name=&#39;value&#39;</code> pairs inside the start tag.</li>
 <li>Two attributes matter most for scraping:
 <ul>
-<li><strong><code>id</code></strong> — a <em>unique</em> label for one element (<code>id=&#39;first&#39;</code>)</li>
-<li><strong><code>class</code></strong> — a <em>reusable</em> label shared by many elements (<code>class=&#39;weight&#39;</code>)</li>
+<li><strong><code>id</code></strong>: a <em>unique</em> label for one element (<code>id=&#39;first&#39;</code>)</li>
+<li><strong><code>class</code></strong>: a <em>reusable</em> label shared by many elements (<code>class=&#39;weight&#39;</code>)</li>
 </ul></li>
 </ul>
 <p>Designers use <code>id</code> and <code>class</code> to <em>style</em> the page. We hijack them to <em>find our data</em>.</p>
+</section>
+<section id="example-element" class="slide level2">
+<h2>Example element</h2>
+<p><a href="../../cats" class="link"> cute cats </a></p>
+<ul>
+<li><p>Start Tag (&lt;a … &gt;): This opens the element and tells the browser where it begins.</p></li>
+<li><p>Attributes (href=‘/cats’, class=‘link’): These live inside the start tag and provide extra information or settings (like the destination URL or CSS styling classes).</p></li>
+<li><p>Contents (cute cats): This is the actual text, image, or nested element that gets displayed and affected by the tag.</p></li>
+<li><p>End Tag (): This closes the element, telling the browser where it stops.</p></li>
+</ul>
 </section>
 <section id="useful-tags-to-recognize" class="slide level2 scrollable nostretch">
 <h2>Useful tags to recognize</h2>
@@ -1239,7 +1235,7 @@ margin-right: 0; }
 </tr>
 </tbody>
 </table>
-<p>You don’t need to memorize HTML — just enough to spot where your data is hiding. A little googling or the <a href="https://developer.mozilla.org/">MDN docs</a> fills the rest.</p>
+<p>You don’t need to memorize HTML, but it’s useful to know enough to spot where your data is hiding. Google or the <a href="https://developer.mozilla.org/">MDN docs</a> are great resources to help fill in any gaps.</p>
 </section></section>
 <section>
 <section id="rvest" class="title-slide slide level1 center" data-background-color="#001E44">
@@ -1250,26 +1246,26 @@ margin-right: 0; }
 <h2>The rvest workflow</h2>
 <p><a href="https://rvest.tidyverse.org/"><code>rvest</code></a> (think “harvest”) is the tidyverse scraping package. It’s installed with the tidyverse but loaded separately:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">library</span>(rvest)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">library</span>(rvest)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>The pipeline is always the same four moves:</p>
+<p>Steps:</p>
 <ol type="1">
-<li><strong><code>read_html(url)</code></strong> — download the page into R</li>
-<li><strong><code>html_elements(css)</code></strong> — select the pieces you want (a <em>CSS selector</em>)</li>
-<li><strong><code>html_element(css)</code></strong> — narrow to one piece per observation</li>
-<li><strong><code>html_text2()</code> / <code>html_attr()</code> / <code>html_table()</code></strong> — pull out the actual values</li>
+<li><strong><code>read_html(url)</code></strong>: download the page into R</li>
+<li><strong><code>html_elements(css)</code></strong>: select the pieces you want (a <em>CSS selector</em>)</li>
+<li><strong><code>html_element(css)</code></strong>: narrow to one piece per observation</li>
+<li><strong><code>html_text2()</code> / <code>html_attr()</code> / <code>html_table()</code></strong>: pull out the actual values</li>
 </ol>
 </section>
-<section id="practice-without-the-internet" class="slide level2 scrollable nostretch">
-<h2>Practice without the internet</h2>
-<p><code>minimal_html()</code> lets us hand-write HTML to experiment — no network, no fragility. We’ll use it to learn, then point the same tools at real pages.</p>
+<section id="practice" class="slide level2 scrollable nostretch">
+<h2>Practice</h2>
+<p><code>minimal_html()</code> is a function that allows us to hand write HTML. We’ll use it to learn, then use the same tools on real web pages.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>html <span class="ot">&lt;-</span> <span class="fu">minimal_html</span>(<span class="st">&quot;</span></span>
-<span id="cb5-2"><a></a><span class="st">  &lt;h1&gt;This is a heading&lt;/h1&gt;</span></span>
-<span id="cb5-3"><a></a><span class="st">  &lt;p id=&#39;first&#39;&gt;This is a paragraph&lt;/p&gt;</span></span>
-<span id="cb5-4"><a></a><span class="st">  &lt;p class=&#39;important&#39;&gt;This is an important paragraph&lt;/p&gt;</span></span>
-<span id="cb5-5"><a></a><span class="st">&quot;</span>)</span>
-<span id="cb5-6"><a></a>html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>html <span class="ot">&lt;-</span> <span class="fu">minimal_html</span>(<span class="st">&quot;</span></span>
+<span id="cb4-2"><a></a><span class="st">  &lt;h1&gt;This is a heading&lt;/h1&gt;</span></span>
+<span id="cb4-3"><a></a><span class="st">  &lt;p id=&#39;first&#39;&gt;This is a paragraph&lt;/p&gt;</span></span>
+<span id="cb4-4"><a></a><span class="st">  &lt;p class=&#39;important&#39;&gt;This is an important paragraph&lt;/p&gt;</span></span>
+<span id="cb4-5"><a></a><span class="st">&quot;</span>)</span>
+<span id="cb4-6"><a></a>html</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{html_document}
 &lt;html&gt;
@@ -1281,7 +1277,7 @@ margin-right: 0; }
 </section>
 <section id="css-selectors-three-youll-use-constantly" class="slide level2 scrollable nostretch">
 <h2>CSS selectors: three you’ll use constantly</h2>
-<p>A <strong>CSS selector</strong> is a tiny pattern language for “which elements do I mean?”</p>
+<p>A <strong>Cascading style sheets (CSS) selector</strong> is a mini pattern language that provides a concise way of describing which HTML elements you want to extract from a web page.</p>
 <table class="caption-top">
 <colgroup>
 <col style="width: 33%">
@@ -1324,18 +1320,18 @@ margin-right: 0; }
 </tbody>
 </table>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>html <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">&quot;p&quot;</span>)            <span class="co"># both paragraphs</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>html <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">&quot;p&quot;</span>) <span class="co"># both paragraphs</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{xml_nodeset (2)}
 [1] &lt;p id=&quot;first&quot;&gt;This is a paragraph&lt;/p&gt;
 [2] &lt;p class=&quot;important&quot;&gt;This is an important paragraph&lt;/p&gt;</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>html <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">&quot;.important&quot;</span>)   <span class="co"># just the important one</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>html <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">&quot;.important&quot;</span>) <span class="co"># just the important one</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{xml_nodeset (1)}
 [1] &lt;p class=&quot;important&quot;&gt;This is an important paragraph&lt;/p&gt;</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>html <span class="sc">|&gt;</span> <span class="fu">html_element</span>(<span class="st">&quot;#first&quot;</span>)        <span class="co"># the one with id=&quot;first&quot;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>html <span class="sc">|&gt;</span> <span class="fu">html_element</span>(<span class="st">&quot;#first&quot;</span>) <span class="co"># the one with id=&quot;first&quot;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{html_node}
 &lt;p id=&quot;first&quot;&gt;</code></pre>
@@ -1344,62 +1340,61 @@ margin-right: 0; }
 </section>
 <section id="element-vs.-elements-this-trips-everyone-up" class="slide level2 scrollable nostretch">
 <h2>element vs. elements (this trips everyone up)</h2>
-<p>Two nearly identical functions, one crucial difference:</p>
 <ul>
-<li><strong><code>html_elements()</code></strong> (plural) — returns <em>all</em> matches. Length depends on the page.</li>
-<li><strong><code>html_element()</code></strong> (singular) — returns <em>one match per input</em>, filling <code>NA</code> when nothing matches.</li>
+<li><strong><code>html_elements()</code></strong> (plural): returns <em>all</em> matches. Length depends on the page.</li>
+<li><strong><code>html_element()</code></strong> (singular): returns <em>one match per input</em>, filling <code>NA</code> when nothing matches.</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>html <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">&quot;b&quot;</span>)   <span class="co"># 0 matches -&gt; empty</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>html <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">&quot;b&quot;</span>) <span class="co"># 0 matches -&gt; empty</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{xml_nodeset (0)}</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>html <span class="sc">|&gt;</span> <span class="fu">html_element</span>(<span class="st">&quot;b&quot;</span>)    <span class="co"># 0 matches -&gt; NA (length preserved!)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>html <span class="sc">|&gt;</span> <span class="fu">html_element</span>(<span class="st">&quot;b&quot;</span>) <span class="co"># 0 matches -&gt; NA (length preserved!)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>{xml_missing}
 &lt;NA&gt;</code></pre>
 </div>
 </div>
-<p>That <code>NA</code>-filling behavior is the secret to keeping columns aligned. Here’s why it matters →</p>
+<p>That <code>NA</code>-filling behavior keeps columns aligned.</p>
 </section>
 <section id="why-the-distinction-matters" class="slide level2 scrollable nostretch">
 <h2>Why the distinction matters</h2>
-<p>A page of four StarWars characters — but not all have a recorded weight:</p>
+<p>Below is a page of four StarWars characters, some of whom are missing a recorded weight:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>droids <span class="ot">&lt;-</span> <span class="fu">minimal_html</span>(<span class="st">&quot;</span></span>
-<span id="cb17-2"><a></a><span class="st">  &lt;ul&gt;</span></span>
-<span id="cb17-3"><a></a><span class="st">    &lt;li&gt;&lt;b&gt;C-3PO&lt;/b&gt; is a &lt;i&gt;droid&lt;/i&gt; that weighs &lt;span class=&#39;weight&#39;&gt;167 kg&lt;/span&gt;&lt;/li&gt;</span></span>
-<span id="cb17-4"><a></a><span class="st">    &lt;li&gt;&lt;b&gt;R2-D2&lt;/b&gt; is a &lt;i&gt;droid&lt;/i&gt; that weighs &lt;span class=&#39;weight&#39;&gt;96 kg&lt;/span&gt;&lt;/li&gt;</span></span>
-<span id="cb17-5"><a></a><span class="st">    &lt;li&gt;&lt;b&gt;Yoda&lt;/b&gt; weighs &lt;span class=&#39;weight&#39;&gt;66 kg&lt;/span&gt;&lt;/li&gt;</span></span>
-<span id="cb17-6"><a></a><span class="st">    &lt;li&gt;&lt;b&gt;R4-P17&lt;/b&gt; is a &lt;i&gt;droid&lt;/i&gt;&lt;/li&gt;</span></span>
-<span id="cb17-7"><a></a><span class="st">  &lt;/ul&gt;</span></span>
-<span id="cb17-8"><a></a><span class="st">&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>droids <span class="ot">&lt;-</span> <span class="fu">minimal_html</span>(<span class="st">&quot;</span></span>
+<span id="cb16-2"><a></a><span class="st">  &lt;ul&gt;</span></span>
+<span id="cb16-3"><a></a><span class="st">    &lt;li&gt;&lt;b&gt;C-3PO&lt;/b&gt; is a &lt;i&gt;droid&lt;/i&gt; that weighs &lt;span class=&#39;weight&#39;&gt;167 kg&lt;/span&gt;&lt;/li&gt;</span></span>
+<span id="cb16-4"><a></a><span class="st">    &lt;li&gt;&lt;b&gt;R2-D2&lt;/b&gt; is a &lt;i&gt;droid&lt;/i&gt; that weighs &lt;span class=&#39;weight&#39;&gt;96 kg&lt;/span&gt;&lt;/li&gt;</span></span>
+<span id="cb16-5"><a></a><span class="st">    &lt;li&gt;&lt;b&gt;Yoda&lt;/b&gt; weighs &lt;span class=&#39;weight&#39;&gt;66 kg&lt;/span&gt;&lt;/li&gt;</span></span>
+<span id="cb16-6"><a></a><span class="st">    &lt;li&gt;&lt;b&gt;R4-P17&lt;/b&gt; is a &lt;i&gt;droid&lt;/i&gt;&lt;/li&gt;</span></span>
+<span id="cb16-7"><a></a><span class="st">  &lt;/ul&gt;</span></span>
+<span id="cb16-8"><a></a><span class="st">&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Grab the weights <em>directly</em> and you get <strong>3</strong> values for <strong>4</strong> characters — and no way to know which one is missing:</p>
+<p>Grab the weights <em>directly</em> and you get <strong>3</strong> values for <strong>4</strong> characters and no way to know which one is missing:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>droids <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">&quot;.weight&quot;</span>) <span class="sc">|&gt;</span> <span class="fu">html_text2</span>()   <span class="co"># length 3 — misaligned!</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>droids <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">&quot;.weight&quot;</span>) <span class="sc">|&gt;</span> <span class="fu">html_text2</span>()   <span class="co"># length 3 — misaligned!</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;167 kg&quot; &quot;96 kg&quot;  &quot;66 kg&quot; </code></pre>
 </div>
 </div>
 </section>
-<section id="the-robust-pattern-rows-then-columns" class="slide level2 scrollable nostretch">
-<h2>The robust pattern: rows then columns</h2>
+<section id="rows-then-columns" class="slide level2 scrollable nostretch">
+<h2>Rows then columns</h2>
 <p><strong>Step 1.</strong> Use <code>html_elements()</code> to grab one element <em>per observation</em> (each <code>&lt;li&gt;</code> is one character):</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>characters <span class="ot">&lt;-</span> droids <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">&quot;li&quot;</span>)</span>
-<span id="cb20-2"><a></a><span class="fu">length</span>(characters)   <span class="co"># 4 — one per character</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>characters <span class="ot">&lt;-</span> droids <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">&quot;li&quot;</span>)</span>
+<span id="cb19-2"><a></a><span class="fu">length</span>(characters) <span class="co"># 4 (one per character)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4</code></pre>
 </div>
 </div>
 <p><strong>Step 2.</strong> Use <code>html_element()</code> <em>on each</em> to pull one value per observation. Missing weights become <code>NA</code>, so everything stays aligned:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">tibble</span>(</span>
-<span id="cb22-2"><a></a>  <span class="at">name    =</span> characters <span class="sc">|&gt;</span> <span class="fu">html_element</span>(<span class="st">&quot;b&quot;</span>)       <span class="sc">|&gt;</span> <span class="fu">html_text2</span>(),</span>
-<span id="cb22-3"><a></a>  <span class="at">species =</span> characters <span class="sc">|&gt;</span> <span class="fu">html_element</span>(<span class="st">&quot;i&quot;</span>)        <span class="sc">|&gt;</span> <span class="fu">html_text2</span>(),</span>
-<span id="cb22-4"><a></a>  <span class="at">weight  =</span> characters <span class="sc">|&gt;</span> <span class="fu">html_element</span>(<span class="st">&quot;.weight&quot;</span>)  <span class="sc">|&gt;</span> <span class="fu">html_text2</span>()</span>
-<span id="cb22-5"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">tibble</span>(</span>
+<span id="cb21-2"><a></a>  <span class="at">name =</span> characters <span class="sc">|&gt;</span> <span class="fu">html_element</span>(<span class="st">&quot;b&quot;</span>) <span class="sc">|&gt;</span> <span class="fu">html_text2</span>(),</span>
+<span id="cb21-3"><a></a>  <span class="at">species =</span> characters <span class="sc">|&gt;</span> <span class="fu">html_element</span>(<span class="st">&quot;i&quot;</span>) <span class="sc">|&gt;</span> <span class="fu">html_text2</span>(),</span>
+<span id="cb21-4"><a></a>  <span class="at">weight  =</span> characters <span class="sc">|&gt;</span> <span class="fu">html_element</span>(<span class="st">&quot;.weight&quot;</span>) <span class="sc">|&gt;</span> <span class="fu">html_text2</span>()</span>
+<span id="cb21-5"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
   name   species weight
@@ -1419,7 +1414,7 @@ margin-right: 0; }
 <p><strong>Tip</strong></p>
 </div>
 <div class="callout-content">
-<p><strong>The golden rule:</strong> <code>html_elements()</code> to find your <em>rows</em>, then <code>html_element()</code> to find each <em>column</em>. Same number of values every time.</p>
+<p><code>html_elements()</code> to find your <em>rows</em>, then <code>html_element()</code> to find each <em>column</em>.</p>
 </div>
 </div>
 </div>
@@ -1427,20 +1422,20 @@ margin-right: 0; }
 <section id="pulling-out-the-values" class="slide level2 scrollable nostretch">
 <h2>Pulling out the values</h2>
 <p>Selecting elements gets you HTML nodes. Two functions turn nodes into data:</p>
-<p><strong><code>html_text2()</code></strong> — the visible text (handles whitespace like a browser; prefer it over <code>html_text()</code>):</p>
+<p><strong><code>html_text2()</code></strong>: the visible text (handles whitespace like a browser; prefer it over <code>html_text()</code>):</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>droids <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">&quot;b&quot;</span>) <span class="sc">|&gt;</span> <span class="fu">html_text2</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>droids <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">&quot;b&quot;</span>) <span class="sc">|&gt;</span> <span class="fu">html_text2</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;C-3PO&quot;  &quot;R2-D2&quot;  &quot;Yoda&quot;   &quot;R4-P17&quot;</code></pre>
 </div>
 </div>
-<p><strong><code>html_attr(&quot;name&quot;)</code></strong> — the value of an attribute, e.g. a link’s destination:</p>
+<p><strong><code>html_attr(&quot;name&quot;)</code></strong>: the value of an attribute, e.g. a link’s destination:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>links <span class="ot">&lt;-</span> <span class="fu">minimal_html</span>(<span class="st">&quot;</span></span>
-<span id="cb26-2"><a></a><span class="st">  &lt;p&gt;&lt;a href=&#39;https://en.wikipedia.org/wiki/Cat&#39;&gt;cats&lt;/a&gt;&lt;/p&gt;</span></span>
-<span id="cb26-3"><a></a><span class="st">  &lt;p&gt;&lt;a href=&#39;https://en.wikipedia.org/wiki/Dog&#39;&gt;dogs&lt;/a&gt;&lt;/p&gt;</span></span>
-<span id="cb26-4"><a></a><span class="st">&quot;</span>)</span>
-<span id="cb26-5"><a></a>links <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">&quot;a&quot;</span>) <span class="sc">|&gt;</span> <span class="fu">html_attr</span>(<span class="st">&quot;href&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>links <span class="ot">&lt;-</span> <span class="fu">minimal_html</span>(<span class="st">&quot;</span></span>
+<span id="cb25-2"><a></a><span class="st">  &lt;p&gt;&lt;a href=&#39;https://en.wikipedia.org/wiki/Cat&#39;&gt;cats&lt;/a&gt;&lt;/p&gt;</span></span>
+<span id="cb25-3"><a></a><span class="st">  &lt;p&gt;&lt;a href=&#39;https://en.wikipedia.org/wiki/Dog&#39;&gt;dogs&lt;/a&gt;&lt;/p&gt;</span></span>
+<span id="cb25-4"><a></a><span class="st">&quot;</span>)</span>
+<span id="cb25-5"><a></a>links <span class="sc">|&gt;</span> <span class="fu">html_elements</span>(<span class="st">&quot;a&quot;</span>) <span class="sc">|&gt;</span> <span class="fu">html_attr</span>(<span class="st">&quot;href&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;https://en.wikipedia.org/wiki/Cat&quot; &quot;https://en.wikipedia.org/wiki/Dog&quot;</code></pre>
 </div>
@@ -1454,29 +1449,29 @@ margin-right: 0; }
 <p><strong>Warning</strong></p>
 </div>
 <div class="callout-content">
-<p><code>html_attr()</code> <strong>always returns a string</strong> — <code>html_attr(&quot;width&quot;)</code> gives <code>&quot;100&quot;</code>, not <code>100</code>. Follow up with <code>parse_number()</code> / <code>as.integer()</code>.</p>
+<p><code>html_attr()</code> <strong>always returns a string</strong>. <code>html_attr(&quot;width&quot;)</code> gives <code>&quot;100&quot;</code>, not <code>100</code>. Follow up with <code>parse_number()</code> / <code>as.integer()</code>.</p>
 </div>
 </div>
 </div>
 </section></section>
 <section>
-<section id="the-easy-win-tables" class="title-slide slide level1 center" data-background-color="#001E44">
-<h1>The easy win: tables</h1>
+<section id="tables" class="title-slide slide level1 center" data-background-color="#001E44">
+<h1>Tables</h1>
 
 </section>
 <section id="html_table" class="slide level2 scrollable nostretch">
 <h2>html_table()</h2>
-<p>If your data is already in an HTML <code>&lt;table&gt;</code>, you’re in luck — <code>html_table()</code> reads it straight into a tibble, guessing column types as it goes.</p>
+<p>If your data is already in an HTML <code>&lt;table&gt;</code>, you’re in luck. <code>html_table()</code> reads it straight into a tibble, guessing column types as it goes.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a>tbl <span class="ot">&lt;-</span> <span class="fu">minimal_html</span>(<span class="st">&quot;</span></span>
-<span id="cb28-2"><a></a><span class="st">  &lt;table&gt;</span></span>
-<span id="cb28-3"><a></a><span class="st">    &lt;tr&gt;&lt;th&gt;x&lt;/th&gt;   &lt;th&gt;y&lt;/th&gt;&lt;/tr&gt;</span></span>
-<span id="cb28-4"><a></a><span class="st">    &lt;tr&gt;&lt;td&gt;1.5&lt;/td&gt; &lt;td&gt;2.7&lt;/td&gt;&lt;/tr&gt;</span></span>
-<span id="cb28-5"><a></a><span class="st">    &lt;tr&gt;&lt;td&gt;4.9&lt;/td&gt; &lt;td&gt;1.3&lt;/td&gt;&lt;/tr&gt;</span></span>
-<span id="cb28-6"><a></a><span class="st">    &lt;tr&gt;&lt;td&gt;7.2&lt;/td&gt; &lt;td&gt;8.1&lt;/td&gt;&lt;/tr&gt;</span></span>
-<span id="cb28-7"><a></a><span class="st">  &lt;/table&gt;</span></span>
-<span id="cb28-8"><a></a><span class="st">&quot;</span>)</span>
-<span id="cb28-9"><a></a>tbl <span class="sc">|&gt;</span> <span class="fu">html_element</span>(<span class="st">&quot;table&quot;</span>) <span class="sc">|&gt;</span> <span class="fu">html_table</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>tbl <span class="ot">&lt;-</span> <span class="fu">minimal_html</span>(<span class="st">&quot;</span></span>
+<span id="cb27-2"><a></a><span class="st">  &lt;table&gt;</span></span>
+<span id="cb27-3"><a></a><span class="st">    &lt;tr&gt;&lt;th&gt;x&lt;/th&gt;   &lt;th&gt;y&lt;/th&gt;&lt;/tr&gt;</span></span>
+<span id="cb27-4"><a></a><span class="st">    &lt;tr&gt;&lt;td&gt;1.5&lt;/td&gt; &lt;td&gt;2.7&lt;/td&gt;&lt;/tr&gt;</span></span>
+<span id="cb27-5"><a></a><span class="st">    &lt;tr&gt;&lt;td&gt;4.9&lt;/td&gt; &lt;td&gt;1.3&lt;/td&gt;&lt;/tr&gt;</span></span>
+<span id="cb27-6"><a></a><span class="st">    &lt;tr&gt;&lt;td&gt;7.2&lt;/td&gt; &lt;td&gt;8.1&lt;/td&gt;&lt;/tr&gt;</span></span>
+<span id="cb27-7"><a></a><span class="st">  &lt;/table&gt;</span></span>
+<span id="cb27-8"><a></a><span class="st">&quot;</span>)</span>
+<span id="cb27-9"><a></a>tbl <span class="sc">|&gt;</span> <span class="fu">html_element</span>(<span class="st">&quot;table&quot;</span>) <span class="sc">|&gt;</span> <span class="fu">html_table</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 2
       x     y
@@ -1492,15 +1487,15 @@ margin-right: 0; }
 <h2>A real page: world record in the mile</h2>
 <p>The Wikipedia page on the <a href="https://en.wikipedia.org/wiki/Mile_run_world_record_progression">mile run world record progression</a> holds <strong>a dozen</strong> tables. <code>html_elements(&quot;table&quot;)</code> grabs them all into a list:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://en.wikipedia.org/wiki/Mile_run_world_record_progression&quot;</span></span>
-<span id="cb30-2"><a></a></span>
-<span id="cb30-3"><a></a>tables <span class="ot">&lt;-</span> url <span class="sc">|&gt;</span></span>
-<span id="cb30-4"><a></a>  <span class="fu">read_html</span>() <span class="sc">|&gt;</span></span>
-<span id="cb30-5"><a></a>  <span class="fu">html_elements</span>(<span class="st">&quot;table&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb30-6"><a></a>  <span class="fu">html_table</span>()</span>
-<span id="cb30-7"><a></a></span>
-<span id="cb30-8"><a></a><span class="fu">length</span>(tables)     <span class="co"># 12 tables on the page</span></span>
-<span id="cb30-9"><a></a>record <span class="ot">&lt;-</span> tables[[<span class="dv">4</span>]]   <span class="co"># the men&#39;s IAAF-era progression</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://en.wikipedia.org/wiki/Mile_run_world_record_progression&quot;</span></span>
+<span id="cb29-2"><a></a></span>
+<span id="cb29-3"><a></a>tables <span class="ot">&lt;-</span> url <span class="sc">|&gt;</span></span>
+<span id="cb29-4"><a></a>  <span class="fu">read_html</span>() <span class="sc">|&gt;</span></span>
+<span id="cb29-5"><a></a>  <span class="fu">html_elements</span>(<span class="st">&quot;table&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb29-6"><a></a>  <span class="fu">html_table</span>()</span>
+<span id="cb29-7"><a></a></span>
+<span id="cb29-8"><a></a><span class="fu">length</span>(tables)     <span class="co"># 12 tables on the page</span></span>
+<span id="cb29-9"><a></a>record <span class="ot">&lt;-</span> tables[[<span class="dv">4</span>]]   <span class="co"># the men&#39;s IAAF-era progression</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -1515,21 +1510,21 @@ margin-right: 0; }
 6 4:06.8 Glenn Cunningham United States 16 June 1934[6]  </code></pre>
 </div>
 </div>
-<p>Double brackets <code>[[4]]</code> because <code>tables</code> is a <strong>list</strong> of data frames. (Note: Wikipedia changes, so table <em>4</em> today may differ tomorrow — always look before you trust an index.)</p>
+<p>Double brackets <code>[[4]]</code> because <code>tables</code> is a <strong>list</strong> of data frames. (Note: Wikipedia changes frequently, so table <em>4</em> today may differ tomorrow; always be sure to look before you trust an index.)</p>
 </section></section>
 <section>
-<section id="cleaning-what-you-scrape" class="title-slide slide level1 center" data-background-color="#001E44">
-<h1>Cleaning what you scrape</h1>
+<section id="cleaning-scraped-data" class="title-slide slide level1 center" data-background-color="#001E44">
+<h1>Cleaning scraped data</h1>
 
 </section>
-<section id="scraped-data-is-dirty-data" class="slide level2 scrollable nostretch">
-<h2>Scraped data is dirty data</h2>
+<section id="scraped-data-is-usually-dirty" class="slide level2 scrollable nostretch">
+<h2>Scraped data is usually dirty</h2>
 <p>Look closely at what we got:</p>
 <ul>
-<li><code>Date</code> is <code>&quot;31 May 1913[6]&quot;</code> — a footnote marker <code>[6]</code> is glued on.</li>
-<li><code>Time</code> is <code>&quot;4:14.4&quot;</code> — a string, not a number we can plot or subtract.</li>
+<li><code>Date</code> is <code>&quot;31 May 1913[6]&quot;</code>. Here, a footnote marker <code>[6]</code> is glued on.</li>
+<li><code>Time</code> is <code>&quot;4:14.4&quot;</code>, which is a string, not a number we can plot or subtract.</li>
 </ul>
-<p>Scraped values are <strong>always character strings</strong>, often with human-formatting baggage. The last mile of scraping is cleaning. Our toolkit, all from this unit:</p>
+<p>Scraped values are <strong>always character strings</strong>, often with human-formatting baggage. The next step after scraping is almost always cleaning:</p>
 <ul>
 <li><code>str_remove()</code> / <code>gsub()</code> + <strong>regular expressions</strong> to strip junk</li>
 <li><code>parse_number()</code> for currency, percentages, stray units</li>
@@ -1541,9 +1536,9 @@ margin-right: 0; }
 <h2>Stripping footnotes with a regex</h2>
 <p>We want to delete a bracketed footnote like <code>[6]</code> at the end of the date. A <strong>regular expression</strong> describes that pattern:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a></a>record <span class="ot">&lt;-</span> record <span class="sc">|&gt;</span></span>
-<span id="cb32-2"><a></a>  <span class="fu">mutate</span>(<span class="at">Date =</span> <span class="fu">str_remove</span>(Date, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">[.</span><span class="sc">\\</span><span class="st">]$&quot;</span>))</span>
-<span id="cb32-3"><a></a>record<span class="sc">$</span>Date</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>record <span class="ot">&lt;-</span> record <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a></a>  <span class="fu">mutate</span>(<span class="at">Date =</span> <span class="fu">str_remove</span>(Date, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">[.</span><span class="sc">\\</span><span class="st">]$&quot;</span>))</span>
+<span id="cb31-3"><a></a>record<span class="sc">$</span>Date</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] &quot;31 May 1913&quot;    &quot;16 July 1915&quot;   &quot;23 August 1923&quot; &quot;4 October 1931&quot;
 [5] &quot;15 July 1933&quot;   &quot;16 June 1934&quot;  </code></pre>
@@ -1576,18 +1571,18 @@ margin-right: 0; }
 </tr>
 </tbody>
 </table>
-<p>You’ll meet regular expressions properly next week — for now, recognize them as pattern-matchers for cleaning text.</p>
+<p>We’ll discuss regular expressions in more detail next week.</p>
 </section>
 <section id="parsing-dates-and-times" class="slide level2 scrollable nostretch">
 <h2>Parsing dates and times</h2>
-<p>Now the date is clean, hand it to <code>lubridate</code>. These are <code>&quot;4 October 1931&quot;</code>-style → <strong>day-month-year</strong> → <code>dmy()</code>:</p>
+<p>Once we have a clean date, we can use the <code>lubridate</code> package. These are <code>&quot;4 October 1931&quot;</code>-style to <strong>day-month-year</strong> to <code>dmy()</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a></a>record <span class="ot">&lt;-</span> record <span class="sc">|&gt;</span></span>
-<span id="cb34-2"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb34-3"><a></a>    <span class="at">Date    =</span> <span class="fu">dmy</span>(Date),</span>
-<span id="cb34-4"><a></a>    <span class="at">seconds =</span> <span class="fu">as.numeric</span>(<span class="fu">as.duration</span>(<span class="fu">ms</span>(Time)))   <span class="co"># &quot;4:14.4&quot; -&gt; 254.4 sec</span></span>
-<span id="cb34-5"><a></a>  )</span>
-<span id="cb34-6"><a></a>record <span class="sc">|&gt;</span> <span class="fu">select</span>(Time, seconds, Date)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>record <span class="ot">&lt;-</span> record <span class="sc">|&gt;</span></span>
+<span id="cb33-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb33-3"><a></a>    <span class="at">Date =</span> <span class="fu">dmy</span>(Date),</span>
+<span id="cb33-4"><a></a>    <span class="at">seconds =</span> <span class="fu">as.numeric</span>(<span class="fu">as.duration</span>(<span class="fu">ms</span>(Time))) <span class="co"># &quot;4:14.4&quot; -&gt; 254.4 sec</span></span>
+<span id="cb33-5"><a></a>  )</span>
+<span id="cb33-6"><a></a>record <span class="sc">|&gt;</span> <span class="fu">select</span>(Time, seconds, Date)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
   Time   seconds Date      
@@ -1606,15 +1601,15 @@ margin-right: 0; }
 <h2>Pay-off: a plot of progress</h2>
 <p>With clean <code>&lt;date&gt;</code> and numeric <code>seconds</code>, the record progression plots itself:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a></a><span class="fu">ggplot</span>(record, <span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> seconds)) <span class="sc">+</span></span>
-<span id="cb36-2"><a></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;grey60&quot;</span>) <span class="sc">+</span></span>
-<span id="cb36-3"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">&quot;#001E44&quot;</span>) <span class="sc">+</span></span>
-<span id="cb36-4"><a></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Athlete), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.8</span>, <span class="at">size =</span> <span class="fl">2.6</span>) <span class="sc">+</span></span>
-<span id="cb36-5"><a></a>  <span class="fu">labs</span>(</span>
-<span id="cb36-6"><a></a>    <span class="at">title =</span> <span class="st">&quot;Men&#39;s mile world record falls over time&quot;</span>,</span>
-<span id="cb36-7"><a></a>    <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">&quot;Record time (seconds)&quot;</span></span>
-<span id="cb36-8"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb36-9"><a></a>  <span class="fu">expand_limits</span>(<span class="at">y =</span> <span class="dv">240</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a></a><span class="fu">ggplot</span>(record, <span class="fu">aes</span>(<span class="at">x =</span> Date, <span class="at">y =</span> seconds)) <span class="sc">+</span></span>
+<span id="cb35-2"><a></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">&quot;grey60&quot;</span>) <span class="sc">+</span></span>
+<span id="cb35-3"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">&quot;#001E44&quot;</span>) <span class="sc">+</span></span>
+<span id="cb35-4"><a></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> Athlete), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.8</span>, <span class="at">size =</span> <span class="fl">2.6</span>) <span class="sc">+</span></span>
+<span id="cb35-5"><a></a>  <span class="fu">labs</span>(</span>
+<span id="cb35-6"><a></a>    <span class="at">title =</span> <span class="st">&quot;Men&#39;s mile world record falls over time&quot;</span>,</span>
+<span id="cb35-7"><a></a>    <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">&quot;Record time (seconds)&quot;</span></span>
+<span id="cb35-8"><a></a>  ) <span class="sc">+</span></span>
+<span id="cb35-9"><a></a>  <span class="fu">expand_limits</span>(<span class="at">y =</span> <span class="dv">240</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1634,19 +1629,19 @@ margin-right: 0; }
 <h2>How do I know <em>which</em> selector?</h2>
 <p>This is the genuinely hard part — and it’s normal to need trial and error. Three ways to discover the selector you need:</p>
 <ol type="1">
-<li><strong>Right-click → Inspect</strong> in your browser. The developer tools highlight the exact HTML for whatever you clicked. Look at its <code>class</code> and <code>id</code>.</li>
-<li><strong><a href="https://rvest.tidyverse.org/articles/selectorgadget.html">SelectorGadget</a></strong> — a point-and-click bookmarklet. Click what you <em>want</em> (turns green), click what you <em>don’t</em> (turns red), and it writes the selector for you.</li>
-<li><strong>Copy as selector</strong> — in DevTools, right-click an element → Copy → Copy selector.</li>
+<li><strong>Right-click then Inspect</strong> in your browser. The developer tools highlight the exact HTML for whatever you clicked. Look at its <code>class</code> and <code>id</code>.</li>
+<li><strong><a href="https://rvest.tidyverse.org/articles/selectorgadget.html">SelectorGadget</a></strong>: a point-and-click bookmarklet. Click what you <em>want</em> (turns green), click what you <em>don’t</em> (turns red), and it writes the selector for you.</li>
+<li><strong>Copy as selector</strong>: in DevTools, right-click an element → Copy → Copy selector.</li>
 </ol>
 <p>You want a selector that’s <strong>sensitive</strong> (catches everything you want) <em>and</em> <strong>specific</strong> (catches nothing you don’t).</p>
 </section>
-<section id="a-note-on-dynamic-sites" class="slide level2 scrollable nostretch">
-<h2>A note on dynamic sites</h2>
+<section id="dynamic-sites" class="slide level2 scrollable nostretch">
+<h2>Dynamic sites</h2>
 <p>Sometimes <code>html_elements()</code> returns <em>nothing</em> like what you see in the browser. Usually that means the page builds its content with <strong>JavaScript</strong> <em>after</em> loading.</p>
-<p><code>rvest</code> only downloads the raw HTML — it doesn’t run JavaScript. So:</p>
+<p><code>rvest</code> only downloads the raw HTML. It doesn’t run JavaScript. This means you should:</p>
 <ul>
 <li>Check whether the data is in the <em>raw</em> HTML (View Source, not Inspect).</li>
-<li>If it’s truly JS-rendered, you need a tool that drives a real browser — the <a href="https://rvest.tidyverse.org/articles/"><code>chromote</code></a> package runs Chrome in the background.</li>
+<li>If it’s truly JS-rendered, you need a tool that drives a real browser: the <a href="https://rvest.tidyverse.org/articles/"><code>chromote</code></a> package runs Chrome in the background.</li>
 <li>Or, again: <strong>look for an API first</strong>. Dynamic pages are often fed by one.</li>
 </ul>
 </section></section>
@@ -1659,24 +1654,11 @@ margin-right: 0; }
 <h2>In-class activity</h2>
 <p>Open <code>day19-activity.R</code> in RStudio and work through the parts in order.</p>
 <ul>
-<li><strong>Part 1</strong> — HTML basics with <code>minimal_html()</code>: selectors, <code>element</code> vs <code>elements</code>, the alignment trap.</li>
-<li><strong>Part 2</strong> — scrape a real Wikipedia table with <code>html_table()</code>, then clean dates and times and make a plot.</li>
-<li><strong>Part 3 (challenge)</strong> — scrape <em>non-table</em> structured content (the rvest StarWars vignette) into a tidy tibble, and pull a link out of an attribute.</li>
+<li><strong>Part 1</strong>: HTML basics with <code>minimal_html()</code>: selectors, <code>element</code> vs <code>elements</code>, the alignment trap.</li>
+<li><strong>Part 2</strong>: scrape a real Wikipedia table with <code>html_table()</code>, then clean dates and times and make a plot.</li>
+<li><strong>Part 3 (challenge)</strong>: scrape <em>non-table</em> structured content (the rvest StarWars vignette) into a tidy tibble, and pull a link out of an attribute.</li>
 </ul>
 <p><a href="day19-activity.R" download="day19-activity.R">Activity file</a></p>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Tip</strong></p>
-</div>
-<div class="callout-content">
-<p>If a live page won’t load or has changed, that <em>is</em> web scraping — note it and move on. The skills transfer; the specific HTML is always a moving target.</p>
-</div>
-</div>
-</div>
 </section>
 <section id="wrap-up-looking-ahead" class="slide level2 scrollable nostretch">
 <h2>Wrap-up &amp; looking ahead</h2>
