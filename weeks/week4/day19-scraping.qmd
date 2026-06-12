@@ -35,8 +35,7 @@ library(lubridate)
 
 **Before class**
 
-- **Perusall Assignment**: [*DC* §16.3](https://psu.instructure.com/courses/2487468/assignments/18325375) — HTML tables & web scraping
-- Welcome back from the exam! Today is lighter and hands-on.
+- **Perusall Assignment**: [*DC* §16.3](https://psu.instructure.com/courses/2487468/assignments/18325375): HTML tables & web scraping
 
 **Plan for today**
 
@@ -57,9 +56,9 @@ library(lubridate)
 ## Every easy data format is alike {.scrollable .nostretch}
 
 > *"Every easy data format is alike. Every difficult data format is difficult in its own way."*
-> — with apologies to Leo Tolstoy
+> - with apologies to Leo Tolstoy
 
-So far the world has been kind: `penguins`, `flights`, CSVs with a tidy `read_csv()`. But a huge amount of data you'll actually want lives on **web pages**, formatted for human eyes, not for `read_csv()`.
+So we've worked with easily accessible datasets like `penguins`, `flights`, or CSVs that can be quickly imported with `read_csv()`. But a lot of data is only available on **web pages** that are formatted for human eyes rather than `read_csv()`.
 
 **Data scraping**: gathering data from sources that aren't already in data-frame format — usually translating from the HTML a browser renders into a tidy data frame.
 
