@@ -1,65 +1,502 @@
 ---
 title: "Web scraping & HTML tables"
 subtitle: "Friday, June 12, 2026"
+lang: en
+editor: source
+engine: knitr
 format:
+  revealjs:
+    slide-number: true
+    embed-resources: true
+    smaller: true
+    highlight-style: a11y
+    output-file: "day19-scraping-slides.html"
   html:
     toc: true
-    code-fold: false
-editor: source
+    embed-resources: true
+    highlight-style: a11y
+    axe: true
+    output-file: "day19-scraping-page.html"
+  pdf:
+    fig-pos: "H"
 ---
 
-::: callout-note
-## Today's plan
-- [ ] TODO: list 2-4 concrete goals for the class
-:::
-
-## Before class
-
-- Read: Data Computing Ch 16 (§16.3)
-- TODO: any prep materials, data files, etc.
-
-## Outline
-
-### 1. TODO: opening segment (~15 min)
-
-TODO: concept exposition or motivating example.
-
 ```{r}
-#| eval: false
-# TODO: live-coded example
+#| echo: FALSE
+#| message: FALSE
+#| warning: FALSE
+library(tidyverse)
+library(rvest)
+library(lubridate)
 ```
 
-### 2. TODO: main segment (~25 min)
+::: {.callout-note style="font-size: 1.3em;"}
+## [Today: Friday June 12]{style="font-size: 1.3em;"}
 
-TODO: hands-on practice — students follow along.
+**Before class**
+
+- **Perusall Assignment**: [*DC* §16.3](https://psu.instructure.com/courses/2487468/assignments/18325375) — HTML tables & web scraping
+- Welcome back from the exam! Today is lighter and hands-on.
+
+**Plan for today**
+
+- Why scraping, and the ethics of doing it responsibly
+- A 5-minute tour of HTML
+- `rvest`: `read_html()`, CSS selectors, `html_text2()`, `html_attr()`
+- The easy win: `html_table()`
+- Cleaning what you scrape (footnotes, times, dates)
+- In-class activity
+
+**Helpful links**
+
+- [Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*R4DS* Ch. 24](https://r4ds.hadley.nz/webscraping) · [*DC* Ch. 16](https://dtkaplan.github.io/DataComputingEbook/chap-scraping.html) · [rvest reference](https://rvest.tidyverse.org/reference)
+:::
+
+# Why scrape? {background-color="#001E44"}
+
+## Every easy data format is alike {.scrollable .nostretch}
+
+> *"Every easy data format is alike. Every difficult data format is difficult in its own way."*
+> — with apologies to Leo Tolstoy
+
+So far the world has been kind: `penguins`, `flights`, CSVs with a tidy `read_csv()`. But a huge amount of data you'll actually want lives on **web pages**, formatted for human eyes, not for `read_csv()`.
+
+**Data scraping**: gathering data from sources that aren't already in data-frame format — usually translating from the HTML a browser renders into a tidy data frame.
+
+Today's goal: point R at a URL and walk away with a `tibble`.
+
+## When to scrape (and when not to) {.scrollable .nostretch}
+
+Before you scrape, **always check for a friendlier door**:
+
+1. **Is there a download link?** A "Download CSV" button beats scraping every time.
+2. **Is there an API?** Many sites (Spotify, the Census, GitHub) offer an [API](https://r4ds.hadley.nz/webscraping) that returns clean JSON. Often a CRAN package already wraps it (`tidycensus`, `spotifyr`, `gh`).
+3. **Only then, scrape the HTML.**
+
+Scraping is the technique that *always* works — but it's also the most fragile. If the site redesigns its HTML tomorrow, your code breaks. Use it when nothing easier exists.
+
+# Scrape responsibly {background-color="#7C0A02"}
+
+## Ethics & legality {.scrollable .nostretch}
+
+We're not lawyers, but the rule of thumb from *R4DS*: you're usually on safe ground if the data is
+
+- **public** — you didn't have to log in or click "I agree",
+- **non-personal** — not names, emails, locations of identifiable people, and
+- **factual** — facts and data aren't copyrightable (creative text and images are).
+
+Cautionary tale: in 2016 researchers scraped ~70,000 **OkCupid** profiles — public, but deeply personal — and released them with no anonymization. It was widely condemned. *Public* does not mean *fair game*.
+
+::: {.callout-warning}
+Personally identifiable information (names, ages, locations) lives under strict laws (GDPR in Europe). When in doubt, don't.
+:::
+
+## Be a polite guest {.scrollable .nostretch}
+
+A scraper can fire off thousands of requests in seconds. To a small server that looks like an attack.
+
+- **Throttle**: pause between requests. Don't hammer a server.
+- **Cache**: never download the same page twice.
+- **Identify yourself** and respect `robots.txt` and terms of service where you reasonably can.
+
+The [`polite`](https://dmi3kno.github.io/polite/) package automates all of this — it pauses, caches, and checks `robots.txt` for you.
 
 ```{r}
-#| eval: false
-# TODO: example to walk through
+#| echo: TRUE
+#| eval: FALSE
+# install.packages("polite")
+library(polite)
+session <- bow("https://www.example.com")   # introduce yourself
+result  <- scrape(session)                    # politely fetch
 ```
 
-### 3. In-class activity (~20 min)
+# A 5-minute tour of HTML {background-color="#001E44"}
 
-TODO: brief description, or link to a separate handout.
+## What a web page really is {.scrollable .nostretch}
 
-### 4. Wrap-up (~5 min)
+**HTML** (HyperText Markup Language) is the language behind every web page. Strip away the styling and it's just nested text:
 
-- TODO: key takeaway
-- TODO: preview next class
+``` html
+<html>
+<head>
+  <title>Page title</title>
+</head>
+<body>
+  <h1 id='first'>A heading</h1>
+  <p>Some text &amp; <b>some bold text.</b></p>
+  <img src='myimg.png' width='100' height='100'>
+</body>
+</html>
+```
 
-## Resources
+The whole page is a **tree** of nested elements. Scraping works precisely *because* most pages with data have a consistent, repeating structure.
 
-- TODO: slides PDF
-- TODO: in-class code .R file
-- TODO: activity handout
+## Anatomy of an element {.scrollable .nostretch}
 
-## After class
+```
+       start tag      attribute        contents          end tag
+          │               │                │                │
+        ┌─┴─┐    ┌────────┴────────┐   ┌────┴───┐         ┌──┴──┐
+        <a     href='/cats'  class='link'>  cute cats     </a>
+```
 
-- TODO: due tomorrow
-- TODO: optional supplementary reading
+- **Tags** come in pairs: `<p>` … `</p>`. The content lives in between.
+- **Attributes** are `name='value'` pairs inside the start tag.
+- Two attributes matter most for scraping:
+  - **`id`** — a *unique* label for one element (`id='first'`)
+  - **`class`** — a *reusable* label shared by many elements (`class='weight'`)
 
-::: {.callout-tip collapse="true"}
-## Instructor notes
+Designers use `id` and `class` to *style* the page. We hijack them to *find our data*.
 
-TODO: notes to self — pacing, common student questions, things to watch for.
+## Useful tags to recognize {.scrollable .nostretch}
+
+| Tag | Meaning |
+|---|---|
+| `<h1>`–`<h6>` | headings |
+| `<p>` | paragraph |
+| `<ul>` / `<ol>` / `<li>` | unordered / ordered list / list item |
+| `<a href='...'>` | link (destination in the `href` attribute) |
+| `<img src='...'>` | image (source in the `src` attribute) |
+| `<b>` / `<i>` / `<span>` | bold / italic / inline container |
+| `<table>` `<tr>` `<th>` `<td>` | table, row, header cell, data cell |
+
+You don't need to memorize HTML — just enough to spot where your data is hiding. A little googling or the [MDN docs](https://developer.mozilla.org/) fills the rest.
+
+# rvest {background-color="#001E44"}
+
+## The rvest workflow {.scrollable .nostretch}
+
+[`rvest`](https://rvest.tidyverse.org/) (think "harvest") is the tidyverse scraping package. It's installed with the tidyverse but loaded separately:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+library(rvest)
+```
+
+The pipeline is always the same four moves:
+
+1. **`read_html(url)`** — download the page into R
+2. **`html_elements(css)`** — select the pieces you want (a *CSS selector*)
+3. **`html_element(css)`** — narrow to one piece per observation
+4. **`html_text2()` / `html_attr()` / `html_table()`** — pull out the actual values
+
+## Practice without the internet {.scrollable .nostretch}
+
+`minimal_html()` lets us hand-write HTML to experiment — no network, no fragility. We'll use it to learn, then point the same tools at real pages.
+
+```{r}
+#| echo: TRUE
+html <- minimal_html("
+  <h1>This is a heading</h1>
+  <p id='first'>This is a paragraph</p>
+  <p class='important'>This is an important paragraph</p>
+")
+html
+```
+
+Everything that follows works *identically* whether `html` came from `minimal_html()` or `read_html("https://...")`.
+
+## CSS selectors: three you'll use constantly {.scrollable .nostretch}
+
+A **CSS selector** is a tiny pattern language for "which elements do I mean?"
+
+| Selector | Selects | Read it as |
+|---|---|---|
+| `p` | all `<p>` elements | "every paragraph" |
+| `.important` | all elements with `class="important"` | "anything classed important" (dot = class) |
+| `#first` | the element with `id="first"` | "the one with id first" (hash = id) |
+| `p.important` | `<p>` elements that are *also* `class="important"` | combine them |
+| `li b` | `<b>` *inside* an `<li>` | descendant (space) |
+
+```{r}
+#| echo: TRUE
+html |> html_elements("p")            # both paragraphs
+html |> html_elements(".important")   # just the important one
+html |> html_element("#first")        # the one with id="first"
+```
+
+## element vs. elements (this trips everyone up) {.scrollable .nostretch}
+
+Two nearly identical functions, one crucial difference:
+
+- **`html_elements()`** (plural) — returns *all* matches. Length depends on the page.
+- **`html_element()`** (singular) — returns *one match per input*, filling `NA` when nothing matches.
+
+```{r}
+#| echo: TRUE
+html |> html_elements("b")   # 0 matches -> empty
+html |> html_element("b")    # 0 matches -> NA (length preserved!)
+```
+
+That `NA`-filling behavior is the secret to keeping columns aligned. Here's why it matters →
+
+## Why the distinction matters {.scrollable .nostretch}
+
+A page of four StarWars characters — but not all have a recorded weight:
+
+```{r}
+#| echo: TRUE
+droids <- minimal_html("
+  <ul>
+    <li><b>C-3PO</b> is a <i>droid</i> that weighs <span class='weight'>167 kg</span></li>
+    <li><b>R2-D2</b> is a <i>droid</i> that weighs <span class='weight'>96 kg</span></li>
+    <li><b>Yoda</b> weighs <span class='weight'>66 kg</span></li>
+    <li><b>R4-P17</b> is a <i>droid</i></li>
+  </ul>
+")
+```
+
+Grab the weights *directly* and you get **3** values for **4** characters — and no way to know which one is missing:
+
+```{r}
+#| echo: TRUE
+droids |> html_elements(".weight") |> html_text2()   # length 3 — misaligned!
+```
+
+## The robust pattern: rows then columns {.scrollable .nostretch}
+
+**Step 1.** Use `html_elements()` to grab one element *per observation* (each `<li>` is one character):
+
+```{r}
+#| echo: TRUE
+characters <- droids |> html_elements("li")
+length(characters)   # 4 — one per character
+```
+
+**Step 2.** Use `html_element()` *on each* to pull one value per observation. Missing weights become `NA`, so everything stays aligned:
+
+```{r}
+#| echo: TRUE
+tibble(
+  name    = characters |> html_element("b")       |> html_text2(),
+  species = characters |> html_element("i")        |> html_text2(),
+  weight  = characters |> html_element(".weight")  |> html_text2()
+)
+```
+
+::: {.callout-tip}
+**The golden rule:** `html_elements()` to find your *rows*, then `html_element()` to find each *column*. Same number of values every time.
 :::
+
+## Pulling out the values {.scrollable .nostretch}
+
+Selecting elements gets you HTML nodes. Two functions turn nodes into data:
+
+**`html_text2()`** — the visible text (handles whitespace like a browser; prefer it over `html_text()`):
+
+```{r}
+#| echo: TRUE
+droids |> html_elements("b") |> html_text2()
+```
+
+**`html_attr("name")`** — the value of an attribute, e.g. a link's destination:
+
+```{r}
+#| echo: TRUE
+links <- minimal_html("
+  <p><a href='https://en.wikipedia.org/wiki/Cat'>cats</a></p>
+  <p><a href='https://en.wikipedia.org/wiki/Dog'>dogs</a></p>
+")
+links |> html_elements("a") |> html_attr("href")
+```
+
+::: {.callout-warning}
+`html_attr()` **always returns a string** — `html_attr("width")` gives `"100"`, not `100`. Follow up with `parse_number()` / `as.integer()`.
+:::
+
+# The easy win: tables {background-color="#001E44"}
+
+## html_table() {.scrollable .nostretch}
+
+If your data is already in an HTML `<table>`, you're in luck — `html_table()` reads it straight into a tibble, guessing column types as it goes.
+
+```{r}
+#| echo: TRUE
+tbl <- minimal_html("
+  <table>
+    <tr><th>x</th>   <th>y</th></tr>
+    <tr><td>1.5</td> <td>2.7</td></tr>
+    <tr><td>4.9</td> <td>1.3</td></tr>
+    <tr><td>7.2</td> <td>8.1</td></tr>
+  </table>
+")
+tbl |> html_element("table") |> html_table()
+```
+
+`x` and `y` came back as `<dbl>` automatically. (Turn that off with `convert = FALSE` when the auto-guess misfires.)
+
+## A real page: world record in the mile {.scrollable .nostretch}
+
+The Wikipedia page on the [mile run world record progression](https://en.wikipedia.org/wiki/Mile_run_world_record_progression) holds **a dozen** tables. `html_elements("table")` grabs them all into a list:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+url <- "https://en.wikipedia.org/wiki/Mile_run_world_record_progression"
+
+tables <- url |>
+  read_html() |>
+  html_elements("table") |>
+  html_table()
+
+length(tables)     # 12 tables on the page
+record <- tables[[4]]   # the men's IAAF-era progression
+```
+
+```{r}
+#| echo: FALSE
+record <- tibble::tribble(
+  ~Time,     ~Athlete,            ~Nationality,     ~Date,
+  "4:14.4",  "John Paul Jones",   "United States",  "31 May 1913[6]",
+  "4:12.6",  "Norman Taber",      "United States",  "16 July 1915[6]",
+  "4:10.4",  "Paavo Nurmi",       "Finland",        "23 August 1923[6]",
+  "4:09.2",  "Jules Ladoumègue",  "France",         "4 October 1931[6]",
+  "4:07.6",  "Jack Lovelock",     "New Zealand",    "15 July 1933[6]",
+  "4:06.8",  "Glenn Cunningham",  "United States",  "16 June 1934[6]"
+)
+record
+```
+
+Double brackets `[[4]]` because `tables` is a **list** of data frames. (Note: Wikipedia changes, so table *4* today may differ tomorrow — always look before you trust an index.)
+
+# Cleaning what you scrape {background-color="#001E44"}
+
+## Scraped data is dirty data {.scrollable .nostretch}
+
+Look closely at what we got:
+
+- `Date` is `"31 May 1913[6]"` — a footnote marker `[6]` is glued on.
+- `Time` is `"4:14.4"` — a string, not a number we can plot or subtract.
+
+Scraped values are **always character strings**, often with human-formatting baggage. The last mile of scraping is cleaning. Our toolkit, all from this unit:
+
+- `str_remove()` / `gsub()` + **regular expressions** to strip junk
+- `parse_number()` for currency, percentages, stray units
+- `lubridate` (`dmy()`, `mdy()`, …) for dates
+- `as.duration(ms(...))` for times like `"4:14.4"`
+
+## Stripping footnotes with a regex {.scrollable .nostretch}
+
+We want to delete a bracketed footnote like `[6]` at the end of the date. A **regular expression** describes that pattern:
+
+```{r}
+#| echo: TRUE
+record <- record |>
+  mutate(Date = str_remove(Date, "\\[.\\]$"))
+record$Date
+```
+
+Decoding `"\\[.\\]$"`:
+
+| Piece | Means |
+|---|---|
+| `\\[` `\\]` | a *literal* `[` and `]` (escaped — brackets are special) |
+| `.` | any single character (here, the footnote digit) |
+| `$` | anchored at the **end** of the string |
+
+You'll meet regular expressions properly next week — for now, recognize them as pattern-matchers for cleaning text.
+
+## Parsing dates and times {.scrollable .nostretch}
+
+Now the date is clean, hand it to `lubridate`. These are `"4 October 1931"`-style → **day-month-year** → `dmy()`:
+
+```{r}
+#| echo: TRUE
+record <- record |>
+  mutate(
+    Date    = dmy(Date),
+    seconds = as.numeric(as.duration(ms(Time)))   # "4:14.4" -> 254.4 sec
+  )
+record |> select(Time, seconds, Date)
+```
+
+`ms()` reads `"minutes:seconds"`; `as.duration()` turns it into a real time span; `as.numeric()` gives plain seconds we can plot.
+
+## Pay-off: a plot of progress {.scrollable .nostretch}
+
+With clean `<date>` and numeric `seconds`, the record progression plots itself:
+
+```{r}
+#| echo: TRUE
+#| fig-height: 3.2
+ggplot(record, aes(x = Date, y = seconds)) +
+  geom_line(color = "grey60") +
+  geom_point(size = 2, color = "#001E44") +
+  geom_text(aes(label = Athlete), vjust = -0.8, size = 2.6) +
+  labs(
+    title = "Men's mile world record falls over time",
+    x = NULL, y = "Record time (seconds)"
+  ) +
+  expand_limits(y = 240)
+```
+
+From scattered HTML to a finished plot — the whole import-and-clean pipeline in one slide.
+
+# Finding selectors {background-color="#001E44"}
+
+## How do I know *which* selector? {.scrollable .nostretch}
+
+This is the genuinely hard part — and it's normal to need trial and error. Three ways to discover the selector you need:
+
+1. **Right-click → Inspect** in your browser. The developer tools highlight the exact HTML for whatever you clicked. Look at its `class` and `id`.
+2. **[SelectorGadget](https://rvest.tidyverse.org/articles/selectorgadget.html)** — a point-and-click bookmarklet. Click what you *want* (turns green), click what you *don't* (turns red), and it writes the selector for you.
+3. **Copy as selector** — in DevTools, right-click an element → Copy → Copy selector.
+
+You want a selector that's **sensitive** (catches everything you want) *and* **specific** (catches nothing you don't).
+
+## A note on dynamic sites {.scrollable .nostretch}
+
+Sometimes `html_elements()` returns *nothing* like what you see in the browser. Usually that means the page builds its content with **JavaScript** *after* loading.
+
+`rvest` only downloads the raw HTML — it doesn't run JavaScript. So:
+
+- Check whether the data is in the *raw* HTML (View Source, not Inspect).
+- If it's truly JS-rendered, you need a tool that drives a real browser — the [`chromote`](https://rvest.tidyverse.org/articles/) package runs Chrome in the background.
+- Or, again: **look for an API first**. Dynamic pages are often fed by one.
+
+# Activity {background-color="#7C0A02"}
+
+## In-class activity {.scrollable .nostretch}
+
+Open `day19-activity.R` in RStudio and work through the parts in order.
+
+- **Part 1** — HTML basics with `minimal_html()`: selectors, `element` vs `elements`, the alignment trap.
+- **Part 2** — scrape a real Wikipedia table with `html_table()`, then clean dates and times and make a plot.
+- **Part 3 (challenge)** — scrape *non-table* structured content (the rvest StarWars vignette) into a tidy tibble, and pull a link out of an attribute.
+
+[Activity file](day19-activity.R){download="day19-activity.R"}
+
+::: {.callout-tip}
+If a live page won't load or has changed, that *is* web scraping — note it and move on. The skills transfer; the specific HTML is always a moving target.
+:::
+
+## Wrap-up & looking ahead {.scrollable .nostretch}
+
+:::: {.columns}
+::: {.column width="55%"}
+**What we covered**
+
+- Scrape responsibly: public, non-personal, factual; throttle & cache
+- HTML is a tree of tags, with `class` and `id` attributes
+- `rvest`: `read_html()` → `html_elements()` → `html_element()` → `html_text2()` / `html_attr()`
+- The golden rule: **rows with `html_elements()`, columns with `html_element()`**
+- `html_table()` for the easy wins
+- Clean scraped strings with regex, `parse_number()`, `lubridate`, `as.duration(ms())`
+
+**Upcoming**
+
+- **Mon Jun 15:** writing your own **functions** (Week 5)
+- **HW 4** due Mon Jun 15
+- **Project Checkpoint 1** due Sun Jun 14
+:::
+::: {.column width="45%"}
+**Reach out**
+
+Stuck? Office hours, or email me ([cgc5478@psu.edu](mailto:cgc5478@psu.edu)) or Xinyue ([xpw5228@psu.edu](mailto:xpw5228@psu.edu)).
+
+**Reference**
+
+[Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*R4DS* Ch. 24](https://r4ds.hadley.nz/webscraping) · [rvest reference](https://rvest.tidyverse.org/reference) · [SelectorGadget](https://rvest.tidyverse.org/articles/selectorgadget.html)
+:::
+::::
