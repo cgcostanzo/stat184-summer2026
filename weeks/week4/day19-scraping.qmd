@@ -60,56 +60,51 @@ library(lubridate)
 
 So we've worked with easily accessible datasets like `penguins`, `flights`, or CSVs that can be quickly imported with `read_csv()`. But a lot of data is only available on **web pages** that are formatted for human eyes rather than `read_csv()`.
 
-**Data scraping**: gathering data from sources that aren't already in data-frame format — usually translating from the HTML a browser renders into a tidy data frame.
-
-Today's goal: point R at a URL and walk away with a `tibble`.
+**Data scraping** is gathering data from sources that aren't already in data-frame format; in our context, this is usually translating from the HTML a browser renders into a tidy data frame.
 
 ## When to scrape (and when not to) {.scrollable .nostretch}
 
 Before you scrape, **always check for a friendlier door**:
 
-1. **Is there a download link?** A "Download CSV" button beats scraping every time.
-2. **Is there an API?** Many sites (Spotify, the Census, GitHub) offer an [API](https://r4ds.hadley.nz/webscraping) that returns clean JSON. Often a CRAN package already wraps it (`tidycensus`, `spotifyr`, `gh`).
+1. **Is there a download link?**
+2. **Is there an API?** 
+- Many sites (Spotify, the Census, GitHub) offer an [API](https://r4ds.hadley.nz/webscraping) that returns clean JSON. Often a CRAN package already wraps it (`tidycensus`, `spotifyr`, `gh`).
 3. **Only then, scrape the HTML.**
 
-Scraping is the technique that *always* works — but it's also the most fragile. If the site redesigns its HTML tomorrow, your code breaks. Use it when nothing easier exists.
+Scraping is flexible but fragile. If a website administrator redesigns its HTML, your code will no longer work. It's best to reserve web scraping for cases when no easier option is feasible.
 
-# Scrape responsibly {background-color="#7C0A02"}
+# Good web-scraping citizens {background-color="#7C0A02"}
 
-## Ethics & legality {.scrollable .nostretch}
+## Ethical web-scraping {.scrollable .nostretch}
 
-We're not lawyers, but the rule of thumb from *R4DS*: you're usually on safe ground if the data is
+The rule of thumb from *R4DS*: you're usually on safe ground if the data is
 
-- **public** — you didn't have to log in or click "I agree",
-- **non-personal** — not names, emails, locations of identifiable people, and
-- **factual** — facts and data aren't copyrightable (creative text and images are).
+- **public**: you didn't have to log in or click "I agree",
+- **non-personal**: not names, emails, locations of identifiable people, and
+- **factual**: facts and data aren't copyrightable (creative text and images are).
 
-Cautionary tale: in 2016 researchers scraped ~70,000 **OkCupid** profiles — public, but deeply personal — and released them with no anonymization. It was widely condemned. *Public* does not mean *fair game*.
-
-::: {.callout-warning}
-Personally identifiable information (names, ages, locations) lives under strict laws (GDPR in Europe). When in doubt, don't.
-:::
+R4DS real-world cautionary example: 2016 researchers scraped ~70,000 **OkCupid** profiles. These are public, but deeply personal dating profiles. The researchers then released the profiles with no anonymization. It was widely condemned. *Public* does not mean *fair game* or *ethical*.
 
 ## Be a polite guest {.scrollable .nostretch}
 
-A scraper can fire off thousands of requests in seconds. To a small server that looks like an attack.
+A scraper can fire off thousands of requests in seconds. To a small server that may look like an attack.
 
 - **Throttle**: pause between requests. Don't hammer a server.
 - **Cache**: never download the same page twice.
 - **Identify yourself** and respect `robots.txt` and terms of service where you reasonably can.
 
-The [`polite`](https://dmi3kno.github.io/polite/) package automates all of this — it pauses, caches, and checks `robots.txt` for you.
+The [`polite`](https://dmi3kno.github.io/polite/) package automates all of this for you, pausing, cauching, and checking `robots.txt` for you.
 
 ```{r}
 #| echo: TRUE
 #| eval: FALSE
 # install.packages("polite")
 library(polite)
-session <- bow("https://www.example.com")   # introduce yourself
-result  <- scrape(session)                    # politely fetch
+session <- bow("https://www.example.com") # introduce yourself
+result  <- scrape(session) # politely fetch
 ```
 
-# A 5-minute tour of HTML {background-color="#001E44"}
+# Quick HTML tour {background-color="#001E44"}
 
 ## What a web page really is {.scrollable .nostretch}
 
@@ -132,20 +127,25 @@ The whole page is a **tree** of nested elements. Scraping works precisely *becau
 
 ## Anatomy of an element {.scrollable .nostretch}
 
-```
-       start tag      attribute        contents          end tag
-          │               │                │                │
-        ┌─┴─┐    ┌────────┴────────┐   ┌────┴───┐         ┌──┴──┐
-        <a     href='/cats'  class='link'>  cute cats     </a>
-```
-
-- **Tags** come in pairs: `<p>` … `</p>`. The content lives in between.
+- **Tags** come in pairs: `<p>` ... `</p>`. The content lives in between.
 - **Attributes** are `name='value'` pairs inside the start tag.
 - Two attributes matter most for scraping:
-  - **`id`** — a *unique* label for one element (`id='first'`)
-  - **`class`** — a *reusable* label shared by many elements (`class='weight'`)
+  - **`id`**: a *unique* label for one element (`id='first'`)
+  - **`class`**: a *reusable* label shared by many elements (`class='weight'`)
 
 Designers use `id` and `class` to *style* the page. We hijack them to *find our data*.
+
+## Example element
+
+<a href='/cats' class='link'> cute cats </a>
+
+- Start Tag (<a ... >): This opens the element and tells the browser where it begins.
+
+- Attributes (href='/cats', class='link'): These live inside the start tag and provide extra information or settings (like the destination URL or CSS styling classes).
+
+- Contents (cute cats): This is the actual text, image, or nested element that gets displayed and affected by the tag.
+
+- End Tag (</a>): This closes the element, telling the browser where it stops.
 
 ## Useful tags to recognize {.scrollable .nostretch}
 
@@ -159,7 +159,7 @@ Designers use `id` and `class` to *style* the page. We hijack them to *find our 
 | `<b>` / `<i>` / `<span>` | bold / italic / inline container |
 | `<table>` `<tr>` `<th>` `<td>` | table, row, header cell, data cell |
 
-You don't need to memorize HTML — just enough to spot where your data is hiding. A little googling or the [MDN docs](https://developer.mozilla.org/) fills the rest.
+You don't need to memorize HTML, but it's useful to know enough to spot where your data is hiding. Google or the [MDN docs](https://developer.mozilla.org/) are great resources to help fill in any gaps.
 
 # rvest {background-color="#001E44"}
 
@@ -173,16 +173,16 @@ You don't need to memorize HTML — just enough to spot where your data is hidin
 library(rvest)
 ```
 
-The pipeline is always the same four moves:
+Steps:
 
-1. **`read_html(url)`** — download the page into R
-2. **`html_elements(css)`** — select the pieces you want (a *CSS selector*)
-3. **`html_element(css)`** — narrow to one piece per observation
-4. **`html_text2()` / `html_attr()` / `html_table()`** — pull out the actual values
+1. **`read_html(url)`**: download the page into R
+2. **`html_elements(css)`**: select the pieces you want (a *CSS selector*)
+3. **`html_element(css)`**: narrow to one piece per observation
+4. **`html_text2()` / `html_attr()` / `html_table()`**: pull out the actual values
 
-## Practice without the internet {.scrollable .nostretch}
+## Practice {.scrollable .nostretch}
 
-`minimal_html()` lets us hand-write HTML to experiment — no network, no fragility. We'll use it to learn, then point the same tools at real pages.
+`minimal_html()` is a function that allows us to hand write HTML. We'll use it to learn, then use the same tools on real web pages.
 
 ```{r}
 #| echo: TRUE
@@ -198,7 +198,7 @@ Everything that follows works *identically* whether `html` came from `minimal_ht
 
 ## CSS selectors: three you'll use constantly {.scrollable .nostretch}
 
-A **CSS selector** is a tiny pattern language for "which elements do I mean?"
+A **Cascading style sheets (CSS) selector** is a mini pattern language that provides a concise way of describing which HTML elements you want to extract from a web page.
 
 | Selector | Selects | Read it as |
 |---|---|---|
@@ -210,29 +210,27 @@ A **CSS selector** is a tiny pattern language for "which elements do I mean?"
 
 ```{r}
 #| echo: TRUE
-html |> html_elements("p")            # both paragraphs
-html |> html_elements(".important")   # just the important one
-html |> html_element("#first")        # the one with id="first"
+html |> html_elements("p") # both paragraphs
+html |> html_elements(".important") # just the important one
+html |> html_element("#first") # the one with id="first"
 ```
 
 ## element vs. elements (this trips everyone up) {.scrollable .nostretch}
 
-Two nearly identical functions, one crucial difference:
-
-- **`html_elements()`** (plural) — returns *all* matches. Length depends on the page.
-- **`html_element()`** (singular) — returns *one match per input*, filling `NA` when nothing matches.
+- **`html_elements()`** (plural): returns *all* matches. Length depends on the page.
+- **`html_element()`** (singular): returns *one match per input*, filling `NA` when nothing matches.
 
 ```{r}
 #| echo: TRUE
-html |> html_elements("b")   # 0 matches -> empty
-html |> html_element("b")    # 0 matches -> NA (length preserved!)
+html |> html_elements("b") # 0 matches -> empty
+html |> html_element("b") # 0 matches -> NA (length preserved!)
 ```
 
-That `NA`-filling behavior is the secret to keeping columns aligned. Here's why it matters →
+That `NA`-filling behavior keeps columns aligned.
 
 ## Why the distinction matters {.scrollable .nostretch}
 
-A page of four StarWars characters — but not all have a recorded weight:
+Below is a page of four StarWars characters, some of whom are missing a recorded weight:
 
 ```{r}
 #| echo: TRUE
@@ -246,21 +244,21 @@ droids <- minimal_html("
 ")
 ```
 
-Grab the weights *directly* and you get **3** values for **4** characters — and no way to know which one is missing:
+Grab the weights *directly* and you get **3** values for **4** characters and no way to know which one is missing:
 
 ```{r}
 #| echo: TRUE
 droids |> html_elements(".weight") |> html_text2()   # length 3 — misaligned!
 ```
 
-## The robust pattern: rows then columns {.scrollable .nostretch}
+## Rows then columns {.scrollable .nostretch}
 
 **Step 1.** Use `html_elements()` to grab one element *per observation* (each `<li>` is one character):
 
 ```{r}
 #| echo: TRUE
 characters <- droids |> html_elements("li")
-length(characters)   # 4 — one per character
+length(characters) # 4 (one per character)
 ```
 
 **Step 2.** Use `html_element()` *on each* to pull one value per observation. Missing weights become `NA`, so everything stays aligned:
@@ -268,28 +266,28 @@ length(characters)   # 4 — one per character
 ```{r}
 #| echo: TRUE
 tibble(
-  name    = characters |> html_element("b")       |> html_text2(),
-  species = characters |> html_element("i")        |> html_text2(),
-  weight  = characters |> html_element(".weight")  |> html_text2()
+  name = characters |> html_element("b") |> html_text2(),
+  species = characters |> html_element("i") |> html_text2(),
+  weight  = characters |> html_element(".weight") |> html_text2()
 )
 ```
 
 ::: {.callout-tip}
-**The golden rule:** `html_elements()` to find your *rows*, then `html_element()` to find each *column*. Same number of values every time.
+`html_elements()` to find your *rows*, then `html_element()` to find each *column*.
 :::
 
 ## Pulling out the values {.scrollable .nostretch}
 
 Selecting elements gets you HTML nodes. Two functions turn nodes into data:
 
-**`html_text2()`** — the visible text (handles whitespace like a browser; prefer it over `html_text()`):
+**`html_text2()`**: the visible text (handles whitespace like a browser; prefer it over `html_text()`):
 
 ```{r}
 #| echo: TRUE
 droids |> html_elements("b") |> html_text2()
 ```
 
-**`html_attr("name")`** — the value of an attribute, e.g. a link's destination:
+**`html_attr("name")`**: the value of an attribute, e.g. a link's destination:
 
 ```{r}
 #| echo: TRUE
@@ -301,14 +299,14 @@ links |> html_elements("a") |> html_attr("href")
 ```
 
 ::: {.callout-warning}
-`html_attr()` **always returns a string** — `html_attr("width")` gives `"100"`, not `100`. Follow up with `parse_number()` / `as.integer()`.
+`html_attr()` **always returns a string**. `html_attr("width")` gives `"100"`, not `100`. Follow up with `parse_number()` / `as.integer()`.
 :::
 
-# The easy win: tables {background-color="#001E44"}
+# Tables {background-color="#001E44"}
 
 ## html_table() {.scrollable .nostretch}
 
-If your data is already in an HTML `<table>`, you're in luck — `html_table()` reads it straight into a tibble, guessing column types as it goes.
+If your data is already in an HTML `<table>`, you're in luck. `html_table()` reads it straight into a tibble, guessing column types as it goes.
 
 ```{r}
 #| echo: TRUE
@@ -346,33 +344,33 @@ record <- tables[[4]]   # the men's IAAF-era progression
 ```{r}
 #| echo: FALSE
 record <- tibble::tribble(
-  ~Time,     ~Athlete,            ~Nationality,     ~Date,
-  "4:14.4",  "John Paul Jones",   "United States",  "31 May 1913[6]",
-  "4:12.6",  "Norman Taber",      "United States",  "16 July 1915[6]",
-  "4:10.4",  "Paavo Nurmi",       "Finland",        "23 August 1923[6]",
-  "4:09.2",  "Jules Ladoumègue",  "France",         "4 October 1931[6]",
-  "4:07.6",  "Jack Lovelock",     "New Zealand",    "15 July 1933[6]",
-  "4:06.8",  "Glenn Cunningham",  "United States",  "16 June 1934[6]"
+  ~Time, ~Athlete, ~Nationality, ~Date,
+  "4:14.4", "John Paul Jones", "United States", "31 May 1913[6]",
+  "4:12.6", "Norman Taber", "United States", "16 July 1915[6]",
+  "4:10.4", "Paavo Nurmi", "Finland", "23 August 1923[6]",
+  "4:09.2", "Jules Ladoumègue", "France", "4 October 1931[6]",
+  "4:07.6", "Jack Lovelock", "New Zealand", "15 July 1933[6]",
+  "4:06.8", "Glenn Cunningham", "United States", "16 June 1934[6]"
 )
 record
 ```
 
-Double brackets `[[4]]` because `tables` is a **list** of data frames. (Note: Wikipedia changes, so table *4* today may differ tomorrow — always look before you trust an index.)
+Double brackets `[[4]]` because `tables` is a **list** of data frames. (Note: Wikipedia changes frequently, so table *4* today may differ tomorrow; always be sure to look before you trust an index.)
 
-# Cleaning what you scrape {background-color="#001E44"}
+# Cleaning scraped data {background-color="#001E44"}
 
-## Scraped data is dirty data {.scrollable .nostretch}
+## Scraped data is usually dirty {.scrollable .nostretch}
 
 Look closely at what we got:
 
-- `Date` is `"31 May 1913[6]"` — a footnote marker `[6]` is glued on.
-- `Time` is `"4:14.4"` — a string, not a number we can plot or subtract.
+- `Date` is `"31 May 1913[6]"`. Here, a footnote marker `[6]` is glued on.
+- `Time` is `"4:14.4"`, which is a string, not a number we can plot or subtract.
 
-Scraped values are **always character strings**, often with human-formatting baggage. The last mile of scraping is cleaning. Our toolkit, all from this unit:
+Scraped values are **always character strings**, often with human-formatting baggage. The next step after scraping is almost always cleaning:
 
 - `str_remove()` / `gsub()` + **regular expressions** to strip junk
 - `parse_number()` for currency, percentages, stray units
-- `lubridate` (`dmy()`, `mdy()`, …) for dates
+- `lubridate` (`dmy()`, `mdy()`, ...) for dates
 - `as.duration(ms(...))` for times like `"4:14.4"`
 
 ## Stripping footnotes with a regex {.scrollable .nostretch}
@@ -394,18 +392,18 @@ Decoding `"\\[.\\]$"`:
 | `.` | any single character (here, the footnote digit) |
 | `$` | anchored at the **end** of the string |
 
-You'll meet regular expressions properly next week — for now, recognize them as pattern-matchers for cleaning text.
+We'll discuss regular expressions in more detail next week.
 
 ## Parsing dates and times {.scrollable .nostretch}
 
-Now the date is clean, hand it to `lubridate`. These are `"4 October 1931"`-style → **day-month-year** → `dmy()`:
+Once we have a clean date, we can use the `lubridate` package. These are `"4 October 1931"`-style to **day-month-year** to `dmy()`:
 
 ```{r}
 #| echo: TRUE
 record <- record |>
   mutate(
-    Date    = dmy(Date),
-    seconds = as.numeric(as.duration(ms(Time)))   # "4:14.4" -> 254.4 sec
+    Date = dmy(Date),
+    seconds = as.numeric(as.duration(ms(Time))) # "4:14.4" -> 254.4 sec
   )
 record |> select(Time, seconds, Date)
 ```
@@ -438,20 +436,20 @@ From scattered HTML to a finished plot — the whole import-and-clean pipeline i
 
 This is the genuinely hard part — and it's normal to need trial and error. Three ways to discover the selector you need:
 
-1. **Right-click → Inspect** in your browser. The developer tools highlight the exact HTML for whatever you clicked. Look at its `class` and `id`.
-2. **[SelectorGadget](https://rvest.tidyverse.org/articles/selectorgadget.html)** — a point-and-click bookmarklet. Click what you *want* (turns green), click what you *don't* (turns red), and it writes the selector for you.
-3. **Copy as selector** — in DevTools, right-click an element → Copy → Copy selector.
+1. **Right-click then Inspect** in your browser. The developer tools highlight the exact HTML for whatever you clicked. Look at its `class` and `id`.
+2. **[SelectorGadget](https://rvest.tidyverse.org/articles/selectorgadget.html)**: a point-and-click bookmarklet. Click what you *want* (turns green), click what you *don't* (turns red), and it writes the selector for you.
+3. **Copy as selector**: in DevTools, right-click an element → Copy → Copy selector.
 
 You want a selector that's **sensitive** (catches everything you want) *and* **specific** (catches nothing you don't).
 
-## A note on dynamic sites {.scrollable .nostretch}
+## Dynamic sites {.scrollable .nostretch}
 
 Sometimes `html_elements()` returns *nothing* like what you see in the browser. Usually that means the page builds its content with **JavaScript** *after* loading.
 
-`rvest` only downloads the raw HTML — it doesn't run JavaScript. So:
+`rvest` only downloads the raw HTML. It doesn't run JavaScript. This means you should:
 
 - Check whether the data is in the *raw* HTML (View Source, not Inspect).
-- If it's truly JS-rendered, you need a tool that drives a real browser — the [`chromote`](https://rvest.tidyverse.org/articles/) package runs Chrome in the background.
+- If it's truly JS-rendered, you need a tool that drives a real browser: the [`chromote`](https://rvest.tidyverse.org/articles/) package runs Chrome in the background.
 - Or, again: **look for an API first**. Dynamic pages are often fed by one.
 
 # Activity {background-color="#7C0A02"}
@@ -460,15 +458,11 @@ Sometimes `html_elements()` returns *nothing* like what you see in the browser. 
 
 Open `day19-activity.R` in RStudio and work through the parts in order.
 
-- **Part 1** — HTML basics with `minimal_html()`: selectors, `element` vs `elements`, the alignment trap.
-- **Part 2** — scrape a real Wikipedia table with `html_table()`, then clean dates and times and make a plot.
-- **Part 3 (challenge)** — scrape *non-table* structured content (the rvest StarWars vignette) into a tidy tibble, and pull a link out of an attribute.
+- **Part 1**: HTML basics with `minimal_html()`: selectors, `element` vs `elements`, the alignment trap.
+- **Part 2**: scrape a real Wikipedia table with `html_table()`, then clean dates and times and make a plot.
+- **Part 3 (challenge)**: scrape *non-table* structured content (the rvest StarWars vignette) into a tidy tibble, and pull a link out of an attribute.
 
 [Activity file](day19-activity.R){download="day19-activity.R"}
-
-::: {.callout-tip}
-If a live page won't load or has changed, that *is* web scraping — note it and move on. The skills transfer; the specific HTML is always a moving target.
-:::
 
 ## Wrap-up & looking ahead {.scrollable .nostretch}
 
