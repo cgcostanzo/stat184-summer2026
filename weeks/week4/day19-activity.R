@@ -4,8 +4,8 @@
 # Work through the parts in order. Part 3 is a challenge;
 # skip to it only if you finish Parts 1 and 2 with time left.
 #
-# Reminder on scraping etiquette: only scrape public, non-personal,
-# factual data, and don't hammer a server with rapid-fire requests.
+# Only scrape public, non-personal, factual data, and don't hammer 
+# a server with rapid-fire requests.
 # ============================================================
 
 library(tidyverse)
@@ -13,8 +13,8 @@ library(rvest)
 library(lubridate)
 
 
-# --- Part 1: HTML basics (no internet needed) ---------------------------------
-# minimal_html() lets us hand-write HTML so we can practice selectors safely.
+# --- Part 1: HTML basics ------------------------------------------------------
+# minimal_html() lets us hand-write HTML for practicing selectors locally.
 
 page <- minimal_html("
   <h1>Course roster</h1>
@@ -27,7 +27,7 @@ page <- minimal_html("
   </ul>
 ")
 
-# 1a. Select ALL the <li> elements. How many are there?
+# 1a. Select all the <li> elements. How many are there?
 page |> html_elements("li")
 
 # 1b. Select just the element with id="intro" using the "#" selector.
@@ -39,15 +39,15 @@ page |> html_elements(".year") |> html_text2()
 # Q1. You should have gotten only 3 years, but there are 4 students. Which
 #     student is missing a year, and why is grabbing ".year" directly a problem?
 
-# 1d. Do it the ROBUST way. First grab one element per student:
+# 1d. Do it the robust way. First grab one element per student:
 students <- page |> html_elements("li")
 
 # Now use html_element() (singular!) on each to pull one value per student.
 # Build a tibble. Notice that the missing year becomes NA, keeping rows aligned.
 roster <- tibble(
-  name  = students |> html_element("b")      |> html_text2(),
-  major = students |> html_element("i")      |> html_text2(),
-  year  = students |> html_element(".year")  |> html_text2()
+  name  = students |> html_element("b") |> html_text2(),
+  major = students |> html_element("i") |> html_text2(),
+  year  = students |> html_element(".year") |> html_text2()
 )
 roster
 
@@ -57,8 +57,8 @@ roster
 #     parse_number() (or as.integer()) to convert it to a number.
 
 
-# --- Part 2: Scrape a real Wikipedia table ------------------------------------
-# We'll grab the men's mile-run world record progression from Wikipedia.
+# --- Part 2: Wikipedia table scrape -------------------------------------------
+# Scraping men's mile-run world record progression from Wikipedia.
 # If the live page won't load, that's the reality of scraping -- flag it and
 # move on; the skills are what matter.
 
@@ -74,17 +74,17 @@ all_tables <- url |>
 length(all_tables)
 
 # 2b. The IAAF-era men's progression is one of these tables. Inspect a few
-#     with all_tables[[3]], all_tables[[4]], all_tables[[5]] -- remember the
-#     DOUBLE brackets, because all_tables is a list. Pick the one whose columns
+#     with all_tables[[3]], all_tables[[4]], all_tables[[5]], and remember to use
+#     double brackets, because all_tables is a list. Pick the one whose columns
 #     are Time / Athlete / Nationality / Date and assign it to `record`.
-# record <- all_tables[[ ?? ]]
+# record <- all_tables[[ ... ]]
 
-# 2c. The Date column looks like "4 October 1931[6]" -- a footnote marker is
+# 2c. The Date column looks like "4 October 1931[6]", i.e., a footnote marker is
 #     stuck on the end. Strip it with a regular expression, then parse the date.
 #     "\\[.\\]$" matches a single character inside [ ] at the END of the string.
 # record <- record |>
 #   mutate(Date = str_remove(Date, "\\[.\\]$"),
-#          Date = dmy(Date))          # dates are day-month-year here
+#          Date = dmy(Date)) # dates are day-month-year here
 
 # 2d. The Time column is like "4:14.4" (minutes:seconds). Convert it to a number
 #     of seconds so we can plot it. as.duration(ms("4:14.4")) gives a duration;
@@ -99,7 +99,7 @@ length(all_tables)
 # Q5. Which nationality set the record the most times? Use count() and sort.
 
 
-# --- Part 3: Challenge: scraping non-table content ----------------------------
+# --- Part 3: Scraping non-table content ----------------------------
 # Not all data lives in a <table>. The rvest StarWars vignette page lists 7
 # films, each inside a <section>. We'll turn it into a tidy tibble using the
 # "rows then columns" pattern from Part 1.
@@ -107,7 +107,7 @@ length(all_tables)
 sw_url <- "https://rvest.tidyverse.org/articles/starwars.html"
 sw <- read_html(sw_url)
 
-# 3a. Each film is one <section>. Select them all. How many are there?
+# 3a. Each film is one <section>. Select all of them. How many are there?
 films <- sw |> html_elements("section")
 length(films)
 
@@ -115,18 +115,18 @@ length(films)
 #     <span class="director">, and there's a "Released: ..." line in a <p>.
 #     Build a tibble with one row per film:
 # tibble(
-#   title    = films |> html_element("h2")        |> html_text2(),
+#   title = films |> html_element("h2") |> html_text2(),
 #   director = films |> html_element(".director") |> html_text2(),
-#   released = films |> html_element("p")         |> html_text2()
+#   released = films |> html_element("p") |> html_text2()
 # )
 
 # 3c. The `released` strings look like "Released: 1999-05-19". Use
 #     str_remove() to drop the "Released: " prefix, then parse_date() (or ymd())
 #     to turn it into a real <date>.
 
-# 3d. Attributes practice. Each <h2> has a data-id attribute (the film's number
-#     in release order). Pull it out with html_attr("data-id"). Remember:
-#     html_attr() always returns a STRING, so convert it to a number afterward.
+# 3d. Each <h2> has a data-id attribute (the film's number in release order). 
+#     Pull it out with html_attr("data-id").
+#     Note: html_attr() always returns a STRING, so convert it to a number afterward.
 films |> html_element("h2") |> html_attr("data-id")
 
 # Q6. Sort your films tibble by release date. Does the data-id order match the
