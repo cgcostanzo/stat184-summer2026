@@ -2149,109 +2149,781 @@
     "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nScrape responsibly: public, non-personal, factual; throttle & cache\nHTML is a tree of tags, with class and id attributes\nrvest: read_html() → html_elements() → html_element() → html_text2() / html_attr()\nThe golden rule: rows with html_elements(), columns with html_element()\nhtml_table() for the easy wins\nClean scraped strings with regex, parse_number(), lubridate, as.duration(ms())\n\nUpcoming\n\nMon Jun 15: writing your own functions (Week 5)\nHW 4 due Mon Jun 15\nProject Checkpoint 1 due Sun Jun 14\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 24 · rvest reference · SelectorGadget"
   },
   {
-    "objectID": "weeks/week5/day22-iteration.html",
-    "href": "weeks/week5/day22-iteration.html",
-    "title": "Vectorized operations · purrr::map",
+    "objectID": "weeks/week5/day22-iteration-map-slides.html#from-across-to-map",
+    "href": "weeks/week5/day22-iteration-map-slides.html#from-across-to-map",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "From across() to map()",
+    "text": "From across() to map()\nLast class, across() repeated an action over the columns of a data frame.\nmap() is more general: it applies a function to every element of any list or vector and returns the results.\n\nmap(1:3, \\(x) x^2)\n\n[[1]]\n[1] 1\n\n[[2]]\n[1] 4\n\n[[3]]\n[1] 9\n\n\nmap(x, f) calls f once per element of x and collects the answers into a list. (Same \\(x) anonymous-function shorthand as last class.)"
+  },
+  {
+    "objectID": "weeks/week5/day22-iteration-map-slides.html#typed-variants-return-vectors",
+    "href": "weeks/week5/day22-iteration-map-slides.html#typed-variants-return-vectors",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "Typed variants return vectors",
+    "text": "Typed variants return vectors\nA list isn’t always what you want. The typed variants return an atomic vector, and error if the result isn’t that type:\n\nmap_dbl(1:3, \\(x) x^2)          # double vector\n\n[1] 1 4 9\n\nmap_chr(c(\"a\", \"bb\"), \\(x) str_c(x, \"!\"))   # character vector\n\n[1] \"a!\"  \"bb!\"\n\nmap_int(list(1:5, 1:10), length)            # integer vector\n\n[1]  5 10\n\n\n\n\n\nFunction\nReturns\n\n\n\n\nmap()\na list\n\n\nmap_dbl() / map_int()\nnumeric / integer vector\n\n\nmap_chr()\ncharacter vector\n\n\nmap_lgl()\nlogical vector"
+  },
+  {
+    "objectID": "weeks/week5/day22-iteration-map-slides.html#a-data-frame-is-a-list-of-columns",
+    "href": "weeks/week5/day22-iteration-map-slides.html#a-data-frame-is-a-list-of-columns",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "A data frame is a list of columns",
+    "text": "A data frame is a list of columns\nBecause a data frame is really a list of columns, map() walks over its columns:\n\nnums &lt;- diamonds |&gt; select(carat, depth, price)\nmap_dbl(nums, median)\n\n carat  depth  price \n   0.7   61.8 2401.0 \n\n\nSo map_dbl(df, median) is another route to the same place as summarize(across(everything(), median)). Different tools, same idea: do this to each thing.\n\n\n\n\n\n\nNote\n\n\nYou may see older code with ~ .x + 1 instead of \\(x) x + 1. That tilde syntax only works inside tidyverse functions and always names the argument .x. Prefer the base \\(x) form."
+  },
+  {
+    "objectID": "weeks/week5/day22-iteration-map-slides.html#map-reads-many-files",
+    "href": "weeks/week5/day22-iteration-map-slides.html#map-reads-many-files",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "map() reads many files",
+    "text": "map() reads many files\nA classic use: read a folder of files and stack them. Get the paths, map() read_csv over them, then list_rbind() to bind the list of data frames into one:\n\npaths &lt;- list.files(\"data/gapminder\", pattern = \"\\\\.csv$\", full.names = TRUE)\n\ngapminder &lt;- paths |&gt;\n  map(read_csv) |&gt;   # a list of data frames, one per file\n  list_rbind()       # stacked into a single data frame\n\nThis class we tackle the opposite problem: taking R objects and saving them to many files."
+  },
+  {
+    "objectID": "weeks/week5/day22-iteration-map-slides.html#walk-map-that-throws-the-output-away",
+    "href": "weeks/week5/day22-iteration-map-slides.html#walk-map-that-throws-the-output-away",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "walk(): map() that throws the output away",
+    "text": "walk(): map() that throws the output away\nWhen you call a function only for its side effect (writing a file, printing, saving a plot), you don’t care about the return value. walk() is map() without the output:\n\nwalk(c(\"first\", \"second\", \"third\"), \\(x) cat(x, \"\\n\"))\n\nfirst \nsecond \nthird \n\n\nCompare: map() would also return a list of NULLs, cluttering your console. walk() returns its input invisibly."
+  },
+  {
+    "objectID": "weeks/week5/day22-iteration-map-slides.html#example-many-files-into-a-database",
+    "href": "weeks/week5/day22-iteration-map-slides.html#example-many-files-into-a-database",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "Example: many files into a database",
+    "text": "Example: many files into a database\nWhen data won’t all fit in memory, load it into a database, then query the bits you need. The pattern: a template table, then append each file.\n\ncon &lt;- DBI::dbConnect(duckdb::duckdb())\n\n# 1. build an empty table with the right columns/types from one file\ntemplate &lt;- readxl::read_excel(paths[[1]])\ntemplate$year &lt;- 1952\nDBI::dbCreateTable(con, \"gapminder\", template)\n\n# 2. a function that reads ONE file and appends it\nappend_file &lt;- function(path) {\n  df &lt;- readxl::read_excel(path)\n  df$year &lt;- parse_number(basename(path))\n  DBI::dbAppendTable(con, \"gapminder\", df)\n}\n\n# 3. walk() it over every path (we don't need a return value)\npaths |&gt; walk(append_file)\n\nwalk() here, not map(), because we only care about the rows landing in the database."
+  },
+  {
+    "objectID": "weeks/week5/day22-iteration-map-slides.html#list-columns-with-group_nest",
+    "href": "weeks/week5/day22-iteration-map-slides.html#list-columns-with-group_nest",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "List-columns with group_nest()",
+    "text": "List-columns with group_nest()\nTo save one file per group, first split the data into per-group tibbles. group_nest() packs each group’s rows into a list-column called data:\n\nby_clarity &lt;- diamonds |&gt; group_nest(clarity)\nby_clarity\n\n# A tibble: 8 × 2\n  clarity               data\n  &lt;ord&gt;   &lt;list&lt;tibble[,9]&gt;&gt;\n1 I1               [741 × 9]\n2 SI2            [9,194 × 9]\n3 SI1           [13,065 × 9]\n4 VS2           [12,258 × 9]\n5 VS1            [8,171 × 9]\n6 VVS2           [5,066 × 9]\n7 VVS1           [3,655 × 9]\n8 IF             [1,790 × 9]\n\n\nEach element of data is a full tibble:\n\nby_clarity$data[[1]]\n\n# A tibble: 741 × 9\n   carat cut       color depth table price     x     y     z\n   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n 1  0.32 Premium   E      60.9    58   345  4.38  4.42  2.68\n 2  1.17 Very Good J      60.2    61  2774  6.83  6.9   4.13\n 3  1.01 Premium   F      61.8    60  2781  6.39  6.36  3.94\n 4  1.01 Fair      E      64.5    58  2788  6.29  6.21  4.03\n 5  0.96 Ideal     F      60.7    55  2801  6.37  6.41  3.88\n 6  1.04 Premium   G      62.2    58  2801  6.46  6.41  4   \n 7  1    Fair      G      66.4    59  2808  6.16  6.09  4.07\n 8  1.2  Fair      F      64.6    56  2809  6.73  6.66  4.33\n 9  0.43 Very Good E      58.4    62   555  4.94  5     2.9 \n10  1.02 Premium   G      60.3    58  2815  6.55  6.5   3.94\n# ℹ 731 more rows"
+  },
+  {
+    "objectID": "weeks/week5/day22-iteration-map-slides.html#build-the-output-paths-with-str_glue",
+    "href": "weeks/week5/day22-iteration-map-slides.html#build-the-output-paths-with-str_glue",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "Build the output paths with str_glue()",
+    "text": "Build the output paths with str_glue()\nAdd a column of file names. str_glue() interpolates the value of clarity into each string:\n\nby_clarity &lt;- by_clarity |&gt;\n  mutate(path = str_glue(\"diamonds-{clarity}.csv\"))\nby_clarity\n\n# A tibble: 8 × 3\n  clarity               data path             \n  &lt;ord&gt;   &lt;list&lt;tibble[,9]&gt;&gt; &lt;glue&gt;           \n1 I1               [741 × 9] diamonds-I1.csv  \n2 SI2            [9,194 × 9] diamonds-SI2.csv \n3 SI1           [13,065 × 9] diamonds-SI1.csv \n4 VS2           [12,258 × 9] diamonds-VS2.csv \n5 VS1            [8,171 × 9] diamonds-VS1.csv \n6 VVS2           [5,066 × 9] diamonds-VVS2.csv\n7 VVS1           [3,655 × 9] diamonds-VVS1.csv\n8 IF             [1,790 × 9] diamonds-IF.csv  \n\n\nWe now have everything we need side by side: the data to write and the path to write it to."
+  },
+  {
+    "objectID": "weeks/week5/day22-iteration-map-slides.html#two-inputs-at-once-map2-walk2",
+    "href": "weeks/week5/day22-iteration-map-slides.html#two-inputs-at-once-map2-walk2",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "Two inputs at once: map2() / walk2()",
+    "text": "Two inputs at once: map2() / walk2()\nSaving needs two things that vary together — the data and the path. By hand that’s:\n\nwrite_csv(by_clarity$data[[1]], by_clarity$path[[1]])\nwrite_csv(by_clarity$data[[2]], by_clarity$path[[2]])\n# ... eight times\n\nmap2() varies the first two arguments together; walk2() does that and discards the output:\n\nwalk2(by_clarity$data, by_clarity$path, write_csv)\n\nOne line writes all eight CSVs. walk2(x, y, f) calls f(x[[i]], y[[i]]) for each i."
+  },
+  {
+    "objectID": "weeks/week5/day22-iteration-map-slides.html#saving-many-plots",
+    "href": "weeks/week5/day22-iteration-map-slides.html#saving-many-plots",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "Saving many plots",
+    "text": "Saving many plots\nSame recipe. First a function that builds the plot for one data frame:\n\ncarat_histogram &lt;- function(df) {\n  ggplot(df, aes(x = carat)) + geom_histogram(binwidth = 0.1)\n}\ncarat_histogram(by_clarity$data[[1]])"
+  },
+  {
+    "objectID": "weeks/week5/day22-iteration-map-slides.html#saving-many-plots-1",
+    "href": "weeks/week5/day22-iteration-map-slides.html#saving-many-plots-1",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "Saving many plots",
+    "text": "Saving many plots\nUse map() to make a list-column of plots, and str_glue() for the paths:\n\nby_clarity &lt;- by_clarity |&gt;\n  mutate(\n    plot = map(data, carat_histogram),\n    path = str_glue(\"clarity-{clarity}.png\")\n  )\n\nThen walk2() + ggsave() writes them all:\n\nwalk2(\n  by_clarity$path,\n  by_clarity$plot,\n  \\(path, plot) ggsave(path, plot, width = 6, height = 6)\n)\n\nReading files, writing files, drawing plots — all the same map/walk shape."
+  },
+  {
+    "objectID": "weeks/week5/day22-iteration-map-slides.html#iteration-is-a-superpower",
+    "href": "weeks/week5/day22-iteration-map-slides.html#iteration-is-a-superpower",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "Iteration is a superpower",
+    "text": "Iteration is a superpower\nThe whole arc of this chapter is one idea applied three ways:\n\n\n\nTask\nTool\n\n\n\n\ndo something to each column\nacross()\n\n\ndo something to each element\nmap() / map_dbl() / …\n\n\ndo something for its side effect\nwalk() / walk2()\n\n\n\n\n“If you know the right iteration technique, you can easily go from fixing one problem to fixing all the problems.” — R4DS"
+  },
+  {
+    "objectID": "weeks/week5/day22-iteration-map-slides.html#what-about-for-loops",
+    "href": "weeks/week5/day22-iteration-map-slides.html#what-about-for-loops",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "What about for loops?",
+    "text": "What about for loops?\nYou may have noticed we haven’t written a single for loop.\nR’s data-analysis orientation changes how we iterate: most of the time there’s already an idiom — do something to each column (across), each group (group_by), or each element (map).\nfor loops do exist and you’ll meet them in wild-caught code (and a bit of base R later). But reach for a functional tool first: it’s shorter, harder to get wrong, and says what you mean, not just how."
+  },
+  {
+    "objectID": "weeks/week5/day22-iteration-map-slides.html#in-class-activity",
+    "href": "weeks/week5/day22-iteration-map-slides.html#in-class-activity",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "In-class activity",
+    "text": "In-class activity\nOpen day22-activity.R in RStudio and work through the parts in order.\n\nPart 1: map() and its typed variants; anonymous functions; map() over the columns of a data frame.\nPart 2: group_nest() to build a list-column, str_glue() for paths, and walk2() to write one CSV per group (to a temp folder).\nPart 3 (challenge): write a plot function, build a list-column of plots with map(), and save them all with walk2() + ggsave().\n\nActivity file"
+  },
+  {
+    "objectID": "weeks/week5/day22-iteration-map-slides.html#wrap-up-looking-ahead",
+    "href": "weeks/week5/day22-iteration-map-slides.html#wrap-up-looking-ahead",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "Wrap-up & looking ahead",
+    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nmap(x, f) applies f to each element of x → a list\nTyped variants (map_dbl, map_chr, map_int, map_lgl) → vectors\nwalk() = map() for side effects (writing, saving)\ngroup_nest() makes a per-group list-column\nstr_glue() builds output paths from data\nmap2() / walk2() vary two inputs together (data + path)\nReading files, writing CSVs, saving plots — all the same shape\n\nUpcoming\n\nThu Jun 18: strings, dates & intro to regex + Project oral check-in #1\nReading before Thu: Data Computing §17.1–17.2\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 26 · purrr reference"
+  },
+  {
+    "objectID": "weeks/week5/day22-iteration-map-page.html",
+    "href": "weeks/week5/day22-iteration-map-page.html",
+    "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "",
-    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
+    "text": "NoteToday: Wednesday June 17\n\n\n\nBefore class\n\nReading Quiz (Canvas): R4DS Ch. 26 §26.4–26.5 — Iteration\n\nPlan for today\n\nFrom across() (columns) to map() (any list or vector)\nThe map() family and typed variants (map_dbl(), map_chr(), …)\nwalk(): when you only want the side effect\nList-columns with group_nest(); building paths with str_glue()\nTwo inputs at once: map2() / walk2(); saving many CSVs and plots\nIn-class activity\n\nHelpful links\n\nSyllabus · AI policy · Schedule · R4DS Ch. 26 · purrr reference"
   },
   {
-    "objectID": "weeks/week5/day22-iteration.html#before-class",
-    "href": "weeks/week5/day22-iteration.html#before-class",
-    "title": "Vectorized operations · purrr::map",
-    "section": "Before class",
-    "text": "Before class\n\nRead: R for Data Science Ch 26 (§26.4–26.5)\nTODO: any prep materials, data files, etc."
+    "objectID": "weeks/week5/day22-iteration-map-page.html#from-across-to-map",
+    "href": "weeks/week5/day22-iteration-map-page.html#from-across-to-map",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "From across() to map()",
+    "text": "From across() to map()\nLast class, across() repeated an action over the columns of a data frame.\nmap() is more general: it applies a function to every element of any list or vector and returns the results.\n\nmap(1:3, \\(x) x^2)\n\n[[1]]\n[1] 1\n\n[[2]]\n[1] 4\n\n[[3]]\n[1] 9\n\n\nmap(x, f) calls f once per element of x and collects the answers into a list. (Same \\(x) anonymous-function shorthand as last class.)"
   },
   {
-    "objectID": "weeks/week5/day22-iteration.html#outline",
-    "href": "weeks/week5/day22-iteration.html#outline",
-    "title": "Vectorized operations · purrr::map",
-    "section": "Outline",
-    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
+    "objectID": "weeks/week5/day22-iteration-map-page.html#typed-variants-return-vectors",
+    "href": "weeks/week5/day22-iteration-map-page.html#typed-variants-return-vectors",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "Typed variants return vectors",
+    "text": "Typed variants return vectors\nA list isn’t always what you want. The typed variants return an atomic vector, and error if the result isn’t that type:\n\nmap_dbl(1:3, \\(x) x^2)          # double vector\n\n[1] 1 4 9\n\nmap_chr(c(\"a\", \"bb\"), \\(x) str_c(x, \"!\"))   # character vector\n\n[1] \"a!\"  \"bb!\"\n\nmap_int(list(1:5, 1:10), length)            # integer vector\n\n[1]  5 10\n\n\n\n\n\nFunction\nReturns\n\n\n\n\nmap()\na list\n\n\nmap_dbl() / map_int()\nnumeric / integer vector\n\n\nmap_chr()\ncharacter vector\n\n\nmap_lgl()\nlogical vector"
   },
   {
-    "objectID": "weeks/week5/day22-iteration.html#resources",
-    "href": "weeks/week5/day22-iteration.html#resources",
-    "title": "Vectorized operations · purrr::map",
-    "section": "Resources",
-    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+    "objectID": "weeks/week5/day22-iteration-map-page.html#a-data-frame-is-a-list-of-columns",
+    "href": "weeks/week5/day22-iteration-map-page.html#a-data-frame-is-a-list-of-columns",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "A data frame is a list of columns",
+    "text": "A data frame is a list of columns\nBecause a data frame is really a list of columns, map() walks over its columns:\n\nnums &lt;- diamonds |&gt; select(carat, depth, price)\nmap_dbl(nums, median)\n\n carat  depth  price \n   0.7   61.8 2401.0 \n\n\nSo map_dbl(df, median) is another route to the same place as summarize(across(everything(), median)). Different tools, same idea: do this to each thing.\n\n\n\n\n\n\nNote\n\n\n\nYou may see older code with ~ .x + 1 instead of \\(x) x + 1. That tilde syntax only works inside tidyverse functions and always names the argument .x. Prefer the base \\(x) form."
   },
   {
-    "objectID": "weeks/week5/day22-iteration.html#after-class",
-    "href": "weeks/week5/day22-iteration.html#after-class",
-    "title": "Vectorized operations · purrr::map",
-    "section": "After class",
-    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
+    "objectID": "weeks/week5/day22-iteration-map-page.html#map-reads-many-files",
+    "href": "weeks/week5/day22-iteration-map-page.html#map-reads-many-files",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "map() reads many files",
+    "text": "map() reads many files\nA classic use: read a folder of files and stack them. Get the paths, map() read_csv over them, then list_rbind() to bind the list of data frames into one:\n\npaths &lt;- list.files(\"data/gapminder\", pattern = \"\\\\.csv$\", full.names = TRUE)\n\ngapminder &lt;- paths |&gt;\n  map(read_csv) |&gt;   # a list of data frames, one per file\n  list_rbind()       # stacked into a single data frame\n\nThis class we tackle the opposite problem: taking R objects and saving them to many files."
   },
   {
-    "objectID": "weeks/week5/day20-functions.html",
-    "href": "weeks/week5/day20-functions.html",
+    "objectID": "weeks/week5/day22-iteration-map-page.html#walk-map-that-throws-the-output-away",
+    "href": "weeks/week5/day22-iteration-map-page.html#walk-map-that-throws-the-output-away",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "walk(): map() that throws the output away",
+    "text": "walk(): map() that throws the output away\nWhen you call a function only for its side effect (writing a file, printing, saving a plot), you don’t care about the return value. walk() is map() without the output:\n\nwalk(c(\"first\", \"second\", \"third\"), \\(x) cat(x, \"\\n\"))\n\nfirst \nsecond \nthird \n\n\nCompare: map() would also return a list of NULLs, cluttering your console. walk() returns its input invisibly."
+  },
+  {
+    "objectID": "weeks/week5/day22-iteration-map-page.html#example-many-files-into-a-database",
+    "href": "weeks/week5/day22-iteration-map-page.html#example-many-files-into-a-database",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "Example: many files into a database",
+    "text": "Example: many files into a database\nWhen data won’t all fit in memory, load it into a database, then query the bits you need. The pattern: a template table, then append each file.\n\ncon &lt;- DBI::dbConnect(duckdb::duckdb())\n\n# 1. build an empty table with the right columns/types from one file\ntemplate &lt;- readxl::read_excel(paths[[1]])\ntemplate$year &lt;- 1952\nDBI::dbCreateTable(con, \"gapminder\", template)\n\n# 2. a function that reads ONE file and appends it\nappend_file &lt;- function(path) {\n  df &lt;- readxl::read_excel(path)\n  df$year &lt;- parse_number(basename(path))\n  DBI::dbAppendTable(con, \"gapminder\", df)\n}\n\n# 3. walk() it over every path (we don't need a return value)\npaths |&gt; walk(append_file)\n\nwalk() here, not map(), because we only care about the rows landing in the database."
+  },
+  {
+    "objectID": "weeks/week5/day22-iteration-map-page.html#list-columns-with-group_nest",
+    "href": "weeks/week5/day22-iteration-map-page.html#list-columns-with-group_nest",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "List-columns with group_nest()",
+    "text": "List-columns with group_nest()\nTo save one file per group, first split the data into per-group tibbles. group_nest() packs each group’s rows into a list-column called data:\n\nby_clarity &lt;- diamonds |&gt; group_nest(clarity)\nby_clarity\n\n# A tibble: 8 × 2\n  clarity               data\n  &lt;ord&gt;   &lt;list&lt;tibble[,9]&gt;&gt;\n1 I1               [741 × 9]\n2 SI2            [9,194 × 9]\n3 SI1           [13,065 × 9]\n4 VS2           [12,258 × 9]\n5 VS1            [8,171 × 9]\n6 VVS2           [5,066 × 9]\n7 VVS1           [3,655 × 9]\n8 IF             [1,790 × 9]\n\n\nEach element of data is a full tibble:\n\nby_clarity$data[[1]]\n\n# A tibble: 741 × 9\n   carat cut       color depth table price     x     y     z\n   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n 1  0.32 Premium   E      60.9    58   345  4.38  4.42  2.68\n 2  1.17 Very Good J      60.2    61  2774  6.83  6.9   4.13\n 3  1.01 Premium   F      61.8    60  2781  6.39  6.36  3.94\n 4  1.01 Fair      E      64.5    58  2788  6.29  6.21  4.03\n 5  0.96 Ideal     F      60.7    55  2801  6.37  6.41  3.88\n 6  1.04 Premium   G      62.2    58  2801  6.46  6.41  4   \n 7  1    Fair      G      66.4    59  2808  6.16  6.09  4.07\n 8  1.2  Fair      F      64.6    56  2809  6.73  6.66  4.33\n 9  0.43 Very Good E      58.4    62   555  4.94  5     2.9 \n10  1.02 Premium   G      60.3    58  2815  6.55  6.5   3.94\n# ℹ 731 more rows"
+  },
+  {
+    "objectID": "weeks/week5/day22-iteration-map-page.html#build-the-output-paths-with-str_glue",
+    "href": "weeks/week5/day22-iteration-map-page.html#build-the-output-paths-with-str_glue",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "Build the output paths with str_glue()",
+    "text": "Build the output paths with str_glue()\nAdd a column of file names. str_glue() interpolates the value of clarity into each string:\n\nby_clarity &lt;- by_clarity |&gt;\n  mutate(path = str_glue(\"diamonds-{clarity}.csv\"))\nby_clarity\n\n# A tibble: 8 × 3\n  clarity               data path             \n  &lt;ord&gt;   &lt;list&lt;tibble[,9]&gt;&gt; &lt;glue&gt;           \n1 I1               [741 × 9] diamonds-I1.csv  \n2 SI2            [9,194 × 9] diamonds-SI2.csv \n3 SI1           [13,065 × 9] diamonds-SI1.csv \n4 VS2           [12,258 × 9] diamonds-VS2.csv \n5 VS1            [8,171 × 9] diamonds-VS1.csv \n6 VVS2           [5,066 × 9] diamonds-VVS2.csv\n7 VVS1           [3,655 × 9] diamonds-VVS1.csv\n8 IF             [1,790 × 9] diamonds-IF.csv  \n\n\nWe now have everything we need side by side: the data to write and the path to write it to."
+  },
+  {
+    "objectID": "weeks/week5/day22-iteration-map-page.html#two-inputs-at-once-map2-walk2",
+    "href": "weeks/week5/day22-iteration-map-page.html#two-inputs-at-once-map2-walk2",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "Two inputs at once: map2() / walk2()",
+    "text": "Two inputs at once: map2() / walk2()\nSaving needs two things that vary together — the data and the path. By hand that’s:\n\nwrite_csv(by_clarity$data[[1]], by_clarity$path[[1]])\nwrite_csv(by_clarity$data[[2]], by_clarity$path[[2]])\n# ... eight times\n\nmap2() varies the first two arguments together; walk2() does that and discards the output:\n\nwalk2(by_clarity$data, by_clarity$path, write_csv)\n\nOne line writes all eight CSVs. walk2(x, y, f) calls f(x[[i]], y[[i]]) for each i."
+  },
+  {
+    "objectID": "weeks/week5/day22-iteration-map-page.html#saving-many-plots",
+    "href": "weeks/week5/day22-iteration-map-page.html#saving-many-plots",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "Saving many plots",
+    "text": "Saving many plots\nSame recipe. First a function that builds the plot for one data frame:\n\ncarat_histogram &lt;- function(df) {\n  ggplot(df, aes(x = carat)) + geom_histogram(binwidth = 0.1)\n}\ncarat_histogram(by_clarity$data[[1]])"
+  },
+  {
+    "objectID": "weeks/week5/day22-iteration-map-page.html#saving-many-plots-1",
+    "href": "weeks/week5/day22-iteration-map-page.html#saving-many-plots-1",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "Saving many plots",
+    "text": "Saving many plots\nUse map() to make a list-column of plots, and str_glue() for the paths:\n\nby_clarity &lt;- by_clarity |&gt;\n  mutate(\n    plot = map(data, carat_histogram),\n    path = str_glue(\"clarity-{clarity}.png\")\n  )\n\nThen walk2() + ggsave() writes them all:\n\nwalk2(\n  by_clarity$path,\n  by_clarity$plot,\n  \\(path, plot) ggsave(path, plot, width = 6, height = 6)\n)\n\nReading files, writing files, drawing plots — all the same map/walk shape."
+  },
+  {
+    "objectID": "weeks/week5/day22-iteration-map-page.html#iteration-is-a-superpower",
+    "href": "weeks/week5/day22-iteration-map-page.html#iteration-is-a-superpower",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "Iteration is a superpower",
+    "text": "Iteration is a superpower\nThe whole arc of this chapter is one idea applied three ways:\n\n\n\nTask\nTool\n\n\n\n\ndo something to each column\nacross()\n\n\ndo something to each element\nmap() / map_dbl() / …\n\n\ndo something for its side effect\nwalk() / walk2()\n\n\n\n\n“If you know the right iteration technique, you can easily go from fixing one problem to fixing all the problems.” — R4DS"
+  },
+  {
+    "objectID": "weeks/week5/day22-iteration-map-page.html#what-about-for-loops",
+    "href": "weeks/week5/day22-iteration-map-page.html#what-about-for-loops",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "What about for loops?",
+    "text": "What about for loops?\nYou may have noticed we haven’t written a single for loop.\nR’s data-analysis orientation changes how we iterate: most of the time there’s already an idiom — do something to each column (across), each group (group_by), or each element (map).\nfor loops do exist and you’ll meet them in wild-caught code (and a bit of base R later). But reach for a functional tool first: it’s shorter, harder to get wrong, and says what you mean, not just how."
+  },
+  {
+    "objectID": "weeks/week5/day22-iteration-map-page.html#in-class-activity",
+    "href": "weeks/week5/day22-iteration-map-page.html#in-class-activity",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "In-class activity",
+    "text": "In-class activity\nOpen day22-activity.R in RStudio and work through the parts in order.\n\nPart 1: map() and its typed variants; anonymous functions; map() over the columns of a data frame.\nPart 2: group_nest() to build a list-column, str_glue() for paths, and walk2() to write one CSV per group (to a temp folder).\nPart 3 (challenge): write a plot function, build a list-column of plots with map(), and save them all with walk2() + ggsave().\n\nActivity file"
+  },
+  {
+    "objectID": "weeks/week5/day22-iteration-map-page.html#wrap-up-looking-ahead",
+    "href": "weeks/week5/day22-iteration-map-page.html#wrap-up-looking-ahead",
+    "title": "Iteration: map(), walk(), and saving many outputs",
+    "section": "Wrap-up & looking ahead",
+    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nmap(x, f) applies f to each element of x → a list\nTyped variants (map_dbl, map_chr, map_int, map_lgl) → vectors\nwalk() = map() for side effects (writing, saving)\ngroup_nest() makes a per-group list-column\nstr_glue() builds output paths from data\nmap2() / walk2() vary two inputs together (data + path)\nReading files, writing CSVs, saving plots — all the same shape\n\nUpcoming\n\nThu Jun 18: strings, dates & intro to regex + Project oral check-in #1\nReading before Thu: Data Computing §17.1–17.2\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 26 · purrr reference"
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-slides.html#you-already-iterate-constantly",
+    "href": "weeks/week5/day21-iteration-across-slides.html#you-already-iterate-constantly",
+    "title": "Iteration: working across many columns",
+    "section": "You already iterate constantly",
+    "text": "You already iterate constantly\nIteration is repeatedly performing the same action on different objects. In R, much of it is implicit — you get it for free.\nTo double every element of a vector, you just write:\n\nx &lt;- c(1, 2, 3, 4)\n2 * x\n\n[1] 2 4 6 8\n\n\nIn most languages you’d write a loop. In R, the operation is vectorized.\nYou’ve also already used tools that repeat an action over subsets:\n\nfacet_wrap() / facet_grid() — one plot per group\ngroup_by() + summarize() — one summary per group\nunnest_wider() / unnest_longer() — one row/column per list element"
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-slides.html#functional-programming",
+    "href": "weeks/week5/day21-iteration-across-slides.html#functional-programming",
+    "title": "Iteration: working across many columns",
+    "section": "Functional programming",
+    "text": "Functional programming\nToday’s tools are functional programming tools: functions that take other functions as inputs.\nThat’s a natural next step from last class — you learned to write functions; now you’ll hand them to other functions to do the repeating for you.\nWe’ll keep it concrete and focus on one extremely common task:\n\nDoing the same thing to many columns at once.\n\nThe key tool is dplyr’s across()."
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-slides.html#the-copy-and-paste-problem",
+    "href": "weeks/week5/day21-iteration-across-slides.html#the-copy-and-paste-problem",
+    "title": "Iteration: working across many columns",
+    "section": "The copy-and-paste problem",
+    "text": "The copy-and-paste problem\nSuppose we want the median of every column of this tibble:\n\nset.seed(1014)\ndf &lt;- tibble(a = rnorm(10), b = rnorm(10), c = rnorm(10), d = rnorm(10))\n\ndf |&gt; summarize(\n  n = n(),\n  a = median(a),\n  b = median(b),\n  c = median(c),\n  d = median(d)\n)\n\n# A tibble: 1 × 5\n      n      a      b       c     d\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1    10 -0.246 -0.287 -0.0567 0.144\n\n\nThis breaks the rule of three from last class — and imagine doing it for 100 columns. 😩"
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-slides.html#across-to-the-rescue",
+    "href": "weeks/week5/day21-iteration-across-slides.html#across-to-the-rescue",
+    "title": "Iteration: working across many columns",
+    "section": "across() to the rescue",
+    "text": "across() to the rescue\nacross() repeats an action over a set of columns:\n\ndf |&gt; summarize(\n  n = n(),\n  across(a:d, median)\n)\n\n# A tibble: 1 × 5\n      n      a      b       c     d\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1    10 -0.246 -0.287 -0.0567 0.144\n\n\nacross() has three important arguments:\n\n\n\nArgument\nRole\n\n\n\n\n.cols\nwhich columns to iterate over (uses select() syntax)\n\n\n.fns\nwhat to do to each column\n\n\n.names\n(optional) how to name the output columns"
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-slides.html#cols-choosing-columns",
+    "href": "weeks/week5/day21-iteration-across-slides.html#cols-choosing-columns",
+    "title": "Iteration: working across many columns",
+    "section": ".cols: choosing columns",
+    "text": ".cols: choosing columns\n.cols accepts everything select() does — a:d, starts_with(), ends_with(). Two selectors are especially handy with across():\n\neverything() — every (non-grouping) column\nwhere() — select by type: where(is.numeric), where(is.character), where(is.Date), …\n\n\nset.seed(1014)\ndf &lt;- tibble(\n  grp = sample(2, 10, replace = TRUE),\n  a = rnorm(10), b = rnorm(10), c = rnorm(10), d = rnorm(10)\n)\n\ndf |&gt;\n  group_by(grp) |&gt;\n  summarize(across(everything(), median))\n\n# A tibble: 2 × 5\n    grp      a      b       c       d\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1     1 -0.244 -0.522 -0.0974 -0.251 \n2     2 -0.247  0.468  0.112   0.0700\n\n\nGrouping columns (grp) are excluded automatically — summarize() already preserves them."
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-slides.html#where-select-by-type",
+    "href": "weeks/week5/day21-iteration-across-slides.html#where-select-by-type",
+    "title": "Iteration: working across many columns",
+    "section": "where(): select by type",
+    "text": "where(): select by type\nwhere() is invaluable on real data with mixed column types. Here, average every numeric column of flights:\n\nflights |&gt;\n  summarize(across(where(is.numeric), \\(x) mean(x, na.rm = TRUE))) |&gt;\n  glimpse()\n\nRows: 1\nColumns: 14\n$ year           &lt;dbl&gt; 2013\n$ month          &lt;dbl&gt; 6.54851\n$ day            &lt;dbl&gt; 15.71079\n$ dep_time       &lt;dbl&gt; 1349.11\n$ sched_dep_time &lt;dbl&gt; 1344.255\n$ dep_delay      &lt;dbl&gt; 12.63907\n$ arr_time       &lt;dbl&gt; 1502.055\n$ sched_arr_time &lt;dbl&gt; 1536.38\n$ arr_delay      &lt;dbl&gt; 6.895377\n$ flight         &lt;dbl&gt; 1971.924\n$ air_time       &lt;dbl&gt; 150.6865\n$ distance       &lt;dbl&gt; 1039.913\n$ hour           &lt;dbl&gt; 13.18025\n$ minute         &lt;dbl&gt; 26.2301\n\n\nYou can combine selectors with Boolean logic: !where(is.numeric) (all non-numeric), or starts_with(\"dep\") & where(is.numeric)."
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-slides.html#fns-pass-the-function-dont-call-it",
+    "href": "weeks/week5/day21-iteration-across-slides.html#fns-pass-the-function-dont-call-it",
+    "title": "Iteration: working across many columns",
+    "section": ".fns: pass the function, don’t call it",
+    "text": ".fns: pass the function, don’t call it\nWe pass median — one function handed to another function (across). That’s functional programming.\n\n\n\n\n\n\nWarning\n\n\nPass the name only — no parentheses. across(a:d, median), never across(a:d, median()).\n\n\n\nmedian() with no argument errors, because you’ve called it with nothing to work on:\n\nmedian()\n\nError in `median.default()`:\n! argument \"x\" is missing, with no default"
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-slides.html#adding-arguments-with-anonymous-functions",
+    "href": "weeks/week5/day21-iteration-across-slides.html#adding-arguments-with-anonymous-functions",
+    "title": "Iteration: working across many columns",
+    "section": "Adding arguments with anonymous functions",
+    "text": "Adding arguments with anonymous functions\nWhat if there are NAs? median() propagates them:\n\ndf_miss &lt;- tibble(a = c(1, 2, NA, 4), b = c(NA, 5, 6, 7))\ndf_miss |&gt; summarize(across(a:b, median))\n\n# A tibble: 1 × 2\n      a     b\n  &lt;dbl&gt; &lt;dbl&gt;\n1    NA    NA\n\n\nWe want na.rm = TRUE. Wrap median() in a tiny anonymous function — \\(x) is shorthand for function(x):\n\ndf_miss |&gt; summarize(across(a:b, \\(x) median(x, na.rm = TRUE)))\n\n# A tibble: 1 × 2\n      a     b\n  &lt;dbl&gt; &lt;dbl&gt;\n1     2     6\n\n\nRead \\(x) median(x, na.rm = TRUE) as “given x, return its median, dropping NAs.”"
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-slides.html#what-across-expands-to",
+    "href": "weeks/week5/day21-iteration-across-slides.html#what-across-expands-to",
+    "title": "Iteration: working across many columns",
+    "section": "What across() expands to",
+    "text": "What across() expands to\nIt can help to picture what across() writes for you. This:\n\ndf_miss |&gt; summarize(across(a:b, \\(x) median(x, na.rm = TRUE)))\n\nis exactly equivalent to:\n\ndf_miss |&gt; summarize(\n  a = median(a, na.rm = TRUE),\n  b = median(b, na.rm = TRUE)\n)\n\nacross() is just a concise way to write the copy-pasted version — without the copy-paste mistakes."
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-slides.html#multiple-functions-at-once",
+    "href": "weeks/week5/day21-iteration-across-slides.html#multiple-functions-at-once",
+    "title": "Iteration: working across many columns",
+    "section": "Multiple functions at once",
+    "text": "Multiple functions at once\nCompute the median and count the missings by passing a named list to .fns:\n\ndf_miss |&gt;\n  summarize(\n    across(a:b, list(\n      median = \\(x) median(x, na.rm = TRUE),\n      n_miss = \\(x) sum(is.na(x))\n    )),\n    n = n()\n  )\n\n# A tibble: 1 × 5\n  a_median a_n_miss b_median b_n_miss     n\n     &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;    &lt;int&gt; &lt;int&gt;\n1        2        1        6        1     4\n\n\nThe new columns are named {.col}_{.fn} — e.g. a_median, a_n_miss. That’s a glue spec, and you can change it with .names = \"{.fn}_{.col}\"."
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-slides.html#across-in-mutate",
+    "href": "weeks/week5/day21-iteration-across-slides.html#across-in-mutate",
+    "title": "Iteration: working across many columns",
+    "section": "across() in mutate()",
+    "text": "across() in mutate()\nacross() shines inside mutate() too. Remember rescale01() from last class? Rescale four columns in one line:\n\nrescale01 &lt;- function(x) {\n  rng &lt;- range(x, na.rm = TRUE, finite = TRUE)\n  (x - rng[1]) / (rng[2] - rng[1])\n}\n\nset.seed(1014)\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(across(a:d, rescale01))\n\n# A tibble: 5 × 4\n      a     b     c     d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 0.339 1     0.291 0    \n2 0.880 0     0.611 0.557\n3 0     0.530 1     0.752\n4 0.795 0.531 0     1    \n5 1     0.518 0.580 0.394\n\n\nThis is the punchline of the last two classes: write a function once (day 20), then apply it everywhere with across() (today)."
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-slides.html#filtering-with-if_any-and-if_all",
+    "href": "weeks/week5/day21-iteration-across-slides.html#filtering-with-if_any-and-if_all",
+    "title": "Iteration: working across many columns",
+    "section": "Filtering with if_any() and if_all()",
+    "text": "Filtering with if_any() and if_all()\nacross() works in summarize() and mutate(). For filter(), use its cousins:\n\nif_any() — keep a row if the condition holds for any of the columns\nif_all() — keep a row if it holds for all of the columns\n\n\n# keep only rows with NO missing values in any of these timing columns\nflights |&gt;\n  filter(if_all(c(dep_time, arr_time, dep_delay, arr_delay), \\(x) !is.na(x))) |&gt;\n  nrow()\n\n[1] 327346"
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-slides.html#in-class-activity",
+    "href": "weeks/week5/day21-iteration-across-slides.html#in-class-activity",
+    "title": "Iteration: working across many columns",
+    "section": "In-class activity",
+    "text": "In-class activity\nOpen day21-activity.R in RStudio and work through the parts in order.\n\nPart 1: replace copy-pasted summarize() with across(); choose columns with .cols.\nPart 2: handle NAs with anonymous functions \\(x); apply multiple functions with a named list and control .names.\nPart 3 (challenge): across() inside mutate() (reusing a function you write), plus if_all() / if_any() for filtering.\n\nActivity file"
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-slides.html#wrap-up-looking-ahead",
+    "href": "weeks/week5/day21-iteration-across-slides.html#wrap-up-looking-ahead",
+    "title": "Iteration: working across many columns",
+    "section": "Wrap-up & looking ahead",
+    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nIteration = the same action over many things; R gives you a lot for free (vectorization, faceting, group_by)\nFunctional programming: hand a function to another function\nacross(.cols, .fns, .names) repeats an action over columns\n.cols uses select() syntax; everything() and where(is.numeric)\nPass the function name with no (); use \\(x) f(x, ...) to add args\nNamed list .fns for multiple functions; {.col}_{.fn} naming\nif_any() / if_all() bring the same idea to filter()\n\nUpcoming\n\nWed Jun 17: iterating over files and list-columns with purrr::map()\nReading before Wed: R4DS §26.4–26.5\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 26 · across() reference"
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-page.html",
+    "href": "weeks/week5/day21-iteration-across-page.html",
+    "title": "Iteration: working across many columns",
+    "section": "",
+    "text": "NoteToday: Tuesday June 16\n\n\n\nBefore class\n\nReading Quiz (Canvas): R4DS Ch. 26 §26.1–26.3 — Iteration\n\nPlan for today\n\nWhat iteration means, and why R gives you a lot of it for free\nThe copy-and-paste problem, again — now across columns\nacross(): .cols, .fns, .names\nSelecting columns with where(); passing functions without ()\nAnonymous functions \\(x), multiple functions, if_any() / if_all()\nIn-class activity\n\nHelpful links\n\nSyllabus · AI policy · Schedule · R4DS Ch. 26 · dplyr across() reference"
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-page.html#you-already-iterate-constantly",
+    "href": "weeks/week5/day21-iteration-across-page.html#you-already-iterate-constantly",
+    "title": "Iteration: working across many columns",
+    "section": "You already iterate constantly",
+    "text": "You already iterate constantly\nIteration is repeatedly performing the same action on different objects. In R, much of it is implicit — you get it for free.\nTo double every element of a vector, you just write:\n\nx &lt;- c(1, 2, 3, 4)\n2 * x\n\n[1] 2 4 6 8\n\n\nIn most languages you’d write a loop. In R, the operation is vectorized.\nYou’ve also already used tools that repeat an action over subsets:\n\nfacet_wrap() / facet_grid() — one plot per group\ngroup_by() + summarize() — one summary per group\nunnest_wider() / unnest_longer() — one row/column per list element"
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-page.html#functional-programming",
+    "href": "weeks/week5/day21-iteration-across-page.html#functional-programming",
+    "title": "Iteration: working across many columns",
+    "section": "Functional programming",
+    "text": "Functional programming\nToday’s tools are functional programming tools: functions that take other functions as inputs.\nThat’s a natural next step from last class — you learned to write functions; now you’ll hand them to other functions to do the repeating for you.\nWe’ll keep it concrete and focus on one extremely common task:\n\nDoing the same thing to many columns at once.\n\nThe key tool is dplyr’s across()."
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-page.html#the-copy-and-paste-problem",
+    "href": "weeks/week5/day21-iteration-across-page.html#the-copy-and-paste-problem",
+    "title": "Iteration: working across many columns",
+    "section": "The copy-and-paste problem",
+    "text": "The copy-and-paste problem\nSuppose we want the median of every column of this tibble:\n\nset.seed(1014)\ndf &lt;- tibble(a = rnorm(10), b = rnorm(10), c = rnorm(10), d = rnorm(10))\n\ndf |&gt; summarize(\n  n = n(),\n  a = median(a),\n  b = median(b),\n  c = median(c),\n  d = median(d)\n)\n\n# A tibble: 1 × 5\n      n      a      b       c     d\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1    10 -0.246 -0.287 -0.0567 0.144\n\n\nThis breaks the rule of three from last class — and imagine doing it for 100 columns. 😩"
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-page.html#across-to-the-rescue",
+    "href": "weeks/week5/day21-iteration-across-page.html#across-to-the-rescue",
+    "title": "Iteration: working across many columns",
+    "section": "across() to the rescue",
+    "text": "across() to the rescue\nacross() repeats an action over a set of columns:\n\ndf |&gt; summarize(\n  n = n(),\n  across(a:d, median)\n)\n\n# A tibble: 1 × 5\n      n      a      b       c     d\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1    10 -0.246 -0.287 -0.0567 0.144\n\n\nacross() has three important arguments:\n\n\n\nArgument\nRole\n\n\n\n\n.cols\nwhich columns to iterate over (uses select() syntax)\n\n\n.fns\nwhat to do to each column\n\n\n.names\n(optional) how to name the output columns"
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-page.html#cols-choosing-columns",
+    "href": "weeks/week5/day21-iteration-across-page.html#cols-choosing-columns",
+    "title": "Iteration: working across many columns",
+    "section": ".cols: choosing columns",
+    "text": ".cols: choosing columns\n.cols accepts everything select() does — a:d, starts_with(), ends_with(). Two selectors are especially handy with across():\n\neverything() — every (non-grouping) column\nwhere() — select by type: where(is.numeric), where(is.character), where(is.Date), …\n\n\nset.seed(1014)\ndf &lt;- tibble(\n  grp = sample(2, 10, replace = TRUE),\n  a = rnorm(10), b = rnorm(10), c = rnorm(10), d = rnorm(10)\n)\n\ndf |&gt;\n  group_by(grp) |&gt;\n  summarize(across(everything(), median))\n\n# A tibble: 2 × 5\n    grp      a      b       c       d\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1     1 -0.244 -0.522 -0.0974 -0.251 \n2     2 -0.247  0.468  0.112   0.0700\n\n\nGrouping columns (grp) are excluded automatically — summarize() already preserves them."
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-page.html#where-select-by-type",
+    "href": "weeks/week5/day21-iteration-across-page.html#where-select-by-type",
+    "title": "Iteration: working across many columns",
+    "section": "where(): select by type",
+    "text": "where(): select by type\nwhere() is invaluable on real data with mixed column types. Here, average every numeric column of flights:\n\nflights |&gt;\n  summarize(across(where(is.numeric), \\(x) mean(x, na.rm = TRUE))) |&gt;\n  glimpse()\n\nRows: 1\nColumns: 14\n$ year           &lt;dbl&gt; 2013\n$ month          &lt;dbl&gt; 6.54851\n$ day            &lt;dbl&gt; 15.71079\n$ dep_time       &lt;dbl&gt; 1349.11\n$ sched_dep_time &lt;dbl&gt; 1344.255\n$ dep_delay      &lt;dbl&gt; 12.63907\n$ arr_time       &lt;dbl&gt; 1502.055\n$ sched_arr_time &lt;dbl&gt; 1536.38\n$ arr_delay      &lt;dbl&gt; 6.895377\n$ flight         &lt;dbl&gt; 1971.924\n$ air_time       &lt;dbl&gt; 150.6865\n$ distance       &lt;dbl&gt; 1039.913\n$ hour           &lt;dbl&gt; 13.18025\n$ minute         &lt;dbl&gt; 26.2301\n\n\nYou can combine selectors with Boolean logic: !where(is.numeric) (all non-numeric), or starts_with(\"dep\") & where(is.numeric)."
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-page.html#fns-pass-the-function-dont-call-it",
+    "href": "weeks/week5/day21-iteration-across-page.html#fns-pass-the-function-dont-call-it",
+    "title": "Iteration: working across many columns",
+    "section": ".fns: pass the function, don’t call it",
+    "text": ".fns: pass the function, don’t call it\nWe pass median — one function handed to another function (across). That’s functional programming.\n\n\n\n\n\n\nWarning\n\n\n\nPass the name only — no parentheses. across(a:d, median), never across(a:d, median()).\n\n\nmedian() with no argument errors, because you’ve called it with nothing to work on:\n\nmedian()\n\nError in `median.default()`:\n! argument \"x\" is missing, with no default"
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-page.html#adding-arguments-with-anonymous-functions",
+    "href": "weeks/week5/day21-iteration-across-page.html#adding-arguments-with-anonymous-functions",
+    "title": "Iteration: working across many columns",
+    "section": "Adding arguments with anonymous functions",
+    "text": "Adding arguments with anonymous functions\nWhat if there are NAs? median() propagates them:\n\ndf_miss &lt;- tibble(a = c(1, 2, NA, 4), b = c(NA, 5, 6, 7))\ndf_miss |&gt; summarize(across(a:b, median))\n\n# A tibble: 1 × 2\n      a     b\n  &lt;dbl&gt; &lt;dbl&gt;\n1    NA    NA\n\n\nWe want na.rm = TRUE. Wrap median() in a tiny anonymous function — \\(x) is shorthand for function(x):\n\ndf_miss |&gt; summarize(across(a:b, \\(x) median(x, na.rm = TRUE)))\n\n# A tibble: 1 × 2\n      a     b\n  &lt;dbl&gt; &lt;dbl&gt;\n1     2     6\n\n\nRead \\(x) median(x, na.rm = TRUE) as “given x, return its median, dropping NAs.”"
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-page.html#what-across-expands-to",
+    "href": "weeks/week5/day21-iteration-across-page.html#what-across-expands-to",
+    "title": "Iteration: working across many columns",
+    "section": "What across() expands to",
+    "text": "What across() expands to\nIt can help to picture what across() writes for you. This:\n\ndf_miss |&gt; summarize(across(a:b, \\(x) median(x, na.rm = TRUE)))\n\nis exactly equivalent to:\n\ndf_miss |&gt; summarize(\n  a = median(a, na.rm = TRUE),\n  b = median(b, na.rm = TRUE)\n)\n\nacross() is just a concise way to write the copy-pasted version — without the copy-paste mistakes."
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-page.html#multiple-functions-at-once",
+    "href": "weeks/week5/day21-iteration-across-page.html#multiple-functions-at-once",
+    "title": "Iteration: working across many columns",
+    "section": "Multiple functions at once",
+    "text": "Multiple functions at once\nCompute the median and count the missings by passing a named list to .fns:\n\ndf_miss |&gt;\n  summarize(\n    across(a:b, list(\n      median = \\(x) median(x, na.rm = TRUE),\n      n_miss = \\(x) sum(is.na(x))\n    )),\n    n = n()\n  )\n\n# A tibble: 1 × 5\n  a_median a_n_miss b_median b_n_miss     n\n     &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;    &lt;int&gt; &lt;int&gt;\n1        2        1        6        1     4\n\n\nThe new columns are named {.col}_{.fn} — e.g. a_median, a_n_miss. That’s a glue spec, and you can change it with .names = \"{.fn}_{.col}\"."
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-page.html#across-in-mutate",
+    "href": "weeks/week5/day21-iteration-across-page.html#across-in-mutate",
+    "title": "Iteration: working across many columns",
+    "section": "across() in mutate()",
+    "text": "across() in mutate()\nacross() shines inside mutate() too. Remember rescale01() from last class? Rescale four columns in one line:\n\nrescale01 &lt;- function(x) {\n  rng &lt;- range(x, na.rm = TRUE, finite = TRUE)\n  (x - rng[1]) / (rng[2] - rng[1])\n}\n\nset.seed(1014)\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(across(a:d, rescale01))\n\n# A tibble: 5 × 4\n      a     b     c     d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 0.339 1     0.291 0    \n2 0.880 0     0.611 0.557\n3 0     0.530 1     0.752\n4 0.795 0.531 0     1    \n5 1     0.518 0.580 0.394\n\n\nThis is the punchline of the last two classes: write a function once (day 20), then apply it everywhere with across() (today)."
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-page.html#filtering-with-if_any-and-if_all",
+    "href": "weeks/week5/day21-iteration-across-page.html#filtering-with-if_any-and-if_all",
+    "title": "Iteration: working across many columns",
+    "section": "Filtering with if_any() and if_all()",
+    "text": "Filtering with if_any() and if_all()\nacross() works in summarize() and mutate(). For filter(), use its cousins:\n\nif_any() — keep a row if the condition holds for any of the columns\nif_all() — keep a row if it holds for all of the columns\n\n\n# keep only rows with NO missing values in any of these timing columns\nflights |&gt;\n  filter(if_all(c(dep_time, arr_time, dep_delay, arr_delay), \\(x) !is.na(x))) |&gt;\n  nrow()\n\n[1] 327346"
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-page.html#in-class-activity",
+    "href": "weeks/week5/day21-iteration-across-page.html#in-class-activity",
+    "title": "Iteration: working across many columns",
+    "section": "In-class activity",
+    "text": "In-class activity\nOpen day21-activity.R in RStudio and work through the parts in order.\n\nPart 1: replace copy-pasted summarize() with across(); choose columns with .cols.\nPart 2: handle NAs with anonymous functions \\(x); apply multiple functions with a named list and control .names.\nPart 3 (challenge): across() inside mutate() (reusing a function you write), plus if_all() / if_any() for filtering.\n\nActivity file"
+  },
+  {
+    "objectID": "weeks/week5/day21-iteration-across-page.html#wrap-up-looking-ahead",
+    "href": "weeks/week5/day21-iteration-across-page.html#wrap-up-looking-ahead",
+    "title": "Iteration: working across many columns",
+    "section": "Wrap-up & looking ahead",
+    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nIteration = the same action over many things; R gives you a lot for free (vectorization, faceting, group_by)\nFunctional programming: hand a function to another function\nacross(.cols, .fns, .names) repeats an action over columns\n.cols uses select() syntax; everything() and where(is.numeric)\nPass the function name with no (); use \\(x) f(x, ...) to add args\nNamed list .fns for multiple functions; {.col}_{.fn} naming\nif_any() / if_all() bring the same idea to filter()\n\nUpcoming\n\nWed Jun 17: iterating over files and list-columns with purrr::map()\nReading before Wed: R4DS §26.4–26.5\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 26 · across() reference"
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-slides.html#the-rule-of-three",
+    "href": "weeks/week5/day20-functions-slides.html#the-rule-of-three",
+    "title": "Writing functions in R",
+    "section": "The rule of three",
+    "text": "The rule of three\n\n“You should consider writing a function whenever you’ve copied and pasted a block of code more than twice.” — R4DS\n\nFunctions have four big advantages over copy-and-paste:\n\nYou give the code an evocative name, so it’s easier to read.\nAs requirements change, you update one place, not many.\nYou eliminate copy-paste mistakes (changing a name in one spot but not another).\nYou can reuse work across projects.\n\nToday is a turning point: we move from using tidyverse verbs to writing our own tools."
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-slides.html#spot-the-bug",
+    "href": "weeks/week5/day20-functions-slides.html#spot-the-bug",
+    "title": "Writing functions in R",
+    "section": "Spot the bug",
+    "text": "Spot the bug\nThis code rescales every column to run from 0 to 1. There is a copy-paste bug hiding in it — can you find it?\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\n\ndf |&gt; mutate(\n  a = (a - min(a, na.rm = TRUE)) / (max(a, na.rm = TRUE) - min(a, na.rm = TRUE)),\n  b = (b - min(a, na.rm = TRUE)) / (max(b, na.rm = TRUE) - min(b, na.rm = TRUE)),\n  c = (c - min(c, na.rm = TRUE)) / (max(c, na.rm = TRUE) - min(c, na.rm = TRUE)),\n  d = (d - min(d, na.rm = TRUE)) / (max(d, na.rm = TRUE) - min(d, na.rm = TRUE)),\n)\n\n\n\n\n\n\n\nWarning\n\n\nLine b divides by min(a, ...) instead of min(b, ...). Even Hadley Wickham made this exact mistake — copy-paste invites it. A function makes the bug impossible."
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-slides.html#what-varies-what-stays-the-same",
+    "href": "weeks/week5/day20-functions-slides.html#what-varies-what-stays-the-same",
+    "title": "Writing functions in R",
+    "section": "What varies, what stays the same",
+    "text": "What varies, what stays the same\nPull the repeated line out and line the copies up. The pattern jumps out:\n(a - min(a, na.rm = TRUE)) / (max(a, na.rm = TRUE) - min(a, na.rm = TRUE))\n(b - min(b, na.rm = TRUE)) / (max(b, na.rm = TRUE) - min(b, na.rm = TRUE))\n(c - min(c, na.rm = TRUE)) / (max(c, na.rm = TRUE) - min(c, na.rm = TRUE))\nReplace the part that changes with █:\n(█ - min(█, na.rm = TRUE)) / (max(█, na.rm = TRUE) - min(█, na.rm = TRUE))\nThe only thing that varies is the vector. That becomes our single argument."
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-slides.html#the-anatomy-of-a-function",
+    "href": "weeks/week5/day20-functions-slides.html#the-anatomy-of-a-function",
+    "title": "Writing functions in R",
+    "section": "The anatomy of a function",
+    "text": "The anatomy of a function\nTo write a function you need three things:\n\na name — here rescale01 (it rescales a vector to 0–1),\nthe arguments — the things that vary; here just one, call it x,\nthe body — the code that’s repeated.\n\nname &lt;- function(arguments) {\n  body\n}\n\nrescale01 &lt;- function(x) {\n  (x - min(x, na.rm = TRUE)) / (max(x, na.rm = TRUE) - min(x, na.rm = TRUE))\n}"
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-slides.html#always-test-on-simple-inputs",
+    "href": "weeks/week5/day20-functions-slides.html#always-test-on-simple-inputs",
+    "title": "Writing functions in R",
+    "section": "Always test on simple inputs",
+    "text": "Always test on simple inputs\nBefore trusting a function, feed it inputs where you know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and the bug can’t come back:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b     c     d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 0     0.729 1     0    \n2 1     0     0.888 0.332\n3 0.662 1     0.422 0.350\n4 0.671 0.685 0     1    \n5 0.344 0.844 0.450 0.328"
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-slides.html#improving-a-function-in-one-place",
+    "href": "weeks/week5/day20-functions-slides.html#improving-a-function-in-one-place",
+    "title": "Writing functions in R",
+    "section": "Improving a function in one place",
+    "text": "Improving a function in one place\nBecause the logic lives in one spot, improving it is easy. range() finds the min and max in a single step:\n\nrescale01 &lt;- function(x) {\n  rng &lt;- range(x, na.rm = TRUE, finite = TRUE)\n  (x - rng[1]) / (rng[2] - rng[1])\n}\nrescale01(c(1:10, Inf))\n\n [1] 0.0000000 0.1111111 0.2222222 0.3333333 0.4444444 0.5555556 0.6666667\n [8] 0.7777778 0.8888889 1.0000000       Inf\n\n\n\n\n\n\n\n\nTip\n\n\nfinite = TRUE tells range() to ignore Inf. We fixed two behaviors at once — and every caller of rescale01() benefits instantly. That’s the whole point."
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-slides.html#mutate-functions",
+    "href": "weeks/week5/day20-functions-slides.html#mutate-functions",
+    "title": "Writing functions in R",
+    "section": "“Mutate” functions",
+    "text": "“Mutate” functions\nA mutate function returns an output the same length as its input, so it slots into mutate() and filter().\n\n# z-score: center and scale to mean 0, sd 1\nz_score &lt;- function(x) {\n  (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)\n}\n\n# clamp values into [min, max]\nclamp &lt;- function(x, min, max) {\n  case_when(\n    x &lt; min ~ min,\n    x &gt; max ~ max,\n    .default = x\n  )\n}\nclamp(1:10, min = 3, max = 7)\n\n [1] 3 3 3 4 5 6 7 7 7 7"
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-slides.html#mutate-functions-arent-just-for-numbers",
+    "href": "weeks/week5/day20-functions-slides.html#mutate-functions-arent-just-for-numbers",
+    "title": "Writing functions in R",
+    "section": "Mutate functions aren’t just for numbers",
+    "text": "Mutate functions aren’t just for numbers\n\n# capitalize the first letter\nfirst_upper &lt;- function(x) {\n  str_sub(x, 1, 1) &lt;- str_to_upper(str_sub(x, 1, 1))\n  x\n}\nfirst_upper(\"hello\")\n\n[1] \"Hello\"\n\n\n\n# strip $, commas, % then convert to a number\nclean_number &lt;- function(x) {\n  is_pct &lt;- str_detect(x, \"%\")\n  num &lt;- x |&gt;\n    str_remove_all(\"%\") |&gt; str_remove_all(\",\") |&gt; str_remove_all(fixed(\"$\")) |&gt;\n    as.numeric()\n  if_else(is_pct, num / 100, num)\n}\nclean_number(c(\"$12,300\", \"45%\"))\n\n[1] 12300.00     0.45"
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-slides.html#summary-functions",
+    "href": "weeks/week5/day20-functions-slides.html#summary-functions",
+    "title": "Writing functions in R",
+    "section": "“Summary” functions",
+    "text": "“Summary” functions\nA summary function collapses a vector to a single value, so it slots into summarize().\n\n# coefficient of variation: sd relative to the mean\ncv &lt;- function(x, na.rm = FALSE) {\n  sd(x, na.rm = na.rm) / mean(x, na.rm = na.rm)\n}\n\n# a memorable name for a common pattern\nn_missing &lt;- function(x) {\n  sum(is.na(x))\n}\n\nflights |&gt; summarize(\n  n_missing_delay = n_missing(dep_delay),\n  cv_delay        = cv(dep_delay, na.rm = TRUE)\n)\n\n# A tibble: 1 × 2\n  n_missing_delay cv_delay\n            &lt;int&gt;    &lt;dbl&gt;\n1            8255     3.18\n\n\n\n\n\n\n\n\nTip\n\n\nNote the default argument na.rm = FALSE. Callers can override it, but don’t have to."
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-slides.html#repeating-verbs-not-just-expressions",
+    "href": "weeks/week5/day20-functions-slides.html#repeating-verbs-not-just-expressions",
+    "title": "Writing functions in R",
+    "section": "Repeating verbs, not just expressions",
+    "text": "Repeating verbs, not just expressions\nVector functions pull out code repeated inside a verb. But often you repeat the verbs themselves. A data frame function:\n\ntakes a data frame as its first argument,\ntakes extra arguments saying what to do,\nreturns a data frame (or a vector).\n\nThe natural first attempt looks like this — and it fails:\n\ngrouped_mean &lt;- function(df, group_var, mean_var) {\n  df |&gt;\n    group_by(group_var) |&gt;\n    summarize(mean(mean_var))\n}\nflights |&gt; grouped_mean(origin, dep_delay)\n#&gt; Error: Column `group_var` is not found."
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-slides.html#the-problem-indirection",
+    "href": "weeks/week5/day20-functions-slides.html#the-problem-indirection",
+    "title": "Writing functions in R",
+    "section": "The problem: indirection",
+    "text": "The problem: indirection\ndplyr uses tidy evaluation so you can write dep_delay instead of flights$dep_delay. That’s wonderful 95% of the time — but inside a function, group_by(group_var) literally looks for a column named group_var.\nWe need to tell dplyr: don’t use the argument’s name — look inside it.\nThe solution is embracing with { } 🤗.\n\n\n\n\n\n\nTip\n\n\nThink of { var } as looking down a tunnel: it makes dplyr look inside var rather than searching for a column called var."
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-slides.html#embracing-fixes-it",
+    "href": "weeks/week5/day20-functions-slides.html#embracing-fixes-it",
+    "title": "Writing functions in R",
+    "section": "Embracing fixes it",
+    "text": "Embracing fixes it\n\ngrouped_mean &lt;- function(df, group_var, mean_var) {\n  df |&gt;\n    group_by({{ group_var }}) |&gt;\n    summarize(mean = mean({{ mean_var }}, na.rm = TRUE), .groups = \"drop\")\n}\nflights |&gt; grouped_mean(origin, dep_delay)\n\n# A tibble: 3 × 2\n  origin  mean\n  &lt;chr&gt;  &lt;dbl&gt;\n1 EWR     15.1\n2 JFK     12.1\n3 LGA     10.3\n\n\nNow grouped_mean(origin, dep_delay) really does group by origin and average dep_delay. 🎉"
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-slides.html#when-do-i-need-to-embrace",
+    "href": "weeks/week5/day20-functions-slides.html#when-do-i-need-to-embrace",
+    "title": "Writing functions in R",
+    "section": "When do I need to embrace?",
+    "text": "When do I need to embrace?\nLook it up in the help page! Two kinds of tidy evaluation:\n\n\n\n\n\n\n\n\nType\nUsed by\nYou can…\n\n\n\n\nData-masking\nfilter(), arrange(), summarize(), group_by(), mutate()\ncompute with variables (x + 1)\n\n\nTidy-selection\nselect(), relocate(), rename(), pivot_wider()\nselect variables (a:x, starts_with())\n\n\n\nRule of thumb: if an argument gets passed to a verb that uses tidy evaluation, embrace it."
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-slides.html#a-handy-summary-helper",
+    "href": "weeks/week5/day20-functions-slides.html#a-handy-summary-helper",
+    "title": "Writing functions in R",
+    "section": "A handy summary helper",
+    "text": "A handy summary helper\nWrap up the summaries you always run during exploration:\n\nsummary6 &lt;- function(data, var) {\n  data |&gt; summarize(\n    min = min({{ var }}, na.rm = TRUE),\n    mean = mean({{ var }}, na.rm = TRUE),\n    median = median({{ var }}, na.rm = TRUE),\n    max = max({{ var }}, na.rm = TRUE),\n    n = n(),\n    n_miss = sum(is.na({{ var }})),\n    .groups = \"drop\"\n  )\n}\ndiamonds |&gt; group_by(cut) |&gt; summary6(carat)\n\n# A tibble: 5 × 7\n  cut         min  mean median   max     n n_miss\n  &lt;ord&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;  &lt;int&gt;\n1 Fair       0.22 1.05    1     5.01  1610      0\n2 Good       0.23 0.849   0.82  3.01  4906      0\n3 Very Good  0.2  0.806   0.71  4    12082      0\n4 Premium    0.2  0.892   0.86  4.01 13791      0\n5 Ideal      0.2  0.703   0.54  3.5  21551      0\n\n\nBecause it wraps summarize(), it works on grouped data and on computed variables (summary6(log10(carat))) for free."
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-slides.html#count-with-proportions",
+    "href": "weeks/week5/day20-functions-slides.html#count-with-proportions",
+    "title": "Writing functions in R",
+    "section": "count() with proportions",
+    "text": "count() with proportions\n\ncount_prop &lt;- function(df, var, sort = FALSE) {\n  df |&gt;\n    count({{ var }}, sort = sort) |&gt;\n    mutate(prop = n / sum(n))\n}\ndiamonds |&gt; count_prop(clarity)\n\n# A tibble: 8 × 3\n  clarity     n   prop\n  &lt;ord&gt;   &lt;int&gt;  &lt;dbl&gt;\n1 I1        741 0.0137\n2 SI2      9194 0.170 \n3 SI1     13065 0.242 \n4 VS2     12258 0.227 \n5 VS1      8171 0.151 \n6 VVS2     5066 0.0939\n7 VVS1     3655 0.0678\n8 IF       1790 0.0332\n\n\nOnly var is embraced — df and sort are ordinary arguments. sort = FALSE is a sensible default."
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-slides.html#selecting-inside-a-data-masking-function",
+    "href": "weeks/week5/day20-functions-slides.html#selecting-inside-a-data-masking-function",
+    "title": "Writing functions in R",
+    "section": "Selecting inside a data-masking function",
+    "text": "Selecting inside a data-masking function\nWhat if you want to group by several user-supplied columns? group_by() is data-masking, not tidy-selection, so c(year, month, day) breaks. The fix is pick():\n\ncount_missing &lt;- function(df, group_vars, x_var) {\n  df |&gt;\n    group_by(pick({{ group_vars }})) |&gt;\n    summarize(n_miss = sum(is.na({{ x_var }})), .groups = \"drop\")\n}\nflights |&gt; count_missing(c(year, month, day), dep_time)\n\n# A tibble: 365 × 4\n    year month   day n_miss\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;\n 1  2013     1     1      4\n 2  2013     1     2      8\n 3  2013     1     3     10\n 4  2013     1     4      6\n 5  2013     1     5      3\n 6  2013     1     6      1\n 7  2013     1     7      3\n 8  2013     1     8      4\n 9  2013     1     9      5\n10  2013     1    10      3\n# ℹ 355 more rows\n\n\npick() lets you use tidy-selection inside a data-masking function."
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-slides.html#functions-that-return-a-plot",
+    "href": "weeks/week5/day20-functions-slides.html#functions-that-return-a-plot",
+    "title": "Writing functions in R",
+    "section": "Functions that return a plot",
+    "text": "Functions that return a plot\naes() is a data-masking function, so the same { } trick builds plotting functions:\n\nhistogram &lt;- function(df, var, binwidth = NULL) {\n  df |&gt;\n    ggplot(aes(x = {{ var }})) +\n    geom_histogram(binwidth = binwidth)\n}\ndiamonds |&gt; histogram(carat, 0.1)"
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-slides.html#you-can-still-add-layers",
+    "href": "weeks/week5/day20-functions-slides.html#you-can-still-add-layers",
+    "title": "Writing functions in R",
+    "section": "You can still add layers",
+    "text": "You can still add layers\nA plot function returns a ggplot object, so keep building with + (not |&gt;):\n\ndiamonds |&gt;\n  histogram(carat, 0.1) +\n  labs(x = \"Size (in carats)\", y = \"Number of diamonds\")"
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-slides.html#more-variables",
+    "href": "weeks/week5/day20-functions-slides.html#more-variables",
+    "title": "Writing functions in R",
+    "section": "More variables",
+    "text": "More variables\nEmbrace each variable you pass to aes():\n\nlinearity_check &lt;- function(df, x, y) {\n  df |&gt;\n    ggplot(aes(x = {{ x }}, y = {{ y }})) +\n    geom_point() +\n    geom_smooth(method = \"loess\", formula = y ~ x, color = \"red\", se = FALSE) +\n    geom_smooth(method = \"lm\", formula = y ~ x, color = \"blue\", se = FALSE)\n}\nmpg |&gt; linearity_check(displ, hwy)"
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-slides.html#the-walrus-operator",
+    "href": "weeks/week5/day20-functions-slides.html#the-walrus-operator",
+    "title": "Writing functions in R",
+    "section": "The walrus operator :=",
+    "text": "The walrus operator :=\nTo put an embraced name on the left of =, use :=:\n\nsorted_bars &lt;- function(df, var) {\n  df |&gt;\n    mutate({{ var }} := fct_rev(fct_infreq({{ var }}))) |&gt;\n    ggplot(aes(y = {{ var }})) +\n    geom_bar()\n}\ndiamonds |&gt; sorted_bars(clarity)\n\n\n\n\n\n\n\n\nR’s syntax won’t allow { var } =, so tidy evaluation gives us := to mean the same thing."
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-slides.html#labeling-with-the-variable-name",
+    "href": "weeks/week5/day20-functions-slides.html#labeling-with-the-variable-name",
+    "title": "Writing functions in R",
+    "section": "Labeling with the variable name",
+    "text": "Labeling with the variable name\nrlang::englue() works like str_glue() but also understands { }, inserting the variable’s name into a string:\n\nhistogram &lt;- function(df, var, binwidth) {\n  label &lt;- rlang::englue(\"A histogram of {{var}} with binwidth {binwidth}\")\n  df |&gt;\n    ggplot(aes(x = {{ var }})) +\n    geom_histogram(binwidth = binwidth) +\n    labs(title = label)\n}\ndiamonds |&gt; histogram(carat, 0.1)"
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-slides.html#names-are-for-humans",
+    "href": "weeks/week5/day20-functions-slides.html#names-are-for-humans",
+    "title": "Writing functions in R",
+    "section": "Names are for humans",
+    "text": "Names are for humans\nR doesn’t care what you name things — but your future self does.\n\nFunction names should be verbs; arguments should be nouns.\n\nexceptions: well-known nouns (mean()), or accessors (coef()).\n\nPrefer clear over short — autocomplete types the long name for you.\n\nf()                      # too short, meaningless\nmy_awesome_function()    # not a verb, not descriptive\nimpute_missing()         # long but clear ✔\ncollapse_years()         # long but clear ✔"
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-slides.html#whitespace-conventions",
+    "href": "weeks/week5/day20-functions-slides.html#whitespace-conventions",
+    "title": "Writing functions in R",
+    "section": "Whitespace conventions",
+    "text": "Whitespace conventions\n\nfunction(...) is always followed by { }.\nThe body is indented two extra spaces.\nPut spaces inside { } so the embracing stands out.\n\n# good\ndensity &lt;- function(color, facets, binwidth = 0.1) {\n  diamonds |&gt;\n    ggplot(aes(x = carat, y = after_stat(density), color = {{ color }})) +\n    geom_freqpoly(binwidth = binwidth) +\n    facet_wrap(vars({{ facets }}))\n}\nSkimming the left-hand margin should reveal the structure of your code."
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-slides.html#in-class-activity",
+    "href": "weeks/week5/day20-functions-slides.html#in-class-activity",
+    "title": "Writing functions in R",
+    "section": "In-class activity",
+    "text": "In-class activity\nOpen day20-activity.R in RStudio and work through the parts in order.\n\nPart 1: write & test vector functions (rescale01, a mutate helper, a summary helper).\nPart 2: write data frame functions using embracing { } on nycflights13.\nPart 3 (challenge): write a plot function, use :=, and label it with rlang::englue().\n\nActivity file"
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-slides.html#wrap-up-looking-ahead",
+    "href": "weeks/week5/day20-functions-slides.html#wrap-up-looking-ahead",
+    "title": "Writing functions in R",
+    "section": "Wrap-up & looking ahead",
+    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nWrite a function once you’ve copy-pasted more than twice\nVector functions: same-length-out (mutate) vs single-value-out (summary)\nAlways test on known inputs; improve in one place\nData frame functions: embrace data-masking args with { }\npick() for tidy-selection inside data-masking; := for names\nPlot functions: embrace inside aes(); label with rlang::englue()\nNames are verbs, clear beats short\n\nUpcoming\n\nTue Jun 16: control flow — if/else, for, while\nReading before Tue: R4DS §26.1–26.3\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 25 · tidyverse style guide"
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-page.html",
+    "href": "weeks/week5/day20-functions-page.html",
     "title": "Writing functions in R",
     "section": "",
-    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
+    "text": "NoteToday: Monday June 15\n\n\n\nBefore class\n\nReading Quiz 5 (Canvas): R4DS Ch. 25 — Functions\nHW 4 due tonight, 11:59 p.m.\n\nPlan for today\n\nWhy functions: the cost of copy-and-paste\nVector functions: rescale01(), mutate helpers, summary helpers\nData frame functions and the embracing operator { }\nPlot functions with ggplot2\nNaming & style; in-class activity\n\nHelpful links\n\nSyllabus · AI policy · Schedule · R4DS Ch. 25 · tidyverse style guide"
   },
   {
-    "objectID": "weeks/week5/day20-functions.html#before-class",
-    "href": "weeks/week5/day20-functions.html#before-class",
+    "objectID": "weeks/week5/day20-functions-page.html#the-rule-of-three",
+    "href": "weeks/week5/day20-functions-page.html#the-rule-of-three",
     "title": "Writing functions in R",
-    "section": "Before class",
-    "text": "Before class\n\nRead: R for Data Science Ch 25 (Functions)\nTODO: any prep materials, data files, etc."
+    "section": "The rule of three",
+    "text": "The rule of three\n\n“You should consider writing a function whenever you’ve copied and pasted a block of code more than twice.” — R4DS\n\nFunctions have four big advantages over copy-and-paste:\n\nYou give the code an evocative name, so it’s easier to read.\nAs requirements change, you update one place, not many.\nYou eliminate copy-paste mistakes (changing a name in one spot but not another).\nYou can reuse work across projects.\n\nToday is a turning point: we move from using tidyverse verbs to writing our own tools."
   },
   {
-    "objectID": "weeks/week5/day20-functions.html#outline",
-    "href": "weeks/week5/day20-functions.html#outline",
+    "objectID": "weeks/week5/day20-functions-page.html#spot-the-bug",
+    "href": "weeks/week5/day20-functions-page.html#spot-the-bug",
     "title": "Writing functions in R",
-    "section": "Outline",
-    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
+    "section": "Spot the bug",
+    "text": "Spot the bug\nThis code rescales every column to run from 0 to 1. There is a copy-paste bug hiding in it — can you find it?\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\n\ndf |&gt; mutate(\n  a = (a - min(a, na.rm = TRUE)) / (max(a, na.rm = TRUE) - min(a, na.rm = TRUE)),\n  b = (b - min(a, na.rm = TRUE)) / (max(b, na.rm = TRUE) - min(b, na.rm = TRUE)),\n  c = (c - min(c, na.rm = TRUE)) / (max(c, na.rm = TRUE) - min(c, na.rm = TRUE)),\n  d = (d - min(d, na.rm = TRUE)) / (max(d, na.rm = TRUE) - min(d, na.rm = TRUE)),\n)\n\n\n\n\n\n\n\nWarning\n\n\n\nLine b divides by min(a, ...) instead of min(b, ...). Even Hadley Wickham made this exact mistake — copy-paste invites it. A function makes the bug impossible."
   },
   {
-    "objectID": "weeks/week5/day20-functions.html#resources",
-    "href": "weeks/week5/day20-functions.html#resources",
+    "objectID": "weeks/week5/day20-functions-page.html#what-varies-what-stays-the-same",
+    "href": "weeks/week5/day20-functions-page.html#what-varies-what-stays-the-same",
     "title": "Writing functions in R",
-    "section": "Resources",
-    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+    "section": "What varies, what stays the same",
+    "text": "What varies, what stays the same\nPull the repeated line out and line the copies up. The pattern jumps out:\n(a - min(a, na.rm = TRUE)) / (max(a, na.rm = TRUE) - min(a, na.rm = TRUE))\n(b - min(b, na.rm = TRUE)) / (max(b, na.rm = TRUE) - min(b, na.rm = TRUE))\n(c - min(c, na.rm = TRUE)) / (max(c, na.rm = TRUE) - min(c, na.rm = TRUE))\nReplace the part that changes with █:\n(█ - min(█, na.rm = TRUE)) / (max(█, na.rm = TRUE) - min(█, na.rm = TRUE))\nThe only thing that varies is the vector. That becomes our single argument."
   },
   {
-    "objectID": "weeks/week5/day20-functions.html#after-class",
-    "href": "weeks/week5/day20-functions.html#after-class",
+    "objectID": "weeks/week5/day20-functions-page.html#the-anatomy-of-a-function",
+    "href": "weeks/week5/day20-functions-page.html#the-anatomy-of-a-function",
     "title": "Writing functions in R",
-    "section": "After class",
-    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
+    "section": "The anatomy of a function",
+    "text": "The anatomy of a function\nTo write a function you need three things:\n\na name — here rescale01 (it rescales a vector to 0–1),\nthe arguments — the things that vary; here just one, call it x,\nthe body — the code that’s repeated.\n\nname &lt;- function(arguments) {\n  body\n}\n\nrescale01 &lt;- function(x) {\n  (x - min(x, na.rm = TRUE)) / (max(x, na.rm = TRUE) - min(x, na.rm = TRUE))\n}"
   },
   {
-    "objectID": "weeks/week5/day23-strings-dates.html",
-    "href": "weeks/week5/day23-strings-dates.html",
-    "title": "Strings, dates, and regex + oral check-in #1",
-    "section": "",
-    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
+    "objectID": "weeks/week5/day20-functions-page.html#always-test-on-simple-inputs",
+    "href": "weeks/week5/day20-functions-page.html#always-test-on-simple-inputs",
+    "title": "Writing functions in R",
+    "section": "Always test on simple inputs",
+    "text": "Always test on simple inputs\nBefore trusting a function, feed it inputs where you know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and the bug can’t come back:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b     c     d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 0.627 1     0.532 0.157\n2 0.743 0.109 0.784 0    \n3 0.602 0.345 1     0.460\n4 0     0.477 0     1    \n5 1     0     0.584 0.580"
   },
   {
-    "objectID": "weeks/week5/day23-strings-dates.html#before-class",
-    "href": "weeks/week5/day23-strings-dates.html#before-class",
-    "title": "Strings, dates, and regex + oral check-in #1",
-    "section": "Before class",
-    "text": "Before class\n\nRead: Data Computing Ch 17 (§17.1–17.2)\nTODO: any prep materials, data files, etc."
+    "objectID": "weeks/week5/day20-functions-page.html#improving-a-function-in-one-place",
+    "href": "weeks/week5/day20-functions-page.html#improving-a-function-in-one-place",
+    "title": "Writing functions in R",
+    "section": "Improving a function in one place",
+    "text": "Improving a function in one place\nBecause the logic lives in one spot, improving it is easy. range() finds the min and max in a single step:\n\nrescale01 &lt;- function(x) {\n  rng &lt;- range(x, na.rm = TRUE, finite = TRUE)\n  (x - rng[1]) / (rng[2] - rng[1])\n}\nrescale01(c(1:10, Inf))\n\n [1] 0.0000000 0.1111111 0.2222222 0.3333333 0.4444444 0.5555556 0.6666667\n [8] 0.7777778 0.8888889 1.0000000       Inf\n\n\n\n\n\n\n\n\nTip\n\n\n\nfinite = TRUE tells range() to ignore Inf. We fixed two behaviors at once — and every caller of rescale01() benefits instantly. That’s the whole point."
   },
   {
-    "objectID": "weeks/week5/day23-strings-dates.html#outline",
-    "href": "weeks/week5/day23-strings-dates.html#outline",
-    "title": "Strings, dates, and regex + oral check-in #1",
-    "section": "Outline",
-    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
+    "objectID": "weeks/week5/day20-functions-page.html#mutate-functions",
+    "href": "weeks/week5/day20-functions-page.html#mutate-functions",
+    "title": "Writing functions in R",
+    "section": "“Mutate” functions",
+    "text": "“Mutate” functions\nA mutate function returns an output the same length as its input, so it slots into mutate() and filter().\n\n# z-score: center and scale to mean 0, sd 1\nz_score &lt;- function(x) {\n  (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)\n}\n\n# clamp values into [min, max]\nclamp &lt;- function(x, min, max) {\n  case_when(\n    x &lt; min ~ min,\n    x &gt; max ~ max,\n    .default = x\n  )\n}\nclamp(1:10, min = 3, max = 7)\n\n [1] 3 3 3 4 5 6 7 7 7 7"
   },
   {
-    "objectID": "weeks/week5/day23-strings-dates.html#resources",
-    "href": "weeks/week5/day23-strings-dates.html#resources",
-    "title": "Strings, dates, and regex + oral check-in #1",
-    "section": "Resources",
-    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+    "objectID": "weeks/week5/day20-functions-page.html#mutate-functions-arent-just-for-numbers",
+    "href": "weeks/week5/day20-functions-page.html#mutate-functions-arent-just-for-numbers",
+    "title": "Writing functions in R",
+    "section": "Mutate functions aren’t just for numbers",
+    "text": "Mutate functions aren’t just for numbers\n\n# capitalize the first letter\nfirst_upper &lt;- function(x) {\n  str_sub(x, 1, 1) &lt;- str_to_upper(str_sub(x, 1, 1))\n  x\n}\nfirst_upper(\"hello\")\n\n[1] \"Hello\"\n\n\n\n# strip $, commas, % then convert to a number\nclean_number &lt;- function(x) {\n  is_pct &lt;- str_detect(x, \"%\")\n  num &lt;- x |&gt;\n    str_remove_all(\"%\") |&gt; str_remove_all(\",\") |&gt; str_remove_all(fixed(\"$\")) |&gt;\n    as.numeric()\n  if_else(is_pct, num / 100, num)\n}\nclean_number(c(\"$12,300\", \"45%\"))\n\n[1] 12300.00     0.45"
   },
   {
-    "objectID": "weeks/week5/day23-strings-dates.html#after-class",
-    "href": "weeks/week5/day23-strings-dates.html#after-class",
-    "title": "Strings, dates, and regex + oral check-in #1",
-    "section": "After class",
-    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
+    "objectID": "weeks/week5/day20-functions-page.html#summary-functions",
+    "href": "weeks/week5/day20-functions-page.html#summary-functions",
+    "title": "Writing functions in R",
+    "section": "“Summary” functions",
+    "text": "“Summary” functions\nA summary function collapses a vector to a single value, so it slots into summarize().\n\n# coefficient of variation: sd relative to the mean\ncv &lt;- function(x, na.rm = FALSE) {\n  sd(x, na.rm = na.rm) / mean(x, na.rm = na.rm)\n}\n\n# a memorable name for a common pattern\nn_missing &lt;- function(x) {\n  sum(is.na(x))\n}\n\nflights |&gt; summarize(\n  n_missing_delay = n_missing(dep_delay),\n  cv_delay        = cv(dep_delay, na.rm = TRUE)\n)\n\n# A tibble: 1 × 2\n  n_missing_delay cv_delay\n            &lt;int&gt;    &lt;dbl&gt;\n1            8255     3.18\n\n\n\n\n\n\n\n\nTip\n\n\n\nNote the default argument na.rm = FALSE. Callers can override it, but don’t have to."
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-page.html#repeating-verbs-not-just-expressions",
+    "href": "weeks/week5/day20-functions-page.html#repeating-verbs-not-just-expressions",
+    "title": "Writing functions in R",
+    "section": "Repeating verbs, not just expressions",
+    "text": "Repeating verbs, not just expressions\nVector functions pull out code repeated inside a verb. But often you repeat the verbs themselves. A data frame function:\n\ntakes a data frame as its first argument,\ntakes extra arguments saying what to do,\nreturns a data frame (or a vector).\n\nThe natural first attempt looks like this — and it fails:\n\ngrouped_mean &lt;- function(df, group_var, mean_var) {\n  df |&gt;\n    group_by(group_var) |&gt;\n    summarize(mean(mean_var))\n}\nflights |&gt; grouped_mean(origin, dep_delay)\n#&gt; Error: Column `group_var` is not found."
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-page.html#the-problem-indirection",
+    "href": "weeks/week5/day20-functions-page.html#the-problem-indirection",
+    "title": "Writing functions in R",
+    "section": "The problem: indirection",
+    "text": "The problem: indirection\ndplyr uses tidy evaluation so you can write dep_delay instead of flights$dep_delay. That’s wonderful 95% of the time — but inside a function, group_by(group_var) literally looks for a column named group_var.\nWe need to tell dplyr: don’t use the argument’s name — look inside it.\nThe solution is embracing with { } 🤗.\n\n\n\n\n\n\nTip\n\n\n\nThink of { var } as looking down a tunnel: it makes dplyr look inside var rather than searching for a column called var."
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-page.html#embracing-fixes-it",
+    "href": "weeks/week5/day20-functions-page.html#embracing-fixes-it",
+    "title": "Writing functions in R",
+    "section": "Embracing fixes it",
+    "text": "Embracing fixes it\n\ngrouped_mean &lt;- function(df, group_var, mean_var) {\n  df |&gt;\n    group_by({{ group_var }}) |&gt;\n    summarize(mean = mean({{ mean_var }}, na.rm = TRUE), .groups = \"drop\")\n}\nflights |&gt; grouped_mean(origin, dep_delay)\n\n# A tibble: 3 × 2\n  origin  mean\n  &lt;chr&gt;  &lt;dbl&gt;\n1 EWR     15.1\n2 JFK     12.1\n3 LGA     10.3\n\n\nNow grouped_mean(origin, dep_delay) really does group by origin and average dep_delay. 🎉"
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-page.html#when-do-i-need-to-embrace",
+    "href": "weeks/week5/day20-functions-page.html#when-do-i-need-to-embrace",
+    "title": "Writing functions in R",
+    "section": "When do I need to embrace?",
+    "text": "When do I need to embrace?\nLook it up in the help page! Two kinds of tidy evaluation:\n\n\n\n\n\n\n\n\nType\nUsed by\nYou can…\n\n\n\n\nData-masking\nfilter(), arrange(), summarize(), group_by(), mutate()\ncompute with variables (x + 1)\n\n\nTidy-selection\nselect(), relocate(), rename(), pivot_wider()\nselect variables (a:x, starts_with())\n\n\n\nRule of thumb: if an argument gets passed to a verb that uses tidy evaluation, embrace it."
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-page.html#a-handy-summary-helper",
+    "href": "weeks/week5/day20-functions-page.html#a-handy-summary-helper",
+    "title": "Writing functions in R",
+    "section": "A handy summary helper",
+    "text": "A handy summary helper\nWrap up the summaries you always run during exploration:\n\nsummary6 &lt;- function(data, var) {\n  data |&gt; summarize(\n    min = min({{ var }}, na.rm = TRUE),\n    mean = mean({{ var }}, na.rm = TRUE),\n    median = median({{ var }}, na.rm = TRUE),\n    max = max({{ var }}, na.rm = TRUE),\n    n = n(),\n    n_miss = sum(is.na({{ var }})),\n    .groups = \"drop\"\n  )\n}\ndiamonds |&gt; group_by(cut) |&gt; summary6(carat)\n\n# A tibble: 5 × 7\n  cut         min  mean median   max     n n_miss\n  &lt;ord&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;  &lt;int&gt;\n1 Fair       0.22 1.05    1     5.01  1610      0\n2 Good       0.23 0.849   0.82  3.01  4906      0\n3 Very Good  0.2  0.806   0.71  4    12082      0\n4 Premium    0.2  0.892   0.86  4.01 13791      0\n5 Ideal      0.2  0.703   0.54  3.5  21551      0\n\n\nBecause it wraps summarize(), it works on grouped data and on computed variables (summary6(log10(carat))) for free."
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-page.html#count-with-proportions",
+    "href": "weeks/week5/day20-functions-page.html#count-with-proportions",
+    "title": "Writing functions in R",
+    "section": "count() with proportions",
+    "text": "count() with proportions\n\ncount_prop &lt;- function(df, var, sort = FALSE) {\n  df |&gt;\n    count({{ var }}, sort = sort) |&gt;\n    mutate(prop = n / sum(n))\n}\ndiamonds |&gt; count_prop(clarity)\n\n# A tibble: 8 × 3\n  clarity     n   prop\n  &lt;ord&gt;   &lt;int&gt;  &lt;dbl&gt;\n1 I1        741 0.0137\n2 SI2      9194 0.170 \n3 SI1     13065 0.242 \n4 VS2     12258 0.227 \n5 VS1      8171 0.151 \n6 VVS2     5066 0.0939\n7 VVS1     3655 0.0678\n8 IF       1790 0.0332\n\n\nOnly var is embraced — df and sort are ordinary arguments. sort = FALSE is a sensible default."
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-page.html#selecting-inside-a-data-masking-function",
+    "href": "weeks/week5/day20-functions-page.html#selecting-inside-a-data-masking-function",
+    "title": "Writing functions in R",
+    "section": "Selecting inside a data-masking function",
+    "text": "Selecting inside a data-masking function\nWhat if you want to group by several user-supplied columns? group_by() is data-masking, not tidy-selection, so c(year, month, day) breaks. The fix is pick():\n\ncount_missing &lt;- function(df, group_vars, x_var) {\n  df |&gt;\n    group_by(pick({{ group_vars }})) |&gt;\n    summarize(n_miss = sum(is.na({{ x_var }})), .groups = \"drop\")\n}\nflights |&gt; count_missing(c(year, month, day), dep_time)\n\n# A tibble: 365 × 4\n    year month   day n_miss\n   &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;\n 1  2013     1     1      4\n 2  2013     1     2      8\n 3  2013     1     3     10\n 4  2013     1     4      6\n 5  2013     1     5      3\n 6  2013     1     6      1\n 7  2013     1     7      3\n 8  2013     1     8      4\n 9  2013     1     9      5\n10  2013     1    10      3\n# ℹ 355 more rows\n\n\npick() lets you use tidy-selection inside a data-masking function."
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-page.html#functions-that-return-a-plot",
+    "href": "weeks/week5/day20-functions-page.html#functions-that-return-a-plot",
+    "title": "Writing functions in R",
+    "section": "Functions that return a plot",
+    "text": "Functions that return a plot\naes() is a data-masking function, so the same { } trick builds plotting functions:\n\nhistogram &lt;- function(df, var, binwidth = NULL) {\n  df |&gt;\n    ggplot(aes(x = {{ var }})) +\n    geom_histogram(binwidth = binwidth)\n}\ndiamonds |&gt; histogram(carat, 0.1)"
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-page.html#you-can-still-add-layers",
+    "href": "weeks/week5/day20-functions-page.html#you-can-still-add-layers",
+    "title": "Writing functions in R",
+    "section": "You can still add layers",
+    "text": "You can still add layers\nA plot function returns a ggplot object, so keep building with + (not |&gt;):\n\ndiamonds |&gt;\n  histogram(carat, 0.1) +\n  labs(x = \"Size (in carats)\", y = \"Number of diamonds\")"
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-page.html#more-variables",
+    "href": "weeks/week5/day20-functions-page.html#more-variables",
+    "title": "Writing functions in R",
+    "section": "More variables",
+    "text": "More variables\nEmbrace each variable you pass to aes():\n\nlinearity_check &lt;- function(df, x, y) {\n  df |&gt;\n    ggplot(aes(x = {{ x }}, y = {{ y }})) +\n    geom_point() +\n    geom_smooth(method = \"loess\", formula = y ~ x, color = \"red\", se = FALSE) +\n    geom_smooth(method = \"lm\", formula = y ~ x, color = \"blue\", se = FALSE)\n}\nmpg |&gt; linearity_check(displ, hwy)"
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-page.html#the-walrus-operator",
+    "href": "weeks/week5/day20-functions-page.html#the-walrus-operator",
+    "title": "Writing functions in R",
+    "section": "The walrus operator :=",
+    "text": "The walrus operator :=\nTo put an embraced name on the left of =, use :=:\n\nsorted_bars &lt;- function(df, var) {\n  df |&gt;\n    mutate({{ var }} := fct_rev(fct_infreq({{ var }}))) |&gt;\n    ggplot(aes(y = {{ var }})) +\n    geom_bar()\n}\ndiamonds |&gt; sorted_bars(clarity)\n\n\n\n\n\n\n\n\nR’s syntax won’t allow { var } =, so tidy evaluation gives us := to mean the same thing."
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-page.html#labeling-with-the-variable-name",
+    "href": "weeks/week5/day20-functions-page.html#labeling-with-the-variable-name",
+    "title": "Writing functions in R",
+    "section": "Labeling with the variable name",
+    "text": "Labeling with the variable name\nrlang::englue() works like str_glue() but also understands { }, inserting the variable’s name into a string:\n\nhistogram &lt;- function(df, var, binwidth) {\n  label &lt;- rlang::englue(\"A histogram of {{var}} with binwidth {binwidth}\")\n  df |&gt;\n    ggplot(aes(x = {{ var }})) +\n    geom_histogram(binwidth = binwidth) +\n    labs(title = label)\n}\ndiamonds |&gt; histogram(carat, 0.1)"
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-page.html#names-are-for-humans",
+    "href": "weeks/week5/day20-functions-page.html#names-are-for-humans",
+    "title": "Writing functions in R",
+    "section": "Names are for humans",
+    "text": "Names are for humans\nR doesn’t care what you name things — but your future self does.\n\nFunction names should be verbs; arguments should be nouns.\n\nexceptions: well-known nouns (mean()), or accessors (coef()).\n\nPrefer clear over short — autocomplete types the long name for you.\n\nf()                      # too short, meaningless\nmy_awesome_function()    # not a verb, not descriptive\nimpute_missing()         # long but clear ✔\ncollapse_years()         # long but clear ✔"
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-page.html#whitespace-conventions",
+    "href": "weeks/week5/day20-functions-page.html#whitespace-conventions",
+    "title": "Writing functions in R",
+    "section": "Whitespace conventions",
+    "text": "Whitespace conventions\n\nfunction(...) is always followed by { }.\nThe body is indented two extra spaces.\nPut spaces inside { } so the embracing stands out.\n\n# good\ndensity &lt;- function(color, facets, binwidth = 0.1) {\n  diamonds |&gt;\n    ggplot(aes(x = carat, y = after_stat(density), color = {{ color }})) +\n    geom_freqpoly(binwidth = binwidth) +\n    facet_wrap(vars({{ facets }}))\n}\nSkimming the left-hand margin should reveal the structure of your code."
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-page.html#in-class-activity",
+    "href": "weeks/week5/day20-functions-page.html#in-class-activity",
+    "title": "Writing functions in R",
+    "section": "In-class activity",
+    "text": "In-class activity\nOpen day20-activity.R in RStudio and work through the parts in order.\n\nPart 1: write & test vector functions (rescale01, a mutate helper, a summary helper).\nPart 2: write data frame functions using embracing { } on nycflights13.\nPart 3 (challenge): write a plot function, use :=, and label it with rlang::englue().\n\nActivity file"
+  },
+  {
+    "objectID": "weeks/week5/day20-functions-page.html#wrap-up-looking-ahead",
+    "href": "weeks/week5/day20-functions-page.html#wrap-up-looking-ahead",
+    "title": "Writing functions in R",
+    "section": "Wrap-up & looking ahead",
+    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nWrite a function once you’ve copy-pasted more than twice\nVector functions: same-length-out (mutate) vs single-value-out (summary)\nAlways test on known inputs; improve in one place\nData frame functions: embrace data-masking args with { }\npick() for tidy-selection inside data-masking; := for names\nPlot functions: embrace inside aes(); label with rlang::englue()\nNames are verbs, clear beats short\n\nUpcoming\n\nTue Jun 16: control flow — if/else, for, while\nReading before Tue: R4DS §26.1–26.3\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 25 · tidyverse style guide"
   },
   {
     "objectID": "weeks/week2/day9-activity.html",
@@ -6601,39 +7273,235 @@
     "text": "Target 4 — Counts of penguins by island and species\n\n\n\n\n\n\n\n\n\n\n# Your code:\n\nHint: pay attention to the position adjustment. Stacked, dodged, and filled bars all look different.\nWhat does this plot reveal?\n[Write one sentence.]"
   },
   {
-    "objectID": "weeks/week5/day21-control-flow.html",
-    "href": "weeks/week5/day21-control-flow.html",
-    "title": "Control flow: if/else, for, while",
+    "objectID": "weeks/week5/day23-regex-page.html",
+    "href": "weeks/week5/day23-regex-page.html",
+    "title": "Regular expressions (regex)",
     "section": "",
-    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
+    "text": "NoteToday: Thursday June 18\n\n\n\nBefore class\n\nReading Quiz (Canvas): Data Computing Ch. 17 §17.1–17.2 — Regular expressions\n\nPlan for today\n\nProject oral check-in #1 runs during today’s work session (signup on Canvas)\nWhat a regex is, and the three jobs it does: detect, replace, extract\nBuilding blocks: literals, ., character classes [ ], alternation |\nQuantifiers ? * + {n}, anchors ^ $, and escaping\nCapturing with ( ) and pulling pieces out\nIn-class activity\n\nHelpful links\n\nSyllabus · AI policy · Schedule · DC Ch. 17 · stringr cheatsheet · regex101.com"
   },
   {
-    "objectID": "weeks/week5/day21-control-flow.html#before-class",
-    "href": "weeks/week5/day21-control-flow.html#before-class",
-    "title": "Control flow: if/else, for, while",
-    "section": "Before class",
-    "text": "Before class\n\nRead: R for Data Science Ch 26 (Iteration) §26.1–26.3\nTODO: any prep materials, data files, etc."
+    "objectID": "weeks/week5/day23-regex-page.html#patterns-in-strings",
+    "href": "weeks/week5/day23-regex-page.html#patterns-in-strings",
+    "title": "Regular expressions (regex)",
+    "section": "Patterns in strings",
+    "text": "Patterns in strings\nA regular expression (regex) is a compact way to describe a pattern in text. Lots of everyday strings follow patterns:\n\n\n\nKind\nExamples\n\n\n\n\nPhone numbers\n(651) 696-6000 · +1 651.696.6000\n\n\nTimes\n10:30 AM · 13:15.54\n\n\nDurations\n1:59:40 (Kipchoge’s sub-2-hour marathon)\n\n\nUS postal codes\n16801 · 55105-1362\n\n\nStray whitespace\n\"  henry  \"\n\n\n\nA regex lets you say “match anything shaped like this” without listing every case."
   },
   {
-    "objectID": "weeks/week5/day21-control-flow.html#outline",
-    "href": "weeks/week5/day21-control-flow.html#outline",
-    "title": "Control flow: if/else, for, while",
-    "section": "Outline",
-    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
+    "objectID": "weeks/week5/day23-regex-page.html#three-jobs-regex-does",
+    "href": "weeks/week5/day23-regex-page.html#three-jobs-regex-does",
+    "title": "Regular expressions (regex)",
+    "section": "Three jobs regex does",
+    "text": "Three jobs regex does\nAcross all of data cleaning, regex does three things:\n\n\n\nJob\nbase R\nstringr (tidyverse)\nOften with\n\n\n\n\nDetect a pattern\ngrepl()\nstr_detect()\nfilter()\n\n\nReplace a pattern\ngsub()\nstr_replace_all()\nmutate()\n\n\nExtract a match\nregmatches()\nstr_extract()\nmutate()\n\n\n\nThe textbook uses base R (grepl, gsub); the stringr versions do the same jobs with tidier names. We’ll show both."
   },
   {
-    "objectID": "weeks/week5/day21-control-flow.html#resources",
-    "href": "weeks/week5/day21-control-flow.html#resources",
-    "title": "Control flow: if/else, for, while",
-    "section": "Resources",
-    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+    "objectID": "weeks/week5/day23-regex-page.html#grepl-does-the-pattern-appear",
+    "href": "weeks/week5/day23-regex-page.html#grepl-does-the-pattern-appear",
+    "title": "Regular expressions (regex)",
+    "section": "grepl(): does the pattern appear?",
+    "text": "grepl(): does the pattern appear?\ngrepl(pattern, x) returns TRUE/FALSE for each string. The pattern is the quoted string. Here: names containing “shine” (ignore.case = TRUE ignores capitalization):\n\nNameList |&gt;\n  filter(grepl(\"shine\", name, ignore.case = TRUE)) |&gt;\n  head(5)\n\n# A tibble: 5 × 3\n  name     sex   total\n  &lt;chr&gt;    &lt;chr&gt; &lt;int&gt;\n1 Sunshine F      4959\n2 Shineka  F       150\n3 Shine    F        95\n4 Shine    M        44\n5 Sunshine M        37\n\n\nstr_detect(name, regex(\"shine\", ignore_case = TRUE)) does the same thing."
   },
   {
-    "objectID": "weeks/week5/day21-control-flow.html#after-class",
-    "href": "weeks/week5/day21-control-flow.html#after-class",
-    "title": "Control flow: if/else, for, while",
-    "section": "After class",
-    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
+    "objectID": "weeks/week5/day23-regex-page.html#literals-special-characters",
+    "href": "weeks/week5/day23-regex-page.html#literals-special-characters",
+    "title": "Regular expressions (regex)",
+    "section": "Literals & special characters",
+    "text": "Literals & special characters\nThe simplest patterns are literal: \"able\" matches any string containing “able” — “capable”, “tabled” — but is case-sensitive by default (“Able” won’t match unless ignore.case = TRUE).\nThese characters are special — they mean something other than themselves:\n.   ^   $   [   ]   {   }   |   (   )   +   *   ?\nFor example . means “any single character”, so \".ble\" matches “able”, “soluble”, “fungible”, “Bible”."
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-page.html#character-classes",
+    "href": "weeks/week5/day23-regex-page.html#character-classes",
+    "title": "Regular expressions (regex)",
+    "section": "Character classes [ ]",
+    "text": "Character classes [ ]\nSquare brackets mean “any one of these characters”:\n\n[aeiou] → any vowel\n[^aeiou] → not a vowel (the ^ inside brackets means “except”) → a consonant\n[0-9] → any digit; [a-z] → any lowercase letter\n\n\nNameList |&gt;\n  filter(grepl(\"mn\", name, ignore.case = TRUE)) |&gt;   # literal \"mn\"\n  head(3)\n\n# A tibble: 3 × 3\n  name   sex    total\n  &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt;\n1 Autumn F     104408\n2 Sumner M       2287\n3 Amna   F       1099\n\n\n\n\n\n\n\n\nTip\n\n\n\nA vertical bar | means “or”: \"rain|snow|sleet|hail\" matches any of those four words."
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-page.html#putting-characters-in-a-row",
+    "href": "weeks/week5/day23-regex-page.html#putting-characters-in-a-row",
+    "title": "Regular expressions (regex)",
+    "section": "Putting characters in a row",
+    "text": "Putting characters in a row\nTwo patterns side by side means “this then that”. ^[^aeiou].[^aeiou].[^aeiou] reads as:\n\n^ start of string, then\n[^aeiou] a consonant, . anything, [^aeiou] a consonant, . anything, [^aeiou] a consonant\n\ni.e. the 1st, 3rd, and 5th letters are consonants:\n\nNameList |&gt;\n  filter(grepl(\"^[^aeiou].[^aeiou].[^aeiou]\", name, ignore.case = TRUE)) |&gt;\n  head(3)\n\n# A tibble: 3 × 3\n  name   sex     total\n  &lt;chr&gt;  &lt;chr&gt;   &lt;int&gt;\n1 James  M     5091189\n2 Robert M     4789776\n3 David  M     3565229"
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-page.html#how-many-times",
+    "href": "weeks/week5/day23-regex-page.html#how-many-times",
+    "title": "Regular expressions (regex)",
+    "section": "How many times?",
+    "text": "How many times?\nA quantifier follows a pattern and says how many times it repeats:\n\n\n\nQuantifier\nMeans\n\n\n\n\n?\nzero or one time\n\n\n*\nzero or more times\n\n\n+\none or more times\n\n\n{n}\nexactly n times\n\n\n{n,m}\nbetween n and m times\n\n\n{n,}\nn or more times\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\nThe Data Computing reading swaps the definitions of + and *. In R (and every real regex engine): * = zero-or-more, + = one-or-more. Trust the table above and the code below — not the book on this one point."
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-page.html#quantifiers-in-action",
+    "href": "weeks/week5/day23-regex-page.html#quantifiers-in-action",
+    "title": "Regular expressions (regex)",
+    "section": "Quantifiers in action",
+    "text": "Quantifiers in action\n\nx &lt;- c(\"Mr.\", \"Ms\", \"Mrs.\", \"Miss\", \"Man\", \"Miocene\")\nx[grepl(\"M[aeiou]+\", x)]   # M then ONE or more vowels\n\n[1] \"Miss\"    \"Man\"     \"Miocene\"\n\nx[grepl(\"M[aeiou]*\", x)]   # M then ZERO or more vowels (matches Mr.)\n\n[1] \"Mr.\"     \"Ms\"      \"Mrs.\"    \"Miss\"    \"Man\"     \"Miocene\"\n\n\nThree or more vowels in a row, [aeiou]{3,}:\n\nNameList |&gt;\n  filter(grepl(\"[aeiou]{3,}\", name, ignore.case = TRUE)) |&gt;\n  head(3)\n\n# A tibble: 3 × 3\n  name   sex    total\n  &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt;\n1 Louis  M     389910\n2 Louise F     331551\n3 Isaiah M     177412"
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-page.html#start-and-end",
+    "href": "weeks/week5/day23-regex-page.html#start-and-end",
+    "title": "Regular expressions (regex)",
+    "section": "Start ^ and end $",
+    "text": "Start ^ and end $\nOutside of square brackets, ^ and $ are anchors:\n\n^ = the start of the string\n$ = the end of the string\n\nNames that end in a vowel, [aeiou]$:\n\nNameList |&gt;\n  filter(grepl(\"[aeiou]$\", name)) |&gt;\n  group_by(sex) |&gt;\n  summarise(total = sum(total), .groups = \"drop\")\n\n# A tibble: 2 × 2\n  sex      total\n  &lt;chr&gt;    &lt;int&gt;\n1 F     96702371\n2 M     21054791\n\n\nGirls’ names end in a vowel almost five times as often as boys’ names."
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-page.html#escaping-special-characters",
+    "href": "weeks/week5/day23-regex-page.html#escaping-special-characters",
+    "title": "Regular expressions (regex)",
+    "section": "Escaping special characters",
+    "text": "Escaping special characters\nTo match a special character literally, escape it with \\\\. So \\\\. means a real period, and \\\\$ a real dollar sign (not the end-of-string anchor).\n\ncurrency &lt;- c(\"$100.95\", \"45¢\")\ngsub(\"^\\\\$|¢$\", \"\", currency)   # strip a leading $ or trailing ¢\n\n[1] \"100.95\" \"45\"    \n\n\nHere ^\\\\$ is a literal $ at the start; ¢$ is a literal ¢ at the end. Without the \\\\, that first $ would mean “end of string”."
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-page.html#parentheses-capture",
+    "href": "weeks/week5/day23-regex-page.html#parentheses-capture",
+    "title": "Regular expressions (regex)",
+    "section": "Parentheses capture",
+    "text": "Parentheses capture\nWrap part of a pattern in ( ) to capture it — to pull that piece out. str_extract() returns the matched text; with capture groups, gsub() can refer back to group 1 as \\\\1.\nNames with four vowels in a row, extracting those vowels:\n\nBabyNames |&gt;\n  group_by(name) |&gt;\n  summarise(total = sum(count), .groups = \"drop\") |&gt;\n  mutate(match = str_extract(name, \"([aeiouAEIOU]{4})\")) |&gt;\n  filter(!is.na(match)) |&gt;\n  arrange(desc(total)) |&gt;\n  head(4)\n\n# A tibble: 4 × 3\n  name    total match\n  &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;\n1 Louie   29293 ouie \n2 Sequoia  3275 uoia \n3 Gioia     480 ioia \n4 Keiaira    81 eiai"
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-page.html#backreferences-with-1",
+    "href": "weeks/week5/day23-regex-page.html#backreferences-with-1",
+    "title": "Regular expressions (regex)",
+    "section": "Backreferences with \\\\1",
+    "text": "Backreferences with \\\\1\nThe regex \".*([aeiou])$\" = “anything, then a captured final vowel”. In gsub(), replacement = \"\\\\1\" keeps only the captured group — so the whole name collapses to its last vowel:\n\nre &lt;- \".*([aeiou])$\"\nNameList |&gt;\n  filter(grepl(re, name)) |&gt;\n  mutate(vowel = gsub(re, \"\\\\1\", name)) |&gt;\n  group_by(sex, vowel) |&gt;\n  summarise(total = sum(total), .groups = \"drop\") |&gt;\n  pivot_wider(names_from = sex, values_from = total)\n\n# A tibble: 5 × 3\n  vowel        F        M\n  &lt;chr&gt;    &lt;int&gt;    &lt;int&gt;\n1 a     56088501  1844041\n2 e     36432218 14341114\n3 i      3693024   753311\n4 o       403120  4041190\n5 u        85508    75135\n\n\nNames ending in “a”, “e”, “i” skew female; “o” skews male."
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-page.html#stripping-junk-out-of-numbers",
+    "href": "weeks/week5/day23-regex-page.html#stripping-junk-out-of-numbers",
+    "title": "Regular expressions (regex)",
+    "section": "Stripping junk out of numbers",
+    "text": "Stripping junk out of numbers\nScraped numbers arrive with $, ,, %, units. A character class lists everything to delete at once:\n\ndebt &lt;- tibble(\n  country = c(\"World\", \"United States*\", \"Japan\"),\n  debt    = c(\"$56,308 billion\", \"$17,607 billion\", \"$9,872 billion\"),\n  percGDP = c(\"64%\", \"73.60%\", \"214.30%\")\n)\ndebt |&gt;\n  mutate(\n    debt    = gsub(\"[$,%]|billion\", \"\", debt),\n    percGDP = gsub(\"[,%]\", \"\", percGDP)\n  )\n\n# A tibble: 3 × 3\n  country        debt     percGDP\n  &lt;chr&gt;          &lt;chr&gt;    &lt;chr&gt;  \n1 World          \"56308 \" 64     \n2 United States* \"17607 \" 73.60  \n3 Japan          \"9872 \"  214.30 \n\n\n[$,%] deletes any $, ,, or %; |billion also deletes the word “billion”."
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-page.html#trimming-whitespace",
+    "href": "weeks/week5/day23-regex-page.html#trimming-whitespace",
+    "title": "Regular expressions (regex)",
+    "section": "Trimming whitespace",
+    "text": "Trimming whitespace\n^ +| +$ matches one-or-more spaces at the start or the end:\n\ns &lt;- \"   My name is Julia     \"\ngsub(\"^ +| +$\", \"\", s)\n\n[1] \"My name is Julia\"\n\n\n\n\n\n\n\n\nTip\n\n\n\nstringr has friendly shortcuts for these: str_remove_all(), str_trim() (ends), and str_squish() (ends + collapse internal runs). Same regex ideas underneath."
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-page.html#in-class-activity",
+    "href": "weeks/week5/day23-regex-page.html#in-class-activity",
+    "title": "Regular expressions (regex)",
+    "section": "In-class activity",
+    "text": "In-class activity\nOpen day23-activity.R in RStudio and work through the parts in order. (Today’s session also hosts oral check-in #1 — work on the activity when it isn’t your turn.)\n\nPart 1: detect patterns with grepl() / str_detect() + filter() on BabyNames.\nPart 2: build patterns from character classes, quantifiers, and anchors (including a “Caitlin”-style name and a phone-number regex).\nPart 3 (challenge): extract with capture groups, and clean messy strings with gsub().\n\nActivity file"
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-page.html#wrap-up-looking-ahead",
+    "href": "weeks/week5/day23-regex-page.html#wrap-up-looking-ahead",
+    "title": "Regular expressions (regex)",
+    "section": "Wrap-up & looking ahead",
+    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nA regex describes a pattern; it does three jobs: detect / replace / extract\n. any char · [aeiou] class · [^aeiou] negation · | or\nQuantifiers ? * + {n} {n,m} {n,} (R: + = one-or-more, * = zero-or-more)\nAnchors ^ start, $ end; escape specials with \\\\\nCapture with ( ); pull pieces with str_extract() or \\\\1 in gsub()\nClean numbers/whitespace with gsub() (or str_remove_all/str_squish)\n\nUpcoming\n\nFri Jun 19: No class — Juneteenth\nQuiz 5 rescheduled to Mon Jun 22\nKeep building your project; oral check-in #1 today\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · DC Ch. 17 · regex101.com"
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-slides.html#patterns-in-strings",
+    "href": "weeks/week5/day23-regex-slides.html#patterns-in-strings",
+    "title": "Regular expressions (regex)",
+    "section": "Patterns in strings",
+    "text": "Patterns in strings\nA regular expression (regex) is a compact way to describe a pattern in text. Lots of everyday strings follow patterns:\n\n\n\nKind\nExamples\n\n\n\n\nPhone numbers\n(651) 696-6000 · +1 651.696.6000\n\n\nTimes\n10:30 AM · 13:15.54\n\n\nDurations\n1:59:40 (Kipchoge’s sub-2-hour marathon)\n\n\nUS postal codes\n16801 · 55105-1362\n\n\nStray whitespace\n\"  henry  \"\n\n\n\nA regex lets you say “match anything shaped like this” without listing every case."
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-slides.html#three-jobs-regex-does",
+    "href": "weeks/week5/day23-regex-slides.html#three-jobs-regex-does",
+    "title": "Regular expressions (regex)",
+    "section": "Three jobs regex does",
+    "text": "Three jobs regex does\nAcross all of data cleaning, regex does three things:\n\n\n\nJob\nbase R\nstringr (tidyverse)\nOften with\n\n\n\n\nDetect a pattern\ngrepl()\nstr_detect()\nfilter()\n\n\nReplace a pattern\ngsub()\nstr_replace_all()\nmutate()\n\n\nExtract a match\nregmatches()\nstr_extract()\nmutate()\n\n\n\nThe textbook uses base R (grepl, gsub); the stringr versions do the same jobs with tidier names. We’ll show both."
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-slides.html#grepl-does-the-pattern-appear",
+    "href": "weeks/week5/day23-regex-slides.html#grepl-does-the-pattern-appear",
+    "title": "Regular expressions (regex)",
+    "section": "grepl(): does the pattern appear?",
+    "text": "grepl(): does the pattern appear?\ngrepl(pattern, x) returns TRUE/FALSE for each string. The pattern is the quoted string. Here: names containing “shine” (ignore.case = TRUE ignores capitalization):\n\nNameList |&gt;\n  filter(grepl(\"shine\", name, ignore.case = TRUE)) |&gt;\n  head(5)\n\n# A tibble: 5 × 3\n  name     sex   total\n  &lt;chr&gt;    &lt;chr&gt; &lt;int&gt;\n1 Sunshine F      4959\n2 Shineka  F       150\n3 Shine    F        95\n4 Shine    M        44\n5 Sunshine M        37\n\n\nstr_detect(name, regex(\"shine\", ignore_case = TRUE)) does the same thing."
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-slides.html#literals-special-characters",
+    "href": "weeks/week5/day23-regex-slides.html#literals-special-characters",
+    "title": "Regular expressions (regex)",
+    "section": "Literals & special characters",
+    "text": "Literals & special characters\nThe simplest patterns are literal: \"able\" matches any string containing “able” — “capable”, “tabled” — but is case-sensitive by default (“Able” won’t match unless ignore.case = TRUE).\nThese characters are special — they mean something other than themselves:\n.   ^   $   [   ]   {   }   |   (   )   +   *   ?\nFor example . means “any single character”, so \".ble\" matches “able”, “soluble”, “fungible”, “Bible”."
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-slides.html#character-classes",
+    "href": "weeks/week5/day23-regex-slides.html#character-classes",
+    "title": "Regular expressions (regex)",
+    "section": "Character classes [ ]",
+    "text": "Character classes [ ]\nSquare brackets mean “any one of these characters”:\n\n[aeiou] → any vowel\n[^aeiou] → not a vowel (the ^ inside brackets means “except”) → a consonant\n[0-9] → any digit; [a-z] → any lowercase letter\n\n\nNameList |&gt;\n  filter(grepl(\"mn\", name, ignore.case = TRUE)) |&gt;   # literal \"mn\"\n  head(3)\n\n# A tibble: 3 × 3\n  name   sex    total\n  &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt;\n1 Autumn F     104408\n2 Sumner M       2287\n3 Amna   F       1099\n\n\n\n\n\n\n\n\nTip\n\n\nA vertical bar | means “or”: \"rain|snow|sleet|hail\" matches any of those four words."
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-slides.html#putting-characters-in-a-row",
+    "href": "weeks/week5/day23-regex-slides.html#putting-characters-in-a-row",
+    "title": "Regular expressions (regex)",
+    "section": "Putting characters in a row",
+    "text": "Putting characters in a row\nTwo patterns side by side means “this then that”. ^[^aeiou].[^aeiou].[^aeiou] reads as:\n\n^ start of string, then\n[^aeiou] a consonant, . anything, [^aeiou] a consonant, . anything, [^aeiou] a consonant\n\ni.e. the 1st, 3rd, and 5th letters are consonants:\n\nNameList |&gt;\n  filter(grepl(\"^[^aeiou].[^aeiou].[^aeiou]\", name, ignore.case = TRUE)) |&gt;\n  head(3)\n\n# A tibble: 3 × 3\n  name   sex     total\n  &lt;chr&gt;  &lt;chr&gt;   &lt;int&gt;\n1 James  M     5091189\n2 Robert M     4789776\n3 David  M     3565229"
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-slides.html#how-many-times",
+    "href": "weeks/week5/day23-regex-slides.html#how-many-times",
+    "title": "Regular expressions (regex)",
+    "section": "How many times?",
+    "text": "How many times?\nA quantifier follows a pattern and says how many times it repeats:\n\n\n\nQuantifier\nMeans\n\n\n\n\n?\nzero or one time\n\n\n*\nzero or more times\n\n\n+\none or more times\n\n\n{n}\nexactly n times\n\n\n{n,m}\nbetween n and m times\n\n\n{n,}\nn or more times\n\n\n\n\n\n\n\n\n\nWarning\n\n\nThe Data Computing reading swaps the definitions of + and *. In R (and every real regex engine): * = zero-or-more, + = one-or-more. Trust the table above and the code below — not the book on this one point."
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-slides.html#quantifiers-in-action",
+    "href": "weeks/week5/day23-regex-slides.html#quantifiers-in-action",
+    "title": "Regular expressions (regex)",
+    "section": "Quantifiers in action",
+    "text": "Quantifiers in action\n\nx &lt;- c(\"Mr.\", \"Ms\", \"Mrs.\", \"Miss\", \"Man\", \"Miocene\")\nx[grepl(\"M[aeiou]+\", x)]   # M then ONE or more vowels\n\n[1] \"Miss\"    \"Man\"     \"Miocene\"\n\nx[grepl(\"M[aeiou]*\", x)]   # M then ZERO or more vowels (matches Mr.)\n\n[1] \"Mr.\"     \"Ms\"      \"Mrs.\"    \"Miss\"    \"Man\"     \"Miocene\"\n\n\nThree or more vowels in a row, [aeiou]{3,}:\n\nNameList |&gt;\n  filter(grepl(\"[aeiou]{3,}\", name, ignore.case = TRUE)) |&gt;\n  head(3)\n\n# A tibble: 3 × 3\n  name   sex    total\n  &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt;\n1 Louis  M     389910\n2 Louise F     331551\n3 Isaiah M     177412"
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-slides.html#start-and-end",
+    "href": "weeks/week5/day23-regex-slides.html#start-and-end",
+    "title": "Regular expressions (regex)",
+    "section": "Start ^ and end $",
+    "text": "Start ^ and end $\nOutside of square brackets, ^ and $ are anchors:\n\n^ = the start of the string\n$ = the end of the string\n\nNames that end in a vowel, [aeiou]$:\n\nNameList |&gt;\n  filter(grepl(\"[aeiou]$\", name)) |&gt;\n  group_by(sex) |&gt;\n  summarise(total = sum(total), .groups = \"drop\")\n\n# A tibble: 2 × 2\n  sex      total\n  &lt;chr&gt;    &lt;int&gt;\n1 F     96702371\n2 M     21054791\n\n\nGirls’ names end in a vowel almost five times as often as boys’ names."
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-slides.html#escaping-special-characters",
+    "href": "weeks/week5/day23-regex-slides.html#escaping-special-characters",
+    "title": "Regular expressions (regex)",
+    "section": "Escaping special characters",
+    "text": "Escaping special characters\nTo match a special character literally, escape it with \\\\. So \\\\. means a real period, and \\\\$ a real dollar sign (not the end-of-string anchor).\n\ncurrency &lt;- c(\"$100.95\", \"45¢\")\ngsub(\"^\\\\$|¢$\", \"\", currency)   # strip a leading $ or trailing ¢\n\n[1] \"100.95\" \"45\"    \n\n\nHere ^\\\\$ is a literal $ at the start; ¢$ is a literal ¢ at the end. Without the \\\\, that first $ would mean “end of string”."
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-slides.html#parentheses-capture",
+    "href": "weeks/week5/day23-regex-slides.html#parentheses-capture",
+    "title": "Regular expressions (regex)",
+    "section": "Parentheses capture",
+    "text": "Parentheses capture\nWrap part of a pattern in ( ) to capture it — to pull that piece out. str_extract() returns the matched text; with capture groups, gsub() can refer back to group 1 as \\\\1.\nNames with four vowels in a row, extracting those vowels:\n\nBabyNames |&gt;\n  group_by(name) |&gt;\n  summarise(total = sum(count), .groups = \"drop\") |&gt;\n  mutate(match = str_extract(name, \"([aeiouAEIOU]{4})\")) |&gt;\n  filter(!is.na(match)) |&gt;\n  arrange(desc(total)) |&gt;\n  head(4)\n\n# A tibble: 4 × 3\n  name    total match\n  &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;\n1 Louie   29293 ouie \n2 Sequoia  3275 uoia \n3 Gioia     480 ioia \n4 Keiaira    81 eiai"
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-slides.html#backreferences-with-1",
+    "href": "weeks/week5/day23-regex-slides.html#backreferences-with-1",
+    "title": "Regular expressions (regex)",
+    "section": "Backreferences with \\\\1",
+    "text": "Backreferences with \\\\1\nThe regex \".*([aeiou])$\" = “anything, then a captured final vowel”. In gsub(), replacement = \"\\\\1\" keeps only the captured group — so the whole name collapses to its last vowel:\n\nre &lt;- \".*([aeiou])$\"\nNameList |&gt;\n  filter(grepl(re, name)) |&gt;\n  mutate(vowel = gsub(re, \"\\\\1\", name)) |&gt;\n  group_by(sex, vowel) |&gt;\n  summarise(total = sum(total), .groups = \"drop\") |&gt;\n  pivot_wider(names_from = sex, values_from = total)\n\n# A tibble: 5 × 3\n  vowel        F        M\n  &lt;chr&gt;    &lt;int&gt;    &lt;int&gt;\n1 a     56088501  1844041\n2 e     36432218 14341114\n3 i      3693024   753311\n4 o       403120  4041190\n5 u        85508    75135\n\n\nNames ending in “a”, “e”, “i” skew female; “o” skews male."
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-slides.html#stripping-junk-out-of-numbers",
+    "href": "weeks/week5/day23-regex-slides.html#stripping-junk-out-of-numbers",
+    "title": "Regular expressions (regex)",
+    "section": "Stripping junk out of numbers",
+    "text": "Stripping junk out of numbers\nScraped numbers arrive with $, ,, %, units. A character class lists everything to delete at once:\n\ndebt &lt;- tibble(\n  country = c(\"World\", \"United States*\", \"Japan\"),\n  debt    = c(\"$56,308 billion\", \"$17,607 billion\", \"$9,872 billion\"),\n  percGDP = c(\"64%\", \"73.60%\", \"214.30%\")\n)\ndebt |&gt;\n  mutate(\n    debt    = gsub(\"[$,%]|billion\", \"\", debt),\n    percGDP = gsub(\"[,%]\", \"\", percGDP)\n  )\n\n# A tibble: 3 × 3\n  country        debt     percGDP\n  &lt;chr&gt;          &lt;chr&gt;    &lt;chr&gt;  \n1 World          \"56308 \" 64     \n2 United States* \"17607 \" 73.60  \n3 Japan          \"9872 \"  214.30 \n\n\n[$,%] deletes any $, ,, or %; |billion also deletes the word “billion”."
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-slides.html#trimming-whitespace",
+    "href": "weeks/week5/day23-regex-slides.html#trimming-whitespace",
+    "title": "Regular expressions (regex)",
+    "section": "Trimming whitespace",
+    "text": "Trimming whitespace\n^ +| +$ matches one-or-more spaces at the start or the end:\n\ns &lt;- \"   My name is Julia     \"\ngsub(\"^ +| +$\", \"\", s)\n\n[1] \"My name is Julia\"\n\n\n\n\n\n\n\n\nTip\n\n\nstringr has friendly shortcuts for these: str_remove_all(), str_trim() (ends), and str_squish() (ends + collapse internal runs). Same regex ideas underneath."
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-slides.html#in-class-activity",
+    "href": "weeks/week5/day23-regex-slides.html#in-class-activity",
+    "title": "Regular expressions (regex)",
+    "section": "In-class activity",
+    "text": "In-class activity\nOpen day23-activity.R in RStudio and work through the parts in order. (Today’s session also hosts oral check-in #1 — work on the activity when it isn’t your turn.)\n\nPart 1: detect patterns with grepl() / str_detect() + filter() on BabyNames.\nPart 2: build patterns from character classes, quantifiers, and anchors (including a “Caitlin”-style name and a phone-number regex).\nPart 3 (challenge): extract with capture groups, and clean messy strings with gsub().\n\nActivity file"
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-slides.html#wrap-up-looking-ahead",
+    "href": "weeks/week5/day23-regex-slides.html#wrap-up-looking-ahead",
+    "title": "Regular expressions (regex)",
+    "section": "Wrap-up & looking ahead",
+    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nA regex describes a pattern; it does three jobs: detect / replace / extract\n. any char · [aeiou] class · [^aeiou] negation · | or\nQuantifiers ? * + {n} {n,m} {n,} (R: + = one-or-more, * = zero-or-more)\nAnchors ^ start, $ end; escape specials with \\\\\nCapture with ( ); pull pieces with str_extract() or \\\\1 in gsub()\nClean numbers/whitespace with gsub() (or str_remove_all/str_squish)\n\nUpcoming\n\nFri Jun 19: No class — Juneteenth\nQuiz 5 rescheduled to Mon Jun 22\nKeep building your project; oral check-in #1 today\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · DC Ch. 17 · regex101.com"
   },
   {
     "objectID": "weeks/week5/index.html",
@@ -6647,7 +7515,7 @@
     "href": "weeks/week5/index.html#daily-plan",
     "title": "Week 5 — Functions, Iteration, Strings",
     "section": "Daily plan",
-    "text": "Daily plan\n\n\n\nDate\nTopic\nFiles\n\n\n\n\nMon Jun 15\nWriting functions in R\nslides, in-class code\n\n\nTue Jun 16\nControl flow: if/else, for, while\nslides, in-class code\n\n\nWed Jun 17\nVectorized ops · purrr::map\nslides, in-class code\n\n\nThu Jun 18\nStrings, dates, intro to regex + Project oral check-in #1\nslides, in-class code\n\n\nFri Jun 19\nNo class — Juneteenth\n—"
+    "text": "Daily plan\n\n\n\nDate\nTopic\nFiles\n\n\n\n\nMon Jun 15\nWriting functions in R\nSlides · Page · day20-activity.R\n\n\nTue Jun 16\nIteration: working across many columns\nSlides · Page · day21-activity.R\n\n\nWed Jun 17\nIteration: map(), walk() & saving outputs\nSlides · Page · day22-activity.R\n\n\nThu Jun 18\nRegular expressions (regex) + Project oral check-in #1\nSlides · Page · day23-activity.R\n\n\nFri Jun 19\nNo class — Juneteenth\n—"
   },
   {
     "objectID": "weeks/week5/index.html#readings-due-this-week",
