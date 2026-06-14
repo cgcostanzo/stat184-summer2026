@@ -1,0 +1,313 @@
+---
+title: "Iteration: working across many columns"
+subtitle: "Tuesday, June 16, 2026"
+lang: en
+editor: source
+engine: knitr
+format:
+  revealjs:
+    slide-number: true
+    embed-resources: true
+    smaller: true
+    highlight-style: a11y
+    output-file: "day21-iteration-across-slides.html"
+  html:
+    toc: true
+    embed-resources: true
+    highlight-style: a11y
+    axe: true
+    output-file: "day21-iteration-across-page.html"
+  pdf:
+    fig-pos: "H"
+---
+
+```{r}
+#| echo: FALSE
+#| message: FALSE
+#| warning: FALSE
+library(tidyverse)
+library(nycflights13)
+```
+
+::: {.callout-note style="font-size: 1.3em;"}
+## [Today: Tuesday June 16]{style="font-size: 1.3em;"}
+
+**Before class**
+
+- **Reading Quiz** (Canvas): [*R4DS* Ch. 26](https://r4ds.hadley.nz/iteration) §26.1–26.3 — Iteration
+
+**Plan for today**
+
+- What *iteration* means, and why R gives you a lot of it for free
+- The copy-and-paste problem, again — now across **columns**
+- **`across()`**: `.cols`, `.fns`, `.names`
+- Selecting columns with `where()`; passing functions *without* `()`
+- Anonymous functions `\(x)`, multiple functions, `if_any()` / `if_all()`
+- In-class activity
+
+**Helpful links**
+
+- [Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*R4DS* Ch. 26](https://r4ds.hadley.nz/iteration) · [dplyr `across()` reference](https://dplyr.tidyverse.org/reference/across.html)
+:::
+
+# Why iteration? {background-color="#001E44"}
+
+## You already iterate constantly {.scrollable .nostretch}
+
+**Iteration** is repeatedly performing the same action on different objects. In R, much of it is *implicit* — you get it for free.
+
+To double every element of a vector, you just write:
+
+```{r}
+#| echo: TRUE
+x <- c(1, 2, 3, 4)
+2 * x
+```
+
+In most languages you'd write a loop. In R, the operation is **vectorized**.
+
+You've also already used tools that repeat an action over **subsets**:
+
+- `facet_wrap()` / `facet_grid()` — one plot per group
+- `group_by()` + `summarize()` — one summary per group
+- `unnest_wider()` / `unnest_longer()` — one row/column per list element
+
+## Functional programming {.scrollable .nostretch}
+
+Today's tools are **functional programming** tools: functions that *take other functions as inputs*.
+
+That's a natural next step from last class — you learned to *write* functions; now you'll *hand them to other functions* to do the repeating for you.
+
+We'll keep it concrete and focus on one extremely common task:
+
+> **Doing the same thing to many columns at once.**
+
+The key tool is dplyr's **`across()`**.
+
+# Modifying multiple columns {background-color="#001E44"}
+
+## The copy-and-paste problem {.scrollable .nostretch}
+
+Suppose we want the median of every column of this tibble:
+
+```{r}
+#| echo: TRUE
+set.seed(1014)
+df <- tibble(a = rnorm(10), b = rnorm(10), c = rnorm(10), d = rnorm(10))
+
+df |> summarize(
+  n = n(),
+  a = median(a),
+  b = median(b),
+  c = median(c),
+  d = median(d)
+)
+```
+
+This breaks the **rule of three** from last class — and imagine doing it for 100 columns. 😩
+
+## across() to the rescue {.scrollable .nostretch}
+
+`across()` repeats an action over a set of columns:
+
+```{r}
+#| echo: TRUE
+df |> summarize(
+  n = n(),
+  across(a:d, median)
+)
+```
+
+`across()` has three important arguments:
+
+| Argument | Role |
+|---|---|
+| `.cols` | **which** columns to iterate over (uses `select()` syntax) |
+| `.fns` | **what** to do to each column |
+| `.names` | (optional) **how** to name the output columns |
+
+## .cols: choosing columns {.scrollable .nostretch}
+
+`.cols` accepts everything `select()` does — `a:d`, `starts_with()`, `ends_with()`. Two selectors are especially handy with `across()`:
+
+- **`everything()`** — every (non-grouping) column
+- **`where()`** — select by *type*: `where(is.numeric)`, `where(is.character)`, `where(is.Date)`, ...
+
+```{r}
+#| echo: TRUE
+set.seed(1014)
+df <- tibble(
+  grp = sample(2, 10, replace = TRUE),
+  a = rnorm(10), b = rnorm(10), c = rnorm(10), d = rnorm(10)
+)
+
+df |>
+  group_by(grp) |>
+  summarize(across(everything(), median))
+```
+
+Grouping columns (`grp`) are excluded automatically — `summarize()` already preserves them.
+
+## where(): select by type {.scrollable .nostretch}
+
+`where()` is invaluable on real data with mixed column types. Here, average every **numeric** column of `flights`:
+
+```{r}
+#| echo: TRUE
+flights |>
+  summarize(across(where(is.numeric), \(x) mean(x, na.rm = TRUE))) |>
+  glimpse()
+```
+
+You can combine selectors with Boolean logic: `!where(is.numeric)` (all non-numeric), or `starts_with("dep") & where(is.numeric)`.
+
+## .fns: pass the function, don't call it {.scrollable .nostretch}
+
+We pass `median` — *one function handed to another function* (`across`). That's functional programming.
+
+::: {.callout-warning}
+Pass the **name only** — no parentheses. `across(a:d, median)`, never `across(a:d, median())`.
+:::
+
+`median()` with no argument errors, because you've *called* it with nothing to work on:
+
+```{r}
+#| echo: TRUE
+#| error: TRUE
+median()
+```
+
+## Adding arguments with anonymous functions {.scrollable .nostretch}
+
+What if there are `NA`s? `median()` propagates them:
+
+```{r}
+#| echo: TRUE
+df_miss <- tibble(a = c(1, 2, NA, 4), b = c(NA, 5, 6, 7))
+df_miss |> summarize(across(a:b, median))
+```
+
+We want `na.rm = TRUE`. Wrap `median()` in a tiny **anonymous function** — `\(x)` is shorthand for `function(x)`:
+
+```{r}
+#| echo: TRUE
+df_miss |> summarize(across(a:b, \(x) median(x, na.rm = TRUE)))
+```
+
+Read `\(x) median(x, na.rm = TRUE)` as "given `x`, return its median, dropping NAs."
+
+## What across() expands to {.scrollable .nostretch}
+
+It can help to picture what `across()` writes for you. This:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+df_miss |> summarize(across(a:b, \(x) median(x, na.rm = TRUE)))
+```
+
+is exactly equivalent to:
+
+```{r}
+#| echo: TRUE
+#| eval: FALSE
+df_miss |> summarize(
+  a = median(a, na.rm = TRUE),
+  b = median(b, na.rm = TRUE)
+)
+```
+
+`across()` is just a concise way to write the copy-pasted version — without the copy-paste mistakes.
+
+## Multiple functions at once {.scrollable .nostretch}
+
+Compute the median *and* count the missings by passing a **named list** to `.fns`:
+
+```{r}
+#| echo: TRUE
+df_miss |>
+  summarize(
+    across(a:b, list(
+      median = \(x) median(x, na.rm = TRUE),
+      n_miss = \(x) sum(is.na(x))
+    )),
+    n = n()
+  )
+```
+
+The new columns are named `{.col}_{.fn}` — e.g. `a_median`, `a_n_miss`. That's a **glue spec**, and you can change it with `.names = "{.fn}_{.col}"`.
+
+## across() in mutate() {.scrollable .nostretch}
+
+`across()` shines inside `mutate()` too. Remember `rescale01()` from last class? Rescale four columns in one line:
+
+```{r}
+#| echo: TRUE
+rescale01 <- function(x) {
+  rng <- range(x, na.rm = TRUE, finite = TRUE)
+  (x - rng[1]) / (rng[2] - rng[1])
+}
+
+set.seed(1014)
+df <- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))
+df |> mutate(across(a:d, rescale01))
+```
+
+This is the punchline of the last two classes: **write a function once** (day 20), then **apply it everywhere** with `across()` (today).
+
+## Filtering with if_any() and if_all() {.scrollable .nostretch}
+
+`across()` works in `summarize()` and `mutate()`. For `filter()`, use its cousins:
+
+- **`if_any()`** — keep a row if the condition holds for *any* of the columns
+- **`if_all()`** — keep a row if it holds for *all* of the columns
+
+```{r}
+#| echo: TRUE
+# keep only rows with NO missing values in any of these timing columns
+flights |>
+  filter(if_all(c(dep_time, arr_time, dep_delay, arr_delay), \(x) !is.na(x))) |>
+  nrow()
+```
+
+# Activity {background-color="#7C0A02"}
+
+## In-class activity {.scrollable .nostretch}
+
+Open `day21-activity.R` in RStudio and work through the parts in order.
+
+- **Part 1**: replace copy-pasted `summarize()` with `across()`; choose columns with `.cols`.
+- **Part 2**: handle `NA`s with anonymous functions `\(x)`; apply *multiple* functions with a named list and control `.names`.
+- **Part 3 (challenge)**: `across()` inside `mutate()` (reusing a function you write), plus `if_all()` / `if_any()` for filtering.
+
+[Activity file](day21-activity.R){download="day21-activity.R"}
+
+## Wrap-up & looking ahead {.scrollable .nostretch}
+
+:::: {.columns}
+::: {.column width="55%"}
+**What we covered**
+
+- Iteration = the same action over many things; R gives you a lot for **free** (vectorization, faceting, `group_by`)
+- **Functional programming**: hand a function to another function
+- **`across(.cols, .fns, .names)`** repeats an action over columns
+- `.cols` uses `select()` syntax; `everything()` and `where(is.numeric)`
+- Pass the function name with **no `()`**; use `\(x) f(x, ...)` to add args
+- Named list `.fns` for **multiple** functions; `{.col}_{.fn}` naming
+- `if_any()` / `if_all()` bring the same idea to `filter()`
+
+**Upcoming**
+
+- **Wed Jun 17:** iterating over *files* and *list-columns* with `purrr::map()`
+- **Reading before Wed:** *R4DS* §26.4–26.5
+:::
+::: {.column width="45%"}
+**Reach out**
+
+Stuck? Office hours, or email me ([cgc5478@psu.edu](mailto:cgc5478@psu.edu)) or Xinyue ([xpw5228@psu.edu](mailto:xpw5228@psu.edu)).
+
+**Reference**
+
+[Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*R4DS* Ch. 26](https://r4ds.hadley.nz/iteration) · [`across()` reference](https://dplyr.tidyverse.org/reference/across.html)
+:::
+::::

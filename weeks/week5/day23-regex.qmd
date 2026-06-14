@@ -1,0 +1,331 @@
+---
+title: "Regular expressions (regex)"
+subtitle: "Thursday, June 18, 2026"
+lang: en
+editor: source
+engine: knitr
+format:
+  revealjs:
+    slide-number: true
+    embed-resources: true
+    smaller: true
+    highlight-style: a11y
+    output-file: "day23-regex-slides.html"
+  html:
+    toc: true
+    embed-resources: true
+    highlight-style: a11y
+    axe: true
+    output-file: "day23-regex-page.html"
+  pdf:
+    fig-pos: "H"
+---
+
+```{r}
+#| echo: FALSE
+#| message: FALSE
+#| warning: FALSE
+library(tidyverse)
+library(dcData)
+data(BabyNames)
+
+NameList <- BabyNames |>
+  group_by(name, sex) |>
+  summarise(total = sum(count), .groups = "drop") |>
+  arrange(desc(total))
+```
+
+::: {.callout-note style="font-size: 1.3em;"}
+## [Today: Thursday June 18]{style="font-size: 1.3em;"}
+
+**Before class**
+
+- **Reading Quiz** (Canvas): [*Data Computing* Ch. 17](https://dtkaplan.github.io/DataComputingEbook/chap-regular-expressions.html) §17.1–17.2 — Regular expressions
+
+**Plan for today**
+
+- **Project oral check-in #1** runs during today's work session (signup on Canvas)
+- What a **regex** is, and the three jobs it does: **detect, replace, extract**
+- Building blocks: literals, `.`, character classes `[ ]`, alternation `|`
+- **Quantifiers** `? * + {n}`, **anchors** `^ $`, and **escaping**
+- **Capturing** with `( )` and pulling pieces out
+- In-class activity
+
+**Helpful links**
+
+- [Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*DC* Ch. 17](https://dtkaplan.github.io/DataComputingEbook/chap-regular-expressions.html) · [stringr cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/strings.pdf) · [regex101.com](https://regex101.com/)
+:::
+
+# What is a regex? {background-color="#001E44"}
+
+## Patterns in strings {.scrollable .nostretch}
+
+A **regular expression** (regex) is a compact way to describe a **pattern** in text. Lots of everyday strings follow patterns:
+
+| Kind | Examples |
+|---|---|
+| Phone numbers | `(651) 696-6000` · `+1 651.696.6000` |
+| Times | `10:30 AM` · `13:15.54` |
+| Durations | `1:59:40` (Kipchoge's sub-2-hour marathon) |
+| US postal codes | `16801` · `55105-1362` |
+| Stray whitespace | `"  henry  "` |
+
+A regex lets you say "match anything shaped *like this*" without listing every case.
+
+## Three jobs regex does {.scrollable .nostretch}
+
+Across all of data cleaning, regex does three things:
+
+| Job | base R | stringr (tidyverse) | Often with |
+|---|---|---|---|
+| **Detect** a pattern | `grepl()` | `str_detect()` | `filter()` |
+| **Replace** a pattern | `gsub()` | `str_replace_all()` | `mutate()` |
+| **Extract** a match | `regmatches()` | `str_extract()` | `mutate()` |
+
+The textbook uses base R (`grepl`, `gsub`); the stringr versions do the same jobs with tidier names. We'll show both.
+
+## grepl(): does the pattern appear? {.scrollable .nostretch}
+
+`grepl(pattern, x)` returns `TRUE`/`FALSE` for each string. The **pattern is the quoted string**. Here: names containing "shine" (`ignore.case = TRUE` ignores capitalization):
+
+```{r}
+#| echo: TRUE
+NameList |>
+  filter(grepl("shine", name, ignore.case = TRUE)) |>
+  head(5)
+```
+
+`str_detect(name, regex("shine", ignore_case = TRUE))` does the same thing.
+
+# Regex building blocks {background-color="#001E44"}
+
+## Literals & special characters {.scrollable .nostretch}
+
+The simplest patterns are **literal**: `"able"` matches any string containing "able" — "cap**able**", "t**able**d" — but is **case-sensitive** by default ("Able" won't match unless `ignore.case = TRUE`).
+
+These characters are **special** — they mean something other than themselves:
+
+``` text
+.   ^   $   [   ]   {   }   |   (   )   +   *   ?
+```
+
+For example `.` means "any single character", so `".ble"` matches "able", "sol**uble**", "fung**ible**", "B**ible**".
+
+## Character classes `[ ]` {.scrollable .nostretch}
+
+Square brackets mean "**any one** of these characters":
+
+- `[aeiou]` → any vowel
+- `[^aeiou]` → **not** a vowel (the `^` *inside* brackets means "except") → a consonant
+- `[0-9]` → any digit; `[a-z]` → any lowercase letter
+
+```{r}
+#| echo: TRUE
+NameList |>
+  filter(grepl("mn", name, ignore.case = TRUE)) |>   # literal "mn"
+  head(3)
+```
+
+::: {.callout-tip}
+A vertical bar `|` means **"or"**: `"rain|snow|sleet|hail"` matches any of those four words.
+:::
+
+## Putting characters in a row {.scrollable .nostretch}
+
+Two patterns side by side means "this **then** that". `^[^aeiou].[^aeiou].[^aeiou]` reads as:
+
+- `^` start of string, then
+- `[^aeiou]` a consonant, `.` anything, `[^aeiou]` a consonant, `.` anything, `[^aeiou]` a consonant
+
+i.e. the 1st, 3rd, and 5th letters are consonants:
+
+```{r}
+#| echo: TRUE
+NameList |>
+  filter(grepl("^[^aeiou].[^aeiou].[^aeiou]", name, ignore.case = TRUE)) |>
+  head(3)
+```
+
+# Quantifiers {background-color="#001E44"}
+
+## How many times? {.scrollable .nostretch}
+
+A quantifier follows a pattern and says **how many times** it repeats:
+
+| Quantifier | Means |
+|---|---|
+| `?` | zero or **one** time |
+| `*` | zero or **more** times |
+| `+` | **one** or more times |
+| `{n}` | exactly `n` times |
+| `{n,m}` | between `n` and `m` times |
+| `{n,}` | `n` or more times |
+
+::: {.callout-warning}
+The *Data Computing* reading swaps the definitions of `+` and `*`. **In R (and every real regex engine):** `*` = zero-or-more, `+` = one-or-more. Trust the table above and the code below — not the book on this one point.
+:::
+
+## Quantifiers in action {.scrollable .nostretch}
+
+```{r}
+#| echo: TRUE
+x <- c("Mr.", "Ms", "Mrs.", "Miss", "Man", "Miocene")
+x[grepl("M[aeiou]+", x)]   # M then ONE or more vowels
+x[grepl("M[aeiou]*", x)]   # M then ZERO or more vowels (matches Mr.)
+```
+
+Three or more vowels in a row, `[aeiou]{3,}`:
+
+```{r}
+#| echo: TRUE
+NameList |>
+  filter(grepl("[aeiou]{3,}", name, ignore.case = TRUE)) |>
+  head(3)
+```
+
+# Anchors & escaping {background-color="#001E44"}
+
+## Start `^` and end `$` {.scrollable .nostretch}
+
+Outside of square brackets, `^` and `$` are **anchors**:
+
+- `^` = the **start** of the string
+- `$` = the **end** of the string
+
+Names that **end** in a vowel, `[aeiou]$`:
+
+```{r}
+#| echo: TRUE
+NameList |>
+  filter(grepl("[aeiou]$", name)) |>
+  group_by(sex) |>
+  summarise(total = sum(total), .groups = "drop")
+```
+
+Girls' names end in a vowel almost five times as often as boys' names.
+
+## Escaping special characters {.scrollable .nostretch}
+
+To match a special character **literally**, **escape** it with `\\`. So `\\.` means a real period, and `\\$` a real dollar sign (not the end-of-string anchor).
+
+```{r}
+#| echo: TRUE
+currency <- c("$100.95", "45¢")
+gsub("^\\$|¢$", "", currency)   # strip a leading $ or trailing ¢
+```
+
+Here `^\\$` is a literal `$` at the start; `¢$` is a literal `¢` at the end. Without the `\\`, that first `$` would mean "end of string".
+
+# Capturing & extracting {background-color="#001E44"}
+
+## Parentheses capture {.scrollable .nostretch}
+
+Wrap part of a pattern in `( )` to **capture** it — to pull that piece out. `str_extract()` returns the matched text; with capture groups, `gsub()` can refer back to group 1 as `\\1`.
+
+Names with **four vowels in a row**, extracting those vowels:
+
+```{r}
+#| echo: TRUE
+BabyNames |>
+  group_by(name) |>
+  summarise(total = sum(count), .groups = "drop") |>
+  mutate(match = str_extract(name, "([aeiouAEIOU]{4})")) |>
+  filter(!is.na(match)) |>
+  arrange(desc(total)) |>
+  head(4)
+```
+
+## Backreferences with `\\1` {.scrollable .nostretch}
+
+The regex `".*([aeiou])$"` = "anything, then a captured final vowel". In `gsub()`, `replacement = "\\1"` keeps **only** the captured group — so the whole name collapses to its last vowel:
+
+```{r}
+#| echo: TRUE
+re <- ".*([aeiou])$"
+NameList |>
+  filter(grepl(re, name)) |>
+  mutate(vowel = gsub(re, "\\1", name)) |>
+  group_by(sex, vowel) |>
+  summarise(total = sum(total), .groups = "drop") |>
+  pivot_wider(names_from = sex, values_from = total)
+```
+
+Names ending in "a", "e", "i" skew female; "o" skews male.
+
+# Cleaning with regex {background-color="#001E44"}
+
+## Stripping junk out of numbers {.scrollable .nostretch}
+
+Scraped numbers arrive with `$`, `,`, `%`, units. A character class lists everything to delete at once:
+
+```{r}
+#| echo: TRUE
+debt <- tibble(
+  country = c("World", "United States*", "Japan"),
+  debt    = c("$56,308 billion", "$17,607 billion", "$9,872 billion"),
+  percGDP = c("64%", "73.60%", "214.30%")
+)
+debt |>
+  mutate(
+    debt    = gsub("[$,%]|billion", "", debt),
+    percGDP = gsub("[,%]", "", percGDP)
+  )
+```
+
+`[$,%]` deletes any `$`, `,`, or `%`; `|billion` also deletes the word "billion".
+
+## Trimming whitespace {.scrollable .nostretch}
+
+`^ +| +$` matches one-or-more spaces at the **start** *or* the **end**:
+
+```{r}
+#| echo: TRUE
+s <- "   My name is Julia     "
+gsub("^ +| +$", "", s)
+```
+
+::: {.callout-tip}
+stringr has friendly shortcuts for these: `str_remove_all()`, `str_trim()` (ends), and `str_squish()` (ends + collapse internal runs). Same regex ideas underneath.
+:::
+
+# Activity {background-color="#7C0A02"}
+
+## In-class activity {.scrollable .nostretch}
+
+Open `day23-activity.R` in RStudio and work through the parts in order. (Today's session also hosts **oral check-in #1** — work on the activity when it isn't your turn.)
+
+- **Part 1**: **detect** patterns with `grepl()` / `str_detect()` + `filter()` on `BabyNames`.
+- **Part 2**: build patterns from **character classes, quantifiers, and anchors** (including a "Caitlin"-style name and a phone-number regex).
+- **Part 3 (challenge)**: **extract** with capture groups, and **clean** messy strings with `gsub()`.
+
+[Activity file](day23-activity.R){download="day23-activity.R"}
+
+## Wrap-up & looking ahead {.scrollable .nostretch}
+
+:::: {.columns}
+::: {.column width="55%"}
+**What we covered**
+
+- A regex describes a **pattern**; it does three jobs: **detect / replace / extract**
+- `.` any char · `[aeiou]` class · `[^aeiou]` negation · `|` or
+- Quantifiers `?` `*` `+` `{n}` `{n,m}` `{n,}` (R: `+` = one-or-more, `*` = zero-or-more)
+- Anchors `^` start, `$` end; **escape** specials with `\\`
+- Capture with `( )`; pull pieces with `str_extract()` or `\\1` in `gsub()`
+- Clean numbers/whitespace with `gsub()` (or `str_remove_all`/`str_squish`)
+
+**Upcoming**
+
+- **Fri Jun 19:** **No class — Juneteenth**
+- **Quiz 5** rescheduled to **Mon Jun 22**
+- Keep building your **project**; oral check-in #1 today
+:::
+::: {.column width="45%"}
+**Reach out**
+
+Stuck? Office hours, or email me ([cgc5478@psu.edu](mailto:cgc5478@psu.edu)) or Xinyue ([xpw5228@psu.edu](mailto:xpw5228@psu.edu)).
+
+**Reference**
+
+[Syllabus](../../syllabus/syllabus.qmd) · [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [Schedule](../../schedule.qmd) · [*DC* Ch. 17](https://dtkaplan.github.io/DataComputingEbook/chap-regular-expressions.html) · [regex101.com](https://regex101.com/)
+:::
+::::

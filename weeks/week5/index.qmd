@@ -13,10 +13,10 @@ We move beyond tidyverse verbs into more general programming territory: writing 
 
 | Date | Topic | Files |
 |---|---|---|
-| Mon Jun 15 | [Writing functions in R](day20-functions.qmd) | slides, in-class code |
-| Tue Jun 16 | [Control flow: `if/else`, `for`, `while`](day21-control-flow.qmd) | slides, in-class code |
-| Wed Jun 17 | [Vectorized ops · `purrr::map`](day22-iteration.qmd) | slides, in-class code |
-| Thu Jun 18 | [Strings, dates, intro to regex](day23-strings-dates.qmd) + **Project oral check-in #1** | slides, in-class code |
+| Mon Jun 15 | [Writing functions in R](day20-functions.qmd) | [Slides](day20-functions-slides.html) · [Page](day20-functions-page.html) · [day20-activity.R](day20-activity.R){download="day20-activity.R"} |
+| Tue Jun 16 | [Iteration: working across many columns](day21-iteration-across.qmd) | [Slides](day21-iteration-across-slides.html) · [Page](day21-iteration-across-page.html) · [day21-activity.R](day21-activity.R){download="day21-activity.R"} |
+| Wed Jun 17 | [Iteration: `map()`, `walk()` & saving outputs](day22-iteration-map.qmd) | [Slides](day22-iteration-map-slides.html) · [Page](day22-iteration-map-page.html) · [day22-activity.R](day22-activity.R){download="day22-activity.R"} |
+| Thu Jun 18 | [Regular expressions (regex)](day23-regex.qmd) + **Project oral check-in #1** | [Slides](day23-regex-slides.html) · [Page](day23-regex-page.html) · [day23-activity.R](day23-activity.R){download="day23-activity.R"} |
 | Fri Jun 19 | **No class — Juneteenth** | — |
 
 ## Readings due this week

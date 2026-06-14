@@ -59,8 +59,6 @@ roster
 
 # --- Part 2: Wikipedia table scrape -------------------------------------------
 # Scraping men's mile-run world record progression from Wikipedia.
-# If the live page won't load, that's the reality of scraping -- flag it and
-# move on; the skills are what matter.
 
 url <- "https://en.wikipedia.org/wiki/Mile_run_world_record_progression"
 
