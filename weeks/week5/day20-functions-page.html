@@ -4375,10 +4375,10 @@ margin-bottom: 1.5rem;
   </ul></li>
   <li><a href="#vector-functions" id="toc-vector-functions" class="nav-link" data-scroll-target="#vector-functions">Vector functions</a>
   <ul class="collapse">
-  <li><a href="#what-varies-what-stays-the-same" id="toc-what-varies-what-stays-the-same" class="nav-link" data-scroll-target="#what-varies-what-stays-the-same">What varies, what stays the same</a></li>
+  <li><a href="#what-varies-vs.-stays-the-same" id="toc-what-varies-vs.-stays-the-same" class="nav-link" data-scroll-target="#what-varies-vs.-stays-the-same">What varies vs. stays the same</a></li>
   <li><a href="#the-anatomy-of-a-function" id="toc-the-anatomy-of-a-function" class="nav-link" data-scroll-target="#the-anatomy-of-a-function">The anatomy of a function</a></li>
   <li><a href="#always-test-on-simple-inputs" id="toc-always-test-on-simple-inputs" class="nav-link" data-scroll-target="#always-test-on-simple-inputs">Always test on simple inputs</a></li>
-  <li><a href="#improving-a-function-in-one-place" id="toc-improving-a-function-in-one-place" class="nav-link" data-scroll-target="#improving-a-function-in-one-place">Improving a function in one place</a></li>
+  <li><a href="#changing-a-function-in-one-place" id="toc-changing-a-function-in-one-place" class="nav-link" data-scroll-target="#changing-a-function-in-one-place">Changing a function in one place</a></li>
   <li><a href="#mutate-functions" id="toc-mutate-functions" class="nav-link" data-scroll-target="#mutate-functions">“Mutate” functions</a></li>
   <li><a href="#mutate-functions-arent-just-for-numbers" id="toc-mutate-functions-arent-just-for-numbers" class="nav-link" data-scroll-target="#mutate-functions-arent-just-for-numbers">Mutate functions aren’t just for numbers</a></li>
   <li><a href="#summary-functions" id="toc-summary-functions" class="nav-link" data-scroll-target="#summary-functions">“Summary” functions</a></li>
@@ -4450,7 +4450,7 @@ margin-bottom: 1.5rem;
 <div class="callout-body-container callout-body">
 <p><strong>Before class</strong></p>
 <ul>
-<li><strong>Reading Quiz 5</strong> (Canvas): <a href="https://r4ds.hadley.nz/functions"><em>R4DS</em> Ch. 25</a> — Functions</li>
+<li><strong>Perusall Reading</strong> (Canvas): <a href="https://r4ds.hadley.nz/functions"><em>R4DS</em> Ch. 25</a>: Functions</li>
 <li><strong>HW 4</strong> due tonight, 11:59 p.m.</li>
 </ul>
 <p><strong>Plan for today</strong></p>
@@ -4472,20 +4472,20 @@ margin-bottom: 1.5rem;
 <section id="the-rule-of-three" class="level2 scrollable nostretch">
 <h2 class="scrollable nostretch anchored" data-anchor-id="the-rule-of-three">The rule of three</h2>
 <blockquote class="blockquote">
-<p><em>“You should consider writing a function whenever you’ve copied and pasted a block of code more than twice.”</em> — <em>R4DS</em></p>
+<p><em>“You should consider writing a function whenever you’ve copied and pasted a block of code more than twice.”</em> - <em>R4DS</em></p>
 </blockquote>
 <p>Functions have four big advantages over copy-and-paste:</p>
 <ol type="1">
 <li>You give the code an <strong>evocative name</strong>, so it’s easier to read.</li>
-<li>As requirements change, you update <strong>one place</strong>, not many.</li>
+<li>As requirements change, you update in <strong>one place</strong> rather than many.</li>
 <li>You <strong>eliminate copy-paste mistakes</strong> (changing a name in one spot but not another).</li>
 <li>You can <strong>reuse work</strong> across projects.</li>
 </ol>
-<p>Today is a turning point: we move from <em>using</em> tidyverse verbs to <em>writing our own tools</em>.</p>
+<p>Writing functions allows us to go from <em>using</em> tidyverse verbs to <em>writing our own tools</em>.</p>
 </section>
 <section id="spot-the-bug" class="level2 scrollable nostretch">
 <h2 class="scrollable nostretch anchored" data-anchor-id="spot-the-bug">Spot the bug</h2>
-<p>This code rescales every column to run from 0 to 1. There is a copy-paste bug hiding in it — can you find it?</p>
+<p>This code rescales every column to run from 0 to 1. Can you find the copy-paste bug?</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">a =</span> <span class="fu">rnorm</span>(<span class="dv">5</span>), <span class="at">b =</span> <span class="fu">rnorm</span>(<span class="dv">5</span>), <span class="at">c =</span> <span class="fu">rnorm</span>(<span class="dv">5</span>), <span class="at">d =</span> <span class="fu">rnorm</span>(<span class="dv">5</span>))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -4506,30 +4506,30 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Line <code>b</code> divides by <code>min(a, ...)</code> instead of <code>min(b, ...)</code>. Even Hadley Wickham made this exact mistake — copy-paste invites it. A function makes the bug <em>impossible</em>.</p>
+<p>Line <code>b</code> divides by <code>min(a, ...)</code> instead of <code>min(b, ...)</code>. Copy-paste invites this kind of typo, but writing this as a function prevents the possibility of this type of bug altogether.</p>
 </div>
 </div>
 </section>
 </section>
 <section id="vector-functions" class="level1" data-background-color="#001E44">
 <h1 data-background-color="#001E44">Vector functions</h1>
-<section id="what-varies-what-stays-the-same" class="level2 scrollable nostretch">
-<h2 class="scrollable nostretch anchored" data-anchor-id="what-varies-what-stays-the-same">What varies, what stays the same</h2>
+<section id="what-varies-vs.-stays-the-same" class="level2 scrollable nostretch">
+<h2 class="scrollable nostretch anchored" data-anchor-id="what-varies-vs.-stays-the-same">What varies vs. stays the same</h2>
 <p>Pull the repeated line out and line the copies up. The pattern jumps out:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(a <span class="sc">-</span> <span class="fu">min</span>(a, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">/</span> (<span class="fu">max</span>(a, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="fu">min</span>(a, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>(b <span class="sc">-</span> <span class="fu">min</span>(b, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">/</span> (<span class="fu">max</span>(b, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="fu">min</span>(b, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>(c <span class="sc">-</span> <span class="fu">min</span>(c, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">/</span> (<span class="fu">max</span>(c, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="fu">min</span>(c, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Replace the part that <strong>changes</strong> with <code>█</code>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>(█ <span class="sc">-</span> <span class="fu">min</span>(█, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">/</span> (<span class="fu">max</span>(█, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="fu">min</span>(█, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The only thing that varies is the vector. That becomes our single <strong>argument</strong>.</p>
+<p>The only thing that varies is the vector. That becomes our function <strong>argument</strong>.</p>
 </section>
 <section id="the-anatomy-of-a-function" class="level2 scrollable nostretch">
 <h2 class="scrollable nostretch anchored" data-anchor-id="the-anatomy-of-a-function">The anatomy of a function</h2>
 <p>To write a function you need three things:</p>
 <ul>
-<li>a <strong>name</strong> — here <code>rescale01</code> (it rescales a vector to 0–1),</li>
-<li>the <strong>arguments</strong> — the things that vary; here just one, call it <code>x</code>,</li>
-<li>the <strong>body</strong> — the code that’s repeated.</li>
+<li>a <strong>name</strong>: here <code>rescale01</code> (it rescales a vector to 0–1),</li>
+<li>the <strong>arguments</strong>: the things that vary; here just one, call it <code>x</code>,</li>
+<li>the <strong>body</strong>: the code that’s repeated.</li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="cf">function</span>(arguments) {</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  body</span>
@@ -4542,7 +4542,7 @@ Warning
 </section>
 <section id="always-test-on-simple-inputs" class="level2 scrollable nostretch">
 <h2 class="scrollable nostretch anchored" data-anchor-id="always-test-on-simple-inputs">Always test on simple inputs</h2>
-<p>Before trusting a function, feed it inputs where you <em>know</em> the answer:</p>
+<p>Before trusting a function, test run it with inputs where you already know the answer:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale01</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -4553,26 +4553,26 @@ Warning
 <pre><code>[1] 0.00 0.25 0.50   NA 1.00</code></pre>
 </div>
 </div>
-<p>Now the <code>mutate()</code> is short, readable, and the bug can’t come back:</p>
+<p>Now the <code>mutate()</code> is short, readable, and more bug-resistant:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">a =</span> <span class="fu">rnorm</span>(<span class="dv">5</span>), <span class="at">b =</span> <span class="fu">rnorm</span>(<span class="dv">5</span>), <span class="at">c =</span> <span class="fu">rnorm</span>(<span class="dv">5</span>), <span class="at">d =</span> <span class="fu">rnorm</span>(<span class="dv">5</span>))</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">a =</span> <span class="fu">rescale01</span>(a), <span class="at">b =</span> <span class="fu">rescale01</span>(b),</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">c =</span> <span class="fu">rescale01</span>(c), <span class="at">d =</span> <span class="fu">rescale01</span>(d))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
-      a     b     c     d
-  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1 0.627 1     0.532 0.157
-2 0.743 0.109 0.784 0    
-3 0.602 0.345 1     0.460
-4 0     0.477 0     1    
-5 1     0     0.584 0.580</code></pre>
+      a     b      c     d
+  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+1 1     1     0      0.368
+2 0.722 0.551 1      0    
+3 0     0.203 0.0180 0.400
+4 0.946 0     0.268  1    
+5 0.722 0.543 0.266  0.515</code></pre>
 </div>
 </div>
 </section>
-<section id="improving-a-function-in-one-place" class="level2 scrollable nostretch">
-<h2 class="scrollable nostretch anchored" data-anchor-id="improving-a-function-in-one-place">Improving a function in one place</h2>
-<p>Because the logic lives in <em>one</em> spot, improving it is easy. <code>range()</code> finds the min and max in a single step:</p>
+<section id="changing-a-function-in-one-place" class="level2 scrollable nostretch">
+<h2 class="scrollable nostretch anchored" data-anchor-id="changing-a-function-in-one-place">Changing a function in one place</h2>
+<p>Because the logic is in <em>one</em> spot rather than 4+, improving it is easy. <code>range()</code> finds the min and max in a single step:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>rescale01 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  rng <span class="ot">&lt;-</span> <span class="fu">range</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">finite =</span> <span class="cn">TRUE</span>)</span>
@@ -4594,7 +4594,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><code>finite = TRUE</code> tells <code>range()</code> to ignore <code>Inf</code>. We fixed two behaviors at once — and every caller of <code>rescale01()</code> benefits instantly. That’s the whole point.</p>
+<p><code>finite = TRUE</code> tells <code>range()</code> to ignore <code>Inf</code>. We fixed two behaviors at once.</p>
 </div>
 </div>
 </section>
@@ -4684,7 +4684,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Note the <strong>default argument</strong> <code>na.rm = FALSE</code>. Callers can override it, but don’t have to.</p>
+<p>Note the <strong>default argument</strong> <code>na.rm = FALSE</code>. You can override it, but don’t have to. If you don’t specify, it won’t automatically fail, but rather falls back to the default.</p>
 </div>
 </div>
 </section>
@@ -4699,7 +4699,7 @@ Tip
 <li>takes extra arguments saying what to do,</li>
 <li>returns a data frame (or a vector).</li>
 </ul>
-<p>The natural first attempt looks like this — and it <strong>fails</strong>:</p>
+<p>The natural first attempt looks like this, but it fails:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>grouped_mean <span class="ot">&lt;-</span> <span class="cf">function</span>(df, group_var, mean_var) {</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span></span>
@@ -4712,9 +4712,9 @@ Tip
 </section>
 <section id="the-problem-indirection" class="level2 scrollable nostretch">
 <h2 class="scrollable nostretch anchored" data-anchor-id="the-problem-indirection">The problem: indirection</h2>
-<p>dplyr uses <strong>tidy evaluation</strong> so you can write <code>dep_delay</code> instead of <code>flights$dep_delay</code>. That’s wonderful 95% of the time — but inside a function, <code>group_by(group_var)</code> literally looks for a column <em>named</em> <code>group_var</code>.</p>
-<p>We need to tell dplyr: <em>don’t use the argument’s name — look</em> <strong>inside</strong> <em>it.</em></p>
-<p>The solution is <strong>embracing</strong> with <code>{ }</code> 🤗.</p>
+<p>dplyr uses <strong>tidy evaluation</strong> so you can write <code>dep_delay</code> instead of <code>flights$dep_delay</code>. That’s great most of the time, but inside a function, <code>group_by(group_var)</code> looks for a column <em>named</em> <code>group_var</code> that doesn’t exist.</p>
+<p>We need to tell dplyr: <em>don’t use the argument’s name, look</em> <strong>inside</strong> <em>it.</em></p>
+<p>The solution is <strong>embracing</strong> using <code>{ }</code>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -4725,7 +4725,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Think of <code>{ var }</code> as looking <strong>down a tunnel</strong>: it makes dplyr look inside <code>var</code> rather than searching for a column called <code>var</code>.</p>
+<p><code>{ var }</code> is analogous to looking <strong>down a tunnel</strong>: it makes dplyr look inside <code>var</code> rather than searching for a column called <code>var</code>.</p>
 </div>
 </div>
 </section>
@@ -4747,11 +4747,11 @@ Tip
 3 LGA     10.3</code></pre>
 </div>
 </div>
-<p>Now <code>grouped_mean(origin, dep_delay)</code> really does group by <code>origin</code> and average <code>dep_delay</code>. 🎉</p>
+<p>Now <code>grouped_mean(origin, dep_delay)</code> really does group by <code>origin</code> and average <code>dep_delay</code>.</p>
 </section>
 <section id="when-do-i-need-to-embrace" class="level2 scrollable nostretch">
 <h2 class="scrollable nostretch anchored" data-anchor-id="when-do-i-need-to-embrace">When do I need to embrace?</h2>
-<p>Look it up in the help page! Two kinds of tidy evaluation:</p>
+<p>Two kinds of tidy evaluation:</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -4778,7 +4778,7 @@ Tip
 </tr>
 </tbody>
 </table>
-<p>Rule of thumb: if an argument gets passed to a verb that uses tidy evaluation, <strong>embrace it</strong>.</p>
+<p>If an argument gets passed to a verb that uses tidy evaluation, typically we want to <strong>embrace it</strong>.</p>
 </section>
 <section id="a-handy-summary-helper" class="level2 scrollable nostretch">
 <h2 class="scrollable nostretch anchored" data-anchor-id="a-handy-summary-helper">A handy summary helper</h2>
@@ -4807,7 +4807,7 @@ Tip
 5 Ideal      0.2  0.703   0.54  3.5  21551      0</code></pre>
 </div>
 </div>
-<p>Because it wraps <code>summarize()</code>, it works on <strong>grouped</strong> data and on <strong>computed</strong> variables (<code>summary6(log10(carat))</code>) for free.</p>
+<p>Because it wraps <code>summarize()</code>, it works on both <strong>grouped</strong> data and on <strong>computed</strong> variables (<code>summary6(log10(carat))</code>).</p>
 </section>
 <section id="count-with-proportions" class="level2 scrollable nostretch">
 <h2 class="scrollable nostretch anchored" data-anchor-id="count-with-proportions">count() with proportions</h2>
@@ -4832,7 +4832,7 @@ Tip
 8 IF       1790 0.0332</code></pre>
 </div>
 </div>
-<p>Only <code>var</code> is embraced — <code>df</code> and <code>sort</code> are ordinary arguments. <code>sort = FALSE</code> is a sensible default.</p>
+<p>Only <code>var</code> is embraced; here, <code>df</code> and <code>sort</code> are ordinary arguments.</p>
 </section>
 <section id="selecting-inside-a-data-masking-function" class="level2 scrollable nostretch">
 <h2 class="scrollable nostretch anchored" data-anchor-id="selecting-inside-a-data-masking-function">Selecting inside a data-masking function</h2>
@@ -4941,7 +4941,7 @@ Tip
 </div>
 </div>
 </div>
-<p>R’s syntax won’t allow <code>{ var } =</code>, so tidy evaluation gives us <code>:=</code> to mean the same thing.</p>
+<p>R’s syntax won’t allow <code>{ var } =</code>, so tidy evaluation uses <code>:=</code> to mean the same thing.</p>
 </section>
 <section id="labeling-with-the-variable-name" class="level2 scrollable nostretch">
 <h2 class="scrollable nostretch anchored" data-anchor-id="labeling-with-the-variable-name">Labeling with the variable name</h2>
@@ -4969,18 +4969,18 @@ Tip
 <h1 data-background-color="#001E44">Naming &amp; style</h1>
 <section id="names-are-for-humans" class="level2 scrollable nostretch">
 <h2 class="scrollable nostretch anchored" data-anchor-id="names-are-for-humans">Names are for humans</h2>
-<p>R doesn’t care what you name things — but your future self does.</p>
+<p>R doesn’t care what you name things, but smart naming makes our lives easier.</p>
 <ul>
 <li>Function names should be <strong>verbs</strong>; arguments should be <strong>nouns</strong>.
 <ul>
 <li>exceptions: well-known nouns (<code>mean()</code>), or accessors (<code>coef()</code>).</li>
 </ul></li>
-<li>Prefer <strong>clear over short</strong> — autocomplete types the long name for you.</li>
+<li>Prefer <strong>clear over short</strong> since autocomplete can type the long name for you.</li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>()                      <span class="co"># too short, meaningless</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">my_awesome_function</span>()    <span class="co"># not a verb, not descriptive</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">impute_missing</span>()         <span class="co"># long but clear ✔</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">collapse_years</span>()         <span class="co"># long but clear ✔</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">impute_missing</span>()         <span class="co"># long but clear</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">collapse_years</span>()         <span class="co"># long but clear</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="whitespace-conventions" class="level2 scrollable nostretch">
 <h2 class="scrollable nostretch anchored" data-anchor-id="whitespace-conventions">Whitespace conventions</h2>
@@ -5027,7 +5027,7 @@ Tip
 </ul>
 <p><strong>Upcoming</strong></p>
 <ul>
-<li><strong>Tue Jun 16:</strong> control flow — <code>if/else</code>, <code>for</code>, <code>while</code></li>
+<li><strong>Tue Jun 16:</strong> control flow: <code>if/else</code>, <code>for</code>, <code>while</code></li>
 <li><strong>Reading before Tue:</strong> <em>R4DS</em> §26.1–26.3</li>
 </ul>
 </div><div class="column" style="width:45%;">
