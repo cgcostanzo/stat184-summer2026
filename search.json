@@ -2601,7 +2601,7 @@
     "href": "weeks/week5/day20-functions-slides.html#always-test-on-simple-inputs",
     "title": "Writing functions in R",
     "section": "Always test on simple inputs",
-    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b     c     d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 1     0.681 0.272 0.358\n2 0.254 0.377 0.327 0.901\n3 0     0.780 0     1    \n4 0.243 0     1     0.368\n5 0.205 1     0.530 0"
+    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b     c      d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;\n1 0.373 1     0.734 0.0356\n2 0     0.320 0.433 0.297 \n3 1     0.949 0.739 1     \n4 0.499 0     0     0.801 \n5 0.443 0.607 1     0"
   },
   {
     "objectID": "weeks/week5/day20-functions-slides.html#changing-a-function-in-one-place",
@@ -2783,7 +2783,7 @@
     "href": "weeks/week5/day20-functions-page.html#always-test-on-simple-inputs",
     "title": "Writing functions in R",
     "section": "Always test on simple inputs",
-    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a      b     c     d\n  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 1     1      0.784 0.339\n2 0.706 0.0867 1     0.550\n3 0.265 0.668  0.698 0.409\n4 0.197 0.424  0     1    \n5 0     0      0.435 0"
+    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b      c     d\n  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1 0     0.221 0.587  1    \n2 0.272 0     0.608  0    \n3 1     0.796 0      0.434\n4 0.887 1     1      0.984\n5 0.616 0.580 0.0863 0.281"
   },
   {
     "objectID": "weeks/week5/day20-functions-page.html#changing-a-function-in-one-place",
@@ -8635,14 +8635,14 @@
     "href": "project/final-rubric.html",
     "title": "Final Report Rubric",
     "section": "",
-    "text": "One PDF per team to Canvas, rendered from a Quarto document in your team’s GitHub repo.\nA URL to your 5–7 minute team video presentation.\nFinal commit pushed to GitHub repo by the deadline.\n\nDue: Friday, June 26, 11:59 p.m.\n\n\n\n\n\n\nImportantHard requirements\n\n\n\nYour report must meet all of these. Missing any one costs the associated rubric points (and a missing required section can cost more than its line item, since dependent items also fail).\n\nStructure: all sections in the Required report structure, in order.\nLength: at least 10 pages of body (narrative + figures + tables). The title page, references, and Code Appendix do not count.\nFigures: at least three, each with a caption, a numbered cross-reference, and discussion in the text.\nTable: at least one non-trivial (summary/aggregated) table, captioned and cross-referenced.\nMultivariate figure: at least one figure showing 3+ variables.\nCode: in the Code Appendix only, following a named style guide."
+    "text": "One PDF per team to Canvas, rendered from a Quarto document in your team’s GitHub repo.\nA URL to your 5–7 minute team video presentation.\nFinal commit pushed to GitHub repo by the deadline.\n\nDue: Friday, June 26, 11:59 p.m.\n\n\n\n\n\n\nImportantHard requirements\n\n\n\nYour report must meet all of these. Missing any one costs the associated rubric points (and a missing required section can cost more than its line item, since dependent items also fail).\n\nStructure: all sections in the Required report structure, in order.\nLength: at least 10 pages of body (narrative + figures + tables). The title page, references, and Code Appendix do not count.\nFigures: at least three, each with a caption, a numbered cross-reference, and discussion in the text.\nTable: at least one non-trivial (summary/aggregated) table, captioned and cross-referenced.\nMultivariate figure: at least one figure showing 3+ variables.\nCode: in the Code Appendix only."
   },
   {
     "objectID": "project/final-rubric.html#code-quality-15",
     "href": "project/final-rubric.html#code-quality-15",
     "title": "Final Report Rubric",
     "section": "Code quality (15)",
-    "text": "Code quality (15)\n\n\n\nComponent\nPoints\n\n\n\n\nCode runs cleanly (renders from scratch)\n5\n\n\nFollows a named style guide\n3\n\n\nMeaningfully commented\n3\n\n\nCode in appendix, not body\n2\n\n\nReproducible from GitHub repo\n2"
+    "text": "Code quality (15)\n\n\n\nComponent\nPoints\n\n\n\n\nCode runs cleanly (renders from scratch)\n5\n\n\nMeaningfully commented\n4\n\n\nCode in appendix, not body\n3\n\n\nReproducible from GitHub repo\n3"
   },
   {
     "objectID": "project/final-rubric.html#reproducibility-10",
@@ -8698,7 +8698,7 @@
     "href": "project/index.html#analysis-and-report",
     "title": "Course Project",
     "section": "Analysis and report",
-    "text": "Analysis and report\n\nConduct an Exploratory Data Analysis.\nProduce a reproducible report in Quarto, output as PDF.\nCode in a Code Appendix at the end. Use this snippet:\n\n{{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}}\n\nBody of the report should be narrative + figures + tables, not code.\nThe body must be at least 10 pages. Title page, references, and Code Appendix do not count toward the minimum.\nInclude at least three figures (plots) and at least one non-trivial table (a summary or aggregated table, not a dump of raw data).\nAt least one figure must display 3+ variables effectively (use color, facets, size, shape, etc.).\nEvery figure and table must have a caption and be cross-referenced by number from the narrative (“Figure 1 shows…”, “as summarized in Table 1…”), with a few sentences of discussion near each.\nPick a style guide (tidyverse, Google, or BOAST) and follow it. List your choice in a comment at the top of the code appendix.\nCite your data sources and any code you adapted from outside (APA, MLA, or footnotes)."
+    "text": "Analysis and report\n\nConduct an Exploratory Data Analysis.\nProduce a reproducible report in Quarto, output as PDF.\nCode in a Code Appendix at the end. Use this snippet:\n\n{{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}}\n\nBody of the report should be narrative + figures + tables, not code.\nThe body must be at least 10 pages. Title page, references, and Code Appendix do not count toward the minimum.\nInclude at least three figures (plots) and at least one non-trivial table (a summary or aggregated table, not a dump of raw data).\nAt least one figure must display 3+ variables effectively (use color, facets, size, shape, etc.).\nEvery figure and table must have a caption and be cross-referenced by number from the narrative (“Figure 1 shows…”, “as summarized in Table 1…”), with a few sentences of discussion near each.\nCite your data sources and any code you adapted from outside (APA, MLA, or footnotes)."
   },
   {
     "objectID": "project/index.html#required-report-structure",
