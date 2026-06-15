@@ -359,7 +359,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#submission" id="toc-submission" class="nav-link active" data-scroll-target="#submission">Submission</a></li>
   <li><a href="#rubric-100-points" id="toc-rubric-100-points" class="nav-link" data-scroll-target="#rubric-100-points">Rubric (100 points)</a>
   <ul class="collapse">
-  <li><a href="#report-content-60" id="toc-report-content-60" class="nav-link" data-scroll-target="#report-content-60">Report content (60)</a></li>
   <li><a href="#code-quality-15" id="toc-code-quality-15" class="nav-link" data-scroll-target="#code-quality-15">Code quality (15)</a></li>
   <li><a href="#reproducibility-10" id="toc-reproducibility-10" class="nav-link" data-scroll-target="#reproducibility-10">Reproducibility (10)</a></li>
   <li><a href="#video-presentation-10" id="toc-video-presentation-10" class="nav-link" data-scroll-target="#video-presentation-10">Video presentation (10)</a></li>
@@ -402,12 +401,36 @@ ul.task-list li input[type="checkbox"] {
 <li>Final commit pushed to GitHub repo by the deadline.</li>
 </ul>
 <p><strong>Due:</strong> Friday, June 26, 11:59 p.m.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Hard requirements
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Your report must meet all of these. Missing any one costs the associated rubric points (and a missing required section can cost more than its line item, since dependent items also fail).</p>
+<ul>
+<li><strong>Structure:</strong> all sections in the <a href="../project/index.html#required-report-structure">Required report structure</a>, in order.</li>
+<li><strong>Length:</strong> at least <strong>10 pages of body</strong> (narrative + figures + tables). The title page, references, and Code Appendix do <strong>not</strong> count.</li>
+<li><strong>Figures:</strong> at least <strong>three</strong>, each with a caption, a numbered cross-reference, and discussion in the text.</li>
+<li><strong>Table:</strong> at least <strong>one</strong> non-trivial (summary/aggregated) table, captioned and cross-referenced.</li>
+<li><strong>Multivariate figure:</strong> at least <strong>one</strong> figure showing <strong>3+ variables</strong>.</li>
+<li><strong>Code:</strong> in the Code Appendix only, following a named style guide.</li>
+</ul>
+</div>
+</div>
 </section>
 <section id="rubric-100-points" class="level1">
 <h1>Rubric (100 points)</h1>
-<section id="report-content-60" class="level2">
-<h2 class="anchored" data-anchor-id="report-content-60">Report content (60)</h2>
+<p>Components below follow the required report structure in the <a href="../project/index.html#required-report-structure">project guidelines</a>. Each figure earns its points only when it has a caption, is cross-referenced by number from the narrative, and is discussed in the text.</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>Component</th>
@@ -416,56 +439,63 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
-<td>Clear introduction and motivation</td>
-<td>5</td>
+<td>Introduction &amp; Motivation — clear and engaging</td>
+<td>4</td>
 </tr>
 <tr class="even">
 <td>Research question(s) explicitly stated</td>
-<td>5</td>
+<td>4</td>
 </tr>
 <tr class="odd">
-<td>Data provenance fully documented</td>
+<td>Data Provenance documented (source, collector, purpose, cases)</td>
 <td>5</td>
 </tr>
 <tr class="even">
 <td>Variables described and justified</td>
-<td>5</td>
+<td>4</td>
 </tr>
 <tr class="odd">
-<td>Data wrangling explained in narrative (not just code)</td>
+<td>Data Wrangling &amp; Cleaning explained in narrative (not just code)</td>
 <td>5</td>
 </tr>
 <tr class="even">
-<td>Summary table (non-trivial)</td>
+<td>Non-trivial summary table (caption + cross-reference + discussion)</td>
 <td>5</td>
 </tr>
 <tr class="odd">
-<td>Figure 1 with caption, reference, and discussion</td>
-<td>5</td>
-</tr>
-<tr class="even">
-<td>Figure 2 with caption, reference, and discussion</td>
-<td>5</td>
-</tr>
-<tr class="odd">
-<td>At least one figure shows 3+ variables effectively</td>
-<td>5</td>
-</tr>
-<tr class="even">
-<td>Findings clearly stated and tied to question(s)</td>
-<td>7</td>
-</tr>
-<tr class="odd">
-<td>Limitations and “what we’d do next” discussion</td>
+<td>Figure 1 (caption + cross-reference + discussion)</td>
 <td>4</td>
 </tr>
 <tr class="even">
-<td>Citations of data and sources</td>
+<td>Figure 2 (caption + cross-reference + discussion)</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>Figure 3 (caption + cross-reference + discussion)</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>At least one figure displays 3+ variables effectively</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>Findings / Conclusions clearly stated and tied to question(s)</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>Limitations &amp; Future Work discussion</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>Body meets the 10-page minimum (narrative only; appendix/refs excluded)</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>References / citations of data and sources</td>
 <td>4</td>
 </tr>
 </tbody>
 </table>
-</section>
 <section id="code-quality-15" class="level2">
 <h2 class="anchored" data-anchor-id="code-quality-15">Code quality (15)</h2>
 <table class="caption-top table">

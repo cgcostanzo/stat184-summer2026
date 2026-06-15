@@ -23,41 +23,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -402,8 +367,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#topic-and-questions" id="toc-topic-and-questions" class="nav-link" data-scroll-target="#topic-and-questions">Topic and questions</a></li>
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
   <li><a href="#analysis-and-report" id="toc-analysis-and-report" class="nav-link" data-scroll-target="#analysis-and-report">Analysis and report</a></li>
+  <li><a href="#required-report-structure" id="toc-required-report-structure" class="nav-link" data-scroll-target="#required-report-structure">Required report structure</a></li>
   <li><a href="#reproducibility" id="toc-reproducibility" class="nav-link" data-scroll-target="#reproducibility">Reproducibility</a></li>
-  <li><a href="#video-presentation" id="toc-video-presentation" class="nav-link" data-scroll-target="#video-presentation">Video presentation</a></li>
   </ul></li>
   <li><a href="#ai-policy-for-the-project" id="toc-ai-policy-for-the-project" class="nav-link" data-scroll-target="#ai-policy-for-the-project">AI policy for the project</a></li>
   <li><a href="#checkpoints" id="toc-checkpoints" class="nav-link" data-scroll-target="#checkpoints">Checkpoints</a></li>
@@ -440,7 +405,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The purpose of this project is to provide you with an opportunity to put into practice everything that you have learned over the course of the semester and to push yourselves. To this end, you’ll work in teams to conduct your own Exploratory Data Analysis, posing and answering your own research question(s).</p>
 <section id="past-examples" class="level2">
 <h2 class="anchored" data-anchor-id="past-examples">Past examples</h2>
-<p>These are from past sections — their requirements were slightly different, but they give you a sense of scope and quality:</p>
+<p>These are from past sections. Their requirements were slightly different and their section headings vary, so <strong>follow the <a href="#required-report-structure">Required report structure</a> below rather than copying their layout</strong>, but they give you a good sense of the expected scope, depth, and quality:</p>
 <ul>
 <li><a href="https://github.com/Stat184-Fall2024/Sec1_FP_Rohan_Pratham/blob/main/FinalProjectReport.pdf">IPL Batting Performance Analysis (Rohan &amp; Pratham)</a></li>
 <li><a href="https://github.com/Stat184-Fall2024/Sec4_FP_KacieRohn_SydneyHolt_AvaCascario/blob/main/Quarto-Stat-184-Final-Project.pdf">Customer Shopping Trends (Ava, Sydney &amp; Kacie)</a></li>
@@ -490,7 +455,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>20%</td>
 </tr>
 <tr class="even">
-<td><strong>Final report + video presentation</strong></td>
+<td><strong>Final report</strong></td>
 <td>Fri Jun 26, 11:59 p.m.</td>
 <td>30%</td>
 </tr>
@@ -500,32 +465,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="teams" class="level1">
 <h1>Teams</h1>
 <ul>
-<li>Teams of <strong>2–3 students</strong>. Solo projects allowed only with explicit permission.</li>
+<li>Teams of <strong>2–3 students</strong>.</li>
 <li>Form teams by the deadline above. If you don’t have a team by then, I will assign one.</li>
-<li>All team members are individually responsible for understanding the entire project. The oral checkpoints assess each team member individually.</li>
+<li>All team members are individually responsible for understanding the entire project.</li>
 </ul>
 </section>
 <section id="project-guidelines" class="level1">
 <h1>Project guidelines</h1>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Treat this as a checklist. Check items off as you go and before you submit.</p>
-</div>
-</div>
 <section id="topic-and-questions" class="level2">
 <h2 class="anchored" data-anchor-id="topic-and-questions">Topic and questions</h2>
 <ul class="task-list">
 <li><label><input type="checkbox">Pick a topic your team is genuinely interested in. Sports, music, video games, food, news, science, civics — anything is fair game as long as the data exists.</label></li>
 <li><label><input type="checkbox">Come up with 1–3 clear, answerable research questions.</label></li>
-<li><label><input type="checkbox">Make a work plan early. Six weeks is short.</label></li>
 </ul>
 </section>
 <section id="data" class="level2">
@@ -553,30 +504,52 @@ Tip
 <li><label><input type="checkbox">Produce a reproducible report in Quarto, output as <strong>PDF</strong>.</label></li>
 <li><label><input type="checkbox">Code in a Code Appendix at the end. Use this snippet:</label></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><code>{{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}}</code></p>
 <ul class="task-list">
 <li><label><input type="checkbox">Body of the report should be <strong>narrative + figures + tables</strong>, not code.</label></li>
-<li><label><input type="checkbox">At least one figure (plot) and at least one non-trivial table (not just raw data).</label></li>
-<li><label><input type="checkbox">At least one visualization with <strong>3+ variables</strong> (use color, facets, size, etc.).</label></li>
-<li><label><input type="checkbox">Figures and tables should have captions and be cross-referenced from the text.</label></li>
+<li><label><input type="checkbox">The body must be <strong>at least 10 pages</strong>. Title page, references, and Code Appendix do <strong>not</strong> count toward the minimum.</label></li>
+<li><label><input type="checkbox">Include <strong>at least three figures</strong> (plots) and <strong>at least one non-trivial table</strong> (a summary or aggregated table, not a dump of raw data).</label></li>
+<li><label><input type="checkbox">At least one figure must display <strong>3+ variables</strong> effectively (use color, facets, size, shape, etc.).</label></li>
+<li><label><input type="checkbox">Every figure and table must have a <strong>caption</strong> and be <strong>cross-referenced by number</strong> from the narrative (“Figure 1 shows…”, “as summarized in Table 1…”), with a few sentences of discussion near each.</label></li>
 <li><label><input type="checkbox">Pick a style guide (<a href="https://style.tidyverse.org/">tidyverse</a>, <a href="https://google.github.io/styleguide/Rguide.html">Google</a>, or <a href="https://educationshinyappteam.github.io/Style_Guide/coding.html">BOAST</a>) and follow it. List your choice in a comment at the top of the code appendix.</label></li>
-<li><label><input type="checkbox">Cite your data sources and any code you adapted from outside (APA, MLA, or footnotes — pick one).</label></li>
+<li><label><input type="checkbox">Cite your data sources and any code you adapted from outside (APA, MLA, or footnotes).</label></li>
 </ul>
+</section>
+<section id="required-report-structure" class="level2">
+<h2 class="anchored" data-anchor-id="required-report-structure">Required report structure</h2>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Your report <strong>must</strong> include the following sections, in this order, with these headings (or clearly equivalent ones). Graders look for each section by name. The point values for each appear in the <a href="../project/final-rubric.html">final report rubric</a>.</p>
+</div>
+</div>
+<ol type="1">
+<li><strong>Title block</strong>: report title, all team members’ names, and the date.</li>
+<li><strong>Introduction &amp; Motivation</strong>: what you studied and why it matters.</li>
+<li><strong>Research Question(s)</strong>: your 1–3 questions (numbered/labeled clearly).</li>
+<li><strong>Data Provenance</strong>: where the data came from, who collected it and why, what one row (case / observational unit) represents, and the key variables you use (with units where relevant).</li>
+<li><strong>Data Wrangling &amp; Cleaning</strong>: a narrative account of how you imported, tidied, joined, and cleaned the data, and the decisions you made (e.g., dropped rows, recoded values). Describe it in prose; the code itself lives in the appendix.</li>
+<li><strong>Exploratory Data Analysis</strong>: your figures and table(s) with the surrounding discussion. This must contain at least three figures, at least one non-trivial table, and at least one figure with 3+ variables.</li>
+<li><strong>Findings / Conclusions</strong>: clearly stated answers to your research question(s), tied directly back to the questions in Section 3.</li>
+<li><strong>Limitations &amp; Future Work</strong>: what your data or analysis could not address, and what you would do with more time or data.</li>
+<li><strong>AI Use Statement</strong>: see the AI policy below.</li>
+<li><strong>References</strong>: citations for your data and any outside code or sources.</li>
+<li><strong>Code Appendix</strong>: all code, using the <code>ref.label</code> snippet above.</li>
+</ol>
 </section>
 <section id="reproducibility" class="level2">
 <h2 class="anchored" data-anchor-id="reproducibility">Reproducibility</h2>
 <ul class="task-list">
-<li><label><input type="checkbox">Use a GitHub repository to manage the project. Everyone commits.</label></li>
+<li><label><input type="checkbox">Use a GitHub repository to manage the project.</label></li>
 <li><label><input type="checkbox">Include a README explaining how to reproduce the analysis.</label></li>
 <li><label><input type="checkbox">The final report must render cleanly from your repo on someone else’s machine.</label></li>
-</ul>
-</section>
-<section id="video-presentation" class="level2">
-<h2 class="anchored" data-anchor-id="video-presentation">Video presentation</h2>
-<ul class="task-list">
-<li><label><input type="checkbox">Plan and record a <strong>5–7 minute video</strong> walking through your analysis (each team member should speak).</label></li>
-<li><label><input type="checkbox">Submit a URL (YouTube/Drive/Box, set to viewable) to the Canvas assignment.</label></li>
 </ul>
 </section>
 </section>
@@ -585,8 +558,7 @@ Tip
 <p>AI tools (ChatGPT, Claude, Copilot, etc.) are permitted on all project work. Per the course AI policy:</p>
 <ol type="1">
 <li>Include an <strong>AI use note</strong> in your final report (1–2 sentences per team member or a paragraph for the team).</li>
-<li>You own everything you submit. Read it before submitting.</li>
-<li><strong>You will be asked to walk through your own code at oral checkpoints.</strong> This is the verification.</li>
+<li><strong>You will be asked to walk through your own code at oral checkpoints.</strong></li>
 </ol>
 <p>If a team member can’t explain code submitted under their name, that affects their individual project grade regardless of the team’s overall result.</p>
 </section>
@@ -604,7 +576,7 @@ Tip
 <p><strong>Can we use a past project from another course?</strong> No.&nbsp;That is a violation of academic integrity.</p>
 <p><strong>Can we use a project from another <em>current</em> course for this one?</strong> No.</p>
 <p><strong>Can we use data from a research lab one of us works in?</strong> Yes, with permission from the lab’s PI.</p>
-<p><strong>Can we use data from another course’s project?</strong> Tentatively, yes — disclose it as part of provenance and check with me early. You may not reuse the same analysis.</p>
+<p><strong>Can we use data from another course’s project?</strong> Tentatively, yes. Disclose it as part of provenance and check with me early. You may not reuse the same analysis.</p>
 <p><strong>Can I use Python?</strong> STAT 184 is an R course, and your analysis must be self-contained in a single QMD. If you want to include a small Python chunk for something we haven’t covered in R, that’s fine.</p>
 <p><strong>We’re stuck on a topic.</strong> Come to office hours. We’ll talk through what your team is interested in. Shared hobbies are usually the best starting point.</p>
 
