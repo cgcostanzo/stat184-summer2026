@@ -122,10 +122,17 @@ record |>
     title = "Men's mile world record progression"
   )
 
-# The modern record is about 31 seconds faster than the earliest one.
+# The modern record is ~13 seconds faster than the earliest record (ignoring
+# records missing dates). If we look at the worst record (which probably
+# corresponds to the oldest), the difference is ~31 secs.
 
 # Q5. Which nationality set the record the most times? Use count() and sort.
+record %>% 
+  group_by(Nationality) %>% 
+  count() %>% 
+  arrange(-n)
 
+# The UK set the record the most times.
 
 # --- Part 3: Scraping non-table content ----------------------------
 # Not all data lives in a <table>. The rvest StarWars vignette page lists 7
@@ -142,20 +149,32 @@ length(films)
 # 3b. For each film, the title is in an <h2>, the director is in a
 #     <span class="director">, and there's a "Released: ..." line in a <p>.
 #     Build a tibble with one row per film:
-# tibble(
-#   title = films |> html_element("h2") |> html_text2(),
-#   director = films |> html_element(".director") |> html_text2(),
-#   released = films |> html_element("p") |> html_text2()
-# )
+films_tbl <- tibble(
+  title = films |> html_element("h2") |> html_text2(),
+  director = films |> html_element(".director") |> html_text2(),
+  released = films |> html_element("p") |> html_text2()
+)
+films_tbl
 
 # 3c. The `released` strings look like "Released: 1999-05-19". Use
 #     str_remove() to drop the "Released: " prefix, then parse_date() (or ymd())
 #     to turn it into a real <date>.
+films_tbl <- films_tbl |>
+  mutate(released = ymd(str_remove(released, "Released: ")))
+films_tbl
 
 # 3d. Each <h2> has a data-id attribute (the film's number in release order). 
 #     Pull it out with html_attr("data-id").
 #     Note: html_attr() always returns a STRING, so convert it to a number afterward.
-films |> html_element("h2") |> html_attr("data-id")
+data_id <- films |> 
+  html_element("h2") |> 
+  html_attr("data-id")
+data_id
 
 # Q6. Sort your films tibble by release date. Does the data-id order match the
 #     chronological release order? (The prequels were made out of story order!)
+films_tbl |>
+  mutate(data_id = data_id) |>
+  arrange(released)
+
+# The data-id does not match the release order.

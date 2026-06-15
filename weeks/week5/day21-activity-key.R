@@ -1,8 +1,5 @@
-# Day 21 In-Class Activity KEY: Iteration with across()
+# Day 21 In-Class Activity Key: Iteration with across()
 # STAT 184 - Tuesday, June 16, 2026
-# ============================================================
-# Instructor solution key. One reasonable solution per part;
-# students' working code may differ.
 # ============================================================
 
 library(tidyverse)
@@ -29,7 +26,7 @@ df |> summarize(
   across(a:d, median)
 )
 
-# Q1. across() CALLS the function for you, once per column. You hand it the
+# Q1. across() calls the function for you, once per column. You hand it the
 #     function object (median). Writing median() calls it immediately with no
 #     argument, which errors ("argument x is missing").
 
@@ -102,7 +99,7 @@ flights |>
   filter(if_any(c(dep_delay, arr_delay), \(x) x > 0)) |>
   nrow()
 
-# Q4. if_all() keeps a row only when the condition is TRUE for EVERY listed
-#     column (logical AND). if_any() keeps a row when it is TRUE for AT LEAST ONE
-#     listed column (logical OR). Use if_all() to require all conditions (e.g.,
+# Q4. if_all() keeps a row only when the condition is TRUE for every listed
+#     column (logical "and"). if_any() keeps a row when it is TRUE for at least one
+#     listed column (logical "or"). Use if_all() to require all conditions (e.g.,
 #     complete cases); use if_any() to catch rows flagged by any condition.
