@@ -34,7 +34,7 @@ library(nycflights13)
 
 **Before class**
 
-- **Reading Quiz 5** (Canvas): [*R4DS* Ch. 25](https://r4ds.hadley.nz/functions) — Functions
+- **Perusall Reading** (Canvas): [*R4DS* Ch. 25](https://r4ds.hadley.nz/functions): Functions
 - **HW 4** due tonight, 11:59 p.m.
 
 **Plan for today**
@@ -54,20 +54,20 @@ library(nycflights13)
 
 ## The rule of three {.scrollable .nostretch}
 
-> *"You should consider writing a function whenever you've copied and pasted a block of code more than twice."* — *R4DS*
+> *"You should consider writing a function whenever you've copied and pasted a block of code more than twice."* - *R4DS*
 
 Functions have four big advantages over copy-and-paste:
 
 1. You give the code an **evocative name**, so it's easier to read.
-2. As requirements change, you update **one place**, not many.
+2. As requirements change, you update in **one place** rather than many.
 3. You **eliminate copy-paste mistakes** (changing a name in one spot but not another).
 4. You can **reuse work** across projects.
 
-Today is a turning point: we move from *using* tidyverse verbs to *writing our own tools*.
+Writing functions allows us to go from *using* tidyverse verbs to *writing our own tools*.
 
 ## Spot the bug {.scrollable .nostretch}
 
-This code rescales every column to run from 0 to 1. There is a copy-paste bug hiding in it — can you find it?
+This code rescales every column to run from 0 to 1. Can you find the copy-paste bug?
 
 ```{r}
 #| echo: TRUE
@@ -83,12 +83,12 @@ df |> mutate(
 ```
 
 ::: {.callout-warning}
-Line `b` divides by `min(a, ...)` instead of `min(b, ...)`. Even Hadley Wickham made this exact mistake — copy-paste invites it. A function makes the bug *impossible*.
+Line `b` divides by `min(a, ...)` instead of `min(b, ...)`. Copy-paste invites this kind of typo, but writing this as a function prevents the possibility of this type of bug altogether.
 :::
 
 # Vector functions {background-color="#001E44"}
 
-## What varies, what stays the same {.scrollable .nostretch}
+## What varies vs. stays the same {.scrollable .nostretch}
 
 Pull the repeated line out and line the copies up. The pattern jumps out:
 
@@ -104,15 +104,15 @@ Replace the part that **changes** with `█`:
 (█ - min(█, na.rm = TRUE)) / (max(█, na.rm = TRUE) - min(█, na.rm = TRUE))
 ```
 
-The only thing that varies is the vector. That becomes our single **argument**.
+The only thing that varies is the vector. That becomes our function **argument**.
 
 ## The anatomy of a function {.scrollable .nostretch}
 
 To write a function you need three things:
 
-- a **name** — here `rescale01` (it rescales a vector to 0–1),
-- the **arguments** — the things that vary; here just one, call it `x`,
-- the **body** — the code that's repeated.
+- a **name**: here `rescale01` (it rescales a vector to 0–1),
+- the **arguments**: the things that vary; here just one, call it `x`,
+- the **body**: the code that's repeated.
 
 ``` r
 name <- function(arguments) {
@@ -129,7 +129,7 @@ rescale01 <- function(x) {
 
 ## Always test on simple inputs {.scrollable .nostretch}
 
-Before trusting a function, feed it inputs where you *know* the answer:
+Before trusting a function, test run it with inputs where you already know the answer:
 
 ```{r}
 #| echo: TRUE
@@ -137,7 +137,7 @@ rescale01(c(-10, 0, 10))
 rescale01(c(1, 2, 3, NA, 5))
 ```
 
-Now the `mutate()` is short, readable, and the bug can't come back:
+Now the `mutate()` is short, readable, and more bug-resistant:
 
 ```{r}
 #| echo: TRUE
@@ -146,9 +146,9 @@ df |> mutate(a = rescale01(a), b = rescale01(b),
              c = rescale01(c), d = rescale01(d))
 ```
 
-## Improving a function in one place {.scrollable .nostretch}
+## Changing a function in one place {.scrollable .nostretch}
 
-Because the logic lives in *one* spot, improving it is easy. `range()` finds the min and max in a single step:
+Because the logic is in *one* spot rather than 4+, improving it is easy. `range()` finds the min and max in a single step:
 
 ```{r}
 #| echo: TRUE
@@ -160,7 +160,7 @@ rescale01(c(1:10, Inf))
 ```
 
 ::: {.callout-tip}
-`finite = TRUE` tells `range()` to ignore `Inf`. We fixed two behaviors at once — and every caller of `rescale01()` benefits instantly. That's the whole point.
+`finite = TRUE` tells `range()` to ignore `Inf`. We fixed two behaviors at once.
 :::
 
 ## "Mutate" functions {.scrollable .nostretch}
@@ -233,7 +233,7 @@ flights |> summarize(
 ```
 
 ::: {.callout-tip}
-Note the **default argument** `na.rm = FALSE`. Callers can override it, but don't have to.
+Note the **default argument** `na.rm = FALSE`. You can override it, but don't have to. If you don't specify, it won't automatically fail, but rather falls back to the default. 
 :::
 
 # Data frame functions {background-color="#001E44"}
@@ -246,7 +246,7 @@ Vector functions pull out code repeated *inside* a verb. But often you repeat th
 - takes extra arguments saying what to do,
 - returns a data frame (or a vector).
 
-The natural first attempt looks like this — and it **fails**:
+The natural first attempt looks like this, but it fails:
 
 ```{r}
 #| echo: TRUE
@@ -262,14 +262,14 @@ flights |> grouped_mean(origin, dep_delay)
 
 ## The problem: indirection {.scrollable .nostretch}
 
-dplyr uses **tidy evaluation** so you can write `dep_delay` instead of `flights$dep_delay`. That's wonderful 95% of the time — but inside a function, `group_by(group_var)` literally looks for a column *named* `group_var`.
+dplyr uses **tidy evaluation** so you can write `dep_delay` instead of `flights$dep_delay`. That's great most of the time, but inside a function, `group_by(group_var)` looks for a column *named* `group_var` that doesn't exist.
 
-We need to tell dplyr: *don't use the argument's name — look* **inside** *it.*
+We need to tell dplyr: *don't use the argument's name, look* **inside** *it.*
 
-The solution is **embracing** with `{{ }}` 🤗.
+The solution is **embracing** using `{{ }}`.
 
 ::: {.callout-tip}
-Think of `{{ var }}` as looking **down a tunnel**: it makes dplyr look inside `var` rather than searching for a column called `var`.
+`{{ var }}` is analogous to looking **down a tunnel**: it makes dplyr look inside `var` rather than searching for a column called `var`.
 :::
 
 ## Embracing fixes it {.scrollable .nostretch}
@@ -284,18 +284,18 @@ grouped_mean <- function(df, group_var, mean_var) {
 flights |> grouped_mean(origin, dep_delay)
 ```
 
-Now `grouped_mean(origin, dep_delay)` really does group by `origin` and average `dep_delay`. 🎉
+Now `grouped_mean(origin, dep_delay)` really does group by `origin` and average `dep_delay`.
 
 ## When do I need to embrace? {.scrollable .nostretch}
 
-Look it up in the help page! Two kinds of tidy evaluation:
+Two kinds of tidy evaluation:
 
 | Type | Used by | You can... |
 |---|---|---|
 | **Data-masking** | `filter()`, `arrange()`, `summarize()`, `group_by()`, `mutate()` | *compute* with variables (`x + 1`) |
 | **Tidy-selection** | `select()`, `relocate()`, `rename()`, `pivot_wider()` | *select* variables (`a:x`, `starts_with()`) |
 
-Rule of thumb: if an argument gets passed to a verb that uses tidy evaluation, **embrace it**.
+If an argument gets passed to a verb that uses tidy evaluation, typically we want to **embrace it**.
 
 ## A handy summary helper {.scrollable .nostretch}
 
@@ -317,7 +317,7 @@ summary6 <- function(data, var) {
 diamonds |> group_by(cut) |> summary6(carat)
 ```
 
-Because it wraps `summarize()`, it works on **grouped** data and on **computed** variables (`summary6(log10(carat))`) for free.
+Because it wraps `summarize()`, it works on both **grouped** data and on **computed** variables (`summary6(log10(carat))`).
 
 ## count() with proportions {.scrollable .nostretch}
 
@@ -331,7 +331,7 @@ count_prop <- function(df, var, sort = FALSE) {
 diamonds |> count_prop(clarity)
 ```
 
-Only `var` is embraced — `df` and `sort` are ordinary arguments. `sort = FALSE` is a sensible default.
+Only `var` is embraced; here, `df` and `sort` are ordinary arguments.
 
 ## Selecting inside a data-masking function {.scrollable .nostretch}
 
@@ -413,7 +413,7 @@ sorted_bars <- function(df, var) {
 diamonds |> sorted_bars(clarity)
 ```
 
-R's syntax won't allow `{{ var }} =`, so tidy evaluation gives us `:=` to mean the same thing.
+R's syntax won't allow `{{ var }} =`, so tidy evaluation uses `:=` to mean the same thing.
 
 ## Labeling with the variable name {.scrollable .nostretch}
 
@@ -436,17 +436,17 @@ diamonds |> histogram(carat, 0.1)
 
 ## Names are for humans {.scrollable .nostretch}
 
-R doesn't care what you name things — but your future self does.
+R doesn't care what you name things, but smart naming makes our lives easier.
 
 - Function names should be **verbs**; arguments should be **nouns**.
   - exceptions: well-known nouns (`mean()`), or accessors (`coef()`).
-- Prefer **clear over short** — autocomplete types the long name for you.
+- Prefer **clear over short** since autocomplete can type the long name for you.
 
 ``` r
 f()                      # too short, meaningless
 my_awesome_function()    # not a verb, not descriptive
-impute_missing()         # long but clear ✔
-collapse_years()         # long but clear ✔
+impute_missing()         # long but clear
+collapse_years()         # long but clear
 ```
 
 ## Whitespace conventions {.scrollable .nostretch}
@@ -495,7 +495,7 @@ Open `day20-activity.R` in RStudio and work through the parts in order.
 
 **Upcoming**
 
-- **Tue Jun 16:** control flow — `if/else`, `for`, `while`
+- **Tue Jun 16:** control flow: `if/else`, `for`, `while`
 - **Reading before Tue:** *R4DS* §26.1–26.3
 :::
 ::: {.column width="45%"}

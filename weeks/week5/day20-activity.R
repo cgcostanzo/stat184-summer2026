@@ -1,12 +1,6 @@
 # Day 20 In-Class Activity: Writing Functions in R
 # STAT 184 - Monday, June 15, 2026
 # ============================================================
-# Work through the parts in order. Part 3 is a challenge;
-# skip to it only if you finish Parts 1 and 2 with time left.
-#
-# Golden rule: write a function once you've copy-pasted a block
-# of code more than twice.
-# ============================================================
 
 library(tidyverse)
 library(nycflights13)
@@ -16,7 +10,7 @@ library(nycflights13)
 # A vector function takes one or more vectors and returns a vector.
 
 # 1a. Here is a block of repeated code. It rescales each column to run 0 to 1,
-#     but there is a copy-paste BUG. Find it (look carefully at column b).
+#     but there is a copy-paste bug. 
 df <- tibble(a = 1:5, b = 6:10, c = c(2, 4, 6, 8, 10))
 df |> mutate(
   a = (a - min(a, na.rm = TRUE)) / (max(a, na.rm = TRUE) - min(a, na.rm = TRUE)),
@@ -33,7 +27,7 @@ df |> mutate(
 #   ...
 # }
 
-# 1c. TEST your function on inputs where you know the answer. These should give
+# 1c. Test your function on inputs where you know the answer. These should give
 #     c(0, 0.5, 1) and c(0, 0.25, 0.5, NA, 1):
 # rescale01(c(-10, 0, 10))
 # rescale01(c(1, 2, 3, NA, 5))
@@ -41,13 +35,13 @@ df |> mutate(
 # 1d. Now rewrite the mutate() from 1a using your function. No more bug possible:
 # df |> mutate(a = rescale01(a), b = rescale01(b), c = rescale01(c))
 
-# 1e. Write a MUTATE function z_score() that returns (x - mean) / sd, removing
+# 1e. Write a mutate function z_score() that returns (x - mean) / sd, removing
 #     NAs. (Same length out as in.) Test it on flights$dep_delay inside mutate().
 # z_score <- function(x) {
 #   ...
 # }
 
-# 1f. Write a SUMMARY function n_missing() that returns the number of NA values
+# 1f. Write a summary function n_missing() that returns the number of NA values
 #     in a vector (a single number out). Use it to count missing dep_delay:
 # n_missing <- function(x) {
 #   ...
@@ -60,7 +54,7 @@ df |> mutate(
 
 # --- Part 2: Data frame functions ---------------------------------------------
 # A data frame function takes a data frame as its first argument and returns a
-# data frame. Inside, you must EMBRACE column arguments with {{ }}.
+# data frame. Inside, you must embrace column arguments using {{ }}.
 
 # 2a. This function is supposed to group by one variable and average another,
 #     but it ERRORS. Run it to see the error, then fix it by embracing the two

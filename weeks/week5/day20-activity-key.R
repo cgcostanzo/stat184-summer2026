@@ -1,8 +1,5 @@
-# Day 20 In-Class Activity KEY: Writing Functions in R
+# Day 20 In-Class Activity Key: Writing Functions in R
 # STAT 184 - Monday, June 15, 2026
-# ============================================================
-# Instructor solution key. One reasonable solution per part;
-# students' working code may differ.
 # ============================================================
 
 library(tidyverse)
@@ -11,16 +8,17 @@ library(nycflights13)
 
 # --- Part 1: Vector functions -------------------------------------------------
 
-# 1a. The bug: column b divides by min(a, ...) instead of min(b, ...).
+# 1a. The bug: column b subtract min(a, ...) in the numerator instead of min(b, ...).
 df <- tibble(a = 1:5, b = 6:10, c = c(2, 4, 6, 8, 10))
 df |> mutate(
   a = (a - min(a, na.rm = TRUE)) / (max(a, na.rm = TRUE) - min(a, na.rm = TRUE)),
-  b = (b - min(a, na.rm = TRUE)) / (max(b, na.rm = TRUE) - min(b, na.rm = TRUE)),  # bug
+  b = (b - min(a, na.rm = TRUE)) / (max(b, na.rm = TRUE) - min(b, na.rm = TRUE)), # bug fixed
   c = (c - min(c, na.rm = TRUE)) / (max(c, na.rm = TRUE) - min(c, na.rm = TRUE))
 )
 
 # Q1. Replacing the column with a single argument x makes it impossible to refer
-#     to the "wrong" column: there is only one thing being rescaled, named once.
+#     to the "wrong" column (there is only one thing being rescaled.) The other
+#     pro is we only have to name it once.
 
 # 1b.
 rescale01 <- function(x) {
@@ -28,26 +26,32 @@ rescale01 <- function(x) {
 }
 
 # 1c.
-rescale01(c(-10, 0, 10))        # 0.0 0.5 1.0
-rescale01(c(1, 2, 3, NA, 5))    # 0.00 0.25 0.50 NA 1.00
+rescale01(c(-10, 0, 10))     # 0.0 0.5 1.0
+rescale01(c(1, 2, 3, NA, 5)) # 0.00 0.25 0.50 NA 1.00 <- ex. of NA handling
 
 # 1d.
-df |> mutate(a = rescale01(a), b = rescale01(b), c = rescale01(c))
+df |> mutate(a = rescale01(a), 
+             b = rescale01(b), 
+             c = rescale01(c))
 
 # 1e.
 z_score <- function(x) {
   (x - mean(x, na.rm = TRUE)) / sd(x, na.rm = TRUE)
 }
-flights |> mutate(z_delay = z_score(dep_delay)) |> select(dep_delay, z_delay)
+flights |> 
+  mutate(z_delay = z_score(dep_delay)) |> 
+  select(dep_delay, z_delay)
 
 # 1f.
 n_missing <- function(x) {
   sum(is.na(x))
 }
-flights |> summarize(missing_delays = n_missing(dep_delay))
+flights |> summarize(
+  missing_delays = n_missing(dep_delay)
+  )
 
-# Q2. A mutate function returns a vector the SAME LENGTH as its input, so it goes
-#     inside mutate()/filter(). A summary function returns a SINGLE value, so it
+# Q2. A mutate function returns a vector the same length as its input, so it goes
+#     inside mutate()/filter(). A summary function returns a single value, so it
 #     goes inside summarize().
 
 
@@ -59,11 +63,12 @@ grouped_mean <- function(df, group_var, mean_var) {
     group_by({{ group_var }}) |>
     summarize(mean = mean({{ mean_var }}, na.rm = TRUE), .groups = "drop")
 }
-flights |> grouped_mean(origin, dep_delay)
+flights |> 
+  grouped_mean(origin, dep_delay)
 
-# Q3. Without {{ }}, group_by() treats "group_var" literally — it looks for a
+# Q3. Without {{ }}, group_by() treats "group_var" literally and looks for a
 #     column actually named group_var, which doesn't exist. Embracing tells dplyr
-#     to look INSIDE the argument for the column the caller supplied.
+#     to look inside the argument for the column the caller supplied.
 
 # 2b.
 count_prop <- function(df, var, sort = FALSE) {
@@ -71,7 +76,8 @@ count_prop <- function(df, var, sort = FALSE) {
     count({{ var }}, sort = sort) |>
     mutate(prop = n / sum(n))
 }
-flights |> count_prop(carrier, sort = TRUE)
+flights |> 
+  count_prop(carrier, sort = TRUE)
 
 # 2c.
 summary6 <- function(data, var) {
@@ -85,7 +91,8 @@ summary6 <- function(data, var) {
     .groups = "drop"
   )
 }
-flights |> summary6(arr_delay)
+flights |> 
+  summary6(arr_delay)
 
 # Q4. It works on grouped data with no changes because it just wraps summarize(),
 #     which already respects existing groups. .groups = "drop" leaves the result
@@ -101,7 +108,8 @@ histogram <- function(df, var, binwidth = NULL) {
     ggplot(aes(x = {{ var }})) +
     geom_histogram(binwidth = binwidth)
 }
-flights |> histogram(dep_delay, binwidth = 10)
+flights |> 
+  histogram(dep_delay, binwidth = 10)
 
 # 3b.
 flights |>
@@ -115,7 +123,8 @@ sorted_bars <- function(df, var) {
     ggplot(aes(y = {{ var }})) +
     geom_bar()
 }
-flights |> sorted_bars(carrier)
+flights |> 
+  sorted_bars(carrier)
 
 # 3d.
 histogram <- function(df, var, binwidth) {
@@ -125,7 +134,8 @@ histogram <- function(df, var, binwidth) {
     geom_histogram(binwidth = binwidth) +
     labs(title = label)
 }
-flights |> histogram(dep_delay, binwidth = 10)
+flights |> 
+  histogram(dep_delay, binwidth = 10)
 
 # Q5. R's syntax only allows a single literal name on the left of =. Because the
 #     name comes from a user-supplied (embraced) variable, we use the walrus
