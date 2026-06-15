@@ -16,34 +16,48 @@ editor: source
 
 **Due:** Friday, June 26, 11:59 p.m.
 
+::: callout-important
+## Hard requirements
+
+Your report must meet all of these. Missing any one costs the associated rubric points (and a missing required section can cost more than its line item, since dependent items also fail).
+
+- **Structure:** all sections in the [Required report structure](index.qmd#required-report-structure), in order.
+- **Length:** at least **10 pages of body** (narrative + figures + tables). The title page, references, and Code Appendix do **not** count.
+- **Figures:** at least **three**, each with a caption, a numbered cross-reference, and discussion in the text.
+- **Table:** at least **one** non-trivial (summary/aggregated) table, captioned and cross-referenced.
+- **Multivariate figure:** at least **one** figure showing **3+ variables**.
+- **Code:** in the Code Appendix only.
+:::
+
 # Rubric (100 points)
 
-## Report content (60)
+Components below follow the required report structure in the [project guidelines](index.qmd#required-report-structure). Each figure earns its points only when it has a caption, is cross-referenced by number from the narrative, and is discussed in the text.
 
 | Component | Points |
 |---|---|
-| Clear introduction and motivation | 5 |
-| Research question(s) explicitly stated | 5 |
-| Data provenance fully documented | 5 |
-| Variables described and justified | 5 |
-| Data wrangling explained in narrative (not just code) | 5 |
-| Summary table (non-trivial) | 5 |
-| Figure 1 with caption, reference, and discussion | 5 |
-| Figure 2 with caption, reference, and discussion | 5 |
-| At least one figure shows 3+ variables effectively | 5 |
-| Findings clearly stated and tied to question(s) | 7 |
-| Limitations and "what we'd do next" discussion | 4 |
-| Citations of data and sources | 4 |
+| Introduction & Motivation — clear and engaging | 4 |
+| Research question(s) explicitly stated | 4 |
+| Data Provenance documented (source, collector, purpose, cases) | 5 |
+| Variables described and justified | 4 |
+| Data Wrangling & Cleaning explained in narrative (not just code) | 5 |
+| Non-trivial summary table (caption + cross-reference + discussion) | 5 |
+| Figure 1 (caption + cross-reference + discussion) | 4 |
+| Figure 2 (caption + cross-reference + discussion) | 4 |
+| Figure 3 (caption + cross-reference + discussion) | 4 |
+| At least one figure displays 3+ variables effectively | 4 |
+| Findings / Conclusions clearly stated and tied to question(s) | 6 |
+| Limitations & Future Work discussion | 4 |
+| Body meets the 10-page minimum (narrative only; appendix/refs excluded) | 3 |
+| References / citations of data and sources | 4 |
 
 ## Code quality (15)
 
 | Component | Points |
 |---|---|
 | Code runs cleanly (renders from scratch) | 5 |
-| Follows a named style guide | 3 |
-| Meaningfully commented | 3 |
-| Code in appendix, not body | 2 |
-| Reproducible from GitHub repo | 2 |
+| Meaningfully commented | 4 |
+| Code in appendix, not body | 3 |
+| Reproducible from GitHub repo | 3 |
 
 ## Reproducibility (10)
 

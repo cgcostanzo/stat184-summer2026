@@ -14,7 +14,7 @@ The purpose of this project is to provide you with an opportunity to put into pr
 
 ## Past examples
 
-These are from past sections --- their requirements were slightly different, but they give you a sense of scope and quality:
+These are from past sections. Their requirements were slightly different and their section headings vary, so **follow the [Required report structure](#required-report-structure) below rather than copying their layout**, but they give you a good sense of the expected scope, depth, and quality:
 
 - [IPL Batting Performance Analysis (Rohan & Pratham)](https://github.com/Stat184-Fall2024/Sec1_FP_Rohan_Pratham/blob/main/FinalProjectReport.pdf)
 - [Customer Shopping Trends (Ava, Sydney & Kacie)](https://github.com/Stat184-Fall2024/Sec4_FP_KacieRohn_SydneyHolt_AvaCascario/blob/main/Quarto-Stat-184-Final-Project.pdf)
@@ -23,31 +23,26 @@ These are from past sections --- their requirements were slightly different, but
 # Deadlines at a glance
 
 | Milestone | Due | Weight (of project grade) |
-|---|---|---|
+|------------------------|------------------------|------------------------|
 | Team formation | Thu Jun 4, 11:59 p.m. | — (required) |
 | **Checkpoint 1**: topic, question, data sources | Sunday Jun 14, 11:59 p.m. | 15% |
 | **Oral check-in #1** (mid-project) | Thu Jun 18 in class | 15% |
 | **Checkpoint 2**: partial draft with visualizations | Wed Jun 24, 11:59 p.m. | 20% |
 | **Oral check-in #2** (final walkthrough) | Thu Jun 25 in class | 20% |
-| **Final report + video presentation** | Fri Jun 26, 11:59 p.m. | 30% |
+| **Final report** | Fri Jun 26, 11:59 p.m. | 30% |
 
 # Teams
 
-- Teams of **2–3 students**. Solo projects allowed only with explicit permission.
+- Teams of **2–3 students**.
 - Form teams by the deadline above. If you don't have a team by then, I will assign one.
-- All team members are individually responsible for understanding the entire project. The oral checkpoints assess each team member individually.
+- All team members are individually responsible for understanding the entire project.
 
 # Project guidelines
-
-::: callout-tip
-Treat this as a checklist. Check items off as you go and before you submit.
-:::
 
 ## Topic and questions
 
 - [ ] Pick a topic your team is genuinely interested in. Sports, music, video games, food, news, science, civics — anything is fair game as long as the data exists.
 - [ ] Come up with 1–3 clear, answerable research questions.
-- [ ] Make a work plan early. Six weeks is short.
 
 ## Data
 
@@ -71,36 +66,46 @@ Good sources of real data:
 - [ ] Produce a reproducible report in Quarto, output as **PDF**.
 - [ ] Code in a Code Appendix at the end. Use this snippet:
 
-````
-```{{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}}
+```{{{r codeAppend, ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE}}}
 ```
-````
 
 - [ ] Body of the report should be **narrative + figures + tables**, not code.
-- [ ] At least one figure (plot) and at least one non-trivial table (not just raw data).
-- [ ] At least one visualization with **3+ variables** (use color, facets, size, etc.).
-- [ ] Figures and tables should have captions and be cross-referenced from the text.
-- [ ] Pick a style guide ([tidyverse](https://style.tidyverse.org/), [Google](https://google.github.io/styleguide/Rguide.html), or [BOAST](https://educationshinyappteam.github.io/Style_Guide/coding.html)) and follow it. List your choice in a comment at the top of the code appendix.
-- [ ] Cite your data sources and any code you adapted from outside (APA, MLA, or footnotes — pick one).
+- [ ] The body must be **at least 10 pages**. Title page, references, and Code Appendix do **not** count toward the minimum.
+- [ ] Include **at least three figures** (plots) and **at least one non-trivial table** (a summary or aggregated table, not a dump of raw data).
+- [ ] At least one figure must display **3+ variables** effectively (use color, facets, size, shape, etc.).
+- [ ] Every figure and table must have a **caption** and be **cross-referenced by number** from the narrative ("Figure 1 shows…", "as summarized in Table 1…"), with a few sentences of discussion near each.
+- [ ] Cite your data sources and any code you adapted from outside (APA, MLA, or footnotes).
+
+## Required report structure {#required-report-structure}
+
+::: callout-important
+Your report **must** include the following sections, in this order, with these headings (or clearly equivalent ones). Graders look for each section by name. The point values for each appear in the [final report rubric](final-rubric.qmd).
+:::
+
+1.  **Title block**: report title, all team members' names, and the date.
+2.  **Introduction & Motivation**: what you studied and why it matters.
+3.  **Research Question(s)**: your 1–3 questions (numbered/labeled clearly).
+4.  **Data Provenance**: where the data came from, who collected it and why, what one row (case / observational unit) represents, and the key variables you use (with units where relevant).
+5.  **Data Wrangling & Cleaning**: a narrative account of how you imported, tidied, joined, and cleaned the data, and the decisions you made (e.g., dropped rows, recoded values). Describe it in prose; the code itself lives in the appendix.
+6.  **Exploratory Data Analysis**: your figures and table(s) with the surrounding discussion. This must contain at least three figures, at least one non-trivial table, and at least one figure with 3+ variables.
+7.  **Findings / Conclusions**: clearly stated answers to your research question(s), tied directly back to the questions in Section 3.
+8.  **Limitations & Future Work**: what your data or analysis could not address, and what you would do with more time or data.
+9.  **AI Use Statement**: see the AI policy below.
+10. **References**: citations for your data and any outside code or sources.
+11. **Code Appendix**: all code, using the `ref.label` snippet above.
 
 ## Reproducibility
 
-- [ ] Use a GitHub repository to manage the project. Everyone commits.
+- [ ] Use a GitHub repository to manage the project. 
 - [ ] Include a README explaining how to reproduce the analysis.
 - [ ] The final report must render cleanly from your repo on someone else's machine.
-
-## Video presentation
-
-- [ ] Plan and record a **5–7 minute video** walking through your analysis (each team member should speak).
-- [ ] Submit a URL (YouTube/Drive/Box, set to viewable) to the Canvas assignment.
 
 # AI policy for the project
 
 AI tools (ChatGPT, Claude, Copilot, etc.) are permitted on all project work. Per the course AI policy:
 
-1. Include an **AI use note** in your final report (1–2 sentences per team member or a paragraph for the team).
-2. You own everything you submit. Read it before submitting.
-3. **You will be asked to walk through your own code at oral checkpoints.** This is the verification.
+1.  Include an **AI use note** in your final report (1–2 sentences per team member or a paragraph for the team).
+2.  **You will be asked to walk through your own code at oral checkpoints.**
 
 If a team member can't explain code submitted under their name, that affects their individual project grade regardless of the team's overall result.
 
@@ -119,7 +124,7 @@ If a team member can't explain code submitted under their name, that affects the
 
 **Can we use data from a research lab one of us works in?** Yes, with permission from the lab's PI.
 
-**Can we use data from another course's project?** Tentatively, yes — disclose it as part of provenance and check with me early. You may not reuse the same analysis.
+**Can we use data from another course's project?** Tentatively, yes. Disclose it as part of provenance and check with me early. You may not reuse the same analysis.
 
 **Can I use Python?** STAT 184 is an R course, and your analysis must be self-contained in a single QMD. If you want to include a small Python chunk for something we haven't covered in R, that's fine.
 
