@@ -1073,12 +1073,12 @@ margin-right: 0; }
 <div class="callout-content">
 <p><strong>Before class</strong></p>
 <ul>
-<li><strong>Reading Quiz</strong> (Canvas): <a href="https://r4ds.hadley.nz/iteration"><em>R4DS</em> Ch. 26</a> §26.1–26.3 — Iteration</li>
+<li><strong>Perusall Reading</strong>: <a href="https://psu.instructure.com/courses/2487468/assignments/18325377"><em>R4DS</em> Ch. 26</a> §26.1–26.3</li>
 </ul>
 <p><strong>Plan for today</strong></p>
 <ul>
-<li>What <em>iteration</em> means, and why R gives you a lot of it for free</li>
-<li>The copy-and-paste problem, again — now across <strong>columns</strong></li>
+<li><em>Iteration</em> intro</li>
+<li>The copy-and-paste problem across <strong>columns</strong></li>
 <li><strong><code>across()</code></strong>: <code>.cols</code>, <code>.fns</code>, <code>.names</code></li>
 <li>Selecting columns with <code>where()</code>; passing functions <em>without</em> <code>()</code></li>
 <li>Anonymous functions <code>\(x)</code>, multiple functions, <code>if_any()</code> / <code>if_all()</code></li>
@@ -1098,9 +1098,9 @@ margin-right: 0; }
 <h1>Why iteration?</h1>
 
 </section>
-<section id="you-already-iterate-constantly" class="slide level2 scrollable nostretch">
-<h2>You already iterate constantly</h2>
-<p><strong>Iteration</strong> is repeatedly performing the same action on different objects. In R, much of it is <em>implicit</em> — you get it for free.</p>
+<section id="rs-built-in-iteration" class="slide level2 scrollable nostretch">
+<h2>R’s built-in iteration</h2>
+<p><strong>Iteration</strong> is repeatedly performing the same action on different objects. In R, much of it is <em>implicit</em>. We do it without even realizing.</p>
 <p>To double every element of a vector, you just write:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
@@ -1109,19 +1109,19 @@ margin-right: 0; }
 <pre><code>[1] 2 4 6 8</code></pre>
 </div>
 </div>
-<p>In most languages you’d write a loop. In R, the operation is <strong>vectorized</strong>.</p>
+<p>In many other languages you’d write a loop. In R, the operation is <strong>vectorized</strong>.</p>
 <p>You’ve also already used tools that repeat an action over <strong>subsets</strong>:</p>
 <ul>
-<li><code>facet_wrap()</code> / <code>facet_grid()</code> — one plot per group</li>
-<li><code>group_by()</code> + <code>summarize()</code> — one summary per group</li>
-<li><code>unnest_wider()</code> / <code>unnest_longer()</code> — one row/column per list element</li>
+<li><code>facet_wrap()</code> / <code>facet_grid()</code>: one plot per group</li>
+<li><code>group_by()</code> + <code>summarize()</code>: one summary per group</li>
+<li><code>unnest_wider()</code> / <code>unnest_longer()</code>: one row/column per list element</li>
 </ul>
 </section>
 <section id="functional-programming" class="slide level2 scrollable nostretch">
 <h2>Functional programming</h2>
-<p>Today’s tools are <strong>functional programming</strong> tools: functions that <em>take other functions as inputs</em>.</p>
-<p>That’s a natural next step from last class — you learned to <em>write</em> functions; now you’ll <em>hand them to other functions</em> to do the repeating for you.</p>
-<p>We’ll keep it concrete and focus on one extremely common task:</p>
+<p><strong>Functional programming</strong> tools are functions that <em>take other functions as inputs</em>.</p>
+<p>Last class, you learned to <em>write</em> functions. Now you’ll <em>hand them to other functions</em> to do the repeating for you.</p>
+<p>For the first of two iteration lectures (today), we’ll focus on:</p>
 <blockquote>
 <p><strong>Doing the same thing to many columns at once.</strong></p>
 </blockquote>
@@ -1153,10 +1153,10 @@ margin-right: 0; }
 1    10 -0.246 -0.287 -0.0567 0.144</code></pre>
 </div>
 </div>
-<p>This breaks the <strong>rule of three</strong> from last class — and imagine doing it for 100 columns. 😩</p>
+<p>This breaks the <strong>rule of three</strong> from last class. With four columns, it isn’t that bad, but imagine copying and pasting the same line 100 times.</p>
 </section>
-<section id="across-to-the-rescue" class="slide level2 scrollable nostretch">
-<h2>across() to the rescue</h2>
+<section id="across" class="slide level2 scrollable nostretch">
+<h2>across()</h2>
 <p><code>across()</code> repeats an action over a set of columns:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>df <span class="sc">|&gt;</span> <span class="fu">summarize</span>(</span>
@@ -1170,7 +1170,7 @@ margin-right: 0; }
 1    10 -0.246 -0.287 -0.0567 0.144</code></pre>
 </div>
 </div>
-<p><code>across()</code> has three important arguments:</p>
+<p><code>across()</code> main arguments:</p>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -1196,10 +1196,10 @@ margin-right: 0; }
 </section>
 <section id="cols-choosing-columns" class="slide level2 scrollable nostretch">
 <h2>.cols: choosing columns</h2>
-<p><code>.cols</code> accepts everything <code>select()</code> does — <code>a:d</code>, <code>starts_with()</code>, <code>ends_with()</code>. Two selectors are especially handy with <code>across()</code>:</p>
+<p><code>.cols</code> accepts everything <code>select()</code> does: <code>a:d</code>, <code>starts_with()</code>, <code>ends_with()</code>. Two selectors are especially handy with <code>across()</code>:</p>
 <ul>
-<li><strong><code>everything()</code></strong> — every (non-grouping) column</li>
-<li><strong><code>where()</code></strong> — select by <em>type</em>: <code>where(is.numeric)</code>, <code>where(is.character)</code>, <code>where(is.Date)</code>, …</li>
+<li><strong><code>everything()</code></strong>: every (non-grouping) column</li>
+<li><strong><code>where()</code></strong>: select by <em>type</em>: <code>where(is.numeric)</code>, <code>where(is.character)</code>, <code>where(is.Date)</code>, …</li>
 </ul>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">set.seed</span>(<span class="dv">1014</span>)</span>
@@ -1219,11 +1219,11 @@ margin-right: 0; }
 2     2 -0.247  0.468  0.112   0.0700</code></pre>
 </div>
 </div>
-<p>Grouping columns (<code>grp</code>) are excluded automatically — <code>summarize()</code> already preserves them.</p>
+<p>Grouping columns (<code>grp</code>) are excluded automatically since <code>summarize()</code> already preserves them.</p>
 </section>
 <section id="where-select-by-type" class="slide level2 scrollable nostretch">
 <h2>where(): select by type</h2>
-<p><code>where()</code> is invaluable on real data with mixed column types. Here, average every <strong>numeric</strong> column of <code>flights</code>:</p>
+<p><code>where()</code> is very helpful for handling real data with mixed column types. Here, average every <strong>numeric</strong> column of <code>flights</code>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>flights <span class="sc">|&gt;</span></span>
 <span id="cb9-2"><a></a>  <span class="fu">summarize</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.numeric), \(x) <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))) <span class="sc">|&gt;</span></span>
@@ -1249,9 +1249,9 @@ $ minute         &lt;dbl&gt; 26.2301</code></pre>
 </div>
 <p>You can combine selectors with Boolean logic: <code>!where(is.numeric)</code> (all non-numeric), or <code>starts_with(&quot;dep&quot;) &amp; where(is.numeric)</code>.</p>
 </section>
-<section id="fns-pass-the-function-dont-call-it" class="slide level2 scrollable nostretch">
-<h2>.fns: pass the function, don’t call it</h2>
-<p>We pass <code>median</code> — <em>one function handed to another function</em> (<code>across</code>). That’s functional programming.</p>
+<section id="fns" class="slide level2 scrollable nostretch">
+<h2>.fns</h2>
+<p>We pass <code>median</code> to <code>across</code>. This is <em>one function handed to another function</em>, which is an example of functional programming.</p>
 <div class="callout callout-warning callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1261,11 +1261,11 @@ $ minute         &lt;dbl&gt; 26.2301</code></pre>
 <p><strong>Warning</strong></p>
 </div>
 <div class="callout-content">
-<p>Pass the <strong>name only</strong> — no parentheses. <code>across(a:d, median)</code>, never <code>across(a:d, median())</code>.</p>
+<p>Pass the <strong>name only</strong> with no parentheses. For example: <code>across(a:d, median)</code>, not <code>across(a:d, median())</code>.</p>
 </div>
 </div>
 </div>
-<p><code>median()</code> with no argument errors, because you’ve <em>called</em> it with nothing to work on:</p>
+<p><code>median()</code> with no argument throws an error, because you’ve <em>called</em> it with nothing to work on:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a><span class="fu">median</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
@@ -1287,7 +1287,7 @@ $ minute         &lt;dbl&gt; 26.2301</code></pre>
 1    NA    NA</code></pre>
 </div>
 </div>
-<p>We want <code>na.rm = TRUE</code>. Wrap <code>median()</code> in a tiny <strong>anonymous function</strong> — <code>\(x)</code> is shorthand for <code>function(x)</code>:</p>
+<p>We want <code>na.rm = TRUE</code> to stop this propagation. We can wrap <code>median()</code> in a tiny <strong>anonymous function</strong>, <code>\(x)</code>. Here, <code>\(x)</code> is shorthand for <code>function(x)</code>, aka, a function that takes argument(s) <code>x</code>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>df_miss <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="fu">across</span>(a<span class="sc">:</span>b, \(x) <span class="fu">median</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1297,7 +1297,7 @@ $ minute         &lt;dbl&gt; 26.2301</code></pre>
 1     2     6</code></pre>
 </div>
 </div>
-<p>Read <code>\(x) median(x, na.rm = TRUE)</code> as “given <code>x</code>, return its median, dropping NAs.”</p>
+<p>In English, you can read this as <code>\(x) median(x, na.rm = TRUE)</code> as “given <code>x</code>, return its median, dropping NAs.”</p>
 </section>
 <section id="what-across-expands-to" class="slide level2 scrollable nostretch">
 <h2>What across() expands to</h2>
@@ -1312,11 +1312,11 @@ $ minute         &lt;dbl&gt; 26.2301</code></pre>
 <span id="cb18-3"><a></a>  <span class="at">b =</span> <span class="fu">median</span>(b, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb18-4"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><code>across()</code> is just a concise way to write the copy-pasted version — without the copy-paste mistakes.</p>
+<p><code>across()</code> is just a more concise way to write the copy-pasted version. The extra bonus is that the <code>across()</code> approach prevents copy-paste mistakes.</p>
 </section>
 <section id="multiple-functions-at-once" class="slide level2 scrollable nostretch">
 <h2>Multiple functions at once</h2>
-<p>Compute the median <em>and</em> count the missings by passing a <strong>named list</strong> to <code>.fns</code>:</p>
+<p>We can calculate the median <em>and</em> count the missings by passing a <strong>named list</strong> to <code>.fns</code>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>df_miss <span class="sc">|&gt;</span></span>
 <span id="cb19-2"><a></a>  <span class="fu">summarize</span>(</span>
@@ -1333,11 +1333,11 @@ $ minute         &lt;dbl&gt; 26.2301</code></pre>
 1        2        1        6        1     4</code></pre>
 </div>
 </div>
-<p>The new columns are named <code>{.col}_{.fn}</code> — e.g. <code>a_median</code>, <code>a_n_miss</code>. That’s a <strong>glue spec</strong>, and you can change it with <code>.names = &quot;{.fn}_{.col}&quot;</code>.</p>
+<p>The new columns are named <code>{.col}_{.fn}</code>, e.g. <code>a_median</code>, <code>a_n_miss</code>. This syntax is from the <strong>glue</strong> package, and you can adjust the naming. For example, you could switch the order and instead write <code>.names = &quot;{.fn}_{.col}&quot;</code>.</p>
 </section>
 <section id="across-in-mutate" class="slide level2 scrollable nostretch">
 <h2>across() in mutate()</h2>
-<p><code>across()</code> shines inside <code>mutate()</code> too. Remember <code>rescale01()</code> from last class? Rescale four columns in one line:</p>
+<p><code>across()</code> works well inside <code>mutate()</code> too. Recall <code>rescale01()</code> from last class. This function lets us rescale four columns in one line:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>rescale01 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
 <span id="cb21-2"><a></a>  rng <span class="ot">&lt;-</span> <span class="fu">range</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">finite =</span> <span class="cn">TRUE</span>)</span>
@@ -1358,14 +1358,14 @@ $ minute         &lt;dbl&gt; 26.2301</code></pre>
 5 1     0.518 0.580 0.394</code></pre>
 </div>
 </div>
-<p>This is the punchline of the last two classes: <strong>write a function once</strong> (day 20), then <strong>apply it everywhere</strong> with <code>across()</code> (today).</p>
+<p>The punchline: <strong>write a function once</strong>, then <strong>apply it everywhere you want in one line</strong> with <code>across()</code>.</p>
 </section>
 <section id="filtering-with-if_any-and-if_all" class="slide level2 scrollable nostretch">
 <h2>Filtering with if_any() and if_all()</h2>
-<p><code>across()</code> works in <code>summarize()</code> and <code>mutate()</code>. For <code>filter()</code>, use its cousins:</p>
+<p><code>across()</code> works in <code>summarize()</code> and <code>mutate()</code>. For <code>filter()</code>, we use similar helpers:</p>
 <ul>
-<li><strong><code>if_any()</code></strong> — keep a row if the condition holds for <em>any</em> of the columns</li>
-<li><strong><code>if_all()</code></strong> — keep a row if it holds for <em>all</em> of the columns</li>
+<li><strong><code>if_any()</code></strong>: keep a row if the condition holds for <em>any</em> of the columns</li>
+<li><strong><code>if_all()</code></strong>: keep a row if it holds for <em>all</em> of the columns</li>
 </ul>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a><span class="co"># keep only rows with NO missing values in any of these timing columns</span></span>
@@ -1409,7 +1409,8 @@ $ minute         &lt;dbl&gt; 26.2301</code></pre>
 <p><strong>Upcoming</strong></p>
 <ul>
 <li><strong>Wed Jun 17:</strong> iterating over <em>files</em> and <em>list-columns</em> with <code>purrr::map()</code></li>
-<li><strong>Reading before Wed:</strong> <em>R4DS</em> §26.4–26.5</li>
+<li><strong>Reading before Wed:</strong> <a href="https://psu.instructure.com/courses/2487468/assignments/18325377"><em>R4DS</em> §26.4–26.5</a></li>
+<li><strong>Homework 5</strong>: due Friday June 19 at 11:59 p.m. on <a href="https://psu.instructure.com/courses/2487468/assignments/18343523">Canvas</a></li>
 </ul>
 </div><div class="column" style="width:45%;">
 <p><strong>Reach out</strong></p>

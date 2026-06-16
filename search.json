@@ -2366,88 +2366,88 @@
     "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nmap(x, f) applies f to each element of x → a list\nTyped variants (map_dbl, map_chr, map_int, map_lgl) → vectors\nwalk() = map() for side effects (writing, saving)\ngroup_nest() makes a per-group list-column\nstr_glue() builds output paths from data\nmap2() / walk2() vary two inputs together (data + path)\nReading files, writing CSVs, saving plots — all the same shape\n\nUpcoming\n\nThu Jun 18: strings, dates & intro to regex + Project oral check-in #1\nReading before Thu: Data Computing §17.1–17.2\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 26 · purrr reference"
   },
   {
-    "objectID": "weeks/week5/day21-iteration-across-slides.html#you-already-iterate-constantly",
-    "href": "weeks/week5/day21-iteration-across-slides.html#you-already-iterate-constantly",
+    "objectID": "weeks/week5/day21-iteration-across-slides.html#rs-built-in-iteration",
+    "href": "weeks/week5/day21-iteration-across-slides.html#rs-built-in-iteration",
     "title": "Iteration: working across many columns",
-    "section": "You already iterate constantly",
-    "text": "You already iterate constantly\nIteration is repeatedly performing the same action on different objects. In R, much of it is implicit — you get it for free.\nTo double every element of a vector, you just write:\n\nx &lt;- c(1, 2, 3, 4)\n2 * x\n\n[1] 2 4 6 8\n\n\nIn most languages you’d write a loop. In R, the operation is vectorized.\nYou’ve also already used tools that repeat an action over subsets:\n\nfacet_wrap() / facet_grid() — one plot per group\ngroup_by() + summarize() — one summary per group\nunnest_wider() / unnest_longer() — one row/column per list element"
+    "section": "R’s built-in iteration",
+    "text": "R’s built-in iteration\nIteration is repeatedly performing the same action on different objects. In R, much of it is implicit. We do it without even realizing.\nTo double every element of a vector, you just write:\n\nx &lt;- c(1, 2, 3, 4)\n2 * x\n\n[1] 2 4 6 8\n\n\nIn many other languages you’d write a loop. In R, the operation is vectorized.\nYou’ve also already used tools that repeat an action over subsets:\n\nfacet_wrap() / facet_grid(): one plot per group\ngroup_by() + summarize(): one summary per group\nunnest_wider() / unnest_longer(): one row/column per list element"
   },
   {
     "objectID": "weeks/week5/day21-iteration-across-slides.html#functional-programming",
     "href": "weeks/week5/day21-iteration-across-slides.html#functional-programming",
     "title": "Iteration: working across many columns",
     "section": "Functional programming",
-    "text": "Functional programming\nToday’s tools are functional programming tools: functions that take other functions as inputs.\nThat’s a natural next step from last class — you learned to write functions; now you’ll hand them to other functions to do the repeating for you.\nWe’ll keep it concrete and focus on one extremely common task:\n\nDoing the same thing to many columns at once.\n\nThe key tool is dplyr’s across()."
+    "text": "Functional programming\nFunctional programming tools are functions that take other functions as inputs.\nLast class, you learned to write functions. Now you’ll hand them to other functions to do the repeating for you.\nFor the first of two iteration lectures (today), we’ll focus on:\n\nDoing the same thing to many columns at once.\n\nThe key tool is dplyr’s across()."
   },
   {
     "objectID": "weeks/week5/day21-iteration-across-slides.html#the-copy-and-paste-problem",
     "href": "weeks/week5/day21-iteration-across-slides.html#the-copy-and-paste-problem",
     "title": "Iteration: working across many columns",
     "section": "The copy-and-paste problem",
-    "text": "The copy-and-paste problem\nSuppose we want the median of every column of this tibble:\n\nset.seed(1014)\ndf &lt;- tibble(a = rnorm(10), b = rnorm(10), c = rnorm(10), d = rnorm(10))\n\ndf |&gt; summarize(\n  n = n(),\n  a = median(a),\n  b = median(b),\n  c = median(c),\n  d = median(d)\n)\n\n# A tibble: 1 × 5\n      n      a      b       c     d\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1    10 -0.246 -0.287 -0.0567 0.144\n\n\nThis breaks the rule of three from last class — and imagine doing it for 100 columns. 😩"
+    "text": "The copy-and-paste problem\nSuppose we want the median of every column of this tibble:\n\nset.seed(1014)\ndf &lt;- tibble(a = rnorm(10), b = rnorm(10), c = rnorm(10), d = rnorm(10))\n\ndf |&gt; summarize(\n  n = n(),\n  a = median(a),\n  b = median(b),\n  c = median(c),\n  d = median(d)\n)\n\n# A tibble: 1 × 5\n      n      a      b       c     d\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1    10 -0.246 -0.287 -0.0567 0.144\n\n\nThis breaks the rule of three from last class. With four columns, it isn’t that bad, but imagine copying and pasting the same line 100 times."
   },
   {
-    "objectID": "weeks/week5/day21-iteration-across-slides.html#across-to-the-rescue",
-    "href": "weeks/week5/day21-iteration-across-slides.html#across-to-the-rescue",
+    "objectID": "weeks/week5/day21-iteration-across-slides.html#across",
+    "href": "weeks/week5/day21-iteration-across-slides.html#across",
     "title": "Iteration: working across many columns",
-    "section": "across() to the rescue",
-    "text": "across() to the rescue\nacross() repeats an action over a set of columns:\n\ndf |&gt; summarize(\n  n = n(),\n  across(a:d, median)\n)\n\n# A tibble: 1 × 5\n      n      a      b       c     d\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1    10 -0.246 -0.287 -0.0567 0.144\n\n\nacross() has three important arguments:\n\n\n\nArgument\nRole\n\n\n\n\n.cols\nwhich columns to iterate over (uses select() syntax)\n\n\n.fns\nwhat to do to each column\n\n\n.names\n(optional) how to name the output columns"
+    "section": "across()",
+    "text": "across()\nacross() repeats an action over a set of columns:\n\ndf |&gt; summarize(\n  n = n(),\n  across(a:d, median)\n)\n\n# A tibble: 1 × 5\n      n      a      b       c     d\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1    10 -0.246 -0.287 -0.0567 0.144\n\n\nacross() main arguments:\n\n\n\nArgument\nRole\n\n\n\n\n.cols\nwhich columns to iterate over (uses select() syntax)\n\n\n.fns\nwhat to do to each column\n\n\n.names\n(optional) how to name the output columns"
   },
   {
     "objectID": "weeks/week5/day21-iteration-across-slides.html#cols-choosing-columns",
     "href": "weeks/week5/day21-iteration-across-slides.html#cols-choosing-columns",
     "title": "Iteration: working across many columns",
     "section": ".cols: choosing columns",
-    "text": ".cols: choosing columns\n.cols accepts everything select() does — a:d, starts_with(), ends_with(). Two selectors are especially handy with across():\n\neverything() — every (non-grouping) column\nwhere() — select by type: where(is.numeric), where(is.character), where(is.Date), …\n\n\nset.seed(1014)\ndf &lt;- tibble(\n  grp = sample(2, 10, replace = TRUE),\n  a = rnorm(10), b = rnorm(10), c = rnorm(10), d = rnorm(10)\n)\n\ndf |&gt;\n  group_by(grp) |&gt;\n  summarize(across(everything(), median))\n\n# A tibble: 2 × 5\n    grp      a      b       c       d\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1     1 -0.244 -0.522 -0.0974 -0.251 \n2     2 -0.247  0.468  0.112   0.0700\n\n\nGrouping columns (grp) are excluded automatically — summarize() already preserves them."
+    "text": ".cols: choosing columns\n.cols accepts everything select() does: a:d, starts_with(), ends_with(). Two selectors are especially handy with across():\n\neverything(): every (non-grouping) column\nwhere(): select by type: where(is.numeric), where(is.character), where(is.Date), …\n\n\nset.seed(1014)\ndf &lt;- tibble(\n  grp = sample(2, 10, replace = TRUE),\n  a = rnorm(10), b = rnorm(10), c = rnorm(10), d = rnorm(10)\n)\n\ndf |&gt;\n  group_by(grp) |&gt;\n  summarize(across(everything(), median))\n\n# A tibble: 2 × 5\n    grp      a      b       c       d\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1     1 -0.244 -0.522 -0.0974 -0.251 \n2     2 -0.247  0.468  0.112   0.0700\n\n\nGrouping columns (grp) are excluded automatically since summarize() already preserves them."
   },
   {
     "objectID": "weeks/week5/day21-iteration-across-slides.html#where-select-by-type",
     "href": "weeks/week5/day21-iteration-across-slides.html#where-select-by-type",
     "title": "Iteration: working across many columns",
     "section": "where(): select by type",
-    "text": "where(): select by type\nwhere() is invaluable on real data with mixed column types. Here, average every numeric column of flights:\n\nflights |&gt;\n  summarize(across(where(is.numeric), \\(x) mean(x, na.rm = TRUE))) |&gt;\n  glimpse()\n\nRows: 1\nColumns: 14\n$ year           &lt;dbl&gt; 2013\n$ month          &lt;dbl&gt; 6.54851\n$ day            &lt;dbl&gt; 15.71079\n$ dep_time       &lt;dbl&gt; 1349.11\n$ sched_dep_time &lt;dbl&gt; 1344.255\n$ dep_delay      &lt;dbl&gt; 12.63907\n$ arr_time       &lt;dbl&gt; 1502.055\n$ sched_arr_time &lt;dbl&gt; 1536.38\n$ arr_delay      &lt;dbl&gt; 6.895377\n$ flight         &lt;dbl&gt; 1971.924\n$ air_time       &lt;dbl&gt; 150.6865\n$ distance       &lt;dbl&gt; 1039.913\n$ hour           &lt;dbl&gt; 13.18025\n$ minute         &lt;dbl&gt; 26.2301\n\n\nYou can combine selectors with Boolean logic: !where(is.numeric) (all non-numeric), or starts_with(\"dep\") & where(is.numeric)."
+    "text": "where(): select by type\nwhere() is very helpful for handling real data with mixed column types. Here, average every numeric column of flights:\n\nflights |&gt;\n  summarize(across(where(is.numeric), \\(x) mean(x, na.rm = TRUE))) |&gt;\n  glimpse()\n\nRows: 1\nColumns: 14\n$ year           &lt;dbl&gt; 2013\n$ month          &lt;dbl&gt; 6.54851\n$ day            &lt;dbl&gt; 15.71079\n$ dep_time       &lt;dbl&gt; 1349.11\n$ sched_dep_time &lt;dbl&gt; 1344.255\n$ dep_delay      &lt;dbl&gt; 12.63907\n$ arr_time       &lt;dbl&gt; 1502.055\n$ sched_arr_time &lt;dbl&gt; 1536.38\n$ arr_delay      &lt;dbl&gt; 6.895377\n$ flight         &lt;dbl&gt; 1971.924\n$ air_time       &lt;dbl&gt; 150.6865\n$ distance       &lt;dbl&gt; 1039.913\n$ hour           &lt;dbl&gt; 13.18025\n$ minute         &lt;dbl&gt; 26.2301\n\n\nYou can combine selectors with Boolean logic: !where(is.numeric) (all non-numeric), or starts_with(\"dep\") & where(is.numeric)."
   },
   {
-    "objectID": "weeks/week5/day21-iteration-across-slides.html#fns-pass-the-function-dont-call-it",
-    "href": "weeks/week5/day21-iteration-across-slides.html#fns-pass-the-function-dont-call-it",
+    "objectID": "weeks/week5/day21-iteration-across-slides.html#fns",
+    "href": "weeks/week5/day21-iteration-across-slides.html#fns",
     "title": "Iteration: working across many columns",
-    "section": ".fns: pass the function, don’t call it",
-    "text": ".fns: pass the function, don’t call it\nWe pass median — one function handed to another function (across). That’s functional programming.\n\n\n\n\n\n\nWarning\n\n\nPass the name only — no parentheses. across(a:d, median), never across(a:d, median()).\n\n\n\nmedian() with no argument errors, because you’ve called it with nothing to work on:\n\nmedian()\n\nError in `median.default()`:\n! argument \"x\" is missing, with no default"
+    "section": ".fns",
+    "text": ".fns\nWe pass median to across. This is one function handed to another function, which is an example of functional programming.\n\n\n\n\n\n\nWarning\n\n\nPass the name only with no parentheses. For example: across(a:d, median), not across(a:d, median()).\n\n\n\nmedian() with no argument throws an error, because you’ve called it with nothing to work on:\n\nmedian()\n\nError in `median.default()`:\n! argument \"x\" is missing, with no default"
   },
   {
     "objectID": "weeks/week5/day21-iteration-across-slides.html#adding-arguments-with-anonymous-functions",
     "href": "weeks/week5/day21-iteration-across-slides.html#adding-arguments-with-anonymous-functions",
     "title": "Iteration: working across many columns",
     "section": "Adding arguments with anonymous functions",
-    "text": "Adding arguments with anonymous functions\nWhat if there are NAs? median() propagates them:\n\ndf_miss &lt;- tibble(a = c(1, 2, NA, 4), b = c(NA, 5, 6, 7))\ndf_miss |&gt; summarize(across(a:b, median))\n\n# A tibble: 1 × 2\n      a     b\n  &lt;dbl&gt; &lt;dbl&gt;\n1    NA    NA\n\n\nWe want na.rm = TRUE. Wrap median() in a tiny anonymous function — \\(x) is shorthand for function(x):\n\ndf_miss |&gt; summarize(across(a:b, \\(x) median(x, na.rm = TRUE)))\n\n# A tibble: 1 × 2\n      a     b\n  &lt;dbl&gt; &lt;dbl&gt;\n1     2     6\n\n\nRead \\(x) median(x, na.rm = TRUE) as “given x, return its median, dropping NAs.”"
+    "text": "Adding arguments with anonymous functions\nWhat if there are NAs? median() propagates them:\n\ndf_miss &lt;- tibble(a = c(1, 2, NA, 4), b = c(NA, 5, 6, 7))\ndf_miss |&gt; summarize(across(a:b, median))\n\n# A tibble: 1 × 2\n      a     b\n  &lt;dbl&gt; &lt;dbl&gt;\n1    NA    NA\n\n\nWe want na.rm = TRUE to stop this propagation. We can wrap median() in a tiny anonymous function, \\(x). Here, \\(x) is shorthand for function(x), aka, a function that takes argument(s) x:\n\ndf_miss |&gt; summarize(across(a:b, \\(x) median(x, na.rm = TRUE)))\n\n# A tibble: 1 × 2\n      a     b\n  &lt;dbl&gt; &lt;dbl&gt;\n1     2     6\n\n\nIn English, you can read this as \\(x) median(x, na.rm = TRUE) as “given x, return its median, dropping NAs.”"
   },
   {
     "objectID": "weeks/week5/day21-iteration-across-slides.html#what-across-expands-to",
     "href": "weeks/week5/day21-iteration-across-slides.html#what-across-expands-to",
     "title": "Iteration: working across many columns",
     "section": "What across() expands to",
-    "text": "What across() expands to\nIt can help to picture what across() writes for you. This:\n\ndf_miss |&gt; summarize(across(a:b, \\(x) median(x, na.rm = TRUE)))\n\nis exactly equivalent to:\n\ndf_miss |&gt; summarize(\n  a = median(a, na.rm = TRUE),\n  b = median(b, na.rm = TRUE)\n)\n\nacross() is just a concise way to write the copy-pasted version — without the copy-paste mistakes."
+    "text": "What across() expands to\nIt can help to picture what across() writes for you. This:\n\ndf_miss |&gt; summarize(across(a:b, \\(x) median(x, na.rm = TRUE)))\n\nis exactly equivalent to:\n\ndf_miss |&gt; summarize(\n  a = median(a, na.rm = TRUE),\n  b = median(b, na.rm = TRUE)\n)\n\nacross() is just a more concise way to write the copy-pasted version. The extra bonus is that the across() approach prevents copy-paste mistakes."
   },
   {
     "objectID": "weeks/week5/day21-iteration-across-slides.html#multiple-functions-at-once",
     "href": "weeks/week5/day21-iteration-across-slides.html#multiple-functions-at-once",
     "title": "Iteration: working across many columns",
     "section": "Multiple functions at once",
-    "text": "Multiple functions at once\nCompute the median and count the missings by passing a named list to .fns:\n\ndf_miss |&gt;\n  summarize(\n    across(a:b, list(\n      median = \\(x) median(x, na.rm = TRUE),\n      n_miss = \\(x) sum(is.na(x))\n    )),\n    n = n()\n  )\n\n# A tibble: 1 × 5\n  a_median a_n_miss b_median b_n_miss     n\n     &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;    &lt;int&gt; &lt;int&gt;\n1        2        1        6        1     4\n\n\nThe new columns are named {.col}_{.fn} — e.g. a_median, a_n_miss. That’s a glue spec, and you can change it with .names = \"{.fn}_{.col}\"."
+    "text": "Multiple functions at once\nWe can calculate the median and count the missings by passing a named list to .fns:\n\ndf_miss |&gt;\n  summarize(\n    across(a:b, list(\n      median = \\(x) median(x, na.rm = TRUE),\n      n_miss = \\(x) sum(is.na(x))\n    )),\n    n = n()\n  )\n\n# A tibble: 1 × 5\n  a_median a_n_miss b_median b_n_miss     n\n     &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;    &lt;int&gt; &lt;int&gt;\n1        2        1        6        1     4\n\n\nThe new columns are named {.col}_{.fn}, e.g. a_median, a_n_miss. This syntax is from the glue package, and you can adjust the naming. For example, you could switch the order and instead write .names = \"{.fn}_{.col}\"."
   },
   {
     "objectID": "weeks/week5/day21-iteration-across-slides.html#across-in-mutate",
     "href": "weeks/week5/day21-iteration-across-slides.html#across-in-mutate",
     "title": "Iteration: working across many columns",
     "section": "across() in mutate()",
-    "text": "across() in mutate()\nacross() shines inside mutate() too. Remember rescale01() from last class? Rescale four columns in one line:\n\nrescale01 &lt;- function(x) {\n  rng &lt;- range(x, na.rm = TRUE, finite = TRUE)\n  (x - rng[1]) / (rng[2] - rng[1])\n}\n\nset.seed(1014)\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(across(a:d, rescale01))\n\n# A tibble: 5 × 4\n      a     b     c     d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 0.339 1     0.291 0    \n2 0.880 0     0.611 0.557\n3 0     0.530 1     0.752\n4 0.795 0.531 0     1    \n5 1     0.518 0.580 0.394\n\n\nThis is the punchline of the last two classes: write a function once (day 20), then apply it everywhere with across() (today)."
+    "text": "across() in mutate()\nacross() works well inside mutate() too. Recall rescale01() from last class. This function lets us rescale four columns in one line:\n\nrescale01 &lt;- function(x) {\n  rng &lt;- range(x, na.rm = TRUE, finite = TRUE)\n  (x - rng[1]) / (rng[2] - rng[1])\n}\n\nset.seed(1014)\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(across(a:d, rescale01))\n\n# A tibble: 5 × 4\n      a     b     c     d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 0.339 1     0.291 0    \n2 0.880 0     0.611 0.557\n3 0     0.530 1     0.752\n4 0.795 0.531 0     1    \n5 1     0.518 0.580 0.394\n\n\nThe punchline: write a function once, then apply it everywhere you want in one line with across()."
   },
   {
     "objectID": "weeks/week5/day21-iteration-across-slides.html#filtering-with-if_any-and-if_all",
     "href": "weeks/week5/day21-iteration-across-slides.html#filtering-with-if_any-and-if_all",
     "title": "Iteration: working across many columns",
     "section": "Filtering with if_any() and if_all()",
-    "text": "Filtering with if_any() and if_all()\nacross() works in summarize() and mutate(). For filter(), use its cousins:\n\nif_any() — keep a row if the condition holds for any of the columns\nif_all() — keep a row if it holds for all of the columns\n\n\n# keep only rows with NO missing values in any of these timing columns\nflights |&gt;\n  filter(if_all(c(dep_time, arr_time, dep_delay, arr_delay), \\(x) !is.na(x))) |&gt;\n  nrow()\n\n[1] 327346"
+    "text": "Filtering with if_any() and if_all()\nacross() works in summarize() and mutate(). For filter(), we use similar helpers:\n\nif_any(): keep a row if the condition holds for any of the columns\nif_all(): keep a row if it holds for all of the columns\n\n\n# keep only rows with NO missing values in any of these timing columns\nflights |&gt;\n  filter(if_all(c(dep_time, arr_time, dep_delay, arr_delay), \\(x) !is.na(x))) |&gt;\n  nrow()\n\n[1] 327346"
   },
   {
     "objectID": "weeks/week5/day21-iteration-across-slides.html#in-class-activity",
@@ -2461,98 +2461,98 @@
     "href": "weeks/week5/day21-iteration-across-slides.html#wrap-up-looking-ahead",
     "title": "Iteration: working across many columns",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nIteration = the same action over many things; R gives you a lot for free (vectorization, faceting, group_by)\nFunctional programming: hand a function to another function\nacross(.cols, .fns, .names) repeats an action over columns\n.cols uses select() syntax; everything() and where(is.numeric)\nPass the function name with no (); use \\(x) f(x, ...) to add args\nNamed list .fns for multiple functions; {.col}_{.fn} naming\nif_any() / if_all() bring the same idea to filter()\n\nUpcoming\n\nWed Jun 17: iterating over files and list-columns with purrr::map()\nReading before Wed: R4DS §26.4–26.5\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 26 · across() reference"
+    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nIteration = the same action over many things; R gives you a lot for free (vectorization, faceting, group_by)\nFunctional programming: hand a function to another function\nacross(.cols, .fns, .names) repeats an action over columns\n.cols uses select() syntax; everything() and where(is.numeric)\nPass the function name with no (); use \\(x) f(x, ...) to add args\nNamed list .fns for multiple functions; {.col}_{.fn} naming\nif_any() / if_all() bring the same idea to filter()\n\nUpcoming\n\nWed Jun 17: iterating over files and list-columns with purrr::map()\nReading before Wed: R4DS §26.4–26.5\nHomework 5: due Friday June 19 at 11:59 p.m. on Canvas\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 26 · across() reference"
   },
   {
     "objectID": "weeks/week5/day21-iteration-across-page.html",
     "href": "weeks/week5/day21-iteration-across-page.html",
     "title": "Iteration: working across many columns",
     "section": "",
-    "text": "NoteToday: Tuesday June 16\n\n\n\nBefore class\n\nReading Quiz (Canvas): R4DS Ch. 26 §26.1–26.3 — Iteration\n\nPlan for today\n\nWhat iteration means, and why R gives you a lot of it for free\nThe copy-and-paste problem, again — now across columns\nacross(): .cols, .fns, .names\nSelecting columns with where(); passing functions without ()\nAnonymous functions \\(x), multiple functions, if_any() / if_all()\nIn-class activity\n\nHelpful links\n\nSyllabus · AI policy · Schedule · R4DS Ch. 26 · dplyr across() reference"
+    "text": "NoteToday: Tuesday June 16\n\n\n\nBefore class\n\nPerusall Reading: R4DS Ch. 26 §26.1–26.3\n\nPlan for today\n\nIteration intro\nThe copy-and-paste problem across columns\nacross(): .cols, .fns, .names\nSelecting columns with where(); passing functions without ()\nAnonymous functions \\(x), multiple functions, if_any() / if_all()\nIn-class activity\n\nHelpful links\n\nSyllabus · AI policy · Schedule · R4DS Ch. 26 · dplyr across() reference"
   },
   {
-    "objectID": "weeks/week5/day21-iteration-across-page.html#you-already-iterate-constantly",
-    "href": "weeks/week5/day21-iteration-across-page.html#you-already-iterate-constantly",
+    "objectID": "weeks/week5/day21-iteration-across-page.html#rs-built-in-iteration",
+    "href": "weeks/week5/day21-iteration-across-page.html#rs-built-in-iteration",
     "title": "Iteration: working across many columns",
-    "section": "You already iterate constantly",
-    "text": "You already iterate constantly\nIteration is repeatedly performing the same action on different objects. In R, much of it is implicit — you get it for free.\nTo double every element of a vector, you just write:\n\nx &lt;- c(1, 2, 3, 4)\n2 * x\n\n[1] 2 4 6 8\n\n\nIn most languages you’d write a loop. In R, the operation is vectorized.\nYou’ve also already used tools that repeat an action over subsets:\n\nfacet_wrap() / facet_grid() — one plot per group\ngroup_by() + summarize() — one summary per group\nunnest_wider() / unnest_longer() — one row/column per list element"
+    "section": "R’s built-in iteration",
+    "text": "R’s built-in iteration\nIteration is repeatedly performing the same action on different objects. In R, much of it is implicit. We do it without even realizing.\nTo double every element of a vector, you just write:\n\nx &lt;- c(1, 2, 3, 4)\n2 * x\n\n[1] 2 4 6 8\n\n\nIn many other languages you’d write a loop. In R, the operation is vectorized.\nYou’ve also already used tools that repeat an action over subsets:\n\nfacet_wrap() / facet_grid(): one plot per group\ngroup_by() + summarize(): one summary per group\nunnest_wider() / unnest_longer(): one row/column per list element"
   },
   {
     "objectID": "weeks/week5/day21-iteration-across-page.html#functional-programming",
     "href": "weeks/week5/day21-iteration-across-page.html#functional-programming",
     "title": "Iteration: working across many columns",
     "section": "Functional programming",
-    "text": "Functional programming\nToday’s tools are functional programming tools: functions that take other functions as inputs.\nThat’s a natural next step from last class — you learned to write functions; now you’ll hand them to other functions to do the repeating for you.\nWe’ll keep it concrete and focus on one extremely common task:\n\nDoing the same thing to many columns at once.\n\nThe key tool is dplyr’s across()."
+    "text": "Functional programming\nFunctional programming tools are functions that take other functions as inputs.\nLast class, you learned to write functions. Now you’ll hand them to other functions to do the repeating for you.\nFor the first of two iteration lectures (today), we’ll focus on:\n\nDoing the same thing to many columns at once.\n\nThe key tool is dplyr’s across()."
   },
   {
     "objectID": "weeks/week5/day21-iteration-across-page.html#the-copy-and-paste-problem",
     "href": "weeks/week5/day21-iteration-across-page.html#the-copy-and-paste-problem",
     "title": "Iteration: working across many columns",
     "section": "The copy-and-paste problem",
-    "text": "The copy-and-paste problem\nSuppose we want the median of every column of this tibble:\n\nset.seed(1014)\ndf &lt;- tibble(a = rnorm(10), b = rnorm(10), c = rnorm(10), d = rnorm(10))\n\ndf |&gt; summarize(\n  n = n(),\n  a = median(a),\n  b = median(b),\n  c = median(c),\n  d = median(d)\n)\n\n# A tibble: 1 × 5\n      n      a      b       c     d\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1    10 -0.246 -0.287 -0.0567 0.144\n\n\nThis breaks the rule of three from last class — and imagine doing it for 100 columns. 😩"
+    "text": "The copy-and-paste problem\nSuppose we want the median of every column of this tibble:\n\nset.seed(1014)\ndf &lt;- tibble(a = rnorm(10), b = rnorm(10), c = rnorm(10), d = rnorm(10))\n\ndf |&gt; summarize(\n  n = n(),\n  a = median(a),\n  b = median(b),\n  c = median(c),\n  d = median(d)\n)\n\n# A tibble: 1 × 5\n      n      a      b       c     d\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1    10 -0.246 -0.287 -0.0567 0.144\n\n\nThis breaks the rule of three from last class. With four columns, it isn’t that bad, but imagine copying and pasting the same line 100 times."
   },
   {
-    "objectID": "weeks/week5/day21-iteration-across-page.html#across-to-the-rescue",
-    "href": "weeks/week5/day21-iteration-across-page.html#across-to-the-rescue",
+    "objectID": "weeks/week5/day21-iteration-across-page.html#across",
+    "href": "weeks/week5/day21-iteration-across-page.html#across",
     "title": "Iteration: working across many columns",
-    "section": "across() to the rescue",
-    "text": "across() to the rescue\nacross() repeats an action over a set of columns:\n\ndf |&gt; summarize(\n  n = n(),\n  across(a:d, median)\n)\n\n# A tibble: 1 × 5\n      n      a      b       c     d\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1    10 -0.246 -0.287 -0.0567 0.144\n\n\nacross() has three important arguments:\n\n\n\nArgument\nRole\n\n\n\n\n.cols\nwhich columns to iterate over (uses select() syntax)\n\n\n.fns\nwhat to do to each column\n\n\n.names\n(optional) how to name the output columns"
+    "section": "across()",
+    "text": "across()\nacross() repeats an action over a set of columns:\n\ndf |&gt; summarize(\n  n = n(),\n  across(a:d, median)\n)\n\n# A tibble: 1 × 5\n      n      a      b       c     d\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;\n1    10 -0.246 -0.287 -0.0567 0.144\n\n\nacross() main arguments:\n\n\n\nArgument\nRole\n\n\n\n\n.cols\nwhich columns to iterate over (uses select() syntax)\n\n\n.fns\nwhat to do to each column\n\n\n.names\n(optional) how to name the output columns"
   },
   {
     "objectID": "weeks/week5/day21-iteration-across-page.html#cols-choosing-columns",
     "href": "weeks/week5/day21-iteration-across-page.html#cols-choosing-columns",
     "title": "Iteration: working across many columns",
     "section": ".cols: choosing columns",
-    "text": ".cols: choosing columns\n.cols accepts everything select() does — a:d, starts_with(), ends_with(). Two selectors are especially handy with across():\n\neverything() — every (non-grouping) column\nwhere() — select by type: where(is.numeric), where(is.character), where(is.Date), …\n\n\nset.seed(1014)\ndf &lt;- tibble(\n  grp = sample(2, 10, replace = TRUE),\n  a = rnorm(10), b = rnorm(10), c = rnorm(10), d = rnorm(10)\n)\n\ndf |&gt;\n  group_by(grp) |&gt;\n  summarize(across(everything(), median))\n\n# A tibble: 2 × 5\n    grp      a      b       c       d\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1     1 -0.244 -0.522 -0.0974 -0.251 \n2     2 -0.247  0.468  0.112   0.0700\n\n\nGrouping columns (grp) are excluded automatically — summarize() already preserves them."
+    "text": ".cols: choosing columns\n.cols accepts everything select() does: a:d, starts_with(), ends_with(). Two selectors are especially handy with across():\n\neverything(): every (non-grouping) column\nwhere(): select by type: where(is.numeric), where(is.character), where(is.Date), …\n\n\nset.seed(1014)\ndf &lt;- tibble(\n  grp = sample(2, 10, replace = TRUE),\n  a = rnorm(10), b = rnorm(10), c = rnorm(10), d = rnorm(10)\n)\n\ndf |&gt;\n  group_by(grp) |&gt;\n  summarize(across(everything(), median))\n\n# A tibble: 2 × 5\n    grp      a      b       c       d\n  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n1     1 -0.244 -0.522 -0.0974 -0.251 \n2     2 -0.247  0.468  0.112   0.0700\n\n\nGrouping columns (grp) are excluded automatically since summarize() already preserves them."
   },
   {
     "objectID": "weeks/week5/day21-iteration-across-page.html#where-select-by-type",
     "href": "weeks/week5/day21-iteration-across-page.html#where-select-by-type",
     "title": "Iteration: working across many columns",
     "section": "where(): select by type",
-    "text": "where(): select by type\nwhere() is invaluable on real data with mixed column types. Here, average every numeric column of flights:\n\nflights |&gt;\n  summarize(across(where(is.numeric), \\(x) mean(x, na.rm = TRUE))) |&gt;\n  glimpse()\n\nRows: 1\nColumns: 14\n$ year           &lt;dbl&gt; 2013\n$ month          &lt;dbl&gt; 6.54851\n$ day            &lt;dbl&gt; 15.71079\n$ dep_time       &lt;dbl&gt; 1349.11\n$ sched_dep_time &lt;dbl&gt; 1344.255\n$ dep_delay      &lt;dbl&gt; 12.63907\n$ arr_time       &lt;dbl&gt; 1502.055\n$ sched_arr_time &lt;dbl&gt; 1536.38\n$ arr_delay      &lt;dbl&gt; 6.895377\n$ flight         &lt;dbl&gt; 1971.924\n$ air_time       &lt;dbl&gt; 150.6865\n$ distance       &lt;dbl&gt; 1039.913\n$ hour           &lt;dbl&gt; 13.18025\n$ minute         &lt;dbl&gt; 26.2301\n\n\nYou can combine selectors with Boolean logic: !where(is.numeric) (all non-numeric), or starts_with(\"dep\") & where(is.numeric)."
+    "text": "where(): select by type\nwhere() is very helpful for handling real data with mixed column types. Here, average every numeric column of flights:\n\nflights |&gt;\n  summarize(across(where(is.numeric), \\(x) mean(x, na.rm = TRUE))) |&gt;\n  glimpse()\n\nRows: 1\nColumns: 14\n$ year           &lt;dbl&gt; 2013\n$ month          &lt;dbl&gt; 6.54851\n$ day            &lt;dbl&gt; 15.71079\n$ dep_time       &lt;dbl&gt; 1349.11\n$ sched_dep_time &lt;dbl&gt; 1344.255\n$ dep_delay      &lt;dbl&gt; 12.63907\n$ arr_time       &lt;dbl&gt; 1502.055\n$ sched_arr_time &lt;dbl&gt; 1536.38\n$ arr_delay      &lt;dbl&gt; 6.895377\n$ flight         &lt;dbl&gt; 1971.924\n$ air_time       &lt;dbl&gt; 150.6865\n$ distance       &lt;dbl&gt; 1039.913\n$ hour           &lt;dbl&gt; 13.18025\n$ minute         &lt;dbl&gt; 26.2301\n\n\nYou can combine selectors with Boolean logic: !where(is.numeric) (all non-numeric), or starts_with(\"dep\") & where(is.numeric)."
   },
   {
-    "objectID": "weeks/week5/day21-iteration-across-page.html#fns-pass-the-function-dont-call-it",
-    "href": "weeks/week5/day21-iteration-across-page.html#fns-pass-the-function-dont-call-it",
+    "objectID": "weeks/week5/day21-iteration-across-page.html#fns",
+    "href": "weeks/week5/day21-iteration-across-page.html#fns",
     "title": "Iteration: working across many columns",
-    "section": ".fns: pass the function, don’t call it",
-    "text": ".fns: pass the function, don’t call it\nWe pass median — one function handed to another function (across). That’s functional programming.\n\n\n\n\n\n\nWarning\n\n\n\nPass the name only — no parentheses. across(a:d, median), never across(a:d, median()).\n\n\nmedian() with no argument errors, because you’ve called it with nothing to work on:\n\nmedian()\n\nError in `median.default()`:\n! argument \"x\" is missing, with no default"
+    "section": ".fns",
+    "text": ".fns\nWe pass median to across. This is one function handed to another function, which is an example of functional programming.\n\n\n\n\n\n\nWarning\n\n\n\nPass the name only with no parentheses. For example: across(a:d, median), not across(a:d, median()).\n\n\nmedian() with no argument throws an error, because you’ve called it with nothing to work on:\n\nmedian()\n\nError in `median.default()`:\n! argument \"x\" is missing, with no default"
   },
   {
     "objectID": "weeks/week5/day21-iteration-across-page.html#adding-arguments-with-anonymous-functions",
     "href": "weeks/week5/day21-iteration-across-page.html#adding-arguments-with-anonymous-functions",
     "title": "Iteration: working across many columns",
     "section": "Adding arguments with anonymous functions",
-    "text": "Adding arguments with anonymous functions\nWhat if there are NAs? median() propagates them:\n\ndf_miss &lt;- tibble(a = c(1, 2, NA, 4), b = c(NA, 5, 6, 7))\ndf_miss |&gt; summarize(across(a:b, median))\n\n# A tibble: 1 × 2\n      a     b\n  &lt;dbl&gt; &lt;dbl&gt;\n1    NA    NA\n\n\nWe want na.rm = TRUE. Wrap median() in a tiny anonymous function — \\(x) is shorthand for function(x):\n\ndf_miss |&gt; summarize(across(a:b, \\(x) median(x, na.rm = TRUE)))\n\n# A tibble: 1 × 2\n      a     b\n  &lt;dbl&gt; &lt;dbl&gt;\n1     2     6\n\n\nRead \\(x) median(x, na.rm = TRUE) as “given x, return its median, dropping NAs.”"
+    "text": "Adding arguments with anonymous functions\nWhat if there are NAs? median() propagates them:\n\ndf_miss &lt;- tibble(a = c(1, 2, NA, 4), b = c(NA, 5, 6, 7))\ndf_miss |&gt; summarize(across(a:b, median))\n\n# A tibble: 1 × 2\n      a     b\n  &lt;dbl&gt; &lt;dbl&gt;\n1    NA    NA\n\n\nWe want na.rm = TRUE to stop this propagation. We can wrap median() in a tiny anonymous function, \\(x). Here, \\(x) is shorthand for function(x), aka, a function that takes argument(s) x:\n\ndf_miss |&gt; summarize(across(a:b, \\(x) median(x, na.rm = TRUE)))\n\n# A tibble: 1 × 2\n      a     b\n  &lt;dbl&gt; &lt;dbl&gt;\n1     2     6\n\n\nIn English, you can read this as \\(x) median(x, na.rm = TRUE) as “given x, return its median, dropping NAs.”"
   },
   {
     "objectID": "weeks/week5/day21-iteration-across-page.html#what-across-expands-to",
     "href": "weeks/week5/day21-iteration-across-page.html#what-across-expands-to",
     "title": "Iteration: working across many columns",
     "section": "What across() expands to",
-    "text": "What across() expands to\nIt can help to picture what across() writes for you. This:\n\ndf_miss |&gt; summarize(across(a:b, \\(x) median(x, na.rm = TRUE)))\n\nis exactly equivalent to:\n\ndf_miss |&gt; summarize(\n  a = median(a, na.rm = TRUE),\n  b = median(b, na.rm = TRUE)\n)\n\nacross() is just a concise way to write the copy-pasted version — without the copy-paste mistakes."
+    "text": "What across() expands to\nIt can help to picture what across() writes for you. This:\n\ndf_miss |&gt; summarize(across(a:b, \\(x) median(x, na.rm = TRUE)))\n\nis exactly equivalent to:\n\ndf_miss |&gt; summarize(\n  a = median(a, na.rm = TRUE),\n  b = median(b, na.rm = TRUE)\n)\n\nacross() is just a more concise way to write the copy-pasted version. The extra bonus is that the across() approach prevents copy-paste mistakes."
   },
   {
     "objectID": "weeks/week5/day21-iteration-across-page.html#multiple-functions-at-once",
     "href": "weeks/week5/day21-iteration-across-page.html#multiple-functions-at-once",
     "title": "Iteration: working across many columns",
     "section": "Multiple functions at once",
-    "text": "Multiple functions at once\nCompute the median and count the missings by passing a named list to .fns:\n\ndf_miss |&gt;\n  summarize(\n    across(a:b, list(\n      median = \\(x) median(x, na.rm = TRUE),\n      n_miss = \\(x) sum(is.na(x))\n    )),\n    n = n()\n  )\n\n# A tibble: 1 × 5\n  a_median a_n_miss b_median b_n_miss     n\n     &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;    &lt;int&gt; &lt;int&gt;\n1        2        1        6        1     4\n\n\nThe new columns are named {.col}_{.fn} — e.g. a_median, a_n_miss. That’s a glue spec, and you can change it with .names = \"{.fn}_{.col}\"."
+    "text": "Multiple functions at once\nWe can calculate the median and count the missings by passing a named list to .fns:\n\ndf_miss |&gt;\n  summarize(\n    across(a:b, list(\n      median = \\(x) median(x, na.rm = TRUE),\n      n_miss = \\(x) sum(is.na(x))\n    )),\n    n = n()\n  )\n\n# A tibble: 1 × 5\n  a_median a_n_miss b_median b_n_miss     n\n     &lt;dbl&gt;    &lt;int&gt;    &lt;dbl&gt;    &lt;int&gt; &lt;int&gt;\n1        2        1        6        1     4\n\n\nThe new columns are named {.col}_{.fn}, e.g. a_median, a_n_miss. This syntax is from the glue package, and you can adjust the naming. For example, you could switch the order and instead write .names = \"{.fn}_{.col}\"."
   },
   {
     "objectID": "weeks/week5/day21-iteration-across-page.html#across-in-mutate",
     "href": "weeks/week5/day21-iteration-across-page.html#across-in-mutate",
     "title": "Iteration: working across many columns",
     "section": "across() in mutate()",
-    "text": "across() in mutate()\nacross() shines inside mutate() too. Remember rescale01() from last class? Rescale four columns in one line:\n\nrescale01 &lt;- function(x) {\n  rng &lt;- range(x, na.rm = TRUE, finite = TRUE)\n  (x - rng[1]) / (rng[2] - rng[1])\n}\n\nset.seed(1014)\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(across(a:d, rescale01))\n\n# A tibble: 5 × 4\n      a     b     c     d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 0.339 1     0.291 0    \n2 0.880 0     0.611 0.557\n3 0     0.530 1     0.752\n4 0.795 0.531 0     1    \n5 1     0.518 0.580 0.394\n\n\nThis is the punchline of the last two classes: write a function once (day 20), then apply it everywhere with across() (today)."
+    "text": "across() in mutate()\nacross() works well inside mutate() too. Recall rescale01() from last class. This function lets us rescale four columns in one line:\n\nrescale01 &lt;- function(x) {\n  rng &lt;- range(x, na.rm = TRUE, finite = TRUE)\n  (x - rng[1]) / (rng[2] - rng[1])\n}\n\nset.seed(1014)\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(across(a:d, rescale01))\n\n# A tibble: 5 × 4\n      a     b     c     d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 0.339 1     0.291 0    \n2 0.880 0     0.611 0.557\n3 0     0.530 1     0.752\n4 0.795 0.531 0     1    \n5 1     0.518 0.580 0.394\n\n\nThe punchline: write a function once, then apply it everywhere you want in one line with across()."
   },
   {
     "objectID": "weeks/week5/day21-iteration-across-page.html#filtering-with-if_any-and-if_all",
     "href": "weeks/week5/day21-iteration-across-page.html#filtering-with-if_any-and-if_all",
     "title": "Iteration: working across many columns",
     "section": "Filtering with if_any() and if_all()",
-    "text": "Filtering with if_any() and if_all()\nacross() works in summarize() and mutate(). For filter(), use its cousins:\n\nif_any() — keep a row if the condition holds for any of the columns\nif_all() — keep a row if it holds for all of the columns\n\n\n# keep only rows with NO missing values in any of these timing columns\nflights |&gt;\n  filter(if_all(c(dep_time, arr_time, dep_delay, arr_delay), \\(x) !is.na(x))) |&gt;\n  nrow()\n\n[1] 327346"
+    "text": "Filtering with if_any() and if_all()\nacross() works in summarize() and mutate(). For filter(), we use similar helpers:\n\nif_any(): keep a row if the condition holds for any of the columns\nif_all(): keep a row if it holds for all of the columns\n\n\n# keep only rows with NO missing values in any of these timing columns\nflights |&gt;\n  filter(if_all(c(dep_time, arr_time, dep_delay, arr_delay), \\(x) !is.na(x))) |&gt;\n  nrow()\n\n[1] 327346"
   },
   {
     "objectID": "weeks/week5/day21-iteration-across-page.html#in-class-activity",
@@ -2566,7 +2566,7 @@
     "href": "weeks/week5/day21-iteration-across-page.html#wrap-up-looking-ahead",
     "title": "Iteration: working across many columns",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nIteration = the same action over many things; R gives you a lot for free (vectorization, faceting, group_by)\nFunctional programming: hand a function to another function\nacross(.cols, .fns, .names) repeats an action over columns\n.cols uses select() syntax; everything() and where(is.numeric)\nPass the function name with no (); use \\(x) f(x, ...) to add args\nNamed list .fns for multiple functions; {.col}_{.fn} naming\nif_any() / if_all() bring the same idea to filter()\n\nUpcoming\n\nWed Jun 17: iterating over files and list-columns with purrr::map()\nReading before Wed: R4DS §26.4–26.5\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 26 · across() reference"
+    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nIteration = the same action over many things; R gives you a lot for free (vectorization, faceting, group_by)\nFunctional programming: hand a function to another function\nacross(.cols, .fns, .names) repeats an action over columns\n.cols uses select() syntax; everything() and where(is.numeric)\nPass the function name with no (); use \\(x) f(x, ...) to add args\nNamed list .fns for multiple functions; {.col}_{.fn} naming\nif_any() / if_all() bring the same idea to filter()\n\nUpcoming\n\nWed Jun 17: iterating over files and list-columns with purrr::map()\nReading before Wed: R4DS §26.4–26.5\nHomework 5: due Friday June 19 at 11:59 p.m. on Canvas\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 26 · across() reference"
   },
   {
     "objectID": "weeks/week5/day20-functions-slides.html#the-rule-of-three",
@@ -2601,7 +2601,7 @@
     "href": "weeks/week5/day20-functions-slides.html#always-test-on-simple-inputs",
     "title": "Writing functions in R",
     "section": "Always test on simple inputs",
-    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b     c      d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;\n1 0.373 1     0.734 0.0356\n2 0     0.320 0.433 0.297 \n3 1     0.949 0.739 1     \n4 0.499 0     0     0.801 \n5 0.443 0.607 1     0"
+    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n       a      b     c     d\n   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 0      1      1     0.420\n2 0.0453 0.0461 0.395 0.779\n3 0.514  0.171  0.915 1    \n4 1      0      0.535 0    \n5 0.607  0.480  0     0.403"
   },
   {
     "objectID": "weeks/week5/day20-functions-slides.html#changing-a-function-in-one-place",
@@ -2783,7 +2783,7 @@
     "href": "weeks/week5/day20-functions-page.html#always-test-on-simple-inputs",
     "title": "Writing functions in R",
     "section": "Always test on simple inputs",
-    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b      c     d\n  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1 0     0.221 0.587  1    \n2 0.272 0     0.608  0    \n3 1     0.796 0      0.434\n4 0.887 1     1      0.984\n5 0.616 0.580 0.0863 0.281"
+    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a      b      c     d\n  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1 0     0.0597 0.345  0.283\n2 0.461 0.621  1      0.398\n3 0.689 0.644  0.0871 0    \n4 1     0      0.333  0.674\n5 0.592 1      0      1"
   },
   {
     "objectID": "weeks/week5/day20-functions-page.html#changing-a-function-in-one-place",
@@ -4366,67 +4366,39 @@
     "text": "Question 4 - Average over what?\nNewspapers love a sentence like “the average life expectancy in Asia is 70 years.” But an average is meaningless until you say average over what. Averaging the 33 Asian countries treats a smaller country like Bhutan the same as a large country like China. Averaging over people is a different number entirely.\nIn survey and demographic work this is the difference between an unweighted and a population-weighted estimate, and the two can disagree a lot.\n\nPart (a): the naive average\nFor 2007, compute one row per continent with the unweighted mean of lifeExp (the “average country”) and the number of countries.\n\n# Write your R code here\ngapminder |&gt;\n  filter(year == 2007) |&gt;\n  group_by(continent) |&gt;\n  summarize(mean = mean(lifeExp),\n            n = n())\n\n# A tibble: 5 × 3\n  continent  mean     n\n  &lt;fct&gt;     &lt;dbl&gt; &lt;int&gt;\n1 Africa     54.8    52\n2 Americas   73.6    25\n3 Asia       70.7    33\n4 Europe     77.6    30\n5 Oceania    80.7     2\n\n\n\n\nPart (b): the population-weighted average\nNow compute the population-weighted mean for each continent in 2007: the “average person’s” life expectancy. The formula is\n\\[\\text{weighted mean} = \\frac{\\sum (\\text{lifeExp} \\times \\text{pop})}{\\sum \\text{pop}}\\]\nwhich you can write inside summarise() using only sum(): sum(lifeExp * pop) / sum(pop).\n\n# Write your R code here\n\n\n\nPart (c): put them side by side\nIn a single pipeline, build a table for 2007 with both estimates per continent, the number of countries, and a diff column (weighted minus unweighted). Arrange by diff in descending order.\n\n# Write your R code here\n\nIn 2-3 sentences: which continent shows the biggest gap between the two estimates.\n[Write your answer here.]\nTake your table from part (c), pivot_longer() the two mean columns into one estimate_type / value pair, and make a plot comparing the naive and weighted estimates across continents. (A grouped/colored point or column chart both work. Label your axes.)\n\n# Write your R code here\n\nIn one sentence, what does the plot make visible that the raw numbers didn’t?\n[Write your answer here.]\n\n\nPart (e): which would you report?\nIn 2-3 sentences: a reporter asks you for “Asia’s life expectancy” to put in a headline. Which of your two numbers do you give them, and why? Is there a case for reporting both? Connect your answer to the idea that every average has a hidden “average over what.”\n[Write your answer here.]"
   },
   {
-    "objectID": "assignments/homework/index.html",
-    "href": "assignments/homework/index.html",
-    "title": "Homework",
-    "section": "",
-    "text": "There will be 1-2 homework assignments per week in the course. The lowest score is dropped. The following is an outline of the first two homeworks:"
-  },
-  {
-    "objectID": "assignments/homework/index.html#how-to-submit",
-    "href": "assignments/homework/index.html#how-to-submit",
-    "title": "Homework",
-    "section": "How to submit",
-    "text": "How to submit\n\nWork in Quarto, render to PDF or HTML.\nInclude a code appendix at the end (for HW 2+).\nInclude the AI use note (1–2 points).\nSubmit the rendered file to Canvas."
-  },
-  {
-    "objectID": "assignments/homework/index.html#ai-policy",
-    "href": "assignments/homework/index.html#ai-policy",
-    "title": "Homework",
-    "section": "AI policy",
-    "text": "AI policy\nYou may use AI tools (ChatGPT, Claude, Copilot, etc.) on homework. You must:\n\nRead everything you submit. You own the output.\nInclude an AI use note (one sentence is fine).\nBe prepared to answer questions about your code if I ask.\n\nSee the Academic Integrity & AI Policy for the full version."
-  },
-  {
-    "objectID": "assignments/homework/index.html#late-policy",
-    "href": "assignments/homework/index.html#late-policy",
-    "title": "Homework",
-    "section": "Late policy",
-    "text": "Late policy\nEmail me for an extension if you need one. Extensions are generally 24–48 hours. Submissions more than 48 hours late without prior arrangement may not be accepted. Lowest score is dropped."
-  },
-  {
-    "objectID": "assignments/homework/index.html#standard-ai-use-note",
-    "href": "assignments/homework/index.html#standard-ai-use-note",
-    "title": "Homework",
-    "section": "Standard AI Use Note",
-    "text": "Standard AI Use Note\nEvery homework rubric includes the following (1–2 points):\n\nAI Disclosure\nCheck off all boxes that apply to your usage and provide a brief description of how the tool was utilized.\n\nNo AI used\nSyntax / Debugging (e.g., finding a missing comma, fixing an error code)\nConceptual explanation (e.g., asking how a left_join works)\nCode Generation (e.g., asking AI to write a function from scratch)\n\nBriefly describe your use (1-2 sentences): [Type your explanation here]"
-  },
-  {
-    "objectID": "assignments/homework/index.html#template",
-    "href": "assignments/homework/index.html#template",
-    "title": "Homework",
-    "section": "Template",
-    "text": "Template\nA starter Quarto template is in the reference materials."
-  },
-  {
-    "objectID": "assignments/homework/hw1_template.html",
-    "href": "assignments/homework/hw1_template.html",
-    "title": "STAT 184 — Homework 1: Basic R & Plots",
+    "objectID": "assignments/homework/hw5_template.html",
+    "href": "assignments/homework/hw5_template.html",
+    "title": "STAT 184 - Homework 5: Functions, Iteration & Regular Expressions",
     "section": "",
     "text": "AI Disclosure\nBriefly describe your use (1-2 sentences):\n[Type your explanation here]"
   },
   {
-    "objectID": "assignments/homework/hw1_template.html#question-1---box-side-length-optimization",
-    "href": "assignments/homework/hw1_template.html#question-1---box-side-length-optimization",
-    "title": "STAT 184 — Homework 1: Basic R & Plots",
-    "section": "Question 1 - Box Side Length Optimization",
-    "text": "Question 1 - Box Side Length Optimization\nStarting with a standard rectangular US Letter size piece of paper (8.5 by 11 inches), we can create an open-top box. We do this by cutting out identical squares from the four corners and folding up the sides.\nUltimately, we want to know the side length of the square cutouts that will lead to the box with the largest volume.\nThe formula for the volume \\(V\\) of the box, given a cutout side length of \\(x\\), is\n\\[V = x(8.5 - 2x)(11 - 2x)\\]\nInstead of writing a complex optimization algorithm to solve this problem, we can use R’s ability to do math on entire vectors at once.\n\nPart (a): Create your inputs\nUsing the seq() function, create a vector called cutout_lengths that goes from 0 to 4 inches, counting by increments of 0.1. Print the vector to the console.\n\nHint: Try running ?seq in the console to figure out what arguments you need to modify to adjust the starting and end values of the sequence, as well as the increments.\n\n\n# Write your R code here\n\n\n\nPart (b): Calculate volumes\nUsing the volume formula provided above, create a second vector called volumes by doing math directly on your cutout_lengths vector. Print the first 10 values of this new vector.\n\nHint: use the head() function, and try running ?head in the console to figure out what argument you need to change to print out 10 values as opposed to the default number, which is 6.\n\n\n# Write your R code here\n\n\n\nPart (c): Build a data frame\nCombine your two vectors into a single data frame (or tibble) called box_data. Print the head() of this data frame.\n\n# Write your R code here\n\n\n\nPart (d): Find the maximum\nFind the maximum volume possible and the cutout length that creates it. Write your final answer in a complete sentence outside of your code chunk.\n\n# Write your R code here\n\n[Write your final answer sentence here.]\n\n\nPart (e): Visualize the relationship\nCreate a plot showing how the volume changes as the cutout length increases. Briefly describe the overall shape of the relationship and explain why the volume eventually decreases. Make sure to label your axes and give the plot an appropriate title.\n\n# Write your R code here\n\n[Write your description and explanation here.]"
+    "objectID": "assignments/homework/hw5_template.html#question-1-writing-functions",
+    "href": "assignments/homework/hw5_template.html#question-1-writing-functions",
+    "title": "STAT 184 - Homework 5: Functions, Iteration & Regular Expressions",
+    "section": "Question 1 – Writing functions",
+    "text": "Question 1 – Writing functions\nRecall the three types of functions discussed this week:\n\nA summary function returns a single value, so it lives inside summarize().\nA mutate function returns a vector the same length as its input, so it lives inside mutate() / filter().\nA data frame function takes a data frame as its first argument and embraces its column arguments with { }.\n\n\nPart (a): a summary function\nWrite a summary function cv() that returns the coefficient of variation, which is calculated by dividing the standard deviation by the mean. The coefficient of variation is a unitless measure of “how spread out relative to its size” a variable is. Give it an na.rm argument that defaults to FALSE, and pass that argument to both sd() and mean().\nThen test it on c(2, 3, 4, 5, 5, 6, 7, 8). That vector has mean 5 and sd 2, so a correct cv() should return 0.4.\n\n# Write your R code here\n\nNow use cv() to compare the spread of two columns in starwars: report the coefficient of variation of height and of mass in a single summarize() (remember na.rm = TRUE).\n\n# Write your R code here\n\nWhich variable (column) is more variable relative to its average, height or mass? Is cv() a summary function or a mutate function, and how can you tell from its output?\n\n[Write your answer here.]\n\n\n\nPart (b): a data frame function\nWrite a data frame function grouped_stats(df, group_var, num_var) that groups df by group_var and returns the count n, plus the mean, median, and sd of num_var. Embrace both column arguments with { }, use na.rm = TRUE, and end with .groups = \"drop\".\nThen call it on starwars to summarize mass by sex.\n\n# Write your R code here\n\nIf you forgot the { } and wrote group_by(group_var), what error would you get? Why do you get this error?\n\n[Write your answer here.]\n\n\n\nPart (c): a plot function\nWrite a plot function scatter(df, x, y) that draws a scatterplot of y vs. x with a linear trend line. Embrace x and y inside aes(), use geom_point(), and add geom_smooth(method = \"lm\", formula = y ~ x, se = FALSE).\nFor an automatic title, use rlang::englue(), which understands { } and drops the variable name into a string:\nlabel &lt;- rlang::englue(\"{{ y }} vs. {{ x }}\")\n# ... then + labs(title = label)\nTest it with starwars |&gt; scatter(height, mass).\n\n# Write your R code here\n\n\n\n\n\n\n\nNote\n\n\n\nOne character (a certain slug-like crime lord) has a mass over 1,300 kg and will stretch your y-axis. A scale_y_log10() transformation may be appropriate here."
   },
   {
-    "objectID": "assignments/homework/hw1_template.html#question-2---collatz-conjecture-investigation",
-    "href": "assignments/homework/hw1_template.html#question-2---collatz-conjecture-investigation",
-    "title": "STAT 184 — Homework 1: Basic R & Plots",
-    "section": "Question 2 - Collatz Conjecture Investigation",
-    "text": "Question 2 - Collatz Conjecture Investigation\nThe Collatz Conjecture is a famous unsolved math problem. It asks whether repeating two simple arithmetic operations will eventually transform every positive integer into 1. For this homework, we will skip the mathematical details.\nWe care about the distribution of “stopping times” for the first 10,000 positive integers. We define a “stopping time” as the number of steps it takes for a number to reach one.\n\n\nFigure 1. Numbers from 1 to 10,000 and their corresponding total stopping times.\n\nSource: Wikipedia contributors, Collatz conjecture, Wikipedia, The Free Encyclopedia.\n\n\nBecause writing the algorithm to generate these numbers is a bit too advanced for our first week, I have already run the simulation for you and saved the results in a file called collatz_stopping_times.csv.\n\nPart (a): Loading the data\nEnsure the collatz_stopping_times.csv file is saved in the same directory as this Quarto document. Use the read_csv() function from the tidyverse package to load the data into an object called collatz_df.\n\n# Write your R code here\n\n\n\nPart (b): Inspecting the data\nUse the str() or glimpse() function to inspect your new data frame and answer the following questions:\n\nHow many observations (rows) are there?\nWhat are the names of the variables (columns)?\nAre they formatted as character or numeric data?\n\n\n# Write your R code here\n\n\n\nPart (c): Finding specific values\nUsing the tidyverse chaining syntax (%&gt;% or |&gt;) and the filter() function, find the stopping time for the starting number 334.\n\n# Write your R code here\n\n\n\nPart (d) Visualizing the distribution\nWe want to see the overall shape of the stopping times. Using either the base R hist() or a basic ggplot(), create a histogram of the stopping times. Describe the distribution (shape); does it look symmetric, right-skewed, left-skewed, bimodal, etc.?\n\n# Write your R code here"
+    "objectID": "assignments/homework/hw5_template.html#question-2-across-over-many-columns",
+    "href": "assignments/homework/hw5_template.html#question-2-across-over-many-columns",
+    "title": "STAT 184 - Homework 5: Functions, Iteration & Regular Expressions",
+    "section": "Question 2 – across() over many columns",
+    "text": "Question 2 – across() over many columns\nacross(.cols, .fns, .names) repeats an action over a set of columns so you never copy-paste a line per column. Pass the function name with no (), and use an anonymous function \\(x) f(x, ...) when you need to supply extra arguments.\nWith summarize(), compute the mean of every numeric column in starwars.\n\nUse where(is.numeric) to select the columns.\nUse an anonymous function to calculate the mean while setting na.rm = TRUE.\nUse the .names argument so the output columns append _mean to the original names (e.g., “{.col}_mean”).\n\n\n# Write your R code here\n# Hint: fill in the \"...\"'s\n# starwars |&gt;\n#  summarize(\n#    across(\n#      .cols = ..., \n#      .fns = \\(x) f(x, ...),\n#      .names = \"{...}_...\"\n#    )\n#  )\n\n\nPart (b): two functions at once\nFor the columns height, mass, and birth_year, report both the mean and the number of missing values in one summarize(). Pass a named list to .fns, and use .names = \"{.fn}_{.col}\" so the output columns come out named mean_height, n_miss_height, mean_mass, and so on.\n\n# Write your R code here\n\nWhich of those three columns has the most missing values? Why might that variable in particular be so often unknown?\n[Write your answer here.]\n\n\nPart (c): across() in mutate, if_all() in filter\nHere is the rescale01() helper from class. Run this chunk so it’s defined:\n\nrescale01 &lt;- function(x) {\n  rng &lt;- range(x, na.rm = TRUE, finite = TRUE)\n  (x - rng[1]) / (rng[2] - rng[1])\n}\n\nUse across() inside mutate() to rescale height, mass, and birth_year to run from 0 to 1, then select() those three columns to show the result.\n\n# Write your R code here\n\nNow use if_all() inside filter() to keep only the characters with no missing value in any of height, mass, birth_year, and species, and report how many rows remain with nrow().\n\n# Write your R code here\n\nacross(a:c, f) is shorthand for what longer, copy-pasted code? Give one reason the across() version is less error-prone.\n[Write your answer here.]"
+  },
+  {
+    "objectID": "assignments/homework/hw5_template.html#question-3-map-walk",
+    "href": "assignments/homework/hw5_template.html#question-3-map-walk",
+    "title": "STAT 184 - Homework 5: Functions, Iteration & Regular Expressions",
+    "section": "Question 3 – map() / walk()",
+    "text": "Question 3 – map() / walk()\nmap(x, f) applies f to each element of x and returns a list. The typed variants (map_dbl, map_int, map_chr, map_lgl) return atomic vectors instead, and error loudly if the result isn’t the type you promised.\n\nPart (a): the typed map variants\nUse the typed map variants to produce each of the following:\n\nthe squares of 1:10, as a double vector\nthe length of each element of list(1:5, 1:100, letters), as an integer vector\nstr_to_title() of c(\"ada\", \"grace\"), as a character vector\n\n\n# Write your R code here\n\n\n\nPart (b): map over a list-column\nThe films column of starwars is a list-column: each cell is a character vector of the films that character appeared in. across() can’t easily reach inside those cells, but map() can.\nUse map_int() to count how many films each character appeared in, add that as a new column n_films with mutate(), then show the 5 characters who appeared in the most films (name and n_films, arranged descending).\n\n# Write your R code here\n\nWhy is map_int() the natural tool here, and why would across() be awkward for this particular task?\n[Write your answer here.]\n\n\nPart (c): save one CSV per group with walk2()\nYou’ve been asked to export the archive as one CSV file per sex. The pattern is group_nest() to pack each group’s rows into a list-column, str_glue() to build the file paths, and walk2() to write each (data, path) pair. We write into a temporary folder.\nFirst, run this chunk to make a clean copy without the list-columns (which don’t belong in a CSV) and set up the output folder:\n\nsw &lt;- starwars |&gt;\n  select(name, height, mass, sex, gender, species, homeworld)\n\nout_dir &lt;- tempdir()\n\nNow group_nest() sw by sex, add a path column with str_glue(\"{out_dir}/starwars-{sex}.csv\"), and print the resulting tibble.\n\n# Write your R code here\n\nThen use walk2() to write each group’s data to its path, and confirm the files exist with list.files():\n\n# Write your R code here\n# list.files(out_dir, pattern = \"^starwars-.*\\\\.csv$\")\n\nWhy do we use walk2() here instead of map2()? (Hint: do we care about the return value, or only about a side effect?)\n[Write your answer here.]"
+  },
+  {
+    "objectID": "assignments/homework/hw5_template.html#question-4-regular-expressions",
+    "href": "assignments/homework/hw5_template.html#question-4-regular-expressions",
+    "title": "STAT 184 - Homework 5: Functions, Iteration & Regular Expressions",
+    "section": "Question 4 – Regular expressions",
+    "text": "Question 4 – Regular expressions\nRegex does three jobs: detect whether a pattern occurs, extract the matching text, and replace / clean it away. We’ll do all three, starting with the name column of starwars.\n\nPart (a): detect\nstr_subset(x, pattern) returns the elements of x that match. Use it (and str_detect() where a count is asked for) to find:\n\nevery character whose name contains \"Skywalker\"\nevery character whose name starts with a vowel (anchor with ^ and a character class [AEIOU])\nhow many names contain a digit – \\\\d – using sum(str_detect(...)). (These are mostly the droids!)\n\n\n# Write your R code here\n\n\n\nPart (b): character classes, quantifiers, anchors\nstarwars names are tidy, so for raw pattern practice we’ll use words, a vector of ~1,000 common English words that ships with stringr. Use str_subset() to find:\n\nwords that start with b, c, or d (a character class at the start)\nwords that start with 3 consonants in a row ([^aeiou]{3} anchored at the start)\nwords with 3 or more vowels in a row ([aeiou]{3,})\n\n\n# Write your R code here\n\nGalactic comlink IDs happen to look exactly like Earth phone numbers, e.g. (651) 696-6000 or 123-456-7890. Complete the regex so that the first two strings match and the last two do not:\n\n\\\\d is a digit, {3} is exactly three of them\n\\\\(? and \\\\)? make literal parentheses optional (the ? means “zero or one”)\n^ and $ anchor the whole string\n\n\nphones &lt;- c(\"(651) 696-6000\", \"123-456-7890\", \"555.123.4567\", \"not a phone\")\n\n# phone_re &lt;- \"^\\\\(?\\\\d{3}\\\\)?[ -]?\\\\d{3}-\\\\d{4}$\"\n# str_detect(phones, phone_re) # should be TRUE TRUE FALSE FALSE\n\nIn your phone regex, what does the ? after \\\\( and \\\\) accomplish? What would change if you removed the ^ and $ anchors?\n[Write your answer here.]\n\n\nPart (c): extract and clean\nExtract. Using the fruit vector from stringr, extract the last vowel of each fruit name. One clean way uses a lookahead, which is a vowel that is followed by only non-vowels until the end of the string. Fill in the character class:\n\n# tibble(fruit = fruit) |&gt;\n#   mutate(last_vowel = str_extract(fruit, \"[___](?=[^aeiou]*$)\")) |&gt;\n#   head(6)\n\nClean. Here is a messy tibble of figures scraped from a galactic budget report. Turn it into real, usable data by droping the trailing * from country and turning debt and percGDP into numbers. parse_number() will ignore the $, commas, and the word \"billion\" for you; for the percent column, use str_remove_all() with a character class to strip the , and %.\n\ndebt &lt;- tibble(\n  country = c(\"World\", \"United States*\", \"Japan\"),\n  debt    = c(\"$56,308 billion\", \"$17,607 billion\", \"$9,872 billion\"),\n  percGDP = c(\"64%\", \"73.60%\", \"214.30%\")\n)\ndebt\n\n# A tibble: 3 × 3\n  country        debt            percGDP\n  &lt;chr&gt;          &lt;chr&gt;           &lt;chr&gt;  \n1 World          $56,308 billion 64%    \n2 United States* $17,607 billion 73.60% \n3 Japan          $9,872 billion  214.30%\n\n\n\n# Write your R code here"
   },
   {
     "objectID": "assignments/homework/hw0_template.html",
@@ -4469,6 +4441,69 @@
     "title": "STAT 184 — Homework 0: Setup Confirmation",
     "section": "Question 4: Rendering",
     "text": "Question 4: Rendering\nNow that you have answered the questions, click the Render button at the top of your RStudio script window. It should generate a HTML or PDF file.\nSubmit that rendered file to Canvas."
+  },
+  {
+    "objectID": "assignments/homework/hw1_template.html",
+    "href": "assignments/homework/hw1_template.html",
+    "title": "STAT 184 — Homework 1: Basic R & Plots",
+    "section": "",
+    "text": "AI Disclosure\nBriefly describe your use (1-2 sentences):\n[Type your explanation here]"
+  },
+  {
+    "objectID": "assignments/homework/hw1_template.html#question-1---box-side-length-optimization",
+    "href": "assignments/homework/hw1_template.html#question-1---box-side-length-optimization",
+    "title": "STAT 184 — Homework 1: Basic R & Plots",
+    "section": "Question 1 - Box Side Length Optimization",
+    "text": "Question 1 - Box Side Length Optimization\nStarting with a standard rectangular US Letter size piece of paper (8.5 by 11 inches), we can create an open-top box. We do this by cutting out identical squares from the four corners and folding up the sides.\nUltimately, we want to know the side length of the square cutouts that will lead to the box with the largest volume.\nThe formula for the volume \\(V\\) of the box, given a cutout side length of \\(x\\), is\n\\[V = x(8.5 - 2x)(11 - 2x)\\]\nInstead of writing a complex optimization algorithm to solve this problem, we can use R’s ability to do math on entire vectors at once.\n\nPart (a): Create your inputs\nUsing the seq() function, create a vector called cutout_lengths that goes from 0 to 4 inches, counting by increments of 0.1. Print the vector to the console.\n\nHint: Try running ?seq in the console to figure out what arguments you need to modify to adjust the starting and end values of the sequence, as well as the increments.\n\n\n# Write your R code here\n\n\n\nPart (b): Calculate volumes\nUsing the volume formula provided above, create a second vector called volumes by doing math directly on your cutout_lengths vector. Print the first 10 values of this new vector.\n\nHint: use the head() function, and try running ?head in the console to figure out what argument you need to change to print out 10 values as opposed to the default number, which is 6.\n\n\n# Write your R code here\n\n\n\nPart (c): Build a data frame\nCombine your two vectors into a single data frame (or tibble) called box_data. Print the head() of this data frame.\n\n# Write your R code here\n\n\n\nPart (d): Find the maximum\nFind the maximum volume possible and the cutout length that creates it. Write your final answer in a complete sentence outside of your code chunk.\n\n# Write your R code here\n\n[Write your final answer sentence here.]\n\n\nPart (e): Visualize the relationship\nCreate a plot showing how the volume changes as the cutout length increases. Briefly describe the overall shape of the relationship and explain why the volume eventually decreases. Make sure to label your axes and give the plot an appropriate title.\n\n# Write your R code here\n\n[Write your description and explanation here.]"
+  },
+  {
+    "objectID": "assignments/homework/hw1_template.html#question-2---collatz-conjecture-investigation",
+    "href": "assignments/homework/hw1_template.html#question-2---collatz-conjecture-investigation",
+    "title": "STAT 184 — Homework 1: Basic R & Plots",
+    "section": "Question 2 - Collatz Conjecture Investigation",
+    "text": "Question 2 - Collatz Conjecture Investigation\nThe Collatz Conjecture is a famous unsolved math problem. It asks whether repeating two simple arithmetic operations will eventually transform every positive integer into 1. For this homework, we will skip the mathematical details.\nWe care about the distribution of “stopping times” for the first 10,000 positive integers. We define a “stopping time” as the number of steps it takes for a number to reach one.\n\n\nFigure 1. Numbers from 1 to 10,000 and their corresponding total stopping times.\n\nSource: Wikipedia contributors, Collatz conjecture, Wikipedia, The Free Encyclopedia.\n\n\nBecause writing the algorithm to generate these numbers is a bit too advanced for our first week, I have already run the simulation for you and saved the results in a file called collatz_stopping_times.csv.\n\nPart (a): Loading the data\nEnsure the collatz_stopping_times.csv file is saved in the same directory as this Quarto document. Use the read_csv() function from the tidyverse package to load the data into an object called collatz_df.\n\n# Write your R code here\n\n\n\nPart (b): Inspecting the data\nUse the str() or glimpse() function to inspect your new data frame and answer the following questions:\n\nHow many observations (rows) are there?\nWhat are the names of the variables (columns)?\nAre they formatted as character or numeric data?\n\n\n# Write your R code here\n\n\n\nPart (c): Finding specific values\nUsing the tidyverse chaining syntax (%&gt;% or |&gt;) and the filter() function, find the stopping time for the starting number 334.\n\n# Write your R code here\n\n\n\nPart (d) Visualizing the distribution\nWe want to see the overall shape of the stopping times. Using either the base R hist() or a basic ggplot(), create a histogram of the stopping times. Describe the distribution (shape); does it look symmetric, right-skewed, left-skewed, bimodal, etc.?\n\n# Write your R code here"
+  },
+  {
+    "objectID": "assignments/homework/index.html",
+    "href": "assignments/homework/index.html",
+    "title": "Homework",
+    "section": "",
+    "text": "There will be 1-2 homework assignments per week in the course. The lowest score is dropped. The following is an outline of the first two homeworks:"
+  },
+  {
+    "objectID": "assignments/homework/index.html#how-to-submit",
+    "href": "assignments/homework/index.html#how-to-submit",
+    "title": "Homework",
+    "section": "How to submit",
+    "text": "How to submit\n\nWork in Quarto, render to PDF or HTML.\nInclude a code appendix at the end (for HW 2+).\nInclude the AI use note (1–2 points).\nSubmit the rendered file to Canvas."
+  },
+  {
+    "objectID": "assignments/homework/index.html#ai-policy",
+    "href": "assignments/homework/index.html#ai-policy",
+    "title": "Homework",
+    "section": "AI policy",
+    "text": "AI policy\nYou may use AI tools (ChatGPT, Claude, Copilot, etc.) on homework. You must:\n\nRead everything you submit. You own the output.\nInclude an AI use note (one sentence is fine).\nBe prepared to answer questions about your code if I ask.\n\nSee the Academic Integrity & AI Policy for the full version."
+  },
+  {
+    "objectID": "assignments/homework/index.html#late-policy",
+    "href": "assignments/homework/index.html#late-policy",
+    "title": "Homework",
+    "section": "Late policy",
+    "text": "Late policy\nEmail me for an extension if you need one. Extensions are generally 24–48 hours. Submissions more than 48 hours late without prior arrangement may not be accepted. Lowest score is dropped."
+  },
+  {
+    "objectID": "assignments/homework/index.html#standard-ai-use-note",
+    "href": "assignments/homework/index.html#standard-ai-use-note",
+    "title": "Homework",
+    "section": "Standard AI Use Note",
+    "text": "Standard AI Use Note\nEvery homework rubric includes the following (1–2 points):\n\nAI Disclosure\nCheck off all boxes that apply to your usage and provide a brief description of how the tool was utilized.\n\nNo AI used\nSyntax / Debugging (e.g., finding a missing comma, fixing an error code)\nConceptual explanation (e.g., asking how a left_join works)\nCode Generation (e.g., asking AI to write a function from scratch)\n\nBriefly describe your use (1-2 sentences): [Type your explanation here]"
+  },
+  {
+    "objectID": "assignments/homework/index.html#template",
+    "href": "assignments/homework/index.html#template",
+    "title": "Homework",
+    "section": "Template",
+    "text": "Template\nA starter Quarto template is in the reference materials."
   },
   {
     "objectID": "assignments/homework/hw2_template.html",
