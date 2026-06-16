@@ -117,7 +117,7 @@ Test it with `starwars |> scatter(height, mass)`.
 ```
 
 ::: {.callout-note}
-One character (a certain ![slug-like crime lord](https://en.wikipedia.org/wiki/Jabba_the_Hutt)) has a mass over 1,300 kg and will stretch your y-axis. A `scale_y_log10()` transformation may be appropriate here. 
+One character (a certain [slug-like crime lord](https://en.wikipedia.org/wiki/Jabba_the_Hutt)) has a mass over 1,300 kg and will stretch your y-axis. A `scale_y_log10()` transformation may be appropriate here. 
 :::
 
 ---
