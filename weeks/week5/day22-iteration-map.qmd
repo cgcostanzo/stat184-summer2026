@@ -38,8 +38,8 @@ library(tidyverse)
 **Plan for today**
 
 - From `across()` (columns) to **`map()`** (any list or vector)
-- The `map()` family and typed variants (`map_dbl()`, `map_chr()`, ...)
-- **`walk()`**: when you only want the side effect
+- The `map()` family and typed variants (`map_dbl()`, `map_chr()`, etc.)
+- **`walk()`**
 - **List-columns** with `group_nest()`; building paths with `str_glue()`
 - Two inputs at once: **`map2()` / `walk2()`**; saving many CSVs and plots
 - In-class activity
@@ -55,22 +55,23 @@ library(tidyverse)
 
 Last class, **`across()`** repeated an action over the **columns** of a data frame.
 
-**`map()`** is more general: it applies a function to **every element of any list or vector** and returns the results.
+**`map()`** is more general in that it applies a function to **every element of any list or vector** and returns the results. For example:
 
 ```{r}
 #| echo: TRUE
 map(1:3, \(x) x^2)
 ```
 
-`map(x, f)` calls `f` once per element of `x` and collects the answers into a **list**. (Same `\(x)` anonymous-function shorthand as last class.)
+In general, `map(x, f)` calls `f` once per element of `x` and collects the answers into a **list**.
+- Note that `\(x)` is the same anonymous-function shorthand we covered last class. 
 
 ## Typed variants return vectors {.scrollable .nostretch}
 
-A list isn't always what you want. The typed variants return an atomic vector, and error if the result isn't that type:
+Because we don't always want a list returned, there are type-specific variants of `map()` as well. These typed variants return an atomic vector, and throw an error if the result isn't that type:
 
 ```{r}
 #| echo: TRUE
-map_dbl(1:3, \(x) x^2)          # double vector
+map_dbl(1:3, \(x) x^2)                      # double vector
 map_chr(c("a", "bb"), \(x) str_c(x, "!"))   # character vector
 map_int(list(1:5, 1:10), length)            # integer vector
 ```
@@ -84,7 +85,7 @@ map_int(list(1:5, 1:10), length)            # integer vector
 
 ## A data frame is a list of columns {.scrollable .nostretch}
 
-Because a data frame is really a list of columns, `map()` walks over its columns:
+Because a data frame is really a list of columns, `map()` "walks" over its columns:
 
 ```{r}
 #| echo: TRUE
@@ -92,15 +93,15 @@ nums <- diamonds |> select(carat, depth, price)
 map_dbl(nums, median)
 ```
 
-So `map_dbl(df, median)` is another route to the same place as `summarize(across(everything(), median))`. Different tools, same idea: *do this to each thing*.
+In essence, `map_dbl(df, median)` is another route that arrives at the same place as `summarize(across(everything(), median))`.
 
 ::: {.callout-note}
-You may see older code with `~ .x + 1` instead of `\(x) x + 1`. That tilde syntax only works inside tidyverse functions and always names the argument `.x`. Prefer the base `\(x)` form.
+You may see older code with `~ .x + 1` instead of `\(x) x + 1`. That tilde syntax only works inside tidyverse functions and always names the argument `.x`. The base `\(x)` form is preferrable.
 :::
 
 ## map() reads many files {.scrollable .nostretch}
 
-A classic use: read a folder of files and stack them. Get the paths, `map()` `read_csv` over them, then `list_rbind()` to bind the list of data frames into one:
+A classic use for `map()` is to read a folder of files and stack them together. First, you get the paths, `map()` `read_csv` over them, and then `list_rbind()` to bind the list of data frames into one:
 
 ```{r}
 #| echo: TRUE
@@ -108,28 +109,35 @@ A classic use: read a folder of files and stack them. Get the paths, `map()` `re
 paths <- list.files("data/gapminder", pattern = "\\.csv$", full.names = TRUE)
 
 gapminder <- paths |>
-  map(read_csv) |>   # a list of data frames, one per file
-  list_rbind()       # stacked into a single data frame
+  map(read_csv) |>    # a list of data frames, one per file
+  list_rbind()        # stacked into a single data frame
 ```
 
-This class we tackle the **opposite** problem: taking R objects and **saving them to many files**.
+In this class we tackle the **opposite** problem; that is, taking R objects and **saving them to many files**.
 
 # Saving many outputs {background-color="#001E44"}
 
 ## walk(): map() that throws the output away {.scrollable .nostretch}
 
-When you call a function only for its **side effect** (writing a file, printing, saving a plot), you don't care about the return value. `walk()` is `map()` without the output:
+When you call a function only for its **side-effect** (e.g., writing a file, printing, saving a plot), you don't necessarily care about the returned value. `walk()` does the same thing as `map()` without returning the output. Instead, it returns the input only:
 
 ```{r}
 #| echo: TRUE
 walk(c("first", "second", "third"), \(x) cat(x, "\n"))
 ```
 
-Compare: `map()` would also return a list of `NULL`s, cluttering your console. `walk()` returns its input invisibly.
+Compare this to `map()`, which in addition to the inputs, also returns a list of `NULL`s.
+
+```{r}
+#| echo: TRUE
+map(c("first", "second", "third"), \(x) cat(x, "\n"))
+```
+
+These NULLs aren't giving you any helpful information, and instead just clutter your console.
 
 ## Example: many files into a database {.scrollable .nostretch}
 
-When data won't all fit in memory, load it into a database, then query the bits you need. The pattern: a **template** table, then **append** each file.
+When data won't all fit in memory, one alternative is to load it into a database. Then, you can query just the parts you need. The pattern is to create a **template** table, then **append** each file.
 
 ```{r}
 #| echo: TRUE
@@ -152,7 +160,7 @@ append_file <- function(path) {
 paths |> walk(append_file)
 ```
 
-`walk()` here, not `map()`, because we only care about the rows landing in the database.
+It's better to use `walk()` here, instead of `map()`. This is because we only care about the rows landing in the database.
 
 ## List-columns with group_nest() {.scrollable .nostretch}
 
@@ -173,7 +181,7 @@ by_clarity$data[[1]]
 
 ## Build the output paths with str_glue() {.scrollable .nostretch}
 
-Add a column of file names. `str_glue()` interpolates the value of `clarity` into each string:
+If we want to add a column of file names, we can use `str_glue()` to interpolate the value of `clarity` into each string:
 
 ```{r}
 #| echo: TRUE
@@ -182,18 +190,18 @@ by_clarity <- by_clarity |>
 by_clarity
 ```
 
-We now have everything we need side by side: the **data** to write and the **path** to write it to.
+We now have everything we need side by side, i.e., the **data** to write and the **path** to write it to.
 
 ## Two inputs at once: map2() / walk2() {.scrollable .nostretch}
 
-Saving needs **two** things that vary together — the data *and* the path. By hand that's:
+Saving needs **two** things that vary together: the data *and* the path. Writing this by hand:
 
 ```{r}
 #| echo: TRUE
 #| eval: FALSE
 write_csv(by_clarity$data[[1]], by_clarity$path[[1]])
 write_csv(by_clarity$data[[2]], by_clarity$path[[2]])
-# ... eight times
+# ... eight times (a lot of writing)
 ```
 
 `map2()` varies the **first two** arguments together; `walk2()` does that and discards the output:
@@ -208,7 +216,7 @@ One line writes all eight CSVs. `walk2(x, y, f)` calls `f(x[[i]], y[[i]])` for e
 
 ## Saving many plots {.scrollable .nostretch}
 
-Same recipe. First a function that builds the plot for one data frame:
+To save many plots, we first write a function that builds the plot for one data frame:
 
 ```{r}
 #| echo: TRUE
@@ -221,7 +229,7 @@ carat_histogram(by_clarity$data[[1]])
 
 ## Saving many plots {.scrollable .nostretch}
 
-Use `map()` to make a **list-column of plots**, and `str_glue()` for the paths:
+Then, we can use `map()` to make a **list-column of plots**, and `str_glue()` for the paths:
 
 ```{r}
 #| echo: TRUE
@@ -232,7 +240,7 @@ by_clarity <- by_clarity |>
   )
 ```
 
-Then `walk2()` + `ggsave()` writes them all:
+Finally, `walk2()` + `ggsave()` writes them all:
 
 ```{r}
 #| echo: TRUE
@@ -244,11 +252,11 @@ walk2(
 )
 ```
 
-Reading files, writing files, drawing plots — all the same `map`/`walk` shape.
+So we can read files, write files, draw plots, and do it all with the same consistent `map`/`walk` pattern of code. 
 
 # Why this matters {background-color="#001E44"}
 
-## Iteration is a superpower {.scrollable .nostretch}
+## Iteration is powerful {.scrollable .nostretch}
 
 The whole arc of this chapter is one idea applied three ways:
 
@@ -258,15 +266,15 @@ The whole arc of this chapter is one idea applied three ways:
 | do something to **each element** | `map()` / `map_dbl()` / ... |
 | do something for its **side effect** | `walk()` / `walk2()` |
 
-> *"If you know the right iteration technique, you can easily go from fixing one problem to fixing all the problems."* — *R4DS*
+> *"If you know the right iteration technique, you can easily go from fixing one problem to fixing all the problems."* - *R4DS*
 
 ## What about for loops? {.scrollable .nostretch}
 
 You may have noticed we haven't written a single `for` loop.
 
-R's data-analysis orientation changes how we iterate: most of the time there's already an idiom — do something to each **column** (`across`), each **group** (`group_by`), or each **element** (`map`).
+R's data-analysis orientation changes how we iterate: most of the time there's already an idiom. We do something to each **column** (`across`), each **group** (`group_by`), or each **element** (`map`).
 
-`for` loops *do* exist and you'll meet them in **wild-caught code** (and a bit of base R later). But reach for a functional tool first: it's shorter, harder to get wrong, and says *what* you mean, not just *how*.
+`for` loops *do* exist. But a functional tool is almost always a better option to reach for first: it's shorter, harder to get wrong, and says *what* you mean, not just *how*.
 
 # Activity {background-color="#7C0A02"}
 
@@ -287,12 +295,12 @@ Open `day22-activity.R` in RStudio and work through the parts in order.
 **What we covered**
 
 - **`map(x, f)`** applies `f` to each element of `x` → a list
-- Typed variants (`map_dbl`, `map_chr`, `map_int`, `map_lgl`) → vectors
+- Typed variants (`map_dbl`, `map_chr`, `map_int`, `map_lgl`) $\rightarrow$ vectors
 - **`walk()`** = `map()` for side effects (writing, saving)
 - **`group_nest()`** makes a per-group **list-column**
 - **`str_glue()`** builds output paths from data
 - **`map2()` / `walk2()`** vary **two** inputs together (data + path)
-- Reading files, writing CSVs, saving plots — all the same shape
+- Reading files, writing CSVs, saving plots
 
 **Upcoming**
 
