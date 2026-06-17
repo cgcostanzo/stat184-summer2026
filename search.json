@@ -2258,7 +2258,7 @@
     "href": "weeks/week5/day22-iteration-map-page.html",
     "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "",
-    "text": "NoteToday: Wednesday June 17\n\n\n\nBefore class\n\nReading Quiz (Canvas): R4DS Ch. 26 §26.4–26.5 — Iteration\n\nPlan for today\n\nFrom across() (columns) to map() (any list or vector)\nThe map() family and typed variants (map_dbl(), map_chr(), etc.)\nwalk()\nList-columns with group_nest(); building paths with str_glue()\nTwo inputs at once: map2() / walk2(); saving many CSVs and plots\nIn-class activity\n\nHelpful links\n\nSyllabus · AI policy · Schedule · R4DS Ch. 26 · purrr reference"
+    "text": "NoteToday: Wednesday June 17\n\n\n\nBefore class\n\nPerusall Reading: R4DS Ch. 26 §26.4–26.5 - Iteration\n\nPlan for today\n\nFrom across() (columns) to map() (any list or vector)\nThe map() family and typed variants (map_dbl(), map_chr(), etc.)\nwalk()\nList-columns with group_nest(); building paths with str_glue()\nTwo inputs at once: map2() / walk2(); saving many CSVs and plots\nIn-class activity\n\nHelpful links\n\nSyllabus · AI policy · Schedule · R4DS Ch. 26 · purrr reference"
   },
   {
     "objectID": "weeks/week5/day22-iteration-map-page.html#from-across-to-map",
@@ -2601,7 +2601,7 @@
     "href": "weeks/week5/day20-functions-slides.html#always-test-on-simple-inputs",
     "title": "Writing functions in R",
     "section": "Always test on simple inputs",
-    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b     c     d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 1     0.264 1     0.532\n2 0.683 0     0.421 0.231\n3 0.888 0.476 0.481 1    \n4 0.532 0.888 0     0    \n5 0     1     0.414 0.417"
+    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b     c      d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;\n1 1     0.337 0.416 0.886 \n2 0.186 0     1     0.0791\n3 0.868 1     0.390 0.289 \n4 0.161 0.522 0.799 1     \n5 0     0.297 0     0"
   },
   {
     "objectID": "weeks/week5/day20-functions-slides.html#changing-a-function-in-one-place",
@@ -2783,7 +2783,7 @@
     "href": "weeks/week5/day20-functions-page.html#always-test-on-simple-inputs",
     "title": "Writing functions in R",
     "section": "Always test on simple inputs",
-    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a      b       c      d\n  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;\n1 1     0.943  0       0     \n2 0.678 1      0.00101 0.0514\n3 0     0.0869 0.0575  0.785 \n4 0.555 0      0.732   0.424 \n5 0.437 0.680  1       1"
+    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b     c     d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 0.684 0     0.922 0.668\n2 0     0.959 1     0.544\n3 0.206 0.498 0     0    \n4 1     1     0.310 1    \n5 0.449 0.299 0.449 0.282"
   },
   {
     "objectID": "weeks/week5/day20-functions-page.html#changing-a-function-in-one-place",
