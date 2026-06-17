@@ -1078,8 +1078,8 @@ margin-right: 0; }
 <p><strong>Plan for today</strong></p>
 <ul>
 <li>From <code>across()</code> (columns) to <strong><code>map()</code></strong> (any list or vector)</li>
-<li>The <code>map()</code> family and typed variants (<code>map_dbl()</code>, <code>map_chr()</code>, …)</li>
-<li><strong><code>walk()</code></strong>: when you only want the side effect</li>
+<li>The <code>map()</code> family and typed variants (<code>map_dbl()</code>, <code>map_chr()</code>, etc.)</li>
+<li><strong><code>walk()</code></strong></li>
 <li><strong>List-columns</strong> with <code>group_nest()</code>; building paths with <code>str_glue()</code></li>
 <li>Two inputs at once: <strong><code>map2()</code> / <code>walk2()</code></strong>; saving many CSVs and plots</li>
 <li>In-class activity</li>
@@ -1101,7 +1101,7 @@ margin-right: 0; }
 <section id="from-across-to-map" class="slide level2 scrollable nostretch">
 <h2>From across() to map()</h2>
 <p>Last class, <strong><code>across()</code></strong> repeated an action over the <strong>columns</strong> of a data frame.</p>
-<p><strong><code>map()</code></strong> is more general: it applies a function to <strong>every element of any list or vector</strong> and returns the results.</p>
+<p><strong><code>map()</code></strong> is more general in that it applies a function to <strong>every element of any list or vector</strong> and returns the results. For example:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, \(x) x<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1115,13 +1115,13 @@ margin-right: 0; }
 [1] 9</code></pre>
 </div>
 </div>
-<p><code>map(x, f)</code> calls <code>f</code> once per element of <code>x</code> and collects the answers into a <strong>list</strong>. (Same <code>\(x)</code> anonymous-function shorthand as last class.)</p>
+<p>In general, <code>map(x, f)</code> calls <code>f</code> once per element of <code>x</code> and collects the answers into a <strong>list</strong>. - Note that <code>\(x)</code> is the same anonymous-function shorthand we covered last class.</p>
 </section>
 <section id="typed-variants-return-vectors" class="slide level2 scrollable nostretch">
 <h2>Typed variants return vectors</h2>
-<p>A list isn’t always what you want. The typed variants return an atomic vector, and error if the result isn’t that type:</p>
+<p>Because we don’t always want a list returned, there are type-specific variants of <code>map()</code> as well. These typed variants return an atomic vector, and throw an error if the result isn’t that type:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">map_dbl</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, \(x) x<span class="sc">^</span><span class="dv">2</span>)          <span class="co"># double vector</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">map_dbl</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, \(x) x<span class="sc">^</span><span class="dv">2</span>)                      <span class="co"># double vector</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1 4 9</code></pre>
 </div>
@@ -1163,7 +1163,7 @@ margin-right: 0; }
 </section>
 <section id="a-data-frame-is-a-list-of-columns" class="slide level2 scrollable nostretch">
 <h2>A data frame is a list of columns</h2>
-<p>Because a data frame is really a list of columns, <code>map()</code> walks over its columns:</p>
+<p>Because a data frame is really a list of columns, <code>map()</code> “walks” over its columns:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>nums <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span> <span class="fu">select</span>(carat, depth, price)</span>
 <span id="cb9-2"><a></a><span class="fu">map_dbl</span>(nums, median)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1172,7 +1172,7 @@ margin-right: 0; }
    0.7   61.8 2401.0 </code></pre>
 </div>
 </div>
-<p>So <code>map_dbl(df, median)</code> is another route to the same place as <code>summarize(across(everything(), median))</code>. Different tools, same idea: <em>do this to each thing</em>.</p>
+<p>In essence, <code>map_dbl(df, median)</code> is another route that arrives at the same place as <code>summarize(across(everything(), median))</code>.</p>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1182,22 +1182,22 @@ margin-right: 0; }
 <p><strong>Note</strong></p>
 </div>
 <div class="callout-content">
-<p>You may see older code with <code>~ .x + 1</code> instead of <code>\(x) x + 1</code>. That tilde syntax only works inside tidyverse functions and always names the argument <code>.x</code>. Prefer the base <code>\(x)</code> form.</p>
+<p>You may see older code with <code>~ .x + 1</code> instead of <code>\(x) x + 1</code>. That tilde syntax only works inside tidyverse functions and always names the argument <code>.x</code>. The base <code>\(x)</code> form is preferrable.</p>
 </div>
 </div>
 </div>
 </section>
 <section id="map-reads-many-files" class="slide level2 scrollable nostretch">
 <h2>map() reads many files</h2>
-<p>A classic use: read a folder of files and stack them. Get the paths, <code>map()</code> <code>read_csv</code> over them, then <code>list_rbind()</code> to bind the list of data frames into one:</p>
+<p>A classic use for <code>map()</code> is to read a folder of files and stack them together. First, you get the paths, <code>map()</code> <code>read_csv</code> over them, and then <code>list_rbind()</code> to bind the list of data frames into one:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>paths <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">&quot;data/gapminder&quot;</span>, <span class="at">pattern =</span> <span class="st">&quot;</span><span class="sc">\\</span><span class="st">.csv$&quot;</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb11-2"><a></a></span>
 <span id="cb11-3"><a></a>gapminder <span class="ot">&lt;-</span> paths <span class="sc">|&gt;</span></span>
-<span id="cb11-4"><a></a>  <span class="fu">map</span>(read_csv) <span class="sc">|&gt;</span>   <span class="co"># a list of data frames, one per file</span></span>
-<span id="cb11-5"><a></a>  <span class="fu">list_rbind</span>()       <span class="co"># stacked into a single data frame</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb11-4"><a></a>  <span class="fu">map</span>(read_csv) <span class="sc">|&gt;</span>    <span class="co"># a list of data frames, one per file</span></span>
+<span id="cb11-5"><a></a>  <span class="fu">list_rbind</span>()        <span class="co"># stacked into a single data frame</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>This class we tackle the <strong>opposite</strong> problem: taking R objects and <strong>saving them to many files</strong>.</p>
+<p>In this class we tackle the <strong>opposite</strong> problem; that is, taking R objects and <strong>saving them to many files</strong>.</p>
 </section></section>
 <section>
 <section id="saving-many-outputs" class="title-slide slide level1 center" data-background-color="#001E44">
@@ -1206,7 +1206,7 @@ margin-right: 0; }
 </section>
 <section id="walk-map-that-throws-the-output-away" class="slide level2 scrollable nostretch">
 <h2>walk(): map() that throws the output away</h2>
-<p>When you call a function only for its <strong>side effect</strong> (writing a file, printing, saving a plot), you don’t care about the return value. <code>walk()</code> is <code>map()</code> without the output:</p>
+<p>When you call a function only for its <strong>side-effect</strong> (e.g., writing a file, printing, saving a plot), you don’t necessarily care about the returned value. <code>walk()</code> does the same thing as <code>map()</code> without returning the output. Instead, it returns the input only:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">walk</span>(<span class="fu">c</span>(<span class="st">&quot;first&quot;</span>, <span class="st">&quot;second&quot;</span>, <span class="st">&quot;third&quot;</span>), \(x) <span class="fu">cat</span>(x, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1215,37 +1215,56 @@ second
 third </code></pre>
 </div>
 </div>
-<p>Compare: <code>map()</code> would also return a list of <code>NULL</code>s, cluttering your console. <code>walk()</code> returns its input invisibly.</p>
+<p>Compare this to <code>map()</code>, which in addition to the inputs, also returns a list of <code>NULL</code>s.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">map</span>(<span class="fu">c</span>(<span class="st">&quot;first&quot;</span>, <span class="st">&quot;second&quot;</span>, <span class="st">&quot;third&quot;</span>), \(x) <span class="fu">cat</span>(x, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>first 
+second 
+third </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+NULL
+
+[[2]]
+NULL
+
+[[3]]
+NULL</code></pre>
+</div>
+</div>
+<p>These NULLs aren’t giving you any helpful information, and instead just clutter your console.</p>
 </section>
 <section id="example-many-files-into-a-database" class="slide level2 scrollable nostretch">
 <h2>Example: many files into a database</h2>
-<p>When data won’t all fit in memory, load it into a database, then query the bits you need. The pattern: a <strong>template</strong> table, then <strong>append</strong> each file.</p>
+<p>When data won’t all fit in memory, one alternative is to load it into a database. Then, you can query just the parts you need. The pattern is to create a <strong>template</strong> table, then <strong>append</strong> each file.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>con <span class="ot">&lt;-</span> DBI<span class="sc">::</span><span class="fu">dbConnect</span>(duckdb<span class="sc">::</span><span class="fu">duckdb</span>())</span>
-<span id="cb14-2"><a></a></span>
-<span id="cb14-3"><a></a><span class="co"># 1. build an empty table with the right columns/types from one file</span></span>
-<span id="cb14-4"><a></a>template <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(paths[[<span class="dv">1</span>]])</span>
-<span id="cb14-5"><a></a>template<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="dv">1952</span></span>
-<span id="cb14-6"><a></a>DBI<span class="sc">::</span><span class="fu">dbCreateTable</span>(con, <span class="st">&quot;gapminder&quot;</span>, template)</span>
-<span id="cb14-7"><a></a></span>
-<span id="cb14-8"><a></a><span class="co"># 2. a function that reads ONE file and appends it</span></span>
-<span id="cb14-9"><a></a>append_file <span class="ot">&lt;-</span> <span class="cf">function</span>(path) {</span>
-<span id="cb14-10"><a></a>  df <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(path)</span>
-<span id="cb14-11"><a></a>  df<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">parse_number</span>(<span class="fu">basename</span>(path))</span>
-<span id="cb14-12"><a></a>  DBI<span class="sc">::</span><span class="fu">dbAppendTable</span>(con, <span class="st">&quot;gapminder&quot;</span>, df)</span>
-<span id="cb14-13"><a></a>}</span>
-<span id="cb14-14"><a></a></span>
-<span id="cb14-15"><a></a><span class="co"># 3. walk() it over every path (we don&#39;t need a return value)</span></span>
-<span id="cb14-16"><a></a>paths <span class="sc">|&gt;</span> <span class="fu">walk</span>(append_file)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>con <span class="ot">&lt;-</span> DBI<span class="sc">::</span><span class="fu">dbConnect</span>(duckdb<span class="sc">::</span><span class="fu">duckdb</span>())</span>
+<span id="cb17-2"><a></a></span>
+<span id="cb17-3"><a></a><span class="co"># 1. build an empty table with the right columns/types from one file</span></span>
+<span id="cb17-4"><a></a>template <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(paths[[<span class="dv">1</span>]])</span>
+<span id="cb17-5"><a></a>template<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="dv">1952</span></span>
+<span id="cb17-6"><a></a>DBI<span class="sc">::</span><span class="fu">dbCreateTable</span>(con, <span class="st">&quot;gapminder&quot;</span>, template)</span>
+<span id="cb17-7"><a></a></span>
+<span id="cb17-8"><a></a><span class="co"># 2. a function that reads ONE file and appends it</span></span>
+<span id="cb17-9"><a></a>append_file <span class="ot">&lt;-</span> <span class="cf">function</span>(path) {</span>
+<span id="cb17-10"><a></a>  df <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(path)</span>
+<span id="cb17-11"><a></a>  df<span class="sc">$</span>year <span class="ot">&lt;-</span> <span class="fu">parse_number</span>(<span class="fu">basename</span>(path))</span>
+<span id="cb17-12"><a></a>  DBI<span class="sc">::</span><span class="fu">dbAppendTable</span>(con, <span class="st">&quot;gapminder&quot;</span>, df)</span>
+<span id="cb17-13"><a></a>}</span>
+<span id="cb17-14"><a></a></span>
+<span id="cb17-15"><a></a><span class="co"># 3. walk() it over every path (we don&#39;t need a return value)</span></span>
+<span id="cb17-16"><a></a>paths <span class="sc">|&gt;</span> <span class="fu">walk</span>(append_file)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><code>walk()</code> here, not <code>map()</code>, because we only care about the rows landing in the database.</p>
+<p>It’s better to use <code>walk()</code> here, instead of <code>map()</code>. This is because we only care about the rows landing in the database.</p>
 </section>
 <section id="list-columns-with-group_nest" class="slide level2 scrollable nostretch">
 <h2>List-columns with group_nest()</h2>
 <p>To save one file per group, first split the data into per-group tibbles. <code>group_nest()</code> packs each group’s rows into a <strong>list-column</strong> called <code>data</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>by_clarity <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span> <span class="fu">group_nest</span>(clarity)</span>
-<span id="cb15-2"><a></a>by_clarity</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>by_clarity <span class="ot">&lt;-</span> diamonds <span class="sc">|&gt;</span> <span class="fu">group_nest</span>(clarity)</span>
+<span id="cb18-2"><a></a>by_clarity</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 8 × 2
   clarity               data
@@ -1262,7 +1281,7 @@ third </code></pre>
 </div>
 <p>Each element of <code>data</code> is a full tibble:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>by_clarity<span class="sc">$</span>data[[<span class="dv">1</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>by_clarity<span class="sc">$</span>data[[<span class="dv">1</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 741 × 9
    carat cut       color depth table price     x     y     z
@@ -1283,11 +1302,11 @@ third </code></pre>
 </section>
 <section id="build-the-output-paths-with-str_glue" class="slide level2 scrollable nostretch">
 <h2>Build the output paths with str_glue()</h2>
-<p>Add a column of file names. <code>str_glue()</code> interpolates the value of <code>clarity</code> into each string:</p>
+<p>If we want to add a column of file names, we can use <code>str_glue()</code> to interpolate the value of <code>clarity</code> into each string:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>by_clarity <span class="ot">&lt;-</span> by_clarity <span class="sc">|&gt;</span></span>
-<span id="cb19-2"><a></a>  <span class="fu">mutate</span>(<span class="at">path =</span> <span class="fu">str_glue</span>(<span class="st">&quot;diamonds-{clarity}.csv&quot;</span>))</span>
-<span id="cb19-3"><a></a>by_clarity</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>by_clarity <span class="ot">&lt;-</span> by_clarity <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a></a>  <span class="fu">mutate</span>(<span class="at">path =</span> <span class="fu">str_glue</span>(<span class="st">&quot;diamonds-{clarity}.csv&quot;</span>))</span>
+<span id="cb22-3"><a></a>by_clarity</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 8 × 3
   clarity               data path             
@@ -1302,30 +1321,30 @@ third </code></pre>
 8 IF             [1,790 × 9] diamonds-IF.csv  </code></pre>
 </div>
 </div>
-<p>We now have everything we need side by side: the <strong>data</strong> to write and the <strong>path</strong> to write it to.</p>
+<p>We now have everything we need side by side, i.e., the <strong>data</strong> to write and the <strong>path</strong> to write it to.</p>
 </section>
 <section id="two-inputs-at-once-map2-walk2" class="slide level2 scrollable nostretch">
 <h2>Two inputs at once: map2() / walk2()</h2>
-<p>Saving needs <strong>two</strong> things that vary together — the data <em>and</em> the path. By hand that’s:</p>
+<p>Saving needs <strong>two</strong> things that vary together: the data <em>and</em> the path. Writing this by hand:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">write_csv</span>(by_clarity<span class="sc">$</span>data[[<span class="dv">1</span>]], by_clarity<span class="sc">$</span>path[[<span class="dv">1</span>]])</span>
-<span id="cb21-2"><a></a><span class="fu">write_csv</span>(by_clarity<span class="sc">$</span>data[[<span class="dv">2</span>]], by_clarity<span class="sc">$</span>path[[<span class="dv">2</span>]])</span>
-<span id="cb21-3"><a></a><span class="co"># ... eight times</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a><span class="fu">write_csv</span>(by_clarity<span class="sc">$</span>data[[<span class="dv">1</span>]], by_clarity<span class="sc">$</span>path[[<span class="dv">1</span>]])</span>
+<span id="cb24-2"><a></a><span class="fu">write_csv</span>(by_clarity<span class="sc">$</span>data[[<span class="dv">2</span>]], by_clarity<span class="sc">$</span>path[[<span class="dv">2</span>]])</span>
+<span id="cb24-3"><a></a><span class="co"># ... eight times (a lot of writing)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><code>map2()</code> varies the <strong>first two</strong> arguments together; <code>walk2()</code> does that and discards the output:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a><span class="fu">walk2</span>(by_clarity<span class="sc">$</span>data, by_clarity<span class="sc">$</span>path, write_csv)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">walk2</span>(by_clarity<span class="sc">$</span>data, by_clarity<span class="sc">$</span>path, write_csv)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>One line writes all eight CSVs. <code>walk2(x, y, f)</code> calls <code>f(x[[i]], y[[i]])</code> for each <code>i</code>.</p>
 </section>
 <section id="saving-many-plots" class="slide level2 scrollable nostretch">
 <h2>Saving many plots</h2>
-<p>Same recipe. First a function that builds the plot for one data frame:</p>
+<p>To save many plots, we first write a function that builds the plot for one data frame:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>carat_histogram <span class="ot">&lt;-</span> <span class="cf">function</span>(df) {</span>
-<span id="cb23-2"><a></a>  <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> carat)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.1</span>)</span>
-<span id="cb23-3"><a></a>}</span>
-<span id="cb23-4"><a></a><span class="fu">carat_histogram</span>(by_clarity<span class="sc">$</span>data[[<span class="dv">1</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>carat_histogram <span class="ot">&lt;-</span> <span class="cf">function</span>(df) {</span>
+<span id="cb26-2"><a></a>  <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> carat)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.1</span>)</span>
+<span id="cb26-3"><a></a>}</span>
+<span id="cb26-4"><a></a><span class="fu">carat_histogram</span>(by_clarity<span class="sc">$</span>data[[<span class="dv">1</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure>
@@ -1337,31 +1356,31 @@ third </code></pre>
 </section>
 <section id="saving-many-plots-1" class="slide level2 scrollable nostretch">
 <h2>Saving many plots</h2>
-<p>Use <code>map()</code> to make a <strong>list-column of plots</strong>, and <code>str_glue()</code> for the paths:</p>
+<p>Then, we can use <code>map()</code> to make a <strong>list-column of plots</strong>, and <code>str_glue()</code> for the paths:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>by_clarity <span class="ot">&lt;-</span> by_clarity <span class="sc">|&gt;</span></span>
-<span id="cb24-2"><a></a>  <span class="fu">mutate</span>(</span>
-<span id="cb24-3"><a></a>    <span class="at">plot =</span> <span class="fu">map</span>(data, carat_histogram),</span>
-<span id="cb24-4"><a></a>    <span class="at">path =</span> <span class="fu">str_glue</span>(<span class="st">&quot;clarity-{clarity}.png&quot;</span>)</span>
-<span id="cb24-5"><a></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>by_clarity <span class="ot">&lt;-</span> by_clarity <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a></a>  <span class="fu">mutate</span>(</span>
+<span id="cb27-3"><a></a>    <span class="at">plot =</span> <span class="fu">map</span>(data, carat_histogram),</span>
+<span id="cb27-4"><a></a>    <span class="at">path =</span> <span class="fu">str_glue</span>(<span class="st">&quot;clarity-{clarity}.png&quot;</span>)</span>
+<span id="cb27-5"><a></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Then <code>walk2()</code> + <code>ggsave()</code> writes them all:</p>
+<p>Finally, <code>walk2()</code> + <code>ggsave()</code> writes them all:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a><span class="fu">walk2</span>(</span>
-<span id="cb25-2"><a></a>  by_clarity<span class="sc">$</span>path,</span>
-<span id="cb25-3"><a></a>  by_clarity<span class="sc">$</span>plot,</span>
-<span id="cb25-4"><a></a>  \(path, plot) <span class="fu">ggsave</span>(path, plot, <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">6</span>)</span>
-<span id="cb25-5"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a></a><span class="fu">walk2</span>(</span>
+<span id="cb28-2"><a></a>  by_clarity<span class="sc">$</span>path,</span>
+<span id="cb28-3"><a></a>  by_clarity<span class="sc">$</span>plot,</span>
+<span id="cb28-4"><a></a>  \(path, plot) <span class="fu">ggsave</span>(path, plot, <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">6</span>)</span>
+<span id="cb28-5"><a></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Reading files, writing files, drawing plots — all the same <code>map</code>/<code>walk</code> shape.</p>
+<p>So we can read files, write files, draw plots, and do it all with the same consistent <code>map</code>/<code>walk</code> pattern of code.</p>
 </section></section>
 <section>
 <section id="why-this-matters" class="title-slide slide level1 center" data-background-color="#001E44">
 <h1>Why this matters</h1>
 
 </section>
-<section id="iteration-is-a-superpower" class="slide level2 scrollable nostretch">
-<h2>Iteration is a superpower</h2>
+<section id="iteration-is-powerful" class="slide level2 scrollable nostretch">
+<h2>Iteration is powerful</h2>
 <p>The whole arc of this chapter is one idea applied three ways:</p>
 <table class="caption-top">
 <thead>
@@ -1386,14 +1405,14 @@ third </code></pre>
 </tbody>
 </table>
 <blockquote>
-<p><em>“If you know the right iteration technique, you can easily go from fixing one problem to fixing all the problems.”</em> — <em>R4DS</em></p>
+<p><em>“If you know the right iteration technique, you can easily go from fixing one problem to fixing all the problems.”</em> - <em>R4DS</em></p>
 </blockquote>
 </section>
 <section id="what-about-for-loops" class="slide level2 scrollable nostretch">
 <h2>What about for loops?</h2>
 <p>You may have noticed we haven’t written a single <code>for</code> loop.</p>
-<p>R’s data-analysis orientation changes how we iterate: most of the time there’s already an idiom — do something to each <strong>column</strong> (<code>across</code>), each <strong>group</strong> (<code>group_by</code>), or each <strong>element</strong> (<code>map</code>).</p>
-<p><code>for</code> loops <em>do</em> exist and you’ll meet them in <strong>wild-caught code</strong> (and a bit of base R later). But reach for a functional tool first: it’s shorter, harder to get wrong, and says <em>what</em> you mean, not just <em>how</em>.</p>
+<p>R’s data-analysis orientation changes how we iterate: most of the time there’s already an idiom. We do something to each <strong>column</strong> (<code>across</code>), each <strong>group</strong> (<code>group_by</code>), or each <strong>element</strong> (<code>map</code>).</p>
+<p><code>for</code> loops <em>do</em> exist. But a functional tool is almost always a better option to reach for first: it’s shorter, harder to get wrong, and says <em>what</em> you mean, not just <em>how</em>.</p>
 </section></section>
 <section>
 <section id="activity" class="title-slide slide level1 center" data-background-color="#7C0A02">
@@ -1417,12 +1436,12 @@ third </code></pre>
 <p><strong>What we covered</strong></p>
 <ul>
 <li><strong><code>map(x, f)</code></strong> applies <code>f</code> to each element of <code>x</code> → a list</li>
-<li>Typed variants (<code>map_dbl</code>, <code>map_chr</code>, <code>map_int</code>, <code>map_lgl</code>) → vectors</li>
+<li>Typed variants (<code>map_dbl</code>, <code>map_chr</code>, <code>map_int</code>, <code>map_lgl</code>) <span class="math inline">\(\rightarrow\)</span> vectors</li>
 <li><strong><code>walk()</code></strong> = <code>map()</code> for side effects (writing, saving)</li>
 <li><strong><code>group_nest()</code></strong> makes a per-group <strong>list-column</strong></li>
 <li><strong><code>str_glue()</code></strong> builds output paths from data</li>
 <li><strong><code>map2()</code> / <code>walk2()</code></strong> vary <strong>two</strong> inputs together (data + path)</li>
-<li>Reading files, writing CSVs, saving plots — all the same shape</li>
+<li>Reading files, writing CSVs, saving plots</li>
 </ul>
 <p><strong>Upcoming</strong></p>
 <ul>

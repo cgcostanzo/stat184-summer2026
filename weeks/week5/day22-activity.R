@@ -11,11 +11,11 @@ library(tidyverse)
 
 # --- Part 1: map() basics -----------------------------------------------------
 
-# 1a. Use map() to square each of the numbers 1, 2, 3. What type of object comes
-#     back?
+# 1a. Use map() to square each of the following numbers: 1, 2, 3. 
+#     What type of object is returned?
 
-# 1b. You usually want a plain vector, not a list. Redo 1a with map_dbl() so you
-#     get a double vector instead.
+# 1b. You usually want a plain vector instead of alist. 
+#     Redo 1a with map_dbl() so you get a vector of type numeric (double) instead.
 
 # 1c. Use map_int() to get the length of each element of this list:
 my_list <- list(a = 1:5, b = 1:10, c = letters)
@@ -54,13 +54,13 @@ nums <- tibble(x = c(1, 2, NA, 4), y = c(10, 20, 30, 40), z = c(5, 5, 5, 5))
 # price_histogram <- function(df) {
 #   ...
 # }
-# price_histogram(by_cut$data[[1]])   # test on one group
+# price_histogram(by_cut$data[[1]]) # test on one group
 
 # 3b. Use mutate() + map() to build a list-column of plots (one per cut), and add
 #     a .png path column with str_glue() + file.path().
 # by_cut <- by_cut |>
 #   mutate(
-#     plot     = ...
+#     plot = ...
 #     png_path = ...
 #   )
 

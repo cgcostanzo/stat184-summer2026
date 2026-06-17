@@ -2153,42 +2153,42 @@
     "href": "weeks/week5/day22-iteration-map-slides.html#from-across-to-map",
     "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "From across() to map()",
-    "text": "From across() to map()\nLast class, across() repeated an action over the columns of a data frame.\nmap() is more general: it applies a function to every element of any list or vector and returns the results.\n\nmap(1:3, \\(x) x^2)\n\n[[1]]\n[1] 1\n\n[[2]]\n[1] 4\n\n[[3]]\n[1] 9\n\n\nmap(x, f) calls f once per element of x and collects the answers into a list. (Same \\(x) anonymous-function shorthand as last class.)"
+    "text": "From across() to map()\nLast class, across() repeated an action over the columns of a data frame.\nmap() is more general in that it applies a function to every element of any list or vector and returns the results. For example:\n\nmap(1:3, \\(x) x^2)\n\n[[1]]\n[1] 1\n\n[[2]]\n[1] 4\n\n[[3]]\n[1] 9\n\n\nIn general, map(x, f) calls f once per element of x and collects the answers into a list. - Note that \\(x) is the same anonymous-function shorthand we covered last class."
   },
   {
     "objectID": "weeks/week5/day22-iteration-map-slides.html#typed-variants-return-vectors",
     "href": "weeks/week5/day22-iteration-map-slides.html#typed-variants-return-vectors",
     "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "Typed variants return vectors",
-    "text": "Typed variants return vectors\nA list isn’t always what you want. The typed variants return an atomic vector, and error if the result isn’t that type:\n\nmap_dbl(1:3, \\(x) x^2)          # double vector\n\n[1] 1 4 9\n\nmap_chr(c(\"a\", \"bb\"), \\(x) str_c(x, \"!\"))   # character vector\n\n[1] \"a!\"  \"bb!\"\n\nmap_int(list(1:5, 1:10), length)            # integer vector\n\n[1]  5 10\n\n\n\n\n\nFunction\nReturns\n\n\n\n\nmap()\na list\n\n\nmap_dbl() / map_int()\nnumeric / integer vector\n\n\nmap_chr()\ncharacter vector\n\n\nmap_lgl()\nlogical vector"
+    "text": "Typed variants return vectors\nBecause we don’t always want a list returned, there are type-specific variants of map() as well. These typed variants return an atomic vector, and throw an error if the result isn’t that type:\n\nmap_dbl(1:3, \\(x) x^2)                      # double vector\n\n[1] 1 4 9\n\nmap_chr(c(\"a\", \"bb\"), \\(x) str_c(x, \"!\"))   # character vector\n\n[1] \"a!\"  \"bb!\"\n\nmap_int(list(1:5, 1:10), length)            # integer vector\n\n[1]  5 10\n\n\n\n\n\nFunction\nReturns\n\n\n\n\nmap()\na list\n\n\nmap_dbl() / map_int()\nnumeric / integer vector\n\n\nmap_chr()\ncharacter vector\n\n\nmap_lgl()\nlogical vector"
   },
   {
     "objectID": "weeks/week5/day22-iteration-map-slides.html#a-data-frame-is-a-list-of-columns",
     "href": "weeks/week5/day22-iteration-map-slides.html#a-data-frame-is-a-list-of-columns",
     "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "A data frame is a list of columns",
-    "text": "A data frame is a list of columns\nBecause a data frame is really a list of columns, map() walks over its columns:\n\nnums &lt;- diamonds |&gt; select(carat, depth, price)\nmap_dbl(nums, median)\n\n carat  depth  price \n   0.7   61.8 2401.0 \n\n\nSo map_dbl(df, median) is another route to the same place as summarize(across(everything(), median)). Different tools, same idea: do this to each thing.\n\n\n\n\n\n\nNote\n\n\nYou may see older code with ~ .x + 1 instead of \\(x) x + 1. That tilde syntax only works inside tidyverse functions and always names the argument .x. Prefer the base \\(x) form."
+    "text": "A data frame is a list of columns\nBecause a data frame is really a list of columns, map() “walks” over its columns:\n\nnums &lt;- diamonds |&gt; select(carat, depth, price)\nmap_dbl(nums, median)\n\n carat  depth  price \n   0.7   61.8 2401.0 \n\n\nIn essence, map_dbl(df, median) is another route that arrives at the same place as summarize(across(everything(), median)).\n\n\n\n\n\n\nNote\n\n\nYou may see older code with ~ .x + 1 instead of \\(x) x + 1. That tilde syntax only works inside tidyverse functions and always names the argument .x. The base \\(x) form is preferrable."
   },
   {
     "objectID": "weeks/week5/day22-iteration-map-slides.html#map-reads-many-files",
     "href": "weeks/week5/day22-iteration-map-slides.html#map-reads-many-files",
     "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "map() reads many files",
-    "text": "map() reads many files\nA classic use: read a folder of files and stack them. Get the paths, map() read_csv over them, then list_rbind() to bind the list of data frames into one:\n\npaths &lt;- list.files(\"data/gapminder\", pattern = \"\\\\.csv$\", full.names = TRUE)\n\ngapminder &lt;- paths |&gt;\n  map(read_csv) |&gt;   # a list of data frames, one per file\n  list_rbind()       # stacked into a single data frame\n\nThis class we tackle the opposite problem: taking R objects and saving them to many files."
+    "text": "map() reads many files\nA classic use for map() is to read a folder of files and stack them together. First, you get the paths, map() read_csv over them, and then list_rbind() to bind the list of data frames into one:\n\npaths &lt;- list.files(\"data/gapminder\", pattern = \"\\\\.csv$\", full.names = TRUE)\n\ngapminder &lt;- paths |&gt;\n  map(read_csv) |&gt;    # a list of data frames, one per file\n  list_rbind()        # stacked into a single data frame\n\nIn this class we tackle the opposite problem; that is, taking R objects and saving them to many files."
   },
   {
     "objectID": "weeks/week5/day22-iteration-map-slides.html#walk-map-that-throws-the-output-away",
     "href": "weeks/week5/day22-iteration-map-slides.html#walk-map-that-throws-the-output-away",
     "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "walk(): map() that throws the output away",
-    "text": "walk(): map() that throws the output away\nWhen you call a function only for its side effect (writing a file, printing, saving a plot), you don’t care about the return value. walk() is map() without the output:\n\nwalk(c(\"first\", \"second\", \"third\"), \\(x) cat(x, \"\\n\"))\n\nfirst \nsecond \nthird \n\n\nCompare: map() would also return a list of NULLs, cluttering your console. walk() returns its input invisibly."
+    "text": "walk(): map() that throws the output away\nWhen you call a function only for its side-effect (e.g., writing a file, printing, saving a plot), you don’t necessarily care about the returned value. walk() does the same thing as map() without returning the output. Instead, it returns the input only:\n\nwalk(c(\"first\", \"second\", \"third\"), \\(x) cat(x, \"\\n\"))\n\nfirst \nsecond \nthird \n\n\nCompare this to map(), which in addition to the inputs, also returns a list of NULLs.\n\nmap(c(\"first\", \"second\", \"third\"), \\(x) cat(x, \"\\n\"))\n\nfirst \nsecond \nthird \n\n\n[[1]]\nNULL\n\n[[2]]\nNULL\n\n[[3]]\nNULL\n\n\nThese NULLs aren’t giving you any helpful information, and instead just clutter your console."
   },
   {
     "objectID": "weeks/week5/day22-iteration-map-slides.html#example-many-files-into-a-database",
     "href": "weeks/week5/day22-iteration-map-slides.html#example-many-files-into-a-database",
     "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "Example: many files into a database",
-    "text": "Example: many files into a database\nWhen data won’t all fit in memory, load it into a database, then query the bits you need. The pattern: a template table, then append each file.\n\ncon &lt;- DBI::dbConnect(duckdb::duckdb())\n\n# 1. build an empty table with the right columns/types from one file\ntemplate &lt;- readxl::read_excel(paths[[1]])\ntemplate$year &lt;- 1952\nDBI::dbCreateTable(con, \"gapminder\", template)\n\n# 2. a function that reads ONE file and appends it\nappend_file &lt;- function(path) {\n  df &lt;- readxl::read_excel(path)\n  df$year &lt;- parse_number(basename(path))\n  DBI::dbAppendTable(con, \"gapminder\", df)\n}\n\n# 3. walk() it over every path (we don't need a return value)\npaths |&gt; walk(append_file)\n\nwalk() here, not map(), because we only care about the rows landing in the database."
+    "text": "Example: many files into a database\nWhen data won’t all fit in memory, one alternative is to load it into a database. Then, you can query just the parts you need. The pattern is to create a template table, then append each file.\n\ncon &lt;- DBI::dbConnect(duckdb::duckdb())\n\n# 1. build an empty table with the right columns/types from one file\ntemplate &lt;- readxl::read_excel(paths[[1]])\ntemplate$year &lt;- 1952\nDBI::dbCreateTable(con, \"gapminder\", template)\n\n# 2. a function that reads ONE file and appends it\nappend_file &lt;- function(path) {\n  df &lt;- readxl::read_excel(path)\n  df$year &lt;- parse_number(basename(path))\n  DBI::dbAppendTable(con, \"gapminder\", df)\n}\n\n# 3. walk() it over every path (we don't need a return value)\npaths |&gt; walk(append_file)\n\nIt’s better to use walk() here, instead of map(). This is because we only care about the rows landing in the database."
   },
   {
     "objectID": "weeks/week5/day22-iteration-map-slides.html#list-columns-with-group_nest",
@@ -2202,42 +2202,42 @@
     "href": "weeks/week5/day22-iteration-map-slides.html#build-the-output-paths-with-str_glue",
     "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "Build the output paths with str_glue()",
-    "text": "Build the output paths with str_glue()\nAdd a column of file names. str_glue() interpolates the value of clarity into each string:\n\nby_clarity &lt;- by_clarity |&gt;\n  mutate(path = str_glue(\"diamonds-{clarity}.csv\"))\nby_clarity\n\n# A tibble: 8 × 3\n  clarity               data path             \n  &lt;ord&gt;   &lt;list&lt;tibble[,9]&gt;&gt; &lt;glue&gt;           \n1 I1               [741 × 9] diamonds-I1.csv  \n2 SI2            [9,194 × 9] diamonds-SI2.csv \n3 SI1           [13,065 × 9] diamonds-SI1.csv \n4 VS2           [12,258 × 9] diamonds-VS2.csv \n5 VS1            [8,171 × 9] diamonds-VS1.csv \n6 VVS2           [5,066 × 9] diamonds-VVS2.csv\n7 VVS1           [3,655 × 9] diamonds-VVS1.csv\n8 IF             [1,790 × 9] diamonds-IF.csv  \n\n\nWe now have everything we need side by side: the data to write and the path to write it to."
+    "text": "Build the output paths with str_glue()\nIf we want to add a column of file names, we can use str_glue() to interpolate the value of clarity into each string:\n\nby_clarity &lt;- by_clarity |&gt;\n  mutate(path = str_glue(\"diamonds-{clarity}.csv\"))\nby_clarity\n\n# A tibble: 8 × 3\n  clarity               data path             \n  &lt;ord&gt;   &lt;list&lt;tibble[,9]&gt;&gt; &lt;glue&gt;           \n1 I1               [741 × 9] diamonds-I1.csv  \n2 SI2            [9,194 × 9] diamonds-SI2.csv \n3 SI1           [13,065 × 9] diamonds-SI1.csv \n4 VS2           [12,258 × 9] diamonds-VS2.csv \n5 VS1            [8,171 × 9] diamonds-VS1.csv \n6 VVS2           [5,066 × 9] diamonds-VVS2.csv\n7 VVS1           [3,655 × 9] diamonds-VVS1.csv\n8 IF             [1,790 × 9] diamonds-IF.csv  \n\n\nWe now have everything we need side by side, i.e., the data to write and the path to write it to."
   },
   {
     "objectID": "weeks/week5/day22-iteration-map-slides.html#two-inputs-at-once-map2-walk2",
     "href": "weeks/week5/day22-iteration-map-slides.html#two-inputs-at-once-map2-walk2",
     "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "Two inputs at once: map2() / walk2()",
-    "text": "Two inputs at once: map2() / walk2()\nSaving needs two things that vary together — the data and the path. By hand that’s:\n\nwrite_csv(by_clarity$data[[1]], by_clarity$path[[1]])\nwrite_csv(by_clarity$data[[2]], by_clarity$path[[2]])\n# ... eight times\n\nmap2() varies the first two arguments together; walk2() does that and discards the output:\n\nwalk2(by_clarity$data, by_clarity$path, write_csv)\n\nOne line writes all eight CSVs. walk2(x, y, f) calls f(x[[i]], y[[i]]) for each i."
+    "text": "Two inputs at once: map2() / walk2()\nSaving needs two things that vary together: the data and the path. Writing this by hand:\n\nwrite_csv(by_clarity$data[[1]], by_clarity$path[[1]])\nwrite_csv(by_clarity$data[[2]], by_clarity$path[[2]])\n# ... eight times (a lot of writing)\n\nmap2() varies the first two arguments together; walk2() does that and discards the output:\n\nwalk2(by_clarity$data, by_clarity$path, write_csv)\n\nOne line writes all eight CSVs. walk2(x, y, f) calls f(x[[i]], y[[i]]) for each i."
   },
   {
     "objectID": "weeks/week5/day22-iteration-map-slides.html#saving-many-plots",
     "href": "weeks/week5/day22-iteration-map-slides.html#saving-many-plots",
     "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "Saving many plots",
-    "text": "Saving many plots\nSame recipe. First a function that builds the plot for one data frame:\n\ncarat_histogram &lt;- function(df) {\n  ggplot(df, aes(x = carat)) + geom_histogram(binwidth = 0.1)\n}\ncarat_histogram(by_clarity$data[[1]])"
+    "text": "Saving many plots\nTo save many plots, we first write a function that builds the plot for one data frame:\n\ncarat_histogram &lt;- function(df) {\n  ggplot(df, aes(x = carat)) + geom_histogram(binwidth = 0.1)\n}\ncarat_histogram(by_clarity$data[[1]])"
   },
   {
     "objectID": "weeks/week5/day22-iteration-map-slides.html#saving-many-plots-1",
     "href": "weeks/week5/day22-iteration-map-slides.html#saving-many-plots-1",
     "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "Saving many plots",
-    "text": "Saving many plots\nUse map() to make a list-column of plots, and str_glue() for the paths:\n\nby_clarity &lt;- by_clarity |&gt;\n  mutate(\n    plot = map(data, carat_histogram),\n    path = str_glue(\"clarity-{clarity}.png\")\n  )\n\nThen walk2() + ggsave() writes them all:\n\nwalk2(\n  by_clarity$path,\n  by_clarity$plot,\n  \\(path, plot) ggsave(path, plot, width = 6, height = 6)\n)\n\nReading files, writing files, drawing plots — all the same map/walk shape."
+    "text": "Saving many plots\nThen, we can use map() to make a list-column of plots, and str_glue() for the paths:\n\nby_clarity &lt;- by_clarity |&gt;\n  mutate(\n    plot = map(data, carat_histogram),\n    path = str_glue(\"clarity-{clarity}.png\")\n  )\n\nFinally, walk2() + ggsave() writes them all:\n\nwalk2(\n  by_clarity$path,\n  by_clarity$plot,\n  \\(path, plot) ggsave(path, plot, width = 6, height = 6)\n)\n\nSo we can read files, write files, draw plots, and do it all with the same consistent map/walk pattern of code."
   },
   {
-    "objectID": "weeks/week5/day22-iteration-map-slides.html#iteration-is-a-superpower",
-    "href": "weeks/week5/day22-iteration-map-slides.html#iteration-is-a-superpower",
+    "objectID": "weeks/week5/day22-iteration-map-slides.html#iteration-is-powerful",
+    "href": "weeks/week5/day22-iteration-map-slides.html#iteration-is-powerful",
     "title": "Iteration: map(), walk(), and saving many outputs",
-    "section": "Iteration is a superpower",
-    "text": "Iteration is a superpower\nThe whole arc of this chapter is one idea applied three ways:\n\n\n\nTask\nTool\n\n\n\n\ndo something to each column\nacross()\n\n\ndo something to each element\nmap() / map_dbl() / …\n\n\ndo something for its side effect\nwalk() / walk2()\n\n\n\n\n“If you know the right iteration technique, you can easily go from fixing one problem to fixing all the problems.” — R4DS"
+    "section": "Iteration is powerful",
+    "text": "Iteration is powerful\nThe whole arc of this chapter is one idea applied three ways:\n\n\n\nTask\nTool\n\n\n\n\ndo something to each column\nacross()\n\n\ndo something to each element\nmap() / map_dbl() / …\n\n\ndo something for its side effect\nwalk() / walk2()\n\n\n\n\n“If you know the right iteration technique, you can easily go from fixing one problem to fixing all the problems.” - R4DS"
   },
   {
     "objectID": "weeks/week5/day22-iteration-map-slides.html#what-about-for-loops",
     "href": "weeks/week5/day22-iteration-map-slides.html#what-about-for-loops",
     "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "What about for loops?",
-    "text": "What about for loops?\nYou may have noticed we haven’t written a single for loop.\nR’s data-analysis orientation changes how we iterate: most of the time there’s already an idiom — do something to each column (across), each group (group_by), or each element (map).\nfor loops do exist and you’ll meet them in wild-caught code (and a bit of base R later). But reach for a functional tool first: it’s shorter, harder to get wrong, and says what you mean, not just how."
+    "text": "What about for loops?\nYou may have noticed we haven’t written a single for loop.\nR’s data-analysis orientation changes how we iterate: most of the time there’s already an idiom. We do something to each column (across), each group (group_by), or each element (map).\nfor loops do exist. But a functional tool is almost always a better option to reach for first: it’s shorter, harder to get wrong, and says what you mean, not just how."
   },
   {
     "objectID": "weeks/week5/day22-iteration-map-slides.html#in-class-activity",
@@ -2251,56 +2251,56 @@
     "href": "weeks/week5/day22-iteration-map-slides.html#wrap-up-looking-ahead",
     "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nmap(x, f) applies f to each element of x → a list\nTyped variants (map_dbl, map_chr, map_int, map_lgl) → vectors\nwalk() = map() for side effects (writing, saving)\ngroup_nest() makes a per-group list-column\nstr_glue() builds output paths from data\nmap2() / walk2() vary two inputs together (data + path)\nReading files, writing CSVs, saving plots — all the same shape\n\nUpcoming\n\nThu Jun 18: strings, dates & intro to regex + Project oral check-in #1\nReading before Thu: Data Computing §17.1–17.2\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 26 · purrr reference"
+    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nmap(x, f) applies f to each element of x → a list\nTyped variants (map_dbl, map_chr, map_int, map_lgl) \\(\\rightarrow\\) vectors\nwalk() = map() for side effects (writing, saving)\ngroup_nest() makes a per-group list-column\nstr_glue() builds output paths from data\nmap2() / walk2() vary two inputs together (data + path)\nReading files, writing CSVs, saving plots\n\nUpcoming\n\nThu Jun 18: strings, dates & intro to regex + Project oral check-in #1\nReading before Thu: Data Computing §17.1–17.2\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 26 · purrr reference"
   },
   {
     "objectID": "weeks/week5/day22-iteration-map-page.html",
     "href": "weeks/week5/day22-iteration-map-page.html",
     "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "",
-    "text": "NoteToday: Wednesday June 17\n\n\n\nBefore class\n\nReading Quiz (Canvas): R4DS Ch. 26 §26.4–26.5 — Iteration\n\nPlan for today\n\nFrom across() (columns) to map() (any list or vector)\nThe map() family and typed variants (map_dbl(), map_chr(), …)\nwalk(): when you only want the side effect\nList-columns with group_nest(); building paths with str_glue()\nTwo inputs at once: map2() / walk2(); saving many CSVs and plots\nIn-class activity\n\nHelpful links\n\nSyllabus · AI policy · Schedule · R4DS Ch. 26 · purrr reference"
+    "text": "NoteToday: Wednesday June 17\n\n\n\nBefore class\n\nReading Quiz (Canvas): R4DS Ch. 26 §26.4–26.5 — Iteration\n\nPlan for today\n\nFrom across() (columns) to map() (any list or vector)\nThe map() family and typed variants (map_dbl(), map_chr(), etc.)\nwalk()\nList-columns with group_nest(); building paths with str_glue()\nTwo inputs at once: map2() / walk2(); saving many CSVs and plots\nIn-class activity\n\nHelpful links\n\nSyllabus · AI policy · Schedule · R4DS Ch. 26 · purrr reference"
   },
   {
     "objectID": "weeks/week5/day22-iteration-map-page.html#from-across-to-map",
     "href": "weeks/week5/day22-iteration-map-page.html#from-across-to-map",
     "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "From across() to map()",
-    "text": "From across() to map()\nLast class, across() repeated an action over the columns of a data frame.\nmap() is more general: it applies a function to every element of any list or vector and returns the results.\n\nmap(1:3, \\(x) x^2)\n\n[[1]]\n[1] 1\n\n[[2]]\n[1] 4\n\n[[3]]\n[1] 9\n\n\nmap(x, f) calls f once per element of x and collects the answers into a list. (Same \\(x) anonymous-function shorthand as last class.)"
+    "text": "From across() to map()\nLast class, across() repeated an action over the columns of a data frame.\nmap() is more general in that it applies a function to every element of any list or vector and returns the results. For example:\n\nmap(1:3, \\(x) x^2)\n\n[[1]]\n[1] 1\n\n[[2]]\n[1] 4\n\n[[3]]\n[1] 9\n\n\nIn general, map(x, f) calls f once per element of x and collects the answers into a list. - Note that \\(x) is the same anonymous-function shorthand we covered last class."
   },
   {
     "objectID": "weeks/week5/day22-iteration-map-page.html#typed-variants-return-vectors",
     "href": "weeks/week5/day22-iteration-map-page.html#typed-variants-return-vectors",
     "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "Typed variants return vectors",
-    "text": "Typed variants return vectors\nA list isn’t always what you want. The typed variants return an atomic vector, and error if the result isn’t that type:\n\nmap_dbl(1:3, \\(x) x^2)          # double vector\n\n[1] 1 4 9\n\nmap_chr(c(\"a\", \"bb\"), \\(x) str_c(x, \"!\"))   # character vector\n\n[1] \"a!\"  \"bb!\"\n\nmap_int(list(1:5, 1:10), length)            # integer vector\n\n[1]  5 10\n\n\n\n\n\nFunction\nReturns\n\n\n\n\nmap()\na list\n\n\nmap_dbl() / map_int()\nnumeric / integer vector\n\n\nmap_chr()\ncharacter vector\n\n\nmap_lgl()\nlogical vector"
+    "text": "Typed variants return vectors\nBecause we don’t always want a list returned, there are type-specific variants of map() as well. These typed variants return an atomic vector, and throw an error if the result isn’t that type:\n\nmap_dbl(1:3, \\(x) x^2)                      # double vector\n\n[1] 1 4 9\n\nmap_chr(c(\"a\", \"bb\"), \\(x) str_c(x, \"!\"))   # character vector\n\n[1] \"a!\"  \"bb!\"\n\nmap_int(list(1:5, 1:10), length)            # integer vector\n\n[1]  5 10\n\n\n\n\n\nFunction\nReturns\n\n\n\n\nmap()\na list\n\n\nmap_dbl() / map_int()\nnumeric / integer vector\n\n\nmap_chr()\ncharacter vector\n\n\nmap_lgl()\nlogical vector"
   },
   {
     "objectID": "weeks/week5/day22-iteration-map-page.html#a-data-frame-is-a-list-of-columns",
     "href": "weeks/week5/day22-iteration-map-page.html#a-data-frame-is-a-list-of-columns",
     "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "A data frame is a list of columns",
-    "text": "A data frame is a list of columns\nBecause a data frame is really a list of columns, map() walks over its columns:\n\nnums &lt;- diamonds |&gt; select(carat, depth, price)\nmap_dbl(nums, median)\n\n carat  depth  price \n   0.7   61.8 2401.0 \n\n\nSo map_dbl(df, median) is another route to the same place as summarize(across(everything(), median)). Different tools, same idea: do this to each thing.\n\n\n\n\n\n\nNote\n\n\n\nYou may see older code with ~ .x + 1 instead of \\(x) x + 1. That tilde syntax only works inside tidyverse functions and always names the argument .x. Prefer the base \\(x) form."
+    "text": "A data frame is a list of columns\nBecause a data frame is really a list of columns, map() “walks” over its columns:\n\nnums &lt;- diamonds |&gt; select(carat, depth, price)\nmap_dbl(nums, median)\n\n carat  depth  price \n   0.7   61.8 2401.0 \n\n\nIn essence, map_dbl(df, median) is another route that arrives at the same place as summarize(across(everything(), median)).\n\n\n\n\n\n\nNote\n\n\n\nYou may see older code with ~ .x + 1 instead of \\(x) x + 1. That tilde syntax only works inside tidyverse functions and always names the argument .x. The base \\(x) form is preferrable."
   },
   {
     "objectID": "weeks/week5/day22-iteration-map-page.html#map-reads-many-files",
     "href": "weeks/week5/day22-iteration-map-page.html#map-reads-many-files",
     "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "map() reads many files",
-    "text": "map() reads many files\nA classic use: read a folder of files and stack them. Get the paths, map() read_csv over them, then list_rbind() to bind the list of data frames into one:\n\npaths &lt;- list.files(\"data/gapminder\", pattern = \"\\\\.csv$\", full.names = TRUE)\n\ngapminder &lt;- paths |&gt;\n  map(read_csv) |&gt;   # a list of data frames, one per file\n  list_rbind()       # stacked into a single data frame\n\nThis class we tackle the opposite problem: taking R objects and saving them to many files."
+    "text": "map() reads many files\nA classic use for map() is to read a folder of files and stack them together. First, you get the paths, map() read_csv over them, and then list_rbind() to bind the list of data frames into one:\n\npaths &lt;- list.files(\"data/gapminder\", pattern = \"\\\\.csv$\", full.names = TRUE)\n\ngapminder &lt;- paths |&gt;\n  map(read_csv) |&gt;    # a list of data frames, one per file\n  list_rbind()        # stacked into a single data frame\n\nIn this class we tackle the opposite problem; that is, taking R objects and saving them to many files."
   },
   {
     "objectID": "weeks/week5/day22-iteration-map-page.html#walk-map-that-throws-the-output-away",
     "href": "weeks/week5/day22-iteration-map-page.html#walk-map-that-throws-the-output-away",
     "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "walk(): map() that throws the output away",
-    "text": "walk(): map() that throws the output away\nWhen you call a function only for its side effect (writing a file, printing, saving a plot), you don’t care about the return value. walk() is map() without the output:\n\nwalk(c(\"first\", \"second\", \"third\"), \\(x) cat(x, \"\\n\"))\n\nfirst \nsecond \nthird \n\n\nCompare: map() would also return a list of NULLs, cluttering your console. walk() returns its input invisibly."
+    "text": "walk(): map() that throws the output away\nWhen you call a function only for its side-effect (e.g., writing a file, printing, saving a plot), you don’t necessarily care about the returned value. walk() does the same thing as map() without returning the output. Instead, it returns the input only:\n\nwalk(c(\"first\", \"second\", \"third\"), \\(x) cat(x, \"\\n\"))\n\nfirst \nsecond \nthird \n\n\nCompare this to map(), which in addition to the inputs, also returns a list of NULLs.\n\nmap(c(\"first\", \"second\", \"third\"), \\(x) cat(x, \"\\n\"))\n\nfirst \nsecond \nthird \n\n\n[[1]]\nNULL\n\n[[2]]\nNULL\n\n[[3]]\nNULL\n\n\nThese NULLs aren’t giving you any helpful information, and instead just clutter your console."
   },
   {
     "objectID": "weeks/week5/day22-iteration-map-page.html#example-many-files-into-a-database",
     "href": "weeks/week5/day22-iteration-map-page.html#example-many-files-into-a-database",
     "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "Example: many files into a database",
-    "text": "Example: many files into a database\nWhen data won’t all fit in memory, load it into a database, then query the bits you need. The pattern: a template table, then append each file.\n\ncon &lt;- DBI::dbConnect(duckdb::duckdb())\n\n# 1. build an empty table with the right columns/types from one file\ntemplate &lt;- readxl::read_excel(paths[[1]])\ntemplate$year &lt;- 1952\nDBI::dbCreateTable(con, \"gapminder\", template)\n\n# 2. a function that reads ONE file and appends it\nappend_file &lt;- function(path) {\n  df &lt;- readxl::read_excel(path)\n  df$year &lt;- parse_number(basename(path))\n  DBI::dbAppendTable(con, \"gapminder\", df)\n}\n\n# 3. walk() it over every path (we don't need a return value)\npaths |&gt; walk(append_file)\n\nwalk() here, not map(), because we only care about the rows landing in the database."
+    "text": "Example: many files into a database\nWhen data won’t all fit in memory, one alternative is to load it into a database. Then, you can query just the parts you need. The pattern is to create a template table, then append each file.\n\ncon &lt;- DBI::dbConnect(duckdb::duckdb())\n\n# 1. build an empty table with the right columns/types from one file\ntemplate &lt;- readxl::read_excel(paths[[1]])\ntemplate$year &lt;- 1952\nDBI::dbCreateTable(con, \"gapminder\", template)\n\n# 2. a function that reads ONE file and appends it\nappend_file &lt;- function(path) {\n  df &lt;- readxl::read_excel(path)\n  df$year &lt;- parse_number(basename(path))\n  DBI::dbAppendTable(con, \"gapminder\", df)\n}\n\n# 3. walk() it over every path (we don't need a return value)\npaths |&gt; walk(append_file)\n\nIt’s better to use walk() here, instead of map(). This is because we only care about the rows landing in the database."
   },
   {
     "objectID": "weeks/week5/day22-iteration-map-page.html#list-columns-with-group_nest",
@@ -2314,42 +2314,42 @@
     "href": "weeks/week5/day22-iteration-map-page.html#build-the-output-paths-with-str_glue",
     "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "Build the output paths with str_glue()",
-    "text": "Build the output paths with str_glue()\nAdd a column of file names. str_glue() interpolates the value of clarity into each string:\n\nby_clarity &lt;- by_clarity |&gt;\n  mutate(path = str_glue(\"diamonds-{clarity}.csv\"))\nby_clarity\n\n# A tibble: 8 × 3\n  clarity               data path             \n  &lt;ord&gt;   &lt;list&lt;tibble[,9]&gt;&gt; &lt;glue&gt;           \n1 I1               [741 × 9] diamonds-I1.csv  \n2 SI2            [9,194 × 9] diamonds-SI2.csv \n3 SI1           [13,065 × 9] diamonds-SI1.csv \n4 VS2           [12,258 × 9] diamonds-VS2.csv \n5 VS1            [8,171 × 9] diamonds-VS1.csv \n6 VVS2           [5,066 × 9] diamonds-VVS2.csv\n7 VVS1           [3,655 × 9] diamonds-VVS1.csv\n8 IF             [1,790 × 9] diamonds-IF.csv  \n\n\nWe now have everything we need side by side: the data to write and the path to write it to."
+    "text": "Build the output paths with str_glue()\nIf we want to add a column of file names, we can use str_glue() to interpolate the value of clarity into each string:\n\nby_clarity &lt;- by_clarity |&gt;\n  mutate(path = str_glue(\"diamonds-{clarity}.csv\"))\nby_clarity\n\n# A tibble: 8 × 3\n  clarity               data path             \n  &lt;ord&gt;   &lt;list&lt;tibble[,9]&gt;&gt; &lt;glue&gt;           \n1 I1               [741 × 9] diamonds-I1.csv  \n2 SI2            [9,194 × 9] diamonds-SI2.csv \n3 SI1           [13,065 × 9] diamonds-SI1.csv \n4 VS2           [12,258 × 9] diamonds-VS2.csv \n5 VS1            [8,171 × 9] diamonds-VS1.csv \n6 VVS2           [5,066 × 9] diamonds-VVS2.csv\n7 VVS1           [3,655 × 9] diamonds-VVS1.csv\n8 IF             [1,790 × 9] diamonds-IF.csv  \n\n\nWe now have everything we need side by side, i.e., the data to write and the path to write it to."
   },
   {
     "objectID": "weeks/week5/day22-iteration-map-page.html#two-inputs-at-once-map2-walk2",
     "href": "weeks/week5/day22-iteration-map-page.html#two-inputs-at-once-map2-walk2",
     "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "Two inputs at once: map2() / walk2()",
-    "text": "Two inputs at once: map2() / walk2()\nSaving needs two things that vary together — the data and the path. By hand that’s:\n\nwrite_csv(by_clarity$data[[1]], by_clarity$path[[1]])\nwrite_csv(by_clarity$data[[2]], by_clarity$path[[2]])\n# ... eight times\n\nmap2() varies the first two arguments together; walk2() does that and discards the output:\n\nwalk2(by_clarity$data, by_clarity$path, write_csv)\n\nOne line writes all eight CSVs. walk2(x, y, f) calls f(x[[i]], y[[i]]) for each i."
+    "text": "Two inputs at once: map2() / walk2()\nSaving needs two things that vary together: the data and the path. Writing this by hand:\n\nwrite_csv(by_clarity$data[[1]], by_clarity$path[[1]])\nwrite_csv(by_clarity$data[[2]], by_clarity$path[[2]])\n# ... eight times (a lot of writing)\n\nmap2() varies the first two arguments together; walk2() does that and discards the output:\n\nwalk2(by_clarity$data, by_clarity$path, write_csv)\n\nOne line writes all eight CSVs. walk2(x, y, f) calls f(x[[i]], y[[i]]) for each i."
   },
   {
     "objectID": "weeks/week5/day22-iteration-map-page.html#saving-many-plots",
     "href": "weeks/week5/day22-iteration-map-page.html#saving-many-plots",
     "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "Saving many plots",
-    "text": "Saving many plots\nSame recipe. First a function that builds the plot for one data frame:\n\ncarat_histogram &lt;- function(df) {\n  ggplot(df, aes(x = carat)) + geom_histogram(binwidth = 0.1)\n}\ncarat_histogram(by_clarity$data[[1]])"
+    "text": "Saving many plots\nTo save many plots, we first write a function that builds the plot for one data frame:\n\ncarat_histogram &lt;- function(df) {\n  ggplot(df, aes(x = carat)) + geom_histogram(binwidth = 0.1)\n}\ncarat_histogram(by_clarity$data[[1]])"
   },
   {
     "objectID": "weeks/week5/day22-iteration-map-page.html#saving-many-plots-1",
     "href": "weeks/week5/day22-iteration-map-page.html#saving-many-plots-1",
     "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "Saving many plots",
-    "text": "Saving many plots\nUse map() to make a list-column of plots, and str_glue() for the paths:\n\nby_clarity &lt;- by_clarity |&gt;\n  mutate(\n    plot = map(data, carat_histogram),\n    path = str_glue(\"clarity-{clarity}.png\")\n  )\n\nThen walk2() + ggsave() writes them all:\n\nwalk2(\n  by_clarity$path,\n  by_clarity$plot,\n  \\(path, plot) ggsave(path, plot, width = 6, height = 6)\n)\n\nReading files, writing files, drawing plots — all the same map/walk shape."
+    "text": "Saving many plots\nThen, we can use map() to make a list-column of plots, and str_glue() for the paths:\n\nby_clarity &lt;- by_clarity |&gt;\n  mutate(\n    plot = map(data, carat_histogram),\n    path = str_glue(\"clarity-{clarity}.png\")\n  )\n\nFinally, walk2() + ggsave() writes them all:\n\nwalk2(\n  by_clarity$path,\n  by_clarity$plot,\n  \\(path, plot) ggsave(path, plot, width = 6, height = 6)\n)\n\nSo we can read files, write files, draw plots, and do it all with the same consistent map/walk pattern of code."
   },
   {
-    "objectID": "weeks/week5/day22-iteration-map-page.html#iteration-is-a-superpower",
-    "href": "weeks/week5/day22-iteration-map-page.html#iteration-is-a-superpower",
+    "objectID": "weeks/week5/day22-iteration-map-page.html#iteration-is-powerful",
+    "href": "weeks/week5/day22-iteration-map-page.html#iteration-is-powerful",
     "title": "Iteration: map(), walk(), and saving many outputs",
-    "section": "Iteration is a superpower",
-    "text": "Iteration is a superpower\nThe whole arc of this chapter is one idea applied three ways:\n\n\n\nTask\nTool\n\n\n\n\ndo something to each column\nacross()\n\n\ndo something to each element\nmap() / map_dbl() / …\n\n\ndo something for its side effect\nwalk() / walk2()\n\n\n\n\n“If you know the right iteration technique, you can easily go from fixing one problem to fixing all the problems.” — R4DS"
+    "section": "Iteration is powerful",
+    "text": "Iteration is powerful\nThe whole arc of this chapter is one idea applied three ways:\n\n\n\nTask\nTool\n\n\n\n\ndo something to each column\nacross()\n\n\ndo something to each element\nmap() / map_dbl() / …\n\n\ndo something for its side effect\nwalk() / walk2()\n\n\n\n\n“If you know the right iteration technique, you can easily go from fixing one problem to fixing all the problems.” - R4DS"
   },
   {
     "objectID": "weeks/week5/day22-iteration-map-page.html#what-about-for-loops",
     "href": "weeks/week5/day22-iteration-map-page.html#what-about-for-loops",
     "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "What about for loops?",
-    "text": "What about for loops?\nYou may have noticed we haven’t written a single for loop.\nR’s data-analysis orientation changes how we iterate: most of the time there’s already an idiom — do something to each column (across), each group (group_by), or each element (map).\nfor loops do exist and you’ll meet them in wild-caught code (and a bit of base R later). But reach for a functional tool first: it’s shorter, harder to get wrong, and says what you mean, not just how."
+    "text": "What about for loops?\nYou may have noticed we haven’t written a single for loop.\nR’s data-analysis orientation changes how we iterate: most of the time there’s already an idiom. We do something to each column (across), each group (group_by), or each element (map).\nfor loops do exist. But a functional tool is almost always a better option to reach for first: it’s shorter, harder to get wrong, and says what you mean, not just how."
   },
   {
     "objectID": "weeks/week5/day22-iteration-map-page.html#in-class-activity",
@@ -2363,7 +2363,7 @@
     "href": "weeks/week5/day22-iteration-map-page.html#wrap-up-looking-ahead",
     "title": "Iteration: map(), walk(), and saving many outputs",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nmap(x, f) applies f to each element of x → a list\nTyped variants (map_dbl, map_chr, map_int, map_lgl) → vectors\nwalk() = map() for side effects (writing, saving)\ngroup_nest() makes a per-group list-column\nstr_glue() builds output paths from data\nmap2() / walk2() vary two inputs together (data + path)\nReading files, writing CSVs, saving plots — all the same shape\n\nUpcoming\n\nThu Jun 18: strings, dates & intro to regex + Project oral check-in #1\nReading before Thu: Data Computing §17.1–17.2\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 26 · purrr reference"
+    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nmap(x, f) applies f to each element of x → a list\nTyped variants (map_dbl, map_chr, map_int, map_lgl) \\(\\rightarrow\\) vectors\nwalk() = map() for side effects (writing, saving)\ngroup_nest() makes a per-group list-column\nstr_glue() builds output paths from data\nmap2() / walk2() vary two inputs together (data + path)\nReading files, writing CSVs, saving plots\n\nUpcoming\n\nThu Jun 18: strings, dates & intro to regex + Project oral check-in #1\nReading before Thu: Data Computing §17.1–17.2\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · R4DS Ch. 26 · purrr reference"
   },
   {
     "objectID": "weeks/week5/day21-iteration-across-slides.html#rs-built-in-iteration",
@@ -2601,7 +2601,7 @@
     "href": "weeks/week5/day20-functions-slides.html#always-test-on-simple-inputs",
     "title": "Writing functions in R",
     "section": "Always test on simple inputs",
-    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n       a      b     c     d\n   &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 0      1      1     0.420\n2 0.0453 0.0461 0.395 0.779\n3 0.514  0.171  0.915 1    \n4 1      0      0.535 0    \n5 0.607  0.480  0     0.403"
+    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b     c     d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 1     0.264 1     0.532\n2 0.683 0     0.421 0.231\n3 0.888 0.476 0.481 1    \n4 0.532 0.888 0     0    \n5 0     1     0.414 0.417"
   },
   {
     "objectID": "weeks/week5/day20-functions-slides.html#changing-a-function-in-one-place",
@@ -2783,7 +2783,7 @@
     "href": "weeks/week5/day20-functions-page.html#always-test-on-simple-inputs",
     "title": "Writing functions in R",
     "section": "Always test on simple inputs",
-    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a      b      c     d\n  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1 0     0.0597 0.345  0.283\n2 0.461 0.621  1      0.398\n3 0.689 0.644  0.0871 0    \n4 1     0      0.333  0.674\n5 0.592 1      0      1"
+    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a      b       c      d\n  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;\n1 1     0.943  0       0     \n2 0.678 1      0.00101 0.0514\n3 0     0.0869 0.0575  0.785 \n4 0.555 0      0.732   0.424 \n5 0.437 0.680  1       1"
   },
   {
     "objectID": "weeks/week5/day20-functions-page.html#changing-a-function-in-one-place",
