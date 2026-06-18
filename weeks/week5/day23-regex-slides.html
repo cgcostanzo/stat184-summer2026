@@ -1200,6 +1200,78 @@ margin-right: 0; }
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a></a>.   ^   $   [   ]   {   }   |   (   )   +   *   ?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For example <code>.</code> means “any single character”, so <code>&quot;.ble&quot;</code> matches “able”, “sol<strong>uble</strong>”, “fung<strong>ible</strong>”, “B<strong>ible</strong>”.</p>
 </section>
+<section id="literals-special-characters-1" class="slide level2 scrollable nostretch">
+<h2>Literals &amp; special characters</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Character</th>
+<th style="text-align: left;">Meaning</th>
+<th style="text-align: left;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>.</code></td>
+<td style="text-align: left;"><strong>Any single character</strong> (except a newline)</td>
+<td style="text-align: left;"><code>&quot;.ble&quot;</code> matches “<strong>able</strong>”, “sol<strong>uble</strong>”, or “B<strong>ible</strong>”.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>^</code></td>
+<td style="text-align: left;"><strong>Start of the string</strong></td>
+<td style="text-align: left;"><code>&quot;^a&quot;</code> matches “<strong>a</strong>pple” but not “b<strong>a</strong>nana”.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>$</code></td>
+<td style="text-align: left;"><strong>End of the string</strong></td>
+<td style="text-align: left;"><code>&quot;e$&quot;</code> matches “appl<strong>e</strong>” but not “<strong>e</strong>lephant”.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>[ ]</code></td>
+<td style="text-align: left;"><strong>Character class</strong> (matches <em>any one</em> character inside)</td>
+<td style="text-align: left;"><code>&quot;[ab]c&quot;</code> matches “<strong>ac</strong>” or “<strong>bc</strong>”.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>|</code></td>
+<td style="text-align: left;"><strong>OR</strong> (alternation)</td>
+<td style="text-align: left;"><code>&quot;cat|dog&quot;</code> matches “<strong>cat</strong>” or “<strong>dog</strong>”.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>( )</code></td>
+<td style="text-align: left;"><strong>Grouping</strong> (treats multiple characters as one unit)</td>
+<td style="text-align: left;"><code>&quot;(ab)+&quot;</code> matches “<strong>abab</strong>”.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>*</code></td>
+<td style="text-align: left;"><strong>Zero or more</strong> of the preceding item</td>
+<td style="text-align: left;"><code>&quot;a*b&quot;</code> matches “<strong>b</strong>”, “<strong>ab</strong>”, or “<strong>aab</strong>”.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>+</code></td>
+<td style="text-align: left;"><strong>One or more</strong> of the preceding item</td>
+<td style="text-align: left;"><code>&quot;a+b&quot;</code> matches “<strong>ab</strong>” or “<strong>aab</strong>” (but not “b”).</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>?</code></td>
+<td style="text-align: left;"><strong>Zero or one</strong> of the preceding item (makes it optional)</td>
+<td style="text-align: left;"><code>&quot;colou?r&quot;</code> matches “<strong>color</strong>” or “<strong>colour</strong>”.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>{ }</code></td>
+<td style="text-align: left;"><strong>Quantifier</strong> (specific number or range of repetitions)</td>
+<td style="text-align: left;"><code>&quot;a{2,3}&quot;</code> matches “<strong>aa</strong>” or “<strong>aaa</strong>”.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note:</strong> If you ever need to match one of these special characters literally (like an actual period or question mark), you have to escape it by putting a backslash in front of it (e.g., <code>\.</code> or <code>\?</code>). In R, because of how strings work, you usually need <em>two</em> backslashes (e.g., <code>\\.</code>).</p>
+</blockquote>
+</section>
 <section id="character-classes" class="slide level2 scrollable nostretch">
 <h2>Character classes <code>[ ]</code></h2>
 <p>Square brackets mean “<strong>any one</strong> of these characters”:</p>

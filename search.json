@@ -2601,7 +2601,7 @@
     "href": "weeks/week5/day20-functions-slides.html#always-test-on-simple-inputs",
     "title": "Writing functions in R",
     "section": "Always test on simple inputs",
-    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a      b     c     d\n  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 0.527 0.455  0     0    \n2 0     0      0.921 0.772\n3 1     0.494  1     0.135\n4 0.326 1      0.443 0.777\n5 0.677 0.0845 0.354 1"
+    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a      b     c     d\n  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 0.311 0      0     1    \n2 1     1      1     0    \n3 0     0.248  0.968 0.256\n4 0.937 0.619  0.657 0.716\n5 0.606 0.0204 0.916 0.843"
   },
   {
     "objectID": "weeks/week5/day20-functions-slides.html#changing-a-function-in-one-place",
@@ -2783,7 +2783,7 @@
     "href": "weeks/week5/day20-functions-page.html#always-test-on-simple-inputs",
     "title": "Writing functions in R",
     "section": "Always test on simple inputs",
-    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b     c     d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 1     0.621 0.746 0.138\n2 0.496 1     1     0.642\n3 0.109 0.724 0     0.435\n4 0.498 0.701 0.860 1    \n5 0     0     0.871 0"
+    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b     c      d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;\n1 0.497 1     1     0.123 \n2 0     0.343 0.457 0.0687\n3 1     0.495 0.607 0     \n4 0.457 0.977 0.530 0.528 \n5 0.498 0     0     1"
   },
   {
     "objectID": "weeks/week5/day20-functions-page.html#changing-a-function-in-one-place",
@@ -7343,6 +7343,13 @@
     "text": "Literals & special characters\nThe simplest patterns are literal: \"able\" matches any string containing “able” (“capable”, “tabled”) but is case-sensitive by default (“Able” won’t match unless ignore.case = TRUE).\nThese characters are special in that they mean something other than themselves:\n.   ^   $   [   ]   {   }   |   (   )   +   *   ?\nFor example . means “any single character”, so \".ble\" matches “able”, “soluble”, “fungible”, “Bible”."
   },
   {
+    "objectID": "weeks/week5/day23-regex-page.html#literals-special-characters-1",
+    "href": "weeks/week5/day23-regex-page.html#literals-special-characters-1",
+    "title": "Regular expressions (regex)",
+    "section": "Literals & special characters",
+    "text": "Literals & special characters\n\n\n\n\n\n\n\n\nCharacter\nMeaning\nExample\n\n\n\n\n.\nAny single character (except a newline)\n\".ble\" matches “able”, “soluble”, or “Bible”.\n\n\n^\nStart of the string\n\"^a\" matches “apple” but not “banana”.\n\n\n$\nEnd of the string\n\"e$\" matches “apple” but not “elephant”.\n\n\n[ ]\nCharacter class (matches any one character inside)\n\"[ab]c\" matches “ac” or “bc”.\n\n\n|\nOR (alternation)\n\"cat|dog\" matches “cat” or “dog”.\n\n\n( )\nGrouping (treats multiple characters as one unit)\n\"(ab)+\" matches “abab”.\n\n\n*\nZero or more of the preceding item\n\"a*b\" matches “b”, “ab”, or “aab”.\n\n\n+\nOne or more of the preceding item\n\"a+b\" matches “ab” or “aab” (but not “b”).\n\n\n?\nZero or one of the preceding item (makes it optional)\n\"colou?r\" matches “color” or “colour”.\n\n\n{ }\nQuantifier (specific number or range of repetitions)\n\"a{2,3}\" matches “aa” or “aaa”.\n\n\n\n\nNote: If you ever need to match one of these special characters literally (like an actual period or question mark), you have to escape it by putting a backslash in front of it (e.g., \\. or \\?). In R, because of how strings work, you usually need two backslashes (e.g., \\\\.)."
+  },
+  {
     "objectID": "weeks/week5/day23-regex-page.html#character-classes",
     "href": "weeks/week5/day23-regex-page.html#character-classes",
     "title": "Regular expressions (regex)",
@@ -7453,6 +7460,13 @@
     "title": "Regular expressions (regex)",
     "section": "Literals & special characters",
     "text": "Literals & special characters\nThe simplest patterns are literal: \"able\" matches any string containing “able” (“capable”, “tabled”) but is case-sensitive by default (“Able” won’t match unless ignore.case = TRUE).\nThese characters are special in that they mean something other than themselves:\n.   ^   $   [   ]   {   }   |   (   )   +   *   ?\nFor example . means “any single character”, so \".ble\" matches “able”, “soluble”, “fungible”, “Bible”."
+  },
+  {
+    "objectID": "weeks/week5/day23-regex-slides.html#literals-special-characters-1",
+    "href": "weeks/week5/day23-regex-slides.html#literals-special-characters-1",
+    "title": "Regular expressions (regex)",
+    "section": "Literals & special characters",
+    "text": "Literals & special characters\n\n\n\n\n\n\n\n\nCharacter\nMeaning\nExample\n\n\n\n\n.\nAny single character (except a newline)\n\".ble\" matches “able”, “soluble”, or “Bible”.\n\n\n^\nStart of the string\n\"^a\" matches “apple” but not “banana”.\n\n\n$\nEnd of the string\n\"e$\" matches “apple” but not “elephant”.\n\n\n[ ]\nCharacter class (matches any one character inside)\n\"[ab]c\" matches “ac” or “bc”.\n\n\n|\nOR (alternation)\n\"cat|dog\" matches “cat” or “dog”.\n\n\n( )\nGrouping (treats multiple characters as one unit)\n\"(ab)+\" matches “abab”.\n\n\n*\nZero or more of the preceding item\n\"a*b\" matches “b”, “ab”, or “aab”.\n\n\n+\nOne or more of the preceding item\n\"a+b\" matches “ab” or “aab” (but not “b”).\n\n\n?\nZero or one of the preceding item (makes it optional)\n\"colou?r\" matches “color” or “colour”.\n\n\n{ }\nQuantifier (specific number or range of repetitions)\n\"a{2,3}\" matches “aa” or “aaa”.\n\n\n\n\nNote: If you ever need to match one of these special characters literally (like an actual period or question mark), you have to escape it by putting a backslash in front of it (e.g., \\. or \\?). In R, because of how strings work, you usually need two backslashes (e.g., \\\\.)."
   },
   {
     "objectID": "weeks/week5/day23-regex-slides.html#character-classes",
