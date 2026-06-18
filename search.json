@@ -39,21 +39,21 @@
     "href": "schedule.html#week-5-functions-iteration-strings-june-15---19",
     "title": "Course Schedule",
     "section": "Week 5 — Functions, Iteration, & Strings (June 15 - 19)",
-    "text": "Week 5 — Functions, Iteration, & Strings (June 15 - 19)\n\n\n\n\n\n\nNote\n\n\n\nWeek 5 covers material that Data Computing doesn’t address in depth. Readings for Mon–Wed come from R for Data Science (free online).\n\n\n\nWeek 5 schedule\n\n\n\n\n\n\n\n\nDate\nTopic\nRead before class\nDue\n\n\n\n\nMon Jun 15\nWriting functions in R\nR4DS Ch 25 (Functions)\nHW 4\n\n\nTue Jun 16\nControl flow · if/else, for, while\nR4DS Ch 26 §26.1–26.3\n—\n\n\nWed Jun 17\nVectorized operations · purrr::map\nR4DS Ch 26 §26.4–26.5\n—\n\n\nThu Jun 18\nStrings, dates, and regex\nDC §17.1–17.2\nProject oral check-in #1 (during class)\n\n\nFri Jun 19\nNo class - Juneteenth · Quiz 5 rescheduled to Mon Jun 22\n—\n—"
+    "text": "Week 5 — Functions, Iteration, & Strings (June 15 - 19)\n\n\n\n\n\n\nNote\n\n\n\nWeek 5 covers material that Data Computing doesn’t address in depth. Readings for Mon–Wed come from R for Data Science (free online).\n\n\n\nWeek 5 schedule\n\n\n\n\n\n\n\n\nDate\nTopic\nRead before class\nDue\n\n\n\n\nMon Jun 15\nWriting functions in R\nR4DS Ch 25 (Functions)\nHW 4\n\n\nTue Jun 16\nControl flow · if/else, for, while\nR4DS Ch 26 §26.1–26.3\n—\n\n\nWed Jun 17\nVectorized operations · purrr::map\nR4DS Ch 26 §26.4–26.5\n—\n\n\nThu Jun 18\nStrings, dates, and regex\nDC §17.1–17.2\nProject oral check-in #1 (during class)\n\n\nFri Jun 19\nNo class - Juneteenth · Quiz 5 rescheduled to Mon Jun 22\n—\nHW 5"
   },
   {
     "objectID": "schedule.html#week-6-special-topics-project-june-22---26",
     "href": "schedule.html#week-6-special-topics-project-june-22---26",
     "title": "Course Schedule",
     "section": "Week 6 — Special Topics & Project (June 22 - 26)",
-    "text": "Week 6 — Special Topics & Project (June 22 - 26)\n\nWeek 6 schedule\n\n\n\n\n\n\n\n\nDate\nTopic\nRead before class\nDue\n\n\n\n\nMon Jun 22\nQuiz 5 (rescheduled) · unsupervised learning, clustering\nDC §18.2\nQuiz 5 (in class)\n\n\nTue Jun 23\nDecision trees / CART\nDC §18.3\nHW 5\n\n\nWed Jun 24\nProject work day · oral check-in #1 makeups\n—\nProject Checkpoint 2\n\n\nThu Jun 25\nProject work day · oral check-in #2 (final walkthrough)\n—\n—\n\n\nFri Jun 26\nQuiz 6 · short project presentations · course wrap-up\n—\nQuiz 6 (in class) · Final project report due 11:59 p.m."
+    "text": "Week 6 — Special Topics & Project (June 22 - 26)\n\nWeek 6 schedule\n\n\n\n\n\n\n\n\nDate\nTopic\nRead before class\nDue\n\n\n\n\nMon Jun 22\nQuiz 4 (rescheduled) · unsupervised learning, clustering\nDC §18.2\nQuiz 5 (in class)\n\n\nTue Jun 23\nDecision trees / CART\nDC §18.3\n—\n\n\nWed Jun 24\nTopic TBD\n—\nProject Checkpoint 2\n\n\nThu Jun 25\nProject work day · oral check-in #2 (final walkthrough)\n—\n—\n\n\nFri Jun 26\nQuiz 6 · short project presentations · course wrap-up\n—\nQuiz 6 (in class) · Final project report due 11:59 p.m."
   },
   {
-    "objectID": "schedule.html#submission-cheat-sheet",
-    "href": "schedule.html#submission-cheat-sheet",
+    "objectID": "schedule.html#submission-guide",
+    "href": "schedule.html#submission-guide",
     "title": "Course Schedule",
-    "section": "Submission cheat-sheet",
-    "text": "Submission cheat-sheet\n\nSubmission cheat-sheet\n\n\n\n\n\n\n\nItem\nFormat\nWhere\n\n\n\n\nReadings\nReading/Discussion\nPerusall (Linked on Canvas)\n\n\nHomework\nQuarto rendered to PDF or HTML\nCanvas\n\n\nQuizzes / Exam\nPaper\nIn class\n\n\nIn-class activities\nPaper or Canvas\nIn class or end-of-day Canvas\n\n\nProject\nQuarto rendered to PDF + GitHub repo\nCanvas"
+    "section": "Submission guide",
+    "text": "Submission guide\n\nSubmission guide\n\n\n\n\n\n\n\nItem\nFormat\nWhere\n\n\n\n\nReadings\nReading/Discussion\nPerusall (Linked on Canvas)\n\n\nHomework\nQuarto rendered to PDF or HTML\nCanvas\n\n\nQuizzes / Exam\nPaper\nIn class\n\n\nIn-class activities\nPaper or Canvas\nIn class or end-of-day Canvas\n\n\nProject\nQuarto rendered to PDF + GitHub repo\nCanvas"
   },
   {
     "objectID": "schedule.html#sources",
@@ -2601,7 +2601,7 @@
     "href": "weeks/week5/day20-functions-slides.html#always-test-on-simple-inputs",
     "title": "Writing functions in R",
     "section": "Always test on simple inputs",
-    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b     c     d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 1     1     0     0    \n2 0     0.442 0.246 1    \n3 0.215 0.674 0.423 0.667\n4 0.469 0     0.566 0.753\n5 0.833 0.157 1     0.756"
+    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b     c     d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 0.793 0.559 0.899 0.373\n2 0.283 1     0.367 0.324\n3 0     0.844 0     0.526\n4 0.645 0     0.366 1    \n5 1     0.779 1     0"
   },
   {
     "objectID": "weeks/week5/day20-functions-slides.html#changing-a-function-in-one-place",
@@ -2783,7 +2783,7 @@
     "href": "weeks/week5/day20-functions-page.html#always-test-on-simple-inputs",
     "title": "Writing functions in R",
     "section": "Always test on simple inputs",
-    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b      c     d\n  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1 0.529 0.496 0      1    \n2 0.360 1     0.342  0    \n3 0     0.192 1      0.764\n4 1     0.556 0.180  0.548\n5 0.800 0     0.0630 0.747"
+    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b     c     d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 0.577 0     0.101 0    \n2 0.198 1     0     0.512\n3 0.191 0.653 0.793 1    \n4 0     0.638 0.350 0.683\n5 1     0.126 1     0.167"
   },
   {
     "objectID": "weeks/week5/day20-functions-page.html#changing-a-function-in-one-place",
@@ -4608,7 +4608,7 @@
     "href": "weeks/week6/index.html#daily-plan",
     "title": "Week 6 — Special Topics & Project",
     "section": "Daily plan",
-    "text": "Daily plan\n\n\n\nDate\nTopic\nFiles\n\n\n\n\nMon Jun 22\nQuiz 4 (rescheduled) · intro to clustering\nquiz, slides\n\n\nTue Jun 23\nDecision trees / CART (or alternative)\nslides, in-class code\n\n\nWed Jun 24\nProject work day · oral check-in #1 makeups\n—\n\n\nThu Jun 25\nProject work day · oral check-in #2 (final walkthrough)\n—\n\n\nFri Jun 26\nshort project presentations · wrap-up\nquiz"
+    "text": "Daily plan\n\n\n\nDate\nTopic\nFiles\n\n\n\n\nMon Jun 22\nQuiz 4 (rescheduled) · intro to clustering\nquiz, slides\n\n\nTue Jun 23\nDecision trees / CART\nslides, in-class code\n\n\nWed Jun 24\nTOPIC TBD · oral check-in #1 makeups\n—\n\n\nThu Jun 25\nProject work day · oral check-in #2 (final walkthrough)\n—\n\n\nFri Jun 26\nshort project presentations · wrap-up\n—"
   },
   {
     "objectID": "weeks/week6/index.html#readings-due-this-week",
