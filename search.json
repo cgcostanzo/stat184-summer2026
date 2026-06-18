@@ -2601,7 +2601,7 @@
     "href": "weeks/week5/day20-functions-slides.html#always-test-on-simple-inputs",
     "title": "Writing functions in R",
     "section": "Always test on simple inputs",
-    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b     c      d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;\n1 1     0.337 0.416 0.886 \n2 0.186 0     1     0.0791\n3 0.868 1     0.390 0.289 \n4 0.161 0.522 0.799 1     \n5 0     0.297 0     0"
+    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a      b     c     d\n  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 0.527 0.455  0     0    \n2 0     0      0.921 0.772\n3 1     0.494  1     0.135\n4 0.326 1      0.443 0.777\n5 0.677 0.0845 0.354 1"
   },
   {
     "objectID": "weeks/week5/day20-functions-slides.html#changing-a-function-in-one-place",
@@ -2783,7 +2783,7 @@
     "href": "weeks/week5/day20-functions-page.html#always-test-on-simple-inputs",
     "title": "Writing functions in R",
     "section": "Always test on simple inputs",
-    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b     c     d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 0.684 0     0.922 0.668\n2 0     0.959 1     0.544\n3 0.206 0.498 0     0    \n4 1     1     0.310 1    \n5 0.449 0.299 0.449 0.282"
+    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b     c     d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 1     0.621 0.746 0.138\n2 0.496 1     1     0.642\n3 0.109 0.724 0     0.435\n4 0.498 0.701 0.860 1    \n5 0     0     0.871 0"
   },
   {
     "objectID": "weeks/week5/day20-functions-page.html#changing-a-function-in-one-place",
@@ -7312,21 +7312,21 @@
     "href": "weeks/week5/day23-regex-page.html",
     "title": "Regular expressions (regex)",
     "section": "",
-    "text": "NoteToday: Thursday June 18\n\n\n\nBefore class\n\nReading Quiz (Canvas): Data Computing Ch. 17 §17.1–17.2 — Regular expressions\n\nPlan for today\n\nProject oral check-in #1 runs during today’s work session (signup on Canvas)\nWhat a regex is, and the three jobs it does: detect, replace, extract\nBuilding blocks: literals, ., character classes [ ], alternation |\nQuantifiers ? * + {n}, anchors ^ $, and escaping\nCapturing with ( ) and pulling pieces out\nIn-class activity\n\nHelpful links\n\nSyllabus · AI policy · Schedule · DC Ch. 17 · stringr cheatsheet · regex101.com"
+    "text": "NoteToday: Thursday June 18\n\n\n\nBefore class\n\nPerusall Reading (Canvas): Data Computing Ch. 17 §17.1–17.2 — Regular expressions\n\nPlan for today\n\nProject oral check-in #1; work on the activity if your group doesn’t go first.\nWhat a regex and its roles (detect, replace, extract)\nliterals, ., character classes [ ], alternation |\nQuantifiers ? * + {n}, anchors ^ $, and escaping\nCapturing with ( ) and pulling pieces out\nIn-class activity\n\nHelpful links\n\nSyllabus · AI policy · Schedule · DC Ch. 17 · stringr cheatsheet · regex101.com"
   },
   {
     "objectID": "weeks/week5/day23-regex-page.html#patterns-in-strings",
     "href": "weeks/week5/day23-regex-page.html#patterns-in-strings",
     "title": "Regular expressions (regex)",
     "section": "Patterns in strings",
-    "text": "Patterns in strings\nA regular expression (regex) is a compact way to describe a pattern in text. Lots of everyday strings follow patterns:\n\n\n\nKind\nExamples\n\n\n\n\nPhone numbers\n(651) 696-6000 · +1 651.696.6000\n\n\nTimes\n10:30 AM · 13:15.54\n\n\nDurations\n1:59:40 (Kipchoge’s sub-2-hour marathon)\n\n\nUS postal codes\n16801 · 55105-1362\n\n\nStray whitespace\n\"  henry  \"\n\n\n\nA regex lets you say “match anything shaped like this” without listing every case."
+    "text": "Patterns in strings\nA regular expression (regex) is a compact way to describe a pattern in text. Lots of everyday strings follow patterns:\n\n\n\nKind\nExamples\n\n\n\n\nPhone numbers\n(651) 696-6000 · +1 651.696.6000\n\n\nTimes\n10:30 AM · 13:15.54\n\n\nDurations\n1:59:40 (Kipchoge’s sub-2-hour marathon)\n\n\nUS postal codes\n16801 · 55105-1362\n\n\nStray whitespace\n\"  henry  \"\n\n\n\nA regex lets you say “match anything that has this particular shape” without having to list out every possible case (which is often impossible)."
   },
   {
     "objectID": "weeks/week5/day23-regex-page.html#three-jobs-regex-does",
     "href": "weeks/week5/day23-regex-page.html#three-jobs-regex-does",
     "title": "Regular expressions (regex)",
     "section": "Three jobs regex does",
-    "text": "Three jobs regex does\nAcross all of data cleaning, regex does three things:\n\n\n\nJob\nbase R\nstringr (tidyverse)\nOften with\n\n\n\n\nDetect a pattern\ngrepl()\nstr_detect()\nfilter()\n\n\nReplace a pattern\ngsub()\nstr_replace_all()\nmutate()\n\n\nExtract a match\nregmatches()\nstr_extract()\nmutate()\n\n\n\nThe textbook uses base R (grepl, gsub); the stringr versions do the same jobs with tidier names. We’ll show both."
+    "text": "Three jobs regex does\nAcross all of data cleaning, regex does three things:\n\n\n\nJob\nbase R\nstringr (tidyverse)\nOften with\n\n\n\n\nDetect a pattern\ngrepl()\nstr_detect()\nfilter()\n\n\nReplace a pattern\ngsub()\nstr_replace_all()\nmutate()\n\n\nExtract a match\nregmatches()\nstr_extract()\nmutate()\n\n\n\nThe textbook uses base R (grepl, gsub); the analogous versions from the stringr package do the same things but have tidier names."
   },
   {
     "objectID": "weeks/week5/day23-regex-page.html#grepl-does-the-pattern-appear",
@@ -7340,14 +7340,14 @@
     "href": "weeks/week5/day23-regex-page.html#literals-special-characters",
     "title": "Regular expressions (regex)",
     "section": "Literals & special characters",
-    "text": "Literals & special characters\nThe simplest patterns are literal: \"able\" matches any string containing “able” — “capable”, “tabled” — but is case-sensitive by default (“Able” won’t match unless ignore.case = TRUE).\nThese characters are special — they mean something other than themselves:\n.   ^   $   [   ]   {   }   |   (   )   +   *   ?\nFor example . means “any single character”, so \".ble\" matches “able”, “soluble”, “fungible”, “Bible”."
+    "text": "Literals & special characters\nThe simplest patterns are literal: \"able\" matches any string containing “able” (“capable”, “tabled”) but is case-sensitive by default (“Able” won’t match unless ignore.case = TRUE).\nThese characters are special in that they mean something other than themselves:\n.   ^   $   [   ]   {   }   |   (   )   +   *   ?\nFor example . means “any single character”, so \".ble\" matches “able”, “soluble”, “fungible”, “Bible”."
   },
   {
     "objectID": "weeks/week5/day23-regex-page.html#character-classes",
     "href": "weeks/week5/day23-regex-page.html#character-classes",
     "title": "Regular expressions (regex)",
     "section": "Character classes [ ]",
-    "text": "Character classes [ ]\nSquare brackets mean “any one of these characters”:\n\n[aeiou] → any vowel\n[^aeiou] → not a vowel (the ^ inside brackets means “except”) → a consonant\n[0-9] → any digit; [a-z] → any lowercase letter\n\n\nNameList |&gt;\n  filter(grepl(\"mn\", name, ignore.case = TRUE)) |&gt;   # literal \"mn\"\n  head(3)\n\n# A tibble: 3 × 3\n  name   sex    total\n  &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt;\n1 Autumn F     104408\n2 Sumner M       2287\n3 Amna   F       1099\n\n\n\n\n\n\n\n\nTip\n\n\n\nA vertical bar | means “or”: \"rain|snow|sleet|hail\" matches any of those four words."
+    "text": "Character classes [ ]\nSquare brackets mean “any one of these characters”:\n\n[aeiou] \\(\\rightarrow\\) any vowel\n[^aeiou] \\(\\rightarrow\\) not a vowel (the ^ inside brackets means “except”) \\(\\rightarrow\\) a consonant\n[0-9] \\(\\rightarrow\\) any digit; [a-z] \\(\\rightarrow\\) any lowercase letter\n\n\nNameList |&gt;\n  filter(grepl(\"mn\", name, ignore.case = TRUE)) |&gt;   # literal \"mn\"\n  head(3)\n\n# A tibble: 3 × 3\n  name   sex    total\n  &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt;\n1 Autumn F     104408\n2 Sumner M       2287\n3 Amna   F       1099\n\n\n\n\n\n\n\n\nTip\n\n\n\nA vertical bar | means “or”: \"rain|snow|sleet|hail\" matches any of those four words."
   },
   {
     "objectID": "weeks/week5/day23-regex-page.html#putting-characters-in-a-row",
@@ -7361,7 +7361,7 @@
     "href": "weeks/week5/day23-regex-page.html#how-many-times",
     "title": "Regular expressions (regex)",
     "section": "How many times?",
-    "text": "How many times?\nA quantifier follows a pattern and says how many times it repeats:\n\n\n\nQuantifier\nMeans\n\n\n\n\n?\nzero or one time\n\n\n*\nzero or more times\n\n\n+\none or more times\n\n\n{n}\nexactly n times\n\n\n{n,m}\nbetween n and m times\n\n\n{n,}\nn or more times\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\nThe Data Computing reading swaps the definitions of + and *. In R (and every real regex engine): * = zero-or-more, + = one-or-more. Trust the table above and the code below — not the book on this one point."
+    "text": "How many times?\nA quantifier follows a pattern and says how many times it repeats:\n\n\n\nQuantifier\nMeans\n\n\n\n\n?\nzero or one time\n\n\n*\nzero or more times\n\n\n+\none or more times\n\n\n{n}\nexactly n times\n\n\n{n,m}\nbetween n and m times\n\n\n{n,}\nn or more times\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\nThe Data Computing reading swaps the definitions of + and *. In R (and every real regex engine): * = zero-or-more, + = one-or-more."
   },
   {
     "objectID": "weeks/week5/day23-regex-page.html#quantifiers-in-action",
@@ -7389,14 +7389,14 @@
     "href": "weeks/week5/day23-regex-page.html#parentheses-capture",
     "title": "Regular expressions (regex)",
     "section": "Parentheses capture",
-    "text": "Parentheses capture\nWrap part of a pattern in ( ) to capture it — to pull that piece out. str_extract() returns the matched text; with capture groups, gsub() can refer back to group 1 as \\\\1.\nNames with four vowels in a row, extracting those vowels:\n\nBabyNames |&gt;\n  group_by(name) |&gt;\n  summarise(total = sum(count), .groups = \"drop\") |&gt;\n  mutate(match = str_extract(name, \"([aeiouAEIOU]{4})\")) |&gt;\n  filter(!is.na(match)) |&gt;\n  arrange(desc(total)) |&gt;\n  head(4)\n\n# A tibble: 4 × 3\n  name    total match\n  &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;\n1 Louie   29293 ouie \n2 Sequoia  3275 uoia \n3 Gioia     480 ioia \n4 Keiaira    81 eiai"
+    "text": "Parentheses capture\nWrap part of a pattern in ( ) to capture it; in other words, pull that piece out. str_extract() returns the matched text; with capture groups, gsub() can refer back to group 1 as \\\\1.\nNames with four vowels in a row, extracting those vowels:\n\nBabyNames |&gt;\n  group_by(name) |&gt;\n  summarise(total = sum(count), .groups = \"drop\") |&gt;\n  mutate(match = str_extract(name, \"([aeiouAEIOU]{4})\")) |&gt;\n  filter(!is.na(match)) |&gt;\n  arrange(desc(total)) |&gt;\n  head(4)\n\n# A tibble: 4 × 3\n  name    total match\n  &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;\n1 Louie   29293 ouie \n2 Sequoia  3275 uoia \n3 Gioia     480 ioia \n4 Keiaira    81 eiai"
   },
   {
     "objectID": "weeks/week5/day23-regex-page.html#backreferences-with-1",
     "href": "weeks/week5/day23-regex-page.html#backreferences-with-1",
     "title": "Regular expressions (regex)",
     "section": "Backreferences with \\\\1",
-    "text": "Backreferences with \\\\1\nThe regex \".*([aeiou])$\" = “anything, then a captured final vowel”. In gsub(), replacement = \"\\\\1\" keeps only the captured group — so the whole name collapses to its last vowel:\n\nre &lt;- \".*([aeiou])$\"\nNameList |&gt;\n  filter(grepl(re, name)) |&gt;\n  mutate(vowel = gsub(re, \"\\\\1\", name)) |&gt;\n  group_by(sex, vowel) |&gt;\n  summarise(total = sum(total), .groups = \"drop\") |&gt;\n  pivot_wider(names_from = sex, values_from = total)\n\n# A tibble: 5 × 3\n  vowel        F        M\n  &lt;chr&gt;    &lt;int&gt;    &lt;int&gt;\n1 a     56088501  1844041\n2 e     36432218 14341114\n3 i      3693024   753311\n4 o       403120  4041190\n5 u        85508    75135\n\n\nNames ending in “a”, “e”, “i” skew female; “o” skews male."
+    "text": "Backreferences with \\\\1\nThe regex \".*([aeiou])$\" = “anything, then a captured final vowel”. In gsub(), replacement = \"\\\\1\" keeps only the captured group, so the whole name collapses to its last vowel:\n\nre &lt;- \".*([aeiou])$\"\nNameList |&gt;\n  filter(grepl(re, name)) |&gt;\n  mutate(vowel = gsub(re, \"\\\\1\", name)) |&gt;\n  group_by(sex, vowel) |&gt;\n  summarise(total = sum(total), .groups = \"drop\") |&gt;\n  pivot_wider(names_from = sex, values_from = total)\n\n# A tibble: 5 × 3\n  vowel        F        M\n  &lt;chr&gt;    &lt;int&gt;    &lt;int&gt;\n1 a     56088501  1844041\n2 e     36432218 14341114\n3 i      3693024   753311\n4 o       403120  4041190\n5 u        85508    75135\n\n\nNames ending in “a”, “e”, “i” skew female; “o” skews male."
   },
   {
     "objectID": "weeks/week5/day23-regex-page.html#stripping-junk-out-of-numbers",
@@ -7417,7 +7417,7 @@
     "href": "weeks/week5/day23-regex-page.html#in-class-activity",
     "title": "Regular expressions (regex)",
     "section": "In-class activity",
-    "text": "In-class activity\nOpen day23-activity.R in RStudio and work through the parts in order. (Today’s session also hosts oral check-in #1 — work on the activity when it isn’t your turn.)\n\nPart 1: detect patterns with grepl() / str_detect() + filter() on BabyNames.\nPart 2: build patterns from character classes, quantifiers, and anchors (including a “Caitlin”-style name and a phone-number regex).\nPart 3 (challenge): extract with capture groups, and clean messy strings with gsub().\n\nActivity file"
+    "text": "In-class activity\nOpen day23-activity.R in RStudio and work through the parts in order. (Work on the activity when it isn’t your group’s turn for oral check-in #1.)\n\nPart 1: detect patterns with grepl() / str_detect() + filter() on BabyNames.\nPart 2: build patterns from character classes, quantifiers, and anchors (including a “Caitlin”-style name and a phone-number regex).\nPart 3 (challenge): extract with capture groups, and clean messy strings with gsub().\n\nActivity file"
   },
   {
     "objectID": "weeks/week5/day23-regex-page.html#wrap-up-looking-ahead",
@@ -7431,14 +7431,14 @@
     "href": "weeks/week5/day23-regex-slides.html#patterns-in-strings",
     "title": "Regular expressions (regex)",
     "section": "Patterns in strings",
-    "text": "Patterns in strings\nA regular expression (regex) is a compact way to describe a pattern in text. Lots of everyday strings follow patterns:\n\n\n\nKind\nExamples\n\n\n\n\nPhone numbers\n(651) 696-6000 · +1 651.696.6000\n\n\nTimes\n10:30 AM · 13:15.54\n\n\nDurations\n1:59:40 (Kipchoge’s sub-2-hour marathon)\n\n\nUS postal codes\n16801 · 55105-1362\n\n\nStray whitespace\n\"  henry  \"\n\n\n\nA regex lets you say “match anything shaped like this” without listing every case."
+    "text": "Patterns in strings\nA regular expression (regex) is a compact way to describe a pattern in text. Lots of everyday strings follow patterns:\n\n\n\nKind\nExamples\n\n\n\n\nPhone numbers\n(651) 696-6000 · +1 651.696.6000\n\n\nTimes\n10:30 AM · 13:15.54\n\n\nDurations\n1:59:40 (Kipchoge’s sub-2-hour marathon)\n\n\nUS postal codes\n16801 · 55105-1362\n\n\nStray whitespace\n\"  henry  \"\n\n\n\nA regex lets you say “match anything that has this particular shape” without having to list out every possible case (which is often impossible)."
   },
   {
     "objectID": "weeks/week5/day23-regex-slides.html#three-jobs-regex-does",
     "href": "weeks/week5/day23-regex-slides.html#three-jobs-regex-does",
     "title": "Regular expressions (regex)",
     "section": "Three jobs regex does",
-    "text": "Three jobs regex does\nAcross all of data cleaning, regex does three things:\n\n\n\nJob\nbase R\nstringr (tidyverse)\nOften with\n\n\n\n\nDetect a pattern\ngrepl()\nstr_detect()\nfilter()\n\n\nReplace a pattern\ngsub()\nstr_replace_all()\nmutate()\n\n\nExtract a match\nregmatches()\nstr_extract()\nmutate()\n\n\n\nThe textbook uses base R (grepl, gsub); the stringr versions do the same jobs with tidier names. We’ll show both."
+    "text": "Three jobs regex does\nAcross all of data cleaning, regex does three things:\n\n\n\nJob\nbase R\nstringr (tidyverse)\nOften with\n\n\n\n\nDetect a pattern\ngrepl()\nstr_detect()\nfilter()\n\n\nReplace a pattern\ngsub()\nstr_replace_all()\nmutate()\n\n\nExtract a match\nregmatches()\nstr_extract()\nmutate()\n\n\n\nThe textbook uses base R (grepl, gsub); the analogous versions from the stringr package do the same things but have tidier names."
   },
   {
     "objectID": "weeks/week5/day23-regex-slides.html#grepl-does-the-pattern-appear",
@@ -7452,14 +7452,14 @@
     "href": "weeks/week5/day23-regex-slides.html#literals-special-characters",
     "title": "Regular expressions (regex)",
     "section": "Literals & special characters",
-    "text": "Literals & special characters\nThe simplest patterns are literal: \"able\" matches any string containing “able” — “capable”, “tabled” — but is case-sensitive by default (“Able” won’t match unless ignore.case = TRUE).\nThese characters are special — they mean something other than themselves:\n.   ^   $   [   ]   {   }   |   (   )   +   *   ?\nFor example . means “any single character”, so \".ble\" matches “able”, “soluble”, “fungible”, “Bible”."
+    "text": "Literals & special characters\nThe simplest patterns are literal: \"able\" matches any string containing “able” (“capable”, “tabled”) but is case-sensitive by default (“Able” won’t match unless ignore.case = TRUE).\nThese characters are special in that they mean something other than themselves:\n.   ^   $   [   ]   {   }   |   (   )   +   *   ?\nFor example . means “any single character”, so \".ble\" matches “able”, “soluble”, “fungible”, “Bible”."
   },
   {
     "objectID": "weeks/week5/day23-regex-slides.html#character-classes",
     "href": "weeks/week5/day23-regex-slides.html#character-classes",
     "title": "Regular expressions (regex)",
     "section": "Character classes [ ]",
-    "text": "Character classes [ ]\nSquare brackets mean “any one of these characters”:\n\n[aeiou] → any vowel\n[^aeiou] → not a vowel (the ^ inside brackets means “except”) → a consonant\n[0-9] → any digit; [a-z] → any lowercase letter\n\n\nNameList |&gt;\n  filter(grepl(\"mn\", name, ignore.case = TRUE)) |&gt;   # literal \"mn\"\n  head(3)\n\n# A tibble: 3 × 3\n  name   sex    total\n  &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt;\n1 Autumn F     104408\n2 Sumner M       2287\n3 Amna   F       1099\n\n\n\n\n\n\n\n\nTip\n\n\nA vertical bar | means “or”: \"rain|snow|sleet|hail\" matches any of those four words."
+    "text": "Character classes [ ]\nSquare brackets mean “any one of these characters”:\n\n[aeiou] \\(\\rightarrow\\) any vowel\n[^aeiou] \\(\\rightarrow\\) not a vowel (the ^ inside brackets means “except”) \\(\\rightarrow\\) a consonant\n[0-9] \\(\\rightarrow\\) any digit; [a-z] \\(\\rightarrow\\) any lowercase letter\n\n\nNameList |&gt;\n  filter(grepl(\"mn\", name, ignore.case = TRUE)) |&gt;   # literal \"mn\"\n  head(3)\n\n# A tibble: 3 × 3\n  name   sex    total\n  &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt;\n1 Autumn F     104408\n2 Sumner M       2287\n3 Amna   F       1099\n\n\n\n\n\n\n\n\nTip\n\n\nA vertical bar | means “or”: \"rain|snow|sleet|hail\" matches any of those four words."
   },
   {
     "objectID": "weeks/week5/day23-regex-slides.html#putting-characters-in-a-row",
@@ -7473,7 +7473,7 @@
     "href": "weeks/week5/day23-regex-slides.html#how-many-times",
     "title": "Regular expressions (regex)",
     "section": "How many times?",
-    "text": "How many times?\nA quantifier follows a pattern and says how many times it repeats:\n\n\n\nQuantifier\nMeans\n\n\n\n\n?\nzero or one time\n\n\n*\nzero or more times\n\n\n+\none or more times\n\n\n{n}\nexactly n times\n\n\n{n,m}\nbetween n and m times\n\n\n{n,}\nn or more times\n\n\n\n\n\n\n\n\n\nWarning\n\n\nThe Data Computing reading swaps the definitions of + and *. In R (and every real regex engine): * = zero-or-more, + = one-or-more. Trust the table above and the code below — not the book on this one point."
+    "text": "How many times?\nA quantifier follows a pattern and says how many times it repeats:\n\n\n\nQuantifier\nMeans\n\n\n\n\n?\nzero or one time\n\n\n*\nzero or more times\n\n\n+\none or more times\n\n\n{n}\nexactly n times\n\n\n{n,m}\nbetween n and m times\n\n\n{n,}\nn or more times\n\n\n\n\n\n\n\n\n\nWarning\n\n\nThe Data Computing reading swaps the definitions of + and *. In R (and every real regex engine): * = zero-or-more, + = one-or-more."
   },
   {
     "objectID": "weeks/week5/day23-regex-slides.html#quantifiers-in-action",
@@ -7501,14 +7501,14 @@
     "href": "weeks/week5/day23-regex-slides.html#parentheses-capture",
     "title": "Regular expressions (regex)",
     "section": "Parentheses capture",
-    "text": "Parentheses capture\nWrap part of a pattern in ( ) to capture it — to pull that piece out. str_extract() returns the matched text; with capture groups, gsub() can refer back to group 1 as \\\\1.\nNames with four vowels in a row, extracting those vowels:\n\nBabyNames |&gt;\n  group_by(name) |&gt;\n  summarise(total = sum(count), .groups = \"drop\") |&gt;\n  mutate(match = str_extract(name, \"([aeiouAEIOU]{4})\")) |&gt;\n  filter(!is.na(match)) |&gt;\n  arrange(desc(total)) |&gt;\n  head(4)\n\n# A tibble: 4 × 3\n  name    total match\n  &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;\n1 Louie   29293 ouie \n2 Sequoia  3275 uoia \n3 Gioia     480 ioia \n4 Keiaira    81 eiai"
+    "text": "Parentheses capture\nWrap part of a pattern in ( ) to capture it; in other words, pull that piece out. str_extract() returns the matched text; with capture groups, gsub() can refer back to group 1 as \\\\1.\nNames with four vowels in a row, extracting those vowels:\n\nBabyNames |&gt;\n  group_by(name) |&gt;\n  summarise(total = sum(count), .groups = \"drop\") |&gt;\n  mutate(match = str_extract(name, \"([aeiouAEIOU]{4})\")) |&gt;\n  filter(!is.na(match)) |&gt;\n  arrange(desc(total)) |&gt;\n  head(4)\n\n# A tibble: 4 × 3\n  name    total match\n  &lt;chr&gt;   &lt;int&gt; &lt;chr&gt;\n1 Louie   29293 ouie \n2 Sequoia  3275 uoia \n3 Gioia     480 ioia \n4 Keiaira    81 eiai"
   },
   {
     "objectID": "weeks/week5/day23-regex-slides.html#backreferences-with-1",
     "href": "weeks/week5/day23-regex-slides.html#backreferences-with-1",
     "title": "Regular expressions (regex)",
     "section": "Backreferences with \\\\1",
-    "text": "Backreferences with \\\\1\nThe regex \".*([aeiou])$\" = “anything, then a captured final vowel”. In gsub(), replacement = \"\\\\1\" keeps only the captured group — so the whole name collapses to its last vowel:\n\nre &lt;- \".*([aeiou])$\"\nNameList |&gt;\n  filter(grepl(re, name)) |&gt;\n  mutate(vowel = gsub(re, \"\\\\1\", name)) |&gt;\n  group_by(sex, vowel) |&gt;\n  summarise(total = sum(total), .groups = \"drop\") |&gt;\n  pivot_wider(names_from = sex, values_from = total)\n\n# A tibble: 5 × 3\n  vowel        F        M\n  &lt;chr&gt;    &lt;int&gt;    &lt;int&gt;\n1 a     56088501  1844041\n2 e     36432218 14341114\n3 i      3693024   753311\n4 o       403120  4041190\n5 u        85508    75135\n\n\nNames ending in “a”, “e”, “i” skew female; “o” skews male."
+    "text": "Backreferences with \\\\1\nThe regex \".*([aeiou])$\" = “anything, then a captured final vowel”. In gsub(), replacement = \"\\\\1\" keeps only the captured group, so the whole name collapses to its last vowel:\n\nre &lt;- \".*([aeiou])$\"\nNameList |&gt;\n  filter(grepl(re, name)) |&gt;\n  mutate(vowel = gsub(re, \"\\\\1\", name)) |&gt;\n  group_by(sex, vowel) |&gt;\n  summarise(total = sum(total), .groups = \"drop\") |&gt;\n  pivot_wider(names_from = sex, values_from = total)\n\n# A tibble: 5 × 3\n  vowel        F        M\n  &lt;chr&gt;    &lt;int&gt;    &lt;int&gt;\n1 a     56088501  1844041\n2 e     36432218 14341114\n3 i      3693024   753311\n4 o       403120  4041190\n5 u        85508    75135\n\n\nNames ending in “a”, “e”, “i” skew female; “o” skews male."
   },
   {
     "objectID": "weeks/week5/day23-regex-slides.html#stripping-junk-out-of-numbers",
@@ -7529,7 +7529,7 @@
     "href": "weeks/week5/day23-regex-slides.html#in-class-activity",
     "title": "Regular expressions (regex)",
     "section": "In-class activity",
-    "text": "In-class activity\nOpen day23-activity.R in RStudio and work through the parts in order. (Today’s session also hosts oral check-in #1 — work on the activity when it isn’t your turn.)\n\nPart 1: detect patterns with grepl() / str_detect() + filter() on BabyNames.\nPart 2: build patterns from character classes, quantifiers, and anchors (including a “Caitlin”-style name and a phone-number regex).\nPart 3 (challenge): extract with capture groups, and clean messy strings with gsub().\n\nActivity file"
+    "text": "In-class activity\nOpen day23-activity.R in RStudio and work through the parts in order. (Work on the activity when it isn’t your group’s turn for oral check-in #1.)\n\nPart 1: detect patterns with grepl() / str_detect() + filter() on BabyNames.\nPart 2: build patterns from character classes, quantifiers, and anchors (including a “Caitlin”-style name and a phone-number regex).\nPart 3 (challenge): extract with capture groups, and clean messy strings with gsub().\n\nActivity file"
   },
   {
     "objectID": "weeks/week5/day23-regex-slides.html#wrap-up-looking-ahead",

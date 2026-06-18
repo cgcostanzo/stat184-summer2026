@@ -1073,13 +1073,13 @@ margin-right: 0; }
 <div class="callout-content">
 <p><strong>Before class</strong></p>
 <ul>
-<li><strong>Reading Quiz</strong> (Canvas): <a href="https://dtkaplan.github.io/DataComputingEbook/chap-regular-expressions.html"><em>Data Computing</em> Ch. 17</a> §17.1–17.2 — Regular expressions</li>
+<li><strong>Perusall Reading</strong> (Canvas): <a href="https://psu.instructure.com/courses/2487468/assignments/18325379"><em>Data Computing</em> Ch. 17</a> §17.1–17.2 — Regular expressions</li>
 </ul>
 <p><strong>Plan for today</strong></p>
 <ul>
-<li><strong>Project oral check-in #1</strong> runs during today’s work session (signup on Canvas)</li>
-<li>What a <strong>regex</strong> is, and the three jobs it does: <strong>detect, replace, extract</strong></li>
-<li>Building blocks: literals, <code>.</code>, character classes <code>[ ]</code>, alternation <code>|</code></li>
+<li><strong>Project oral check-in #1</strong>; work on the activity if your group doesn’t go first.</li>
+<li>What a <strong>regex</strong> and its roles (<strong>detect, replace, extract</strong>)</li>
+<li>literals, <code>.</code>, character classes <code>[ ]</code>, alternation <code>|</code></li>
 <li><strong>Quantifiers</strong> <code>? * + {n}</code>, <strong>anchors</strong> <code>^ $</code>, and <strong>escaping</strong></li>
 <li><strong>Capturing</strong> with <code>( )</code> and pulling pieces out</li>
 <li>In-class activity</li>
@@ -1131,7 +1131,7 @@ margin-right: 0; }
 </tr>
 </tbody>
 </table>
-<p>A regex lets you say “match anything shaped <em>like this</em>” without listing every case.</p>
+<p>A regex lets you say “match anything that has this particular shape” without having to list out every possible case (which is often impossible).</p>
 </section>
 <section id="three-jobs-regex-does" class="slide level2 scrollable nostretch">
 <h2>Three jobs regex does</h2>
@@ -1166,7 +1166,7 @@ margin-right: 0; }
 </tr>
 </tbody>
 </table>
-<p>The textbook uses base R (<code>grepl</code>, <code>gsub</code>); the stringr versions do the same jobs with tidier names. We’ll show both.</p>
+<p>The textbook uses base R (<code>grepl</code>, <code>gsub</code>); the analogous versions from the stringr package do the same things but have tidier names.</p>
 </section>
 <section id="grepl-does-the-pattern-appear" class="slide level2 scrollable nostretch">
 <h2>grepl(): does the pattern appear?</h2>
@@ -1195,8 +1195,8 @@ margin-right: 0; }
 </section>
 <section id="literals-special-characters" class="slide level2 scrollable nostretch">
 <h2>Literals &amp; special characters</h2>
-<p>The simplest patterns are <strong>literal</strong>: <code>&quot;able&quot;</code> matches any string containing “able” — “cap<strong>able</strong>”, “t<strong>able</strong>d” — but is <strong>case-sensitive</strong> by default (“Able” won’t match unless <code>ignore.case = TRUE</code>).</p>
-<p>These characters are <strong>special</strong> — they mean something other than themselves:</p>
+<p>The simplest patterns are <strong>literal</strong>: <code>&quot;able&quot;</code> matches any string containing “able” (“cap<strong>able</strong>”, “t<strong>able</strong>d”) but is <strong>case-sensitive</strong> by default (“Able” won’t match unless <code>ignore.case = TRUE</code>).</p>
+<p>These characters are <strong>special</strong> in that they mean something other than themselves:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a></a>.   ^   $   [   ]   {   }   |   (   )   +   *   ?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For example <code>.</code> means “any single character”, so <code>&quot;.ble&quot;</code> matches “able”, “sol<strong>uble</strong>”, “fung<strong>ible</strong>”, “B<strong>ible</strong>”.</p>
 </section>
@@ -1204,9 +1204,9 @@ margin-right: 0; }
 <h2>Character classes <code>[ ]</code></h2>
 <p>Square brackets mean “<strong>any one</strong> of these characters”:</p>
 <ul>
-<li><code>[aeiou]</code> → any vowel</li>
-<li><code>[^aeiou]</code> → <strong>not</strong> a vowel (the <code>^</code> <em>inside</em> brackets means “except”) → a consonant</li>
-<li><code>[0-9]</code> → any digit; <code>[a-z]</code> → any lowercase letter</li>
+<li><code>[aeiou]</code> <span class="math inline">\(\rightarrow\)</span> any vowel</li>
+<li><code>[^aeiou]</code> <span class="math inline">\(\rightarrow\)</span> <strong>not</strong> a vowel (the <code>^</code> <em>inside</em> brackets means “except”) <span class="math inline">\(\rightarrow\)</span> a consonant</li>
+<li><code>[0-9]</code> <span class="math inline">\(\rightarrow\)</span> any digit; <code>[a-z]</code> <span class="math inline">\(\rightarrow\)</span> any lowercase letter</li>
 </ul>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>NameList <span class="sc">|&gt;</span></span>
@@ -1308,7 +1308,7 @@ margin-right: 0; }
 <p><strong>Warning</strong></p>
 </div>
 <div class="callout-content">
-<p>The <em>Data Computing</em> reading swaps the definitions of <code>+</code> and <code>*</code>. <strong>In R (and every real regex engine):</strong> <code>*</code> = zero-or-more, <code>+</code> = one-or-more. Trust the table above and the code below — not the book on this one point.</p>
+<p>The <em>Data Computing</em> reading swaps the definitions of <code>+</code> and <code>*</code>. <strong>In R (and every real regex engine):</strong> <code>*</code> = zero-or-more, <code>+</code> = one-or-more.</p>
 </div>
 </div>
 </div>
@@ -1388,7 +1388,7 @@ margin-right: 0; }
 </section>
 <section id="parentheses-capture" class="slide level2 scrollable nostretch">
 <h2>Parentheses capture</h2>
-<p>Wrap part of a pattern in <code>( )</code> to <strong>capture</strong> it — to pull that piece out. <code>str_extract()</code> returns the matched text; with capture groups, <code>gsub()</code> can refer back to group 1 as <code>\\1</code>.</p>
+<p>Wrap part of a pattern in <code>( )</code> to <strong>capture</strong> it; in other words, pull that piece out. <code>str_extract()</code> returns the matched text; with capture groups, <code>gsub()</code> can refer back to group 1 as <code>\\1</code>.</p>
 <p>Names with <strong>four vowels in a row</strong>, extracting those vowels:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>BabyNames <span class="sc">|&gt;</span></span>
@@ -1411,7 +1411,7 @@ margin-right: 0; }
 </section>
 <section id="backreferences-with-1" class="slide level2 scrollable nostretch">
 <h2>Backreferences with <code>\\1</code></h2>
-<p>The regex <code>&quot;.*([aeiou])$&quot;</code> = “anything, then a captured final vowel”. In <code>gsub()</code>, <code>replacement = &quot;\\1&quot;</code> keeps <strong>only</strong> the captured group — so the whole name collapses to its last vowel:</p>
+<p>The regex <code>&quot;.*([aeiou])$&quot;</code> = “anything, then a captured final vowel”. In <code>gsub()</code>, <code>replacement = &quot;\\1&quot;</code> keeps <strong>only</strong> the captured group, so the whole name collapses to its last vowel:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>re <span class="ot">&lt;-</span> <span class="st">&quot;.*([aeiou])$&quot;</span></span>
 <span id="cb20-2"><a></a>NameList <span class="sc">|&gt;</span></span>
@@ -1494,7 +1494,7 @@ margin-right: 0; }
 </section>
 <section id="in-class-activity" class="slide level2 scrollable nostretch">
 <h2>In-class activity</h2>
-<p>Open <code>day23-activity.R</code> in RStudio and work through the parts in order. (Today’s session also hosts <strong>oral check-in #1</strong> — work on the activity when it isn’t your turn.)</p>
+<p>Open <code>day23-activity.R</code> in RStudio and work through the parts in order. (Work on the activity when it isn’t your group’s turn for <strong>oral check-in #1</strong>.)</p>
 <ul>
 <li><strong>Part 1</strong>: <strong>detect</strong> patterns with <code>grepl()</code> / <code>str_detect()</code> + <code>filter()</code> on <code>BabyNames</code>.</li>
 <li><strong>Part 2</strong>: build patterns from <strong>character classes, quantifiers, and anchors</strong> (including a “Caitlin”-style name and a phone-number regex).</li>
