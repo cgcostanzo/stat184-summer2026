@@ -2601,7 +2601,7 @@
     "href": "weeks/week5/day20-functions-slides.html#always-test-on-simple-inputs",
     "title": "Writing functions in R",
     "section": "Always test on simple inputs",
-    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a      b     c     d\n  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 0.311 0      0     1    \n2 1     1      1     0    \n3 0     0.248  0.968 0.256\n4 0.937 0.619  0.657 0.716\n5 0.606 0.0204 0.916 0.843"
+    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b     c     d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 1     1     0     0    \n2 0     0.442 0.246 1    \n3 0.215 0.674 0.423 0.667\n4 0.469 0     0.566 0.753\n5 0.833 0.157 1     0.756"
   },
   {
     "objectID": "weeks/week5/day20-functions-slides.html#changing-a-function-in-one-place",
@@ -2783,7 +2783,7 @@
     "href": "weeks/week5/day20-functions-page.html#always-test-on-simple-inputs",
     "title": "Writing functions in R",
     "section": "Always test on simple inputs",
-    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b     c      d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;\n1 0.497 1     1     0.123 \n2 0     0.343 0.457 0.0687\n3 1     0.495 0.607 0     \n4 0.457 0.977 0.530 0.528 \n5 0.498 0     0     1"
+    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b      c     d\n  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;\n1 0.529 0.496 0      1    \n2 0.360 1     0.342  0    \n3 0     0.192 1      0.764\n4 1     0.556 0.180  0.548\n5 0.800 0     0.0630 0.747"
   },
   {
     "objectID": "weeks/week5/day20-functions-page.html#changing-a-function-in-one-place",
@@ -4608,7 +4608,7 @@
     "href": "weeks/week6/index.html#daily-plan",
     "title": "Week 6 — Special Topics & Project",
     "section": "Daily plan",
-    "text": "Daily plan\n\n\n\nDate\nTopic\nFiles\n\n\n\n\nMon Jun 22\nQuiz 5 (rescheduled) · intro to clustering\nquiz, slides\n\n\nTue Jun 23\nDecision trees / CART (or alternative)\nslides, in-class code\n\n\nWed Jun 24\nProject work day · oral check-in #1 makeups\n—\n\n\nThu Jun 25\nProject work day · oral check-in #2 (final walkthrough)\n—\n\n\nFri Jun 26\nQuiz 6 · short project presentations · wrap-up\nquiz"
+    "text": "Daily plan\n\n\n\nDate\nTopic\nFiles\n\n\n\n\nMon Jun 22\nQuiz 4 (rescheduled) · intro to clustering\nquiz, slides\n\n\nTue Jun 23\nDecision trees / CART (or alternative)\nslides, in-class code\n\n\nWed Jun 24\nProject work day · oral check-in #1 makeups\n—\n\n\nThu Jun 25\nProject work day · oral check-in #2 (final walkthrough)\n—\n\n\nFri Jun 26\nshort project presentations · wrap-up\nquiz"
   },
   {
     "objectID": "weeks/week6/index.html#readings-due-this-week",
@@ -4622,7 +4622,7 @@
     "href": "weeks/week6/index.html#assignments-due-this-week",
     "title": "Week 6 — Special Topics & Project",
     "section": "Assignments due this week",
-    "text": "Assignments due this week\n\nQuiz 5 — Monday Jun 22 in class\nHW 5 — due Tue Jun 23, 11:59 p.m.\nProject Checkpoint 2 — due Wed Jun 24, 11:59 p.m.\nProject Oral Check-in #2 — Thursday Jun 25 in class (signup on Canvas)\nQuiz 6 — Friday Jun 26 in class\nFinal project report + video URL — due Friday Jun 26, 11:59 p.m."
+    "text": "Assignments due this week\n\nQuiz 4 — Monday Jun 22 in class\nHW 5 — due Tue Jun 23, 11:59 p.m.\nProject Checkpoint 2 — due Wed Jun 24, 11:59 p.m.\nProject Oral Check-in #2 — Thursday Jun 25 in class (signup on Canvas)\nFinal project report + video URL — due Friday Jun 26, 11:59 p.m."
   },
   {
     "objectID": "weeks/week6/index.html#after-the-course",
@@ -8684,7 +8684,7 @@
     "href": "project/final-rubric.html",
     "title": "Final Report Rubric",
     "section": "",
-    "text": "One PDF per team to Canvas, rendered from a Quarto document in your team’s GitHub repo.\nA URL to your 5–7 minute team video presentation.\nFinal commit pushed to GitHub repo by the deadline.\n\nDue: Friday, June 26, 11:59 p.m.\n\n\n\n\n\n\nImportantHard requirements\n\n\n\nYour report must meet all of these. Missing any one costs the associated rubric points (and a missing required section can cost more than its line item, since dependent items also fail).\n\nStructure: all sections in the Required report structure, in order.\nLength: at least 10 pages of body (narrative + figures + tables). The title page, references, and Code Appendix do not count.\nFigures: at least three, each with a caption, a numbered cross-reference, and discussion in the text.\nTable: at least one non-trivial (summary/aggregated) table, captioned and cross-referenced.\nMultivariate figure: at least one figure showing 3+ variables.\nCode: in the Code Appendix only."
+    "text": "One PDF per team to Canvas, rendered from a Quarto document in your team’s GitHub repo.\nLink to your team’s GitHub repo.\nFinal commit pushed to GitHub repo by the deadline.\n\nDue: Friday, June 26, 11:59 p.m.\n\n\n\n\n\n\nImportantHard requirements\n\n\n\n\nStructure: all sections in the Required report structure, in order.\nLength: at least 10 pages of body (narrative + figures + tables). The title page, references, and Code Appendix do not count.\nFigures: at least three, each with a caption, a numbered cross-reference, and discussion in the text.\nTable: at least one non-trivial (summary/aggregated) table, captioned and cross-referenced.\nMultivariate figure: at least one figure showing 3+ variables.\nCode: in the Code Appendix only."
   },
   {
     "objectID": "project/final-rubric.html#code-quality-15",
@@ -8694,25 +8694,18 @@
     "text": "Code quality (15)\n\n\n\nComponent\nPoints\n\n\n\n\nCode runs cleanly (renders from scratch)\n5\n\n\nMeaningfully commented\n4\n\n\nCode in appendix, not body\n3\n\n\nReproducible from GitHub repo\n3"
   },
   {
-    "objectID": "project/final-rubric.html#reproducibility-10",
-    "href": "project/final-rubric.html#reproducibility-10",
+    "objectID": "project/final-rubric.html#reproducibility-20",
+    "href": "project/final-rubric.html#reproducibility-20",
     "title": "Final Report Rubric",
-    "section": "Reproducibility (10)",
-    "text": "Reproducibility (10)\n\n\n\nComponent\nPoints\n\n\n\n\nGitHub repo well-organized with README\n4\n\n\nAll team members have commits\n3\n\n\nData accessible (in repo or via working URL)\n3"
-  },
-  {
-    "objectID": "project/final-rubric.html#video-presentation-10",
-    "href": "project/final-rubric.html#video-presentation-10",
-    "title": "Final Report Rubric",
-    "section": "Video presentation (10)",
-    "text": "Video presentation (10)\n\n\n\nComponent\nPoints\n\n\n\n\nWithin time limit (5–7 min)\n2\n\n\nEach team member speaks\n3\n\n\nCovers question, data, key findings\n3\n\n\nCoherent, well-paced, audible\n2"
+    "section": "Reproducibility (20)",
+    "text": "Reproducibility (20)\n\n\n\nComponent\nPoints\n\n\n\n\nGitHub repo well-organized with README\n8\n\n\nAll team members have commits\n6\n\n\nData accessible (in repo or via working URL)\n6"
   },
   {
     "objectID": "project/final-rubric.html#ai-use-integrity-5",
     "href": "project/final-rubric.html#ai-use-integrity-5",
     "title": "Final Report Rubric",
     "section": "AI use & integrity (5)",
-    "text": "AI use & integrity (5)\n\n\n\nComponent\nPoints\n\n\n\n\nAI use note included in report\n2\n\n\nHonest attribution of external sources\n3\n\n\n\nTotal: 100"
+    "text": "AI use & integrity (5)\n\n\n\nComponent\nPoints\n\n\n\n\nAI use note included in report\n2\n\n\nAttribution of external sources\n3\n\n\n\nTotal: 100"
   },
   {
     "objectID": "project/index.html",
