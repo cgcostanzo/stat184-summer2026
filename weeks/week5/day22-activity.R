@@ -8,7 +8,6 @@ out_dir <- tempdir()
 
 library(tidyverse)
 
-
 # --- Part 1: map() basics -----------------------------------------------------
 
 # 1a. Use map() to square each of the following numbers: 1, 2, 3. 

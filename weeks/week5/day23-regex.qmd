@@ -40,13 +40,13 @@ NameList <- BabyNames |>
 
 **Before class**
 
-- **Reading Quiz** (Canvas): [*Data Computing* Ch. 17](https://dtkaplan.github.io/DataComputingEbook/chap-regular-expressions.html) §17.1–17.2 — Regular expressions
+- **Perusall Reading** (Canvas): [*Data Computing* Ch. 17](https://psu.instructure.com/courses/2487468/assignments/18325379) §17.1–17.2 — Regular expressions
 
 **Plan for today**
 
-- **Project oral check-in #1** runs during today's work session (signup on Canvas)
-- What a **regex** is, and the three jobs it does: **detect, replace, extract**
-- Building blocks: literals, `.`, character classes `[ ]`, alternation `|`
+- **Project oral check-in #1**; work on the activity if your group doesn't go first.
+- What a **regex** and its roles (**detect, replace, extract**)
+- literals, `.`, character classes `[ ]`, alternation `|`
 - **Quantifiers** `? * + {n}`, **anchors** `^ $`, and **escaping**
 - **Capturing** with `( )` and pulling pieces out
 - In-class activity
@@ -70,7 +70,7 @@ A **regular expression** (regex) is a compact way to describe a **pattern** in t
 | US postal codes | `16801` · `55105-1362` |
 | Stray whitespace | `"  henry  "` |
 
-A regex lets you say "match anything shaped *like this*" without listing every case.
+A regex lets you say "match anything that has this particular shape" without having to list out every possible case (which is often impossible).
 
 ## Three jobs regex does {.scrollable .nostretch}
 
@@ -82,7 +82,7 @@ Across all of data cleaning, regex does three things:
 | **Replace** a pattern | `gsub()` | `str_replace_all()` | `mutate()` |
 | **Extract** a match | `regmatches()` | `str_extract()` | `mutate()` |
 
-The textbook uses base R (`grepl`, `gsub`); the stringr versions do the same jobs with tidier names. We'll show both.
+The textbook uses base R (`grepl`, `gsub`); the analogous versions from the stringr package do the same things but have tidier names.
 
 ## grepl(): does the pattern appear? {.scrollable .nostretch}
 
@@ -101,9 +101,9 @@ NameList |>
 
 ## Literals & special characters {.scrollable .nostretch}
 
-The simplest patterns are **literal**: `"able"` matches any string containing "able" — "cap**able**", "t**able**d" — but is **case-sensitive** by default ("Able" won't match unless `ignore.case = TRUE`).
+The simplest patterns are **literal**: `"able"` matches any string containing "able" ("cap**able**", "t**able**d") but is **case-sensitive** by default ("Able" won't match unless `ignore.case = TRUE`).
 
-These characters are **special** — they mean something other than themselves:
+These characters are **special** in that they mean something other than themselves:
 
 ``` text
 .   ^   $   [   ]   {   }   |   (   )   +   *   ?
@@ -115,9 +115,9 @@ For example `.` means "any single character", so `".ble"` matches "able", "sol**
 
 Square brackets mean "**any one** of these characters":
 
-- `[aeiou]` → any vowel
-- `[^aeiou]` → **not** a vowel (the `^` *inside* brackets means "except") → a consonant
-- `[0-9]` → any digit; `[a-z]` → any lowercase letter
+- `[aeiou]` $\rightarrow$ any vowel
+- `[^aeiou]` $\rightarrow$ **not** a vowel (the `^` *inside* brackets means "except") $\rightarrow$ a consonant
+- `[0-9]` $\rightarrow$ any digit; `[a-z]` $\rightarrow$ any lowercase letter
 
 ```{r}
 #| echo: TRUE
@@ -162,7 +162,7 @@ A quantifier follows a pattern and says **how many times** it repeats:
 | `{n,}` | `n` or more times |
 
 ::: {.callout-warning}
-The *Data Computing* reading swaps the definitions of `+` and `*`. **In R (and every real regex engine):** `*` = zero-or-more, `+` = one-or-more. Trust the table above and the code below — not the book on this one point.
+The *Data Computing* reading swaps the definitions of `+` and `*`. **In R (and every real regex engine):** `*` = zero-or-more, `+` = one-or-more.
 :::
 
 ## Quantifiers in action {.scrollable .nostretch}
@@ -220,7 +220,7 @@ Here `^\\$` is a literal `$` at the start; `¢$` is a literal `¢` at the end. W
 
 ## Parentheses capture {.scrollable .nostretch}
 
-Wrap part of a pattern in `( )` to **capture** it — to pull that piece out. `str_extract()` returns the matched text; with capture groups, `gsub()` can refer back to group 1 as `\\1`.
+Wrap part of a pattern in `( )` to **capture** it; in other words, pull that piece out. `str_extract()` returns the matched text; with capture groups, `gsub()` can refer back to group 1 as `\\1`.
 
 Names with **four vowels in a row**, extracting those vowels:
 
@@ -237,7 +237,7 @@ BabyNames |>
 
 ## Backreferences with `\\1` {.scrollable .nostretch}
 
-The regex `".*([aeiou])$"` = "anything, then a captured final vowel". In `gsub()`, `replacement = "\\1"` keeps **only** the captured group — so the whole name collapses to its last vowel:
+The regex `".*([aeiou])$"` = "anything, then a captured final vowel". In `gsub()`, `replacement = "\\1"` keeps **only** the captured group, so the whole name collapses to its last vowel:
 
 ```{r}
 #| echo: TRUE
@@ -292,7 +292,7 @@ stringr has friendly shortcuts for these: `str_remove_all()`, `str_trim()` (ends
 
 ## In-class activity {.scrollable .nostretch}
 
-Open `day23-activity.R` in RStudio and work through the parts in order. (Today's session also hosts **oral check-in #1** — work on the activity when it isn't your turn.)
+Open `day23-activity.R` in RStudio and work through the parts in order. (Work on the activity when it isn't your group's turn for **oral check-in #1**.)
 
 - **Part 1**: **detect** patterns with `grepl()` / `str_detect()` + `filter()` on `BabyNames`.
 - **Part 2**: build patterns from **character classes, quantifiers, and anchors** (including a "Caitlin"-style name and a phone-number regex).

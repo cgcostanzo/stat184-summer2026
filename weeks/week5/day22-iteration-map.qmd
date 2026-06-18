@@ -33,7 +33,7 @@ library(tidyverse)
 
 **Before class**
 
-- **Reading Quiz** (Canvas): [*R4DS* Ch. 26](https://r4ds.hadley.nz/iteration) §26.4–26.5 — Iteration
+- **Perusall Reading**: [*R4DS* Ch. 26](https://psu.instructure.com/courses/2487468/assignments/18325378) §26.4–26.5 - Iteration
 
 **Plan for today**
 
