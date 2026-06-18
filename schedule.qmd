@@ -74,8 +74,8 @@ Week 5 covers material that *Data Computing* doesn't address in depth. Readings 
 | Mon Jun 15 | Writing functions in R | [R4DS Ch 25 (Functions)](https://psu.instructure.com/courses/2487468/assignments/18325376) | [HW 4](https://psu.instructure.com/courses/2487468/assignments/18333004) |
 | Tue Jun 16 | Control flow · `if/else`, `for`, `while` | [R4DS Ch 26 §26.1–26.3](https://psu.instructure.com/courses/2487468/assignments/18325377) | --- |
 | Wed Jun 17 | Vectorized operations · `purrr::map` | [R4DS Ch 26 §26.4–26.5](https://psu.instructure.com/courses/2487468/assignments/18325378) | --- |
-| Thu Jun 18 | Strings, dates, and regex | [DC §17.1–17.2](https://psu.instructure.com/courses/2487468/assignments/18325379) | **Project oral check-in #1** (during class) |
-| Fri Jun 19 | **No class - Juneteenth** · Quiz 5 rescheduled to Mon Jun 22 | --- | --- |
+| Thu Jun 18 | Strings, dates, and regex | [DC §17.1–17.2](https://psu.instructure.com/courses/2487468/assignments/18325379) | [**Project oral check-in #1**](https://psu.instructure.com/courses/2487468/assignments/18347819?module_item_id=48278139) (during class) |
+| Fri Jun 19 | **No class - Juneteenth** · Quiz 5 rescheduled to Mon Jun 22 | --- | [HW 5](https://psu.instructure.com/courses/2487468/assignments/18343523) |
 
 : Week 5 schedule {tbl-colwidths="[10,35,25,30]"}
 
@@ -83,15 +83,15 @@ Week 5 covers material that *Data Computing* doesn't address in depth. Readings 
 
 | Date | Topic | Read before class | Due |
 |---|---|---|---|
-| Mon Jun 22 | **Quiz 5 (rescheduled)** · unsupervised learning, clustering | [DC §18.2](https://psu.instructure.com/courses/2487468/assignments/18325380) | Quiz 5 (in class) |
-| Tue Jun 23 | Decision trees / CART | [DC §18.3](https://psu.instructure.com/courses/2487468/assignments/18325381) | [HW 5]() |
-| Wed Jun 24 | **Project work day** · oral check-in #1 makeups | --- | [**Project Checkpoint 2**]() |
-| Thu Jun 25 | **Project work day** · oral check-in #2 (final walkthrough) | --- | --- |
+| Mon Jun 22 | **Quiz 4 (rescheduled)** · unsupervised learning, clustering | [DC §18.2](https://psu.instructure.com/courses/2487468/assignments/18325380) | Quiz 5 (in class) |
+| Tue Jun 23 | Decision trees / CART | [DC §18.3](https://psu.instructure.com/courses/2487468/assignments/18325381) | --- |
+| Wed Jun 24 | Topic TBD | --- | [**Project Checkpoint 2**](https://psu.instructure.com/courses/2487468/discussion_topics/17448010) |
+| Thu Jun 25 | **Project work day** · [oral check-in #2 (final walkthrough)](https://psu.instructure.com/courses/2487468/assignments/18347821) | --- | --- |
 | Fri Jun 26 | **Quiz 6** · short project presentations · course wrap-up | --- | Quiz 6 (in class) · [**Final project report due 11:59 p.m.**]() |
 
 : Week 6 schedule {tbl-colwidths="[10,35,25,30]"}
 
-## Submission cheat-sheet
+## Submission guide
 
 | Item | Format | Where |
 |---|---|---|
@@ -101,7 +101,7 @@ Week 5 covers material that *Data Computing* doesn't address in depth. Readings 
 | In-class activities | Paper or Canvas | In class or end-of-day Canvas |
 | Project | Quarto rendered to PDF + GitHub repo | Canvas |
 
-: Submission cheat-sheet {tbl-colwidths="[25,40,35]"}
+: Submission guide {tbl-colwidths="[25,40,35]"}
 
 ## Sources
 

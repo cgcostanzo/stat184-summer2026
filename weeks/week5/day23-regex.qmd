@@ -111,6 +111,23 @@ These characters are **special** in that they mean something other than themselv
 
 For example `.` means "any single character", so `".ble"` matches "able", "sol**uble**", "fung**ible**", "B**ible**".
 
+## Literals & special characters {.scrollable .nostretch}
+
+| Character | Meaning | Example |
+| :--- | :--- | :--- |
+| `.` | **Any single character** (except a newline) | `".ble"` matches "**able**", "sol**uble**", or "B**ible**". |
+| `^` | **Start of the string** | `"^a"` matches "**a**pple" but not "b**a**nana". |
+| `$` | **End of the string** | `"e$"` matches "appl**e**" but not "**e**lephant". |
+| `[ ]` | **Character class** (matches *any one* character inside) | `"[ab]c"` matches "**ac**" or "**bc**". |
+| `|` | **OR** (alternation) | `"cat|dog"` matches "**cat**" or "**dog**". |
+| `( )` | **Grouping** (treats multiple characters as one unit) | `"(ab)+"` matches "**abab**". |
+| `*` | **Zero or more** of the preceding item | `"a*b"` matches "**b**", "**ab**", or "**aab**". |
+| `+` | **One or more** of the preceding item | `"a+b"` matches "**ab**" or "**aab**" (but not "b"). |
+| `?` | **Zero or one** of the preceding item (makes it optional) | `"colou?r"` matches "**color**" or "**colour**". |
+| `{ }` | **Quantifier** (specific number or range of repetitions) | `"a{2,3}"` matches "**aa**" or "**aaa**". |
+
+> **Note:** If you ever need to match one of these special characters literally (like an actual period or question mark), you have to escape it by putting a backslash in front of it (e.g., `\.` or `\?`). In R, because of how strings work, you usually need *two* backslashes (e.g., `\\.`).
+
 ## Character classes `[ ]` {.scrollable .nostretch}
 
 Square brackets mean "**any one** of these characters":

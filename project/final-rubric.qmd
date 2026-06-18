@@ -1,6 +1,6 @@
 ---
 title: "Final Report Rubric"
-subtitle: "STAT 184 — Summer 2026 Project"
+subtitle: "STAT 184 --- Summer 2026 Project"
 format:
   html:
     toc: true
@@ -11,15 +11,13 @@ editor: source
 # Submission
 
 - One PDF per team to Canvas, rendered from a Quarto document in your team's GitHub repo.
-- A URL to your 5–7 minute team video presentation.
+- Link to your team's GitHub repo.
 - Final commit pushed to GitHub repo by the deadline.
 
 **Due:** Friday, June 26, 11:59 p.m.
 
 ::: callout-important
 ## Hard requirements
-
-Your report must meet all of these. Missing any one costs the associated rubric points (and a missing required section can cost more than its line item, since dependent items also fail).
 
 - **Structure:** all sections in the [Required report structure](index.qmd#required-report-structure), in order.
 - **Length:** at least **10 pages of body** (narrative + figures + tables). The title page, references, and Code Appendix do **not** count.
@@ -35,7 +33,7 @@ Components below follow the required report structure in the [project guidelines
 
 | Component | Points |
 |---|---|
-| Introduction & Motivation — clear and engaging | 4 |
+| Introduction & Motivation --- clear and engaging | 4 |
 | Research question(s) explicitly stated | 4 |
 | Data Provenance documented (source, collector, purpose, cases) | 5 |
 | Variables described and justified | 4 |
@@ -59,36 +57,27 @@ Components below follow the required report structure in the [project guidelines
 | Code in appendix, not body | 3 |
 | Reproducible from GitHub repo | 3 |
 
-## Reproducibility (10)
+## Reproducibility (20)
 
 | Component | Points |
 |---|---|
-| GitHub repo well-organized with README | 4 |
-| All team members have commits | 3 |
-| Data accessible (in repo or via working URL) | 3 |
-
-## Video presentation (10)
-
-| Component | Points |
-|---|---|
-| Within time limit (5–7 min) | 2 |
-| Each team member speaks | 3 |
-| Covers question, data, key findings | 3 |
-| Coherent, well-paced, audible | 2 |
+| GitHub repo well-organized with README | 8 |
+| All team members have commits | 6 |
+| Data accessible (in repo or via working URL) | 6 |
 
 ## AI use & integrity (5)
 
 | Component | Points |
 |---|---|
 | AI use note included in report | 2 |
-| Honest attribution of external sources | 3 |
+| Attribution of external sources | 3 |
 
 **Total: 100**
 
 # Individual adjustments
 
-Project grades may be adjusted up or down by up to 10 points per individual based on the oral checkpoints and observable team contribution. A student who could not engage with the project at the oral checkpoints will receive a lower individual grade than their team's collective work would suggest.
+Project grades may be adjusted up or down by up to 25 points per individual based on the oral checkpoints and observable team contribution. A student who could not engage with the project at the oral checkpoints will receive a lower individual grade than their team's collective work would suggest.
 
 # Late policy
 
-Late work for the final project requires a request to the instructor **at least 24 hours before the deadline**, with evidence of progress and a proposed new deadline. Without prior arrangement, late final reports lose 10 points per 24 hours.
+Late work for the final project requires a request to the instructor **at least 24 hours before the deadline**, with evidence of progress and a proposed new deadline. Without prior arrangement, late final reports lose 10 points per 24 hours, up to 48 hours. After 48 hours, no late submissions will be accepted or graded. 

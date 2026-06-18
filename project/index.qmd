@@ -20,15 +20,16 @@ These are from past sections. Their requirements were slightly different and the
 - [Customer Shopping Trends (Ava, Sydney & Kacie)](https://github.com/Stat184-Fall2024/Sec4_FP_KacieRohn_SydneyHolt_AvaCascario/blob/main/Quarto-Stat-184-Final-Project.pdf)
 - [IMDB Movie Data Analysis (Sanjana, Nishita & Jess)](https://github.com/Stat184-Fall2024/Sec4_FP_SanjanaBandaru_NishitaBhanushali_JesaBurleson/blob/main/Final-Project--Real-.pdf)
 
-# Deadlines at a glance
+# Deadlines
 
 | Milestone | Due | Weight (of project grade) |
 |------------------------|------------------------|------------------------|
-| Team formation | Thu Jun 4, 11:59 p.m. | — (required) |
+| Team formation | Thu Jun 4, 11:59 p.m. | --- (required) |
 | **Checkpoint 1**: topic, question, data sources | Sunday Jun 14, 11:59 p.m. | 15% |
-| **Oral check-in #1** (mid-project) | Thu Jun 18 in class | 15% |
-| **Checkpoint 2**: partial draft with visualizations | Wed Jun 24, 11:59 p.m. | 20% |
-| **Oral check-in #2** (final walkthrough) | Thu Jun 25 in class | 20% |
+| **Oral check-in #1** (mid-project) | Thu Jun 18 in class | 10% |
+| **Checkpoint 2**: partial draft with visualizations | Wed Jun 24, 11:59 p.m. |15% |
+| **Oral check-in #2** (final walkthrough) | Thu Jun 25 in class | 10% |
+| **In-class presentation** | Fri Jun 26 (in-class) | 20% |
 | **Final report** | Fri Jun 26, 11:59 p.m. | 30% |
 
 # Teams
@@ -37,7 +38,7 @@ These are from past sections. Their requirements were slightly different and the
 - Form teams by the deadline above. If you don't have a team by then, I will assign one.
 - All team members are individually responsible for understanding the entire project.
 
-# Project guidelines
+# Project report guidelines
 
 ## Topic and questions
 
@@ -111,9 +112,6 @@ If a team member can't explain code submitted under their name, that affects the
 
 # Checkpoints
 
-- [Checkpoint 1 — topic and data plan](checkpoint-1.qmd)
-- [Checkpoint 2 — partial draft](checkpoint-2.qmd)
-- [Oral check-in rubric](oral-checkpoint-rubric.qmd)
 - [Final report rubric](final-rubric.qmd)
 
 # FAQs
