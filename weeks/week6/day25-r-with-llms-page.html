@@ -4368,14 +4368,14 @@ margin-bottom: 1.5rem;
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#why-this-matters" id="toc-why-this-matters" class="nav-link active" data-scroll-target="#why-this-matters">Why this matters</a>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a>
   <ul class="collapse">
   <li><a href="#llms-are-part-of-the-r-workflow-now" id="toc-llms-are-part-of-the-r-workflow-now" class="nav-link" data-scroll-target="#llms-are-part-of-the-r-workflow-now">LLMs are part of the R workflow now</a></li>
   <li><a href="#three-places-youll-use-one" id="toc-three-places-youll-use-one" class="nav-link" data-scroll-target="#three-places-youll-use-one">Three places you’ll use one</a></li>
   </ul></li>
   <li><a href="#prompting-well-for-r" id="toc-prompting-well-for-r" class="nav-link" data-scroll-target="#prompting-well-for-r">Prompting well for R</a>
   <ul class="collapse">
-  <li><a href="#give-it-what-a-human-helper-would-need" id="toc-give-it-what-a-human-helper-would-need" class="nav-link" data-scroll-target="#give-it-what-a-human-helper-would-need">Give it what a human helper would need</a></li>
+  <li><a href="#be-specific" id="toc-be-specific" class="nav-link" data-scroll-target="#be-specific">Be specific</a></li>
   <li><a href="#a-reproducible-example-beats-a-paragraph" id="toc-a-reproducible-example-beats-a-paragraph" class="nav-link" data-scroll-target="#a-reproducible-example-beats-a-paragraph">A reproducible example beats a paragraph</a></li>
   <li><a href="#weak-prompt-vs.-strong-prompt" id="toc-weak-prompt-vs.-strong-prompt" class="nav-link" data-scroll-target="#weak-prompt-vs.-strong-prompt">Weak prompt vs. strong prompt</a></li>
   </ul></li>
@@ -4383,17 +4383,13 @@ margin-bottom: 1.5rem;
   <ul class="collapse">
   <li><a href="#what-ellmer-is" id="toc-what-ellmer-is" class="nav-link" data-scroll-target="#what-ellmer-is">What <code>ellmer</code> is</a></li>
   <li><a href="#api-keys-never-in-your-code" id="toc-api-keys-never-in-your-code" class="nav-link" data-scroll-target="#api-keys-never-in-your-code">API keys: never in your code</a></li>
-  <li><a href="#the-interesting-part-an-llm-as-a-data-step" id="toc-the-interesting-part-an-llm-as-a-data-step" class="nav-link" data-scroll-target="#the-interesting-part-an-llm-as-a-data-step">The interesting part: an LLM as a <em>data step</em></a></li>
+  <li><a href="#llm-as-a-data-step" id="toc-llm-as-a-data-step" class="nav-link" data-scroll-target="#llm-as-a-data-step">LLM as a <em>data step</em></a></li>
   </ul></li>
   <li><a href="#the-catch" id="toc-the-catch" class="nav-link" data-scroll-target="#the-catch">The catch</a>
   <ul class="collapse">
-  <li><a href="#llms-are-confident-not-correct" id="toc-llms-are-confident-not-correct" class="nav-link" data-scroll-target="#llms-are-confident-not-correct">LLMs are confident, not correct</a></li>
-  <li><a href="#the-verify-loop-non-negotiable" id="toc-the-verify-loop-non-negotiable" class="nav-link" data-scroll-target="#the-verify-loop-non-negotiable">The verify loop (non-negotiable)</a></li>
-  <li><a href="#use-it-well" id="toc-use-it-well" class="nav-link" data-scroll-target="#use-it-well">Use it well</a></li>
-  </ul></li>
-  <li><a href="#academic-integrity" id="toc-academic-integrity" class="nav-link" data-scroll-target="#academic-integrity">Academic integrity</a>
-  <ul class="collapse">
-  <li><a href="#what-the-course-policy-asks" id="toc-what-the-course-policy-asks" class="nav-link" data-scroll-target="#what-the-course-policy-asks">What the course policy asks</a></li>
+  <li><a href="#llms-are-confident-not-always-correct" id="toc-llms-are-confident-not-always-correct" class="nav-link" data-scroll-target="#llms-are-confident-not-always-correct">LLMs are confident, not always correct</a></li>
+  <li><a href="#verification" id="toc-verification" class="nav-link" data-scroll-target="#verification">Verification</a></li>
+  <li><a href="#use-it-wisely" id="toc-use-it-wisely" class="nav-link" data-scroll-target="#use-it-wisely">Use it wisely</a></li>
   </ul></li>
   <li><a href="#activity" id="toc-activity" class="nav-link" data-scroll-target="#activity">Activity</a>
   <ul class="collapse">
@@ -4439,15 +4435,13 @@ margin-bottom: 1.5rem;
 <div class="callout-body-container callout-body">
 <p><strong>Before class</strong></p>
 <ul>
-<li>No new reading. Skim the course <a href="../../syllabus/academic-integrity-and-ai-policy.html"><strong>AI policy</strong></a>.</li>
+<li><strong>Perusall Reading</strong> (Canvas): <em>Data Computing</em> <a href="https://psu.instructure.com/courses/2487468/assignments/18325381">§18.3 (trees)</a></li>
 </ul>
 <p><strong>Plan for today</strong></p>
 <ul>
 <li>Three ways to use a <strong>large language model (LLM)</strong> with R: <strong>chat</strong>, <strong>in the IDE</strong>, and <strong>from code</strong>.</li>
-<li>How to <strong>prompt well</strong> for R help (and give a reproducible example).</li>
+<li>How to <strong>prompt well</strong> for R help.</li>
 <li>Calling an LLM <strong>from R</strong> with the <strong><code>ellmer</code></strong> package.</li>
-<li>The non-negotiable habit: <strong>verify everything</strong> (yesterday’s <em>and</em> tomorrow’s theme).</li>
-<li>Doing all of this <strong>within the course AI policy</strong>.</li>
 </ul>
 <p><strong>Helpful links</strong></p>
 <ul>
@@ -4455,17 +4449,17 @@ margin-bottom: 1.5rem;
 </ul>
 </div>
 </div>
-<section id="why-this-matters" class="level1" data-background-color="#001E44">
-<h1 data-background-color="#001E44">Why this matters</h1>
+<section id="overview" class="level1" data-background-color="#001E44">
+<h1 data-background-color="#001E44">Overview</h1>
 <section id="llms-are-part-of-the-r-workflow-now" class="level2 scrollable nostretch">
 <h2 class="scrollable nostretch anchored" data-anchor-id="llms-are-part-of-the-r-workflow-now">LLMs are part of the R workflow now</h2>
-<p>An <strong>LLM</strong> (ChatGPT, Claude, Gemini, …) predicts likely text from a prompt. For an R user that’s useful for:</p>
+<p>An <strong>LLM</strong> (ChatGPT, Claude, Gemini, etc.) predicts likely text from a prompt. For an R user that’s useful for:</p>
 <ul>
-<li><strong>Explaining errors</strong> — paste a cryptic message, get a plain-English cause.</li>
-<li><strong>Drafting code</strong> — “write a <code>ggplot</code> of X by Y, faceted by Z.”</li>
-<li><strong>Refactoring</strong> — “make this tidyverse instead of base R.”</li>
-<li><strong>Learning</strong> — “what does <code>across()</code> do, with a small example?”</li>
-<li><strong>As a data tool itself</strong> — classify, extract, or summarize text <em>inside</em> a pipeline.</li>
+<li><strong>Explaining errors</strong>: paste a cryptic message, get a plain-English cause.</li>
+<li><strong>Drafting code</strong>: “write a <code>ggplot</code> of X by Y, faceted by Z.”</li>
+<li><strong>Refactoring</strong>: “make this tidyverse instead of base R.”</li>
+<li><strong>Learning</strong>: “what does <code>across()</code> do, with a small example?”</li>
+<li><strong>As a data tool itself</strong>: classify, extract, or summarize text <em>inside</em> a pipeline.</li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -4477,7 +4471,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The skill that matters is <strong>not</strong> “getting an answer.” It’s judging whether the answer is <strong>right</strong> — which is exactly what a data course trains you to do.</p>
+<p>The skill that matters most is <strong>not</strong> “getting an answer.” It’s judging whether the answer is <strong>right</strong>.</p>
 </div>
 </div>
 </section>
@@ -4499,7 +4493,7 @@ Tip
 <tbody>
 <tr class="odd">
 <td><strong>Chat window</strong></td>
-<td>claude.ai, ChatGPT, Gemini</td>
+<td>Claude, ChatGPT, Gemini</td>
 <td>one-off questions, explaining errors, learning</td>
 </tr>
 <tr class="even">
@@ -4510,23 +4504,22 @@ Tip
 <tr class="odd">
 <td><strong>From R code</strong></td>
 <td>the <strong><code>ellmer</code></strong> package</td>
-<td>doing the <em>same LLM call on every row</em> — a data step</td>
+<td>doing the <em>same LLM call on every row</em></td>
 </tr>
 </tbody>
 </table>
-<p>Today we touch all three, but spend the most time on the third — because that’s the one unique to a programming course.</p>
 </section>
 </section>
 <section id="prompting-well-for-r" class="level1" data-background-color="#001E44">
 <h1 data-background-color="#001E44">Prompting well for R</h1>
-<section id="give-it-what-a-human-helper-would-need" class="level2 scrollable nostretch">
-<h2 class="scrollable nostretch anchored" data-anchor-id="give-it-what-a-human-helper-would-need">Give it what a human helper would need</h2>
+<section id="be-specific" class="level2 scrollable nostretch">
+<h2 class="scrollable nostretch anchored" data-anchor-id="be-specific">Be specific</h2>
 <p>A vague prompt gets a vague (often wrong) answer. A good R prompt includes:</p>
 <ol type="1">
-<li><strong>The goal</strong> — what the output should be.</li>
-<li><strong>The data shape</strong> — paste <code>str()</code>, <code>glimpse()</code>, or <code>dput(head(x))</code>.</li>
-<li><strong>What you tried</strong> and the <strong>exact error</strong>.</li>
-<li><strong>Constraints</strong> — “use the tidyverse,” “base R only,” “no new packages.”</li>
+<li><strong>The goal</strong>: what the output should be.</li>
+<li><strong>The data shape</strong>: paste <code>str()</code>, <code>glimpse()</code>, or <code>dput(head(x))</code>.</li>
+<li><strong>Anything you tried</strong> and (if applicable) the <strong>exact error</strong>.</li>
+<li><strong>Constraints</strong>: “use the tidyverse,” “base R only,” “no new packages.”</li>
 </ol>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -4538,39 +4531,39 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Don’t paste private or sensitive data.</strong> Anything you send leaves your machine and may be stored. Share a tiny <strong>fake</strong> example with the same structure, not the real dataset — especially anything with names, grades, or PII.</p>
+<p><strong>Don’t paste private or sensitive data.</strong> Anything you send leaves your machine and may be stored. Share a tiny <strong>fake</strong> example with the same structure, not the real dataset.</p>
 </div>
 </div>
 </section>
 <section id="a-reproducible-example-beats-a-paragraph" class="level2 scrollable nostretch">
 <h2 class="scrollable nostretch anchored" data-anchor-id="a-reproducible-example-beats-a-paragraph">A reproducible example beats a paragraph</h2>
-<p>The single most useful thing you can hand an LLM (or a human, or Stack Overflow) is a <strong>reprex</strong> — a tiny, self-contained, runnable snippet that reproduces the problem.</p>
+<p>The single most useful thing you can hand an LLM (or a human, or Stack Overflow) is a <strong>reprex</strong>, which is a tiny, self-contained, runnable snippet that reproduces the problem.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;reprex&quot;)</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reprex)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># copy this to your clipboard, then run reprex() — it runs the code and</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># formats code + output together, ready to paste:</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># copy this to your clipboard, then run reprex() </span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># it runs the code and formats code + output together that&#39;s ready to paste:</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">reprex</span>({</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(dplyr)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>)) <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="at">m =</span> <span class="fu">mean</span>(x))   <span class="co"># why is m NA?</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>)) <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="at">m =</span> <span class="fu">mean</span>(x)) <span class="co"># why is m NA?</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Built-in datasets (<code>mtcars</code>, <code>iris</code>, <code>penguins</code>) make great reprexes — the helper can run them too.</p>
+<p>Built-in datasets (<code>mtcars</code>, <code>iris</code>, <code>penguins</code>) make great reprexes. This helper can run them too.</p>
 </section>
 <section id="weak-prompt-vs.-strong-prompt" class="level2 scrollable nostretch">
 <h2 class="scrollable nostretch anchored" data-anchor-id="weak-prompt-vs.-strong-prompt">Weak prompt vs. strong prompt</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>Weak</strong> ❌</p>
+<p><strong>Weak</strong></p>
 <blockquote class="blockquote">
 <p>“my ggplot doesn’t work, fix it”</p>
 </blockquote>
-<p>No data, no code, no error. You’ll get a generic guess that probably doesn’t match your situation.</p>
+<p>You’ll get a generic guess that may not match your situation.</p>
 </div><div class="column" style="width:50%;">
-<p><strong>Strong</strong> ✅</p>
+<p><strong>Stronger</strong></p>
 <blockquote class="blockquote">
-<p>“Using <code>penguins</code>, I want a scatter of <code>bill_length_mm</code> vs <code>flipper_length_mm</code> colored by <code>species</code>. My code <code>ggplot(penguins) + geom_point(bill_length_mm, flipper_length_mm)</code> errors with <em>‘object not found’</em>. Tidyverse please.”</p>
+<p>“Using <code>penguins</code>, I want a scatter of <code>bill_length_mm</code> vs <code>flipper_length_mm</code> colored by <code>species</code>. My code <code>ggplot(penguins) + geom_point(bill_length_mm, flipper_length_mm)</code> errors with <em>‘object not found’</em>. Use tidyverse to tackle this.”</p>
 </blockquote>
 <p>Goal + data + code + error + constraint.</p>
 </div>
@@ -4581,18 +4574,18 @@ Warning
 <h1 data-background-color="#001E44">Calling an LLM from R: <code>ellmer</code></h1>
 <section id="what-ellmer-is" class="level2 scrollable nostretch">
 <h2 class="scrollable nostretch anchored" data-anchor-id="what-ellmer-is">What <code>ellmer</code> is</h2>
-<p><a href="https://ellmer.tidyverse.org/"><code>ellmer</code></a> is the <strong>tidyverse package</strong> for talking to LLMs from R. One interface, many providers:</p>
+<p><a href="https://ellmer.tidyverse.org/"><code>ellmer</code></a> is the <strong>tidyverse package</strong> that provides a unified interface for accessing various LLMs from R:</p>
 <ul>
-<li><code>chat_anthropic()</code> — Claude</li>
-<li><code>chat_openai()</code> — GPT</li>
-<li><code>chat_google_gemini()</code> — Gemini</li>
+<li><code>chat_anthropic()</code>: Claude</li>
+<li><code>chat_openai()</code>: GPT</li>
+<li><code>chat_google_gemini()</code>: Gemini</li>
 </ul>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;ellmer&quot;)</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ellmer)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_anthropic</span>(</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> <span class="st">&quot;claude-opus-4-8&quot;</span>,                 <span class="co"># current default Claude model</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">model =</span> <span class="st">&quot;claude-opus-4-8&quot;</span>, <span class="co"># current default Claude model (RIP Fable 5)</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">system_prompt =</span> <span class="st">&quot;You are a concise R tutor. Prefer the tidyverse.&quot;</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
@@ -4608,21 +4601,21 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The newest, most capable Claude models are <strong>Fable 5</strong> (<code>claude-fable-5</code>) and the <strong>Claude 4.x</strong> family — <strong>Opus 4.8</strong> (<code>claude-opus-4-8</code>), <strong>Sonnet 4.6</strong> (<code>claude-sonnet-4-6</code>), <strong>Haiku 4.5</strong> (<code>claude-haiku-4-5</code>). Bigger models are smarter but cost more per call.</p>
+<p>The newest, most capable Claude models are <strong>Fable 5</strong> (<code>claude-fable-5</code>) and the <strong>Claude 4.x</strong> family: <strong>Opus 4.8</strong> (<code>claude-opus-4-8</code>), <strong>Sonnet 4.6</strong> (<code>claude-sonnet-4-6</code>), <strong>Haiku 4.5</strong> (<code>claude-haiku-4-5</code>). Bigger models are smarter but cost more per call.</p>
 </div>
 </div>
 </section>
 <section id="api-keys-never-in-your-code" class="level2 scrollable nostretch">
 <h2 class="scrollable nostretch anchored" data-anchor-id="api-keys-never-in-your-code">API keys: never in your code</h2>
-<p>Calling a provider needs an <strong>API key</strong> (a secret password tied to a paid account). Treat it like one.</p>
+<p>Calling a provider needs an <strong>API key</strong> (a secret password tied to a paid account).</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DON&#39;T: a key pasted in a script gets committed to GitHub forever.</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chat_anthropic</span>(<span class="at">api_key =</span> <span class="st">&quot;sk-ant-REAL-KEY&quot;</span>)        <span class="co"># ❌</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chat_anthropic</span>(<span class="at">api_key =</span> <span class="st">&quot;sk-ant-REAL-KEY&quot;</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># DO: store it once in an environment variable; ellmer reads it automatically.</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">edit_r_environ</span>()    <span class="co"># opens ~/.Renviron — add: ANTHROPIC_API_KEY=sk-ant-...</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># INSTEAD: store it once in an environment variable ellmer can read automatically.</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">edit_r_environ</span>()    <span class="co"># opens ~/.Renviron; add: ANTHROPIC_API_KEY=sk-ant-...</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># restart R, then:</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_anthropic</span>(<span class="at">model =</span> <span class="st">&quot;claude-opus-4-8&quot;</span>)  <span class="co"># ✅ key picked up from the env</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_anthropic</span>(<span class="at">model =</span> <span class="st">&quot;claude-opus-4-8&quot;</span>)  <span class="co"># key picked up from the env</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -4638,9 +4631,9 @@ Warning
 </div>
 </div>
 </section>
-<section id="the-interesting-part-an-llm-as-a-data-step" class="level2 scrollable nostretch">
-<h2 class="scrollable nostretch anchored" data-anchor-id="the-interesting-part-an-llm-as-a-data-step">The interesting part: an LLM as a <em>data step</em></h2>
-<p>The real power for us isn’t chatting — it’s running the <strong>same prompt over every row</strong> of a data frame, turning messy text into structured columns. <code>ellmer</code> can return <strong>typed, structured output</strong>:</p>
+<section id="llm-as-a-data-step" class="level2 scrollable nostretch">
+<h2 class="scrollable nostretch anchored" data-anchor-id="llm-as-a-data-step">LLM as a <em>data step</em></h2>
+<p>The real power for us isn’t chatting, but rather running the <strong>same prompt over every row</strong> of a data frame. This approach can help turn messy text into structured columns since <code>ellmer</code> can return <strong>typed, structured output</strong>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ellmer)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>chat <span class="ot">&lt;-</span> <span class="fu">chat_anthropic</span>(<span class="at">model =</span> <span class="st">&quot;claude-opus-4-8&quot;</span>)</span>
@@ -4653,7 +4646,7 @@ Warning
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ask for a schema; ellmer enforces the shape</span></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>sentiment <span class="ot">&lt;-</span> <span class="fu">type_object</span>(</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">mood   =</span> <span class="fu">type_string</span>(<span class="st">&quot;one of: positive, negative, neutral&quot;</span>),</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">mood =</span> <span class="fu">type_string</span>(<span class="st">&quot;one of: positive, negative, neutral&quot;</span>),</span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">reason =</span> <span class="fu">type_string</span>(<span class="st">&quot;a 5-word justification&quot;</span>)</span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
@@ -4666,31 +4659,18 @@ Warning
 </section>
 <section id="the-catch" class="level1" data-background-color="#7C0A02">
 <h1 data-background-color="#7C0A02">The catch</h1>
-<section id="llms-are-confident-not-correct" class="level2 scrollable nostretch">
-<h2 class="scrollable nostretch anchored" data-anchor-id="llms-are-confident-not-correct">LLMs are confident, not correct</h2>
-<p>An LLM generates <strong>plausible</strong> text. Plausible is not the same as true. Expect:</p>
+<section id="llms-are-confident-not-always-correct" class="level2 scrollable nostretch">
+<h2 class="scrollable nostretch anchored" data-anchor-id="llms-are-confident-not-always-correct">LLMs are confident, not always correct</h2>
+<p>An LLM generates <strong>plausible</strong>, not 100% true, text. You should expect:</p>
 <ul>
-<li><strong>Hallucinated functions / packages</strong> — <code>dplyr::summarise_with()</code> that doesn’t exist.</li>
-<li><strong>Subtly wrong code</strong> — runs without error, gives the wrong number.</li>
-<li><strong>Outdated idioms</strong> — deprecated <code>funs()</code>, old <code>gather()</code>/<code>spread()</code>.</li>
-<li><strong>Made-up facts and citations</strong> — stated with total confidence.</li>
+<li><strong>Hallucinated functions / packages</strong> like <code>dplyr::summarise_with()</code> that don’t exist.</li>
+<li><strong>Subtly wrong code</strong> that runs without error, gives the wrong number.</li>
+<li><strong>Outdated idioms</strong>, i.e., deprecated <code>funs()</code>, old <code>gather()</code>/<code>spread()</code>.</li>
+<li><strong>Made-up facts and citations</strong> stated with total confidence.</li>
 </ul>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This is the <strong>same lesson as tomorrow’s case study</strong>: a thing can <em>sound</em> authoritative and still be wrong. You are the reviewer.</p>
-</div>
-</div>
 </section>
-<section id="the-verify-loop-non-negotiable" class="level2 scrollable nostretch">
-<h2 class="scrollable nostretch anchored" data-anchor-id="the-verify-loop-non-negotiable">The verify loop (non-negotiable)</h2>
+<section id="verification" class="level2 scrollable nostretch">
+<h2 class="scrollable nostretch anchored" data-anchor-id="verification">Verification</h2>
 <p>For any code an LLM gives you:</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -4703,35 +4683,21 @@ Tip
 </div>
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li><strong>Read it.</strong> Can you explain every line? If not, don’t ship it.</li>
-<li><strong>Run it.</strong> On real input. Does it error? Does it even do what you asked?</li>
+<li><strong>Read it.</strong> Can you explain every line?</li>
+<li><strong>Run it.</strong> Does it error on real input data? Does it even do what you asked?</li>
 <li><strong>Check the result.</strong> Spot-check against a value you can compute by hand or already know.</li>
-<li><strong>Test the edges.</strong> Empty input, <code>NA</code>s, one row, a weird category.</li>
+<li><strong>Test the edge cases.</strong> Things to try include empty input, <code>NA</code>s, one row, or a weird category.</li>
 </ol>
 </div>
 </div>
-<p>If you can’t verify it, you can’t use it — for a grade, a paper, or a job.</p>
 </section>
-<section id="use-it-well" class="level2 scrollable nostretch">
-<h2 class="scrollable nostretch anchored" data-anchor-id="use-it-well">Use it well</h2>
+<section id="use-it-wisely" class="level2 scrollable nostretch">
+<h2 class="scrollable nostretch anchored" data-anchor-id="use-it-wisely">Use it wisely</h2>
 <ul>
 <li><strong>Learn from it, don’t just paste.</strong> Ask <em>why</em>, ask for a small example, then reproduce it yourself.</li>
-<li><strong>Keep prompts small and specific.</strong> One problem at a time beats “build my whole project.”</li>
-<li><strong>Prefer reprexes and built-in data.</strong> Better answers, no privacy risk.</li>
-<li><strong>Track what you used.</strong> You’ll need it for the next slide.</li>
-</ul>
-</section>
-</section>
-<section id="academic-integrity" class="level1" data-background-color="#001E44">
-<h1 data-background-color="#001E44">Academic integrity</h1>
-<section id="what-the-course-policy-asks" class="level2 scrollable nostretch">
-<h2 class="scrollable nostretch anchored" data-anchor-id="what-the-course-policy-asks">What the course policy asks</h2>
-<p>Using an LLM is <strong>allowed within the course <a href="../../syllabus/academic-integrity-and-ai-policy.html">AI policy</a></strong> — read it, but the spirit is simple:</p>
-<ul>
-<li><strong>You are responsible</strong> for everything you submit, AI-assisted or not. “The AI wrote it” is not a defense for a bug or a wrong claim.</li>
-<li><strong>Disclose</strong> AI use where the policy asks (and don’t pass AI text off as your own writing).</li>
-<li><strong>You must understand your submission</strong> — be ready to explain any line in office hours or an oral check-in.</li>
-<li>On a <strong>quiz/exam</strong>, only the tools the policy permits.</li>
+<li><strong>Keep prompts small and specific.</strong></li>
+<li><strong>Prefer reprexes and built-in data.</strong></li>
+<li><strong>Track what you used.</strong></li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -4743,7 +4709,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Treat it like a very fast, occasionally-wrong collaborator: great for momentum, never the final authority. The judgment stays yours.</p>
+<p>Treat LLMs like very fast, occasionally-wrong collaborators. They’re not to be blindly trusted.</p>
 </div>
 </div>
 </section>
@@ -4752,14 +4718,14 @@ Note
 <h1 data-background-color="#7C0A02">Activity</h1>
 <section id="in-class-activity-20-min" class="level2 scrollable nostretch">
 <h2 class="scrollable nostretch anchored" data-anchor-id="in-class-activity-20-min">In-class activity (~20 min)</h2>
-<p>Use whatever LLM you have access to (chat window is fine — no API key needed).</p>
+<p>Use whatever LLM you have access to (chat window is fine, no API key needed).</p>
 <ol type="1">
 <li><p><strong>Explain an error.</strong> Run this, then ask the LLM to explain <em>and</em> fix it. Verify the fix runs:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span> <span class="fu">summarize</span>(<span class="at">avg =</span> <span class="fu">mean</span>(bill_length_mm))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>(Why <code>NaN</code>/<code>NA</code>? What’s the one-argument fix?)</p></li>
 <li><p><strong>Generate a function.</strong> Ask for an R function that takes a numeric vector and returns its mean, median, and SD as a named tibble. Then <strong>break it</strong>: feed it <code>c(1, 2, NA)</code> and a length-1 vector. Did the LLM handle those?</p></li>
-<li><p><strong>Catch a mistake.</strong> Find <strong>at least one</strong> thing the LLM got wrong, outdated, or could improve — and write one sentence on how you knew.</p></li>
+<li><p><strong>Catch a mistake.</strong> Find <strong>at least one</strong> thing the LLM got wrong, outdated, or could improve.</p></li>
 </ol>
 </section>
 <section id="wrap-up-looking-ahead" class="level2 scrollable nostretch">
@@ -4771,13 +4737,10 @@ Note
 <li>Three surfaces: <strong>chat</strong>, <strong>IDE assistant</strong>, <strong><code>ellmer</code> from code</strong>.</li>
 <li><strong>Prompt well</strong>: goal + data shape + error + constraints; hand over a <strong>reprex</strong>, never private data.</li>
 <li><strong><code>ellmer</code></strong> calls Claude/GPT/Gemini from R; keep API keys in <code>.Renviron</code>; structured output = LLM as a tidy <strong>data step</strong>.</li>
-<li><strong>Verify everything</strong> — read, run, check, test. Confident ≠ correct.</li>
-<li>Stay inside the <strong>course AI policy</strong>; you own what you submit.</li>
 </ul>
 <p><strong>Upcoming</strong></p>
 <ul>
-<li><strong>Tonight:</strong> HW 5 due 11:59 p.m.</li>
-<li><strong>Wed Jun 24:</strong> case study — bad science · Checkpoint 2 due</li>
+<li><strong>Wed Jun 24:</strong> benzoyl peroxide case study: data-driven investigation uncovering carcinogens in everyday skincare products· Checkpoint 2 due</li>
 </ul>
 </div><div class="column" style="width:45%;">
 <p><strong>Reach out</strong></p>

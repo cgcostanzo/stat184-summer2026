@@ -2601,7 +2601,7 @@
     "href": "weeks/week5/day20-functions-slides.html#always-test-on-simple-inputs",
     "title": "Writing functions in R",
     "section": "Always test on simple inputs",
-    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b     c     d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 0.546 1     0.449 0.444\n2 0.529 0.811 0     1    \n3 0.572 0.852 1     0    \n4 0     0.691 0.503 0.568\n5 1     0     0.335 0.536"
+    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n       a     b     c     d\n   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 0.0321 0.610 1     0.357\n2 0.403  0.195 0.632 1    \n3 1      1     0     0    \n4 0      0     0.684 0.563\n5 0.449  0.140 0.307 0.123"
   },
   {
     "objectID": "weeks/week5/day20-functions-slides.html#changing-a-function-in-one-place",
@@ -2783,7 +2783,7 @@
     "href": "weeks/week5/day20-functions-page.html#always-test-on-simple-inputs",
     "title": "Writing functions in R",
     "section": "Always test on simple inputs",
-    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b     c       d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;\n1 0     1     0.731 0.755  \n2 0.826 0.940 0     0.813  \n3 1     0.477 0.271 0      \n4 0.149 0.863 0.399 1      \n5 0.399 0     1     0.00583"
+    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b        c     d\n  &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;\n1 0.404 0.497 0.530    0.511\n2 0.365 1     0.000847 0.708\n3 1     0.695 0        0    \n4 0.970 0     0.327    0.574\n5 0     0.521 1        1"
   },
   {
     "objectID": "weeks/week5/day20-functions-page.html#changing-a-function-in-one-place",
@@ -4258,7 +4258,7 @@
     "href": "weeks/week6/day24-clustering-slides.html#how-many-clusters-the-elbow",
     "title": "Clustering & decision trees",
     "section": "How many clusters? The elbow",
-    "text": "How many clusters? The elbow\nThere’s no “correct” k. A common heuristic is to plot total within-cluster spread as k grows, and look for the elbow where adding clusters stops helping. (Uses purrr::map_dbl() from last week.)\n\ntibble(k = 1:8) |&gt;\n  mutate(wss = map_dbl(k, ~ kmeans(X, centers = .x, nstart = 10)$tot.withinss)) |&gt;\n  ggplot(aes(k, wss)) +\n  geom_line() + geom_point(size = 2) +\n  scale_x_continuous(breaks = 1:8) +\n  labs(x = \"k (number of clusters)\", y = \"Error\",\n       title = \"Elbow around k = 3\")\n\n\n\n\n\n\n\n\nHere, “Error” is measured by the total within-cluster sum of squares.\n\\[\\text{Error}_k = \\sum_{i=1}^{N} ||\\mathbf{x}_i - \\boldsymbol{\\mu}_{c(i)}||^2\\]\nEquivalently,\n\\[\\text{Error}_k = \\sum_{j=1}^{k} \\sum_{\\mathbf{x}_i \\in C_j} ||\\mathbf{x}_i - \\boldsymbol{\\mu}_j||^2\\]"
+    "text": "How many clusters? The elbow\nThere’s no “correct” k. A common heuristic is to plot total within-cluster spread as k grows, and look for the elbow where adding clusters stops helping. (Uses purrr::map_dbl() from last week.)\n\ntibble(k = 1:8) |&gt;\n  mutate(wss = map_dbl(k, ~ kmeans(X, centers = .x, nstart = 10)$tot.withinss)) |&gt;\n  ggplot(aes(k, wss)) +\n  geom_line() + geom_point(size = 2) +\n  scale_x_continuous(breaks = 1:8) +\n  labs(x = \"k (number of clusters)\", y = \"Error\",\n       title = \"Elbow around k = 3\")\n\n\n\n\n\n\n\n\nHere, “Error” is measured by the total within-cluster sum of squares:\n\\[\\text{Error}_k = \\sum_{i=1}^{N} ||\\mathbf{x}_i - \\boldsymbol{\\mu}_{c(i)}||^2\\]\nEquivalently,\n\\[\\text{Error}_k = \\sum_{j=1}^{k} \\sum_{\\mathbf{x}_i \\in C_j} ||\\mathbf{x}_i - \\boldsymbol{\\mu}_j||^2\\]"
   },
   {
     "objectID": "weeks/week6/day24-clustering-slides.html#hierarchical-clustering",
@@ -4391,7 +4391,7 @@
     "href": "weeks/week6/day24-clustering-page.html#how-many-clusters-the-elbow",
     "title": "Clustering & decision trees",
     "section": "How many clusters? The elbow",
-    "text": "How many clusters? The elbow\nThere’s no “correct” k. A common heuristic is to plot total within-cluster spread as k grows, and look for the elbow where adding clusters stops helping. (Uses purrr::map_dbl() from last week.)\n\ntibble(k = 1:8) |&gt;\n  mutate(wss = map_dbl(k, ~ kmeans(X, centers = .x, nstart = 10)$tot.withinss)) |&gt;\n  ggplot(aes(k, wss)) +\n  geom_line() + geom_point(size = 2) +\n  scale_x_continuous(breaks = 1:8) +\n  labs(x = \"k (number of clusters)\", y = \"Error\",\n       title = \"Elbow around k = 3\")\n\n\n\n\n\n\n\n\nHere, “Error” is measured by the total within-cluster sum of squares.\n\\[\\text{Error}_k = \\sum_{i=1}^{N} ||\\mathbf{x}_i - \\boldsymbol{\\mu}_{c(i)}||^2\\]\nEquivalently,\n\\[\\text{Error}_k = \\sum_{j=1}^{k} \\sum_{\\mathbf{x}_i \\in C_j} ||\\mathbf{x}_i - \\boldsymbol{\\mu}_j||^2\\]"
+    "text": "How many clusters? The elbow\nThere’s no “correct” k. A common heuristic is to plot total within-cluster spread as k grows, and look for the elbow where adding clusters stops helping. (Uses purrr::map_dbl() from last week.)\n\ntibble(k = 1:8) |&gt;\n  mutate(wss = map_dbl(k, ~ kmeans(X, centers = .x, nstart = 10)$tot.withinss)) |&gt;\n  ggplot(aes(k, wss)) +\n  geom_line() + geom_point(size = 2) +\n  scale_x_continuous(breaks = 1:8) +\n  labs(x = \"k (number of clusters)\", y = \"Error\",\n       title = \"Elbow around k = 3\")\n\n\n\n\n\n\n\n\nHere, “Error” is measured by the total within-cluster sum of squares:\n\\[\\text{Error}_k = \\sum_{i=1}^{N} ||\\mathbf{x}_i - \\boldsymbol{\\mu}_{c(i)}||^2\\]\nEquivalently,\n\\[\\text{Error}_k = \\sum_{j=1}^{k} \\sum_{\\mathbf{x}_i \\in C_j} ||\\mathbf{x}_i - \\boldsymbol{\\mu}_j||^2\\]"
   },
   {
     "objectID": "weeks/week6/day24-clustering-page.html#hierarchical-clustering",
@@ -4482,21 +4482,14 @@
     "href": "weeks/week6/index.html#readings-due-this-week",
     "title": "Week 6 — Special Topics & Project",
     "section": "Readings due this week",
-    "text": "Readings due this week\n\nBefore Mon: Data Computing Ch 18 (§18.2): unsupervised learning, clustering\nBefore Tue: Data Computing Ch 18 (§18.3): trees from data"
+    "text": "Readings due this week\n\nBefore Mon: Data Computing Ch 18 (§18.2): unsupervised learning, clustering\nBefore Tue: Data Computing Ch 18 (§18.3): trees from data\nBefore Wed: Article from Yale SOM for benzoyl peroxide case study"
   },
   {
     "objectID": "weeks/week6/index.html#assignments-due-this-week",
     "href": "weeks/week6/index.html#assignments-due-this-week",
     "title": "Week 6 — Special Topics & Project",
     "section": "Assignments due this week",
-    "text": "Assignments due this week\n\nQuiz 4 — Monday Jun 22 in class\nProject Checkpoint 2: due Wed Jun 24, 11:59 p.m.\nProject Oral Check-in #2: Thursday Jun 25 in class\nFinal project report + GitHub repo link: due Friday Jun 26, 11:59 p.m."
-  },
-  {
-    "objectID": "weeks/week6/index.html#after-the-course",
-    "href": "weeks/week6/index.html#after-the-course",
-    "title": "Week 6 — Special Topics & Project",
-    "section": "After the course",
-    "text": "After the course\n\nCourse evaluations: please complete them."
+    "text": "Assignments due this week\n\nQuiz 4: Monday Jun 22 in class\nProject Checkpoint 2: due Wed Jun 24, 11:59 p.m.\nProject Oral Check-in #2: Thursday Jun 25 in class\nFinal project report + GitHub repo link: due Friday Jun 26, 11:59 p.m."
   },
   {
     "objectID": "assignments/quizzes/index.html",
@@ -4825,203 +4818,189 @@
     "href": "weeks/week6/day25-r-with-llms-page.html",
     "title": "Using R with LLMs",
     "section": "",
-    "text": "NoteToday: Tuesday June 23\n\n\n\nBefore class\n\nNo new reading. Skim the course AI policy.\n\nPlan for today\n\nThree ways to use a large language model (LLM) with R: chat, in the IDE, and from code.\nHow to prompt well for R help (and give a reproducible example).\nCalling an LLM from R with the ellmer package.\nThe non-negotiable habit: verify everything (yesterday’s and tomorrow’s theme).\nDoing all of this within the course AI policy.\n\nHelpful links\n\nAI policy · ellmer · reprex · Syllabus · Schedule"
+    "text": "NoteToday: Tuesday June 23\n\n\n\nBefore class\n\nPerusall Reading (Canvas): Data Computing §18.3 (trees)\n\nPlan for today\n\nThree ways to use a large language model (LLM) with R: chat, in the IDE, and from code.\nHow to prompt well for R help.\nCalling an LLM from R with the ellmer package.\n\nHelpful links\n\nAI policy · ellmer · reprex · Syllabus · Schedule"
   },
   {
     "objectID": "weeks/week6/day25-r-with-llms-page.html#llms-are-part-of-the-r-workflow-now",
     "href": "weeks/week6/day25-r-with-llms-page.html#llms-are-part-of-the-r-workflow-now",
     "title": "Using R with LLMs",
     "section": "LLMs are part of the R workflow now",
-    "text": "LLMs are part of the R workflow now\nAn LLM (ChatGPT, Claude, Gemini, …) predicts likely text from a prompt. For an R user that’s useful for:\n\nExplaining errors — paste a cryptic message, get a plain-English cause.\nDrafting code — “write a ggplot of X by Y, faceted by Z.”\nRefactoring — “make this tidyverse instead of base R.”\nLearning — “what does across() do, with a small example?”\nAs a data tool itself — classify, extract, or summarize text inside a pipeline.\n\n\n\n\n\n\n\nTip\n\n\n\nThe skill that matters is not “getting an answer.” It’s judging whether the answer is right — which is exactly what a data course trains you to do."
+    "text": "LLMs are part of the R workflow now\nAn LLM (ChatGPT, Claude, Gemini, etc.) predicts likely text from a prompt. For an R user that’s useful for:\n\nExplaining errors: paste a cryptic message, get a plain-English cause.\nDrafting code: “write a ggplot of X by Y, faceted by Z.”\nRefactoring: “make this tidyverse instead of base R.”\nLearning: “what does across() do, with a small example?”\nAs a data tool itself: classify, extract, or summarize text inside a pipeline.\n\n\n\n\n\n\n\nTip\n\n\n\nThe skill that matters most is not “getting an answer.” It’s judging whether the answer is right."
   },
   {
     "objectID": "weeks/week6/day25-r-with-llms-page.html#three-places-youll-use-one",
     "href": "weeks/week6/day25-r-with-llms-page.html#three-places-youll-use-one",
     "title": "Using R with LLMs",
     "section": "Three places you’ll use one",
-    "text": "Three places you’ll use one\n\n\n\n\n\n\n\n\nWhere\nExamples\nBest for\n\n\n\n\nChat window\nclaude.ai, ChatGPT, Gemini\none-off questions, explaining errors, learning\n\n\nIn the IDE\nPositron / RStudio assistants, GitHub Copilot\ninline autocomplete, “fix this” on selected code\n\n\nFrom R code\nthe ellmer package\ndoing the same LLM call on every row — a data step\n\n\n\nToday we touch all three, but spend the most time on the third — because that’s the one unique to a programming course."
+    "text": "Three places you’ll use one\n\n\n\n\n\n\n\n\nWhere\nExamples\nBest for\n\n\n\n\nChat window\nClaude, ChatGPT, Gemini\none-off questions, explaining errors, learning\n\n\nIn the IDE\nPositron / RStudio assistants, GitHub Copilot\ninline autocomplete, “fix this” on selected code\n\n\nFrom R code\nthe ellmer package\ndoing the same LLM call on every row"
   },
   {
-    "objectID": "weeks/week6/day25-r-with-llms-page.html#give-it-what-a-human-helper-would-need",
-    "href": "weeks/week6/day25-r-with-llms-page.html#give-it-what-a-human-helper-would-need",
+    "objectID": "weeks/week6/day25-r-with-llms-page.html#be-specific",
+    "href": "weeks/week6/day25-r-with-llms-page.html#be-specific",
     "title": "Using R with LLMs",
-    "section": "Give it what a human helper would need",
-    "text": "Give it what a human helper would need\nA vague prompt gets a vague (often wrong) answer. A good R prompt includes:\n\nThe goal — what the output should be.\nThe data shape — paste str(), glimpse(), or dput(head(x)).\nWhat you tried and the exact error.\nConstraints — “use the tidyverse,” “base R only,” “no new packages.”\n\n\n\n\n\n\n\nWarning\n\n\n\nDon’t paste private or sensitive data. Anything you send leaves your machine and may be stored. Share a tiny fake example with the same structure, not the real dataset — especially anything with names, grades, or PII."
+    "section": "Be specific",
+    "text": "Be specific\nA vague prompt gets a vague (often wrong) answer. A good R prompt includes:\n\nThe goal: what the output should be.\nThe data shape: paste str(), glimpse(), or dput(head(x)).\nAnything you tried and (if applicable) the exact error.\nConstraints: “use the tidyverse,” “base R only,” “no new packages.”\n\n\n\n\n\n\n\nWarning\n\n\n\nDon’t paste private or sensitive data. Anything you send leaves your machine and may be stored. Share a tiny fake example with the same structure, not the real dataset."
   },
   {
     "objectID": "weeks/week6/day25-r-with-llms-page.html#a-reproducible-example-beats-a-paragraph",
     "href": "weeks/week6/day25-r-with-llms-page.html#a-reproducible-example-beats-a-paragraph",
     "title": "Using R with LLMs",
     "section": "A reproducible example beats a paragraph",
-    "text": "A reproducible example beats a paragraph\nThe single most useful thing you can hand an LLM (or a human, or Stack Overflow) is a reprex — a tiny, self-contained, runnable snippet that reproduces the problem.\n\n# install.packages(\"reprex\")\nlibrary(reprex)\n\n# copy this to your clipboard, then run reprex() — it runs the code and\n# formats code + output together, ready to paste:\nreprex({\n  library(dplyr)\n  tibble(x = c(1, 2, NA)) |&gt; summarise(m = mean(x))   # why is m NA?\n})\n\nBuilt-in datasets (mtcars, iris, penguins) make great reprexes — the helper can run them too."
+    "text": "A reproducible example beats a paragraph\nThe single most useful thing you can hand an LLM (or a human, or Stack Overflow) is a reprex, which is a tiny, self-contained, runnable snippet that reproduces the problem.\n\n# install.packages(\"reprex\")\nlibrary(reprex)\n\n# copy this to your clipboard, then run reprex() \n# it runs the code and formats code + output together that's ready to paste:\nreprex({\n  library(dplyr)\n  tibble(x = c(1, 2, NA)) |&gt; summarise(m = mean(x)) # why is m NA?\n})\n\nBuilt-in datasets (mtcars, iris, penguins) make great reprexes. This helper can run them too."
   },
   {
     "objectID": "weeks/week6/day25-r-with-llms-page.html#weak-prompt-vs.-strong-prompt",
     "href": "weeks/week6/day25-r-with-llms-page.html#weak-prompt-vs.-strong-prompt",
     "title": "Using R with LLMs",
     "section": "Weak prompt vs. strong prompt",
-    "text": "Weak prompt vs. strong prompt\n\n\nWeak ❌\n\n“my ggplot doesn’t work, fix it”\n\nNo data, no code, no error. You’ll get a generic guess that probably doesn’t match your situation.\n\nStrong ✅\n\n“Using penguins, I want a scatter of bill_length_mm vs flipper_length_mm colored by species. My code ggplot(penguins) + geom_point(bill_length_mm, flipper_length_mm) errors with ‘object not found’. Tidyverse please.”\n\nGoal + data + code + error + constraint."
+    "text": "Weak prompt vs. strong prompt\n\n\nWeak\n\n“my ggplot doesn’t work, fix it”\n\nYou’ll get a generic guess that may not match your situation.\n\nStronger\n\n“Using penguins, I want a scatter of bill_length_mm vs flipper_length_mm colored by species. My code ggplot(penguins) + geom_point(bill_length_mm, flipper_length_mm) errors with ‘object not found’. Use tidyverse to tackle this.”\n\nGoal + data + code + error + constraint."
   },
   {
     "objectID": "weeks/week6/day25-r-with-llms-page.html#what-ellmer-is",
     "href": "weeks/week6/day25-r-with-llms-page.html#what-ellmer-is",
     "title": "Using R with LLMs",
     "section": "What ellmer is",
-    "text": "What ellmer is\nellmer is the tidyverse package for talking to LLMs from R. One interface, many providers:\n\nchat_anthropic() — Claude\nchat_openai() — GPT\nchat_google_gemini() — Gemini\n\n\n# install.packages(\"ellmer\")\nlibrary(ellmer)\n\nchat &lt;- chat_anthropic(\n  model = \"claude-opus-4-8\",                 # current default Claude model\n  system_prompt = \"You are a concise R tutor. Prefer the tidyverse.\"\n)\n\nchat$chat(\"In one sentence, what does dplyr::across() do?\")\n\n\n\n\n\n\n\nNote\n\n\n\nThe newest, most capable Claude models are Fable 5 (claude-fable-5) and the Claude 4.x family — Opus 4.8 (claude-opus-4-8), Sonnet 4.6 (claude-sonnet-4-6), Haiku 4.5 (claude-haiku-4-5). Bigger models are smarter but cost more per call."
+    "text": "What ellmer is\nellmer is the tidyverse package that provides a unified interface for accessing various LLMs from R:\n\nchat_anthropic(): Claude\nchat_openai(): GPT\nchat_google_gemini(): Gemini\n\n\n# install.packages(\"ellmer\")\nlibrary(ellmer)\n\nchat &lt;- chat_anthropic(\n  model = \"claude-opus-4-8\", # current default Claude model (RIP Fable 5)\n  system_prompt = \"You are a concise R tutor. Prefer the tidyverse.\"\n)\n\nchat$chat(\"In one sentence, what does dplyr::across() do?\")\n\n\n\n\n\n\n\nNote\n\n\n\nThe newest, most capable Claude models are Fable 5 (claude-fable-5) and the Claude 4.x family: Opus 4.8 (claude-opus-4-8), Sonnet 4.6 (claude-sonnet-4-6), Haiku 4.5 (claude-haiku-4-5). Bigger models are smarter but cost more per call."
   },
   {
     "objectID": "weeks/week6/day25-r-with-llms-page.html#api-keys-never-in-your-code",
     "href": "weeks/week6/day25-r-with-llms-page.html#api-keys-never-in-your-code",
     "title": "Using R with LLMs",
     "section": "API keys: never in your code",
-    "text": "API keys: never in your code\nCalling a provider needs an API key (a secret password tied to a paid account). Treat it like one.\n\n# DON'T: a key pasted in a script gets committed to GitHub forever.\nchat_anthropic(api_key = \"sk-ant-REAL-KEY\")        # ❌\n\n# DO: store it once in an environment variable; ellmer reads it automatically.\nusethis::edit_r_environ()    # opens ~/.Renviron — add: ANTHROPIC_API_KEY=sk-ant-...\n# restart R, then:\nchat &lt;- chat_anthropic(model = \"claude-opus-4-8\")  # ✅ key picked up from the env\n\n\n\n\n\n\n\nWarning\n\n\n\nA leaked key can run up real charges. Keep it out of .R, .qmd, and anything you push to git (.Renviron is git-ignored by default)."
+    "text": "API keys: never in your code\nCalling a provider needs an API key (a secret password tied to a paid account).\n\n# DON'T: a key pasted in a script gets committed to GitHub forever.\nchat_anthropic(api_key = \"sk-ant-REAL-KEY\")\n\n# INSTEAD: store it once in an environment variable ellmer can read automatically.\nusethis::edit_r_environ()    # opens ~/.Renviron; add: ANTHROPIC_API_KEY=sk-ant-...\n# restart R, then:\nchat &lt;- chat_anthropic(model = \"claude-opus-4-8\")  # key picked up from the env\n\n\n\n\n\n\n\nWarning\n\n\n\nA leaked key can run up real charges. Keep it out of .R, .qmd, and anything you push to git (.Renviron is git-ignored by default)."
   },
   {
-    "objectID": "weeks/week6/day25-r-with-llms-page.html#the-interesting-part-an-llm-as-a-data-step",
-    "href": "weeks/week6/day25-r-with-llms-page.html#the-interesting-part-an-llm-as-a-data-step",
+    "objectID": "weeks/week6/day25-r-with-llms-page.html#llm-as-a-data-step",
+    "href": "weeks/week6/day25-r-with-llms-page.html#llm-as-a-data-step",
     "title": "Using R with LLMs",
-    "section": "The interesting part: an LLM as a data step",
-    "text": "The interesting part: an LLM as a data step\nThe real power for us isn’t chatting — it’s running the same prompt over every row of a data frame, turning messy text into structured columns. ellmer can return typed, structured output:\n\nlibrary(ellmer)\nchat &lt;- chat_anthropic(model = \"claude-opus-4-8\")\n\nreviews &lt;- tibble(text = c(\n  \"Loved it, arrived early and works great!\",\n  \"Broke after two days. Very disappointed.\",\n  \"It's fine. Does the job, nothing special.\"\n))\n\n# ask for a schema; ellmer enforces the shape\nsentiment &lt;- type_object(\n  mood   = type_string(\"one of: positive, negative, neutral\"),\n  reason = type_string(\"a 5-word justification\")\n)\n\nreviews |&gt;\n  mutate(parsed = map(text, ~ chat$chat_structured(.x, type = sentiment))) |&gt;\n  unnest_wider(parsed)\n\nThis is purrr + a prompt: text in, tidy columns out. That’s the data-science use."
+    "section": "LLM as a data step",
+    "text": "LLM as a data step\nThe real power for us isn’t chatting, but rather running the same prompt over every row of a data frame. This approach can help turn messy text into structured columns since ellmer can return typed, structured output:\n\nlibrary(ellmer)\nchat &lt;- chat_anthropic(model = \"claude-opus-4-8\")\n\nreviews &lt;- tibble(text = c(\n  \"Loved it, arrived early and works great!\",\n  \"Broke after two days. Very disappointed.\",\n  \"It's fine. Does the job, nothing special.\"\n))\n\n# ask for a schema; ellmer enforces the shape\nsentiment &lt;- type_object(\n  mood = type_string(\"one of: positive, negative, neutral\"),\n  reason = type_string(\"a 5-word justification\")\n)\n\nreviews |&gt;\n  mutate(parsed = map(text, ~ chat$chat_structured(.x, type = sentiment))) |&gt;\n  unnest_wider(parsed)\n\nThis is purrr + a prompt: text in, tidy columns out. That’s the data-science use."
   },
   {
-    "objectID": "weeks/week6/day25-r-with-llms-page.html#llms-are-confident-not-correct",
-    "href": "weeks/week6/day25-r-with-llms-page.html#llms-are-confident-not-correct",
+    "objectID": "weeks/week6/day25-r-with-llms-page.html#llms-are-confident-not-always-correct",
+    "href": "weeks/week6/day25-r-with-llms-page.html#llms-are-confident-not-always-correct",
     "title": "Using R with LLMs",
-    "section": "LLMs are confident, not correct",
-    "text": "LLMs are confident, not correct\nAn LLM generates plausible text. Plausible is not the same as true. Expect:\n\nHallucinated functions / packages — dplyr::summarise_with() that doesn’t exist.\nSubtly wrong code — runs without error, gives the wrong number.\nOutdated idioms — deprecated funs(), old gather()/spread().\nMade-up facts and citations — stated with total confidence.\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is the same lesson as tomorrow’s case study: a thing can sound authoritative and still be wrong. You are the reviewer."
+    "section": "LLMs are confident, not always correct",
+    "text": "LLMs are confident, not always correct\nAn LLM generates plausible, not 100% true, text. You should expect:\n\nHallucinated functions / packages like dplyr::summarise_with() that don’t exist.\nSubtly wrong code that runs without error, gives the wrong number.\nOutdated idioms, i.e., deprecated funs(), old gather()/spread().\nMade-up facts and citations stated with total confidence."
   },
   {
-    "objectID": "weeks/week6/day25-r-with-llms-page.html#the-verify-loop-non-negotiable",
-    "href": "weeks/week6/day25-r-with-llms-page.html#the-verify-loop-non-negotiable",
+    "objectID": "weeks/week6/day25-r-with-llms-page.html#verification",
+    "href": "weeks/week6/day25-r-with-llms-page.html#verification",
     "title": "Using R with LLMs",
-    "section": "The verify loop (non-negotiable)",
-    "text": "The verify loop (non-negotiable)\nFor any code an LLM gives you:\n\n\n\n\n\n\nTip\n\n\n\n\nRead it. Can you explain every line? If not, don’t ship it.\nRun it. On real input. Does it error? Does it even do what you asked?\nCheck the result. Spot-check against a value you can compute by hand or already know.\nTest the edges. Empty input, NAs, one row, a weird category.\n\n\n\nIf you can’t verify it, you can’t use it — for a grade, a paper, or a job."
+    "section": "Verification",
+    "text": "Verification\nFor any code an LLM gives you:\n\n\n\n\n\n\nTip\n\n\n\n\nRead it. Can you explain every line?\nRun it. Does it error on real input data? Does it even do what you asked?\nCheck the result. Spot-check against a value you can compute by hand or already know.\nTest the edge cases. Things to try include empty input, NAs, one row, or a weird category."
   },
   {
-    "objectID": "weeks/week6/day25-r-with-llms-page.html#use-it-well",
-    "href": "weeks/week6/day25-r-with-llms-page.html#use-it-well",
+    "objectID": "weeks/week6/day25-r-with-llms-page.html#use-it-wisely",
+    "href": "weeks/week6/day25-r-with-llms-page.html#use-it-wisely",
     "title": "Using R with LLMs",
-    "section": "Use it well",
-    "text": "Use it well\n\nLearn from it, don’t just paste. Ask why, ask for a small example, then reproduce it yourself.\nKeep prompts small and specific. One problem at a time beats “build my whole project.”\nPrefer reprexes and built-in data. Better answers, no privacy risk.\nTrack what you used. You’ll need it for the next slide."
-  },
-  {
-    "objectID": "weeks/week6/day25-r-with-llms-page.html#what-the-course-policy-asks",
-    "href": "weeks/week6/day25-r-with-llms-page.html#what-the-course-policy-asks",
-    "title": "Using R with LLMs",
-    "section": "What the course policy asks",
-    "text": "What the course policy asks\nUsing an LLM is allowed within the course AI policy — read it, but the spirit is simple:\n\nYou are responsible for everything you submit, AI-assisted or not. “The AI wrote it” is not a defense for a bug or a wrong claim.\nDisclose AI use where the policy asks (and don’t pass AI text off as your own writing).\nYou must understand your submission — be ready to explain any line in office hours or an oral check-in.\nOn a quiz/exam, only the tools the policy permits.\n\n\n\n\n\n\n\nNote\n\n\n\nTreat it like a very fast, occasionally-wrong collaborator: great for momentum, never the final authority. The judgment stays yours."
+    "section": "Use it wisely",
+    "text": "Use it wisely\n\nLearn from it, don’t just paste. Ask why, ask for a small example, then reproduce it yourself.\nKeep prompts small and specific.\nPrefer reprexes and built-in data.\nTrack what you used.\n\n\n\n\n\n\n\nNote\n\n\n\nTreat LLMs like very fast, occasionally-wrong collaborators. They’re not to be blindly trusted."
   },
   {
     "objectID": "weeks/week6/day25-r-with-llms-page.html#in-class-activity-20-min",
     "href": "weeks/week6/day25-r-with-llms-page.html#in-class-activity-20-min",
     "title": "Using R with LLMs",
     "section": "In-class activity (~20 min)",
-    "text": "In-class activity (~20 min)\nUse whatever LLM you have access to (chat window is fine — no API key needed).\n\nExplain an error. Run this, then ask the LLM to explain and fix it. Verify the fix runs:\nlibrary(dplyr)\npenguins |&gt; group_by(species) |&gt; summarize(avg = mean(bill_length_mm))\n(Why NaN/NA? What’s the one-argument fix?)\nGenerate a function. Ask for an R function that takes a numeric vector and returns its mean, median, and SD as a named tibble. Then break it: feed it c(1, 2, NA) and a length-1 vector. Did the LLM handle those?\nCatch a mistake. Find at least one thing the LLM got wrong, outdated, or could improve — and write one sentence on how you knew."
+    "text": "In-class activity (~20 min)\nUse whatever LLM you have access to (chat window is fine, no API key needed).\n\nExplain an error. Run this, then ask the LLM to explain and fix it. Verify the fix runs:\nlibrary(dplyr)\npenguins |&gt; group_by(species) |&gt; summarize(avg = mean(bill_length_mm))\n(Why NaN/NA? What’s the one-argument fix?)\nGenerate a function. Ask for an R function that takes a numeric vector and returns its mean, median, and SD as a named tibble. Then break it: feed it c(1, 2, NA) and a length-1 vector. Did the LLM handle those?\nCatch a mistake. Find at least one thing the LLM got wrong, outdated, or could improve."
   },
   {
     "objectID": "weeks/week6/day25-r-with-llms-page.html#wrap-up-looking-ahead",
     "href": "weeks/week6/day25-r-with-llms-page.html#wrap-up-looking-ahead",
     "title": "Using R with LLMs",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nThree surfaces: chat, IDE assistant, ellmer from code.\nPrompt well: goal + data shape + error + constraints; hand over a reprex, never private data.\nellmer calls Claude/GPT/Gemini from R; keep API keys in .Renviron; structured output = LLM as a tidy data step.\nVerify everything — read, run, check, test. Confident ≠ correct.\nStay inside the course AI policy; you own what you submit.\n\nUpcoming\n\nTonight: HW 5 due 11:59 p.m.\nWed Jun 24: case study — bad science · Checkpoint 2 due\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\n\nellmer docs · reprex\nAI policy · Syllabus · Schedule"
+    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nThree surfaces: chat, IDE assistant, ellmer from code.\nPrompt well: goal + data shape + error + constraints; hand over a reprex, never private data.\nellmer calls Claude/GPT/Gemini from R; keep API keys in .Renviron; structured output = LLM as a tidy data step.\n\nUpcoming\n\nWed Jun 24: benzoyl peroxide case study: data-driven investigation uncovering carcinogens in everyday skincare products· Checkpoint 2 due\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\n\nellmer docs · reprex\nAI policy · Syllabus · Schedule"
   },
   {
     "objectID": "weeks/week6/day25-r-with-llms-slides.html#llms-are-part-of-the-r-workflow-now",
     "href": "weeks/week6/day25-r-with-llms-slides.html#llms-are-part-of-the-r-workflow-now",
     "title": "Using R with LLMs",
     "section": "LLMs are part of the R workflow now",
-    "text": "LLMs are part of the R workflow now\nAn LLM (ChatGPT, Claude, Gemini, …) predicts likely text from a prompt. For an R user that’s useful for:\n\nExplaining errors — paste a cryptic message, get a plain-English cause.\nDrafting code — “write a ggplot of X by Y, faceted by Z.”\nRefactoring — “make this tidyverse instead of base R.”\nLearning — “what does across() do, with a small example?”\nAs a data tool itself — classify, extract, or summarize text inside a pipeline.\n\n\n\n\n\n\n\nTip\n\n\nThe skill that matters is not “getting an answer.” It’s judging whether the answer is right — which is exactly what a data course trains you to do."
+    "text": "LLMs are part of the R workflow now\nAn LLM (ChatGPT, Claude, Gemini, etc.) predicts likely text from a prompt. For an R user that’s useful for:\n\nExplaining errors: paste a cryptic message, get a plain-English cause.\nDrafting code: “write a ggplot of X by Y, faceted by Z.”\nRefactoring: “make this tidyverse instead of base R.”\nLearning: “what does across() do, with a small example?”\nAs a data tool itself: classify, extract, or summarize text inside a pipeline.\n\n\n\n\n\n\n\nTip\n\n\nThe skill that matters most is not “getting an answer.” It’s judging whether the answer is right."
   },
   {
     "objectID": "weeks/week6/day25-r-with-llms-slides.html#three-places-youll-use-one",
     "href": "weeks/week6/day25-r-with-llms-slides.html#three-places-youll-use-one",
     "title": "Using R with LLMs",
     "section": "Three places you’ll use one",
-    "text": "Three places you’ll use one\n\n\n\n\n\n\n\n\nWhere\nExamples\nBest for\n\n\n\n\nChat window\nclaude.ai, ChatGPT, Gemini\none-off questions, explaining errors, learning\n\n\nIn the IDE\nPositron / RStudio assistants, GitHub Copilot\ninline autocomplete, “fix this” on selected code\n\n\nFrom R code\nthe ellmer package\ndoing the same LLM call on every row — a data step\n\n\n\nToday we touch all three, but spend the most time on the third — because that’s the one unique to a programming course."
+    "text": "Three places you’ll use one\n\n\n\n\n\n\n\n\nWhere\nExamples\nBest for\n\n\n\n\nChat window\nClaude, ChatGPT, Gemini\none-off questions, explaining errors, learning\n\n\nIn the IDE\nPositron / RStudio assistants, GitHub Copilot\ninline autocomplete, “fix this” on selected code\n\n\nFrom R code\nthe ellmer package\ndoing the same LLM call on every row"
   },
   {
-    "objectID": "weeks/week6/day25-r-with-llms-slides.html#give-it-what-a-human-helper-would-need",
-    "href": "weeks/week6/day25-r-with-llms-slides.html#give-it-what-a-human-helper-would-need",
+    "objectID": "weeks/week6/day25-r-with-llms-slides.html#be-specific",
+    "href": "weeks/week6/day25-r-with-llms-slides.html#be-specific",
     "title": "Using R with LLMs",
-    "section": "Give it what a human helper would need",
-    "text": "Give it what a human helper would need\nA vague prompt gets a vague (often wrong) answer. A good R prompt includes:\n\nThe goal — what the output should be.\nThe data shape — paste str(), glimpse(), or dput(head(x)).\nWhat you tried and the exact error.\nConstraints — “use the tidyverse,” “base R only,” “no new packages.”\n\n\n\n\n\n\n\nWarning\n\n\nDon’t paste private or sensitive data. Anything you send leaves your machine and may be stored. Share a tiny fake example with the same structure, not the real dataset — especially anything with names, grades, or PII."
+    "section": "Be specific",
+    "text": "Be specific\nA vague prompt gets a vague (often wrong) answer. A good R prompt includes:\n\nThe goal: what the output should be.\nThe data shape: paste str(), glimpse(), or dput(head(x)).\nAnything you tried and (if applicable) the exact error.\nConstraints: “use the tidyverse,” “base R only,” “no new packages.”\n\n\n\n\n\n\n\nWarning\n\n\nDon’t paste private or sensitive data. Anything you send leaves your machine and may be stored. Share a tiny fake example with the same structure, not the real dataset."
   },
   {
     "objectID": "weeks/week6/day25-r-with-llms-slides.html#a-reproducible-example-beats-a-paragraph",
     "href": "weeks/week6/day25-r-with-llms-slides.html#a-reproducible-example-beats-a-paragraph",
     "title": "Using R with LLMs",
     "section": "A reproducible example beats a paragraph",
-    "text": "A reproducible example beats a paragraph\nThe single most useful thing you can hand an LLM (or a human, or Stack Overflow) is a reprex — a tiny, self-contained, runnable snippet that reproduces the problem.\n\n# install.packages(\"reprex\")\nlibrary(reprex)\n\n# copy this to your clipboard, then run reprex() — it runs the code and\n# formats code + output together, ready to paste:\nreprex({\n  library(dplyr)\n  tibble(x = c(1, 2, NA)) |&gt; summarise(m = mean(x))   # why is m NA?\n})\n\nBuilt-in datasets (mtcars, iris, penguins) make great reprexes — the helper can run them too."
+    "text": "A reproducible example beats a paragraph\nThe single most useful thing you can hand an LLM (or a human, or Stack Overflow) is a reprex, which is a tiny, self-contained, runnable snippet that reproduces the problem.\n\n# install.packages(\"reprex\")\nlibrary(reprex)\n\n# copy this to your clipboard, then run reprex() \n# it runs the code and formats code + output together that's ready to paste:\nreprex({\n  library(dplyr)\n  tibble(x = c(1, 2, NA)) |&gt; summarise(m = mean(x)) # why is m NA?\n})\n\nBuilt-in datasets (mtcars, iris, penguins) make great reprexes. This helper can run them too."
   },
   {
     "objectID": "weeks/week6/day25-r-with-llms-slides.html#weak-prompt-vs.-strong-prompt",
     "href": "weeks/week6/day25-r-with-llms-slides.html#weak-prompt-vs.-strong-prompt",
     "title": "Using R with LLMs",
     "section": "Weak prompt vs. strong prompt",
-    "text": "Weak prompt vs. strong prompt\n\n\nWeak ❌\n\n“my ggplot doesn’t work, fix it”\n\nNo data, no code, no error. You’ll get a generic guess that probably doesn’t match your situation.\n\nStrong ✅\n\n“Using penguins, I want a scatter of bill_length_mm vs flipper_length_mm colored by species. My code ggplot(penguins) + geom_point(bill_length_mm, flipper_length_mm) errors with ‘object not found’. Tidyverse please.”\n\nGoal + data + code + error + constraint."
+    "text": "Weak prompt vs. strong prompt\n\n\nWeak\n\n“my ggplot doesn’t work, fix it”\n\nYou’ll get a generic guess that may not match your situation.\n\nStronger\n\n“Using penguins, I want a scatter of bill_length_mm vs flipper_length_mm colored by species. My code ggplot(penguins) + geom_point(bill_length_mm, flipper_length_mm) errors with ‘object not found’. Use tidyverse to tackle this.”\n\nGoal + data + code + error + constraint."
   },
   {
     "objectID": "weeks/week6/day25-r-with-llms-slides.html#what-ellmer-is",
     "href": "weeks/week6/day25-r-with-llms-slides.html#what-ellmer-is",
     "title": "Using R with LLMs",
     "section": "What ellmer is",
-    "text": "What ellmer is\nellmer is the tidyverse package for talking to LLMs from R. One interface, many providers:\n\nchat_anthropic() — Claude\nchat_openai() — GPT\nchat_google_gemini() — Gemini\n\n\n# install.packages(\"ellmer\")\nlibrary(ellmer)\n\nchat &lt;- chat_anthropic(\n  model = \"claude-opus-4-8\",                 # current default Claude model\n  system_prompt = \"You are a concise R tutor. Prefer the tidyverse.\"\n)\n\nchat$chat(\"In one sentence, what does dplyr::across() do?\")\n\n\n\n\n\n\n\nNote\n\n\nThe newest, most capable Claude models are Fable 5 (claude-fable-5) and the Claude 4.x family — Opus 4.8 (claude-opus-4-8), Sonnet 4.6 (claude-sonnet-4-6), Haiku 4.5 (claude-haiku-4-5). Bigger models are smarter but cost more per call."
+    "text": "What ellmer is\nellmer is the tidyverse package that provides a unified interface for accessing various LLMs from R:\n\nchat_anthropic(): Claude\nchat_openai(): GPT\nchat_google_gemini(): Gemini\n\n\n# install.packages(\"ellmer\")\nlibrary(ellmer)\n\nchat &lt;- chat_anthropic(\n  model = \"claude-opus-4-8\", # current default Claude model (RIP Fable 5)\n  system_prompt = \"You are a concise R tutor. Prefer the tidyverse.\"\n)\n\nchat$chat(\"In one sentence, what does dplyr::across() do?\")\n\n\n\n\n\n\n\nNote\n\n\nThe newest, most capable Claude models are Fable 5 (claude-fable-5) and the Claude 4.x family: Opus 4.8 (claude-opus-4-8), Sonnet 4.6 (claude-sonnet-4-6), Haiku 4.5 (claude-haiku-4-5). Bigger models are smarter but cost more per call."
   },
   {
     "objectID": "weeks/week6/day25-r-with-llms-slides.html#api-keys-never-in-your-code",
     "href": "weeks/week6/day25-r-with-llms-slides.html#api-keys-never-in-your-code",
     "title": "Using R with LLMs",
     "section": "API keys: never in your code",
-    "text": "API keys: never in your code\nCalling a provider needs an API key (a secret password tied to a paid account). Treat it like one.\n\n# DON'T: a key pasted in a script gets committed to GitHub forever.\nchat_anthropic(api_key = \"sk-ant-REAL-KEY\")        # ❌\n\n# DO: store it once in an environment variable; ellmer reads it automatically.\nusethis::edit_r_environ()    # opens ~/.Renviron — add: ANTHROPIC_API_KEY=sk-ant-...\n# restart R, then:\nchat &lt;- chat_anthropic(model = \"claude-opus-4-8\")  # ✅ key picked up from the env\n\n\n\n\n\n\n\nWarning\n\n\nA leaked key can run up real charges. Keep it out of .R, .qmd, and anything you push to git (.Renviron is git-ignored by default)."
+    "text": "API keys: never in your code\nCalling a provider needs an API key (a secret password tied to a paid account).\n\n# DON'T: a key pasted in a script gets committed to GitHub forever.\nchat_anthropic(api_key = \"sk-ant-REAL-KEY\")\n\n# INSTEAD: store it once in an environment variable ellmer can read automatically.\nusethis::edit_r_environ()    # opens ~/.Renviron; add: ANTHROPIC_API_KEY=sk-ant-...\n# restart R, then:\nchat &lt;- chat_anthropic(model = \"claude-opus-4-8\")  # key picked up from the env\n\n\n\n\n\n\n\nWarning\n\n\nA leaked key can run up real charges. Keep it out of .R, .qmd, and anything you push to git (.Renviron is git-ignored by default)."
   },
   {
-    "objectID": "weeks/week6/day25-r-with-llms-slides.html#the-interesting-part-an-llm-as-a-data-step",
-    "href": "weeks/week6/day25-r-with-llms-slides.html#the-interesting-part-an-llm-as-a-data-step",
+    "objectID": "weeks/week6/day25-r-with-llms-slides.html#llm-as-a-data-step",
+    "href": "weeks/week6/day25-r-with-llms-slides.html#llm-as-a-data-step",
     "title": "Using R with LLMs",
-    "section": "The interesting part: an LLM as a data step",
-    "text": "The interesting part: an LLM as a data step\nThe real power for us isn’t chatting — it’s running the same prompt over every row of a data frame, turning messy text into structured columns. ellmer can return typed, structured output:\n\nlibrary(ellmer)\nchat &lt;- chat_anthropic(model = \"claude-opus-4-8\")\n\nreviews &lt;- tibble(text = c(\n  \"Loved it, arrived early and works great!\",\n  \"Broke after two days. Very disappointed.\",\n  \"It's fine. Does the job, nothing special.\"\n))\n\n# ask for a schema; ellmer enforces the shape\nsentiment &lt;- type_object(\n  mood   = type_string(\"one of: positive, negative, neutral\"),\n  reason = type_string(\"a 5-word justification\")\n)\n\nreviews |&gt;\n  mutate(parsed = map(text, ~ chat$chat_structured(.x, type = sentiment))) |&gt;\n  unnest_wider(parsed)\n\nThis is purrr + a prompt: text in, tidy columns out. That’s the data-science use."
+    "section": "LLM as a data step",
+    "text": "LLM as a data step\nThe real power for us isn’t chatting, but rather running the same prompt over every row of a data frame. This approach can help turn messy text into structured columns since ellmer can return typed, structured output:\n\nlibrary(ellmer)\nchat &lt;- chat_anthropic(model = \"claude-opus-4-8\")\n\nreviews &lt;- tibble(text = c(\n  \"Loved it, arrived early and works great!\",\n  \"Broke after two days. Very disappointed.\",\n  \"It's fine. Does the job, nothing special.\"\n))\n\n# ask for a schema; ellmer enforces the shape\nsentiment &lt;- type_object(\n  mood = type_string(\"one of: positive, negative, neutral\"),\n  reason = type_string(\"a 5-word justification\")\n)\n\nreviews |&gt;\n  mutate(parsed = map(text, ~ chat$chat_structured(.x, type = sentiment))) |&gt;\n  unnest_wider(parsed)\n\nThis is purrr + a prompt: text in, tidy columns out. That’s the data-science use."
   },
   {
-    "objectID": "weeks/week6/day25-r-with-llms-slides.html#llms-are-confident-not-correct",
-    "href": "weeks/week6/day25-r-with-llms-slides.html#llms-are-confident-not-correct",
+    "objectID": "weeks/week6/day25-r-with-llms-slides.html#llms-are-confident-not-always-correct",
+    "href": "weeks/week6/day25-r-with-llms-slides.html#llms-are-confident-not-always-correct",
     "title": "Using R with LLMs",
-    "section": "LLMs are confident, not correct",
-    "text": "LLMs are confident, not correct\nAn LLM generates plausible text. Plausible is not the same as true. Expect:\n\nHallucinated functions / packages — dplyr::summarise_with() that doesn’t exist.\nSubtly wrong code — runs without error, gives the wrong number.\nOutdated idioms — deprecated funs(), old gather()/spread().\nMade-up facts and citations — stated with total confidence.\n\n\n\n\n\n\n\nImportant\n\n\nThis is the same lesson as tomorrow’s case study: a thing can sound authoritative and still be wrong. You are the reviewer."
+    "section": "LLMs are confident, not always correct",
+    "text": "LLMs are confident, not always correct\nAn LLM generates plausible, not 100% true, text. You should expect:\n\nHallucinated functions / packages like dplyr::summarise_with() that don’t exist.\nSubtly wrong code that runs without error, gives the wrong number.\nOutdated idioms, i.e., deprecated funs(), old gather()/spread().\nMade-up facts and citations stated with total confidence."
   },
   {
-    "objectID": "weeks/week6/day25-r-with-llms-slides.html#the-verify-loop-non-negotiable",
-    "href": "weeks/week6/day25-r-with-llms-slides.html#the-verify-loop-non-negotiable",
+    "objectID": "weeks/week6/day25-r-with-llms-slides.html#verification",
+    "href": "weeks/week6/day25-r-with-llms-slides.html#verification",
     "title": "Using R with LLMs",
-    "section": "The verify loop (non-negotiable)",
-    "text": "The verify loop (non-negotiable)\nFor any code an LLM gives you:\n\n\n\n\n\n\nTip\n\n\n\nRead it. Can you explain every line? If not, don’t ship it.\nRun it. On real input. Does it error? Does it even do what you asked?\nCheck the result. Spot-check against a value you can compute by hand or already know.\nTest the edges. Empty input, NAs, one row, a weird category.\n\n\n\n\nIf you can’t verify it, you can’t use it — for a grade, a paper, or a job."
+    "section": "Verification",
+    "text": "Verification\nFor any code an LLM gives you:\n\n\n\n\n\n\nTip\n\n\n\nRead it. Can you explain every line?\nRun it. Does it error on real input data? Does it even do what you asked?\nCheck the result. Spot-check against a value you can compute by hand or already know.\nTest the edge cases. Things to try include empty input, NAs, one row, or a weird category."
   },
   {
-    "objectID": "weeks/week6/day25-r-with-llms-slides.html#use-it-well",
-    "href": "weeks/week6/day25-r-with-llms-slides.html#use-it-well",
+    "objectID": "weeks/week6/day25-r-with-llms-slides.html#use-it-wisely",
+    "href": "weeks/week6/day25-r-with-llms-slides.html#use-it-wisely",
     "title": "Using R with LLMs",
-    "section": "Use it well",
-    "text": "Use it well\n\nLearn from it, don’t just paste. Ask why, ask for a small example, then reproduce it yourself.\nKeep prompts small and specific. One problem at a time beats “build my whole project.”\nPrefer reprexes and built-in data. Better answers, no privacy risk.\nTrack what you used. You’ll need it for the next slide."
-  },
-  {
-    "objectID": "weeks/week6/day25-r-with-llms-slides.html#what-the-course-policy-asks",
-    "href": "weeks/week6/day25-r-with-llms-slides.html#what-the-course-policy-asks",
-    "title": "Using R with LLMs",
-    "section": "What the course policy asks",
-    "text": "What the course policy asks\nUsing an LLM is allowed within the course AI policy — read it, but the spirit is simple:\n\nYou are responsible for everything you submit, AI-assisted or not. “The AI wrote it” is not a defense for a bug or a wrong claim.\nDisclose AI use where the policy asks (and don’t pass AI text off as your own writing).\nYou must understand your submission — be ready to explain any line in office hours or an oral check-in.\nOn a quiz/exam, only the tools the policy permits.\n\n\n\n\n\n\n\nNote\n\n\nTreat it like a very fast, occasionally-wrong collaborator: great for momentum, never the final authority. The judgment stays yours."
+    "section": "Use it wisely",
+    "text": "Use it wisely\n\nLearn from it, don’t just paste. Ask why, ask for a small example, then reproduce it yourself.\nKeep prompts small and specific.\nPrefer reprexes and built-in data.\nTrack what you used.\n\n\n\n\n\n\n\nNote\n\n\nTreat LLMs like very fast, occasionally-wrong collaborators. They’re not to be blindly trusted."
   },
   {
     "objectID": "weeks/week6/day25-r-with-llms-slides.html#in-class-activity-20-min",
     "href": "weeks/week6/day25-r-with-llms-slides.html#in-class-activity-20-min",
     "title": "Using R with LLMs",
     "section": "In-class activity (~20 min)",
-    "text": "In-class activity (~20 min)\nUse whatever LLM you have access to (chat window is fine — no API key needed).\n\nExplain an error. Run this, then ask the LLM to explain and fix it. Verify the fix runs:\nlibrary(dplyr)\npenguins |&gt; group_by(species) |&gt; summarize(avg = mean(bill_length_mm))\n(Why NaN/NA? What’s the one-argument fix?)\nGenerate a function. Ask for an R function that takes a numeric vector and returns its mean, median, and SD as a named tibble. Then break it: feed it c(1, 2, NA) and a length-1 vector. Did the LLM handle those?\nCatch a mistake. Find at least one thing the LLM got wrong, outdated, or could improve — and write one sentence on how you knew."
+    "text": "In-class activity (~20 min)\nUse whatever LLM you have access to (chat window is fine, no API key needed).\n\nExplain an error. Run this, then ask the LLM to explain and fix it. Verify the fix runs:\nlibrary(dplyr)\npenguins |&gt; group_by(species) |&gt; summarize(avg = mean(bill_length_mm))\n(Why NaN/NA? What’s the one-argument fix?)\nGenerate a function. Ask for an R function that takes a numeric vector and returns its mean, median, and SD as a named tibble. Then break it: feed it c(1, 2, NA) and a length-1 vector. Did the LLM handle those?\nCatch a mistake. Find at least one thing the LLM got wrong, outdated, or could improve."
   },
   {
     "objectID": "weeks/week6/day25-r-with-llms-slides.html#wrap-up-looking-ahead",
     "href": "weeks/week6/day25-r-with-llms-slides.html#wrap-up-looking-ahead",
     "title": "Using R with LLMs",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nThree surfaces: chat, IDE assistant, ellmer from code.\nPrompt well: goal + data shape + error + constraints; hand over a reprex, never private data.\nellmer calls Claude/GPT/Gemini from R; keep API keys in .Renviron; structured output = LLM as a tidy data step.\nVerify everything — read, run, check, test. Confident ≠ correct.\nStay inside the course AI policy; you own what you submit.\n\nUpcoming\n\nTonight: HW 5 due 11:59 p.m.\nWed Jun 24: case study — bad science · Checkpoint 2 due\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\n\nellmer docs · reprex\nAI policy · Syllabus · Schedule"
+    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nThree surfaces: chat, IDE assistant, ellmer from code.\nPrompt well: goal + data shape + error + constraints; hand over a reprex, never private data.\nellmer calls Claude/GPT/Gemini from R; keep API keys in .Renviron; structured output = LLM as a tidy data step.\n\nUpcoming\n\nWed Jun 24: benzoyl peroxide case study: data-driven investigation uncovering carcinogens in everyday skincare products· Checkpoint 2 due\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\n\nellmer docs · reprex\nAI policy · Syllabus · Schedule"
   },
   {
     "objectID": "weeks/week6/day28-presentations.html",
