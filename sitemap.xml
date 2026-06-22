@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/schedule.html</loc>
-    <lastmod>2026-06-18T18:05:23.723Z</lastmod>
+    <lastmod>2026-06-19T13:36:00.119Z</lastmod>
   </url>
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/reference/hw-template.html</loc>
@@ -149,12 +149,16 @@
     <lastmod>2026-05-27T12:04:52.360Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week6/day25-trees.html</loc>
-    <lastmod>2026-05-16T17:10:06.751Z</lastmod>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week6/day24-clustering-slides.html</loc>
+    <lastmod>2026-06-22T13:18:15.483Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week6/day28-presentations.html</loc>
-    <lastmod>2026-05-16T17:10:06.751Z</lastmod>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week6/day24-clustering-page.html</loc>
+    <lastmod>2026-06-22T13:18:15.483Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week6/index.html</loc>
+    <lastmod>2026-06-22T12:32:54.280Z</lastmod>
   </url>
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/assignments/quizzes/index.html</loc>
@@ -197,11 +201,15 @@
     <lastmod>2026-05-17T18:55:56.069Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week6/index.html</loc>
-    <lastmod>2026-06-18T18:04:44.587Z</lastmod>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week6/day25-r-with-llms-page.html</loc>
+    <lastmod>2026-06-18T18:49:23.599Z</lastmod>
   </url>
   <url>
-    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week6/day24-clustering.html</loc>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week6/day25-r-with-llms-slides.html</loc>
+    <lastmod>2026-06-18T18:49:23.599Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week6/day28-presentations.html</loc>
     <lastmod>2026-05-16T17:10:06.751Z</lastmod>
   </url>
   <url>
@@ -266,15 +274,15 @@
   </url>
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week5/day23-regex-page.html</loc>
-    <lastmod>2026-06-18T12:52:02.071Z</lastmod>
+    <lastmod>2026-06-19T13:35:54.961Z</lastmod>
   </url>
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week5/day23-regex-slides.html</loc>
-    <lastmod>2026-06-18T12:52:02.071Z</lastmod>
+    <lastmod>2026-06-19T13:35:54.961Z</lastmod>
   </url>
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week5/index.html</loc>
-    <lastmod>2026-06-14T02:52:18.599Z</lastmod>
+    <lastmod>2026-06-19T13:35:53.539Z</lastmod>
   </url>
   <url>
     <loc>https://cgcostanzo.github.io/stat184-summer2026/weeks/week4/day15-joins-page.html</loc>

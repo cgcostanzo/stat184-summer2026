@@ -39,14 +39,14 @@
     "href": "schedule.html#week-5-functions-iteration-strings-june-15---19",
     "title": "Course Schedule",
     "section": "Week 5 — Functions, Iteration, & Strings (June 15 - 19)",
-    "text": "Week 5 — Functions, Iteration, & Strings (June 15 - 19)\n\n\n\n\n\n\nNote\n\n\n\nWeek 5 covers material that Data Computing doesn’t address in depth. Readings for Mon–Wed come from R for Data Science (free online).\n\n\n\nWeek 5 schedule\n\n\n\n\n\n\n\n\nDate\nTopic\nRead before class\nDue\n\n\n\n\nMon Jun 15\nWriting functions in R\nR4DS Ch 25 (Functions)\nHW 4\n\n\nTue Jun 16\nControl flow · if/else, for, while\nR4DS Ch 26 §26.1–26.3\n—\n\n\nWed Jun 17\nVectorized operations · purrr::map\nR4DS Ch 26 §26.4–26.5\n—\n\n\nThu Jun 18\nStrings, dates, and regex\nDC §17.1–17.2\nProject oral check-in #1 (during class)\n\n\nFri Jun 19\nNo class - Juneteenth · Quiz 5 rescheduled to Mon Jun 22\n—\nHW 5"
+    "text": "Week 5 — Functions, Iteration, & Strings (June 15 - 19)\n\n\n\n\n\n\nNote\n\n\n\nWeek 5 covers material that Data Computing doesn’t address in depth. Readings for Mon–Wed come from R for Data Science (free online).\n\n\n\nWeek 5 schedule\n\n\n\n\n\n\n\n\nDate\nTopic\nRead before class\nDue\n\n\n\n\nMon Jun 15\nWriting functions in R\nR4DS Ch 25 (Functions)\nHW 4\n\n\nTue Jun 16\nControl flow · if/else, for, while\nR4DS Ch 26 §26.1–26.3\n—\n\n\nWed Jun 17\nVectorized operations · purrr::map\nR4DS Ch 26 §26.4–26.5\n—\n\n\nThu Jun 18\nStrings, dates, and regex\nDC §17.1–17.2\nProject oral check-in #1 (during class)\n\n\nFri Jun 19\nNo class - Juneteenth · Quiz 4 rescheduled to Mon Jun 22\n—\nHW 5"
   },
   {
     "objectID": "schedule.html#week-6-special-topics-project-june-22---26",
     "href": "schedule.html#week-6-special-topics-project-june-22---26",
     "title": "Course Schedule",
     "section": "Week 6 — Special Topics & Project (June 22 - 26)",
-    "text": "Week 6 — Special Topics & Project (June 22 - 26)\n\nWeek 6 schedule\n\n\n\n\n\n\n\n\nDate\nTopic\nRead before class\nDue\n\n\n\n\nMon Jun 22\nQuiz 4 (rescheduled) · unsupervised learning, clustering\nDC §18.2\nQuiz 5 (in class)\n\n\nTue Jun 23\nDecision trees / CART\nDC §18.3\n—\n\n\nWed Jun 24\nTopic TBD\n—\nProject Checkpoint 2\n\n\nThu Jun 25\nProject work day · oral check-in #2 (final walkthrough)\n—\n—\n\n\nFri Jun 26\nQuiz 6 · short project presentations · course wrap-up\n—\nQuiz 6 (in class) · Final project report due 11:59 p.m."
+    "text": "Week 6 — Special Topics & Project (June 22 - 26)\n\nWeek 6 schedule\n\n\n\n\n\n\n\n\nDate\nTopic\nRead before class\nDue\n\n\n\n\nMon Jun 22\nClustering & decision trees\nDC §18.2–18.3\nQuiz 4 (in class)\n\n\nTue Jun 23\nUsing R with LLMs\n—\n—\n\n\nWed Jun 24\nCase study: bad science & misleading claims\n—\nProject Checkpoint 2\n\n\nThu Jun 25\nProject work day · oral check-in #2 (final walkthrough)\n—\n—\n\n\nFri Jun 26\nQuiz 6 · short project presentations · course wrap-up\n—\nQuiz 6 (in class) · Final project report due 11:59 p.m."
   },
   {
     "objectID": "schedule.html#submission-guide",
@@ -2601,7 +2601,7 @@
     "href": "weeks/week5/day20-functions-slides.html#always-test-on-simple-inputs",
     "title": "Writing functions in R",
     "section": "Always test on simple inputs",
-    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b     c     d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 0.793 0.559 0.899 0.373\n2 0.283 1     0.367 0.324\n3 0     0.844 0     0.526\n4 0.645 0     0.366 1    \n5 1     0.779 1     0"
+    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b     c     d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 0.546 1     0.449 0.444\n2 0.529 0.811 0     1    \n3 0.572 0.852 1     0    \n4 0     0.691 0.503 0.568\n5 1     0     0.335 0.536"
   },
   {
     "objectID": "weeks/week5/day20-functions-slides.html#changing-a-function-in-one-place",
@@ -2783,7 +2783,7 @@
     "href": "weeks/week5/day20-functions-page.html#always-test-on-simple-inputs",
     "title": "Writing functions in R",
     "section": "Always test on simple inputs",
-    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b     c     d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1 0.577 0     0.101 0    \n2 0.198 1     0     0.512\n3 0.191 0.653 0.793 1    \n4 0     0.638 0.350 0.683\n5 1     0.126 1     0.167"
+    "text": "Always test on simple inputs\nBefore trusting a function, test run it with inputs where you already know the answer:\n\nrescale01(c(-10, 0, 10))\n\n[1] 0.0 0.5 1.0\n\nrescale01(c(1, 2, 3, NA, 5))\n\n[1] 0.00 0.25 0.50   NA 1.00\n\n\nNow the mutate() is short, readable, and more bug-resistant:\n\ndf &lt;- tibble(a = rnorm(5), b = rnorm(5), c = rnorm(5), d = rnorm(5))\ndf |&gt; mutate(a = rescale01(a), b = rescale01(b),\n             c = rescale01(c), d = rescale01(d))\n\n# A tibble: 5 × 4\n      a     b     c       d\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;\n1 0     1     0.731 0.755  \n2 0.826 0.940 0     0.813  \n3 1     0.477 0.271 0      \n4 0.149 0.863 0.399 1      \n5 0.399 0     1     0.00583"
   },
   {
     "objectID": "weeks/week5/day20-functions-page.html#changing-a-function-in-one-place",
@@ -4205,74 +4205,298 @@
     ]
   },
   {
-    "objectID": "weeks/week6/day25-trees.html",
-    "href": "weeks/week6/day25-trees.html",
-    "title": "Decision trees / CART",
+    "objectID": "weeks/week6/day24-clustering-slides.html#two-kinds-of-learning",
+    "href": "weeks/week6/day24-clustering-slides.html#two-kinds-of-learning",
+    "title": "Clustering & decision trees",
+    "section": "Two kinds of learning",
+    "text": "Two kinds of learning\n\n\n\n\n\n\n\n\n\nUnsupervised\nSupervised\n\n\n\n\nYou have…\nfeatures only, no labels\nfeatures and a known answer\n\n\nGoal\nfind structure / groups\npredict the answer for new cases\n\n\nExamples\nclustering (k-means, hierarchical)\ndecision trees (CART)\n\n\n“Right answer”?\nno; you judge usefulness\nyes; you can measure accuracy\n\n\n\nToday, we’ll be using the Palmer penguins body measurements to explore supervised and unsupervised learning techniques."
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-slides.html#penguins-data",
+    "href": "weeks/week6/day24-clustering-slides.html#penguins-data",
+    "title": "Clustering & decision trees",
+    "section": "Penguins data",
+    "text": "Penguins data\n\npeng |&gt;\n  select(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) |&gt;\n  glimpse()\n\nRows: 342\nColumns: 5\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, 36.7, 39.3, 38.9, 39.2, 34.1, 42.0…\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, 19.3, 20.6, 17.8, 19.6, 18.1, 20.2…\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, 193, 190, 181, 195, 193, 190, 186, 18…\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, 3450, 3650, 3625, 4675, 3475, 4250…\n\n\nFor clustering we’ll hide species and see if we can “rediscover” these categories. For trees we’ll use species as the answer to predict."
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-slides.html#overview",
+    "href": "weeks/week6/day24-clustering-slides.html#overview",
+    "title": "Clustering & decision trees",
+    "section": "Overview",
+    "text": "Overview\nClustering puts rows into groups so that rows in a group are similar and rows in different groups are different, using only the feature columns.\n\nNo labels go into the model, i.e., you don’t tell it “species.”\n“Similar” means close in distance once features are on a comparable scale.\nHow we measure distance depends on the method.\n\n\n\n\n\n\n\nWarning\n\n\nScale first. Body mass (~3000-6000 g) would swamp bill depth (~13-22 mm) in any distance calculation. We almost always want to standardize so every feature gets an equal vote.\n\n\n\n\nX &lt;- peng |&gt;\n  select(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) |&gt;\n  scale() # subtract mean, divide by sd --&gt; unit-less\n\nround(colMeans(X), 14) # column means = zero\n\n   bill_length_mm     bill_depth_mm flipper_length_mm       body_mass_g \n                0                 0                 0                 0 \n\napply(X, 2, var) # column variances = one\n\n   bill_length_mm     bill_depth_mm flipper_length_mm       body_mass_g \n                1                 1                 1                 1"
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-slides.html#k-means-clustering",
+    "href": "weeks/week6/day24-clustering-slides.html#k-means-clustering",
+    "title": "Clustering & decision trees",
+    "section": "k-means clustering",
+    "text": "k-means clustering\nkmeans() finds k cluster centers and assigns each point to its nearest one, iterating until things stop moving. k is a hyperparameter you pick.\n\nset.seed(184) # random algorithm; set a seed so results are reproducible\nkm &lt;- kmeans(X, centers = 3, nstart = 25) # nstart = try 25 random starts, keep best\nkm$size # how many penguins per cluster\n\n[1] 132  87 123\n\n\nnstart matters here: k-means depends on random starting centers, so we try several and keep the best.\n\nset.seed() makes it reproducible (we’ll get the same results if we re-run our code)."
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-slides.html#clustering-results",
+    "href": "weeks/week6/day24-clustering-slides.html#clustering-results",
+    "title": "Clustering & decision trees",
+    "section": "Clustering results",
+    "text": "Clustering results"
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-slides.html#did-it-recover-the-species-categories",
+    "href": "weeks/week6/day24-clustering-slides.html#did-it-recover-the-species-categories",
+    "title": "Clustering & decision trees",
+    "section": "Did it recover the species categories?",
+    "text": "Did it recover the species categories?\nWe clustered without species. Now compare the clusters to the real species:"
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-slides.html#did-it-recover-the-species-categories-1",
+    "href": "weeks/week6/day24-clustering-slides.html#did-it-recover-the-species-categories-1",
+    "title": "Clustering & decision trees",
+    "section": "Did it recover the species categories?",
+    "text": "Did it recover the species categories?\n\n\n\n\n\n\n\n\n\n\nEach cluster is mostly one species, found with no labels. (Gentoo separates cleanly; the other two overlap a bit.)"
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-slides.html#how-many-clusters-the-elbow",
+    "href": "weeks/week6/day24-clustering-slides.html#how-many-clusters-the-elbow",
+    "title": "Clustering & decision trees",
+    "section": "How many clusters? The elbow",
+    "text": "How many clusters? The elbow\nThere’s no “correct” k. A common heuristic is to plot total within-cluster spread as k grows, and look for the elbow where adding clusters stops helping. (Uses purrr::map_dbl() from last week.)\n\ntibble(k = 1:8) |&gt;\n  mutate(wss = map_dbl(k, ~ kmeans(X, centers = .x, nstart = 10)$tot.withinss)) |&gt;\n  ggplot(aes(k, wss)) +\n  geom_line() + geom_point(size = 2) +\n  scale_x_continuous(breaks = 1:8) +\n  labs(x = \"k (number of clusters)\", y = \"Error\",\n       title = \"Elbow around k = 3\")\n\n\n\n\n\n\n\n\nHere, “Error” is measured by the total within-cluster sum of squares.\n\\[\\text{Error}_k = \\sum_{i=1}^{N} ||\\mathbf{x}_i - \\boldsymbol{\\mu}_{c(i)}||^2\\]\nEquivalently,\n\\[\\text{Error}_k = \\sum_{j=1}^{k} \\sum_{\\mathbf{x}_i \\in C_j} ||\\mathbf{x}_i - \\boldsymbol{\\mu}_j||^2\\]"
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-slides.html#hierarchical-clustering",
+    "href": "weeks/week6/day24-clustering-slides.html#hierarchical-clustering",
+    "title": "Clustering & decision trees",
+    "section": "Hierarchical clustering",
+    "text": "Hierarchical clustering\nAnother approach is to not pick k up front. Instead, you can start with every point alone, then repeatedly merge the two closest groups, and record the whole tree (a dendrogram).\n\nd  &lt;- dist(X) # pairwise distances\nhc &lt;- hclust(d, method = \"complete\")\nplot(hc, labels = FALSE, main = \"Dendrogram\", xlab = \"\", sub = \"\")\nrect.hclust(hc, k = 3, border = \"#7C0A02\") # cut into 3 groups\n\n\n\n\n\n\n\n\nHeight = how different two groups were when merged. Cut the tree at a height to get clusters, then you choose after seeing the structure."
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-slides.html#hierarchical-cut-and-compare",
+    "href": "weeks/week6/day24-clustering-slides.html#hierarchical-cut-and-compare",
+    "title": "Clustering & decision trees",
+    "section": "Hierarchical: cut and compare",
+    "text": "Hierarchical: cut and compare\n\nclusters_h &lt;- cutree(hc, k = 3)\ntable(cluster = clusters_h, species = peng$species)\n\n       species\ncluster Adelie Chinstrap Gentoo\n      1    151        14      0\n      2      0         0    123\n      3      0        54      0\n\n\nk-means needs k up front and is fast on big data; hierarchical shows the whole nesting structure and lets you decide k afterward."
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-slides.html#now-we-have-labels",
+    "href": "weeks/week6/day24-clustering-slides.html#now-we-have-labels",
+    "title": "Clustering & decision trees",
+    "section": "Now we have labels",
+    "text": "Now we have labels\nSwitch to supervised: use the measurements to predict species, and get a model a human can read.\nA decision tree asks a sequence of yes/no questions about the features, splitting the data at each step, until each leaf is (mostly) one class. CART = Classification And Regression Trees.\n\nfit &lt;- rpart(\n  species ~ bill_length_mm + bill_depth_mm + flipper_length_mm + body_mass_g,\n  data = peng, method = \"class\"\n)"
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-slides.html#read-the-tree",
+    "href": "weeks/week6/day24-clustering-slides.html#read-the-tree",
+    "title": "Clustering & decision trees",
+    "section": "Read the tree",
+    "text": "Read the tree\n\nplot(fit, margin = 0.1)\ntext(fit, use.n = TRUE, cex = 0.9)\n\n\n\n\n\n\n\n\nFollow a penguin from the top: at each node, answer the question and go left if yes. The leaf is the predicted species. Notice it often needs only two measurements, which is much more interpretable."
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-slides.html#how-does-it-pick-the-splits",
+    "href": "weeks/week6/day24-clustering-slides.html#how-does-it-pick-the-splits",
+    "title": "Clustering & decision trees",
+    "section": "How does it pick the splits?",
+    "text": "How does it pick the splits?\nAt each step the tree tries every feature and every cut point and keeps the split that makes the two sides most “pure” (closest to a single class).\n\nPurity is measured by impurity (Gini index): low impurity = the node is almost all one species.\nIt splits greedily, top-down, then stops when splits no longer help enough.\n\n\n\n\n\n\n\nTip\n\n\nThis is why trees are easy to explain: each split is just a threshold on one variable, like flipper_length_mm &lt; 206."
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-slides.html#how-good-is-it",
+    "href": "weeks/week6/day24-clustering-slides.html#how-good-is-it",
+    "title": "Clustering & decision trees",
+    "section": "How good is it?",
+    "text": "How good is it?\nBecause species is known, we can score predictions with a confusion table:\n\npred &lt;- predict(fit, peng, type = \"class\")\ntable(prediction = pred, actual = peng$species)\n\n           actual\nprediction  Adelie Chinstrap Gentoo\n  Adelie       145         5      0\n  Chinstrap      6        63      1\n  Gentoo         0         0    122\n\nmean(pred == peng$species) # overall accuracy\n\n[1] 0.9649123"
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-slides.html#visualize-with-a-heatmap",
+    "href": "weeks/week6/day24-clustering-slides.html#visualize-with-a-heatmap",
+    "title": "Clustering & decision trees",
+    "section": "Visualize with a heatmap",
+    "text": "Visualize with a heatmap\n\n\n\n\n\n\n\nWarning\n\n\nThis is accuracy on the same data the tree learned from, which is overly optimistic. A more realistic evaluation uses a held-out test set (the model must perform on data it has never seen). Deep trees can overfit, i.e., memorize the training data, fail on new data."
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-slides.html#trees-vs.-clustering",
+    "href": "weeks/week6/day24-clustering-slides.html#trees-vs.-clustering",
+    "title": "Clustering & decision trees",
+    "section": "Trees vs. clustering",
+    "text": "Trees vs. clustering\n\n\nClustering (unsupervised)\n\nNo labels available\nQuestion: “what natural groups exist?”\nOutput: a group ID per row\nJudged by usefulness, not accuracy\ne.g. customer segments, document topics\n\n\nDecision tree (supervised)\n\nLabels available\nQuestion: “predict this known outcome”\nOutput: a prediction + a readable rule\nJudged by accuracy on held-out data\ne.g. spam / not-spam, species, churn\n\n\nAn unsupervised cluster is not a verified truth, it’s a hypothesis you still have to check."
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-slides.html#in-class-activity-20-min",
+    "href": "weeks/week6/day24-clustering-slides.html#in-class-activity-20-min",
+    "title": "Clustering & decision trees",
+    "section": "In-class activity (~20 min)",
+    "text": "In-class activity (~20 min)\nWork in day24-activity.R (or a fresh script) on the penguins data.\n\nCluster. Standardize the four numeric measurements, run kmeans() with centers = 2, then 4. How does table(cluster, species) change vs. k = 3?\nElbow. Rebuild the elbow plot using only two features. Does the elbow still say 3?\nTree. Fit a tree predicting species from only bill_length_mm and bill_depth_mm. Plot it and report accuracy. Did dropping two features hurt much?\nDiscuss. Which method would you prefer if the dataset had no species column at all? Why?"
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-slides.html#wrap-up-looking-ahead",
+    "href": "weeks/week6/day24-clustering-slides.html#wrap-up-looking-ahead",
+    "title": "Clustering & decision trees",
+    "section": "Wrap-up & looking ahead",
+    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nUnsupervised (clustering) finds groups with no labels; supervised (trees) predicts a known label.\nk-means: pick k, scale features, nstart, read the elbow.\nHierarchical: merge-closest, read the dendrogram, cut afterward.\nTrees: greedy splits on single features \\(\\rightarrow\\) readable rules; score on held-out data, beware overfitting.\n\nUpcoming\n\nTue Jun 23: using R with LLMs · HW 5 due 11:59 p.m.\nWed Jun 24: case study · Checkpoint 2 due\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\n\nDC Ch. 18\nSyllabus · Schedule"
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-page.html",
+    "href": "weeks/week6/day24-clustering-page.html",
+    "title": "Clustering & decision trees",
     "section": "",
-    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
+    "text": "NoteToday: Monday June 22\n\n\n\nBefore class\n\nPerusall Reading (Canvas): Data Computing §18.2 (clustering)\n\nPlan for today\n\nQuiz 4 (rescheduled from Friday).\nSupervised vs. unsupervised learning.\nk-means and hierarchical clustering.\nDecision trees / CART.\nIn-class activity.\n\nHelpful links\n\nSyllabus · Schedule · DC Ch. 18"
   },
   {
-    "objectID": "weeks/week6/day25-trees.html#before-class",
-    "href": "weeks/week6/day25-trees.html#before-class",
-    "title": "Decision trees / CART",
-    "section": "Before class",
-    "text": "Before class\n\nRead: Data Computing Ch 18 (§18.3)\nTODO: any prep materials, data files, etc."
+    "objectID": "weeks/week6/day24-clustering-page.html#two-kinds-of-learning",
+    "href": "weeks/week6/day24-clustering-page.html#two-kinds-of-learning",
+    "title": "Clustering & decision trees",
+    "section": "Two kinds of learning",
+    "text": "Two kinds of learning\n\n\n\n\n\n\n\n\n\nUnsupervised\nSupervised\n\n\n\n\nYou have…\nfeatures only, no labels\nfeatures and a known answer\n\n\nGoal\nfind structure / groups\npredict the answer for new cases\n\n\nExamples\nclustering (k-means, hierarchical)\ndecision trees (CART)\n\n\n“Right answer”?\nno; you judge usefulness\nyes; you can measure accuracy\n\n\n\nToday, we’ll be using the Palmer penguins body measurements to explore supervised and unsupervised learning techniques."
   },
   {
-    "objectID": "weeks/week6/day25-trees.html#outline",
-    "href": "weeks/week6/day25-trees.html#outline",
-    "title": "Decision trees / CART",
-    "section": "Outline",
-    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
+    "objectID": "weeks/week6/day24-clustering-page.html#penguins-data",
+    "href": "weeks/week6/day24-clustering-page.html#penguins-data",
+    "title": "Clustering & decision trees",
+    "section": "Penguins data",
+    "text": "Penguins data\n\npeng |&gt;\n  select(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) |&gt;\n  glimpse()\n\nRows: 342\nColumns: 5\n$ species           &lt;fct&gt; Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ bill_length_mm    &lt;dbl&gt; 39.1, 39.5, 40.3, 36.7, 39.3, 38.9, 39.2, 34.1, 42.0…\n$ bill_depth_mm     &lt;dbl&gt; 18.7, 17.4, 18.0, 19.3, 20.6, 17.8, 19.6, 18.1, 20.2…\n$ flipper_length_mm &lt;int&gt; 181, 186, 195, 193, 190, 181, 195, 193, 190, 186, 18…\n$ body_mass_g       &lt;int&gt; 3750, 3800, 3250, 3450, 3650, 3625, 4675, 3475, 4250…\n\n\nFor clustering we’ll hide species and see if we can “rediscover” these categories. For trees we’ll use species as the answer to predict."
   },
   {
-    "objectID": "weeks/week6/day25-trees.html#resources",
-    "href": "weeks/week6/day25-trees.html#resources",
-    "title": "Decision trees / CART",
-    "section": "Resources",
-    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+    "objectID": "weeks/week6/day24-clustering-page.html#overview",
+    "href": "weeks/week6/day24-clustering-page.html#overview",
+    "title": "Clustering & decision trees",
+    "section": "Overview",
+    "text": "Overview\nClustering puts rows into groups so that rows in a group are similar and rows in different groups are different, using only the feature columns.\n\nNo labels go into the model, i.e., you don’t tell it “species.”\n“Similar” means close in distance once features are on a comparable scale.\nHow we measure distance depends on the method.\n\n\n\n\n\n\n\nWarning\n\n\n\nScale first. Body mass (~3000-6000 g) would swamp bill depth (~13-22 mm) in any distance calculation. We almost always want to standardize so every feature gets an equal vote.\n\n\n\nX &lt;- peng |&gt;\n  select(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) |&gt;\n  scale() # subtract mean, divide by sd --&gt; unit-less\n\nround(colMeans(X), 14) # column means = zero\n\n   bill_length_mm     bill_depth_mm flipper_length_mm       body_mass_g \n                0                 0                 0                 0 \n\napply(X, 2, var) # column variances = one\n\n   bill_length_mm     bill_depth_mm flipper_length_mm       body_mass_g \n                1                 1                 1                 1"
   },
   {
-    "objectID": "weeks/week6/day25-trees.html#after-class",
-    "href": "weeks/week6/day25-trees.html#after-class",
-    "title": "Decision trees / CART",
-    "section": "After class",
-    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
+    "objectID": "weeks/week6/day24-clustering-page.html#k-means-clustering",
+    "href": "weeks/week6/day24-clustering-page.html#k-means-clustering",
+    "title": "Clustering & decision trees",
+    "section": "k-means clustering",
+    "text": "k-means clustering\nkmeans() finds k cluster centers and assigns each point to its nearest one, iterating until things stop moving. k is a hyperparameter you pick.\n\nset.seed(184) # random algorithm; set a seed so results are reproducible\nkm &lt;- kmeans(X, centers = 3, nstart = 25) # nstart = try 25 random starts, keep best\nkm$size # how many penguins per cluster\n\n[1] 132  87 123\n\n\nnstart matters here: k-means depends on random starting centers, so we try several and keep the best.\n\nset.seed() makes it reproducible (we’ll get the same results if we re-run our code)."
   },
   {
-    "objectID": "weeks/week6/day28-presentations.html",
-    "href": "weeks/week6/day28-presentations.html",
-    "title": "Quiz 6 · short project presentations · course wrap-up",
+    "objectID": "weeks/week6/day24-clustering-page.html#clustering-results",
+    "href": "weeks/week6/day24-clustering-page.html#clustering-results",
+    "title": "Clustering & decision trees",
+    "section": "Clustering results",
+    "text": "Clustering results"
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-page.html#did-it-recover-the-species-categories",
+    "href": "weeks/week6/day24-clustering-page.html#did-it-recover-the-species-categories",
+    "title": "Clustering & decision trees",
+    "section": "Did it recover the species categories?",
+    "text": "Did it recover the species categories?\nWe clustered without species. Now compare the clusters to the real species:"
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-page.html#did-it-recover-the-species-categories-1",
+    "href": "weeks/week6/day24-clustering-page.html#did-it-recover-the-species-categories-1",
+    "title": "Clustering & decision trees",
+    "section": "Did it recover the species categories?",
+    "text": "Did it recover the species categories?\n\n\n\n\n\n\n\n\n\n\nEach cluster is mostly one species, found with no labels. (Gentoo separates cleanly; the other two overlap a bit.)"
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-page.html#how-many-clusters-the-elbow",
+    "href": "weeks/week6/day24-clustering-page.html#how-many-clusters-the-elbow",
+    "title": "Clustering & decision trees",
+    "section": "How many clusters? The elbow",
+    "text": "How many clusters? The elbow\nThere’s no “correct” k. A common heuristic is to plot total within-cluster spread as k grows, and look for the elbow where adding clusters stops helping. (Uses purrr::map_dbl() from last week.)\n\ntibble(k = 1:8) |&gt;\n  mutate(wss = map_dbl(k, ~ kmeans(X, centers = .x, nstart = 10)$tot.withinss)) |&gt;\n  ggplot(aes(k, wss)) +\n  geom_line() + geom_point(size = 2) +\n  scale_x_continuous(breaks = 1:8) +\n  labs(x = \"k (number of clusters)\", y = \"Error\",\n       title = \"Elbow around k = 3\")\n\n\n\n\n\n\n\n\nHere, “Error” is measured by the total within-cluster sum of squares.\n\\[\\text{Error}_k = \\sum_{i=1}^{N} ||\\mathbf{x}_i - \\boldsymbol{\\mu}_{c(i)}||^2\\]\nEquivalently,\n\\[\\text{Error}_k = \\sum_{j=1}^{k} \\sum_{\\mathbf{x}_i \\in C_j} ||\\mathbf{x}_i - \\boldsymbol{\\mu}_j||^2\\]"
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-page.html#hierarchical-clustering",
+    "href": "weeks/week6/day24-clustering-page.html#hierarchical-clustering",
+    "title": "Clustering & decision trees",
+    "section": "Hierarchical clustering",
+    "text": "Hierarchical clustering\nAnother approach is to not pick k up front. Instead, you can start with every point alone, then repeatedly merge the two closest groups, and record the whole tree (a dendrogram).\n\nd  &lt;- dist(X) # pairwise distances\nhc &lt;- hclust(d, method = \"complete\")\nplot(hc, labels = FALSE, main = \"Dendrogram\", xlab = \"\", sub = \"\")\nrect.hclust(hc, k = 3, border = \"#7C0A02\") # cut into 3 groups\n\n\n\n\n\n\n\n\nHeight = how different two groups were when merged. Cut the tree at a height to get clusters, then you choose after seeing the structure."
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-page.html#hierarchical-cut-and-compare",
+    "href": "weeks/week6/day24-clustering-page.html#hierarchical-cut-and-compare",
+    "title": "Clustering & decision trees",
+    "section": "Hierarchical: cut and compare",
+    "text": "Hierarchical: cut and compare\n\nclusters_h &lt;- cutree(hc, k = 3)\ntable(cluster = clusters_h, species = peng$species)\n\n       species\ncluster Adelie Chinstrap Gentoo\n      1    151        14      0\n      2      0         0    123\n      3      0        54      0\n\n\nk-means needs k up front and is fast on big data; hierarchical shows the whole nesting structure and lets you decide k afterward."
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-page.html#now-we-have-labels",
+    "href": "weeks/week6/day24-clustering-page.html#now-we-have-labels",
+    "title": "Clustering & decision trees",
+    "section": "Now we have labels",
+    "text": "Now we have labels\nSwitch to supervised: use the measurements to predict species, and get a model a human can read.\nA decision tree asks a sequence of yes/no questions about the features, splitting the data at each step, until each leaf is (mostly) one class. CART = Classification And Regression Trees.\n\nfit &lt;- rpart(\n  species ~ bill_length_mm + bill_depth_mm + flipper_length_mm + body_mass_g,\n  data = peng, method = \"class\"\n)"
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-page.html#read-the-tree",
+    "href": "weeks/week6/day24-clustering-page.html#read-the-tree",
+    "title": "Clustering & decision trees",
+    "section": "Read the tree",
+    "text": "Read the tree\n\nplot(fit, margin = 0.1)\ntext(fit, use.n = TRUE, cex = 0.9)\n\n\n\n\n\n\n\n\nFollow a penguin from the top: at each node, answer the question and go left if yes. The leaf is the predicted species. Notice it often needs only two measurements, which is much more interpretable."
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-page.html#how-does-it-pick-the-splits",
+    "href": "weeks/week6/day24-clustering-page.html#how-does-it-pick-the-splits",
+    "title": "Clustering & decision trees",
+    "section": "How does it pick the splits?",
+    "text": "How does it pick the splits?\nAt each step the tree tries every feature and every cut point and keeps the split that makes the two sides most “pure” (closest to a single class).\n\nPurity is measured by impurity (Gini index): low impurity = the node is almost all one species.\nIt splits greedily, top-down, then stops when splits no longer help enough.\n\n\n\n\n\n\n\nTip\n\n\n\nThis is why trees are easy to explain: each split is just a threshold on one variable, like flipper_length_mm &lt; 206."
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-page.html#how-good-is-it",
+    "href": "weeks/week6/day24-clustering-page.html#how-good-is-it",
+    "title": "Clustering & decision trees",
+    "section": "How good is it?",
+    "text": "How good is it?\nBecause species is known, we can score predictions with a confusion table:\n\npred &lt;- predict(fit, peng, type = \"class\")\ntable(prediction = pred, actual = peng$species)\n\n           actual\nprediction  Adelie Chinstrap Gentoo\n  Adelie       145         5      0\n  Chinstrap      6        63      1\n  Gentoo         0         0    122\n\nmean(pred == peng$species) # overall accuracy\n\n[1] 0.9649123"
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-page.html#visualize-with-a-heatmap",
+    "href": "weeks/week6/day24-clustering-page.html#visualize-with-a-heatmap",
+    "title": "Clustering & decision trees",
+    "section": "Visualize with a heatmap",
+    "text": "Visualize with a heatmap\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\n\nThis is accuracy on the same data the tree learned from, which is overly optimistic. A more realistic evaluation uses a held-out test set (the model must perform on data it has never seen). Deep trees can overfit, i.e., memorize the training data, fail on new data."
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-page.html#trees-vs.-clustering",
+    "href": "weeks/week6/day24-clustering-page.html#trees-vs.-clustering",
+    "title": "Clustering & decision trees",
+    "section": "Trees vs. clustering",
+    "text": "Trees vs. clustering\n\n\nClustering (unsupervised)\n\nNo labels available\nQuestion: “what natural groups exist?”\nOutput: a group ID per row\nJudged by usefulness, not accuracy\ne.g. customer segments, document topics\n\n\nDecision tree (supervised)\n\nLabels available\nQuestion: “predict this known outcome”\nOutput: a prediction + a readable rule\nJudged by accuracy on held-out data\ne.g. spam / not-spam, species, churn\n\n\n\nAn unsupervised cluster is not a verified truth, it’s a hypothesis you still have to check."
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-page.html#in-class-activity-20-min",
+    "href": "weeks/week6/day24-clustering-page.html#in-class-activity-20-min",
+    "title": "Clustering & decision trees",
+    "section": "In-class activity (~20 min)",
+    "text": "In-class activity (~20 min)\nWork in day24-activity.R (or a fresh script) on the penguins data.\n\nCluster. Standardize the four numeric measurements, run kmeans() with centers = 2, then 4. How does table(cluster, species) change vs. k = 3?\nElbow. Rebuild the elbow plot using only two features. Does the elbow still say 3?\nTree. Fit a tree predicting species from only bill_length_mm and bill_depth_mm. Plot it and report accuracy. Did dropping two features hurt much?\nDiscuss. Which method would you prefer if the dataset had no species column at all? Why?"
+  },
+  {
+    "objectID": "weeks/week6/day24-clustering-page.html#wrap-up-looking-ahead",
+    "href": "weeks/week6/day24-clustering-page.html#wrap-up-looking-ahead",
+    "title": "Clustering & decision trees",
+    "section": "Wrap-up & looking ahead",
+    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nUnsupervised (clustering) finds groups with no labels; supervised (trees) predicts a known label.\nk-means: pick k, scale features, nstart, read the elbow.\nHierarchical: merge-closest, read the dendrogram, cut afterward.\nTrees: greedy splits on single features \\(\\rightarrow\\) readable rules; score on held-out data, beware overfitting.\n\nUpcoming\n\nTue Jun 23: using R with LLMs · HW 5 due 11:59 p.m.\nWed Jun 24: case study · Checkpoint 2 due\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\n\nDC Ch. 18\nSyllabus · Schedule"
+  },
+  {
+    "objectID": "weeks/week6/index.html",
+    "href": "weeks/week6/index.html",
+    "title": "Week 6 — Special Topics & Project",
     "section": "",
-    "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
+    "text": "The last week. Some special topics (clustering, decision trees), the second oral checkpoint, and project wrap-up. Final project report due Friday night."
   },
   {
-    "objectID": "weeks/week6/day28-presentations.html#before-class",
-    "href": "weeks/week6/day28-presentations.html#before-class",
-    "title": "Quiz 6 · short project presentations · course wrap-up",
-    "section": "Before class",
-    "text": "Before class\n\nTODO: any prep materials, data files, etc.\n(No new reading)"
+    "objectID": "weeks/week6/index.html#daily-plan",
+    "href": "weeks/week6/index.html#daily-plan",
+    "title": "Week 6 — Special Topics & Project",
+    "section": "Daily plan",
+    "text": "Daily plan\n\n\n\nDate\nTopic\nFiles\n\n\n\n\nMon Jun 22\nQuiz 4 (rescheduled) · clustering & decision trees\nquiz, slides\n\n\nTue Jun 23\nUsing R with LLMs\nslides\n\n\nWed Jun 24\nCase study · oral check-in #1 makeups\nslides\n\n\nThu Jun 25\nProject work day · oral check-in #2 (final walkthrough)\n—\n\n\nFri Jun 26\nshort project presentations · wrap-up\n—"
   },
   {
-    "objectID": "weeks/week6/day28-presentations.html#outline",
-    "href": "weeks/week6/day28-presentations.html#outline",
-    "title": "Quiz 6 · short project presentations · course wrap-up",
-    "section": "Outline",
-    "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
+    "objectID": "weeks/week6/index.html#readings-due-this-week",
+    "href": "weeks/week6/index.html#readings-due-this-week",
+    "title": "Week 6 — Special Topics & Project",
+    "section": "Readings due this week",
+    "text": "Readings due this week\n\nBefore Mon: Data Computing Ch 18 (§18.2): unsupervised learning, clustering\nBefore Tue: Data Computing Ch 18 (§18.3): trees from data"
   },
   {
-    "objectID": "weeks/week6/day28-presentations.html#resources",
-    "href": "weeks/week6/day28-presentations.html#resources",
-    "title": "Quiz 6 · short project presentations · course wrap-up",
-    "section": "Resources",
-    "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
+    "objectID": "weeks/week6/index.html#assignments-due-this-week",
+    "href": "weeks/week6/index.html#assignments-due-this-week",
+    "title": "Week 6 — Special Topics & Project",
+    "section": "Assignments due this week",
+    "text": "Assignments due this week\n\nQuiz 4 — Monday Jun 22 in class\nProject Checkpoint 2: due Wed Jun 24, 11:59 p.m.\nProject Oral Check-in #2: Thursday Jun 25 in class\nFinal project report + GitHub repo link: due Friday Jun 26, 11:59 p.m."
   },
   {
-    "objectID": "weeks/week6/day28-presentations.html#after-class",
-    "href": "weeks/week6/day28-presentations.html#after-class",
-    "title": "Quiz 6 · short project presentations · course wrap-up",
-    "section": "After class",
-    "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
+    "objectID": "weeks/week6/index.html#after-the-course",
+    "href": "weeks/week6/index.html#after-the-course",
+    "title": "Week 6 — Special Topics & Project",
+    "section": "After the course",
+    "text": "After the course\n\nCourse evaluations: please complete them."
   },
   {
     "objectID": "assignments/quizzes/index.html",
@@ -4597,72 +4821,240 @@
     "text": "What to study\nTBD"
   },
   {
-    "objectID": "weeks/week6/index.html",
-    "href": "weeks/week6/index.html",
-    "title": "Week 6 — Special Topics & Project",
+    "objectID": "weeks/week6/day25-r-with-llms-page.html",
+    "href": "weeks/week6/day25-r-with-llms-page.html",
+    "title": "Using R with LLMs",
     "section": "",
-    "text": "The last week. Some special topics (clustering, decision trees — instructor’s choice), the second oral checkpoint, and project wrap-up. Final report and video due Friday night."
+    "text": "NoteToday: Tuesday June 23\n\n\n\nBefore class\n\nNo new reading. Skim the course AI policy.\n\nPlan for today\n\nThree ways to use a large language model (LLM) with R: chat, in the IDE, and from code.\nHow to prompt well for R help (and give a reproducible example).\nCalling an LLM from R with the ellmer package.\nThe non-negotiable habit: verify everything (yesterday’s and tomorrow’s theme).\nDoing all of this within the course AI policy.\n\nHelpful links\n\nAI policy · ellmer · reprex · Syllabus · Schedule"
   },
   {
-    "objectID": "weeks/week6/index.html#daily-plan",
-    "href": "weeks/week6/index.html#daily-plan",
-    "title": "Week 6 — Special Topics & Project",
-    "section": "Daily plan",
-    "text": "Daily plan\n\n\n\nDate\nTopic\nFiles\n\n\n\n\nMon Jun 22\nQuiz 4 (rescheduled) · intro to clustering\nquiz, slides\n\n\nTue Jun 23\nDecision trees / CART\nslides, in-class code\n\n\nWed Jun 24\nTOPIC TBD · oral check-in #1 makeups\n—\n\n\nThu Jun 25\nProject work day · oral check-in #2 (final walkthrough)\n—\n\n\nFri Jun 26\nshort project presentations · wrap-up\n—"
+    "objectID": "weeks/week6/day25-r-with-llms-page.html#llms-are-part-of-the-r-workflow-now",
+    "href": "weeks/week6/day25-r-with-llms-page.html#llms-are-part-of-the-r-workflow-now",
+    "title": "Using R with LLMs",
+    "section": "LLMs are part of the R workflow now",
+    "text": "LLMs are part of the R workflow now\nAn LLM (ChatGPT, Claude, Gemini, …) predicts likely text from a prompt. For an R user that’s useful for:\n\nExplaining errors — paste a cryptic message, get a plain-English cause.\nDrafting code — “write a ggplot of X by Y, faceted by Z.”\nRefactoring — “make this tidyverse instead of base R.”\nLearning — “what does across() do, with a small example?”\nAs a data tool itself — classify, extract, or summarize text inside a pipeline.\n\n\n\n\n\n\n\nTip\n\n\n\nThe skill that matters is not “getting an answer.” It’s judging whether the answer is right — which is exactly what a data course trains you to do."
   },
   {
-    "objectID": "weeks/week6/index.html#readings-due-this-week",
-    "href": "weeks/week6/index.html#readings-due-this-week",
-    "title": "Week 6 — Special Topics & Project",
-    "section": "Readings due this week",
-    "text": "Readings due this week\n\nBefore Mon: Data Computing Ch 18 (§18.2) — unsupervised learning, clustering\nBefore Tue: Data Computing Ch 18 (§18.3) — trees from data"
+    "objectID": "weeks/week6/day25-r-with-llms-page.html#three-places-youll-use-one",
+    "href": "weeks/week6/day25-r-with-llms-page.html#three-places-youll-use-one",
+    "title": "Using R with LLMs",
+    "section": "Three places you’ll use one",
+    "text": "Three places you’ll use one\n\n\n\n\n\n\n\n\nWhere\nExamples\nBest for\n\n\n\n\nChat window\nclaude.ai, ChatGPT, Gemini\none-off questions, explaining errors, learning\n\n\nIn the IDE\nPositron / RStudio assistants, GitHub Copilot\ninline autocomplete, “fix this” on selected code\n\n\nFrom R code\nthe ellmer package\ndoing the same LLM call on every row — a data step\n\n\n\nToday we touch all three, but spend the most time on the third — because that’s the one unique to a programming course."
   },
   {
-    "objectID": "weeks/week6/index.html#assignments-due-this-week",
-    "href": "weeks/week6/index.html#assignments-due-this-week",
-    "title": "Week 6 — Special Topics & Project",
-    "section": "Assignments due this week",
-    "text": "Assignments due this week\n\nQuiz 4 — Monday Jun 22 in class\nHW 5 — due Tue Jun 23, 11:59 p.m.\nProject Checkpoint 2 — due Wed Jun 24, 11:59 p.m.\nProject Oral Check-in #2 — Thursday Jun 25 in class (signup on Canvas)\nFinal project report + video URL — due Friday Jun 26, 11:59 p.m."
+    "objectID": "weeks/week6/day25-r-with-llms-page.html#give-it-what-a-human-helper-would-need",
+    "href": "weeks/week6/day25-r-with-llms-page.html#give-it-what-a-human-helper-would-need",
+    "title": "Using R with LLMs",
+    "section": "Give it what a human helper would need",
+    "text": "Give it what a human helper would need\nA vague prompt gets a vague (often wrong) answer. A good R prompt includes:\n\nThe goal — what the output should be.\nThe data shape — paste str(), glimpse(), or dput(head(x)).\nWhat you tried and the exact error.\nConstraints — “use the tidyverse,” “base R only,” “no new packages.”\n\n\n\n\n\n\n\nWarning\n\n\n\nDon’t paste private or sensitive data. Anything you send leaves your machine and may be stored. Share a tiny fake example with the same structure, not the real dataset — especially anything with names, grades, or PII."
   },
   {
-    "objectID": "weeks/week6/index.html#after-the-course",
-    "href": "weeks/week6/index.html#after-the-course",
-    "title": "Week 6 — Special Topics & Project",
-    "section": "After the course",
-    "text": "After the course\n\nFinal grades posted by [date TBD].\nCourse evaluations: please complete them. They are read."
+    "objectID": "weeks/week6/day25-r-with-llms-page.html#a-reproducible-example-beats-a-paragraph",
+    "href": "weeks/week6/day25-r-with-llms-page.html#a-reproducible-example-beats-a-paragraph",
+    "title": "Using R with LLMs",
+    "section": "A reproducible example beats a paragraph",
+    "text": "A reproducible example beats a paragraph\nThe single most useful thing you can hand an LLM (or a human, or Stack Overflow) is a reprex — a tiny, self-contained, runnable snippet that reproduces the problem.\n\n# install.packages(\"reprex\")\nlibrary(reprex)\n\n# copy this to your clipboard, then run reprex() — it runs the code and\n# formats code + output together, ready to paste:\nreprex({\n  library(dplyr)\n  tibble(x = c(1, 2, NA)) |&gt; summarise(m = mean(x))   # why is m NA?\n})\n\nBuilt-in datasets (mtcars, iris, penguins) make great reprexes — the helper can run them too."
   },
   {
-    "objectID": "weeks/week6/day24-clustering.html",
-    "href": "weeks/week6/day24-clustering.html",
-    "title": "Quiz 5 (rescheduled) · unsupervised learning, clustering",
+    "objectID": "weeks/week6/day25-r-with-llms-page.html#weak-prompt-vs.-strong-prompt",
+    "href": "weeks/week6/day25-r-with-llms-page.html#weak-prompt-vs.-strong-prompt",
+    "title": "Using R with LLMs",
+    "section": "Weak prompt vs. strong prompt",
+    "text": "Weak prompt vs. strong prompt\n\n\nWeak ❌\n\n“my ggplot doesn’t work, fix it”\n\nNo data, no code, no error. You’ll get a generic guess that probably doesn’t match your situation.\n\nStrong ✅\n\n“Using penguins, I want a scatter of bill_length_mm vs flipper_length_mm colored by species. My code ggplot(penguins) + geom_point(bill_length_mm, flipper_length_mm) errors with ‘object not found’. Tidyverse please.”\n\nGoal + data + code + error + constraint."
+  },
+  {
+    "objectID": "weeks/week6/day25-r-with-llms-page.html#what-ellmer-is",
+    "href": "weeks/week6/day25-r-with-llms-page.html#what-ellmer-is",
+    "title": "Using R with LLMs",
+    "section": "What ellmer is",
+    "text": "What ellmer is\nellmer is the tidyverse package for talking to LLMs from R. One interface, many providers:\n\nchat_anthropic() — Claude\nchat_openai() — GPT\nchat_google_gemini() — Gemini\n\n\n# install.packages(\"ellmer\")\nlibrary(ellmer)\n\nchat &lt;- chat_anthropic(\n  model = \"claude-opus-4-8\",                 # current default Claude model\n  system_prompt = \"You are a concise R tutor. Prefer the tidyverse.\"\n)\n\nchat$chat(\"In one sentence, what does dplyr::across() do?\")\n\n\n\n\n\n\n\nNote\n\n\n\nThe newest, most capable Claude models are Fable 5 (claude-fable-5) and the Claude 4.x family — Opus 4.8 (claude-opus-4-8), Sonnet 4.6 (claude-sonnet-4-6), Haiku 4.5 (claude-haiku-4-5). Bigger models are smarter but cost more per call."
+  },
+  {
+    "objectID": "weeks/week6/day25-r-with-llms-page.html#api-keys-never-in-your-code",
+    "href": "weeks/week6/day25-r-with-llms-page.html#api-keys-never-in-your-code",
+    "title": "Using R with LLMs",
+    "section": "API keys: never in your code",
+    "text": "API keys: never in your code\nCalling a provider needs an API key (a secret password tied to a paid account). Treat it like one.\n\n# DON'T: a key pasted in a script gets committed to GitHub forever.\nchat_anthropic(api_key = \"sk-ant-REAL-KEY\")        # ❌\n\n# DO: store it once in an environment variable; ellmer reads it automatically.\nusethis::edit_r_environ()    # opens ~/.Renviron — add: ANTHROPIC_API_KEY=sk-ant-...\n# restart R, then:\nchat &lt;- chat_anthropic(model = \"claude-opus-4-8\")  # ✅ key picked up from the env\n\n\n\n\n\n\n\nWarning\n\n\n\nA leaked key can run up real charges. Keep it out of .R, .qmd, and anything you push to git (.Renviron is git-ignored by default)."
+  },
+  {
+    "objectID": "weeks/week6/day25-r-with-llms-page.html#the-interesting-part-an-llm-as-a-data-step",
+    "href": "weeks/week6/day25-r-with-llms-page.html#the-interesting-part-an-llm-as-a-data-step",
+    "title": "Using R with LLMs",
+    "section": "The interesting part: an LLM as a data step",
+    "text": "The interesting part: an LLM as a data step\nThe real power for us isn’t chatting — it’s running the same prompt over every row of a data frame, turning messy text into structured columns. ellmer can return typed, structured output:\n\nlibrary(ellmer)\nchat &lt;- chat_anthropic(model = \"claude-opus-4-8\")\n\nreviews &lt;- tibble(text = c(\n  \"Loved it, arrived early and works great!\",\n  \"Broke after two days. Very disappointed.\",\n  \"It's fine. Does the job, nothing special.\"\n))\n\n# ask for a schema; ellmer enforces the shape\nsentiment &lt;- type_object(\n  mood   = type_string(\"one of: positive, negative, neutral\"),\n  reason = type_string(\"a 5-word justification\")\n)\n\nreviews |&gt;\n  mutate(parsed = map(text, ~ chat$chat_structured(.x, type = sentiment))) |&gt;\n  unnest_wider(parsed)\n\nThis is purrr + a prompt: text in, tidy columns out. That’s the data-science use."
+  },
+  {
+    "objectID": "weeks/week6/day25-r-with-llms-page.html#llms-are-confident-not-correct",
+    "href": "weeks/week6/day25-r-with-llms-page.html#llms-are-confident-not-correct",
+    "title": "Using R with LLMs",
+    "section": "LLMs are confident, not correct",
+    "text": "LLMs are confident, not correct\nAn LLM generates plausible text. Plausible is not the same as true. Expect:\n\nHallucinated functions / packages — dplyr::summarise_with() that doesn’t exist.\nSubtly wrong code — runs without error, gives the wrong number.\nOutdated idioms — deprecated funs(), old gather()/spread().\nMade-up facts and citations — stated with total confidence.\n\n\n\n\n\n\n\nImportant\n\n\n\nThis is the same lesson as tomorrow’s case study: a thing can sound authoritative and still be wrong. You are the reviewer."
+  },
+  {
+    "objectID": "weeks/week6/day25-r-with-llms-page.html#the-verify-loop-non-negotiable",
+    "href": "weeks/week6/day25-r-with-llms-page.html#the-verify-loop-non-negotiable",
+    "title": "Using R with LLMs",
+    "section": "The verify loop (non-negotiable)",
+    "text": "The verify loop (non-negotiable)\nFor any code an LLM gives you:\n\n\n\n\n\n\nTip\n\n\n\n\nRead it. Can you explain every line? If not, don’t ship it.\nRun it. On real input. Does it error? Does it even do what you asked?\nCheck the result. Spot-check against a value you can compute by hand or already know.\nTest the edges. Empty input, NAs, one row, a weird category.\n\n\n\nIf you can’t verify it, you can’t use it — for a grade, a paper, or a job."
+  },
+  {
+    "objectID": "weeks/week6/day25-r-with-llms-page.html#use-it-well",
+    "href": "weeks/week6/day25-r-with-llms-page.html#use-it-well",
+    "title": "Using R with LLMs",
+    "section": "Use it well",
+    "text": "Use it well\n\nLearn from it, don’t just paste. Ask why, ask for a small example, then reproduce it yourself.\nKeep prompts small and specific. One problem at a time beats “build my whole project.”\nPrefer reprexes and built-in data. Better answers, no privacy risk.\nTrack what you used. You’ll need it for the next slide."
+  },
+  {
+    "objectID": "weeks/week6/day25-r-with-llms-page.html#what-the-course-policy-asks",
+    "href": "weeks/week6/day25-r-with-llms-page.html#what-the-course-policy-asks",
+    "title": "Using R with LLMs",
+    "section": "What the course policy asks",
+    "text": "What the course policy asks\nUsing an LLM is allowed within the course AI policy — read it, but the spirit is simple:\n\nYou are responsible for everything you submit, AI-assisted or not. “The AI wrote it” is not a defense for a bug or a wrong claim.\nDisclose AI use where the policy asks (and don’t pass AI text off as your own writing).\nYou must understand your submission — be ready to explain any line in office hours or an oral check-in.\nOn a quiz/exam, only the tools the policy permits.\n\n\n\n\n\n\n\nNote\n\n\n\nTreat it like a very fast, occasionally-wrong collaborator: great for momentum, never the final authority. The judgment stays yours."
+  },
+  {
+    "objectID": "weeks/week6/day25-r-with-llms-page.html#in-class-activity-20-min",
+    "href": "weeks/week6/day25-r-with-llms-page.html#in-class-activity-20-min",
+    "title": "Using R with LLMs",
+    "section": "In-class activity (~20 min)",
+    "text": "In-class activity (~20 min)\nUse whatever LLM you have access to (chat window is fine — no API key needed).\n\nExplain an error. Run this, then ask the LLM to explain and fix it. Verify the fix runs:\nlibrary(dplyr)\npenguins |&gt; group_by(species) |&gt; summarize(avg = mean(bill_length_mm))\n(Why NaN/NA? What’s the one-argument fix?)\nGenerate a function. Ask for an R function that takes a numeric vector and returns its mean, median, and SD as a named tibble. Then break it: feed it c(1, 2, NA) and a length-1 vector. Did the LLM handle those?\nCatch a mistake. Find at least one thing the LLM got wrong, outdated, or could improve — and write one sentence on how you knew."
+  },
+  {
+    "objectID": "weeks/week6/day25-r-with-llms-page.html#wrap-up-looking-ahead",
+    "href": "weeks/week6/day25-r-with-llms-page.html#wrap-up-looking-ahead",
+    "title": "Using R with LLMs",
+    "section": "Wrap-up & looking ahead",
+    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nThree surfaces: chat, IDE assistant, ellmer from code.\nPrompt well: goal + data shape + error + constraints; hand over a reprex, never private data.\nellmer calls Claude/GPT/Gemini from R; keep API keys in .Renviron; structured output = LLM as a tidy data step.\nVerify everything — read, run, check, test. Confident ≠ correct.\nStay inside the course AI policy; you own what you submit.\n\nUpcoming\n\nTonight: HW 5 due 11:59 p.m.\nWed Jun 24: case study — bad science · Checkpoint 2 due\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\n\nellmer docs · reprex\nAI policy · Syllabus · Schedule"
+  },
+  {
+    "objectID": "weeks/week6/day25-r-with-llms-slides.html#llms-are-part-of-the-r-workflow-now",
+    "href": "weeks/week6/day25-r-with-llms-slides.html#llms-are-part-of-the-r-workflow-now",
+    "title": "Using R with LLMs",
+    "section": "LLMs are part of the R workflow now",
+    "text": "LLMs are part of the R workflow now\nAn LLM (ChatGPT, Claude, Gemini, …) predicts likely text from a prompt. For an R user that’s useful for:\n\nExplaining errors — paste a cryptic message, get a plain-English cause.\nDrafting code — “write a ggplot of X by Y, faceted by Z.”\nRefactoring — “make this tidyverse instead of base R.”\nLearning — “what does across() do, with a small example?”\nAs a data tool itself — classify, extract, or summarize text inside a pipeline.\n\n\n\n\n\n\n\nTip\n\n\nThe skill that matters is not “getting an answer.” It’s judging whether the answer is right — which is exactly what a data course trains you to do."
+  },
+  {
+    "objectID": "weeks/week6/day25-r-with-llms-slides.html#three-places-youll-use-one",
+    "href": "weeks/week6/day25-r-with-llms-slides.html#three-places-youll-use-one",
+    "title": "Using R with LLMs",
+    "section": "Three places you’ll use one",
+    "text": "Three places you’ll use one\n\n\n\n\n\n\n\n\nWhere\nExamples\nBest for\n\n\n\n\nChat window\nclaude.ai, ChatGPT, Gemini\none-off questions, explaining errors, learning\n\n\nIn the IDE\nPositron / RStudio assistants, GitHub Copilot\ninline autocomplete, “fix this” on selected code\n\n\nFrom R code\nthe ellmer package\ndoing the same LLM call on every row — a data step\n\n\n\nToday we touch all three, but spend the most time on the third — because that’s the one unique to a programming course."
+  },
+  {
+    "objectID": "weeks/week6/day25-r-with-llms-slides.html#give-it-what-a-human-helper-would-need",
+    "href": "weeks/week6/day25-r-with-llms-slides.html#give-it-what-a-human-helper-would-need",
+    "title": "Using R with LLMs",
+    "section": "Give it what a human helper would need",
+    "text": "Give it what a human helper would need\nA vague prompt gets a vague (often wrong) answer. A good R prompt includes:\n\nThe goal — what the output should be.\nThe data shape — paste str(), glimpse(), or dput(head(x)).\nWhat you tried and the exact error.\nConstraints — “use the tidyverse,” “base R only,” “no new packages.”\n\n\n\n\n\n\n\nWarning\n\n\nDon’t paste private or sensitive data. Anything you send leaves your machine and may be stored. Share a tiny fake example with the same structure, not the real dataset — especially anything with names, grades, or PII."
+  },
+  {
+    "objectID": "weeks/week6/day25-r-with-llms-slides.html#a-reproducible-example-beats-a-paragraph",
+    "href": "weeks/week6/day25-r-with-llms-slides.html#a-reproducible-example-beats-a-paragraph",
+    "title": "Using R with LLMs",
+    "section": "A reproducible example beats a paragraph",
+    "text": "A reproducible example beats a paragraph\nThe single most useful thing you can hand an LLM (or a human, or Stack Overflow) is a reprex — a tiny, self-contained, runnable snippet that reproduces the problem.\n\n# install.packages(\"reprex\")\nlibrary(reprex)\n\n# copy this to your clipboard, then run reprex() — it runs the code and\n# formats code + output together, ready to paste:\nreprex({\n  library(dplyr)\n  tibble(x = c(1, 2, NA)) |&gt; summarise(m = mean(x))   # why is m NA?\n})\n\nBuilt-in datasets (mtcars, iris, penguins) make great reprexes — the helper can run them too."
+  },
+  {
+    "objectID": "weeks/week6/day25-r-with-llms-slides.html#weak-prompt-vs.-strong-prompt",
+    "href": "weeks/week6/day25-r-with-llms-slides.html#weak-prompt-vs.-strong-prompt",
+    "title": "Using R with LLMs",
+    "section": "Weak prompt vs. strong prompt",
+    "text": "Weak prompt vs. strong prompt\n\n\nWeak ❌\n\n“my ggplot doesn’t work, fix it”\n\nNo data, no code, no error. You’ll get a generic guess that probably doesn’t match your situation.\n\nStrong ✅\n\n“Using penguins, I want a scatter of bill_length_mm vs flipper_length_mm colored by species. My code ggplot(penguins) + geom_point(bill_length_mm, flipper_length_mm) errors with ‘object not found’. Tidyverse please.”\n\nGoal + data + code + error + constraint."
+  },
+  {
+    "objectID": "weeks/week6/day25-r-with-llms-slides.html#what-ellmer-is",
+    "href": "weeks/week6/day25-r-with-llms-slides.html#what-ellmer-is",
+    "title": "Using R with LLMs",
+    "section": "What ellmer is",
+    "text": "What ellmer is\nellmer is the tidyverse package for talking to LLMs from R. One interface, many providers:\n\nchat_anthropic() — Claude\nchat_openai() — GPT\nchat_google_gemini() — Gemini\n\n\n# install.packages(\"ellmer\")\nlibrary(ellmer)\n\nchat &lt;- chat_anthropic(\n  model = \"claude-opus-4-8\",                 # current default Claude model\n  system_prompt = \"You are a concise R tutor. Prefer the tidyverse.\"\n)\n\nchat$chat(\"In one sentence, what does dplyr::across() do?\")\n\n\n\n\n\n\n\nNote\n\n\nThe newest, most capable Claude models are Fable 5 (claude-fable-5) and the Claude 4.x family — Opus 4.8 (claude-opus-4-8), Sonnet 4.6 (claude-sonnet-4-6), Haiku 4.5 (claude-haiku-4-5). Bigger models are smarter but cost more per call."
+  },
+  {
+    "objectID": "weeks/week6/day25-r-with-llms-slides.html#api-keys-never-in-your-code",
+    "href": "weeks/week6/day25-r-with-llms-slides.html#api-keys-never-in-your-code",
+    "title": "Using R with LLMs",
+    "section": "API keys: never in your code",
+    "text": "API keys: never in your code\nCalling a provider needs an API key (a secret password tied to a paid account). Treat it like one.\n\n# DON'T: a key pasted in a script gets committed to GitHub forever.\nchat_anthropic(api_key = \"sk-ant-REAL-KEY\")        # ❌\n\n# DO: store it once in an environment variable; ellmer reads it automatically.\nusethis::edit_r_environ()    # opens ~/.Renviron — add: ANTHROPIC_API_KEY=sk-ant-...\n# restart R, then:\nchat &lt;- chat_anthropic(model = \"claude-opus-4-8\")  # ✅ key picked up from the env\n\n\n\n\n\n\n\nWarning\n\n\nA leaked key can run up real charges. Keep it out of .R, .qmd, and anything you push to git (.Renviron is git-ignored by default)."
+  },
+  {
+    "objectID": "weeks/week6/day25-r-with-llms-slides.html#the-interesting-part-an-llm-as-a-data-step",
+    "href": "weeks/week6/day25-r-with-llms-slides.html#the-interesting-part-an-llm-as-a-data-step",
+    "title": "Using R with LLMs",
+    "section": "The interesting part: an LLM as a data step",
+    "text": "The interesting part: an LLM as a data step\nThe real power for us isn’t chatting — it’s running the same prompt over every row of a data frame, turning messy text into structured columns. ellmer can return typed, structured output:\n\nlibrary(ellmer)\nchat &lt;- chat_anthropic(model = \"claude-opus-4-8\")\n\nreviews &lt;- tibble(text = c(\n  \"Loved it, arrived early and works great!\",\n  \"Broke after two days. Very disappointed.\",\n  \"It's fine. Does the job, nothing special.\"\n))\n\n# ask for a schema; ellmer enforces the shape\nsentiment &lt;- type_object(\n  mood   = type_string(\"one of: positive, negative, neutral\"),\n  reason = type_string(\"a 5-word justification\")\n)\n\nreviews |&gt;\n  mutate(parsed = map(text, ~ chat$chat_structured(.x, type = sentiment))) |&gt;\n  unnest_wider(parsed)\n\nThis is purrr + a prompt: text in, tidy columns out. That’s the data-science use."
+  },
+  {
+    "objectID": "weeks/week6/day25-r-with-llms-slides.html#llms-are-confident-not-correct",
+    "href": "weeks/week6/day25-r-with-llms-slides.html#llms-are-confident-not-correct",
+    "title": "Using R with LLMs",
+    "section": "LLMs are confident, not correct",
+    "text": "LLMs are confident, not correct\nAn LLM generates plausible text. Plausible is not the same as true. Expect:\n\nHallucinated functions / packages — dplyr::summarise_with() that doesn’t exist.\nSubtly wrong code — runs without error, gives the wrong number.\nOutdated idioms — deprecated funs(), old gather()/spread().\nMade-up facts and citations — stated with total confidence.\n\n\n\n\n\n\n\nImportant\n\n\nThis is the same lesson as tomorrow’s case study: a thing can sound authoritative and still be wrong. You are the reviewer."
+  },
+  {
+    "objectID": "weeks/week6/day25-r-with-llms-slides.html#the-verify-loop-non-negotiable",
+    "href": "weeks/week6/day25-r-with-llms-slides.html#the-verify-loop-non-negotiable",
+    "title": "Using R with LLMs",
+    "section": "The verify loop (non-negotiable)",
+    "text": "The verify loop (non-negotiable)\nFor any code an LLM gives you:\n\n\n\n\n\n\nTip\n\n\n\nRead it. Can you explain every line? If not, don’t ship it.\nRun it. On real input. Does it error? Does it even do what you asked?\nCheck the result. Spot-check against a value you can compute by hand or already know.\nTest the edges. Empty input, NAs, one row, a weird category.\n\n\n\n\nIf you can’t verify it, you can’t use it — for a grade, a paper, or a job."
+  },
+  {
+    "objectID": "weeks/week6/day25-r-with-llms-slides.html#use-it-well",
+    "href": "weeks/week6/day25-r-with-llms-slides.html#use-it-well",
+    "title": "Using R with LLMs",
+    "section": "Use it well",
+    "text": "Use it well\n\nLearn from it, don’t just paste. Ask why, ask for a small example, then reproduce it yourself.\nKeep prompts small and specific. One problem at a time beats “build my whole project.”\nPrefer reprexes and built-in data. Better answers, no privacy risk.\nTrack what you used. You’ll need it for the next slide."
+  },
+  {
+    "objectID": "weeks/week6/day25-r-with-llms-slides.html#what-the-course-policy-asks",
+    "href": "weeks/week6/day25-r-with-llms-slides.html#what-the-course-policy-asks",
+    "title": "Using R with LLMs",
+    "section": "What the course policy asks",
+    "text": "What the course policy asks\nUsing an LLM is allowed within the course AI policy — read it, but the spirit is simple:\n\nYou are responsible for everything you submit, AI-assisted or not. “The AI wrote it” is not a defense for a bug or a wrong claim.\nDisclose AI use where the policy asks (and don’t pass AI text off as your own writing).\nYou must understand your submission — be ready to explain any line in office hours or an oral check-in.\nOn a quiz/exam, only the tools the policy permits.\n\n\n\n\n\n\n\nNote\n\n\nTreat it like a very fast, occasionally-wrong collaborator: great for momentum, never the final authority. The judgment stays yours."
+  },
+  {
+    "objectID": "weeks/week6/day25-r-with-llms-slides.html#in-class-activity-20-min",
+    "href": "weeks/week6/day25-r-with-llms-slides.html#in-class-activity-20-min",
+    "title": "Using R with LLMs",
+    "section": "In-class activity (~20 min)",
+    "text": "In-class activity (~20 min)\nUse whatever LLM you have access to (chat window is fine — no API key needed).\n\nExplain an error. Run this, then ask the LLM to explain and fix it. Verify the fix runs:\nlibrary(dplyr)\npenguins |&gt; group_by(species) |&gt; summarize(avg = mean(bill_length_mm))\n(Why NaN/NA? What’s the one-argument fix?)\nGenerate a function. Ask for an R function that takes a numeric vector and returns its mean, median, and SD as a named tibble. Then break it: feed it c(1, 2, NA) and a length-1 vector. Did the LLM handle those?\nCatch a mistake. Find at least one thing the LLM got wrong, outdated, or could improve — and write one sentence on how you knew."
+  },
+  {
+    "objectID": "weeks/week6/day25-r-with-llms-slides.html#wrap-up-looking-ahead",
+    "href": "weeks/week6/day25-r-with-llms-slides.html#wrap-up-looking-ahead",
+    "title": "Using R with LLMs",
+    "section": "Wrap-up & looking ahead",
+    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nThree surfaces: chat, IDE assistant, ellmer from code.\nPrompt well: goal + data shape + error + constraints; hand over a reprex, never private data.\nellmer calls Claude/GPT/Gemini from R; keep API keys in .Renviron; structured output = LLM as a tidy data step.\nVerify everything — read, run, check, test. Confident ≠ correct.\nStay inside the course AI policy; you own what you submit.\n\nUpcoming\n\nTonight: HW 5 due 11:59 p.m.\nWed Jun 24: case study — bad science · Checkpoint 2 due\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\n\nellmer docs · reprex\nAI policy · Syllabus · Schedule"
+  },
+  {
+    "objectID": "weeks/week6/day28-presentations.html",
+    "href": "weeks/week6/day28-presentations.html",
+    "title": "Quiz 6 · short project presentations · course wrap-up",
     "section": "",
     "text": "NoteToday’s plan\n\n\n\n\nTODO: list 2-4 concrete goals for the class"
   },
   {
-    "objectID": "weeks/week6/day24-clustering.html#before-class",
-    "href": "weeks/week6/day24-clustering.html#before-class",
-    "title": "Quiz 5 (rescheduled) · unsupervised learning, clustering",
+    "objectID": "weeks/week6/day28-presentations.html#before-class",
+    "href": "weeks/week6/day28-presentations.html#before-class",
+    "title": "Quiz 6 · short project presentations · course wrap-up",
     "section": "Before class",
-    "text": "Before class\n\nRead: Data Computing Ch 18 (§18.2)\nTODO: any prep materials, data files, etc."
+    "text": "Before class\n\nTODO: any prep materials, data files, etc.\n(No new reading)"
   },
   {
-    "objectID": "weeks/week6/day24-clustering.html#outline",
-    "href": "weeks/week6/day24-clustering.html#outline",
-    "title": "Quiz 5 (rescheduled) · unsupervised learning, clustering",
+    "objectID": "weeks/week6/day28-presentations.html#outline",
+    "href": "weeks/week6/day28-presentations.html#outline",
+    "title": "Quiz 6 · short project presentations · course wrap-up",
     "section": "Outline",
     "text": "Outline\n\n1. TODO: opening segment (~15 min)\nTODO: concept exposition or motivating example.\n\n# TODO: live-coded example\n\n\n\n2. TODO: main segment (~25 min)\nTODO: hands-on practice — students follow along.\n\n# TODO: example to walk through\n\n\n\n3. In-class activity (~20 min)\nTODO: brief description, or link to a separate handout.\n\n\n4. Wrap-up (~5 min)\n\nTODO: key takeaway\nTODO: preview next class"
   },
   {
-    "objectID": "weeks/week6/day24-clustering.html#resources",
-    "href": "weeks/week6/day24-clustering.html#resources",
-    "title": "Quiz 5 (rescheduled) · unsupervised learning, clustering",
+    "objectID": "weeks/week6/day28-presentations.html#resources",
+    "href": "weeks/week6/day28-presentations.html#resources",
+    "title": "Quiz 6 · short project presentations · course wrap-up",
     "section": "Resources",
     "text": "Resources\n\nTODO: slides PDF\nTODO: in-class code .R file\nTODO: activity handout"
   },
   {
-    "objectID": "weeks/week6/day24-clustering.html#after-class",
-    "href": "weeks/week6/day24-clustering.html#after-class",
-    "title": "Quiz 5 (rescheduled) · unsupervised learning, clustering",
+    "objectID": "weeks/week6/day28-presentations.html#after-class",
+    "href": "weeks/week6/day28-presentations.html#after-class",
+    "title": "Quiz 6 · short project presentations · course wrap-up",
     "section": "After class",
     "text": "After class\n\nTODO: due tomorrow\nTODO: optional supplementary reading\n\n\n\n\n\n\n\nTipInstructor notes\n\n\n\n\n\nTODO: notes to self — pacing, common student questions, things to watch for."
   },
@@ -7431,7 +7823,7 @@
     "href": "weeks/week5/day23-regex-page.html#wrap-up-looking-ahead",
     "title": "Regular expressions (regex)",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nA regex describes a pattern; it does three jobs: detect / replace / extract\n. any char · [aeiou] class · [^aeiou] negation · | or\nQuantifiers ? * + {n} {n,m} {n,} (R: + = one-or-more, * = zero-or-more)\nAnchors ^ start, $ end; escape specials with \\\\\nCapture with ( ); pull pieces with str_extract() or \\\\1 in gsub()\nClean numbers/whitespace with gsub() (or str_remove_all/str_squish)\n\nUpcoming\n\nFri Jun 19: No class — Juneteenth\nQuiz 5 rescheduled to Mon Jun 22\nKeep building your project; oral check-in #1 today\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · DC Ch. 17 · regex101.com"
+    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nA regex describes a pattern; it does three jobs: detect / replace / extract\n. any char · [aeiou] class · [^aeiou] negation · | or\nQuantifiers ? * + {n} {n,m} {n,} (R: + = one-or-more, * = zero-or-more)\nAnchors ^ start, $ end; escape specials with \\\\\nCapture with ( ); pull pieces with str_extract() or \\\\1 in gsub()\nClean numbers/whitespace with gsub() (or str_remove_all/str_squish)\n\nUpcoming\n\nFri Jun 19: No class — Juneteenth\nQuiz 4 rescheduled to Mon Jun 22\nKeep building your project; oral check-in #1 today\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · DC Ch. 17 · regex101.com"
   },
   {
     "objectID": "weeks/week5/day23-regex-slides.html#patterns-in-strings",
@@ -7550,14 +7942,14 @@
     "href": "weeks/week5/day23-regex-slides.html#wrap-up-looking-ahead",
     "title": "Regular expressions (regex)",
     "section": "Wrap-up & looking ahead",
-    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nA regex describes a pattern; it does three jobs: detect / replace / extract\n. any char · [aeiou] class · [^aeiou] negation · | or\nQuantifiers ? * + {n} {n,m} {n,} (R: + = one-or-more, * = zero-or-more)\nAnchors ^ start, $ end; escape specials with \\\\\nCapture with ( ); pull pieces with str_extract() or \\\\1 in gsub()\nClean numbers/whitespace with gsub() (or str_remove_all/str_squish)\n\nUpcoming\n\nFri Jun 19: No class — Juneteenth\nQuiz 5 rescheduled to Mon Jun 22\nKeep building your project; oral check-in #1 today\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · DC Ch. 17 · regex101.com"
+    "text": "Wrap-up & looking ahead\n\n\nWhat we covered\n\nA regex describes a pattern; it does three jobs: detect / replace / extract\n. any char · [aeiou] class · [^aeiou] negation · | or\nQuantifiers ? * + {n} {n,m} {n,} (R: + = one-or-more, * = zero-or-more)\nAnchors ^ start, $ end; escape specials with \\\\\nCapture with ( ); pull pieces with str_extract() or \\\\1 in gsub()\nClean numbers/whitespace with gsub() (or str_remove_all/str_squish)\n\nUpcoming\n\nFri Jun 19: No class — Juneteenth\nQuiz 4 rescheduled to Mon Jun 22\nKeep building your project; oral check-in #1 today\n\n\nReach out\nStuck? Office hours, or email me (cgc5478@psu.edu) or Xinyue (xpw5228@psu.edu).\nReference\nSyllabus · AI policy · Schedule · DC Ch. 17 · regex101.com"
   },
   {
     "objectID": "weeks/week5/index.html",
     "href": "weeks/week5/index.html",
     "title": "Week 5 — Functions, Iteration, Strings",
     "section": "",
-    "text": "Note\n\n\n\nFriday June 19 is Juneteenth — no class. Quiz 5 will be rescheduled to Monday Jun 22.\nWe move beyond tidyverse verbs into more general programming territory: writing your own functions, iteration, and working with text and dates. Thursday is the first oral checkpoint during a project work session."
+    "text": "Note\n\n\n\nFriday June 19 is Juneteenth — no class. Quiz 4 will be rescheduled to Monday Jun 22.\nWe move beyond tidyverse verbs into more general programming territory: writing your own functions, iteration, and working with text and dates. Thursday is the first oral checkpoint during a project work session."
   },
   {
     "objectID": "weeks/week5/index.html#daily-plan",
@@ -7578,7 +7970,7 @@
     "href": "weeks/week5/index.html#assignments-due-this-week",
     "title": "Week 5 — Functions, Iteration, Strings",
     "section": "Assignments due this week",
-    "text": "Assignments due this week\n\nReading Quiz 5 — due before Monday’s class (Canvas)\nHW 4 — due Mon Jun 15, 11:59 p.m.\nProject Oral Check-in #1 — Thursday Jun 18 in class (signup on Canvas)"
+    "text": "Assignments due this week\n\nReading Quiz 4 — due before Monday’s class (Canvas)\nHW 4 — due Mon Jun 15, 11:59 p.m.\nProject Oral Check-in #1 — Thursday Jun 18 in class (signup on Canvas)"
   },
   {
     "objectID": "weeks/week4/day15-joins-page.html",
