@@ -33,65 +33,61 @@ library(tidyverse)
 
 **Before class**
 
-- No new reading. Skim the course [**AI policy**](../../syllabus/academic-integrity-and-ai-policy.qmd).
+- **Perusall Reading** (Canvas): *Data Computing* [§18.3 (trees)](https://psu.instructure.com/courses/2487468/assignments/18325381)
 
 **Plan for today**
 
 - Three ways to use a **large language model (LLM)** with R: **chat**, **in the IDE**, and **from code**.
-- How to **prompt well** for R help (and give a reproducible example).
+- How to **prompt well** for R help.
 - Calling an LLM **from R** with the **`ellmer`** package.
-- The non-negotiable habit: **verify everything** (yesterday's *and* tomorrow's theme).
-- Doing all of this **within the course AI policy**.
 
 **Helpful links**
 
 - [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd) · [ellmer](https://ellmer.tidyverse.org/) · [reprex](https://reprex.tidyverse.org/) · [Syllabus](../../syllabus/syllabus.qmd) · [Schedule](../../schedule.qmd)
 :::
 
-# Why this matters {background-color="#001E44"}
+# Overview {background-color="#001E44"}
 
 ## LLMs are part of the R workflow now {.scrollable .nostretch}
 
-An **LLM** (ChatGPT, Claude, Gemini, …) predicts likely text from a prompt. For an R user that's useful for:
+An **LLM** (ChatGPT, Claude, Gemini, etc.) predicts likely text from a prompt. For an R user that's useful for:
 
-- **Explaining errors** — paste a cryptic message, get a plain-English cause.
-- **Drafting code** — "write a `ggplot` of X by Y, faceted by Z."
-- **Refactoring** — "make this tidyverse instead of base R."
-- **Learning** — "what does `across()` do, with a small example?"
-- **As a data tool itself** — classify, extract, or summarize text *inside* a pipeline.
+- **Explaining errors**: paste a cryptic message, get a plain-English cause.
+- **Drafting code**: "write a `ggplot` of X by Y, faceted by Z."
+- **Refactoring**: "make this tidyverse instead of base R."
+- **Learning**: "what does `across()` do, with a small example?"
+- **As a data tool itself**: classify, extract, or summarize text *inside* a pipeline.
 
 ::: {.callout-tip}
-The skill that matters is **not** "getting an answer." It's judging whether the answer is **right** — which is exactly what a data course trains you to do.
+The skill that matters most is **not** "getting an answer." It's judging whether the answer is **right**.
 :::
 
 ## Three places you'll use one {.scrollable .nostretch}
 
 | Where | Examples | Best for |
 |---|---|---|
-| **Chat window** | claude.ai, ChatGPT, Gemini | one-off questions, explaining errors, learning |
+| **Chat window** | Claude, ChatGPT, Gemini | one-off questions, explaining errors, learning |
 | **In the IDE** | Positron / RStudio assistants, GitHub Copilot | inline autocomplete, "fix this" on selected code |
-| **From R code** | the **`ellmer`** package | doing the *same LLM call on every row* — a data step |
-
-Today we touch all three, but spend the most time on the third — because that's the one unique to a programming course.
+| **From R code** | the **`ellmer`** package | doing the *same LLM call on every row* |
 
 # Prompting well for R {background-color="#001E44"}
 
-## Give it what a human helper would need {.scrollable .nostretch}
+## Be specific {.scrollable .nostretch}
 
 A vague prompt gets a vague (often wrong) answer. A good R prompt includes:
 
-1. **The goal** — what the output should be.
-2. **The data shape** — paste `str()`, `glimpse()`, or `dput(head(x))`.
-3. **What you tried** and the **exact error**.
-4. **Constraints** — "use the tidyverse," "base R only," "no new packages."
+1. **The goal**: what the output should be.
+2. **The data shape**: paste `str()`, `glimpse()`, or `dput(head(x))`.
+3. **Anything you tried** and (if applicable) the **exact error**.
+4. **Constraints**: "use the tidyverse," "base R only," "no new packages."
 
 ::: {.callout-warning}
-**Don't paste private or sensitive data.** Anything you send leaves your machine and may be stored. Share a tiny **fake** example with the same structure, not the real dataset — especially anything with names, grades, or PII.
+**Don't paste private or sensitive data.** Anything you send leaves your machine and may be stored. Share a tiny **fake** example with the same structure, not the real dataset.
 :::
 
 ## A reproducible example beats a paragraph {.scrollable .nostretch}
 
-The single most useful thing you can hand an LLM (or a human, or Stack Overflow) is a **reprex** — a tiny, self-contained, runnable snippet that reproduces the problem.
+The single most useful thing you can hand an LLM (or a human, or Stack Overflow) is a **reprex**, which is a tiny, self-contained, runnable snippet that reproduces the problem.
 
 ```{r}
 #| echo: TRUE
@@ -99,30 +95,30 @@ The single most useful thing you can hand an LLM (or a human, or Stack Overflow)
 # install.packages("reprex")
 library(reprex)
 
-# copy this to your clipboard, then run reprex() — it runs the code and
-# formats code + output together, ready to paste:
+# copy this to your clipboard, then run reprex() 
+# it runs the code and formats code + output together that's ready to paste:
 reprex({
   library(dplyr)
-  tibble(x = c(1, 2, NA)) |> summarise(m = mean(x))   # why is m NA?
+  tibble(x = c(1, 2, NA)) |> summarise(m = mean(x)) # why is m NA?
 })
 ```
 
-Built-in datasets (`mtcars`, `iris`, `penguins`) make great reprexes — the helper can run them too.
+Built-in datasets (`mtcars`, `iris`, `penguins`) make great reprexes. This helper can run them too.
 
 ## Weak prompt vs. strong prompt {.scrollable .nostretch}
 
 :::: {.columns}
 ::: {.column width="50%"}
-**Weak** ❌
+**Weak**
 
 > "my ggplot doesn't work, fix it"
 
-No data, no code, no error. You'll get a generic guess that probably doesn't match your situation.
+You'll get a generic guess that may not match your situation.
 :::
 ::: {.column width="50%"}
-**Strong** ✅
+**Stronger**
 
-> "Using `penguins`, I want a scatter of `bill_length_mm` vs `flipper_length_mm` colored by `species`. My code `ggplot(penguins) + geom_point(bill_length_mm, flipper_length_mm)` errors with *'object not found'*. Tidyverse please."
+> "Using `penguins`, I want a scatter of `bill_length_mm` vs `flipper_length_mm` colored by `species`. My code `ggplot(penguins) + geom_point(bill_length_mm, flipper_length_mm)` errors with *'object not found'*. Use tidyverse to tackle this."
 
 Goal + data + code + error + constraint.
 :::
@@ -132,11 +128,11 @@ Goal + data + code + error + constraint.
 
 ## What `ellmer` is {.scrollable .nostretch}
 
-[`ellmer`](https://ellmer.tidyverse.org/) is the **tidyverse package** for talking to LLMs from R. One interface, many providers:
+[`ellmer`](https://ellmer.tidyverse.org/) is the **tidyverse package** that provides a unified interface for accessing various LLMs from R:
 
-- `chat_anthropic()` — Claude
-- `chat_openai()` — GPT
-- `chat_google_gemini()` — Gemini
+- `chat_anthropic()`: Claude
+- `chat_openai()`: GPT
+- `chat_google_gemini()`: Gemini
 
 ```{r}
 #| echo: TRUE
@@ -145,7 +141,7 @@ Goal + data + code + error + constraint.
 library(ellmer)
 
 chat <- chat_anthropic(
-  model = "claude-opus-4-8",                 # current default Claude model
+  model = "claude-opus-4-8", # current default Claude model (RIP Fable 5)
   system_prompt = "You are a concise R tutor. Prefer the tidyverse."
 )
 
@@ -153,32 +149,32 @@ chat$chat("In one sentence, what does dplyr::across() do?")
 ```
 
 ::: {.callout-note}
-The newest, most capable Claude models are **Fable 5** (`claude-fable-5`) and the **Claude 4.x** family — **Opus 4.8** (`claude-opus-4-8`), **Sonnet 4.6** (`claude-sonnet-4-6`), **Haiku 4.5** (`claude-haiku-4-5`). Bigger models are smarter but cost more per call.
+The newest, most capable Claude models are **Fable 5** (`claude-fable-5`) and the **Claude 4.x** family: **Opus 4.8** (`claude-opus-4-8`), **Sonnet 4.6** (`claude-sonnet-4-6`), **Haiku 4.5** (`claude-haiku-4-5`). Bigger models are smarter but cost more per call.
 :::
 
 ## API keys: never in your code {.scrollable .nostretch}
 
-Calling a provider needs an **API key** (a secret password tied to a paid account). Treat it like one.
+Calling a provider needs an **API key** (a secret password tied to a paid account).
 
 ```{r}
 #| echo: TRUE
 #| eval: FALSE
 # DON'T: a key pasted in a script gets committed to GitHub forever.
-chat_anthropic(api_key = "sk-ant-REAL-KEY")        # ❌
+chat_anthropic(api_key = "sk-ant-REAL-KEY")
 
-# DO: store it once in an environment variable; ellmer reads it automatically.
-usethis::edit_r_environ()    # opens ~/.Renviron — add: ANTHROPIC_API_KEY=sk-ant-...
+# INSTEAD: store it once in an environment variable ellmer can read automatically.
+usethis::edit_r_environ()    # opens ~/.Renviron; add: ANTHROPIC_API_KEY=sk-ant-...
 # restart R, then:
-chat <- chat_anthropic(model = "claude-opus-4-8")  # ✅ key picked up from the env
+chat <- chat_anthropic(model = "claude-opus-4-8")  # key picked up from the env
 ```
 
 ::: {.callout-warning}
 A leaked key can run up real charges. Keep it out of `.R`, `.qmd`, and anything you push to git (`.Renviron` is git-ignored by default).
 :::
 
-## The interesting part: an LLM as a *data step* {.scrollable .nostretch}
+## LLM as a *data step* {.scrollable .nostretch}
 
-The real power for us isn't chatting — it's running the **same prompt over every row** of a data frame, turning messy text into structured columns. `ellmer` can return **typed, structured output**:
+The real power for us isn't chatting, but rather running the **same prompt over every row** of a data frame. This approach can help turn messy text into structured columns since `ellmer` can return **typed, structured output**:
 
 ```{r}
 #| echo: TRUE
@@ -194,7 +190,7 @@ reviews <- tibble(text = c(
 
 # ask for a schema; ellmer enforces the shape
 sentiment <- type_object(
-  mood   = type_string("one of: positive, negative, neutral"),
+  mood = type_string("one of: positive, negative, neutral"),
   reason = type_string("a 5-word justification")
 )
 
@@ -207,59 +203,42 @@ This is `purrr` + a prompt: text in, tidy columns out. *That's* the data-science
 
 # The catch {background-color="#7C0A02"}
 
-## LLMs are confident, not correct {.scrollable .nostretch}
+## LLMs are confident, not always correct {.scrollable .nostretch}
 
-An LLM generates **plausible** text. Plausible is not the same as true. Expect:
+An LLM generates **plausible**, not 100% true, text. You should expect:
 
-- **Hallucinated functions / packages** — `dplyr::summarise_with()` that doesn't exist.
-- **Subtly wrong code** — runs without error, gives the wrong number.
-- **Outdated idioms** — deprecated `funs()`, old `gather()`/`spread()`.
-- **Made-up facts and citations** — stated with total confidence.
+- **Hallucinated functions / packages** like `dplyr::summarise_with()` that don't exist.
+- **Subtly wrong code** that runs without error, gives the wrong number.
+- **Outdated idioms**, i.e., deprecated `funs()`, old `gather()`/`spread()`.
+- **Made-up facts and citations** stated with total confidence.
 
-::: {.callout-important}
-This is the **same lesson as tomorrow's case study**: a thing can *sound* authoritative and still be wrong. You are the reviewer.
-:::
-
-## The verify loop (non-negotiable) {.scrollable .nostretch}
+## Verification {.scrollable .nostretch}
 
 For any code an LLM gives you:
 
 ::: {.callout-tip}
-1. **Read it.** Can you explain every line? If not, don't ship it.
-2. **Run it.** On real input. Does it error? Does it even do what you asked?
+1. **Read it.** Can you explain every line?
+2. **Run it.** Does it error on real input data? Does it even do what you asked?
 3. **Check the result.** Spot-check against a value you can compute by hand or already know.
-4. **Test the edges.** Empty input, `NA`s, one row, a weird category.
+4. **Test the edge cases.** Things to try include empty input, `NA`s, one row, or a weird category.
 :::
 
-If you can't verify it, you can't use it — for a grade, a paper, or a job.
-
-## Use it well {.scrollable .nostretch}
+## Use it wisely {.scrollable .nostretch}
 
 - **Learn from it, don't just paste.** Ask *why*, ask for a small example, then reproduce it yourself.
-- **Keep prompts small and specific.** One problem at a time beats "build my whole project."
-- **Prefer reprexes and built-in data.** Better answers, no privacy risk.
-- **Track what you used.** You'll need it for the next slide.
-
-# Academic integrity {background-color="#001E44"}
-
-## What the course policy asks {.scrollable .nostretch}
-
-Using an LLM is **allowed within the course [AI policy](../../syllabus/academic-integrity-and-ai-policy.qmd)** — read it, but the spirit is simple:
-
-- **You are responsible** for everything you submit, AI-assisted or not. "The AI wrote it" is not a defense for a bug or a wrong claim.
-- **Disclose** AI use where the policy asks (and don't pass AI text off as your own writing).
-- **You must understand your submission** — be ready to explain any line in office hours or an oral check-in.
-- On a **quiz/exam**, only the tools the policy permits.
+- **Keep prompts small and specific.** 
+- **Prefer reprexes and built-in data.**
+- **Track what you used.**
 
 ::: {.callout-note}
-Treat it like a very fast, occasionally-wrong collaborator: great for momentum, never the final authority. The judgment stays yours.
+Treat LLMs like very fast, occasionally-wrong collaborators. They're not to be blindly trusted.
 :::
 
 # Activity {background-color="#7C0A02"}
 
 ## In-class activity (~20 min) {.scrollable .nostretch}
 
-Use whatever LLM you have access to (chat window is fine — no API key needed).
+Use whatever LLM you have access to (chat window is fine, no API key needed).
 
 1. **Explain an error.** Run this, then ask the LLM to explain *and* fix it. Verify the fix runs:
    ```r
@@ -268,7 +247,7 @@ Use whatever LLM you have access to (chat window is fine — no API key needed).
    ```
    (Why `NaN`/`NA`? What's the one-argument fix?)
 2. **Generate a function.** Ask for an R function that takes a numeric vector and returns its mean, median, and SD as a named tibble. Then **break it**: feed it `c(1, 2, NA)` and a length-1 vector. Did the LLM handle those?
-3. **Catch a mistake.** Find **at least one** thing the LLM got wrong, outdated, or could improve — and write one sentence on how you knew.
+3. **Catch a mistake.** Find **at least one** thing the LLM got wrong, outdated, or could improve.
 
 ## Wrap-up & looking ahead {.scrollable .nostretch}
 
@@ -279,13 +258,10 @@ Use whatever LLM you have access to (chat window is fine — no API key needed).
 - Three surfaces: **chat**, **IDE assistant**, **`ellmer` from code**.
 - **Prompt well**: goal + data shape + error + constraints; hand over a **reprex**, never private data.
 - **`ellmer`** calls Claude/GPT/Gemini from R; keep API keys in `.Renviron`; structured output = LLM as a tidy **data step**.
-- **Verify everything** — read, run, check, test. Confident ≠ correct.
-- Stay inside the **course AI policy**; you own what you submit.
 
 **Upcoming**
 
-- **Tonight:** HW 5 due 11:59 p.m.
-- **Wed Jun 24:** case study — bad science · Checkpoint 2 due
+- **Wed Jun 24:** benzoyl peroxide case study: data-driven investigation uncovering carcinogens in everyday skincare products· Checkpoint 2 due
 :::
 ::: {.column width="45%"}
 **Reach out**

@@ -17,16 +17,13 @@ The last week. Some special topics (clustering, decision trees), the second oral
 
 ## Readings due this week
 
-- Before Mon: *Data Computing* Ch 18 (§18.2): unsupervised learning, clustering
-- Before Tue: *Data Computing* Ch 18 (§18.3): trees from data
+- Before Mon: *Data Computing* Ch 18 ([§18.2](https://psu.instructure.com/courses/2487468/assignments/18325380)): unsupervised learning, clustering
+- Before Tue: *Data Computing* Ch 18 ([§18.3](https://psu.instructure.com/courses/2487468/assignments/18325381)): trees from data
+- Before Wed: [Article](https://psu.instructure.com/courses/2487468/assignments/18351735) from Yale SOM for benzoyl peroxide case study
 
 ## Assignments due this week
 
-- **Quiz 4** — Monday Jun 22 in class
+- **Quiz 4**: Monday Jun 22 in class
 - **Project Checkpoint 2**: due Wed Jun 24, 11:59 p.m.
 - **Project Oral Check-in #2**: Thursday Jun 25 in class
 - **Final project report + GitHub repo link**: due Friday Jun 26, 11:59 p.m.
-
-## After the course
-
-- Course evaluations: please complete them.
