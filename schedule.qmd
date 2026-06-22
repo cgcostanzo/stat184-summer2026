@@ -75,7 +75,7 @@ Week 5 covers material that *Data Computing* doesn't address in depth. Readings 
 | Tue Jun 16 | Control flow · `if/else`, `for`, `while` | [R4DS Ch 26 §26.1–26.3](https://psu.instructure.com/courses/2487468/assignments/18325377) | --- |
 | Wed Jun 17 | Vectorized operations · `purrr::map` | [R4DS Ch 26 §26.4–26.5](https://psu.instructure.com/courses/2487468/assignments/18325378) | --- |
 | Thu Jun 18 | Strings, dates, and regex | [DC §17.1–17.2](https://psu.instructure.com/courses/2487468/assignments/18325379) | [**Project oral check-in #1**](https://psu.instructure.com/courses/2487468/assignments/18347819?module_item_id=48278139) (during class) |
-| Fri Jun 19 | **No class - Juneteenth** · Quiz 5 rescheduled to Mon Jun 22 | --- | [HW 5](https://psu.instructure.com/courses/2487468/assignments/18343523) |
+| Fri Jun 19 | **No class - Juneteenth** · Quiz 4 rescheduled to Mon Jun 22 | --- | [HW 5](https://psu.instructure.com/courses/2487468/assignments/18343523) |
 
 : Week 5 schedule {tbl-colwidths="[10,35,25,30]"}
 
@@ -83,9 +83,9 @@ Week 5 covers material that *Data Computing* doesn't address in depth. Readings 
 
 | Date | Topic | Read before class | Due |
 |---|---|---|---|
-| Mon Jun 22 | **Quiz 4 (rescheduled)** · unsupervised learning, clustering | [DC §18.2](https://psu.instructure.com/courses/2487468/assignments/18325380) | Quiz 5 (in class) |
-| Tue Jun 23 | Decision trees / CART | [DC §18.3](https://psu.instructure.com/courses/2487468/assignments/18325381) | --- |
-| Wed Jun 24 | Topic TBD | --- | [**Project Checkpoint 2**](https://psu.instructure.com/courses/2487468/discussion_topics/17448010) |
+| Mon Jun 22 | [Clustering & decision trees](weeks/week6/day24-clustering.qmd) | [DC §18.2–18.3](https://psu.instructure.com/courses/2487468/assignments/18325380) | Quiz 4 (in class) |
+| Tue Jun 23 | [Using R with LLMs](weeks/week6/day25-r-with-llms.qmd) | --- | --- |
+| Wed Jun 24 | [Case study: bad science & misleading claims](weeks/week6/day26-bad-science.qmd) | --- | [**Project Checkpoint 2**](https://psu.instructure.com/courses/2487468/discussion_topics/17448010) |
 | Thu Jun 25 | **Project work day** · [oral check-in #2 (final walkthrough)](https://psu.instructure.com/courses/2487468/assignments/18347821) | --- | --- |
 | Fri Jun 26 | **Quiz 6** · short project presentations · course wrap-up | --- | Quiz 6 (in class) · [**Final project report due 11:59 p.m.**]() |
 

@@ -1,65 +1,409 @@
 ---
-title: "Quiz 5 (rescheduled) · unsupervised learning, clustering"
+title: "Clustering & decision trees"
 subtitle: "Monday, June 22, 2026"
+lang: en
+editor: source
+engine: knitr
 format:
+  revealjs:
+    slide-number: true
+    embed-resources: true
+    smaller: true
+    highlight-style: a11y
+    output-file: "day24-clustering-slides.html"
   html:
     toc: true
-    code-fold: false
-editor: source
+    embed-resources: true
+    highlight-style: a11y
+    axe: true
+    output-file: "day24-clustering-page.html"
+  pdf:
+    fig-pos: "H"
 ---
 
-::: callout-note
-## Today's plan
-- [ ] TODO: list 2-4 concrete goals for the class
-:::
-
-## Before class
-
-- Read: Data Computing Ch 18 (§18.2)
-- TODO: any prep materials, data files, etc.
-
-## Outline
-
-### 1. TODO: opening segment (~15 min)
-
-TODO: concept exposition or motivating example.
-
 ```{r}
-#| eval: false
-# TODO: live-coded example
+#| echo: FALSE
+#| message: FALSE
+#| warning: FALSE
+library(tidyverse)
+library(palmerpenguins)
+library(rpart)
+
+set.seed(184)
+theme_set(theme_minimal(base_size = 15))
+
+peng <- penguins |>
+  drop_na(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g)
 ```
 
-### 2. TODO: main segment (~25 min)
+::: {.callout-note style="font-size: 1.3em;"}
+## [Today: Monday June 22]{style="font-size: 1.3em;"}
 
-TODO: hands-on practice — students follow along.
+**Before class**
+
+- **Perusall Reading** (Canvas): *Data Computing* [§18.2 (clustering)](https://psu.instructure.com/courses/2487468/assignments/18325380)
+
+**Plan for today**
+
+- **Quiz 4** (rescheduled from Friday).
+- **Supervised vs. unsupervised** learning.
+- **k-means** and **hierarchical** clustering.
+- **Decision trees / CART**.
+- In-class activity.
+
+**Helpful links**
+
+- [Syllabus](../../syllabus/syllabus.qmd) · [Schedule](../../schedule.qmd) · [*DC* Ch. 18](https://dtkaplan.github.io/DataComputingEbook/chap-machine-learning.html)
+:::
+
+# Big picture {background-color="#001E44"}
+
+## Two kinds of learning {.scrollable .nostretch}
+
+| | **Unsupervised** | **Supervised** |
+|---|---|---|
+| You have... | features only, **no labels** | features **and** a known answer |
+| Goal | find **structure / groups** | **predict** the answer for new cases |
+| Examples | **clustering** (k-means, hierarchical) | **decision trees** (CART) |
+| "Right answer"? | no; you judge usefulness | yes; you can measure accuracy |
+
+Today, we'll be using the **Palmer penguins** body measurements to explore supervised and unsupervised learning techniques.
+
+## Penguins data {.scrollable .nostretch}
 
 ```{r}
-#| eval: false
-# TODO: example to walk through
+#| echo: TRUE
+peng |>
+  select(species, bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) |>
+  glimpse()
 ```
 
-### 3. In-class activity (~20 min)
+For **clustering** we'll hide `species` and see if we can "rediscover" these categories. For **trees** we'll use `species` as the answer to predict.
 
-TODO: brief description, or link to a separate handout.
+# Clustering {background-color="#001E44"}
 
-### 4. Wrap-up (~5 min)
+## Overview {.scrollable .nostretch}
 
-- TODO: key takeaway
-- TODO: preview next class
+**Clustering** puts rows into groups so that rows in a group are **similar** and rows in different groups are **different**, using only the feature columns.
 
-## Resources
+- No labels go into the model, i.e., you don't tell it "species."
+- "Similar" means **close in distance** once features are on a comparable scale.
+- How we measure distance depends on the method. 
 
-- TODO: slides PDF
-- TODO: in-class code .R file
-- TODO: activity handout
-
-## After class
-
-- TODO: due tomorrow
-- TODO: optional supplementary reading
-
-::: {.callout-tip collapse="true"}
-## Instructor notes
-
-TODO: notes to self — pacing, common student questions, things to watch for.
+::: {.callout-warning}
+**Scale first.** Body mass (~3000-6000 g) would swamp bill depth (~13-22 mm) in any distance calculation. We almost always want to standardize so every feature gets an equal vote.
 :::
+
+```{r}
+#| echo: TRUE
+X <- peng |>
+  select(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g) |>
+  scale() # subtract mean, divide by sd --> unit-less
+
+round(colMeans(X), 14) # column means = zero
+apply(X, 2, var) # column variances = one
+```
+
+## k-means clustering {.scrollable .nostretch}
+
+`kmeans()` finds **k** cluster centers and assigns each point to its nearest one, iterating until things stop moving. **k** is a hyperparameter you pick.
+
+```{r}
+#| echo: TRUE
+set.seed(184) # random algorithm; set a seed so results are reproducible
+km <- kmeans(X, centers = 3, nstart = 25) # nstart = try 25 random starts, keep best
+km$size # how many penguins per cluster
+```
+
+`nstart` matters here: k-means depends on random starting centers, so we try several and keep the best.
+
+- `set.seed()` makes it reproducible (we'll get the same results if we re-run our code).
+
+## Clustering results {.scrollable .nostretch}
+
+```{r}
+#| echo: FALSE
+#| code-fold: TRUE
+
+X_df <- as.data.frame(X)
+X_df$Cluster <- as.factor(km$cluster)
+
+centers_df <- as.data.frame(km$centers)
+centers_df$Cluster <- as.factor(1:nrow(centers_df))
+
+ggplot(X_df, aes(x = bill_length_mm, y = bill_depth_mm, color = Cluster)) +
+  geom_point(size = 2.5, alpha = 0.8) +
+  geom_point(data = centers_df, aes(fill = Cluster), color = "black",
+             size = 8, shape = 21, stroke = 2.5, alpha = 0.7) +
+             
+  scale_color_manual(values = c("#E69F00", "#009E73", "#56B4E9")) +
+  scale_fill_manual(values = c("#E69F00", "#009E73", "#56B4E9")) +
+  labs(title = "K-Means Clustering on Penguins",
+       subtitle = "Large open circles mark the center of each cluster",
+       x = "Bill Length (Scaled)",
+       y = "Bill Depth (Scaled)") +
+  theme_minimal()
+```
+
+## Did it recover the species categories? {.scrollable .nostretch}
+
+We clustered **without** species. Now compare the clusters to the real species:
+
+```{r}
+#| echo: FALSE
+#| code-fold: TRUE
+library(ggplot2)
+
+conf_matrix <- table(cluster = km$cluster, species = peng$species)
+heatmap_df <- as.data.frame(conf_matrix)
+
+ggplot(heatmap_df, aes(x = species, y = cluster, fill = Freq)) +
+  geom_tile(color = "white", linewidth = 0.5) +
+  geom_text(aes(label = Freq), color = "black", size = 5) +
+  scale_fill_gradient(low = "white", high = "#3399FF") +
+  labs(title = "Cluster Assignments vs. True Penguin Species",
+       x = "True Species",
+       y = "K-Means Cluster",
+       fill = "Count") +
+  theme_minimal() +
+  theme(panel.grid = element_blank(),
+        legend.position = "bottom")
+```
+
+## Did it recover the species categories? {.scrollable .nostretch}
+
+```{r}
+#| echo: FALSE
+#| code-fold: TRUE
+#| layout-ncol: 2
+#| fig-width: 5
+#| fig-height: 4
+peng |>
+  mutate(cluster = factor(km$cluster)) |>
+  ggplot(aes(x = bill_length_mm, y = bill_depth_mm, color = cluster, shape = species)) +
+  geom_point(size = 2, alpha = .8) +
+  labs(title = "Clusters (color) vs. true species (shape)", color = "cluster",
+       x = "Bill length (Scaled)", y = "Bill depth (Scaled)") +
+  scale_color_manual(values = c("#E69F00", "#009E73", "#56B4E9"),
+                     name = "Cluster (Model Classification)") +
+  scale_fill_manual(values = c("#E69F00", "#009E73", "#56B4E9"),
+                    name = "Species (Ground Truth)") +
+  theme(legend.position = "bottom")
+
+X_df$True_Species <- peng$species
+X_df$Predicted_Species <- NA
+X_df$Predicted_Species[X_df$Cluster == "1"] <- "Adelie"
+X_df$Predicted_Species[X_df$Cluster == "2"] <- "Chinstrap"
+X_df$Predicted_Species[X_df$Cluster == "3"] <- "Gentoo"
+X_df$Classification <- ifelse(X_df$True_Species == X_df$Predicted_Species, 
+                              "Correct", "Misclassified")
+
+ggplot(X_df, aes(x = bill_length_mm, y = bill_depth_mm, color = Classification)) +
+  geom_point(size = 2, alpha = 0.8) +
+  
+  scale_color_manual(values = c("Correct" = "#000000", "Misclassified" = "#D55E00")) +
+  
+  labs(title = "K-Means Misclassifications",
+       x = "Bill Length (Scaled)",
+       y = "Bill Depth (Scaled)",
+       color = "") + 
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+Each cluster is mostly one species, found with **no labels**. (Gentoo separates cleanly; the other two overlap a bit.)
+
+## How many clusters? The elbow {.scrollable .nostretch}
+
+There's no "correct" **k**. A common heuristic is to plot total within-cluster spread as **k** grows, and look for the **elbow** where adding clusters stops helping. (Uses `purrr::map_dbl()` from last week.)
+
+```{r}
+#| echo: TRUE
+#| fig-width: 7.5
+#| fig-height: 3.4
+tibble(k = 1:8) |>
+  mutate(wss = map_dbl(k, ~ kmeans(X, centers = .x, nstart = 10)$tot.withinss)) |>
+  ggplot(aes(k, wss)) +
+  geom_line() + geom_point(size = 2) +
+  scale_x_continuous(breaks = 1:8) +
+  labs(x = "k (number of clusters)", y = "Error",
+       title = "Elbow around k = 3")
+```
+
+Here, "Error" is measured by the total within-cluster sum of squares:
+
+$$\text{Error}_k = \sum_{i=1}^{N} ||\mathbf{x}_i - \boldsymbol{\mu}_{c(i)}||^2$$
+
+Equivalently,
+
+$$\text{Error}_k = \sum_{j=1}^{k} \sum_{\mathbf{x}_i \in C_j} ||\mathbf{x}_i - \boldsymbol{\mu}_j||^2$$
+
+## Hierarchical clustering {.scrollable .nostretch}
+
+Another approach is to not pick **k** up front. Instead, you can start with every point alone, then repeatedly **merge the two closest groups**, and record the whole tree (a **dendrogram**).
+
+```{r}
+#| echo: TRUE
+#| fig-width: 9
+#| fig-height: 3.4
+d  <- dist(X) # pairwise distances
+hc <- hclust(d, method = "complete")
+plot(hc, labels = FALSE, main = "Dendrogram", xlab = "", sub = "")
+rect.hclust(hc, k = 3, border = "#7C0A02") # cut into 3 groups
+```
+
+**Height** = how different two groups were when merged. **Cut** the tree at a height to get clusters, then you choose *after* seeing the structure.
+
+## Hierarchical: cut and compare {.scrollable .nostretch}
+
+```{r}
+#| echo: TRUE
+clusters_h <- cutree(hc, k = 3)
+table(cluster = clusters_h, species = peng$species)
+```
+
+k-means needs **k** up front and is fast on big data; hierarchical shows the **whole nesting structure** and lets you decide **k** afterward.
+
+# Decision trees (CART) {background-color="#001E44"}
+
+## Now we *have* labels {.scrollable .nostretch}
+
+Switch to **supervised**: use the measurements to **predict species**, and get a model a human can read.
+
+A **decision tree** asks a sequence of yes/no questions about the features, splitting the data at each step, until each leaf is (mostly) one class. **CART** = Classification And Regression Trees.
+
+```{r}
+#| echo: TRUE
+fit <- rpart(
+  species ~ bill_length_mm + bill_depth_mm + flipper_length_mm + body_mass_g,
+  data = peng, method = "class"
+)
+```
+
+## Read the tree {.scrollable .nostretch}
+
+```{r}
+#| echo: TRUE
+#| fig-width: 9
+#| fig-height: 4.2
+plot(fit, margin = 0.1)
+text(fit, use.n = TRUE, cex = 0.9)
+```
+
+Follow a penguin from the top: at each node, answer the question and go **left if yes**. The leaf is the predicted species. Notice it often needs only **two measurements**, which is much more interpretable.
+
+## How does it pick the splits? {.scrollable .nostretch}
+
+At each step the tree tries every feature and every cut point and keeps the split that makes the two sides **most "pure"** (closest to a single class).
+
+- Purity is measured by **impurity** (Gini index): low impurity = the node is almost all one species.
+
+- It splits **greedily**, top-down, then **stops** when splits no longer help enough.
+
+::: {.callout-tip}
+This is why trees are easy to explain: each split is just a threshold on one variable, like `flipper_length_mm < 206`.
+:::
+
+## How good is it? {.scrollable .nostretch}
+
+Because species is known, we can **score** predictions with a confusion table:
+
+```{r}
+#| echo: TRUE
+pred <- predict(fit, peng, type = "class")
+table(prediction = pred, actual = peng$species)
+mean(pred == peng$species) # overall accuracy
+```
+
+## Visualize with a heatmap
+
+```{r}
+#| echo: FALSE
+#| code-fold: TRUE
+pred <- predict(fit, peng, type = "class")
+conf_matrix <- table(prediction = pred, actual = peng$species)
+heatmap_df <- as.data.frame(conf_matrix)
+
+ggplot(heatmap_df, aes(x = actual, y = prediction, fill = Freq)) +
+  geom_tile(color = "white", linewidth = 0.5) +
+  geom_text(aes(label = Freq), color = "black", size = 5) +
+  scale_fill_gradient(low = "white", high = "#66CC99") +
+  labs(title = "Model Predictions vs. True Penguin Species",
+       subtitle = paste("Overall Accuracy:", 
+                        round(mean(pred == peng$species) * 100, 1), "%"),
+       x = "True Species",
+       y = "Predicted Species",
+       fill = "Count") +
+  theme_minimal() +
+  theme(panel.grid = element_blank(),
+        legend.position = "bottom")
+```
+
+
+::: {.callout-warning}
+This is accuracy on the **same data the tree learned from**, which is overly optimistic. A more realistic evaluation uses a held-out **test set** (the model must perform on data it has never seen). Deep trees can **overfit**, i.e., memorize the training data, fail on new data.
+:::
+
+## Trees vs. clustering {.scrollable .nostretch}
+
+:::: {.columns}
+::: {.column width="50%"}
+**Clustering (unsupervised)**
+
+- No labels available
+- Question: *"what natural groups exist?"*
+- Output: a group ID per row
+- Judged by usefulness, not accuracy
+- e.g. customer segments, document topics
+:::
+::: {.column width="50%"}
+**Decision tree (supervised)**
+
+- Labels available
+- Question: *"predict this known outcome"*
+- Output: a prediction + a readable rule
+- Judged by accuracy on held-out data
+- e.g. spam / not-spam, species, churn
+:::
+::::
+
+An unsupervised cluster is **not** a verified truth, it's a hypothesis you still have to check.
+
+# Activity {background-color="#7C0A02"}
+
+## In-class activity (~20 min) {.scrollable .nostretch}
+
+Work in `day24-activity.R` (or a fresh script) on the `penguins` data.
+
+1. **Cluster.** Standardize the four numeric measurements, run `kmeans()` with `centers = 2`, then `4`. How does `table(cluster, species)` change vs. `k = 3`?
+2. **Elbow.** Rebuild the elbow plot using only **two** features. Does the elbow still say 3?
+3. **Tree.** Fit a tree predicting `species` from **only** `bill_length_mm` and `bill_depth_mm`. Plot it and report accuracy. Did dropping two features hurt much?
+4. **Discuss.** Which method would you prefer if the dataset had **no** `species` column at all? Why?
+
+## Wrap-up & looking ahead {.scrollable .nostretch}
+
+:::: {.columns}
+::: {.column width="55%"}
+**What we covered**
+
+- **Unsupervised** (clustering) finds groups with no labels; **supervised** (trees) predicts a known label.
+- **k-means**: pick `k`, scale features, `nstart`, read the elbow.
+- **Hierarchical**: merge-closest, read the dendrogram, cut afterward.
+- **Trees**: greedy splits on single features $\rightarrow$ readable rules; score on **held-out** data, beware overfitting.
+
+**Upcoming**
+
+- **Tue Jun 23:** using R with LLMs · HW 5 due 11:59 p.m.
+- **Wed Jun 24:** case study · Checkpoint 2 due
+:::
+::: {.column width="45%"}
+**Reach out**
+
+Stuck? Office hours, or email me ([cgc5478@psu.edu](mailto:cgc5478@psu.edu)) or Xinyue ([xpw5228@psu.edu](mailto:xpw5228@psu.edu)).
+
+**Reference**
+
+- [*DC* Ch. 18](https://dtkaplan.github.io/DataComputingEbook/chap-machine-learning.html)
+- [Syllabus](../../syllabus/syllabus.qmd) · [Schedule](../../schedule.qmd)
+:::
+::::

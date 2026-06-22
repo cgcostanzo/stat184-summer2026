@@ -4,7 +4,7 @@ subtitle: "June 15 – 19, 2026"
 ---
 
 ::: callout-note
-**Friday June 19 is Juneteenth — no class.** Quiz 5 will be rescheduled to Monday Jun 22.
+**Friday June 19 is Juneteenth — no class.** Quiz 4 will be rescheduled to Monday Jun 22.
 :::
 
 We move beyond tidyverse verbs into more general programming territory: writing your own functions, iteration, and working with text and dates. Thursday is the first oral checkpoint during a project work session.
@@ -32,6 +32,6 @@ Mon–Wed readings come from *R for Data Science* (R4DS) — *Data Computing* do
 
 ## Assignments due this week
 
-- **Reading Quiz 5** — due before Monday's class (Canvas)
+- **Reading Quiz 4** — due before Monday's class (Canvas)
 - **HW 4** — due Mon Jun 15, 11:59 p.m.
 - **Project Oral Check-in #1** — Thursday Jun 18 in class (signup on Canvas)

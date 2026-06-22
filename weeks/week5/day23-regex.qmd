@@ -333,7 +333,7 @@ Open `day23-activity.R` in RStudio and work through the parts in order. (Work on
 **Upcoming**
 
 - **Fri Jun 19:** **No class — Juneteenth**
-- **Quiz 5** rescheduled to **Mon Jun 22**
+- **Quiz 4** rescheduled to **Mon Jun 22**
 - Keep building your **project**; oral check-in #1 today
 :::
 ::: {.column width="45%"}

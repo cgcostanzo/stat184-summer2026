@@ -3,32 +3,30 @@ title: "Week 6 — Special Topics & Project"
 subtitle: "June 22 – 26, 2026"
 ---
 
-The last week. Some special topics (clustering, decision trees — instructor's choice), the second oral checkpoint, and project wrap-up. Final report and video due Friday night.
+The last week. Some special topics (clustering, decision trees), the second oral checkpoint, and project wrap-up. Final project report due Friday night.
 
 ## Daily plan
 
 | Date | Topic | Files |
 |---|---|---|
-| Mon Jun 22 | [**Quiz 4 (rescheduled)** · intro to clustering](day24-clustering.qmd) | quiz, slides |
-| Tue Jun 23 | [Decision trees / CART](day25-trees.qmd) | slides, in-class code |
-| Wed Jun 24 | TOPIC TBD · oral check-in #1 makeups | --- |
+| Mon Jun 22 | [**Quiz 4 (rescheduled)** · clustering & decision trees](day24-clustering.qmd) | quiz, slides |
+| Tue Jun 23 | [Using R with LLMs](day25-r-with-llms.qmd) | slides |
+| Wed Jun 24 | [Case study](day26-case-study.qmd) · oral check-in #1 makeups | slides |
 | Thu Jun 25 | **Project work day** · [oral check-in #2 (final walkthrough)](https://psu.instructure.com/courses/2487468/assignments/18347821) | --- |
 | Fri Jun 26 | [short project presentations · wrap-up](https://psu.instructure.com/courses/2487468/assignments/18347822?module_item_id=48278141) | --- |
 
 ## Readings due this week
 
-- Before Mon: *Data Computing* Ch 18 (§18.2) — unsupervised learning, clustering
-- Before Tue: *Data Computing* Ch 18 (§18.3) — trees from data
+- Before Mon: *Data Computing* Ch 18 (§18.2): unsupervised learning, clustering
+- Before Tue: *Data Computing* Ch 18 (§18.3): trees from data
 
 ## Assignments due this week
 
 - **Quiz 4** — Monday Jun 22 in class
-- **HW 5** — due Tue Jun 23, 11:59 p.m.
-- **Project Checkpoint 2** — due Wed Jun 24, 11:59 p.m.
-- **Project Oral Check-in #2** — Thursday Jun 25 in class (signup on Canvas)
-- **Final project report + video URL** — due Friday Jun 26, 11:59 p.m.
+- **Project Checkpoint 2**: due Wed Jun 24, 11:59 p.m.
+- **Project Oral Check-in #2**: Thursday Jun 25 in class
+- **Final project report + GitHub repo link**: due Friday Jun 26, 11:59 p.m.
 
 ## After the course
 
-- Final grades posted by [date TBD].
-- Course evaluations: please complete them. They are read.
+- Course evaluations: please complete them.
